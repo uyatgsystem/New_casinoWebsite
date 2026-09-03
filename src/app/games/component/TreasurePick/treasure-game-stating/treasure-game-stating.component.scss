@@ -1,0 +1,312 @@
+.treasure-loader-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('https://treasure-box.pages.dev/houseOfLuck/treasureLoadingbg.png') center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.game-name-img {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0; // Remove gap between image and info container
+  img {
+    width: 22dvw;
+    height: auto;
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.53));
+    animation: nameFadeIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: transform 0.2s;
+    &:hover {
+      transform: scale(1.07) rotate(-2deg);
+      filter: drop-shadow(0 8px 24px #ffd70088);
+    }
+  }
+  .game-info-container {
+    margin-top: 18px; // A little below the image
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    position: relative;
+
+    padding-left: 0;
+  }
+}
+@keyframes nameFadeIn {
+  0% { opacity: 0; transform: translateY(-40px) scale(0.8);}
+  100% { opacity: 1; transform: translateY(0) scale(1);}
+}
+
+.treasure-loader-center {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  z-index: 3;
+  position: relative;
+}
+
+.treasure-chest-img {
+  width: 340px;
+  max-width: 80vw;
+  height: auto;
+  filter: drop-shadow(0 12px 40px #0008);
+  transition: opacity 0.3s, transform 0.2s;
+  will-change: transform, opacity;
+  pointer-events: none;
+
+  &.closed-chest.chest-shake {
+    animation: enhancedChestShake 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  &.open-chest.chest-opening {
+    animation: chestMagicalOpen 1.1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+  &.chest-glow {
+    filter: drop-shadow(0 12px 40px #0008) brightness(1.1);
+  }
+  &.chest-hoverable {
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.2s, filter 0.2s;
+    &:hover {
+      transform: scale(1.07) rotate(-3deg);
+      filter: drop-shadow(0 16px 48px #ffd700cc) brightness(1.15);
+      animation: chestHoverPop 0.4s;
+    }
+  }
+}
+
+@keyframes enhancedChestShake {
+  0%, 100% { transform: scale(1) rotate(0deg);}
+  10% { transform: scale(1.05) rotate(-5deg);}
+  20% { transform: scale(1.1) rotate(5deg);}
+  30% { transform: scale(1.05) rotate(-5deg);}
+  40% { transform: scale(1.1) rotate(5deg);}
+  50% { transform: scale(1.05) rotate(-2deg);}
+  60% { transform: scale(1.1) rotate(2deg);}
+  70% { transform: scale(1.05) rotate(-1deg);}
+  80% { transform: scale(1.1) rotate(1deg);}
+  90% { transform: scale(1.05) rotate(0deg);}
+}
+@keyframes chestMagicalOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.7) rotateY(-20deg);
+    filter: brightness(0.5) drop-shadow(0 12px 40px #0008);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translateY(20px) scale(0.9) rotateY(-10deg);
+    filter: brightness(0.8) drop-shadow(0 15px 45px #ffd70044);
+  }
+  70% {
+    opacity: 0.9;
+    transform: translateY(-15px) scale(1.05) rotateY(5deg);
+    filter: brightness(1.2) drop-shadow(0 20px 50px #ffd70066);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateY(0deg);
+    filter: brightness(1) drop-shadow(0 12px 40px #0008);
+  }
+}
+
+@keyframes chestHoverPop {
+  0% { transform: scale(1) rotate(0deg);}
+  60% { transform: scale(1.12) rotate(-6deg);}
+  100% { transform: scale(1.07) rotate(-3deg);}
+}
+
+/* Loader Bar */
+.loader-bar-container {
+ position: relative;
+ top:6dvh;
+  width: 320px;
+  max-width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  animation: loaderBarMagicalAppear 1.1s 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
+}
+@keyframes loaderBarMagicalAppear {
+  0% { opacity: 0; transform: translateY(60px) scale(0.8);}
+  60% { opacity: 0.8; transform: translateY(-10px) scale(1.05);}
+  100% { opacity: 1; transform: translateY(0) scale(1);}
+}
+.loader-bar-bg {
+  width: 100%;
+  height: 32px;
+  background: linear-gradient(145deg, #2d1a00, #1a0f00 80%);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px #0006, 0 0 0 4px #ffd70044;
+  border: 3px solid #ffd700;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.loader-bar-shine {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 0%, #fff8 40%, #fff 50%, transparent 100%);
+  width: 60%;
+  height: 100%;
+  opacity: 0.8;
+  filter: blur(3px);
+  animation: barShine 1.5s linear infinite;
+}
+@keyframes barShine {
+  0% { transform: translateX(-80%);}
+  100% { transform: translateX(120%);}
+}
+.loader-bar-text {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px #000a;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+  user-select: none;
+}
+
+/* Info Texts */
+.game-info-container {
+  position: absolute;
+  top: 68%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  text-align: center;
+  width: 100vw;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+}
+.game-info-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fffbe7;
+  background: rgba(44, 32, 0, 0.82);
+  border-left: 4px solid #ffd700;
+  border-radius: 0 12px 12px 0;
+  padding: 7px 18px 7px 14px;
+  margin: 0;
+  min-width: 210px;
+  box-shadow: 0 2px 8px #0003;
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideInInfo 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  /* animation-delay is set inline for staggered effect */
+}
+@keyframes slideInInfo {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.95);
+  }
+  60% {
+    opacity: 0.7;
+    transform: translateX(8px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Coins */
+.coin-fall-container {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+}
+.falling-coin {
+  position: absolute;
+  top: -80px;
+  will-change: transform, opacity;
+  animation: enhancedCoinFallBounce linear forwards;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 12px #ffd70044);
+  transition: filter 0.2s, transform 0.2s;
+  &:hover {
+    filter: drop-shadow(0 8px 32px #ffd700cc) brightness(1.2);
+    transform: scale(1.2) rotate(10deg);
+    z-index: 10;
+    animation-play-state: paused;
+  }
+}
+@keyframes enhancedCoinFallBounce {
+  0% {
+    transform: translateY(0) scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(10vh) scale(1) rotate(36deg);
+  }
+  50% {
+    transform: translateY(50vh) scale(1.1) rotate(180deg);
+  }
+  85% {
+    opacity: 0.8;
+    transform: translateY(92vh) scale(1.2) rotate(324deg);
+  }
+  92% {
+    transform: translateY(98vh) scale(1.1) rotate(350deg);
+    opacity: 0.7;
+  }
+  96% {
+    transform: translateY(94vh) scale(1.15) rotate(355deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh) scale(1.3) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .treasure-chest-img { width: 220px; }
+  .loader-bar-container { width: 180px; }
+  .game-name-img img { width: 120px; }
+}
+@media (max-width: 600px) {
+  .treasure-chest-img { width: 140px; }
+  .loader-bar-container { width: 120px; }
+  .game-name-img { top: 12px; left: 12px; }
+  .game-name-img img { width: 80px; }
+  .game-info-container { top: 72%; }
+}
+.loader-bar-fg {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700 0%, #fffbe7 40%, #ffd700 100%);
+  border-radius: 18px 0 0 18px;
+  transition: width 0.18s cubic-bezier(0.4, 0, 0.2, 1); // <--- Make this faster and smoother
+  box-shadow: 0 0 12px #ffd70088, inset 0 2px 4px #fff9;
+  position: relative;
+  min-width: 12px;
+  will-change: width;
+}

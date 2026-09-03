@@ -1,0 +1,672 @@
+<app-loader></app-loader>
+
+<img src="/BackgroundMobile.png"
+  class="absolute top-1/2 left-1/2 w-full h-auto max-h-screen object-cover transform -translate-x-1/2 -translate-y-1/2 z-0 opacity-60"
+  alt="" />
+
+<div class="min-h-[90vh] flex flex-col items-center relative overflow-hidden image-bg px-4 md:px-8 py-4">
+  <div class="relative mb-6 pb-2 w-full">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2 cursor-pointer" (click)="back()">
+        <fa-icon class="text-[#F3A630] w-5 h-5 inline " [icon]="leftArrow">
+        </fa-icon>
+        <img src="https://cmaxv2images2.pages.dev/assets/icons/scratch-card-icon.svg" class="w-5 h-5 hidden md:inline"
+          alt="spin" />
+        <span class="text-white font-semibold">Scratch Card</span>
+      </div>
+      <button (click)="showGuide()"
+        class="hidden md:inline-block bg-gradient-to-r from-[#F3A630] to-[#F86E12] text-black font-semibold px-10 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        Guide
+      </button>
+    </div>
+    <div
+      class="h-[2px] w-full absolute bottom-0 left-0 bg-[linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)]">
+    </div>
+  </div>
+
+  <!-- Main Card Container -->
+
+  <div class="min-h-[60vh] flex items-center justify-center">
+    <div class="relative w-full mx-auto">
+      <!-- Main Card Container with gradient background -->
+      <div
+        class="relative w-full h-[350px] lg:h-[318px] p-3 bg-gradient-to-br from-[#1a1d1f] to-[#0d0f10] rounded-tl-[24px] rounded-tr-[6px] rounded-br-[24px] rounded-bl-[6px] border border-gray-700/50 overflow-hidden">
+        <!-- Inner card with gradient background -->
+        <div
+          class="w-full h-full rounded-tl-[24px] rounded-tr-[6px] rounded-br-[24px] rounded-bl-[6px] border-[5px] border-black overflow-hidden">
+          <!-- Overlay Content -->
+          <div class="relative inset-0 text-white p-6">
+            <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+            <!-- Winning Amount - Top Right -->
+            <div class="absolute top-8 lg:top-10 right-4 text-center">
+              <p class="text-3xl lg:text-4xl font-bold text-[#FAE246] leading-none mb-1">
+                {{ cardData.winning }}
+              </p>
+              <p class="text-[10px] lg:text-xs text-white font-medium">
+                Uncover Royal Treasures!
+              </p>
+            </div>
+
+            <!-- Treasure Image - Positioned in bottom right -->
+            <div class="absolute top-[5.5rem] right-[5.5rem] lg:top-2 lg:right-[8.5rem]">
+              <img src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png" alt="Treasure"
+                class="w-[140px] lg:w-[200px] h-auto drop-shadow-2xl" />
+            </div>
+
+            <!-- Game Icon + Title -->
+            <div
+              class="flex flex-col items-start lg:items-center justify-center w-[55%] lg:w-[30%] mb-8 gap-2 text-center">
+              <img [src]="cardData?.icon" alt="Game Icon" class="ml-10 lg:ml-0 w-[20px] h-[26px]" />
+              <h2 class="text-xl lg:text-2xl font-bold text-white lg:break-words">
+                {{ cardData?.title }}
+              </h2>
+            </div>
+
+            <!-- Description Text -->
+            <p class="text-xs text-gray-300 text-center mt-[6.5rem] lg:mt-10 mb-4 max-w-md">
+              Reveal your prize by scratching the card. Every turn brings a
+              chance to win exciting rewards. Stay lucky and have fun uncovering
+              hidden treasures!
+            </p>
+
+            <!-- Scratch Area with border styling -->
+            <div class="relative mb-4">
+              <div class="bg-black border w-full border-[#C3B089] rounded-lg p-[3px] inline-block">
+                <div #scratchArea
+                  class="relative bg-gradient-to-r from-gray-400 to-gray-300 rounded-lg shadow-lg h-[3rem] min-w-[280px] lg:min-w-[380px] flex items-center justify-center hover:cursor-pointer">
+                  <!-- Scratch Canvas (Bottom layer - z-10) -->
+                  <canvas *ngIf="!playScratching" #canvas width="380" height="48"
+                    class="absolute inset-0 w-full h-full rounded-lg z-10" (mousedown)="startScratching($event)"
+                    (mousemove)="scratch($event)" (mouseup)="stopScratching()" (mouseleave)="stopScratching()"
+                    (touchstart)="startScratching($event)" (touchmove)="scratch($event)" (touchend)="stopScratching()">
+                  </canvas>
+
+                  <!-- Default Text (Middle layer - z-15) -->
+                  <p *ngIf="!isRevealed"
+                    class="text-xl lg:text-2xl text-center font-bold text-gray-800 relative z-[15]">
+                    Best Of Luck
+                  </p>
+
+                  <!-- Video overlay for scratching animation (Above text - z-20) -->
+                  <video *ngIf="playScratching" autoplay muted loop playsinline
+                    class="absolute inset-0 w-full h-full object-cover rounded-lg z-20">
+                    <source src="/scratchcard/scratching.mp4" type="video/mp4" />
+                  </video>
+
+                  <!-- Prize Text (Top layer - z-30) -->
+                  <span *ngIf="isRevealed"
+                    class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-green-700 z-30">
+                    {{ revealedPrize | currency: "USD" }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Button  -->
+      <div class="w-full flex justify-center mt-8 lg:mt-12">
+        <button (click)="BuyAndOpenScratchTicket(null, true)"
+          class="w-[60%] max-w-[400px] bg-gradient-to-r from-[#F3A630] to-[#F86E12] text-black font-bold text-lg px-6 py-3 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+          {{
+          isScratching
+          ? "Scratching..."
+          : isRevealed
+          ? "Scratch Again!"
+          : "Scratch Now!"
+          }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Fireworks Effects Container -->
+    <div *ngIf="isRevealed" class="fireworks-container fixed inset-0 z-50 pointer-events-none">
+      <!-- Multiple firework layers for depth -->
+      <div class="pyro">
+        <div class="before"></div>
+        <div class="after"></div>
+        <div class="burst-1"></div>
+        <div class="burst-2"></div>
+        <div class="burst-3"></div>
+      </div>
+      <!-- Colorful confetti -->
+      <div class="confetti-layer">
+        <div class="confetti-piece" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></div>
+      </div>
+      <!-- Sparkle effects -->
+      <div class="sparkles">
+        <div class="sparkle-group-1"></div>
+        <div class="sparkle-group-2"></div>
+        <div class="sparkle-group-3"></div>
+      </div>
+      <!-- Smoke effect -->
+      <div class="smoke-effect"></div>
+    </div>
+    <!-- Congratulations Banner -->
+
+    <div *ngIf="isRevealed"
+      class="confettiHerePlease fixed inset-0 z-40 pointer-events-none dollarDollarBillYall moreMoneyMoreProblems">
+      <div class="dollar-50"></div>
+      <div class="dollar-49"></div>
+      <div class="dollar-48"></div>
+      <div class="dollar-47"></div>
+      <div class="dollar-46"></div>
+      <div class="dollar-45"></div>
+      <div class="dollar-44"></div>
+      <div class="dollar-43"></div>
+      <div class="dollar-42"></div>
+      <div class="dollar-41"></div>
+      <div class="dollar-40"></div>
+      <div class="dollar-39"></div>
+      <div class="dollar-38"></div>
+      <div class="dollar-37"></div>
+      <div class="dollar-36"></div>
+      <div class="dollar-35"></div>
+      <div class="dollar-34"></div>
+      <div class="dollar-33"></div>
+      <div class="dollar-32"></div>
+      <div class="dollar-31"></div>
+      <div class="dollar-30"></div>
+      <div class="dollar-29"></div>
+      <div class="dollar-28"></div>
+      <div class="dollar-27"></div>
+      <div class="dollar-26"></div>
+      <div class="dollar-25"></div>
+      <div class="dollar-24"></div>
+      <div class="dollar-23"></div>
+      <div class="dollar-22"></div>
+      <div class="dollar-21"></div>
+      <div class="dollar-20"></div>
+      <div class="dollar-19"></div>
+      <div class="dollar-18"></div>
+      <div class="dollar-17"></div>
+      <div class="dollar-16"></div>
+      <div class="dollar-15"></div>
+      <div class="dollar-14"></div>
+      <div class="dollar-13"></div>
+      <div class="dollar-12"></div>
+      <div class="dollar-11"></div>
+      <div class="dollar-10"></div>
+      <div class="dollar-9"></div>
+      <div class="dollar-8"></div>
+      <div class="dollar-7"></div>
+      <div class="dollar-6"></div>
+      <div class="dollar-5"></div>
+      <div class="dollar-4"></div>
+      <div class="dollar-3"></div>
+      <div class="dollar-2"></div>
+      <div class="dollar-1"></div>
+      <div class="dollar-0"></div>
+      <div class="coin-30"></div>
+      <div class="coin-29"></div>
+      <div class="coin-28"></div>
+      <div class="coin-27"></div>
+      <div class="coin-26"></div>
+      <div class="coin-25"></div>
+      <div class="coin-24"></div>
+      <div class="coin-23"></div>
+      <div class="coin-22"></div>
+      <div class="coin-21"></div>
+      <div class="coin-20"></div>
+      <div class="coin-19"></div>
+      <div class="coin-18"></div>
+      <div class="coin-17"></div>
+      <div class="coin-16"></div>
+      <div class="coin-15"></div>
+      <div class="coin-14"></div>
+      <div class="coin-13"></div>
+      <div class="coin-12"></div>
+      <div class="coin-11"></div>
+      <div class="coin-10"></div>
+      <div class="coin-9"></div>
+      <div class="coin-8"></div>
+      <div class="coin-7"></div>
+      <div class="coin-6"></div>
+      <div class="coin-5"></div>
+      <div class="coin-4"></div>
+      <div class="coin-3"></div>
+      <div class="coin-2"></div>
+      <div class="coin-1"></div>
+      <div class="coin-0"></div>
+      <div class="confetti-400"></div>
+      <div class="confetti-399"></div>
+      <div class="confetti-398"></div>
+      <div class="confetti-397"></div>
+      <div class="confetti-396"></div>
+      <div class="confetti-395"></div>
+      <div class="confetti-394"></div>
+      <div class="confetti-393"></div>
+      <div class="confetti-392"></div>
+      <div class="confetti-391"></div>
+      <div class="confetti-390"></div>
+      <div class="confetti-389"></div>
+      <div class="confetti-388"></div>
+      <div class="confetti-387"></div>
+      <div class="confetti-386"></div>
+      <div class="confetti-385"></div>
+      <div class="confetti-384"></div>
+      <div class="confetti-383"></div>
+      <div class="confetti-382"></div>
+      <div class="confetti-381"></div>
+      <div class="confetti-380"></div>
+      <div class="confetti-379"></div>
+      <div class="confetti-378"></div>
+      <div class="confetti-377"></div>
+      <div class="confetti-376"></div>
+      <div class="confetti-375"></div>
+      <div class="confetti-374"></div>
+      <div class="confetti-373"></div>
+      <div class="confetti-372"></div>
+      <div class="confetti-371"></div>
+      <div class="confetti-370"></div>
+      <div class="confetti-369"></div>
+      <div class="confetti-368"></div>
+      <div class="confetti-367"></div>
+      <div class="confetti-366"></div>
+      <div class="confetti-365"></div>
+      <div class="confetti-364"></div>
+      <div class="confetti-363"></div>
+      <div class="confetti-362"></div>
+      <div class="confetti-361"></div>
+      <div class="confetti-360"></div>
+      <div class="confetti-359"></div>
+      <div class="confetti-358"></div>
+      <div class="confetti-357"></div>
+      <div class="confetti-356"></div>
+      <div class="confetti-355"></div>
+      <div class="confetti-354"></div>
+      <div class="confetti-353"></div>
+      <div class="confetti-352"></div>
+      <div class="confetti-351"></div>
+      <div class="confetti-350"></div>
+      <div class="confetti-349"></div>
+      <div class="confetti-348"></div>
+      <div class="confetti-347"></div>
+      <div class="confetti-346"></div>
+      <div class="confetti-345"></div>
+      <div class="confetti-344"></div>
+      <div class="confetti-343"></div>
+      <div class="confetti-342"></div>
+      <div class="confetti-341"></div>
+      <div class="confetti-340"></div>
+      <div class="confetti-339"></div>
+      <div class="confetti-338"></div>
+      <div class="confetti-337"></div>
+      <div class="confetti-336"></div>
+      <div class="confetti-335"></div>
+      <div class="confetti-334"></div>
+      <div class="confetti-333"></div>
+      <div class="confetti-332"></div>
+      <div class="confetti-331"></div>
+      <div class="confetti-330"></div>
+      <div class="confetti-329"></div>
+      <div class="confetti-328"></div>
+      <div class="confetti-327"></div>
+      <div class="confetti-326"></div>
+      <div class="confetti-325"></div>
+      <div class="confetti-324"></div>
+      <div class="confetti-323"></div>
+      <div class="confetti-322"></div>
+      <div class="confetti-321"></div>
+      <div class="confetti-320"></div>
+      <div class="confetti-319"></div>
+      <div class="confetti-318"></div>
+      <div class="confetti-317"></div>
+      <div class="confetti-316"></div>
+      <div class="confetti-315"></div>
+      <div class="confetti-314"></div>
+      <div class="confetti-313"></div>
+      <div class="confetti-312"></div>
+      <div class="confetti-311"></div>
+      <div class="confetti-310"></div>
+      <div class="confetti-309"></div>
+      <div class="confetti-308"></div>
+      <div class="confetti-307"></div>
+      <div class="confetti-306"></div>
+      <div class="confetti-305"></div>
+      <div class="confetti-304"></div>
+      <div class="confetti-303"></div>
+      <div class="confetti-302"></div>
+      <div class="confetti-301"></div>
+      <div class="confetti-300"></div>
+      <div class="confetti-299"></div>
+      <div class="confetti-298"></div>
+      <div class="confetti-297"></div>
+      <div class="confetti-296"></div>
+      <div class="confetti-295"></div>
+      <div class="confetti-294"></div>
+      <div class="confetti-293"></div>
+      <div class="confetti-292"></div>
+      <div class="confetti-291"></div>
+      <div class="confetti-290"></div>
+      <div class="confetti-289"></div>
+      <div class="confetti-288"></div>
+      <div class="confetti-287"></div>
+      <div class="confetti-286"></div>
+      <div class="confetti-285"></div>
+      <div class="confetti-284"></div>
+      <div class="confetti-283"></div>
+      <div class="confetti-282"></div>
+      <div class="confetti-281"></div>
+      <div class="confetti-280"></div>
+      <div class="confetti-279"></div>
+      <div class="confetti-278"></div>
+      <div class="confetti-277"></div>
+      <div class="confetti-276"></div>
+      <div class="confetti-275"></div>
+      <div class="confetti-274"></div>
+      <div class="confetti-273"></div>
+      <div class="confetti-272"></div>
+      <div class="confetti-271"></div>
+      <div class="confetti-270"></div>
+      <div class="confetti-269"></div>
+      <div class="confetti-268"></div>
+      <div class="confetti-267"></div>
+      <div class="confetti-266"></div>
+      <div class="confetti-265"></div>
+      <div class="confetti-264"></div>
+      <div class="confetti-263"></div>
+      <div class="confetti-262"></div>
+      <div class="confetti-261"></div>
+      <div class="confetti-260"></div>
+      <div class="confetti-259"></div>
+      <div class="confetti-258"></div>
+      <div class="confetti-257"></div>
+      <div class="confetti-256"></div>
+      <div class="confetti-255"></div>
+      <div class="confetti-254"></div>
+      <div class="confetti-253"></div>
+      <div class="confetti-252"></div>
+      <div class="confetti-251"></div>
+      <div class="confetti-250"></div>
+      <div class="confetti-249"></div>
+      <div class="confetti-248"></div>
+      <div class="confetti-247"></div>
+      <div class="confetti-246"></div>
+      <div class="confetti-245"></div>
+      <div class="confetti-244"></div>
+      <div class="confetti-243"></div>
+      <div class="confetti-242"></div>
+      <div class="confetti-241"></div>
+      <div class="confetti-240"></div>
+      <div class="confetti-239"></div>
+      <div class="confetti-238"></div>
+      <div class="confetti-237"></div>
+      <div class="confetti-236"></div>
+      <div class="confetti-235"></div>
+      <div class="confetti-234"></div>
+      <div class="confetti-233"></div>
+      <div class="confetti-232"></div>
+      <div class="confetti-231"></div>
+      <div class="confetti-230"></div>
+      <div class="confetti-229"></div>
+      <div class="confetti-228"></div>
+      <div class="confetti-227"></div>
+      <div class="confetti-226"></div>
+      <div class="confetti-225"></div>
+      <div class="confetti-224"></div>
+      <div class="confetti-223"></div>
+      <div class="confetti-222"></div>
+      <div class="confetti-221"></div>
+      <div class="confetti-220"></div>
+      <div class="confetti-219"></div>
+      <div class="confetti-218"></div>
+      <div class="confetti-217"></div>
+      <div class="confetti-216"></div>
+      <div class="confetti-215"></div>
+      <div class="confetti-214"></div>
+      <div class="confetti-213"></div>
+      <div class="confetti-212"></div>
+      <div class="confetti-211"></div>
+      <div class="confetti-210"></div>
+      <div class="confetti-209"></div>
+      <div class="confetti-208"></div>
+      <div class="confetti-207"></div>
+      <div class="confetti-206"></div>
+      <div class="confetti-205"></div>
+      <div class="confetti-204"></div>
+      <div class="confetti-203"></div>
+      <div class="confetti-202"></div>
+      <div class="confetti-201"></div>
+      <div class="confetti-200"></div>
+      <div class="confetti-199"></div>
+      <div class="confetti-198"></div>
+      <div class="confetti-197"></div>
+      <div class="confetti-196"></div>
+      <div class="confetti-195"></div>
+      <div class="confetti-194"></div>
+      <div class="confetti-193"></div>
+      <div class="confetti-192"></div>
+      <div class="confetti-191"></div>
+      <div class="confetti-190"></div>
+      <div class="confetti-189"></div>
+      <div class="confetti-188"></div>
+      <div class="confetti-187"></div>
+      <div class="confetti-186"></div>
+      <div class="confetti-185"></div>
+      <div class="confetti-184"></div>
+      <div class="confetti-183"></div>
+      <div class="confetti-182"></div>
+      <div class="confetti-181"></div>
+      <div class="confetti-180"></div>
+      <div class="confetti-179"></div>
+      <div class="confetti-178"></div>
+      <div class="confetti-177"></div>
+      <div class="confetti-176"></div>
+      <div class="confetti-175"></div>
+      <div class="confetti-174"></div>
+      <div class="confetti-173"></div>
+      <div class="confetti-172"></div>
+      <div class="confetti-171"></div>
+      <div class="confetti-170"></div>
+      <div class="confetti-169"></div>
+      <div class="confetti-168"></div>
+      <div class="confetti-167"></div>
+      <div class="confetti-166"></div>
+      <div class="confetti-165"></div>
+      <div class="confetti-164"></div>
+      <div class="confetti-163"></div>
+      <div class="confetti-162"></div>
+      <div class="confetti-161"></div>
+      <div class="confetti-160"></div>
+      <div class="confetti-159"></div>
+      <div class="confetti-158"></div>
+      <div class="confetti-157"></div>
+      <div class="confetti-156"></div>
+      <div class="confetti-155"></div>
+      <div class="confetti-154"></div>
+      <div class="confetti-153"></div>
+      <div class="confetti-152"></div>
+      <div class="confetti-151"></div>
+      <div class="confetti-150"></div>
+      <div class="confetti-149"></div>
+      <div class="confetti-148"></div>
+      <div class="confetti-147"></div>
+      <div class="confetti-146"></div>
+      <div class="confetti-145"></div>
+      <div class="confetti-144"></div>
+      <div class="confetti-143"></div>
+      <div class="confetti-142"></div>
+      <div class="confetti-141"></div>
+      <div class="confetti-140"></div>
+      <div class="confetti-139"></div>
+      <div class="confetti-138"></div>
+      <div class="confetti-137"></div>
+      <div class="confetti-136"></div>
+      <div class="confetti-135"></div>
+      <div class="confetti-134"></div>
+      <div class="confetti-133"></div>
+      <div class="confetti-132"></div>
+      <div class="confetti-131"></div>
+      <div class="confetti-130"></div>
+      <div class="confetti-129"></div>
+      <div class="confetti-128"></div>
+      <div class="confetti-127"></div>
+      <div class="confetti-126"></div>
+      <div class="confetti-125"></div>
+      <div class="confetti-124"></div>
+      <div class="confetti-123"></div>
+      <div class="confetti-122"></div>
+      <div class="confetti-121"></div>
+      <div class="confetti-120"></div>
+      <div class="confetti-119"></div>
+      <div class="confetti-118"></div>
+      <div class="confetti-117"></div>
+      <div class="confetti-116"></div>
+      <div class="confetti-115"></div>
+      <div class="confetti-114"></div>
+      <div class="confetti-113"></div>
+      <div class="confetti-112"></div>
+      <div class="confetti-111"></div>
+      <div class="confetti-110"></div>
+      <div class="confetti-109"></div>
+      <div class="confetti-108"></div>
+      <div class="confetti-107"></div>
+      <div class="confetti-106"></div>
+      <div class="confetti-105"></div>
+      <div class="confetti-104"></div>
+      <div class="confetti-103"></div>
+      <div class="confetti-102"></div>
+      <div class="confetti-101"></div>
+      <div class="confetti-100"></div>
+      <div class="confetti-99"></div>
+      <div class="confetti-98"></div>
+      <div class="confetti-97"></div>
+      <div class="confetti-96"></div>
+      <div class="confetti-95"></div>
+      <div class="confetti-94"></div>
+      <div class="confetti-93"></div>
+      <div class="confetti-92"></div>
+      <div class="confetti-91"></div>
+      <div class="confetti-90"></div>
+      <div class="confetti-89"></div>
+      <div class="confetti-88"></div>
+      <div class="confetti-87"></div>
+      <div class="confetti-86"></div>
+      <div class="confetti-85"></div>
+      <div class="confetti-84"></div>
+      <div class="confetti-83"></div>
+      <div class="confetti-82"></div>
+      <div class="confetti-81"></div>
+      <div class="confetti-80"></div>
+      <div class="confetti-79"></div>
+      <div class="confetti-78"></div>
+      <div class="confetti-77"></div>
+      <div class="confetti-76"></div>
+      <div class="confetti-75"></div>
+      <div class="confetti-74"></div>
+      <div class="confetti-73"></div>
+      <div class="confetti-72"></div>
+      <div class="confetti-71"></div>
+      <div class="confetti-70"></div>
+      <div class="confetti-69"></div>
+      <div class="confetti-68"></div>
+      <div class="confetti-67"></div>
+      <div class="confetti-66"></div>
+      <div class="confetti-65"></div>
+      <div class="confetti-64"></div>
+      <div class="confetti-63"></div>
+      <div class="confetti-62"></div>
+      <div class="confetti-61"></div>
+      <div class="confetti-60"></div>
+      <div class="confetti-59"></div>
+      <div class="confetti-58"></div>
+      <div class="confetti-57"></div>
+      <div class="confetti-56"></div>
+      <div class="confetti-55"></div>
+      <div class="confetti-54"></div>
+      <div class="confetti-53"></div>
+      <div class="confetti-52"></div>
+      <div class="confetti-51"></div>
+      <div class="confetti-50"></div>
+      <div class="confetti-49"></div>
+      <div class="confetti-48"></div>
+      <div class="confetti-47"></div>
+      <div class="confetti-46"></div>
+      <div class="confetti-45"></div>
+      <div class="confetti-44"></div>
+      <div class="confetti-43"></div>
+      <div class="confetti-42"></div>
+      <div class="confetti-41"></div>
+      <div class="confetti-40"></div>
+      <div class="confetti-39"></div>
+      <div class="confetti-38"></div>
+      <div class="confetti-37"></div>
+      <div class="confetti-36"></div>
+      <div class="confetti-35"></div>
+      <div class="confetti-34"></div>
+      <div class="confetti-33"></div>
+      <div class="confetti-32"></div>
+      <div class="confetti-31"></div>
+      <div class="confetti-30"></div>
+      <div class="confetti-29"></div>
+      <div class="confetti-28"></div>
+      <div class="confetti-27"></div>
+      <div class="confetti-26"></div>
+      <div class="confetti-25"></div>
+      <div class="confetti-24"></div>
+      <div class="confetti-23"></div>
+      <div class="confetti-22"></div>
+      <div class="confetti-21"></div>
+      <div class="confetti-20"></div>
+      <div class="confetti-19"></div>
+      <div class="confetti-18"></div>
+      <div class="confetti-17"></div>
+      <div class="confetti-16"></div>
+      <div class="confetti-15"></div>
+      <div class="confetti-14"></div>
+      <div class="confetti-13"></div>
+      <div class="confetti-12"></div>
+      <div class="confetti-11"></div>
+      <div class="confetti-10"></div>
+      <div class="confetti-9"></div>
+      <div class="confetti-8"></div>
+      <div class="confetti-7"></div>
+      <div class="confetti-6"></div>
+      <div class="confetti-5"></div>
+      <div class="confetti-4"></div>
+      <div class="confetti-3"></div>
+      <div class="confetti-2"></div>
+      <div class="confetti-1"></div>
+      <div class="confetti-0"></div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div *ngIf="showSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/60" (click)="closeSuccessModal()" aria-hidden="true"></div>
+    <div class="relative bg-[#2d2036] border border-gray-500 rounded-2xl p-6 w-[90vw] max-w-md shadow-2xl text-center">
+      <button class="absolute -right-1 top-3 text-white w-12 flex items-center justify-center text-2xl"
+        (click)="closeSuccessModal()" aria-label="Close">
+        &times;
+      </button>
+
+      <!-- icon -->
+      <div
+        class="mx-auto mb-3 h-12 w-12 rounded-full bg-green-400/30 border border-green-300 shadow-[0_0_10px_rgba(34,197,94,0.6)] flex items-center justify-center">
+        <svg viewBox="0 0 24 24" class="h-6 w-6 text-green-300" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 6L9 17l-5-5"></path>
+        </svg>
+      </div>
+
+      <h3 class="text-yellow-400 text-xl font-extrabold mb-1">
+        🎉 Congratulations!
+      </h3>
+      <p class="text-purple-200 text-sm mb-5">
+        You’ve just won
+        <span class="font-bold" [ngClass]="cardData?.color?.text">{{ revealedPrize }}$</span>
+        from your scratch card! <br />
+        Your reward had been added to your wallet.
+      </p>
+
+      <div class="flex items-center justify-center gap-2">
+        <button class="px-4 py-2 rounded-xl border border-gray-500 text-white font-semibold"
+          style="background: linear-gradient(90deg, #77129f 0%, #5535e1 100%)" (click)="redirectToCards()">
+          Back to cards!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ///////////////////////new cards  -->
+</div>

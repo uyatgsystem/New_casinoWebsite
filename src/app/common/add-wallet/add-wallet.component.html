@@ -1,0 +1,523 @@
+<app-loader></app-loader>
+
+<!-- Add Balance Modal -->
+<div *ngIf="showModal" class="fixed inset-0 bg-black/80 flex items-center justify-center modal-overlay Add_Bal z-[999]"
+  (click)="hideWalletModal()">
+  <div
+    class="backdrop-blur-md border bg-noise border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-full max-w-2xl shadow-lg modal slide-up max-h-[90vh] overflow-y-auto z-50"
+    (click)="$event.stopPropagation()">
+    <!--    <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>-->
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 py-3 border-b border-[#C3B089] rounded-tl-[16px]">
+      <h2 class="text-lg text-white">Add Balance</h2>
+      <button (click)="hideWalletModal()" class="hover:text-gray-400 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Payment Methods Selection -->
+    <div class="px-6 pt-2">
+      <div class="flex items-center justify-between mb-2">
+        <!-- Left side -->
+        <div class="flex items-center gap-2">
+          <div class="w-1 h-4 bg-[#F3A630] rounded-full"></div>
+          <span class="text-xs font-bold text-[#A6B1C2] uppercase tracking-widest">
+            Select Payment Method
+          </span>
+        </div>
+
+        <!-- Right side -->
+        <span
+          class="text-xs md:text-sm font-semibold bg-[#FE9B2A]/10 px-2 py-[2px] rounded-md flex flex-wrap md:flex-nowrap items-center">
+          <!-- Deposit (full row on mobile) -->
+          <span class="text-[#ABB7BD] w-full md:w-auto"> Deposit: </span>
+
+          <!-- Values -->
+          <span class="flex items-center flex-wrap md:flex-nowrap">
+            <span class="text-[#9CA3AF] mx-1">Min</span>
+            <span class="text-[#FE9B2A]">{{ minAmount }}</span>
+
+            <span class="text-[#9CA3AF] mx-1">| Max</span>
+            <span class="text-[#FE9B2A]">{{ maxAmount }}</span>
+          </span>
+        </span>
+      </div>
+
+      <div class="payment-methods-grid">
+        @for (account of AccountType; track account.id) {
+        <div class="payment-card" [class.selected]="selectedAccountType === account.name" (click)="
+              togglePayment(
+                account.name,
+                account.isActive,
+                account.kycStatus,
+                $event,
+                account
+              )
+            ">
+          <!-- Bonus Tag -->
+          @if (
+          account.isActive && account.Bonus != 0 && account.Bonus != 0.0
+          ) {
+          <div class="bonus-tag">{{ account.Bonus }}% Extra</div>
+          }
+
+          <!-- Selected Indicator -->
+          <!-- <div class="check-icon">
+              <fa-icon [icon]="faCheck"></fa-icon>
+            </div> -->
+
+          <!-- Payment Icon -->
+          <div class="icon-wrapper">
+            <img [src]="account.bg_image" [alt]="account.name" />
+          </div>
+
+          <!-- Payment Name -->
+          <span class="method-name text-[10px] whitespace-nowrap">
+            {{ nameMap[account.name] || account.name }}
+          </span>
+          <!-- Coming Soon Overlay -->
+          @if (!account.isActive) {
+          <div class="coming-soon-overlay">
+            <div class="cs-badge">Coming Soon</div>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="px-5 py-3 md:p-6 rounded-br-[16px]">
+      <!-- Card -->
+      <form [formGroup]="paymentForm" (ngSubmit)="payCard()" *ngIf="showcard">
+        <div class="max-w-md mx-auto shadow rounded">
+          <input type="text" inputmode="numeric" formControlName="cardNumber" placeholder="Card Number"
+            (input)="onCardNumberInput($event)"
+            class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 nmbr-input" />
+          <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+          <div *ngIf="
+              paymentForm.get('cardNumber')?.invalid &&
+              paymentForm.get('cardNumber')?.touched
+            " class="text-red-500 text-xs md:text-sm mb-1 md:mb-2">
+            Card number is required (13-16 digits).
+          </div>
+
+          <div class="flex gap-2">
+            <div class="w-1/2">
+              <input type="text" inputmode="numeric" maxlength="2" formControlName="month" placeholder="MM"
+                (input)="onMonthInput($event)"
+                class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 nmbr-input" />
+              <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+              <div *ngIf="
+                  paymentForm.get('month')?.invalid &&
+                  paymentForm.get('month')?.touched
+                " class="text-red-500 text-xs md:text-sm mb-1 md:mb-2">
+                Valid month (01-12) is required.
+              </div>
+            </div>
+
+            <div class="w-1/2">
+              <input type="text" inputmode="numeric" maxlength="4" formControlName="year" placeholder="YYYY"
+                (input)="onYearInput($event)"
+                class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 nmbr-input" />
+              <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+              <div *ngIf="
+                  paymentForm.get('year')?.invalid &&
+                  paymentForm.get('year')?.touched
+                " class="text-red-500 text-xs md:text-sm mb-1 md:mb-2">
+                Valid 4-digit year is required.
+              </div>
+            </div>
+          </div>
+
+          <input type="number" formControlName="cvv" placeholder="CVV"
+            class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 nmbr-input" />
+          <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+          <div *ngIf="
+              paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched
+            " class="text-red-500 text-xs md:text-sm mb-1 md:mb-2">
+            CVV is required (3 or 4 digits).
+          </div>
+
+          <input type="text" inputmode="decimal" formControlName="amount" placeholder="Amount"
+            (input)="onAmountInput($event, 'payment')"
+            class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 nmbr-input" />
+          <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+          <div *ngIf="
+              paymentForm.get('amount')?.invalid &&
+              paymentForm.get('amount')?.touched
+            " class="text-red-500 text-xs md:text-sm mb-1 md:mb-4">
+            Amount is required (min $1).
+          </div>
+
+          <div class="flex flex-col-reverse min-[360px]:flex-row justify-between mt-4 gap-2 md:gap-4 w-full">
+            <button (click)="hideWalletModal()"
+              class="btn-outline whitespace-normal min-[360px]:whitespace-nowrap px-2 py-2 md:!px-14 text-xs md:text-sm flex justify-center items-center flex-1 md:flex-none rounded-lg text-center leading-tight">
+              Cancel
+            </button>
+
+            <button type="submit" [disabled]="isWithdrawPending" [class.opacity-50]="isWithdrawPending"
+              class="btn-primary whitespace-normal min-[360px]:whitespace-nowrap px-2 py-2 md:!px-10 text-xs md:text-sm flex justify-center items-center flex-1 md:flex-none rounded-lg text-center leading-tight">
+              <span>Add Balance</span>
+            </button>
+          </div>
+        </div>
+      </form>
+      <!-- Cash App -->
+      <form [formGroup]="cashappForm" (ngSubmit)="paycashApp()" *ngIf="showcashApp">
+        <div class="max-w-md mx-auto p-4 shadow rounded">
+          <input type="text" inputmode="decimal" formControlName="amount" placeholder="Amount"
+            (input)="onAmountInput($event, 'cashapp')"
+            class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 nmbr-input" />
+          <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+          <div *ngIf="
+              cashappForm.get('amount')?.invalid &&
+              cashappForm.get('amount')?.touched
+            " class="text-red-500 text-xs md:text-sm mb-1 md:mb-4">
+            Amount is required (min $1).
+          </div>
+
+          <div class="flex flex-col-reverse min-[360px]:flex-row justify-between mt-4 gap-2 md:gap-4 w-full">
+            <button type="button" (click)="hideWalletModal()"
+              class="btn-outline whitespace-normal min-[360px]:whitespace-nowrap px-2 py-2 md:!px-14 text-xs md:text-sm flex justify-center items-center flex-1 md:flex-none rounded-lg text-center leading-tight">
+              Cancel
+            </button>
+
+            <button type="submit" [disabled]="isWithdrawPending" [class.opacity-50]="isWithdrawPending"
+              class="btn-primary whitespace-normal min-[360px]:whitespace-nowrap px-2 py-2 md:!px-10 text-xs md:text-sm flex justify-center items-center flex-1 md:flex-none rounded-lg text-center leading-tight">
+              <span>Pay ${{ cashappForm.get("amount")?.value || "..." }} Now</span>
+            </button>
+          </div>
+        </div>
+      </form>
+      <!-- manual -->
+
+      <div *ngIf="showChimeZelle">
+        <div class="grid grid-cols-1 gap-4 mb-1"
+          *ngIf="selectedAccountType !== 'GooglePay' && selectedAccountType !== 'ApplePay' && selectedAccountType !== 'Paypal'">
+          <div class="relative flex-1">
+            <label for="amount" class="block text-xs text-gray-300 md:mb-1">Add Amount</label>
+            <input id="amount" type="text" inputmode="decimal" (blur)="touchedAmount = true" [(ngModel)]="manualAmount"
+              [ngModelOptions]="{ standalone: true }" (input)="onAmountInput($event, 'manual')"
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 nmbr-input"
+              placeholder="Add amount" [ngClass]="{
+                'text-white': manualAmount,
+                'text-[#625E5E]': !manualAmount,
+              }" />
+
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+            <div *ngIf="touchedAmount && (!manualAmount || manualAmount === '')" class="text-red-400 text-xs mt-1">
+              Please enter amount
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 mb-1"
+          *ngIf="selectedAccountType === 'GooglePay' || selectedAccountType === 'ApplePay' || selectedAccountType === 'Paypal'">
+
+          <div class="relative flex-1">
+            <label class="block text-xs text-gray-300  md:mb-1">Enter Amount</label>
+
+            <!-- Input field instead of dropdown -->
+            <input type="text" inputmode="decimal" (blur)="touchedAmount = true" [(ngModel)]="googleApplePayAmount"
+              [ngModelOptions]="{ standalone: true }" (input)="onAmountInput($event, 'googlepay')"
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 nmbr-input"
+              placeholder="Enter amount" [ngClass]="{
+                'text-white': googleApplePayAmount,
+                'text-[#625E5E]': !googleApplePayAmount,
+              }" />
+
+            <!-- Bottom line -->
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+
+            <div *ngIf="touchedAmount && (!googleApplePayAmount || googleApplePayAmount === '')"
+              class="text-red-400 text-xs mt-1">
+              Please enter amount
+            </div>
+          </div>
+        </div>
+
+        <!-- Combined Account title dropdown + Customer Tag (single-row, non-wrapping) -->
+        <div class="mb-1 md:mb-4 flex flex-col md:flex-row flex-nowrap md:gap-4 gap-2"
+          *ngIf="selectedAccountType !== 'GooglePay' && selectedAccountType !== 'ApplePay' && selectedAccountType !== 'Paypal'">
+          <div class="relative flex-1">
+            <label for="accountsTitle" class="block text-xs text-gray-300  md:mb-1">Account Title</label>
+
+            <!-- Clickable input -->
+            <div
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-[#A6B1C2] px-2 py-1 cursor-pointer flex justify-between items-center text-xs"
+              (click)="accountTitleDropdownOpen = !accountTitleDropdownOpen">
+              <span class="font-semibold text-xs" [ngClass]="{
+                  'text-[#ffffff]': accountTitleDropdownOpen,
+                  'text-[#625E5E]': !accountTitleDropdownOpen,
+                }">{{ selectedAccounttitle || "Choose Account Title" }}</span>
+              <svg class="h-3 w-3 ml-1 text-[#F3A630]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+              <i (click)="CopyToClipBoard(payPalDetails.Email)"
+                class="fa-regular fa-copy absolute right-10 top-[65%] -translate-y-1/2 text-[#625E5E] cursor-pointer"></i>
+            </div>
+            <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+
+            <!-- Options list -->
+            <ul *ngIf="accountTitleDropdownOpen"
+              class="absolute mt-1 w-full max-h-40 overflow-y-auto bg-[#161819] border border-[#C3B089] shadow-lg rounded-md z-10">
+              <!-- Search Input (NEW) -->
+              <li class="sticky top-0 bg-[#161819] border-b border-[#C3B089] px-2 py-1 z-10">
+                <input type="text" [(ngModel)]="accountTitleSearchTerm" [ngModelOptions]="{ standalone: true }"
+                  (click)="onAccountSearchClick($event)" placeholder="Search account titles..."
+                  class="w-full bg-[#000408] text-[#A6B1C2] px-2 py-1 text-xs border border-[#625E5E] rounded focus:outline-none focus:border-[#F3A630] placeholder-[#625E5E]" />
+              </li>
+
+              <!-- Account List (UPDATED to use filteredAccountTitles) -->
+              <li *ngFor="let accounts of filteredAccountTitles"
+                class="px-2 py-1 font-semibold text-xs text-[#A6B1C2] border-b border-[#C3B089] cursor-pointer hover:bg-[#2e2a2a] transition-colors duration-200"
+                [class.opacity-50]="accounts.accountDetail === 'No data found'" [class.cursor-not-allowed]="
+                  accounts.accountDetail === 'No data found'
+                " (click)="
+                  accounts.accountDetail !== 'No data found'
+                    ? selectAccountTitle(accounts)
+                    : null
+                ">
+                {{ accounts.AccountTitle }}
+              </li>
+
+              <!-- Empty State (NEW) -->
+              <li *ngIf="filteredAccountTitles.length === 0" class="px-2 py-2 text-[#625E5E] text-xs text-center">
+                No matching accounts found
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex flex-col lg:w-[50%] flex-shrink-0 relative">
+            <label class="block text-xs text-gray-300">Account Number / Tag</label>
+            <input type="text" placeholder="Enter Tag" [value]="CustomerTag" [disabled]="true"
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder:text-xs md:placeholder:text-base mb-0 md:mb-1 nmbr-input" />
+            <i (click)="CopyToClipBoard(CustomerTag)"
+              class="fa-regular fa-copy absolute right-3 top-[65%] -translate-y-1/2 text-white cursor-pointer"></i>
+            <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+          </div>
+        </div>
+
+
+        @if (selectedAccountType === 'ApplePay' || selectedAccountType === 'GooglePay' || selectedAccountType ===
+        'Paypal') {
+        <div class="grid grid-cols-1 gap-4 mb-1">
+
+
+
+          <div class="relative w-full">
+
+            <label class="block text-xs text-gray-300  md:mb-1">Payment Link</label>
+
+            <!-- Input styled like your theme -->
+            <div class="relative">
+
+              <input type="text" readonly
+                class="w-full bg-transparent text-[#A6B1C2] px-4 py-2 pr-20 cursor-pointer focus:outline-none"
+                [value]="getPaymentLink()" />
+
+              <!-- Actions -->
+              <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-3 text-[#625E5E]">
+                <i (click)="CopyToClipBoard(getPaymentLink())"
+                  class="fa-regular fa-copy cursor-pointer hover:text-[#F3A630]" title="Copy to clipboard"></i>
+
+                <i (click)="RedirectToLink(getPaymentLink())"
+                  class="fa-solid fa-arrow-up-right-from-square cursor-pointer hover:text-[#F3A630]"
+                  title="Open link"></i>
+              </div>
+
+            </div>
+
+            <!-- Bottom gradient line (same as your theme) -->
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+
+          </div>
+
+
+        </div>
+        }
+        <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 mb-1">
+          <div class="relative flex-1">
+            <label for="email" class="block text-xs text-gray-300  md:mb-1">Add Email</label>
+            <input id="email" type="text" [(ngModel)]="email"
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2"
+              placeholder="Add Email" />
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+          </div>
+        </div>
+
+        @if (selectedAccountType == "Paypal" && showPayPalFields) {
+        <div class="grid grid-cols-1 gap-4 mb-4">
+          <div class="relative">
+            <label for="amount" class="block text-xs text-gray-300  md:mb-1">Email</label>
+            <input id="amount" type="text" readonly
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2"
+              placeholder="Email" [value]="payPalDetails.Email" />
+            <i (click)="CopyToClipBoard(payPalDetails.Email)"
+              class="fa-regular fa-copy absolute right-3 top-[65%] -translate-y-1/2 text-white cursor-pointer"></i>
+            <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 mb-1">
+          <div class="relative">
+            <label for="amount" class="block text-xs text-gray-300  md:mb-1">Redirect Link</label>
+            <input id="amount" type="text" readonly
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-4 py-2 placeholder:text-xs md:placeholder:text-base mb-2"
+              placeholder="Email" [value]="payPalDetails.Link" />
+            <i (click)="RedirectToLink(payPalDetails.Link)"
+              class="fa-solid fa-arrow-up-right-from-square absolute right-3 top-[65%] -translate-y-1/2 text-white cursor-pointer"></i>
+            <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+          </div>
+        </div>
+        }
+
+        <!-- Upload Receipt -->
+        <div class="flex justify-between">
+          <div class="mb-3">
+            <label class="block text-xs text-gray-300  md:mb-1">Upload Deposit Receipt</label>
+            <div class="flex items-start">
+              <input id="receipt" type="file" (change)="onFileSelected($event)" class="hidden" accept="image/*" />
+              <label for="receipt"
+                class="cursor-pointer flex items-center bg-[#625E5E] text-white rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] px-2 py-1 hover:bg-gray-600 transition text-xs">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Upload Deposit Receipt
+              </label>
+
+              <div *ngIf="uploadProfileImage" class="relative w-32 ml-3">
+                <img [src]="uploadProfileImage" alt="Selected Image"
+                  class="w-full max-h-28 rounded-md border border-gray-500 object-cover" />
+                <button (click)="clearSelection()"
+                  class="absolute top-0 right-0 bg-gray-800 text-white rounded-full p-1 hover:bg-red-500 transition transform translate-x-1/2 -translate-y-1/2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="mb-6" *ngIf="qrCodeImage && qrCodeImage != ''">
+            <label class="block text-xs text-gray-300 mb-1">QR Code (Click to Expand)</label>
+            <img [src]="qrCodeImage" alt="QR Code"
+              class="w-32 max-h-28 rounded-md border border-gray-500 object-contain" (click)="openQrPopup()" />
+
+          </div>
+
+          <!-- QR code popup -->
+          <div *ngIf="showQrPopup" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[1000]"
+            (click)="closeQrPopup()">
+            <div class="relative max-w-full max-h-full p-4" (click)="$event.stopPropagation()">
+              <button (click)="closeQrPopup()"
+                class="absolute top-2 right-2 text-white bg-gray-800/60 rounded-full p-2 hover:bg-gray-700 transition focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+              <img [src]="qrCodeImage" alt="QR Code"
+                class="max-w-full max-h-[90vh] object-contain rounded-md shadow-lg" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex flex-col-reverse min-[360px]:flex-row justify-between mt-2 gap-2 md:gap-4 w-full">
+          <button (click)="hideWalletModal()"
+            class="btn-outline whitespace-normal min-[360px]:whitespace-nowrap px-2 py-2 md:!px-14 text-xs md:text-sm flex justify-center items-center flex-1 md:flex-none rounded-lg text-center leading-tight">
+            Cancel
+          </button>
+
+          <div class="relative flex-1 md:flex-none">
+            <!-- Button -->
+            <button (click)="addBalance()"
+              class="btn-primary whitespace-normal min-[360px]:whitespace-nowrap px-2 py-2 md:!px-10 text-xs md:text-sm flex justify-center items-center w-full rounded-lg text-center leading-tight">
+              Add Balance
+            </button>
+          </div>
+          <!-- Manual end -->
+        </div>
+      </div>
+
+      <div *ngIf="showCashAppTapTap">
+
+                 @if (selectedAccountType === "CashApp2") {
+                  <label for="amount" class="block text-xs text-gray-300  md:mb-1">Add Amount</label>
+                <select
+                  id="amount"
+                  [(ngModel)]="newBalance"
+                  class="w-full bg-[#1A1A1A] border border-[#333333] text-white rounded-md px-3 py-2
+                  placeholder:text-gray-400
+                  focus:outline-none
+                  focus:border-[#F89A1C]
+                  focus:ring-2
+                  focus:ring-[#F89A1C]/30
+                  transition-all duration-200"                >
+                  <option value="" disabled selected>Choose Cash App Amount</option>
+                  @for (amt of cashAppAmounts; track amt) {
+                    <option [value]="amt">{{ amt }}</option>
+                  }
+                </select>
+
+
+              }
+
+              <!-- Dropdown for GooglePay or ApplePay -->
+              @if (selectedAccountType === "GooglePay" || selectedAccountType === "ApplePay") {
+                  <label for="amount" class="block text-xs text-gray-300  md:mb-1">Add Amount</label>
+                <select
+                  id="amount"
+                  [(ngModel)]="newBalance"
+                  class="w-full bg-[#1A1A1A] border border-[#333333] text-white rounded-md px-3 py-2
+                  placeholder:text-gray-400
+                  focus:outline-none
+                  focus:border-[#F89A1C]
+                  focus:ring-2
+                  focus:ring-[#F89A1C]/30
+                  transition-all duration-200"                >
+                  <option value="" disabled selected>Choose Cash App Amount</option>
+                  @for (amt of googleApplePayAmounts; track amt) {
+                    <option [value]="amt">{{ amt }}</option>
+                  }
+                </select>
+              }
+
+        <div class="flex flex-col-reverse min-[360px]:flex-row justify-between mt-4 gap-2 md:gap-4 w-full">
+          <button (click)="hideWalletModal()"
+            class="btn-outline whitespace-normal min-[360px]:whitespace-nowrap px-2 py-2 md:!px-14 text-xs md:text-sm flex justify-center items-center flex-1 md:flex-none rounded-lg text-center leading-tight">
+            Cancel
+          </button>
+
+          <div class="relative flex-1 md:flex-none">
+            <!-- Button -->
+            <button (click)="AddTapTapCashApp()"
+              class="btn-primary whitespace-normal min-[360px]:whitespace-nowrap px-2 py-2 md:!px-10 text-xs md:text-sm flex justify-center items-center w-full rounded-lg text-center leading-tight">
+              Add Balance
+            </button>
+          </div>
+          <!-- Manual end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (isCopied()) {
+<div
+  class="fixed bottom-[15%] left-1/2 transform -translate-x-1/2 bg-[#2 C2C2C] text-white px-5 py-3 rounded-lg shadow-[0_4px_10px_rgba(0,0,0,0.2)] transition-opacity duration-300 z-[999] flex items-center gap-3 border border-[#3A3A3A]">
+  <fa-icon [icon]="faCheck" class="text-[#4CAF50] text-lg"></fa-icon>
+  <span class="text-sm font-medium">Copied to clipboard</span>
+</div>
+}
+
+<!-- KYC Popup -->
+<app-kyc-popup *ngIf="showKycPopup" [title]="popupTitle" [message]="popupMessage" [buttonText]="popupButtonText"
+  [redirectRoute]="popupRedirect" (close)="closeKycPopup()" (action)="closeKycPopup(true)">
+</app-kyc-popup>

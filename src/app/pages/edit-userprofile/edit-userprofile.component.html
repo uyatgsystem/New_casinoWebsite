@@ -1,0 +1,117 @@
+<div class="outer-div d-flex justify-content-center align-items-center">
+  <div class="edit-profile-container">
+    <div class="profile-pic-section text-center">
+      <img
+        src="Images/profileimage.png"
+        alt="Profile Picture"
+        class="rounded-circle profile-pic mb-3"
+      />
+      <button class="btn btn-gradient">Edit Profile</button>
+    </div>
+
+    <div class="form-section mt-4">
+      <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              formControlName="firstName"
+              class="form-control"
+            />
+            <div
+              style="color: red"
+              *ngIf="
+                userProfileForm.get('firstName')?.touched &&
+                userProfileForm.get('firstName')?.invalid
+              "
+            >
+              <div
+                *ngIf="userProfileForm.get('firstName')?.errors?.['required']"
+              >
+                First name is required.
+              </div>
+              <div
+                *ngIf="userProfileForm.get('firstName')?.errors?.['minlength']"
+              >
+                First name must be at least 2 characters long.
+              </div>
+              <div
+                *ngIf="userProfileForm.get('firstName')?.errors?.['pattern']"
+              >
+                First name must contain only letters and spaces.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              formControlName="lastName"
+              class="form-control"
+            />
+            <div
+              style="color: red"
+              *ngIf="
+                userProfileForm.get('lastName')?.touched &&
+                userProfileForm.get('lastName')?.invalid
+              "
+            >
+              <div
+                *ngIf="userProfileForm.get('lastName')?.errors?.['required']"
+              >
+                Last name is required.
+              </div>
+              <div
+                *ngIf="userProfileForm.get('lastName')?.errors?.['minlength']"
+              >
+                Last name must be at least 2 characters long.
+              </div>
+              <div *ngIf="userProfileForm.get('lastName')?.errors?.['pattern']">
+                Last name must contain only letters and spaces.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-control"
+          />
+          <div
+            style="color: red"
+            *ngIf="
+              userProfileForm.get('email')?.touched &&
+              userProfileForm.get('email')?.invalid
+            "
+          >
+            <div *ngIf="userProfileForm.get('email')?.errors?.['required']">
+              Email is required.
+            </div>
+            <div *ngIf="userProfileForm.get('email')?.errors?.['email']">
+              Please enter a valid email address.
+            </div>
+          </div>
+        </div>
+
+        <!-- Center the button -->
+        <div class="btn-wrapper text-center mt-4">
+          <button
+            type="submit"
+            class="btn btn-gradient"
+            [disabled]="userProfileForm.invalid"
+          >
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

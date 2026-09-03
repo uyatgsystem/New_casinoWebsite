@@ -1,0 +1,169 @@
+<div class="game-wrapper h-screen max-h-screen overflow-hidden bg-black relative flex flex-col justify-between selection:bg-yellow-500 selection:text-black">
+  
+  <!-- Ambient background accent -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <!-- Header -->
+  <div class="game-header border-b border-white/10 bg-zinc-950/80 backdrop-blur-md px-4 py-3 flex items-center justify-between flex-shrink-0 z-50">
+    <button type="button" class="btn-back flex items-center gap-1.5 bg-white/5 border border-white/10 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold transition-all active:scale-95 cursor-pointer" (click)="goBack()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Lobby
+    </button>
+    
+    <div class="game-title flex items-center gap-2 text-base font-black uppercase tracking-wider bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent drop-shadow-[0_2px_6px_rgba(234,179,8,0.2)]">
+      <span>Toss</span>
+    </div>
+    
+    <div class="wallet-display flex items-center gap-1.5 bg-amber-500/10 border border-yellow-500/20 px-3 py-1.5 rounded-xl">
+      <span class="balance-label text-[10px] font-bold uppercase tracking-wider text-slate-400">Bal:</span>
+      <span class="balance-value text-sm font-black text-[#f5c842]">${{ floorBalance }}</span>
+    </div>
+  </div>
+
+  <!-- History Strip -->
+  <div class="history-strip flex items-center gap-3 px-4 py-1.5 bg-zinc-950 border-b border-white/5 flex-shrink-0" *ngIf="rolls.length > 0">
+    <span class="history-label text-[10px] font-black text-zinc-500 uppercase tracking-widest">History</span>
+    <div class="history-chips flex gap-2 overflow-x-auto py-0.5 mask-linear-edge">
+      <div *ngFor="let r of rolls.slice(0, 20)" class="history-chip" [class.chip-heads]="r.side === 'heads'" [class.chip-tails]="r.side === 'tails'">
+        {{ r.side === 'heads' ? 'H' : 'T' }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Game Content Split Area -->
+  <div class="game-area grid grid-cols-1 md:grid-cols-2 gap-4 p-4 items-stretch flex-1 min-h-0 overflow-hidden">
+
+    <!-- Left Box: Interactive Coin Arena -->
+    <div class="coin-stage relative flex flex-col items-center justify-between rounded-2xl bg-gradient-to-b from-zinc-900/60 to-black border border-white/5 p-4 shadow-2xl min-h-0 overflow-visible">
+      
+      <!-- Status Box banner -->
+      <div class="status-banner w-full max-w-xs text-center py-2 px-3 rounded-xl border font-bold backdrop-blur-sm z-10 flex-shrink-0" 
+           [class.status-win]="resultType === 'win'" 
+           [class.status-lose]="resultType === 'lose'">
+        <div class="status-text uppercase tracking-widest text-[11px] mb-1">{{ resultMessage || 'Place your bets' }}</div>
+        <div class="countdown-bar h-[3px] bg-white/10 rounded-full overflow-hidden" *ngIf="roundPhase === 'betting'">
+          <div class="countdown-fill h-full bg-gradient-to-r from-yellow-400 to-amber-500" [style.width.%]="countdownFraction * 100"></div>
+        </div>
+      </div>
+
+      <!-- Coin Viewport -->
+      <div class="coin-container-3d-viewport my-auto flex items-center justify-center p-4">
+        <div class="coin-container" [class.is-flipping]="isFlipping">
+          <div class="coin" #coinRef [style.--final-rot.deg]="coinRotation">
+            
+            <!-- Heads Face -->
+            <div class="coin-face coin-heads">
+              <div class="coin-face-inner">
+                <div class="coin-3d-edge"></div>
+                <div class="coin-symbol">H</div>
+                <div class="coin-label">Heads</div>
+                <div class="coin-stars">★ ★ ★ ★ ★</div>
+              </div>
+            </div>
+            
+            <!-- Tails Face -->
+            <div class="coin-face coin-tails">
+              <div class="coin-face-inner">
+                <div class="coin-3d-edge"></div>
+                <div class="coin-symbol">T</div>
+                <div class="coin-label">Tails</div>
+                <div class="coin-stars">★ ★ ★ ★ ★</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- Win/Loss Flash overlay layer -->
+      <div class="result-flash absolute inset-0 pointer-events-none rounded-2xl opacity-0 transition-opacity z-0" [class.flash-win]="flashWin" [class.flash-lose]="flashLose"></div>
+    </div>
+
+    <!-- Right Box: Controls Interface Dashboard Container -->
+    <div class="controls-panel flex flex-col justify-center gap-3.5 bg-zinc-950/40 border border-white/5 p-4 rounded-2xl backdrop-blur-xl min-h-0 overflow-y-auto">
+
+      <!-- Betting Side Selectors -->
+      <div class="flex flex-col gap-1.5">
+        <div class="section-label text-[10px] font-black text-zinc-400 uppercase tracking-widest">Prediction</div>
+        <div class="side-selector grid grid-cols-2 gap-3">
+          <button type="button" class="side-btn side-heads group relative cursor-pointer" [class.active]="selectedSide === 'heads'" [disabled]="isBetDisabled()" (click)="selectSide('heads')">
+            <span class="side-btn-icon">H</span>
+            <span class="side-btn-text text-xs uppercase font-black tracking-wide">Heads</span>
+            <span class="side-btn-mult text-[10px] bg-black/40 px-2 py-0.5 rounded-full text-amber-400 border border-amber-400/20 font-bold">2.00x</span>
+          </button>
+          
+          <button type="button" class="side-btn side-tails group relative cursor-pointer" [class.active]="selectedSide === 'tails'" [disabled]="isBetDisabled()" (click)="selectSide('tails')">
+            <span class="side-btn-icon">T</span>
+            <span class="side-btn-text text-xs uppercase font-black tracking-wide">Tails</span>
+            <span class="side-btn-mult text-[10px] bg-black/40 px-2 py-0.5 rounded-full text-amber-400 border border-amber-400/20 font-bold">2.00x</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Wager Size Controls -->
+      <div class="flex flex-col gap-1.5">
+        <div class="section-label text-[10px] font-black text-zinc-400 uppercase tracking-widest">Wager Size</div>
+        <div class="bet-input-row flex items-center gap-2 bg-black border border-white/10 rounded-xl p-1 shadow-inner">
+          
+          <!-- MINUS BUTTON -->
+          <button 
+            type="button" 
+            class="adj-btn text-base font-black text-zinc-400 hover:text-white w-9 h-9 flex items-center justify-center rounded-lg hover:bg-white/10 active:scale-95 transition-all select-none disabled:opacity-30 disabled:pointer-events-none cursor-pointer" 
+            [disabled]="isBetDisabled()" 
+            (click)="setMinus()">
+            −
+          </button>
+
+          <!-- INPUT FIELD -->
+          <div class="relative flex-1 flex items-center justify-center">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 font-bold text-sm select-none">$</span>
+            <input
+              class="bet-input w-full bg-transparent text-center text-base font-black text-white placeholder-zinc-700 outline-none border-none pl-6 pr-2 py-1"
+              type="number"
+              min="0"
+              [(ngModel)]="betAmount"
+              [disabled]="isBetDisabled()"
+              placeholder="0.00"
+            />
+          </div>
+
+          <!-- PLUS BUTTON -->
+          <button 
+            type="button" 
+            class="adj-btn text-base font-black text-zinc-400 hover:text-white w-9 h-9 flex items-center justify-center rounded-lg hover:bg-white/10 active:scale-95 transition-all select-none disabled:opacity-30 disabled:pointer-events-none cursor-pointer" 
+            [disabled]="isBetDisabled()" 
+            (click)="setPlus()">
+            +
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Quick Amount Increments -->
+      <div class="preset-row grid grid-cols-5 gap-1.5">
+        <button type="button" *ngFor="let v of presets" class="preset-btn py-1.5 text-[11px] font-bold text-zinc-400 bg-zinc-900 border border-white/5 rounded-lg hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer disabled:opacity-40" [disabled]="isBetDisabled()" (click)="setPreset(v)">
+          +${{ v }}
+        </button>
+      </div>
+
+      <!-- Main Action Confirmation Trigger -->
+      <button type="button" class="flip-btn w-full py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all duration-200 cursor-pointer" [class.btn-placed]="betLocked" [disabled]="isBetDisabled()" (click)="placeBet()">
+        <span *ngIf="!isWaiting" class="flex items-center justify-center gap-2">{{ getBetButtonLabel() }}</span>
+        <span *ngIf="isWaiting" class="spinner-wrap flex items-center justify-center gap-2">
+          <svg class="spin-icon animate-spin" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          Processing...
+        </span>
+      </button>
+
+      <!-- Insufficient Balance Banner -->
+      <div class="insufficient-banner flex items-center justify-center gap-1.5 p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-[11px] font-bold uppercase tracking-wider" *ngIf="showInsufficientBanner">
+        <span>⚠️</span> Balance Insufficient
+      </div>
+
+    </div>
+  </div>
+</div>

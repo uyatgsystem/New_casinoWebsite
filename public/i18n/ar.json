@@ -1,0 +1,28 @@
+{
+  "header": {
+    "games": "الألعاب",
+    "spinner": "الدوار",
+    "lotteries": "اليانصيب",
+    "scratchCards": "بطاقات الخدش",
+    "contactUs": "اتصل بنا",
+    "aboutUs": "معلومات عنا",
+    "signIn": "تسجيل الدخول",
+    "deposit": "إيداع",
+    "withdraw": "سحب",
+    "logout": "تسجيل الخروج",
+    "changePassword": "تغيير كلمة المرور",
+    "termsConditions": "الشروط والأحكام",
+    "helpSupport": "المساعدة والدعم",
+    "uploadImage": "تحميل الصورة",
+    "deleteAccount": "حذف الحساب"
+  },
+  "common": {
+    "yes": "نعم",
+    "no": "لا",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "loading": "جارٍ التحميل...",
+    "error": "خطأ",
+    "success": "نجح"
+  }
+}

@@ -1,0 +1,28 @@
+{
+    "header": {
+        "games": "گیمز",
+        "spinner": "اسپنر",
+        "lotteries": "لاٹریز",
+        "scratchCards": "اسکرچ کارڈز",
+        "contactUs": "ہم سے رابطہ کریں",
+        "aboutUs": "ہمارے بارے میں",
+        "signIn": "سائن ان",
+        "deposit": "ڈپازٹ",
+        "withdraw": "وڈرا",
+        "logout": "لاگ آؤٹ",
+        "changePassword": "پاس ورڈ تبدیل کریں",
+        "termsConditions": "شرائط و ضوابط",
+        "helpSupport": "مدد اور سپورٹ",
+        "uploadImage": "تصویر اپ لوڈ کریں",
+        "deleteAccount": "اکاؤنٹ ڈیلیٹ کریں"
+    },
+    "common": {
+        "yes": "ہاں",
+        "no": "نہیں",
+        "cancel": "منسوخ",
+        "confirm": "تصدیق",
+        "loading": "لوڈ ہو رہا ہے...",
+        "error": "خرابی",
+        "success": "کامیابی"
+    }
+}

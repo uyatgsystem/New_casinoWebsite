@@ -1,0 +1,28 @@
+{
+    "header": {
+        "games": "Games",
+        "spinner": "Spinner",
+        "lotteries": "Lotteries",
+        "scratchCards": "Scratch Cards",
+        "contactUs": "Contact Us",
+        "aboutUs": "About Us",
+        "signIn": "Sign In",
+        "deposit": "Deposit",
+        "withdraw": "Withdraw",
+        "logout": "Logout",
+        "changePassword": "Change Password",
+        "termsConditions": "Terms & Conditions",
+        "helpSupport": "Help & Support",
+        "uploadImage": "Upload Image",
+        "deleteAccount": "Delete Account"
+    },
+    "common": {
+        "yes": "Yes",
+        "no": "No",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success"
+    }
+}

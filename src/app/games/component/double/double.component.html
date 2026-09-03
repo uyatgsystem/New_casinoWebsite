@@ -1,0 +1,966 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     DOUBLE — full-page game wrapper
+════════════════════════════════════════════════════════════════ -->
+<div
+  class="min-h-screen flex flex-col text-white relative overflow-hidden"
+  style="
+    background: linear-gradient(140deg, #050a20 0%, #0d1530 55%, #070c1c 100%);
+  "
+>
+  <!-- ── Compact Game Header ── -->
+  <header class="game-header">
+    <div class="game-header-content">
+      <button class="game-back-btn" (click)="goBack()">
+        <span>←</span>
+        <span class="hidden sm:inline ml-1">Back</span>
+      </button>
+      <h1 class="game-header-title">
+        DOUBLE<span style="-webkit-text-fill-color: #ffdd44">.</span>
+      </h1>
+      <div class="flex items-center gap-2">
+        <div class="game-header-balance">
+          <span class="game-header-balance-label">Balance</span>
+          <span class="game-header-balance-amount">${{ floorBalance }}</span>
+        </div>
+        <button
+          class="game-fullscreen-btn"
+          (click)="toggleFullscreen()"
+          [title]="isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'"
+        >
+          <svg
+            *ngIf="!isFullscreen"
+            class="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+            />
+          </svg>
+          <svg
+            *ngIf="isFullscreen"
+            class="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ambient glow blobs -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -top-24 -left-16 w-80 h-80 rounded-full opacity-[0.14]"
+      style="
+        background: radial-gradient(circle, #ff4444, transparent);
+        filter: blur(55px);
+      "
+    ></div>
+    <div
+      class="absolute top-1/2 right-[-40px] w-72 h-72 rounded-full opacity-[0.10]"
+      style="
+        background: radial-gradient(circle, #44ff88, transparent);
+        filter: blur(45px);
+      "
+    ></div>
+    <div
+      class="absolute bottom-0 left-1/3 w-64 h-64 rounded-full opacity-[0.08]"
+      style="
+        background: radial-gradient(circle, #4488ff, transparent);
+        filter: blur(40px);
+      "
+    ></div>
+  </div>
+
+  <!-- ── Insufficient-balance flash banner ── -->
+  <div
+    *ngIf="showInsufficientBanner"
+    class="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-xl text-sm font-bold text-white shadow-2xl flex items-center gap-3"
+    style="
+      background: rgba(160, 30, 30, 0.92);
+      border: 1px solid #ff6666;
+      backdrop-filter: blur(10px);
+    "
+  >
+    <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <path
+        fill-rule="evenodd"
+        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+        clip-rule="evenodd"
+      />
+    </svg>
+    Insufficient balance — please deposit to continue.
+  </div>
+
+  <!-- ── Main content ── -->
+  <div
+    class="flex-1 flex flex-col w-full px-3 py-4 sm:px-5 sm:py-5 relative z-10"  >
+    <!-- Mobile: collapsed controls toggle bar -->
+    <div
+      *ngIf="isMobileView && !showControls"
+      (click)="toggleControls()"
+      class="w-full mb-4 rounded-2xl p-3 flex items-center justify-between cursor-pointer select-none transition-all"
+      style="
+        background: rgba(20, 32, 85, 0.55);
+        border: 1px solid rgba(120, 180, 255, 0.25);
+        backdrop-filter: blur(12px);
+      "
+    >
+      <div class="flex items-center gap-3">
+        <!-- Double icon -->
+        <div
+          class="w-8 h-8 rounded-xl flex items-center justify-center"
+          style="
+            background: rgba(180, 40, 40, 0.25);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+          "
+        >
+          <!-- coin stack SVG -->
+          <svg
+            class="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <ellipse cx="12" cy="6" rx="7" ry="3" />
+            <path d="M5 9c0 1.657 3.134 3 7 3s7-1.343 7-3" />
+            <path d="M5 12c0 1.657 3.134 3 7 3s7-1.343 7-3" />
+            <path d="M5 15c0 1.657 3.134 3 7 3s7-1.343 7-3" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-sm font-black text-white">Controls</div>
+          <div class="text-[10px] text-slate-300 uppercase tracking-widest">
+            Tap to expand
+          </div>
+        </div>
+      </div>
+      <svg
+        class="w-5 h-5 text-blue-200 rotate-[-90deg]"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+      </svg>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         BODY: side-by-side on desktop
+    ══════════════════════════════════════════ -->
+    <div class="flex-1 flex flex-col gap-4 lg:flex-row lg:gap-6 lg:items-start">
+      <!-- ══════════════════════════════════════
+           LEFT — Control Panel
+      ══════════════════════════════════════ -->
+      <div
+        *ngIf="!isMobileView || showControls"
+        class="w-full lg:w-[286px] shrink-0 select-none rounded-2xl p-4 flex flex-col gap-4 shadow-2xl"
+        style="
+          background: linear-gradient(
+            165deg,
+            rgba(28, 42, 110, 0.58),
+            rgba(14, 22, 68, 0.7)
+          );
+          border: 1px solid rgba(110, 170, 255, 0.26);
+          box-shadow:
+            0 20px 55px rgba(4, 7, 26, 0.62),
+            inset 0 1px 0 rgba(255, 255, 255, 0.14);
+          backdrop-filter: blur(18px);
+        "
+      >
+        <!-- Mobile close row -->
+        <div class="flex items-center justify-end lg:hidden">
+          <button
+            (click)="toggleControls()"
+            class="p-1.5 rounded-lg text-slate-300 hover:text-white"
+            style="background: rgba(30, 40, 90, 0.5)"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Title row -->
+        <div class="flex items-center gap-3 pb-3 border-b border-white/10">
+          <!-- Double-D icon -->
+          <div
+            class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(220, 50, 50, 0.35),
+                rgba(30, 180, 80, 0.25)
+              );
+              border: 1px solid rgba(255, 255, 255, 0.18);
+              box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            "
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <ellipse cx="12" cy="6" rx="7" ry="3" />
+              <path d="M5 9c0 1.657 3.134 3 7 3s7-1.343 7-3" />
+              <path d="M5 12c0 1.657 3.134 3 7 3s7-1.343 7-3" />
+              <path d="M5 15c0 1.657 3.134 3 7 3s7-1.343 7-3" />
+            </svg>
+          </div>
+          <div>
+            <h1
+              class="text-xl font-black italic tracking-tighter leading-none"
+              style="
+                background: linear-gradient(
+                  180deg,
+                  #fff5c0 0%,
+                  #ffd700 45%,
+                  #e8a000 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-shadow: 0 4px 12px rgba(240, 160, 0, 0.3);
+              "
+            >
+              DOUBLE<span style="-webkit-text-fill-color: #ffdd44">.</span>
+            </h1>
+            <p
+              class="text-[10px] font-bold uppercase tracking-widest text-blue-100/55 mt-0.5"
+            >
+              Red · Green · Gray
+            </p>
+          </div>
+        </div>
+
+        <!-- Balance card -->
+        <div
+          class="relative overflow-hidden rounded-xl p-[1px]"
+          style="
+            background: linear-gradient(
+              135deg,
+              rgba(80, 180, 255, 0.3),
+              rgba(160, 80, 240, 0.25),
+              rgba(250, 200, 20, 0.18)
+            );
+            box-shadow: 0 8px 24px rgba(8, 18, 60, 0.45);
+          "
+        >
+          <div
+            class="rounded-xl px-3 py-2.5"
+            style="
+              background: linear-gradient(
+                155deg,
+                rgba(10, 18, 55, 0.92),
+                rgba(16, 28, 78, 0.85)
+              );
+              backdrop-filter: blur(10px);
+            "
+          >
+            <div
+              class="text-[9px] font-black tracking-widest text-blue-100/60 uppercase mb-1"
+            >
+              Wallet Balance
+            </div>
+            <div class="flex items-center gap-2">
+              <div
+                class="w-2 h-2 rounded-full bg-green-300 shrink-0"
+                style="box-shadow: 0 0 8px rgba(74, 222, 128, 0.85)"
+              ></div>
+              <span
+                class="text-[1.6rem] font-black tabular-nums text-white leading-none"
+                >${{ floorBalance }}</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Bet Amount ── -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center px-0.5">
+            <h3
+              class="text-[10px] font-black tracking-[0.14em] text-blue-100/60 uppercase"
+            >
+              Bet Amount
+            </h3>
+            <span
+              class="text-xs font-bold text-yellow-200 bg-yellow-300/10 px-2 py-0.5 rounded-md border border-yellow-300/25"
+            >
+              ${{ betAmount | number: "1.0-0" }}
+            </span>
+          </div>
+
+          <!-- Stepper row -->
+          <div
+            class="flex items-center rounded-xl overflow-hidden ring-1 ring-white/[0.12]"
+            style="
+              background: rgba(6, 12, 44, 0.75);
+              box-shadow:
+                inset 0 2px 0 rgba(255, 255, 255, 0.07),
+                inset 0 -2px 0 rgba(2, 5, 20, 0.6);
+            "
+          >
+            <button
+              (click)="setHalf()"
+              [disabled]="isBetDisabled()"
+              class="w-11 h-12 flex items-center justify-center font-black text-base text-blue-100 transition-all active:translate-y-[1px] disabled:opacity-40 disabled:cursor-not-allowed"
+              style="
+                background: linear-gradient(180deg, #5562aa, #3341 88);
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow:
+                  0 3px 0 #1e235a,
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+              "
+            >
+              ½
+            </button>
+            <input
+              type="number"
+              [(ngModel)]="betAmount"
+              min="0"
+              [disabled]="isBetDisabled()"
+              class="flex-1 h-12 bg-transparent text-center text-white font-black text-base outline-none tabular-nums disabled:opacity-60"
+              (keydown)="
+                $event.key === 'e' || $event.key === 'E' || $event.key === '+'
+                  ? $event.preventDefault()
+                  : null
+              "
+            />
+            <button
+              (click)="setDouble()"
+              [disabled]="isBetDisabled()"
+              class="w-11 h-12 flex items-center justify-center font-black text-base text-blue-100 transition-all active:translate-y-[1px] disabled:opacity-40 disabled:cursor-not-allowed"
+              style="
+                background: linear-gradient(180deg, #5562aa, #334188);
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow:
+                  0 3px 0 #1e235a,
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+              "
+            >
+              2×
+            </button>
+          </div>
+
+          <!-- Quick-bet chips -->
+          <div class="grid grid-cols-4 gap-1.5">
+            <button
+              *ngFor="let p of [100, 500, 1000, 5000]"
+              (click)="setPreset(p)"
+              [disabled]="isBetDisabled()"
+              class="h-8 rounded-lg text-xs font-bold text-blue-100 transition-all hover:opacity-80 active:translate-y-[1px] disabled:opacity-30 disabled:cursor-not-allowed"
+              style="
+                background: rgba(52, 70, 148, 0.48);
+                border: 1px solid rgba(90, 120, 220, 0.25);
+                box-shadow: 0 2px 0 rgba(20, 28, 80, 0.6);
+              "
+            >
+              {{ p >= 1000 ? p / 1000 + "k" : p }}
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Select Color ── -->
+        <div class="space-y-2">
+          <h3
+            class="text-[10px] font-black tracking-[0.14em] text-blue-100/60 uppercase px-0.5"
+          >
+            Select Color
+          </h3>
+          <div class="flex gap-2">
+            <button
+              *ngFor="let c of betColors"
+              (click)="selectColor(c)"
+              [disabled]="isBetDisabled()"
+              class="flex-1 flex flex-col items-center justify-center gap-1 py-2.5 rounded-xl font-bold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed relative overflow-hidden"
+              [style]="
+                selectedColor === c
+                  ? 'background:' +
+                    COLOR_META[c].activeBg +
+                    ';border:2px solid ' +
+                    COLOR_META[c].activeBorder +
+                    ';box-shadow:0 0 18px ' +
+                    COLOR_META[c].activeGlow +
+                    ',0 4px 0 rgba(0,0,0,0.4);'
+                  : 'background:' +
+                    COLOR_META[c].bg +
+                    ';border:1px solid ' +
+                    COLOR_META[c].border +
+                    ';box-shadow:0 2px 0 rgba(0,0,0,0.3);'
+              "
+            >
+              <!-- Color dot (red / gray) or diamond (green) -->
+              <ng-container *ngIf="c !== 'green'; else diamondIcon">
+                <span
+                  class="block rounded-full"
+                  [style]="
+                    'width:16px;height:16px;background:' +
+                    COLOR_META[c].primary +
+                    ';box-shadow:0 0 8px ' +
+                    COLOR_META[c].glow +
+                    ';'
+                  "
+                >
+                </span>
+              </ng-container>
+              <ng-template #diamondIcon>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                  <polygon
+                    points="12,2 22,9 18,22 6,22 2,9"
+                    fill="#44ee88"
+                    stroke="rgba(100,255,160,0.6)"
+                    stroke-width="1"
+                  />
+                  <line
+                    x1="2"
+                    y1="9"
+                    x2="22"
+                    y2="9"
+                    stroke="rgba(255,255,255,0.5)"
+                    stroke-width="1"
+                  />
+                  <line
+                    x1="12"
+                    y1="2"
+                    x2="12"
+                    y2="22"
+                    stroke="rgba(255,255,255,0.4)"
+                    stroke-width="1"
+                  />
+                  <line
+                    x1="2"
+                    y1="9"
+                    x2="8"
+                    y2="22"
+                    stroke="rgba(255,255,255,0.3)"
+                    stroke-width="1"
+                  />
+                  <line
+                    x1="22"
+                    y1="9"
+                    x2="16"
+                    y2="22"
+                    stroke="rgba(255,255,255,0.3)"
+                    stroke-width="1"
+                  />
+                </svg>
+              </ng-template>
+
+              <span class="font-black text-sm">{{ COLOR_META[c].label }}</span>
+
+              <!-- Selected ring pulse -->
+              <span
+                *ngIf="selectedColor === c"
+                class="absolute inset-0 rounded-xl pointer-events-none selected-pulse"
+                [style]="
+                  'box-shadow:inset 0 0 12px ' + COLOR_META[c].activeGlow + ';'
+                "
+              >
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ── BET button ── -->
+        <button
+          (click)="placeBet()"
+          [attr.disabled]="isBetDisabled() ? true : null"
+          class="w-full h-14 rounded-xl font-black text-base tracking-wider transition-all active:translate-y-[2px] relative overflow-hidden"
+          [style]="
+            betLocked
+              ? 'background:linear-gradient(180deg,#1a7a40 0%,#0d5528 60%,#083318 100%);box-shadow:0 3px 0 #062215;color:rgba(255,255,255,0.55);pointer-events:none;cursor:not-allowed;opacity:0.7;'
+              : roundPhase !== 'betting'
+                ? 'background:linear-gradient(180deg,#1e1e2e 0%,#14141f 100%);box-shadow:0 3px 0 #0a0a14;color:rgba(255,255,255,0.25);pointer-events:none;cursor:not-allowed;opacity:0.5;'
+                : 'background:linear-gradient(180deg,#44dd88 0%,#00aa44 60%,#007a30 100%);box-shadow:0 5px 0 #004d1c,0 8px 22px rgba(0,200,80,0.32);color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.45);'
+          "
+        >
+          <span class="relative z-10 flex items-center justify-center gap-2">
+            <span
+              *ngIf="isWaiting"
+              class="w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin"
+            ></span>
+            <svg
+              *ngIf="betLocked && !isWaiting"
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            {{ getBetButtonLabel() }}
+          </span>
+          <!-- Sheen -->
+          <span
+            class="absolute inset-0 rounded-xl pointer-events-none"
+            style="
+              background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.22) 0%,
+                rgba(255, 255, 255, 0) 50%
+              );
+            "
+          ></span>
+        </button>
+
+        <!-- Demo hint -->
+        <p class="text-[10px] text-center text-blue-100/38 -mt-1">
+          ⓘ&nbsp; Betting with 0 enters demo mode
+        </p>
+      </div>
+      <!-- /left panel -->
+
+      <!-- ══════════════════════════════════════
+           RIGHT — Game Area
+      ══════════════════════════════════════ -->
+      <div class="flex-1 flex flex-col gap-4 min-w-0">
+        <!-- ══ STATUS BANNER ══ -->
+
+        <!-- BETTING PHASE — countdown -->
+        <div
+          *ngIf="roundPhase === 'betting'"
+          class="rounded-2xl overflow-hidden relative"
+          style="
+            background: rgba(10, 16, 48, 0.72);
+            border: 1px solid rgba(80, 120, 220, 0.28);
+          "
+        >
+          <!-- Content row -->
+          <div class="flex items-center justify-between px-5 py-3 gap-3">
+            <!-- Clock icon -->
+            <div
+              class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+              style="
+                background: rgba(80, 120, 220, 0.18);
+                border: 1px solid rgba(100, 140, 255, 0.25);
+              "
+            >
+              <svg
+                class="w-4 h-4 text-blue-200"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path stroke-linecap="round" d="M12 6v6l4 2" />
+              </svg>
+            </div>
+
+            <!-- Countdown text -->
+            <div class="flex-1 text-center">
+              <span
+                class="countdown-text font-black tracking-tight"
+                style="
+                  font-size: clamp(1.4rem, 4vw, 2rem);
+                  color: #ffffff;
+                  text-shadow: 0 0 20px rgba(120, 160, 255, 0.55);
+                "
+              >
+                Rolling In&nbsp;<span
+                  style="
+                    color: #fbbf24;
+                    text-shadow: 0 0 14px rgba(251, 191, 36, 0.65);
+                  "
+                  >{{ countdown.toFixed(1) }}s</span
+                >
+              </span>
+              <p
+                class="text-[10px] text-blue-100/45 mt-0.5 uppercase tracking-widest"
+              >
+                Place your bet before time runs out
+              </p>
+            </div>
+
+            <!-- Bet-locked indicator -->
+            <div
+              class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all"
+              [style]="
+                betLocked
+                  ? 'background:rgba(30,150,70,0.35);border:1px solid rgba(60,200,100,0.5);'
+                  : 'background:rgba(60,80,140,0.18);border:1px solid rgba(80,110,200,0.2);'
+              "
+            >
+              <svg
+                *ngIf="betLocked"
+                class="w-4 h-4 text-green-300"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <svg
+                *ngIf="!betLocked"
+                class="w-4 h-4 text-blue-300/40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Progress bar -->
+          <div
+            class="h-[3px] w-full"
+            style="background: rgba(255, 255, 255, 0.07)"
+          >
+            <div
+              class="h-full transition-none"
+              [style.width]="countdownFraction * 100 + '%'"
+              [style]="
+                'width:' +
+                countdownFraction * 100 +
+                '%;' +
+                (countdownFraction > 0.5
+                  ? 'background:linear-gradient(90deg,#4488ff,#66aaff);box-shadow:0 0 8px rgba(80,150,255,0.6);'
+                  : countdownFraction > 0.2
+                    ? 'background:linear-gradient(90deg,#ffaa22,#ffcc55);box-shadow:0 0 8px rgba(255,170,30,0.6);'
+                    : 'background:linear-gradient(90deg,#ff4444,#ff7755);box-shadow:0 0 8px rgba(255,60,60,0.65);')
+              "
+            ></div>
+          </div>
+        </div>
+
+        <!-- SPINNING PHASE -->
+        <div
+          *ngIf="roundPhase === 'spinning'"
+          class="rounded-2xl px-5 py-4 flex items-center justify-center gap-3"
+          style="
+            background: rgba(10, 20, 55, 0.65);
+            border: 1px solid rgba(80, 110, 200, 0.22);
+          "
+        >
+          <span
+            class="w-5 h-5 rounded-full border-2 border-blue-300/30 border-t-blue-200 animate-spin shrink-0"
+          ></span>
+          <span
+            class="text-xl font-black tracking-wide text-white"
+            style="text-shadow: 0 0 14px rgba(150, 180, 255, 0.4)"
+          >
+            Rolling...
+          </span>
+          <span class="flex items-center gap-1">
+            <span class="dot-pulse" style="animation-delay: 0s"></span>
+            <span class="dot-pulse" style="animation-delay: 0.2s"></span>
+            <span class="dot-pulse" style="animation-delay: 0.4s"></span>
+          </span>
+        </div>
+
+        <!-- RESULT PHASE -->
+        <!-- WIN -->
+        <div
+          *ngIf="roundPhase === 'result' && resultType === 'win'"
+          class="rounded-2xl overflow-hidden relative result-win-anim"
+          style="
+            background: linear-gradient(
+              135deg,
+              rgba(5, 35, 18, 0.92),
+              rgba(8, 50, 24, 0.88)
+            );
+            border: 2px solid rgba(60, 220, 110, 0.55);
+            box-shadow:
+              0 0 40px rgba(40, 200, 90, 0.28),
+              0 0 80px rgba(30, 160, 70, 0.15);
+          "
+        >
+          <!-- Sparkle strip top -->
+          <div
+            class="h-[3px] w-full"
+            style="
+              background: linear-gradient(
+                90deg,
+                transparent,
+                #44ff88 30%,
+                #aaffcc 50%,
+                #44ff88 70%,
+                transparent
+              );
+            "
+          ></div>
+          <div class="px-5 py-4 flex flex-col items-center gap-1">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl select-none">🎉</span>
+              <span
+                class="font-black text-2xl tracking-wide"
+                style="
+                  color: #44ff88;
+                  text-shadow: 0 0 22px rgba(50, 230, 100, 0.7);
+                "
+              >
+                {{ resultMessage }}
+              </span>
+              <span class="text-3xl select-none">🎉</span>
+            </div>
+            <p
+              class="text-[11px] text-green-200/60 uppercase tracking-widest font-bold"
+            >
+              Next round starting soon…
+            </p>
+          </div>
+          <div
+            class="h-[3px] w-full"
+            style="
+              background: linear-gradient(
+                90deg,
+                transparent,
+                #44ff88 30%,
+                #aaffcc 50%,
+                #44ff88 70%,
+                transparent
+              );
+            "
+          ></div>
+        </div>
+
+        <!-- LOSE -->
+        <div
+          *ngIf="roundPhase === 'result' && resultType === 'lose'"
+          class="rounded-2xl px-5 py-4 flex items-center justify-center gap-3"
+          style="
+            background: rgba(40, 8, 8, 0.78);
+            border: 1px solid rgba(210, 50, 50, 0.42);
+            box-shadow: 0 0 24px rgba(190, 40, 40, 0.2);
+          "
+        >
+          <span class="text-2xl select-none">😞</span>
+          <span
+            class="text-xl font-black tracking-wide"
+            style="color: #ff6666; text-shadow: 0 0 14px rgba(220, 50, 50, 0.5)"
+          >
+            {{ resultMessage }}
+          </span>
+        </div>
+
+        <!-- NEUTRAL (watched only, no bet) -->
+        <div
+          *ngIf="roundPhase === 'result' && resultType === 'neutral'"
+          class="rounded-2xl px-5 py-4 flex items-center justify-center gap-3"
+          style="
+            background: rgba(12, 20, 55, 0.6);
+            border: 1px solid rgba(80, 110, 200, 0.22);
+          "
+        >
+          <span class="text-xl font-black text-blue-100/70">{{
+            resultMessage
+          }}</span>
+        </div>
+
+        <!-- Reel canvas container -->
+        <div
+          class="relative rounded-2xl overflow-hidden"
+          style="
+            background: rgba(8, 14, 38, 0.88);
+            border: 1px solid rgba(70, 100, 200, 0.28);
+            box-shadow:
+              inset 0 0 50px rgba(0, 0, 50, 0.55),
+              0 20px 60px rgba(0, 0, 28, 0.45);
+          "
+        >
+          <!-- Top glow strip -->
+          <div
+            class="h-[2px] w-full"
+            style="
+              background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(100, 150, 255, 0.5) 30%,
+                rgba(100, 150, 255, 0.5) 70%,
+                transparent 100%
+              );
+            "
+          ></div>
+
+          <canvas
+            #reelCanvas
+            class="w-full block"
+            [style.height.px]="150"
+          ></canvas>
+
+          <!-- Bottom glow strip -->
+          <div
+            class="h-[2px] w-full"
+            style="
+              background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(100, 150, 255, 0.4) 30%,
+                rgba(100, 150, 255, 0.4) 70%,
+                transparent 100%
+              );
+            "
+          ></div>
+        </div>
+
+        <!-- Tile legend -->
+        <div class="flex items-center justify-center gap-4 sm:gap-8 py-1">
+          <div
+            *ngFor="let c of betColors"
+            class="flex items-center gap-2 text-xs font-bold text-white/70"
+          >
+            <ng-container *ngIf="c !== 'green'; else lgDiamond">
+              <span
+                class="w-3 h-3 rounded-full block shrink-0"
+                [style]="
+                  'background:' +
+                  COLOR_META[c].primary +
+                  ';box-shadow:0 0 5px ' +
+                  COLOR_META[c].glow +
+                  ';'
+                "
+              >
+              </span>
+            </ng-container>
+            <ng-template #lgDiamond>
+              <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="#44ee88">
+                <polygon points="12,2 22,9 18,22 6,22 2,9" />
+              </svg>
+            </ng-template>
+            <span>{{
+              c === "green" ? "Green" : c === "red" ? "Red" : "Gray"
+            }}</span>
+            <span class="text-white/40">{{ COLOR_META[c].label }}</span>
+          </div>
+        </div>
+
+        <!-- Previous rolls -->
+        <div
+          class="rounded-2xl p-4"
+          style="
+            background: rgba(10, 16, 44, 0.6);
+            border: 1px solid rgba(70, 100, 200, 0.2);
+            box-shadow: inset 0 0 30px rgba(0, 0, 40, 0.3);
+          "
+        >
+          <h3
+            class="text-[10px] font-black tracking-widest text-blue-100/48 uppercase mb-3"
+          >
+            Previous Rolls
+          </h3>
+
+          <div class="flex flex-wrap gap-1.5">
+            <div
+              *ngIf="rolls.length === 0"
+              class="text-xs italic text-blue-100/30"
+            >
+              No rolls yet — place your first bet!
+            </div>
+
+            <div
+              *ngFor="let r of rolls"
+              class="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-black text-white relative overflow-hidden transition-transform hover:scale-110"
+              [style]="getRollStyle(r)"
+            >
+              <!-- Diamond rolls show gem icon -->
+              <ng-container *ngIf="r.value === 0; else numBadge">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#44ee88">
+                  <polygon points="12,2 22,9 18,22 6,22 2,9" />
+                </svg>
+              </ng-container>
+              <ng-template #numBadge>{{ r.value }}</ng-template>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payout table -->
+        <div
+          class="rounded-2xl p-4"
+          style="
+            background: rgba(10, 16, 44, 0.5);
+            border: 1px solid rgba(70, 100, 200, 0.18);
+          "
+        >
+          <h3
+            class="text-[10px] font-black tracking-widest text-blue-100/48 uppercase mb-3"
+          >
+            Payouts
+          </h3>
+          <div class="grid grid-cols-3 gap-2">
+            <div
+              *ngFor="let c of betColors"
+              class="rounded-xl p-3 flex flex-col items-center gap-1.5 text-center"
+              [style]="
+                'background:' +
+                COLOR_META[c].bg +
+                ';border:1px solid ' +
+                COLOR_META[c].border +
+                ';'
+              "
+            >
+              <ng-container *ngIf="c !== 'green'; else pdDiamond">
+                <span
+                  class="w-4 h-4 rounded-full block"
+                  [style]="
+                    'background:' +
+                    COLOR_META[c].primary +
+                    ';box-shadow:0 0 6px ' +
+                    COLOR_META[c].glow +
+                    ';'
+                  "
+                >
+                </span>
+              </ng-container>
+              <ng-template #pdDiamond>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#44ee88">
+                  <polygon points="12,2 22,9 18,22 6,22 2,9" />
+                </svg>
+              </ng-template>
+              <span class="text-xs text-white/60 capitalize">{{ c }}</span>
+              <span
+                class="text-base font-black"
+                [style]="'color:' + COLOR_META[c].primary + ';'"
+              >
+                {{ COLOR_META[c].label }}
+              </span>
+              <span class="text-[10px] text-blue-100/40">
+                {{ c === "green" ? "1 / 15" : "7 / 15" }} chance
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /right area -->
+    </div>
+    <!-- /body -->
+  </div>
+  <!-- /main content -->
+</div>

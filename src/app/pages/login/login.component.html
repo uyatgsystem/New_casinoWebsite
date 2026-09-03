@@ -1,0 +1,235 @@
+<app-loader></app-loader>
+
+<div
+  class="main-bg relative w-full min-h-[100vh] bg-cover bg-center overflow-y-auto lg:overflow-hidden"
+>
+  <div class="flex flex-col lg:flex-row lg:absolute lg:inset-0 min-h-screen">
+    <!-- LeftDiv: Logo, Welcome Text, Person Image -->
+
+    <div
+      class="hidden lg:flex flex-1 flex-col justify-between bg-[#00040880]"
+      style="clip-path: ellipse(85% 100% at 0% 50%)"
+    >
+      <!-- Logo -->
+      <div
+        class="hidden md:hidden lg:flex justify-start lg:mb-0 pt-4 lg:p-[1rem]"
+      >
+        <img
+          src="https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png"
+          alt="Logo"
+          class="w-[200px] h-[150px]"
+          style="
+            transform: scale(1.1);
+            transform-origin: center;
+            margin-left: 4rem;
+          "
+        />
+      </div>
+      <!-- Welcome Text -->
+      <div
+        class="mobile-welcome-text flex flex-col items-start text-left text-white max-w-xl mx-auto lg:mx-0 pl-[3rem] lg:flex"
+      >
+        <h1
+          class="text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] xl:text-[42px] 2xl:text-[42px] font-bold mb-4 leading-tight"
+        >
+          Welcome back to the <span class="text-[#F3A630]">CasinoMaxs</span>
+        </h1>
+
+        <p
+          class="text-white-300 text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] leading-relaxed"
+        >
+          Step into a world where luxury meets thrill. Every spin, card, and
+          roll brings you closer to incredible rewards and exciting victories.
+          Play your favorite games, discover new challenges, and let the golden
+          rush of unlocking premium prizes lead your way.
+        </p>
+      </div>
+
+      <!-- Person Image -->
+      <div class="hidden lg:flex justify-start items-end">
+        <img
+          src="https://cmaxv2images2.pages.dev/assets/avatars/loginCPL.png"
+          alt="Person"
+          class="w-auto h-[100px] sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[470px]"
+        />
+      </div>
+    </div>
+
+    <!-- Mobile Header -->
+    <div
+      class="lg:hidden text-center text-white relative"
+      style="clip-path: ellipse(59% 100% at 50% 25%)"
+    >
+      <img
+        src="https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png"
+        class="w-[105px] relative left-6"
+      />
+
+      <h1 class="text-lg font-semibold">
+        Welcome back to the<br />
+        <span class="text-[#F3A630]">CasinoMaxs</span>
+      </h1>
+
+      <p class="text-xs text-gray-300 px-6 mt-2 leading-relaxed">
+        Step into luxury and thrill at CasinoMaxs, where every game brings you
+        closer to big cash prizes and real winnings.
+      </p>
+
+      <!-- Curved Overlay -->
+      <div
+        class="absolute top-0 left-0 w-full h-[50vh] bg-black opacity-80 rounded-b-[50%] -z-10"
+      ></div>
+    </div>
+
+    <!-- RightDiv: Form Section -->
+    <div
+      class="flex-1 flex items-center justify-center px-4 pb-10 lg:p-8 lg:pr-16"
+    >
+      <!-- <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div> -->
+      <div
+        class="rounded-[1.5rem] backdrop-blur-md p-4 sm:p-5 md:p-6 lg:p-8 2xl:p-[3rem] w-full max-w-sm sm:max-w-sm md:max-w-md 2xl:max-w-[30rem] mx-auto lg:mx-0 lg:max-h-[90vh] lg:overflow-y-auto border border-[#FE8912]"
+        id="formContainer"
+      >
+        <!-- Header -->
+        <div class="mb-6">
+          <div
+            class="flex items-center justify-center md:justify-start gap-2 mt-3 md:mb-3 lg:mb-2"
+          >
+            <span class="text-[#F3A630] text-lg lg:text-[24px] font-semibold"
+              >Sign In</span
+            >
+            <span class="text-white text-lg lg:text-[24px]">/</span>
+            <a
+              routerLink="/SignUp"
+              class="text-white text-lg lg:text-[24px] hover:text-[#F3A630] transition-colors"
+              >Create Account</a
+            >
+          </div>
+          <p class="text-white text-xs lg:text-[1rem] mb-2 lg:mb-10 xl:mb-12">
+            Enter your email and password to login
+          </p>
+        </div>
+        <!-- Form -->
+        <form
+          [formGroup]="loginForm"
+          (ngSubmit)="loginUser()"
+          autocomplete="off"
+        >
+          <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+          <!-- Username Field -->
+          <div class="mb-6">
+            <div>
+              <div class="relative">
+                <input
+                  type="text"
+                  formControlName="username"
+                  placeholder="User name or Email"
+                  class="w-full text-white placeholder-gray-300 py-3 pr-10 bg-transparent focus:outline-none text-sm"
+                />
+                <i
+                  class="fas fa-envelope text-gray-300 absolute right-3 top-1/2 -translate-y-1/2"
+                ></i>
+              </div>
+
+              <!-- Gradient Bottom Border -->
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div class="mb-6">
+            <div>
+              <div class="relative">
+                <input
+                  [type]="showpassword ? 'text' : 'password'"
+                  formControlName="userPassword"
+                  placeholder="Enter Your Password"
+                  class="w-full text-white placeholder-gray-300 py-3 pr-14 bg-transparent focus:outline-none text-sm"
+                />
+
+                <fa-icon
+                  (click)="togglePassword()"
+                  [icon]="showpassword ? hideicon : showicon"
+                  class="cursor-pointer text-gray-300 hover:text-[#F3A630] absolute right-8 top-1/2 -translate-y-1/2"
+                ></fa-icon>
+
+                <i
+                  class="fas fa-lock text-gray-300 absolute right-3 top-1/2 -translate-y-1/2"
+                ></i>
+              </div>
+
+              <!-- Gradient Bottom Border -->
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+            </div>
+          </div>
+          <!-- Remember Me & Forgot Password -->
+          <div class="flex items-center justify-between mb-6 mt-6">
+            <label class="flex items-center text-sm text-white cursor-pointer">
+              <input
+                type="checkbox"
+                formControlName="rememberMe"
+                class="form-checkbox remember-checkbox h-4 w-4 text-[#F3A630] bg-transparent border-white rounded focus:ring-[#F3A630] focus:ring-2 mr-3"
+              />
+              <span>Remember me</span>
+            </label>
+            <a
+              routerLink="/ForgotPassword"
+              class="text-[#F3A630] text-sm hover:text-white transition-colors underline"
+            >
+              Forgot Password?
+            </a>
+          </div>
+          <!-- Login Button -->
+
+          <button
+            type="submit"
+            [disabled]="loginForm.invalid"
+            class="w-full mb-5 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black px-1 py-[0.55rem] font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-base active:scale-95 active:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#F3A630]"
+          >
+            Sign In
+          </button>
+        </form>
+
+        <!-- Google Button -->
+        <button
+          (click)="continueWithGoogle($event)"
+          style="display: flex"
+          class="w-full mb-5 flex flex-row !flex-nowrap items-center justify-center gap-1 border border-[#C3B089] bg-transparent text-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] px-2 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-sm transform hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <img
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            alt="Google"
+            class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+          />
+
+          <span
+            class="text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] bg-clip-text text-transparent"
+          >
+            Continue with Google
+          </span>
+        </button>
+        <!-- Sign Up Link -->
+        <p class="text-center text-xs mt-4 text-gray-300">
+          Don't have an account?
+          <a
+            routerLink="/SignUp"
+            class="text-[#F3A630] hover:text-white transition-colors ml-1 underline"
+          >
+            Sign Up
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- Bottom Character Image - Mobile Only -->
+
+  <div
+    class="lg:hidden fixed bottom-0 left-0 pl-2 flex justify-start items-end w-[8rem] pointer-events-none"
+  >
+    <img
+      src="https://cmaxv2images2.pages.dev/assets/avatars/loginCPL.png"
+      alt="Character"
+      class="w-[7rem] sm:w-[8rem] h-auto"
+    />
+  </div>
+</div>

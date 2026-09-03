@@ -1,0 +1,243 @@
+<app-loader></app-loader>
+
+<div class="image-bg min-h-screen bg-cover bg-center bg-no-repeat mx-auto px-2 md:px-12 py-4">
+  <!-- Back Button & Title -->
+  <div class="relative mt-6 pb-2">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center cursor-pointer gap-1" (click)="back()">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="#F86E12" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+
+        <span class="text-white font-bold text-base">Lotteries</span>
+      </div>
+      <button (click)="showGuide()"
+        class="hidden md:inline-block bg-gradient-to-r from-[#F3A630] to-[#F86E12] text-black font-semibold px-10 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        Guide
+      </button>
+    </div>
+    <div
+      class="h-[2px] w-full absolute bottom-0 left-0 bg-[linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)]">
+    </div>
+  </div>
+  <!-- <div class="flex items-center mt-4">
+  <button (click)="back()" class="flex items-center gap-2 text-[#2ee4e8] px-4 py-2 rounded-xl shadow-md">
+    <svg fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="#2ee4e8" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+    Back
+  </button>
+</div> -->
+
+  <div class="p-6 flex flex-col gap-2 pt-2 pb-0 mb-16 md:mb-0">
+    <!-- Banner -->
+    <div class="relative rounded-3xl overflow-hidden shadow-2xl w-full mx-auto border border-[#2ee4e8]/30">
+      <!-- Banner Image -->
+      <img src="https://cmaxnewimages.pages.dev/assets/extra/lotteriesbanner.png" alt="Lottery Banner"
+        class="w-full h-[160px] sm:h-[200px] md:h-[260px] object-cover" />
+    </div>
+
+    <div class="w-full max-w-full mx-auto">
+      <!-- Responsive header: mobile -> two items top row (name left, price right) and time centered below; lg -> single row with name/price/time aligned as before -->
+      <div class="bg-noise border border-[#C3B089] rounded-xl lg:p-8 md:p-4 flex flex-wrap lg:flex-nowrap items-center">
+        <!-- Left: Lottery Name (top-left on mobile) -->
+        <div class="text-left w-3/5 lg:w-auto p-4">
+          <div class="text-2xl text-white font-bold">
+            {{ lotteryData?.LotteryName }}
+          </div>
+        </div>
+
+        <!-- Center: Price (takes remaining space on large screens to stay centered) -->
+        <div class="text-center flex-1 p-4">
+          <p class="text-2xl font-bold text-[#F3A630]">
+            ${{ lotteryData?.TicketPrice }}
+          </p>
+          <div
+            class="w-24 h-0.5 mx-auto my-3 rounded flex md:hidden bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]">
+          </div>
+        </div>
+
+        <!-- Right / Bottom: Countdown -->
+        <div class="w-full lg:w-auto mt-3 lg:mt-0 flex justify-center lg:justify-end">
+          <ng-container *ngIf="countdownTime">
+            <div
+              class="flex items-center gap-2 bg-noise border-0 md:border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] px-4 py-2">
+              <span class="font-mono text-sm text-white">{{
+                countdownTime.hh
+                }}</span>
+              <span class="font-mono text-sm text-white">:</span>
+              <span class="font-mono text-sm text-white">{{
+                countdownTime.mm
+                }}</span>
+              <span class="font-mono text-sm text-white">:</span>
+              <span class="font-mono text-sm text-white">{{
+                countdownTime.ss
+                }}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row w-full max-w-full mx-auto">
+      <!-- Ticket Numbers -->
+      <div
+        class="flex-1 bg-noise border border-[#C3B089] border-r md:border-r-0 rounded-tl-xl rounded-tr-xl rounded-bl-none rounded-br-none md:rounded-l-xl md:rounded-tr-none md:rounded-br-none border-b-0 md:border-b shadow-xl p-6">
+        <div class="flex justify-between items-center">
+          <h2 class="text-white text-lg font-bold">Pick Numbers</h2>
+          <button (click)="clearAll()"
+            class="px-4 py-1 bg-black border border-[#C3B089] text-[#F86E12] text-sm rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition">
+            Clear All
+          </button>
+        </div>
+
+        <div
+          class="w-[18rem] lg:w-[22rem] h-0.5 mx-auto my-4 rounded bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]">
+        </div>
+
+        <!-- Number Grid -->
+        <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-3 mt-4">
+          <button *ngFor="let number of numbers" (click)="toggleNumber(number)"
+            [disabled]="purchasedNumbers.includes(number)" [ngClass]="{
+              'bg-red-600 text-white border border-red-400 cursor-not-allowed':
+                purchasedNumbers.includes(number),
+              'bg-[#FEC866] text-black font-bold shadow-md':
+                isSelected(number) && !purchasedNumbers.includes(number),
+              'bg-[#000408] text-white border border-[#C3B089] hover:bg-[#2a364a]':
+                !isSelected(number) && !purchasedNumbers.includes(number),
+            }"
+            class="w-10 h-10 rounded-tl-[4px] rounded-tr-[1px] rounded-br-[4px] rounded-bl-[1px] text-sm transition duration-200 flex items-center justify-center">
+            {{ number }}
+          </button>
+        </div>
+      </div>
+
+      <div class="hidden lg:flex items-center justify-center bg-noise border-t border-b border-[#C3B089] px-4">
+        <div class="w-[1px] h-[360px]" style="
+            background: linear-gradient(
+              180deg,
+              #4d4434 0.96%,
+              #fe8912 49.52%,
+              #4d4434 100%
+            );
+          "></div>
+      </div>
+
+      <!-- Selected Numbers -->
+      <div
+        class="flex-1 bg-noise border border-[#C3B089] border-l md:border-l-0 rounded-bl-xl rounded-br-xl rounded-tl-none rounded-tr-none md:rounded-r-xl md:rounded-tl-none md:rounded-bl-none border-t-0 md:border-t shadow-xl p-6 flex flex-col">
+        <h2 class="text-white text-lg font-bold mb-4">Selected Numbers</h2>
+
+        <div
+          class="w-[18rem] lg:w-[22rem] h-0.5 mx-auto my-4 rounded bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]">
+        </div>
+
+        <!-- Numbers List -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <div *ngFor="let number of selectedNumbers" class="relative">
+            <span
+              class="px-3 py-2 bg-[#FEC866] text-black font-semibold rounded-md shadow text-sm cursor-pointer hover:opacity-90">
+              {{ number }}
+            </span>
+            <span (click)="removeSelectedNumber(number)"
+              class="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center cursor-pointer hover:bg-red-500 transition">
+              ✕
+            </span>
+          </div>
+
+          <span *ngIf="selectedNumbers.length === 0" class="w-full flex items-center justify-center min-h-[250px]">
+            <div class="text-center">
+              <p class="text-white text-base font-bold">
+                No Lottery Number Selected
+              </p>
+              <p class="text-[#A6B1C2] text-sm mt-2 px-6 max-w-[24rem] mx-auto leading-relaxed">
+                Select your favourite lottery number to join the draw and see if
+                fortune favours you.
+              </p>
+            </div>
+          </span>
+        </div>
+
+        <!-- Price + Buy Button (always bottom) -->
+        <div
+          class="hidden md:flex mt-auto border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-4 justify-between items-center shadow">
+          <div class="flex flex-row items-center">
+            <img src="https://cmaxv2images2.pages.dev/assets/icons/LotteryPrice.png" alt="LoteryPrice"
+              class="w-12 h-12 mb-1 gap-2" />
+            <p class="text-gray-300 text-base font-bold">
+              Your total<br />
+              ticket price
+            </p>
+          </div>
+          <p class="text-2xl font-bold text-[#F3A630]">
+            ${{ totalAmount.toFixed(2) }}
+          </p>
+
+          <button (click)="buyTicket()"
+            class="px-6 py-3 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow transition">
+            Buy Ticket
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price + Buy Button (Mobile) -->
+    <div class="fixed bottom-0 left-0 w-full bg-[#161819] p-4 shadow flex flex-col z-[1000] md:hidden">
+      <!-- Top Row: Image + Text (Left) & Price (Right) -->
+      <div class="flex justify-between items-start mb-3">
+        <div class="flex items-center gap-2">
+          <img src="https://cmaxv2images2.pages.dev/assets/icons/LotteryPrice.png" alt="LoteryPrice"
+            class="w-12 h-12" />
+          <p class="text-gray-300 text-base font-bold">
+            Your total ticket price
+          </p>
+        </div>
+        <p class="text-2xl font-bold text-[#F3A630]">
+          ${{ totalAmount.toFixed(2) }}
+        </p>
+      </div>
+
+      <!-- Buy Button (Bottom Center) -->
+      <div class="flex justify-center">
+        <button (click)="buyTicket()"
+          class="w-3/5 px-6 py-2 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow transition">
+          Buy Ticket
+        </button>
+      </div>
+    </div>
+
+    <!-- ✅ Success Modal -->
+    <div *ngIf="showSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center">
+      <div class="absolute inset-0 bg-black/60" (click)="closeSuccessModal()" aria-hidden="true"></div>
+      <div
+        class="relative bg-[#000408] border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 w-[90vw] max-w-md shadow-2xl text-center">
+        <button class="absolute -right-1 top-3 text-[#C3B089] w-12 text-2xl" (click)="closeSuccessModal()"
+          aria-label="Close">
+          &times;
+        </button>
+
+        <div
+          class="mx-auto mb-3 h-12 w-12 rounded-full bg-green-400/30 border border-green-300 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400" viewBox="0 0 24 24"
+            fill="currentColor">
+            <path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8-6.2-3.7-6.2 3.7 1.6-6.8-5.2-4.6 6.9-.6L12 2z" />
+            <path d="M9 12l2 2l4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        <h3 class="text-yellow-400 text-xl font-extrabold mb-1">
+          Congratulations!
+        </h3>
+        <p class="text-purple-200 text-sm mb-5">
+          Your ticket purchase was successful! Good luck ✨
+        </p>
+
+        <div class="flex items-center justify-center gap-2">
+          <button class="btn-primary" (click)="goToMyTickets()">
+            View Tickets
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

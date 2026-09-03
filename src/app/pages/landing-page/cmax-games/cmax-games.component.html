@@ -1,0 +1,277 @@
+<div class="bg-noise text-white min-h-screen flex flex-col items-center space-y-3 pt-12 lg:pt-24 pb-6">
+  <!-- Heading block: follows Figma layout (left headings, right description) -->
+  <div class="w-full max-w-[1447px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 md:gap-6 items-start px-4 md:px-0">
+      <!-- Left: small label + big heading -->
+      <div class="lg:col-span-6 text-center lg:text-left">
+        <div class="flex items-center !text-center justify-center lg:justify-normal lg:text-left gap-4">
+          <span class="inline-flex items-center justify-center text-[#fe8912] font-bold text-[20px] leading-[22px]">
+            CasinoMaxs
+          </span>
+          <span class="text-white font-bold text-[20px] leading-[22px]">Games</span>
+        </div>
+
+        <h1 class="text-[28px] sm:text-[36px] md:text-[42px] leading-[51px] font-bold text-white">
+          Play Win and Enjoy <br />
+          <span class="text-[#A6B1C2]">Our Best Games </span>
+        </h1>
+      </div>
+
+      <!-- Right: description -->
+      <div class="lg:col-span-6 text-left">
+        <p class="mt-2 text-[12px] md:text-[16px] text-[#A6B1C2] max-w-[900px]">
+          Explore our exciting collection of games. Play your favorites,
+          discover new adventures, and enjoy fast, smooth gameplay with
+          rewarding wins all on one powerful platform built for nonstop fun and
+          real earning opportunities.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Games Section -->
+  <div class="w-full max-w-[1444px] mx-auto mt-8">
+    <div class="flex items-center justify-between">
+      <h3 class="text-[#FE8912] font-bold text-[30px]">Games</h3>
+      <button *ngIf="hasMoreAllGames" (click)="toggleAllGamesView()"
+        class="mt-0 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold text-sm sm:text-base py-2 px-4 sm:px-12 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition">
+        {{ showAllGamesExpanded ? "View Less Games" : "View All Games" }}
+      </button>
+    </div>
+
+    <div class="grid grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-0 lg:gap-y-6 py-0 lg:pb-4">
+      <ng-container *ngFor="let game of displayedAllGames; let i = index">
+        <div class="relative w-[130px] md:w-full h-[145px] lg:h-[393px] flex justify-center group">
+          <div class="relative z-10 flex items-center justify-center w-full h-full">
+            <div
+              class="relative w-[130px] md:w-[328px] h-[145px] md:h-[370px] lg:w-[300px] lg:h-[370px] rounded-[16px] overflow-hidden flex items-center justify-center">
+              <div class="absolute inset-2 border-2 border-dashed border-[#FE8912] rounded-[14px] pointer-events-none">
+              </div>
+              <!-- Top left Corner -->
+              <div class="absolute left-0 top-0 translate-x-[0.2rem] translate-y-[0.5rem] pointer-events-none z-20"
+                aria-hidden="true">
+                <svg class="w-[26px] h-[19px] md:w-[50px] md:h-[55px]" viewBox="0 0 50 55" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M3.07466e-05 12.7213C-0.00207963 12.0039 0.103218 11.2911 0.349387 10.6173C0.903001 9.10183 2.06249 6.26272 3.49612 4.63831C5.64681 2.20143 10.1227 0.000299848 13.4085 0.000309346C16.5572 0.000317435 46.9262 0.000268922 49.4555 0.000265977C49.5272 0.000264501 49.545 0.0854315 49.4966 0.138259L0.457344 54.6286C0.339747 54.7593 0.122957 54.6761 0.123005 54.5003L3.07466e-05 12.7213Z"
+                    fill="url(#paint0_linear_1474_530)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1474_530" x1="6.35373" y1="2.25" x2="29.3308" y2="33.5784"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FEC866" />
+                      <stop offset="1" stop-color="#FE8006" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <!-- Top right Corner -->
+              <div class="absolute right-0 top-0 -translate-x-[0.5rem] translate-y-[0.5rem] pointer-events-none z-20"
+                aria-hidden="true">
+                <svg class="w-[16px] h-[15px] md:w-[55px] md:h-[50px]" viewBox="0 0 55 50" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M41.9712 -0.000257263C42.6886 -0.00236764 43.4014 0.10293 44.0752 0.349099C45.5907 0.902713 48.4298 2.0622 50.0542 3.49583C52.4911 5.64652 54.6922 10.1224 54.6922 13.4082C54.6922 16.5569 54.6922 46.9259 54.6922 49.4552C54.6922 49.5269 54.6071 49.5447 54.5542 49.4963L0.0638838 0.457056C-0.066787 0.339459 0.0164357 0.122669 0.192231 0.122717L41.9712 -0.000257263Z"
+                    fill="url(#paint0_linear_1474_528)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1474_528" x1="52.4425" y1="6.35344" x2="21.1141" y2="29.3305"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FEC866" />
+                      <stop offset="1" stop-color="#FE8006" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <!-- Bottom left Corner -->
+              <div class="absolute left-0 bottom-0 translate-x-[0.5rem] -translate-y-[0.5rem] pointer-events-none z-20"
+                aria-hidden="true">
+                <svg class="w-[19px] h-[17px] md:w-[50px] md:h-[45px]" viewBox="0 0 55 50" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12.721 49.5237C12.0036 49.5258 11.2908 49.4205 10.617 49.1743C9.10156 48.6207 6.26245 47.4612 4.63805 46.0276C2.20116 43.8769 3.47268e-05 39.401 4.42242e-05 36.1152C5.23136e-05 32.9665 3.80017e-06 2.59752 8.55952e-07 0.0682157C-6.20519e-07 -0.00343458 0.0851663 -0.0212499 0.137994 0.0271544L54.6283 49.0664C54.759 49.184 54.6758 49.4008 54.5 49.4007L12.721 49.5237Z"
+                    fill="url(#paint0_linear_1474_532)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1474_532" x1="2.24974" y1="43.17" x2="33.5781" y2="20.1929"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FEC866" />
+                      <stop offset="1" stop-color="#FE8006" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <!-- Bottom right Corner -->
+              <div
+                class="absolute right-0 bottom-0 -translate-x-[0.5rem] -translate-y-[0.5rem] pointer-events-none z-20"
+                aria-hidden="true">
+                <svg class="w-[15px] h-[17px] md:w-[46px] md:h-[50px]" viewBox="0 0 50 55" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M49.5237 41.9711C49.5258 42.6885 49.4205 43.4013 49.1744 44.0751C48.6207 45.5906 47.4613 48.4297 46.0276 50.0541C43.8769 52.491 39.401 54.6921 36.1152 54.6921C32.9666 54.6921 2.59753 54.6921 0.0682309 54.6921C-0.00341932 54.6921 -0.0212346 54.607 0.0271696 54.5541L49.0664 0.063777C49.184 -0.0668938 49.4008 0.0163289 49.4007 0.192124L49.5237 41.9711Z"
+                    fill="url(#paint0_linear_1474_533)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1474_533" x1="43.17" y1="52.4424" x2="20.1929" y2="21.114"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FEC866" />
+                      <stop offset="1" stop-color="#FE8006" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <!-- Inner cover image -->
+              <img [src]="getGameImage(game.name)?.coverImage" [alt]="game.name"
+                class="relative z-10 w-[100px] sm:w-[220px] md:w-[256px] h-[118px] sm:h-[275px] md:h-[319px] object-cover rounded-[8px] border-4 [border-image-source:linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] [border-image-slice:1]" />
+
+              <!-- Circular game icon badge -->
+              <div
+                class="bg-noise absolute z-20 hidden sm:flex top-[32px] lg:top-[40px] left-[36px] lg:left-[40px] w-[48px] sm:w-[50px] h-[48px] sm:h-[50px] rounded-full items-center justify-center shadow-md">
+                <img [src]="getGameImage(game.name)?.image" [alt]="game.name + ' icon'"
+                  class="w-[36px] sm:w-[43px] h-[36px] sm:h-[43px] object-contain" />
+              </div>
+
+              <!-- Bottom pill label -->
+              <div
+                class="bg-noise absolute z-20 bottom-[10px] sm:bottom-[10px] left-1/2 -translate-x-1/2 w-[50px] md:w-[150px] h-[17px] md:h-[40px] rounded-tl-xl rounded-tr-xl flex items-center justify-center">
+                <span class="text-white font-bold text-[6px] sm:text-[18px] leading-[22px]">{{ game.name }}</span>
+              </div>
+
+              <!-- Play Button - Hover Overlay -->
+              <div
+                class="absolute inset-0 bg-black/50 rounded-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-30 cursor-pointer"
+                (click)="onPlayGame(game)">
+                <button
+                  class="bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-bold text-sm md:text-lg pl-0 pr-2 py-1 md:px-8 md:py-3 rounded-lg hover:shadow-lg transition-all duration-200 flex items-center lg:gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  Play
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Separator -->
+  <div class="w-full max-w-[1550px]" id="instantGameScrollSection">
+    <div class="mt-2 mb-8 h-[2px] bg-[#FE8912] to-transparent opacity-60 rounded"></div>
+  </div>
+
+  <!-- Instant Games  -->
+  <div class="w-full max-w-[1444px] mx-auto mt-8 mb-12">
+    <div class="flex items-center justify-between">
+      <h3 class="text-[#FE8912] font-bold text-[30px]">Instant Games</h3>
+      <button *ngIf="hasMoreQuickGames" (click)="toggleQuickGamesView()"
+        class="mt-0 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold text-sm sm:text-base py-2 px-4 sm:px-12 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition">
+        {{ showQuickGamesExpanded ? "View Less Games" : "View All Games" }}
+      </button>
+    </div>
+
+    <div class="grid grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-0 lg:gap-y-6 py-0 lg:pb-4">
+      <ng-container *ngFor="let game of displayedQuickGames; let i = index">
+        <div class="relative w-[130px] md:w-full h-[145px] lg:h-[393px] flex justify-center group">
+          <div class="relative z-10 flex items-center justify-center w-full h-full">
+            <div
+              class="relative w-[130px] md:w-[328px] h-[145px] md:h-[370px] lg:w-[300px] lg:h-[370px] rounded-[16px] overflow-hidden flex items-center justify-center">
+              <div class="absolute inset-2 border-2 border-dashed border-[#FE8912] rounded-[14px] pointer-events-none">
+              </div>
+              <!-- Top left Corner -->
+              <div class="absolute left-0 top-0 translate-x-[0.2rem] translate-y-[0.5rem] pointer-events-none z-20"
+                aria-hidden="true">
+                <svg class="w-[26px] h-[19px] md:w-[50px] md:h-[55px]" viewBox="0 0 50 55" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M3.07466e-05 12.7213C-0.00207963 12.0039 0.103218 11.2911 0.349387 10.6173C0.903001 9.10183 2.06249 6.26272 3.49612 4.63831C5.64681 2.20143 10.1227 0.000299848 13.4085 0.000309346C16.5572 0.000317435 46.9262 0.000268922 49.4555 0.000265977C49.5272 0.000264501 49.545 0.0854315 49.4966 0.138259L0.457344 54.6286C0.339747 54.7593 0.122957 54.6761 0.123005 54.5003L3.07466e-05 12.7213Z"
+                    fill="url(#paint0_linear_1474_530)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1474_530" x1="6.35373" y1="2.25" x2="29.3308" y2="33.5784"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FEC866" />
+                      <stop offset="1" stop-color="#FE8006" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <!-- Top right Corner -->
+              <div class="absolute right-0 top-0 -translate-x-[0.5rem] translate-y-[0.5rem] pointer-events-none z-20"
+                aria-hidden="true">
+                <svg class="w-[16px] h-[15px] md:w-[55px] md:h-[50px]" viewBox="0 0 55 50" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M41.9712 -0.000257263C42.6886 -0.00236764 43.4014 0.10293 44.0752 0.349099C45.5907 0.902713 48.4298 2.0622 50.0542 3.49583C52.4911 5.64652 54.6922 10.1224 54.6922 13.4082C54.6922 16.5569 54.6922 46.9259 54.6922 49.4552C54.6922 49.5269 54.6071 49.5447 54.5542 49.4963L0.0638838 0.457056C-0.066787 0.339459 0.0164357 0.122669 0.192231 0.122717L41.9712 -0.000257263Z"
+                    fill="url(#paint0_linear_1474_528)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1474_528" x1="52.4425" y1="6.35344" x2="21.1141" y2="29.3305"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FEC866" />
+                      <stop offset="1" stop-color="#FE8006" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <!-- Bottom left Corner -->
+              <div class="absolute left-0 bottom-0 translate-x-[0.5rem] -translate-y-[0.5rem] pointer-events-none z-20"
+                aria-hidden="true">
+                <svg class="w-[19px] h-[17px] md:w-[50px] md:h-[45px]" viewBox="0 0 55 50" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12.721 49.5237C12.0036 49.5258 11.2908 49.4205 10.617 49.1743C9.10156 48.6207 6.26245 47.4612 4.63805 46.0276C2.20116 43.8769 3.47268e-05 39.401 4.42242e-05 36.1152C5.23136e-05 32.9665 3.80017e-06 2.59752 8.55952e-07 0.0682157C-6.20519e-07 -0.00343458 0.0851663 -0.0212499 0.137994 0.0271544L54.6283 49.0664C54.759 49.184 54.6758 49.4008 54.5 49.4007L12.721 49.5237Z"
+                    fill="url(#paint0_linear_1474_532)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1474_532" x1="2.24974" y1="43.17" x2="33.5781" y2="20.1929"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FEC866" />
+                      <stop offset="1" stop-color="#FE8006" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <!-- Bottom right Corner -->
+              <div
+                class="absolute right-0 bottom-0 -translate-x-[0.5rem] -translate-y-[0.5rem] pointer-events-none z-20"
+                aria-hidden="true">
+                <svg class="w-[15px] h-[17px] md:w-[46px] md:h-[50px]" viewBox="0 0 50 55" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M49.5237 41.9711C49.5258 42.6885 49.4205 43.4013 49.1744 44.0751C48.6207 45.5906 47.4613 48.4297 46.0276 50.0541C43.8769 52.491 39.401 54.6921 36.1152 54.6921C32.9666 54.6921 2.59753 54.6921 0.0682309 54.6921C-0.00341932 54.6921 -0.0212346 54.607 0.0271696 54.5541L49.0664 0.063777C49.184 -0.0668938 49.4008 0.0163289 49.4007 0.192124L49.5237 41.9711Z"
+                    fill="url(#paint0_linear_1474_533)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1474_533" x1="43.17" y1="52.4424" x2="20.1929" y2="21.114"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FEC866" />
+                      <stop offset="1" stop-color="#FE8006" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <!-- Inner cover image -->
+              <img [src]="game.image || game.coverImage" [alt]="game.name"
+                class="relative z-10 w-[100px] sm:w-[220px] md:w-[256px] h-[118px] sm:h-[275px] md:h-[319px] object-cover rounded-[8px] border-4 [border-image-source:linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] [border-image-slice:1]" />
+
+              <!-- Bottom pill label -->
+              <div
+                class="bg-noise absolute z-20 bottom-[10px] sm:bottom-[10px] left-1/2 -translate-x-1/2 w-[50px] md:w-[150px] h-[17px] md:h-[40px] rounded-tl-xl rounded-tr-xl flex items-center justify-center">
+                <span class="text-white font-bold text-[6px] sm:text-[18px] leading-[22px]">{{ game.name }}</span>
+              </div>
+
+              <!-- Play Button - Hover Overlay -->
+              <div
+                class="absolute inset-0 bg-black/50 rounded-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-30 cursor-pointer"
+                (click)="onPlayGame(game)">
+                <button
+                  class="bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-bold text-sm md:text-lg pl-0 pr-2 py-1 md:px-8 md:py-3 rounded-lg hover:shadow-lg transition-all duration-200 flex items-center lg:gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  Play
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

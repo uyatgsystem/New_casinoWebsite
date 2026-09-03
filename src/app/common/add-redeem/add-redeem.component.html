@@ -1,0 +1,438 @@
+<div
+  *ngIf="showModal"
+  class="fixed inset-0 bg-black/80 flex items-center justify-center modal-overlay z-999"
+  (click)="closeModal()"
+>
+  <div
+    class="border border-[#C3B089] backdrop-blur-md bg-noise rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-full max-w-xl shadow-lg modal slide-up z-999"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Header -->
+    <div
+      class="flex items-center justify-between px-6 py-2 border-b border-[#C3B089] rounded-tl-[16px] flex-shrink-0"
+    >
+      <h2 class="text-lg text-white">Redeem {{ selectedGame }}</h2>
+      <button (click)="closeModal()" class="text-white hover:text-gray-400">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <form
+      [formGroup]="redeemForm"
+      (click)="$event.stopPropagation()"
+      class="p-2 md:p-6 space-y-5 overflow-y-auto flex-1 min-h-0"
+    >
+      <div class="flex flex-col w-full">
+        <!-- Payment method toggle -->
+        <!-- <div
+          class="grid grid-cols-2 grid-rows-1 h-12 lg:grid-rows-2 lg:grid-cols-1 lg:h-24 lg:w-48 my-8 mx-4  bg-[#000408] rounded-tl-[16px] rounded-tr-[4px] rounded-br-[16px] rounded-bl-[4px] overflow-hidden border border-[#C3B089]">
+
+
+          <button type="button" [ngClass]="{
+      'bg-gradient-to-b from-[#F3A630] to-[#F86E12] text-black': selectedPaymentMethod === 'wallet',
+      'bg-[#000408] text-gray-300 border-b border-[#C3B089]': selectedPaymentMethod !== 'wallet'
+    }" class="py-4 text-center rounded-tl-[16px] rounded-tr-[4px] transition font-semibold"
+            (click)="setPaymentMethod('wallet')">
+            Wallet
+          </button>
+
+
+          <button type="button" [ngClass]="{
+      'bg-gradient-to-b from-[#F3A630] to-[#F86E12] text-black': selectedPaymentMethod === 'withdraw',
+      'bg-[#000408] text-gray-400': selectedPaymentMethod !== 'withdraw'
+    }" class="py-4 text-center rounded-br-[16px] rounded-bl-[4px] transition font-semibold"
+            (click)="setPaymentMethod('withdraw')">
+            Withdraw
+          </button>
+
+        </div> -->
+
+        <!-- Score Display Section -->
+        <div class="flex justify-center" *ngIf="selectedGame">
+          <div
+            class="bg-[#0f1113] border border-[#C3B089]/40 rounded-2xl p-4 sm:p-5 lg:p-6 w-full shadow-[0_8px_30px_rgb(0,0,0,0.5)]"
+          >
+            <div
+              class="mb-3 flex items-center gap-2 rounded-lg border border-[#F3A630]/35 bg-[#1a150a]/70 px-3 py-2"
+              *ngIf="requestId"
+            >
+              <div
+                class="flex-1 min-w-0 text-[11px] text-[#D9D9D9] leading-relaxed"
+              >
+                Retry Request ID:
+                <span
+                  class="text-[#F3A630] font-mono font-semibold break-all"
+                  >{{ requestId }}</span
+                >
+              </div>
+              <button
+                type="button"
+                (click)="CopyToClipBoard(requestId)"
+                class="p-1.5 sm:p-2 hover:bg-[#F3A630]/20 rounded-lg transition-colors duration-200 flex-shrink-0"
+                title="Copy Request ID"
+              >
+                <fa-icon
+                  [icon]="copy"
+                  class="text-[#F3A630] text-sm sm:text-base"
+                ></fa-icon>
+              </button>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-3 lg:gap-6">
+              <!-- Score Cards Column -->
+              <div class="flex flex-col gap-2 w-full lg:w-5/12">
+                <!-- Current Score Card -->
+                <div
+                  class="relative overflow-hidden rounded-xl border border-[#C3B089]/20 bg-gradient-to-br from-[#1a1d21] to-[#121417] py-1 px-2 md:p-4 shadow-lg flex flex-col justify-center transition-all duration-300 hover:border-[#fe8912]/50 hover:shadow-[0_0_15px_rgba(254,137,18,0.15)]"
+                >
+                  <div class="flex items-center justify-between mb-1 mb:mb-3">
+                    <span
+                      class="text-xs uppercase tracking-wider text-[#A6B1C2] font-semibold"
+                      >Current Score</span
+                    >
+                    <fa-icon
+                      (click)="getScoreforAddding()"
+                      [icon]="refresh"
+                      class="text-[#fe8912] cursor-pointer hover:opacity-80 hover:rotate-180 transition-all duration-300 text-sm"
+                    ></fa-icon>
+                  </div>
+                  <div class="min-h-[1.5rem] flex items-center">
+                    @if (isScoreLoading) {
+                      <div
+                        class="flex items-center gap-2 text-xs text-[#A6B1C2]"
+                      >
+                        <span>Loading</span>
+                        <div class="flex gap-1">
+                          <span
+                            class="w-1.5 h-1.5 bg-[#fe8912] rounded-full animate-bounce"
+                            style="animation-delay: 0s"
+                          ></span>
+                          <span
+                            class="w-1.5 h-1.5 bg-[#fe8912] rounded-full animate-bounce"
+                            style="animation-delay: 0.2s"
+                          ></span>
+                          <span
+                            class="w-1.5 h-1.5 bg-[#fe8912] rounded-full animate-bounce"
+                            style="animation-delay: 0.4s"
+                          ></span>
+                        </div>
+                      </div>
+                    } @else {
+                      @if (
+                        currentScore === "" ||
+                        currentScore === null ||
+                        currentScore === undefined
+                      ) {
+                        <span
+                          class="text-xs text-[#A6B1C2] italic border-b border-dashed border-[#A6B1C2]/50 pb-0.5"
+                          >Tap refresh to load</span
+                        >
+                      } @else {
+                        <p
+                          class="text-white text-xl md:text-3xl font-bold leading-none tracking-tight drop-shadow-sm"
+                        >
+                          {{ currentScore }}
+                        </p>
+                      }
+                    }
+                  </div>
+                </div>
+
+                <!-- Eligible Score Card -->
+                <div
+                  class="relative overflow-hidden rounded-xl border border-[#fe8912]/40 bg-gradient-to-br from-[#1c1208] to-[#0a0602] p-2 md:p-4 shadow-lg flex flex-col justify-center"
+                >
+                  <!-- Subtle glow effect -->
+                  <div
+                    class="absolute -right-8 -top-8 w-24 h-24 bg-[#fe8912]/20 blur-2xl rounded-full pointer-events-none"
+                  ></div>
+
+                  <div
+                    class="flex items-center justify-between mb-1 md:mb-3 relative z-10"
+                  >
+                    <span
+                      class="text-xs uppercase tracking-wider text-[#C3B089] font-semibold"
+                      >Eligible Score</span
+                    >
+                    <span
+                      class="text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full border border-[#fe8912] text-[#fe8912] bg-[#fe8912]/10 font-bold tracking-wider shadow-[0_0_10px_rgba(254,137,18,0.2)]"
+                      >{{ redeemMultiplier }}x</span
+                    >
+                  </div>
+                  <div
+                    class="relative z-10 flex flex-col justify-center min-h-[1.5rem]"
+                  >
+                    <p
+                      class="text-[#fe8912] text-xl md:text-3xl font-bold leading-none tracking-tight drop-shadow-md"
+                    >
+                      {{ eligibleScore }}
+                    </p>
+                    <p
+                      class="text-[8px] text-[#A6B1C2] mt-2 opacity-90 font-medium"
+                    >
+                      Based on deposit multiplier
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Information Rules Column -->
+              <div class="flex-1 flex flex-col gap-2">
+                <!-- Highlighted Tip -->
+                <div
+                  class="rounded-xl border-l-4 border-[#fe8912] bg-gradient-to-r from-[#fe8912]/10 to-transparent px-3 py-1 md:py-3.5 shadow-inner"
+                >
+                  <p
+                    class="text-xs sm:text-[13px] text-[#e5e7eb] leading-relaxed"
+                  >
+                    Redeem smartly: up to
+                    <span class="text-[#fe8912] font-bold text-sm mx-1">{{
+                      eligibleScore
+                    }}</span>
+                    score gets the best wallet credit.
+                  </p>
+                </div>
+
+                <!-- Numbered Rules -->
+                <div
+                  class="rounded-xl border border-[#C3B089]/10 bg-[#161819]/80 md:px-4 p-2 md:py-3 hover:bg-[#1a1d21] hover:border-[#C3B089]/30 transition-all duration-300"
+                >
+                  <ul class="flex flex-col gap-1.5">
+                    <li class="group flex items-start gap-1.5">
+                      <span
+                        class="-mt-[3px] flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-gradient-to-br from-[#C3B089]/20 to-[#C3B089]/5 text-[#C3B089] text-[10px] font-bold border border-[#C3B089]/30 shadow-sm group-hover:bg-[#C3B089]/30 group-hover:text-white transition-colors"
+                        >1</span
+                      >
+                      <p
+                        class="text-[8.5px] sm:text-[12px] text-[#A6B1C2] leading-snug group-hover:text-white transition-colors flex-1"
+                      >
+                        Free Play score is
+                        <span class="text-white font-semibold"
+                          >10% redeemable</span
+                        >.
+                      </p>
+                    </li>
+                    <li class="group flex items-start gap-1.5">
+                      <span
+                        class="-mt-[3px] flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-gradient-to-br from-[#C3B089]/20 to-[#C3B089]/5 text-[#C3B089] text-[10px] font-bold border border-[#C3B089]/30 shadow-sm group-hover:bg-[#C3B089]/30 group-hover:text-white transition-colors"
+                        >2</span
+                      >
+                      <p
+                        class="text-[8.5px] sm:text-[12px] text-[#A6B1C2] leading-snug group-hover:text-white transition-colors flex-1"
+                      >
+                        Redeem up to eligible score for full amount in wallet.
+                      </p>
+                    </li>
+                    <li class="group flex items-start gap-1.5">
+                      <span
+                        class="-mt-[3px] flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-gradient-to-br from-[#C3B089]/20 to-[#C3B089]/5 text-[#C3B089] text-[10px] font-bold border border-[#C3B089]/30 shadow-sm group-hover:bg-[#C3B089]/30 group-hover:text-white transition-colors"
+                        >3</span
+                      >
+                      <p
+                        class="text-[8.5px] sm:text-[12px] text-[#A6B1C2] leading-snug group-hover:text-white transition-colors flex-1"
+                      >
+                        Redeeming
+                        <span class="text-[#fe8912] font-semibold"
+                          >below eligible score</span
+                        >
+                        can adjust bonus before credit.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game dropdown + Score side-by-side on md+ -->
+        <div class="flex flex-col w-full mt-1 md:mt-4">
+          <!-- Game dropdown -->
+          <div
+            class="relative flex-1"
+            *ngIf="!selectedGame || selectedGame == ''"
+          >
+            <label class="block text-xs text-white mb-1">Select Game</label>
+            <div
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-[#000408] text-[#A6B1C2] px-4 py-2 cursor-pointer flex justify-between items-center"
+              (click)="
+                isFromRedeem ? (gameDropdownOpen = !gameDropdownOpen) : null
+              "
+              [class.cursor-not-allowed]="!isFromRedeem"
+              [attr.aria-disabled]="!isFromRedeem"
+            >
+              <span>{{ selectedGame || "Select game" }}</span>
+              <svg
+                class="h-4 w-4 ml-2 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+            <div
+              class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
+            ></div>
+            <ul
+              *ngIf="gameDropdownOpen"
+              class="absolute mt-1 bg-gray-800 text-white border border-[#C3B089] shadow-lg rounded-md w-full z-10"
+            >
+              <li *ngFor="let game of filteredGameDropdownData">
+                <a
+                  class="block px-4 py-0 hover:bg-[#161819] rounded-md cursor-pointer"
+                  (click)="selectGame(game.name, $event)"
+                >
+                  {{ game.name }}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Score -->
+          <div class="flex-1 mt-1">
+            <label class="block text-xs text-white mb-1">Score</label>
+            <input
+              type="number"
+              class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-4 py-2 placeholder-wheat add-score"
+              formControlName="score"
+              [(ngModel)]="currentScore"
+              placeholder="Enter score"
+              readonly
+            />
+            <div
+              class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
+            ></div>
+            <!-- <div class="text-red-400 text-sm">
+              <ng-container
+                *ngIf="
+                  redeemForm.get('score')?.hasError('required') &&
+                  redeemForm.get('score')?.touched
+                "
+              >
+                Score is required.
+              </ng-container>
+              <ng-container
+                *ngIf="
+                  redeemForm.get('score')?.hasError('min') &&
+                  redeemForm.get('score')?.touched
+                "
+              >
+                Score must be greater than 0.
+              </ng-container>
+              <ng-container
+                *ngIf="
+                  redeemForm.get('score')?.hasError('notInteger') &&
+                  redeemForm.get('score')?.touched
+                "
+              >
+                Score must be an integer.
+              </ng-container>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Withdraw fields -->
+      <div
+        *ngIf="selectedPaymentMethod === 'withdraw'"
+        class="relative flex-1 !-mt-1"
+      >
+        <label class="block text-xs text-[#625E5E] mb-1">Account Type</label>
+        <!-- clickable select-like div -->
+        <div
+          class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-[#000408] text-[#A6B1C2] px-4 py-2 cursor-pointer flex justify-between items-center"
+          (click)="accountTypeDropdownOpen = !accountTypeDropdownOpen"
+        >
+          <span
+            [ngClass]="{
+              'text-[#A6B1C2]': accountType,
+              'text-[#625E5E]': !accountType,
+            }"
+            >{{ accountType || "Choose a Type" }}</span
+          >
+          <svg
+            class="h-4 w-4 ml-2 text-[#625E5E]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+        <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+
+        <!-- dropdown list -->
+        <ul
+          *ngIf="accountTypeDropdownOpen"
+          class="absolute mt-1 bg-[#161819] text-white border border-[#C3B089] shadow-lg rounded-md w-full z-10"
+        >
+          <li *ngFor="let game of accountTypeData">
+            <a
+              class="block px-4 py-2 hover:bg-[#2e2a2a] cursor-pointer"
+              (click)="onAccountTypeChange(game)"
+            >
+              {{ game.name }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="isAccountTypeSelected">
+        <label class="block text-xs text-[#625E5E] mb-1">Account Info</label>
+        <input
+          class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-[#000408] text-[#A6B1C2] px-4 py-2 placeholder-[#625E5E]"
+          formControlName="accountInfo"
+          [(ngModel)]="accountInfo"
+          placeholder="Enter info"
+        />
+        <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+      </div>
+
+      <div *ngIf="accountType === 'Chime'">
+        <label class="block text-xs text-[#625E5E] mb-1">Customer Tag</label>
+        <input
+          class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-[#000408] text-[#A6B1C2] px-4 py-2 placeholder-[#625E5E]"
+          formControlName="CustomerTag"
+          [(ngModel)]="CustomerTag"
+          placeholder="Enter Tag"
+        />
+        <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="button"
+        class="mx-auto block w-full lg:!mt-10 sm:w-1/2 mt-0 btn-primary"
+        (click)="submitRedeem()"
+        [ngClass]="{
+          'opacity-50 cursor-not-allowed': redeemForm.invalid,
+          'cursor-pointer': !redeemForm.invalid,
+        }"
+      >
+        Redeem
+      </button>
+    </form>
+  </div>
+</div>

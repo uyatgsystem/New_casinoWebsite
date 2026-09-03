@@ -1,0 +1,176 @@
+<div class="flex justify-end items-center mt-4 -ml-4 header">
+  <!-- <button
+    class="flex"
+    style="background: var(--gradient)"
+    (click)="showGuide()"
+    class="Ad"
+  >
+    User Manual
+  </button> -->
+  <button class="relative flex items-center gap-3 px-6 py-3
+           rounded-xl bg-white/10 backdrop-blur-md
+           border border-cyan-400 text-cyan-300 font-semibold
+           shadow-[0_0_15px_rgba(34,211,238,0.6)]
+           hover:shadow-[0_0_25px_rgba(34,211,238,0.9)]
+           hover:scale-105 transition-all duration-300 overflow-hidden" (click)="showGuide()">
+
+    <!-- Glow circle animation -->
+    <span class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 opacity-20 blur-xl animate-pulse"></span>
+
+    <!-- Icon -->
+    <!-- <img src="/Images/sidebar-icons/games.png" alt="play" class="w-7 h-7 relative z-10" /> -->
+
+    <!-- Text -->
+    <span class="relative z-10 tracking-wide">Playbook</span>
+  </button>
+</div>
+<div class="hero-section">
+  <div class="hero-content">
+    <div class="text-center">
+      <h1 class="hero-title">Spin the Wheel – Unlock Your Rewards!</h1>
+    </div>
+    <div class="controls-section">
+      <div class="amount-controls-row">
+        <div class="amount-selector-container">
+          <div class="amount-selector">
+            <div class="amount-label-section">
+              <span class="amount-label">Choose amount</span>
+            </div>
+            <div class="amount-controls-section">
+              <button class="amount-control-btn decrement" (click)="decrementSpinAmount()">
+                -
+              </button>
+              <div class="amount-display">${{ spinAmount }}</div>
+              <button class="amount-control-btn increment" (click)="incrementSpinAmount()">
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary flex items-center gap-2 whitespace-nowrap  md: w-fit" (click)="freeSpin()"
+          [disabled]="isSpinning || !isBalanceSufficient || !isSpinAllowed" [attr.aria-disabled]="
+            isSpinning || !isBalanceSufficient || !isSpinAllowed ? true : null
+          ">
+          <span class="btn-icon">🎯</span>
+          <span class="btn-text">
+            {{ isBalanceSufficient ? "Spin Now!" : "Insufficient Balance" }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="spinner-container w-fit m-auto">
+  <div class="outer-border">
+    <div class="outer-gap">
+      <div class="wheel-shell">
+        <div class="wheel-ring">
+          <div class="dot-circles">
+            <div class="dot-circle" *ngFor="let seg of segments; let i = index" [style.--i]="i"
+              [style.--count]="segments.length"></div>
+          </div>
+          <div class="wheel-frame">
+            <div class="wheel-container">
+              <div class="wheel" [class.has-highlight]="highlightedIndex !== null" [style.--highlight-start]="
+                  highlightedIndex !== null
+                    ? highlightedIndex * segmentAngle + 'deg'
+                    : null
+                " [style.--highlight-end]="
+                  highlightedIndex !== null
+                    ? (highlightedIndex + 1) * segmentAngle + 'deg'
+                    : null
+                " [style.transform]="'rotate(' + rotation + 'deg)'">
+                <div class="outer-ring" [style.background]="wheelGradient">
+                  <div class="segment" *ngFor="let segment of segments; let i = index"
+                    [class.win]="i === highlightedIndex" [style.--start-angle]="i * segmentAngle + 'deg'"
+                    [style.--slice-angle]="segmentAngle">
+                    <div class="segment-content" [style.transform]="'rotate(' + i * segmentAngle + 'deg)'">
+                      <div class="prize-group absolute left-2/4 top-[14px] flex flex-col items-center gap-1"
+                        [class.prize-win]="i === highlightedIndex">
+                        <ng-icon class="text-2xl leading-none" [name]="segment.icon" [style.color]="getIconColor(i)"
+                          style="
+                            filter: drop-shadow(
+                              0 0 4px rgba(255, 255, 255, 0.35)
+                            );
+                          "></ng-icon>
+                        <span class="text-white text-lg font-bold">{{
+                          segment.prize
+                          }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="central-hub" role="button" tabindex="0" (click)="onCentralHubClick($event)"
+                (keydown.enter)="onCentralHubClick($event)" (keydown.space)="onCentralHubClick($event)" [style.cursor]="
+                  isSpinning || !isBalanceSufficient || !isSpinAllowed
+                    ? 'not-allowed'
+                    : 'pointer'
+                " [attr.aria-disabled]="
+                  isSpinning || !isBalanceSufficient || !isSpinAllowed
+                    ? true
+                    : null
+                ">
+                <div class="central-hub__disc">
+                  <div class="central-hub__label" aria-hidden="false">
+                    <span *ngIf="isSpinning" class="hub-text hub-text--spinning">...</span>
+                    <span *ngIf="
+                        !isSpinning && isBalanceSufficient && isSpinAllowed
+                      " class="hub-text hub-text--ready">Spin</span>
+                    <span *ngIf="
+                        !isSpinning && (!isBalanceSufficient || !isSpinAllowed)
+                      " class="hub-text hub-text--disabled">...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="SpinAgainModal" class="fixed spinagian inset-0 bg-black/80 flex items-center justify-center"
+        (click)="CloseSpinAgainModal()">
+        <div class="bg-[#2A2A2A] rounded-3xl p-6 w-[32rem] modal slide-up" (click)="$event.stopPropagation()">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Spin Again</h2>
+            <button (click)="CloseSpinAgainModal()" class="text-gray-400">
+              <fa-icon [icon]="crossicon"></fa-icon>
+            </button>
+          </div>
+          <hr class="border-gray-500 mb-4" />
+          <div class="mb-4 w-full text-center">
+            <p class="text-md text-gray-300">
+              Spin again for just <span class="text-yellow-500">$2</span> to win
+              more!
+            </p>
+          </div>
+          <div class="flex justify-center">
+            <button type="submit" class="spin-btn" (click)="paidSpin()">
+              Spin Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wheel-pointer" [class.wobble]="isSpinning">
+    <svg xmlns="http://www.w3.org/2000/svg" width="59" height="97" viewBox="0 0 59 97" fill="none">
+      <path
+        d="M32.2045 93.8627C31.083 98.0353 27.9171 98.0353 26.7955 93.8627L19.3304 51.8423C18.3104 48.0476 19.7755 40 22.0349 40L36.9651 40C39.2245 40 40.6896 48.0476 39.6696 51.8423L32.2045 93.8627Z"
+        fill="#EAB50D" />
+      <circle cx="29.4999" cy="29.4998" r="29.3201" transform="rotate(89.6477 29.4999 29.4998)" fill="#EAB50D" />
+      <circle cx="29.2251" cy="29.8445" r="16.4157" transform="rotate(89.6477 29.2251 29.8445)"
+        fill="url(#paint0_linear_2779_1088)" />
+      <defs>
+        <linearGradient id="paint0_linear_2779_1088" x1="29.2251" y1="13.4288" x2="29.2251" y2="46.2602"
+          gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#FFDD00" />
+          <stop offset="100%" stop-color="#FFAA00" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+</div>

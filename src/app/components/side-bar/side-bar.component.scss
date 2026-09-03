@@ -1,0 +1,191 @@
+.button-active {
+  background: var(--button-back);
+
+  &:hover {
+    background: var(--gradient);
+  }
+}
+
+.mobile {
+  z-index: 998;
+  top: 0rem;
+  height: -webkit-fill-available;
+  width: 14rem;
+  overflow-y: scroll;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.mobile.hidden {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.mobile.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.hello {
+  cursor: pointer;
+}
+
+// .profile {
+//   // margin-top: 3rem;
+// }
+
+@-webkit-keyframes animatetop {
+  from {
+    transform: translateX(0);
+    /* Start from below */
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    /* Move to final position */
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    transform: translateX(0);
+    /* Start from below */
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    /* Move to final position */
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .mobile {
+    z-index: 999;
+    transition:
+      transform 0.5s ease-in-out,
+      opacity 0.3s ease;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    // opacity: 0;
+  }
+
+  // .mobile-overlay {
+  //   // opacity: 0;
+  // }
+}
+
+/* Custom gradient border */
+.custom-border-r {
+  border-right: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(180deg, #c3b089 0%, #2a1c1b 25.72%);
+}
+
+/* Common sidebar item style */
+/* Sidebar item style */
+/* Sidebar item style */
+.sidebar-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 3rem;
+  padding-left: 1rem;
+  padding-right: 3rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  gap: 1rem;
+  color: #9ca3af;
+  position: relative;
+  transition: all 0.3s;
+  z-index: 2;
+  overflow: visible;
+}
+
+/* Active state for the sidebar item */
+.sidebar-item.active {
+  position: relative;
+  color: #ffffff;
+  font-weight: 600;
+  background-color: transparent;
+  overflow: visible;
+  z-index: 2;
+}
+
+/* Ensure icon and label sit above the ribbon pseudo-elements */
+.sidebar-item > img,
+.sidebar-item > span {
+  position: relative;
+  z-index: 3;
+}
+
+/* Inactive text/icon color (keeps existing look) */
+.sidebar-item {
+  color: #9ca3af;
+  /* Tailwind gray-400 */
+}
+
+/* Icon filter: inactive = none, active = white */
+.sidebar-item img {
+  filter: none;
+  transition:
+    filter 0.15s ease,
+    opacity 0.15s ease;
+}
+
+/* ✅ ACTIVE ICON WHITE */
+.sidebar-item.active img {
+  filter: brightness(0) invert(1) contrast(1000%);
+  opacity: 1 !important;
+}
+/*
+.sidebar-item span {
+  transition: color 0.15s ease;
+  color: #9ca3af;
+}
+
+.sidebar-item.active span {
+  color: #ffffff !important;
+}
+
+.sidebar-item.active svg * {
+  fill: #ffffff !important;
+}
+
+/* Outer ribbon shape (light blue border) */
+.sidebar-item.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#fec866, #fe8006);
+  border-radius: 16px 3px 16px 3px;
+  z-index: 0;
+  box-sizing: border-box;
+}
+
+/* Inner ribbon shape (dark background) */
+.sidebar-item.active::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background: linear-gradient(#fec866, #fe8006);
+  border-radius: 14px 3px 14px 3px;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.booderr {
+  border-right: 1px solid #374151;
+}

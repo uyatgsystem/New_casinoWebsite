@@ -1,0 +1,814 @@
+<app-loader></app-loader>
+<div class="mx-auto px-4 md:px-6 py-4">
+  <!-- ✅ Desktop & Large Screens  -->
+  <div class="hidden md:flex flex-col">
+    <div class="flex justify-end header p-6">
+      <!-- <h1>Redeem</h1> -->
+      <div class="flex mr-auto cursor-pointer" (click)="openRulesModal()">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.5809 5.80673H15.6276C15.9911 5.80683 16.3495 5.89164 16.6745 6.05444C16.9995 6.21723 17.282 6.45354 17.4997 6.74459C17.7174 7.03565 17.8643 7.37344 17.9286 7.73115C17.993 8.08887 17.9731 8.45667 17.8705 8.80535C17.7679 9.15404 17.5855 9.47401 17.3376 9.73987C17.0898 10.0057 16.7834 10.2102 16.4428 10.3369C16.1021 10.4637 15.7366 10.5094 15.3753 10.4702C15.0139 10.4311 14.6667 10.3083 14.3611 10.1115L14.7811 11.8458C14.8227 12.0178 14.8248 12.197 14.7871 12.3699C14.7494 12.5428 14.6729 12.7048 14.5635 12.8439C14.4541 12.983 14.3145 13.0954 14.1553 13.1727C13.9962 13.2499 13.8215 13.2901 13.6446 13.2901H12.9308C12.7539 13.29 12.5792 13.2497 12.4201 13.1723C12.2609 13.0949 12.1214 12.9824 12.0121 12.8432C11.9027 12.7041 11.8264 12.5419 11.7888 12.369C11.7513 12.196 11.7535 12.0168 11.7952 11.8449L12.2162 10.1115C11.8216 10.3655 11.3598 10.4949 10.8907 10.4829C10.7878 10.0866 10.5578 9.73499 10.2359 9.482C10.3995 9.0553 10.4835 8.60225 10.4838 8.14528C10.4838 7.38011 10.2537 6.66919 9.85985 6.07614C10.2104 5.89134 10.6021 5.79864 10.9983 5.80673C10.9353 5.49811 10.9353 5.17994 10.9983 4.87132C11.1223 4.2635 11.4827 3.72985 12.0002 3.38777C12.5177 3.04569 13.1499 2.9232 13.7577 3.04725C14.3656 3.17129 14.8992 3.53171 15.2413 4.04921C15.5834 4.56672 15.7049 5.19892 15.5809 5.80673ZM6.7421 5.33902C6.20038 5.33904 5.67024 5.49584 5.21568 5.79052C4.76111 6.08519 4.40155 6.50514 4.1804 6.99966C3.95925 7.49419 3.88596 8.04215 3.96938 8.57741C4.0528 9.11267 4.28936 9.61234 4.6505 10.0161H4.40355C4.15546 10.0161 3.91754 10.1147 3.74211 10.2901C3.56669 10.4655 3.46813 10.7035 3.46813 10.9515C3.46813 11.1996 3.56669 11.4376 3.74211 11.613C3.91754 11.7884 4.15546 11.887 4.40355 11.887H4.88997C4.54199 13.5688 3.62435 14.5398 3.11267 14.9673C2.78902 15.2386 2.53271 15.6558 2.53271 16.1422C2.53271 16.8915 3.14074 17.4995 3.89001 17.4995H9.59513C10.3435 17.4995 10.9515 16.8915 10.9515 16.1422C10.9515 15.6558 10.6952 15.2386 10.3715 14.9673C9.85985 14.5398 8.94221 13.5688 8.59423 11.887H9.08065C9.32874 11.887 9.56666 11.7884 9.74209 11.613C9.91751 11.4376 10.0161 11.1996 10.0161 10.9515C10.0161 10.7035 9.91751 10.4655 9.74209 10.2901C9.56666 10.1147 9.32874 10.0161 9.08065 10.0161H8.8337C9.19485 9.61234 9.43141 9.11267 9.51482 8.57741C9.59824 8.04215 9.52495 7.49419 9.3038 6.99966C9.08265 6.50514 8.72309 6.08519 8.26853 5.79052C7.81396 5.49584 7.28382 5.33904 6.7421 5.33902Z"
+            fill="#D8D8D8"
+          />
+          <path
+            d="M6.7417 5.57324C7.23814 5.57325 7.7245 5.71635 8.14111 5.98633C8.5577 6.25638 8.8876 6.64156 9.09033 7.09473C9.293 7.54793 9.36007 8.05048 9.28369 8.54102C9.20723 9.03164 8.99069 9.49024 8.65967 9.86035L8.31104 10.25H9.08057C9.26653 10.25 9.44511 10.3236 9.57666 10.4551C9.70814 10.5866 9.78164 10.7652 9.78174 10.9512C9.78174 11.1372 9.70814 11.3157 9.57666 11.4473C9.44509 11.5788 9.26663 11.6533 9.08057 11.6533H8.30713L8.36475 11.9346C8.72632 13.682 9.68183 14.6958 10.2212 15.1465C10.5049 15.3842 10.7173 15.7407 10.7173 16.1426C10.7171 16.7626 10.2141 17.2656 9.59521 17.2656H3.89014C3.27015 17.2656 2.76633 16.7625 2.76611 16.1426C2.76611 15.7407 2.97952 15.3842 3.26318 15.1465L3.26221 15.1455C3.80155 14.6948 4.75706 13.6819 5.11865 11.9346L5.17725 11.6533H4.40381C4.21774 11.6533 4.03928 11.5788 3.90771 11.4473C3.77618 11.3157 3.70166 11.1372 3.70166 10.9512C3.70176 10.7652 3.77623 10.5866 3.90771 10.4551C4.03925 10.3237 4.21789 10.25 4.40381 10.25H5.17334L4.82471 9.86035C4.49366 9.49022 4.27715 9.03167 4.20068 8.54102C4.1243 8.05047 4.19137 7.54794 4.39404 7.09473C4.59678 6.64158 4.9267 6.25637 5.34326 5.98633C5.75973 5.71648 6.24545 5.57333 6.7417 5.57324ZM12.1294 3.58301C12.5951 3.27517 13.1644 3.16473 13.7114 3.27637C14.2582 3.38807 14.7386 3.71221 15.0464 4.17773C15.3541 4.64321 15.4637 5.21255 15.3521 5.75977L15.2944 6.04102H15.6274C15.9546 6.0411 16.2774 6.11715 16.5698 6.26367C16.8622 6.41016 17.1161 6.62291 17.312 6.88477C17.5079 7.1467 17.6408 7.45054 17.6987 7.77246C17.7567 8.09439 17.7383 8.42545 17.646 8.73926C17.5537 9.05301 17.3895 9.34083 17.1665 9.58008C16.9435 9.81935 16.6674 10.0041 16.3608 10.1182C16.0545 10.2321 15.7258 10.2724 15.4009 10.2373C15.0757 10.2021 14.7628 10.0921 14.4878 9.91504L13.9966 9.59863L14.1343 10.167L14.5542 11.9004C14.5875 12.038 14.5883 12.182 14.5581 12.3203C14.5279 12.4585 14.4669 12.5881 14.3794 12.6992C14.2919 12.8104 14.1804 12.9001 14.0532 12.9619C13.926 13.0237 13.7864 13.0566 13.645 13.0566H12.9312C12.7896 13.0566 12.6493 13.0238 12.522 12.9619C12.3949 12.9 12.2832 12.8103 12.1958 12.6992C12.1083 12.5879 12.0471 12.4577 12.0171 12.3193C11.9871 12.1811 11.9896 12.0379 12.0229 11.9004L12.4438 10.167L12.5815 9.59863L12.0894 9.91504C11.7805 10.1138 11.4259 10.2269 11.061 10.2461C10.947 9.92652 10.7584 9.63876 10.5093 9.4082C10.6459 9.00144 10.717 8.57534 10.7173 8.14551C10.7173 7.43051 10.5281 6.75964 10.1978 6.17969C10.4509 6.08274 10.7211 6.03545 10.9937 6.04102L11.2856 6.04688L11.2271 5.75977C11.1704 5.48208 11.1704 5.19565 11.2271 4.91797C11.3387 4.37094 11.6636 3.89088 12.1294 3.58301Z"
+            stroke="white"
+            stroke-opacity="0.72"
+            stroke-width="0.46771"
+          />
+        </svg>
+        <span class="text-white text-lg font-semibold ml-2">Redeem</span>
+      </div>
+      <div class="flex ml-auto">
+        <button
+          (click)="$event.stopPropagation(); openModal()"
+          class="flex btn-primary rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
+          Redeem Request
+        </button>
+      </div>
+    </div>
+    <div
+      class="h-[1px] w-full bottom-0 left-0 bg-[linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)]"
+    ></div>
+
+    <div class="mb-8 lg:mt-[10px] px-6 flex flex-col">
+      <div
+        class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-2 w-full"
+      >
+        <div class="flex items-center gap-4 w-full mt-2 sm:w-auto">
+          <!-- Dropdown -->
+          <div
+            class="relative inline-block text-left w-full sm:w-48 md:w-56 lg:w-[10rem]"
+          >
+            <div class="flex w-full">
+              <button
+                type="button"
+                class="bg-transparent border border-[#C3B089] text-white text-sm px-3 py-2 rounded-tl-[16px] rounded-bl-[3px]"
+                (click)="dropdownOpen = !dropdownOpen"
+              >
+                ▼
+              </button>
+              <button
+                type="button"
+                class="bg-transparent text-white text-left border border-[#C3B089] text-sm px-4 py-2 w-full rounded-tr-[3px] rounded-br-[16px]"
+                (click)="dropdownOpen = !dropdownOpen"
+              >
+                {{ activeTab }}
+              </button>
+            </div>
+
+            <ul
+              *ngIf="dropdownOpen"
+              class="absolute mt-1 bg-[#161819] text-white border border-[#C3B089] shadow-lg rounded-md w-full z-10"
+            >
+              <li *ngFor="let tab of tabs">
+                <a
+                  href="#"
+                  class="block px-4 py-2 hover:bg-[#2e2a2a] cursor-pointer capitalize"
+                  (click)="selectFilter(tab, $event)"
+                >
+                  {{ tab }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right side (Search) -->
+        <div class="flex sm:flex-row items-center gap-2 w-full lg:w-[30rem]">
+          <!-- <span class="view-toggle-btn hidden md:block mr-4 mt-2 cursor-pointer" (click)="toggleView()"
+          title="Toggle View">
+        </span> -->
+          <span
+            class="cursor-pointer px-4 py-1 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] border border-[#C3B089]"
+            (click)="toggleView()"
+          >
+            <!-- <img src="https://cmax.pages.dev/assets/icons/date.png" alt="Calendar-icon" /> -->
+            <fa-icon
+              class="text-2xl text-[#C3B089]"
+              [icon]="viewMode === 'grid' ? tableViewIcon : listViewIcon"
+            ></fa-icon>
+          </span>
+          <div class="relative flex-1">
+            <input
+              type="text"
+              placeholder="Search..."
+              [(ngModel)]="searchTerm"
+              class="w-full bg-transparent text-white border border-[#C3B089] text-sm rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-4 pl-10 focus:outline-none focus:ring-[#C3B089]"
+            />
+            <svg
+              class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+          <!-- Desktop FILTER Dropdown (Wallet Style) -->
+          <div class="relative">
+            <!-- Filter Button -->
+            <button
+              (click)="showDateFilter = !showDateFilter"
+              class="text-white px-4 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold border border-[#C3B089]"
+            >
+              Filter
+            </button>
+
+            <!-- DROPDOWN BOX -->
+            <div
+              class="absolute right-0 mt-2 p-3 bg-[#161819] border border-[#C3B089] rounded-tl-[16px] rounded-br-[16px] shadow-lg w-60 z-50"
+              [class.hidden]="!showDateFilter"
+            >
+              <div class="flex flex-col gap-2">
+                <!-- Start Date -->
+                <div class="filter-date-field">
+                  <label class="filter-date-label">Start Date</label>
+                  <div class="filter-date-wrapper">
+                    <input
+                      type="date"
+                      [(ngModel)]="startDate"
+                      (ngModelChange)="onStartDateChange($event)"
+                      aria-label="Start Date"
+                      class="filter-date-input text-[#C3B089] bg-transparent border border-[#C3B089] px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                    />
+                    <svg
+                      class="filter-date-icon"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 2V5"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M16 2V5"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                      <rect
+                        x="3"
+                        y="4"
+                        width="18"
+                        height="17"
+                        rx="2"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      />
+                      <path
+                        d="M3 9H21"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- End Date -->
+                <div class="filter-date-field">
+                  <label class="filter-date-label">End Date</label>
+                  <div class="filter-date-wrapper">
+                    <input
+                      type="date"
+                      [(ngModel)]="endDate"
+                      [min]="startDate || null"
+                      aria-label="End Date"
+                      class="filter-date-input text-[#C3B089] bg-transparent border border-[#C3B089] px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                    />
+                    <svg
+                      class="filter-date-icon"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 2V5"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M16 2V5"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                      <rect
+                        x="3"
+                        y="4"
+                        width="18"
+                        height="17"
+                        rx="2"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      />
+                      <path
+                        d="M3 9H21"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div
+                  class="flex items-center gap-2 mt-2 justify-center text-sm"
+                >
+                  <button
+                    (click)="resetDates()"
+                    class="text-[#C3B089] border border-[#C3B089] px-3 py-1 rounded-tl-md rounded-br-md"
+                  >
+                    Reset
+                  </button>
+
+                  <button
+                    (click)="GetAllGames(true); showDateFilter = false"
+                    class="text-[#C3B089] border border-[#C3B089] px-3 py-1 rounded-tl-md rounded-br-md"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals (global) -->
+  <div *ngIf="showModal" (click)="closeModal()">
+    <app-add-redeem
+      [isFromRedeem]="true"
+      [showModal]="showModal"
+      (closeModal)="closeModal()"
+      [selectedGame]="selectedGame"
+      (isModalOpen)="showModal = $event"
+    ></app-add-redeem>
+  </div>
+
+  <div
+    *ngIf="showRulesModal"
+    class="fixed inset-0 bg-black/80 flex items-center justify-center modal-overlay z-999"
+    (click)="closeRulesModal()"
+  >
+    <div
+      class="bg-[#000408] border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-full max-w-md shadow-lg modal slide-up z-999 max-h-[90vh] flex flex-col"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Header -->
+      <div
+        class="bg-[#161819] border-b border-[#C3B089] rounded-tl-[16px] flex items-center justify-between px-6 py-3"
+      >
+        <h2 class="text-lg font-semibold text-white">Redeem Rules</h2>
+        <button
+          (click)="closeRulesModal()"
+          class="text-gray-400 hover:text-white transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div class="px-6 py-4 overflow-y-auto flex-1">
+        <div class="space-y-4">
+          <div
+            *ngFor="let rule of redeemRules; let i = index"
+            class="flex gap-3"
+          >
+            <div
+              class="flex-shrink-0 w-6 h-6 rounded-full bg-[#ffb24a] flex items-center justify-center text-white text-sm font-semibold"
+            >
+              {{ i + 1 }}
+            </div>
+            <div class="flex-1">
+              <h3 class="text-white font-medium mb-1">{{ rule.title }}</h3>
+              <p class="text-gray-400 text-sm">{{ rule.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-6 py-3">
+        <button (click)="closeRulesModal()" class="w-full btn-primary">
+          I Understand
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Mobile & Small Screens -->
+  <div class="md:hidden flex flex-col gap-3 py-4">
+    <!-- 3️⃣ Redeem Header Row -->
+    <div class="flex items-center justify-between w-full px-2">
+      <!-- Left Section: Back Arrow + Redeem -->
+      <div class="flex items-center cursor-pointer">
+        <!-- Back Arrow -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-5 h-5 text-yellow-400"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+
+        <span class="text-white text-sm font-semibold ml-1">Redeem</span>
+      </div>
+
+      <!-- Right Section: Button -->
+      <button
+        (click)="$event.stopPropagation(); openModal()"
+        class="flex items-center gap-1 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-black px-3 py-1.5 text-xs font-semibold"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-4 h-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+        Redeem
+      </button>
+    </div>
+    <div
+      class="h-[1px] w-full bottom-0 left-0 bg-[linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)]"
+    ></div>
+
+    <!-- Combined Filter, Search, and Date Filter Row -->
+    <div class="flex items-center gap-2 w-full flex-nowrap justify-between">
+      <!-- Dropdown Filter -->
+      <div class="relative inline-block text-left flex-shrink-0">
+        <div class="flex w-full">
+          <button
+            type="button"
+            class="bg-transparent border border-[#C3B089] text-[#C3B089] text-sm px-3 py-2 rounded-tl-[16px] rounded-bl-[3px]"
+            (click)="dropdownOpen = !dropdownOpen"
+          >
+            ▼
+          </button>
+          <button
+            type="button"
+            class="bg-transparent text-white text-left border border-[#C3B089] text-sm px-4 py-2 whitespace-nowrap rounded-tr-[3px] rounded-br-[16px]"
+            (click)="dropdownOpen = !dropdownOpen"
+          >
+            {{ activeTab }}
+          </button>
+        </div>
+
+        <ul
+          *ngIf="dropdownOpen"
+          class="absolute mt-1 bg-[#161819] text-white border border-[#C3B089] shadow-lg rounded-md w-[120%] z-10"
+        >
+          <li *ngFor="let tab of tabs">
+            <a
+              href="#"
+              class="block px-4 py-2 hover:bg-[#2e2a2a] cursor-pointer capitalize"
+              (click)="selectFilter(tab, $event)"
+            >
+              {{ tab }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Search and Filter Button Container -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <div class="relative w-fit">
+          <!-- Search Icon -->
+          <svg
+            (click)="toggleSearch()"
+            class="w-5 h-5 cursor-pointer text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2 z-10"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <!-- Search Input -->
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            [placeholder]="isSearchOpen ? 'Search...' : ''"
+            [ngClass]="isSearchOpen ? 'w-[180px] pl-8' : 'w-[45px]'"
+            class="bg-transparent text-white border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#C3B089] transition-all duration-300 ease-in-out"
+          />
+        </div>
+
+        <!-- Filter Button -->
+        <div class="relative">
+          <button
+            (click)="showMobileDateFilter = !showMobileDateFilter"
+            class="text-white px-3 py-3 border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold flex-shrink-0"
+          >
+            <svg
+              width="15"
+              height="13"
+              viewBox="0 0 15 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.8333 0.5H0.5L5.83333 6.80667V11.1667L8.5 12.5V6.80667L13.8333 0.5Z"
+                stroke="white"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <!-- DROPDOWN -->
+          <div
+            *ngIf="showMobileDateFilter"
+            (click)="$event.stopPropagation()"
+            class="absolute right-0 mt-2 p-3 bg-[#161819] border border-[#C3B089] rounded-tl-[16px] rounded-br-[16px] shadow-lg w-60 z-50 transition-all duration-300"
+          >
+            <div class="flex flex-col gap-2">
+              <div class="filter-date-field">
+                <label class="filter-date-label">Start Date</label>
+                <div class="filter-date-wrapper">
+                  <input
+                    type="date"
+                    [(ngModel)]="startDate"
+                    (ngModelChange)="onStartDateChange($event)"
+                    aria-label="Start Date"
+                    class="filter-date-input text-[#C3B089] bg-transparent border border-[#C3B089] px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                  />
+                  <svg
+                    class="filter-date-icon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 2V5"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M16 2V5"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                    <rect
+                      x="3"
+                      y="4"
+                      width="18"
+                      height="17"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <path
+                      d="M3 9H21"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="filter-date-field">
+                <label class="filter-date-label">End Date</label>
+                <div class="filter-date-wrapper">
+                  <input
+                    type="date"
+                    [(ngModel)]="endDate"
+                    [min]="startDate || null"
+                    aria-label="End Date"
+                    class="filter-date-input text-[#C3B089] bg-transparent border border-[#C3B089] px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                  />
+                  <svg
+                    class="filter-date-icon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 2V5"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M16 2V5"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                    <rect
+                      x="3"
+                      y="4"
+                      width="18"
+                      height="17"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <path
+                      d="M3 9H21"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 mt-2 justify-center">
+                <button
+                  (click)="resetDates()"
+                  class="text-[#C3B089] border border-[#C3B089] px-3 py-1 rounded-tl-md rounded-br-md"
+                >
+                  Reset
+                </button>
+
+                <button
+                  (click)="GetAllGames(true); showMobileDateFilter = false"
+                  class="text-[#C3B089] border border-[#C3B089] px-3 py-1 rounded-tl-md rounded-br-md"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="rounded-xl p-4 md:block hidden -mt-[5rem] header-box"> -->
+    <!-- Header box -->
+    <!-- <div class="flex justify-center -mb-[14px]">
+    <div class="relative inline-block">
+      <img src="Edge.png" alt="History Background" class="w-full max-w-md mx-auto h-auto rounded-t-xl" />
+      <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">
+        History
+      </div>
+    </div>
+  </div> -->
+
+    <!-- <div class="flex flex-col w-full mt-2">
+    </div> -->
+    <!-- </div> -->
+    <div *ngIf="viewMode == 'grid'">
+      <!-- Wrapper Grid -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16 pb-10 md:pb-0 my-20"
+        (scroll)="onGridViewScroll()"
+        #gamesGrid
+        *ngIf="filteredGames.length > 0; else noRecord"
+      >
+        <!-- Card -->
+        <!-- Card -->
+        <div
+          *ngFor="let game of filteredGames"
+          class="relative bg-[#161819] border border-[#C3B089] text-white rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-lg w-[100%] mx-auto p-2 pt-2"
+        >
+          <!-- Image + Name + Payment Method (inside card) -->
+          <div class="flex items-center">
+            <div
+              class="w-16 h-16 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] overflow-hidden shadow-md border-2 border-[#C3B089]"
+            >
+              <img
+                [src]="getGameImage(game.Name)"
+                alt="{{ game.Name }}"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="ml-2 relative -top-4">
+              <h3 class="font-bold text-xl">{{ game.Name }}</h3>
+            </div>
+          </div>
+
+          <!-- Amount (Top Right Corner) -->
+          <p
+            class="absolute top-4 right-6 bg-[#161819] font-bold text-lg text-center rounded-lg border-b border-solid [border-image-source:linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)] [border-image-slice:1]"
+            [ngClass]="{
+              'text-green-400': game.StatusDescription === 'Approved',
+              'text-yellow-400': game.StatusDescription === 'Pending',
+              'text-red-400': game.StatusDescription === 'Declined',
+            }"
+          >
+            ${{ game.NetPaidAmount }}
+
+            <small class="block mt-1 text-sm text-white">
+              {{ game?.PaymentMethod }}
+            </small>
+          </p>
+
+          <div
+            class="absolute w-[349px] h-0 top-[85px] left-[13px] border-t border-solid [border-image-source:linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)] [border-image-slice:1]"
+          ></div>
+
+          <!-- Card Body -->
+          <div class="px-4 pb-16 mt-6">
+            <!-- Keep two columns side-by-side on all screen sizes; allow wrapping if extremely narrow -->
+            <div class="flex flex-row flex-wrap text-sm">
+              <!-- Left column: Labels -->
+              <div class="w-1/2 pr-2">
+                <div class="font-bold space-y-3 text-center sm:text-left">
+                  <div>Score</div>
+                  <div>Reg No:</div>
+                  <div>Date &amp; Time</div>
+                </div>
+              </div>
+
+              <!-- Right column: Values -->
+              <div class="w-1/2 pl-2">
+                <div class="space-y-3 text-center sm:text-center">
+                  <div>{{ game.RequestAmount }}</div>
+                  <div>{{ game.Id }}</div>
+                  <div>{{ game.AddedDate | date: "d MMM, y • h:mm a" }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status Button -->
+          <div class="absolute bottom-3 left-0 right-0">
+            <button
+              class="w-[50%] h-10 mx-auto font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] relative flex items-center justify-center"
+              [ngClass]="{
+                'bg-green-600': game.StatusDescription === 'Approved',
+                'bg-yellow-600': game.StatusDescription === 'Pending',
+                'bg-red-600': game.StatusDescription === 'Declined',
+              }"
+            >
+              <!-- Centered text -->
+              <span>{{ game.StatusDescription }}</span>
+
+              <!-- Declined info icon -->
+              <div
+                class="absolute right-4"
+                *ngIf="game.StatusDescription === 'Declined'"
+              >
+                <fa-icon
+                  [icon]="infoIcon"
+                  class="hover-icon cursor-pointer"
+                ></fa-icon>
+                <div
+                  class="tooltip absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2"
+                >
+                  Reason: {{ game.StatusReason }}
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="min-w-full mb-12 border p-6 border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] bg-[#161819]"
+      *ngIf="viewMode == 'table'"
+    >
+      <!-- Centered heading above the table -->
+      <div class="w-full m-8">
+        <h2
+          class="text-center text-white text-lg md:text-xl font-semibold mr-1"
+        >
+          History
+        </h2>
+        <div
+          class="w-[20rem] h-0.5 mx-auto my-3 rounded flex bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]"
+        ></div>
+      </div>
+
+      <div
+        class="grid grid-cols-10 text-gray-400 text-sm mb-4 max-w-[98%] ml-4 border-b-2 border-[#A6B1C2] pb-2"
+      >
+        <div>Sr No.</div>
+        <div>Req No:</div>
+        <div>Game</div>
+        <div>Amount</div>
+        <div>Status</div>
+        <div>Account Info</div>
+        <div>Account Type</div>
+        <div>Payment Method</div>
+        <div>Reason</div>
+        <div>Date And Time</div>
+      </div>
+
+      <div
+        (scroll)="onTableViewScroll()"
+        #gamesTable
+        class="h-[45dvh] overflow-y-scroll max-w-[98%] mx-auto show-scrollbar"
+        *ngIf="filteredGames.length > 0; else noRecord"
+      >
+        <div
+          *ngFor="let game of filteredGames; let i = index"
+          class="grid grid-cols-10 items-center px-4 py-3 bg-[#161819] border-b [border-image-source:linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)] [border-image-slice:1] mr-1"
+        >
+          <div class="text-gray-300">{{ i + 1 }}</div>
+          <div class="text-gray-300">{{ game.Id }}</div>
+          <div class="text-gray-300">{{ game.Name }}</div>
+          <div class="text-white flex items-center gap-2">
+            {{ game.RequestAmount }}
+          </div>
+          <div class="text-white flex items-center gap-2">
+            {{ game.StatusDescription }}
+          </div>
+
+          <div class="text-gray-400 text-sm gap-2">
+            {{ game.AccountInfo }}
+          </div>
+          <div class="text-gray-400 text-sm">
+            {{ game.AccountType }}
+          </div>
+          <div class="text-gray-400 text-sm">
+            {{ game.PaymentMethod }}
+          </div>
+
+          <div class="text-white flex items-center gap-2">
+            {{ game.StatusReason | slice: 0 : 15 }}
+          </div>
+          <div class="text-gray-400 text-sm">
+            {{ game.AddedDate | date: "MMM d, y, h:mm a" }}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template #noRecord>
+        <div class="flex flex-col items-center justify-center gap-5">
+          <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
+          <!-- <p class="text-gray-400 text-sm tracking-wide">No records found</p> -->
+        </div>
+      </ng-template>
+  </div>
+</div>

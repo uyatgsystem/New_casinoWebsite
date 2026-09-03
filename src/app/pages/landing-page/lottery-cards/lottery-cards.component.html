@@ -1,0 +1,91 @@
+<div class="bg-[#03090f]">
+  <div class="easy-steps-header max-w-3xl mx-auto text-center px-4">
+    <span class="text-purple-500 text-sm font-semibold tracking-widest uppercase block pt-10">All Lotteries</span>
+
+    <h2 class="text-white text-2xl md:text-3xl font-bold mb-4">
+      It’s Try Your Luck & Win Big!
+    </h2>
+
+    <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-10">
+      Join our exclusive lottery draws for a chance to win exciting rewards
+      daily! Whether you're a pro or just feeling lucky, our fair system gives
+      everyone a shot at striking gold.
+    </p>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-6 bg-[#03090f] gap-y-4 gap-x-2 sm:mt-20">
+    <div *ngFor="let card of lotteryList"
+      class="relative w-full max-w-[320px] mx-auto rounded-tl-[30px] rounded-tr-[30px] rounded-b-[30px] overflow-visible bg-[#0f0f1c] border-x border-b border-purple-500 mt-10 mb-10"
+      style="box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3)">
+      <!-- SVG Notch -->
+      <svg class="absolute -left-[1px] w-[320px] h-[70px] z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 70"
+        fill="none">
+        <path d="M0,30 Q0,0 30,0 H80 Q110,0 110,20 Q110,40 140,40 H220 Q250,40 250,20 Q250,0 280,0 H330 Q360,0 360,30"
+          fill="#0f0f1c" stroke="#a855f7" stroke-width="2" />
+      </svg>
+
+      <!-- Pill -->
+      <div
+        class="absolute top-[4px] left-1/2 transform w-[110px] -translate-x-1/2 z-20 bg-[#19E4E0] border-2 border-purple-500 rounded-full px-5 text-yellow-400 font-bold text-lg shadow-md text-center">
+        $ {{ card.TicketPrice }}
+      </div>
+
+      <!-- Top Left Label -->
+      <div
+        class="absolute top-[55px] text-sm px-3 py-[5px] bg-[#111118] border border-purple-500 rounded-tr-[15px] rounded-br-[15px] z-20">
+        # {{ card.SrNumber }}
+      </div>
+
+      <!-- Inner Content -->
+      <div class="pt-[50px] pb-6 px-4">
+        <img src="image29.png" class="mx-auto rounded-lg h-32 object-cover shadow" alt="card image" />
+
+        <h3
+          class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 text-lg font-extrabold text-center mt-4">
+          {{ card.LotteryName }}
+        </h3>
+        <h2 class="text-lg font-bold text-white mt-1 text-center">
+          {{ card.InitialCode }}
+        </h2>
+
+        <div
+          class="mt-6 bg-[#1b1b28] border border-gray-500 rounded-xl p-2 flex items-center justify-between text-xs md:text-sm">
+          <span class="text-purple-400 font-medium whitespace-nowrap">
+            Time Left to <span class="text-yellow-400 font-bold">Big Win!</span>
+          </span>
+          <div class="flex items-center gap-1 font-mono text-yellow-300">
+            <div class="bg-black/40 border border-gray-300 px-1.5 py-0.5 rounded text-center min-w-[24px]">
+              {{ card?.time?.hh }}
+            </div>
+            <span class="text-white font-bold">:</span>
+            <div class="bg-black/40 border border-gray-300 px-1.5 py-0.5 rounded text-center min-w-[24px]">
+              {{ card?.time?.mm }}
+            </div>
+            <span class="text-white font-bold">:</span>
+            <div class="bg-black/40 border border-gray-300 px-1.5 py-0.5 rounded text-center min-w-[24px]">
+              {{ card?.time?.ss }}
+            </div>
+          </div>
+        </div>
+
+        <button (click)="RedirectToLogin()"
+          class="mt-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2 px-6 rounded-xl font-bold shadow-md hover:opacity-90 transition mx-auto block w-[200px]">
+          Buy Ticket Now!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <!-- Show More button only if NOT showing all AND more cards exist -->
+    <button *ngIf="!showAll && originalLotteryList.length > showLimit" (click)="onShowMore()"
+      class="mt-[80px] bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-6 rounded-xl font-bold shadow-md hover:opacity-90 transition mx-auto w-[200px]">
+      Show More
+    </button>
+
+    <!-- Show Less button only if showing all AND more cards exist -->
+    <button *ngIf="showAll && originalLotteryList.length > showLimit" (click)="onShowLess()"
+      class="mt-[20px] bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-6 rounded-xl font-bold shadow-md hover:opacity-90 transition mx-auto w-[200px]">
+      Show Less
+    </button>
+  </div>
+</div>

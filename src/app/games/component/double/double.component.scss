@@ -1,0 +1,201 @@
+/* ═══════════════════════════════════════════
+   Double game – component styles
+   (most visual work is done via Canvas + Tailwind inline styles)
+═══════════════════════════════════════════ */
+
+:host {
+  display: block;
+}
+
+/* ── Win result banner pop-in ── */
+.result-win-anim {
+  animation: winPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes winPop {
+  0% {
+    transform: scale(0.88);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ── Rolling dots ── */
+.dot-pulse {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(120, 160, 255, 0.8);
+  animation: dotPulse 0.9s ease-in-out infinite both;
+}
+
+@keyframes dotPulse {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ── Selected-color ring pulse ── */
+.selected-pulse {
+  animation: ringPulse 1.8s ease-in-out infinite;
+  border-radius: inherit;
+}
+
+@keyframes ringPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ── Number input — hide browser arrows ── */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* ── Scrollbar for previous-rolls section (if overflow added) ── */
+.rolls-row::-webkit-scrollbar {
+  height: 4px;
+}
+.rolls-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+.rolls-row::-webkit-scrollbar-thumb {
+  background: rgba(100, 130, 200, 0.35);
+  border-radius: 2px;
+}
+
+/* ── Compact game header (mirrors Aviator pattern) ── */
+.game-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(8, 14, 40, 0.92);
+  border-bottom: 1px solid rgba(80, 120, 220, 0.25);
+  backdrop-filter: blur(14px);
+}
+
+.game-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 1rem;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.game-back-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fef08a;
+  background: linear-gradient(
+    180deg,
+    rgba(55, 72, 170, 0.9),
+    rgba(32, 44, 115, 0.95)
+  );
+  border: 1px solid rgba(120, 200, 255, 0.3);
+  box-shadow:
+    0 2px 0 rgba(18, 24, 65, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: opacity 0.15s;
+  min-height: 28px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.game-header-title {
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.04em;
+  background: linear-gradient(180deg, #fff5c0 0%, #ffd700 45%, #e8a000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.game-header-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.2rem 0.65rem;
+  border-radius: 0.5rem;
+  background: rgba(10, 18, 55, 0.8);
+  border: 1px solid rgba(80, 120, 220, 0.3);
+  min-width: 80px;
+}
+
+.game-header-balance-label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: rgba(186, 213, 255, 0.55);
+  text-transform: uppercase;
+}
+
+.game-header-balance-amount {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.game-fullscreen-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0.35rem;
+  border-radius: 0.5rem;
+  color: #fef08a;
+  background: linear-gradient(
+    180deg,
+    rgba(55, 72, 170, 0.9),
+    rgba(32, 44, 115, 0.95)
+  );
+  border: 1px solid rgba(120, 200, 255, 0.3);
+  box-shadow:
+    0 2px 0 rgba(18, 24, 65, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}

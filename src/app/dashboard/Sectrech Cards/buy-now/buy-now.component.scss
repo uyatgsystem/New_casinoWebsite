@@ -1,0 +1,1193 @@
+@keyframes titleGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(234, 179, 8, 0.6),
+      0 0 40px rgba(234, 179, 8, 0.4);
+    transform: scale(1);
+  }
+
+  50% {
+    text-shadow: 0 0 30px rgba(234, 179, 8, 0.8),
+      0 0 60px rgba(234, 179, 8, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  button {
+    background: #8b5cf6;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    color: white;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.heading-card {
+  font-family: Fredoka One;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 100px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 10%;
+}
+
+.card-prize {
+  font-family: Fredoka;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 140px;
+  leading-trim: NONE;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+
+.card-revealed-prize {
+  font-weight: 800;
+  font-style: Bold;
+  leading-trim: NONE;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+
+.card-desc-first {
+  font-family: Fredoka One;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 40px;
+  leading-trim: NONE;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+}
+
+.card-desc {
+  font-family: Fredoka;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 32px;
+  leading-trim: NONE;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.animate-title {
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+.scratching {
+  cursor: grabbing;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.scratch-reveal {
+  animation: reveal 0.5s ease-out forwards;
+}
+
+// Background coin animation
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.coin {
+  position: absolute;
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(252, 211, 77, 0.5);
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(252, 211, 77, 0.8);
+  }
+}
+
+.text-yellow-400 {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+}
+
+.animate-twinkle {
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+.coin-animation > div {
+  transition: all 0.3s ease;
+}
+
+.coin-animation > div:hover {
+  transform: scale(1.2) rotate(45deg);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.scratching {
+  cursor: grabbing;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.scratch-reveal {
+  animation: reveal 0.5s ease-out forwards;
+}
+
+// Background coin animation
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.coin {
+  position: absolute;
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+// Animation keyframes
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes floatCoin {
+  0% {
+    transform: translateY(100%) rotate(0deg);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+// Animation classes
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* --- Coins animation (fixed) --- */
+.coins-animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  .coin {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    animation: floatCoin 3s linear infinite;
+    bottom: -40px;
+
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        left: #{random(100)}#{"%"};
+
+        // optional: slight random delay so they don't sync
+        animation-delay: #{random(10) * 0.1}s;
+      }
+    }
+  }
+}
+
+/* --- Confetti (fixed) --- */
+.confetti-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(45deg, #ff0, #f0f, #0ff, #0f0);
+  animation: confettiFall 4s linear infinite;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      left: #{random(100)}#{"%"};
+
+      // 8..12 px -> 7 + random(5) gives 8..12
+      width: #{7 + random(5)}px;
+      height: #{7 + random(5)}px;
+      // 2..5 s -> 1 + random(4) gives 2..5
+      animation-duration: #{1 + random(4)}s;
+      animation-delay: #{random(10) * 0.1}s;
+    }
+  }
+}
+
+@keyframes rainbow-text {
+  0% {
+    color: #ff0000;
+  }
+
+  20% {
+    color: #ffd700;
+  }
+
+  40% {
+    color: #00ff00;
+  }
+
+  60% {
+    color: #00ffff;
+  }
+
+  80% {
+    color: #ff00ff;
+  }
+
+  100% {
+    color: #ff0000;
+  }
+}
+
+.animate-rainbow-text {
+  animation: rainbow-text 3s linear infinite;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.prize-glow {
+  text-shadow: 0 0 30px rgba(0, 26, 68, 0.8), 0 0 50px rgba(2, 28, 70, 0.6),
+    0 0 70px rgba(0, 36, 94, 0.4);
+}
+
+.scale-up {
+  animation: scaleUp 0.5s ease-out forwards;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.star {
+  position: absolute;
+  font-size: 24px;
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+.animate-fadeInUp-delayed {
+  animation: fadeInUp 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.claim-prize-btn {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+  transition: all 0.3s ease;
+}
+
+.claim-prize-btn:hover {
+  box-shadow: 0 0 30px rgba(147, 51, 234, 0.7);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+// Enhanced Fireworks Animation with more variety
+.pyro {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.pyro > .before,
+.pyro > .after,
+.burst-1,
+.burst-2,
+.burst-3 {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 #fff;
+  animation: 1.5s bang ease-out infinite backwards,
+    1.5s gravity ease-in infinite backwards,
+    5s position linear infinite backwards;
+}
+
+.burst-1 {
+  animation-delay: 0.1s;
+  background: radial-gradient(circle, #ff69b4, #ff1493);
+}
+
+.burst-2 {
+  animation-delay: 0.3s;
+  background: radial-gradient(circle, #00ff00, #32cd32);
+}
+
+.burst-3 {
+  animation-delay: 0.5s;
+  background: radial-gradient(circle, #1e90ff, #0000ff);
+}
+
+@keyframes bang {
+  to {
+    box-shadow: -120px -150px #ff3300, 120px -150px #ff3300, 0px -200px #ffcc00,
+      -150px -120px #ff00ff, 150px -120px #00ffcc, -100px -180px #ff3399,
+      100px -180px #33ff00, -80px -220px #ff00ff, 80px -220px #00ffff,
+      0px -250px #ffff00, -130px -160px #ff1493, 130px -160px #00ff7f,
+      -60px -190px #ff4500, 60px -190px #7fff00, -110px -140px #ff69b4,
+      110px -140px #00bfff, -90px -170px #ff8c00, 90px -170px #00fa9a,
+      -70px -210px #ff1493, 70px -210px #00ffff;
+  }
+}
+
+// Enhanced sparkle effects
+.sparkles {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sparkle-group-1,
+.sparkle-group-2,
+.sparkle-group-3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+}
+
+.sparkle-group-1 {
+  background: radial-gradient(circle at 30% 40%, #fff 0%, transparent 10%),
+    radial-gradient(circle at 70% 60%, #fff 0%, transparent 10%),
+    radial-gradient(circle at 50% 50%, #fff 0%, transparent 10%);
+  animation: sparkle 2s ease-in-out infinite, sparkle-rotate 8s linear infinite;
+}
+
+.sparkle-group-2 {
+  background: radial-gradient(circle at 40% 50%, #ffd700 0%, transparent 10%),
+    radial-gradient(circle at 60% 40%, #ff69b4 0%, transparent 10%),
+    radial-gradient(circle at 50% 60%, #00ffff 0%, transparent 10%);
+  animation: sparkle 2.5s ease-in-out infinite 0.3s,
+    sparkle-rotate 10s linear infinite reverse;
+}
+
+.sparkle-group-3 {
+  background: radial-gradient(circle at 45% 45%, #7fff00 0%, transparent 10%),
+    radial-gradient(circle at 55% 55%, #ff1493 0%, transparent 10%),
+    radial-gradient(circle at 50% 40%, #00bfff 0%, transparent 10%);
+  animation: sparkle 3s ease-in-out infinite 0.6s,
+    sparkle-rotate 12s linear infinite;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(2.5);
+    opacity: 0.6;
+  }
+
+  75% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Prize Reveal Animations
+@keyframes prize-reveal {
+  0% {
+    transform: scale(0.3) rotate(-10deg);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sparkle-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gravity {
+  to {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+}
+
+@keyframes position {
+  0%,
+  19.9% {
+    margin-top: 5%;
+    margin-left: 40%;
+  }
+
+  20%,
+  39.9% {
+    margin-top: 15%;
+    margin-left: 30%;
+  }
+
+  40%,
+  59.9% {
+    margin-top: 10%;
+    margin-left: 70%;
+  }
+
+  60%,
+  79.9% {
+    margin-top: 20%;
+    margin-left: 20%;
+  }
+
+  80%,
+  99.9% {
+    margin-top: 15%;
+    margin-left: 80%;
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.8s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out 0.3s forwards;
+  opacity: 0;
+  transform: scale(0);
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Enhanced ribbon animations
+.ribbons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ribbon {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  opacity: 0;
+  transform-origin: center;
+  animation: ribbonFall 3s ease-in-out infinite;
+}
+
+.ribbon-1 {
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  animation-delay: 0.5s;
+}
+
+.ribbon-2 {
+  background: linear-gradient(45deg, #ffd700, #ffa500);
+  animation-delay: 1s;
+}
+
+.ribbon-3 {
+  background: linear-gradient(45deg, #00ff00, #32cd32);
+  animation-delay: 1.5s;
+}
+
+.ribbon-4 {
+  background: linear-gradient(45deg, #1e90ff, #0000ff);
+  animation-delay: 2s;
+}
+
+@keyframes ribbonFall {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+// Enhanced glitter effects
+.glitter-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.glitter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+  animation: glitterSparkle 2s ease-in-out infinite;
+}
+
+.glitter-1 {
+  background: radial-gradient(circle at 30% 40%, #fff 0%, transparent 5%),
+    radial-gradient(circle at 70% 60%, #ffd700 0%, transparent 5%),
+    radial-gradient(circle at 50% 50%, #ff69b4 0%, transparent 5%);
+  animation-delay: 0s;
+}
+
+.glitter-2 {
+  background: radial-gradient(circle at 40% 50%, #00ffff 0%, transparent 5%),
+    radial-gradient(circle at 60% 40%, #ff1493 0%, transparent 5%),
+    radial-gradient(circle at 50% 60%, #ffd700 0%, transparent 5%);
+  animation-delay: 0.3s;
+}
+
+.glitter-3 {
+  background: radial-gradient(circle at 45% 45%, #32cd32 0%, transparent 5%),
+    radial-gradient(circle at 55% 55%, #ff4500 0%, transparent 5%),
+    radial-gradient(circle at 50% 40%, #1e90ff 0%, transparent 5%);
+  animation-delay: 0.6s;
+}
+
+@keyframes glitterSparkle {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+// Enhance existing sparkle groups
+.sparkle-group-4 {
+  animation: sparkle 2.2s ease-in-out infinite 0.9s,
+    sparkle-rotate 9s linear infinite;
+  background: radial-gradient(circle at 35% 45%, #ffd700 0%, transparent 8%),
+    radial-gradient(circle at 65% 55%, #ff69b4 0%, transparent 8%);
+}
+
+.sparkle-group-5 {
+  animation: sparkle 2.4s ease-in-out infinite 1.2s,
+    sparkle-rotate 11s linear infinite reverse;
+  background: radial-gradient(circle at 45% 35%, #00ffff 0%, transparent 8%),
+    radial-gradient(circle at 55% 65%, #ff1493 0%, transparent 8%);
+}
+
+// Congratulations Banner Styles
+.congrats-banner {
+  width: 300px;
+  height: 200px;
+  position: relative;
+}
+
+.ribbon-banner {
+  background: #4a9eff;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: perspective(500px) rotateX(5deg);
+  animation: bannerEntrance 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+.ribbon-banner::before,
+.ribbon-banner::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  top: 0;
+  background: #4a9eff;
+  z-index: -1;
+}
+
+.ribbon-banner::before {
+  left: -20px;
+  transform: skewY(45deg);
+}
+
+.ribbon-banner::after {
+  right: -20px;
+  transform: skewY(-45deg);
+}
+
+.congrats-text {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Fredoka One", cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: textPop 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49) 0.2s backwards;
+}
+
+.floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.element {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+.element.red {
+  background: #ff4b4b;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0.2s;
+}
+
+.element.blue {
+  background: #4a9eff;
+  top: 15%;
+  right: 10%;
+  animation-delay: 0.4s;
+}
+
+.element.orange {
+  background: #ffa726;
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 0.6s;
+}
+
+.element.green {
+  background: #66bb6a;
+  bottom: 15%;
+  right: 15%;
+  animation-delay: 0.8s;
+}
+
+@keyframes bannerEntrance {
+  0% {
+    opacity: 0;
+    transform: perspective(500px) rotateX(30deg) translateY(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(500px) rotateX(5deg) translateY(0);
+  }
+}
+
+@keyframes textPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+// :root {
+//   --confettiNum: 7;
+//   --$coinNum: 30;
+//   --$dollarNum: 50;
+//   --main-bg-color: #111;
+// }
+
+$confettiNum: 400;
+$coinNum: 30;
+$dollarNum: 50;
+
+body {
+  background-color: var(--main-bg-color, #111);
+  margin: 0;
+  padding: 0;
+  overflow: hidden; //
+}
+
+[class|="confetti"],
+[class|="coin"],
+[class|="dollar"] {
+  position: absolute;
+}
+
+.confettiHerePlease,
+.dollarDollarBillYall,
+.moreMoneyMoreProblems {
+  position: absolute;
+}
+
+/* confetti */
+@for $i from 1 through $confettiNum {
+  $confettiColors: (#146ff5, #dd1a8f, #ee6f40, #3adcc8, #8154e2, #8b4513);
+  $paperSize: random(15);
+  $left: random(100);
+
+  .confetti-#{$i} {
+    width: #{$paperSize}px;
+    height: #{$paperSize * 0.4}px;
+    background-color: nth($confettiColors, random(6));
+    top: -10%;
+    left: unquote($left + "%");
+    opacity: random() + 0.5;
+    transform: rotate(#{random(360)}deg);
+    animation: confetti-explosion-#{$i}
+      unquote(decimal-round(4 + random(), 1) + "s")
+      unquote(decimal-round(random(), 1) + "s")
+      infinite
+      ease-out;
+    z-index: random(5);
+  }
+
+  @keyframes confetti-explosion-#{$i} {
+    100% {
+      top: 110%;
+      left: unquote($left + random(15) + "%");
+    }
+  }
+}
+
+/* coins */
+@for $i from 1 through $coinNum {
+  $coinColors: (#ffd700, #daa520, #c0c0c0, #dcdcdc);
+  $fallSpeed: 1.25; // lower number = faster
+  $coinSize: random(8); // random# + 20px
+  $left: random(100); // can start anywhere on the y-axis
+
+  .coin-#{$i} {
+    width: #{$coinSize + 20}px;
+    height: #{$coinSize + 20}px;
+    border-radius: 50%;
+    background-color: nth($coinColors, random(4));
+    top: -10%;
+    left: unquote($left + "%");
+    opacity: random() + 0.4;
+    transform: rotate(#{random(360)}deg);
+    animation: coins-keep-falling-on-my-head-#{$i}
+      unquote($fallSpeed + "s")
+      unquote(random() * 5 + "s")
+      infinite
+      ease-in;
+    z-index: random(5) + 2;
+    font-size: $coinSize + 16px; // adjusts $ size with coin size
+    line-height: 1;
+    font-weight: 900;
+
+    &::before {
+      content: "$";
+      position: relative;
+      top: 0.1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+  }
+
+  @keyframes coins-keep-falling-on-my-head-#{$i} {
+    100% {
+      top: 110%;
+    }
+  }
+}
+
+// DOLLAR CONSTRAINTS
+// width: 40 – 80px
+// height: 40 – 80px
+// animation-duration: 4 – 8s
+// animation-iteration-count: 30 – 60
+// transform-origin: right -15px – -45px
+// opacity: 0.3 – 0.9
+// animation-delay: 0s – 3.5s
+// animation-timing-function: ease-in, ease-out, linear
+
+/* dollars */
+@for $i from 1 through $dollarNum {
+  $fallType: (ease-in, ease-out, linear);
+  $paperSize: random(5) * 10 + 30;
+  $left: random(100);
+
+  .dollar-#{$i} {
+    width: #{$paperSize}px;
+    height: #{$paperSize}px;
+    top: -200px;
+    left: unquote($left + "%");
+    opacity: random(7) / 10 + 0.2;
+    display: inline-block;
+    z-index: random(5) + 3;
+    animation: make-it-rain-#{$i}
+      unquote(3 + random(8) + "s")
+      unquote(random(8) - 1 + "s")
+      infinite
+      nth($fallType, random(3));
+    animation-iteration-count: random(31) + 29;
+    transform-origin: right unquote(random(3) * -15 + "px");
+    background-image: url('data:image/svg+xml,%3Csvg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"%3E%3Cg%3E%3Cg%3E%3Cpath style="fill:%2374D24F;" d="M496,112H16c-8.82,0-16,7.18-16,16v256c0,8.82,7.18,16,16,16h480c8.82,0,16-7.18,16-16V128 C512,119.18,504.82,112,496,112z"/%3E%3C/g%3E%3Cg%3E%3Cpath style="fill:%23FFEFBC;" d="M472,192c-22.055,0-40-17.945-40-40c0-4.422-3.578-8-8-8H88c-4.422,0-8,3.578-8,8 c0,22.055-17.945,40-40,40c-4.422,0-8,3.578-8,8v112c0,4.422,3.578,8,8,8c22.055,0,40,17.945,40,40c0,4.422,3.578,8,8,8h336 c4.422,0,8-3.578,8-8c0-22.055,17.945-40,40-40c4.422,0,8-3.578,8-8V200C480,195.578,476.422,192,472,192z"/%3E%3C/g%3E%3Cg%3E%3Cpath style="fill:%23869B55;" d="M128,256c0,48.221,26.691,90.175,66.081,112h123.839C357.309,346.175,384,304.221,384,256 s-26.691-90.175-66.081-112H194.08C154.691,165.825,128,207.779,128,256z"/%3E%3C/g%3E%3Cg%3E%3Cpath style="fill:%23FFEFBC;" d="M256,244c-16.023,0-28-8.445-28-16c0-7.555,11.977-16,28-16s28,8.445,28,16c0,6.625,5.375,12,12,12 s12-5.375,12-12c0-19.236-16.824-34.862-40-38.932V184c0-6.625-5.375-12-12-12s-12,5.375-12,12v5.068 c-23.176,4.07-40,19.695-40,38.932c0,22.43,22.844,40,52,40c16.023,0,28,8.445,28,16c0,7.555-11.977,16-28,16s-28-8.445-28-16 c0-6.625-5.375-12-12-12s-12,5.375-12,12c0,19.236,16.824,34.862,40,38.932V328c0,6.625,5.375,12,12,12s12-5.375,12-12v-5.068 c23.176-4.07,40-19.695,40-38.932C308,261.57,285.156,244,256,244z"/%3E%3C/g%3E%3Cg%3E%3Ccircle style="fill:%2374D24F;" cx="80" cy="256" r="24"/%3E%3C/g%3E%3Cg%3E%3Ccircle style="fill:%2374D24F;" cx="432" cy="256" r="24"/%3E%3C/g%3E%3Cg%3E%3Ccircle style="fill:%23869B55;" cx="40" cy="152" r="16"/%3E%3C/g%3E%3Cg%3E%3Ccircle style="fill:%23869B55;" cx="472" cy="152" r="16"/%3E%3C/g%3E%3Cg%3E%3Ccircle style="fill:%23869B55;" cx="40" cy="360" r="16"/%3E%3C/g%3E%3Cg%3E%3Ccircle style="fill:%23869B55;" cx="472" cy="360" r="16"/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A');
+  }
+
+  @keyframes make-it-rain-#{$i} {
+    0% {
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(0.6);
+    }
+
+    100% {
+      transform: translate3d(15px, 1200px, 0px) rotate(360deg) scale(0.6);
+      top: 110%;
+    }
+  }
+}
+
+////////////////////////////////////////
+// Card and Ribbon Clip-Path Styles
+.ribbon-shape {
+  clip-path: polygon(0 0, 98% 0, 100% 100%, 0% 100%);
+  margin-left: -83px;
+}
+
+/* Card clip-path for desktop */
+.card-shape {
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .card-shape {
+    clip-path: none;
+    /* remove curve */
+    padding: 8 !important;
+    /* increase height */
+  }
+
+  .ribbon-shape {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .flex-col .treasure-img {
+    margin: 0 auto 16px;
+    height: 250px;
+  }
+
+  .heigh {
+    height: 60px !important;
+    width: 60px !important;
+    margin-left: 15px !important;
+  }
+}
+
+//////////////////////////////////////////////////
+// Utility function to round decimals
+
+.ribbon-small {
+  clip-path: polygon(0 0, 98% 0, 100% 100%, 0% 100%);
+  margin-left: -60px;
+}
+
+/* Card clip-path for desktop */
+.card-shape-small {
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .card-shape-small {
+    clip-path: none;
+    padding: 6 !important;
+  }
+
+  .ribbon-small {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .flex-col .treasure-img {
+    margin: 0 auto 12px;
+    height: 140px;
+  }
+
+  .icon-small {
+    height: 50px !important;
+    width: 50px !important;
+    margin-left: 12px !important;
+  }
+}
+
+/////////////////////////////////////////////////
+// Utility function to round decimals
+
+.ribbon-compact {
+  clip-path: polygon(0 0, 98% 0, 100% 100%, 0% 100%);
+  margin-left: -50px;
+}
+
+.card-shape-compact {
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+}
+
+.icon-compact {
+  height: 44px !important;
+  width: 44px !important;
+  margin-left: 12px !important;
+}
+
+.circle-compact {
+  font-size: 0.85rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .card-shape-compact {
+    clip-path: none;
+    padding: 6 !important;
+  }
+
+  .ribbon-compact {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .scratch-card-back-img {
+    margin: 0 auto 12px;
+    height: 500px !important;
+  }
+
+  .icon-compact {
+    height: 48px !important;
+    width: 48px !important;
+  }
+}

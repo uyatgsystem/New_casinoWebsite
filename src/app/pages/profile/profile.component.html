@@ -1,0 +1,82 @@
+<div class="container mx-auto px-4 md:py-8 max-w-md">
+  <!-- Profile Header -->
+  <div class="flex flex-col items-center mb-12">
+    <div class="relative mb-4">
+      <img [src]="profileImage" alt="Profile Picture" class="w-28 h-28 rounded-full object-cover" />
+      <button (click)="saveUserProfileImage()" class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
+          </path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <h1 class="text-2xl font-semibold text-white mb-1">{{ name }}</h1>
+    <p class="text-gray-400">{{ email }}</p>
+  </div>
+
+  <!-- Settings Section -->
+  <div class="space-y-6">
+    <h2 class="text-xl text-white mb-4">General</h2>
+
+    <!-- Menu Items -->
+    <div class="space-y-2">
+      <!-- Remove Image  -->
+      <a (click)="deleteUserProfileImage()"
+        class="flex items-center justify-between cursor-pointer p-4 rounded-lg bg-gray-400/50 hover:bg-gray-400/70 transition-colors">
+        <div class="flex items-center space-x-3">
+          <svg class="w-6 h-6 text-gray-400" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <rect x="0" fill="none" width="24" height="24"></rect>
+              <g>
+                <path
+                  d="M20.587 3.423L22 4.837 20 6.84V18c0 1.105-.895 2-2 2H6.84l-2.007 2.006-1.414-1.414 17.167-17.17zM12.42 14.42l1 1 1-1c.63-.504 1.536-.456 2.11.11L18 16V8.84l-5.58 5.58zM15.16 6H6v6.38l2.19-2.19 1.39 1.39L4 17.163V6c0-1.105.895-2 2-2h11.162l-2 2z">
+                </path>
+              </g>
+            </g>
+          </svg>
+
+          <span class="text-white">Remove Image</span>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      <!-- Change Password -->
+      <a (click)="changeRoute('/dashboard/changePass')"
+        class="flex items-center justify-between cursor-pointer p-4 rounded-lg bg-gray-400/50 hover:bg-gray-400/70 transition-colors">
+        <div class="flex items-center space-x-3">
+          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z">
+            </path>
+          </svg>
+          <span class="text-white">Change Password</span>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+
+      <!-- Forgot Password -->
+      <a (click)="changeRoute('/ForgotPassword')"
+        class="flex items-center justify-between cursor-pointer p-4 rounded-lg bg-gray-400/50 hover:bg-gray-400/70 transition-colors">
+        <div class="flex items-center space-x-3">
+          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+            </path>
+          </svg>
+          <span class="text-white">Forgot Password</span>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="history-bar">
+  <div class="history-bar-items">
+    <div *ngFor="let round of rounds.slice(0, 11)" class="history-bar-item" [ngClass]="getCrashColor(round.crashPoint)">
+      <div class="dot"></div>
+      <div class="info">
+        <span class="game-id">{{ round.id?.slice(-6) }}</span>
+        <span class="multiplier">{{ round.crashPoint | number:'1.2-2' }}x</span>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="rounds.length > 11" class="history-bar-btn" (click)="openModal()" title="Show full history">
+    <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#a4b0be" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#a4b0be" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>

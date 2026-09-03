@@ -1,0 +1,110 @@
+/* --- Casino Maxs Premium Theme Variables --- */
+$bg-dark-panel: #18191d;       // Deep premium dark grey/black background
+$bg-dark-inner: #0f1013;       // Darker tone for inside containers
+$casino-orange-base: #ff9000;  // Matches your '+ Deposit' & 'Home' active gradient
+$casino-gold-light: #f5c443;   // Premium Casino Maxs Gold text color
+$casino-gold-dark: #b8860b;
+
+/* --- Typography & Highlights --- */
+.gold-glow-text {
+  color: $casino-gold-light;
+  text-shadow: 0 0 10px rgba(245, 196, 67, 0.4);
+  font-weight: 800;
+}
+
+.orange-text-accent {
+  color: #ffaa33; // Vibrant highlight to replace the old clashing blue
+}
+
+/* --- Main Layout Banner --- */
+.casino-premium-strip {
+  background: linear-gradient(135deg, #1f2126 0%, #131417 100%);
+  border: 1px solid rgba(245, 196, 67, 0.15); // Subtle gold border glow
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+// Top glowing gold elegant line
+.top-gold-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba($casino-orange-base, 0) 0%, 
+    rgba($casino-gold-light, 0.8) 50%, 
+    rgba($casino-orange-base, 0) 100*1%
+  );
+}
+
+/* --- Golden Decorative Icon Frame --- */
+.casino-icon-frame {
+  background: linear-gradient(180deg, #3a321d 0%, #1a150b 100%);
+  border: 1px solid rgba($casino-gold-light, 0.3);
+  border-radius: 10px;
+  padding: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+.casino-icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $bg-dark-inner;
+  font-size: 22px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+/* --- Casino Premium CTA Button (Matches '+ Deposit' styling perfectly) --- */
+.casino-gold-btn {
+  background: linear-gradient(180deg, #ffaa33 0%, $casino-orange-base 100%);
+  color: #000000; // Dark text for premium high contrast on gold/orange
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 256, 0.2);
+  border-bottom: 3px solid #b35f00;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba($casino-orange-base, 0.3);
+
+  &:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba($casino-orange-base, 0.45);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    border-bottom-width: 1px;
+  }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 640px) {
+  .casino-premium-strip {
+    padding: 14px 12px;
+  }
+
+  .casino-gold-btn {
+    font-size: 11px;
+    padding: 10px 16px;
+    border-radius: 6px;
+  }
+
+  .casino-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}

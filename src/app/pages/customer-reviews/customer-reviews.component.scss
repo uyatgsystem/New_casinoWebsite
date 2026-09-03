@@ -1,0 +1,113 @@
+
+.outer-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #03090F 0%, #03090F 100%);
+  padding: 70px;
+  .inner-div {
+    width: 90%;
+    max-width: 1200px;
+    color: #fff;
+    background: linear-gradient(90deg, #03090F 0%, #03090F 100%);
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+
+    .heading-div {
+      text-align: center;
+      margin-bottom: 20px;
+
+      h1 {
+        font-size: 48px;
+        font-weight: 700;
+        color: #f4f4f4;
+        padding-bottom: 30px;
+      }
+    }
+
+    .boxes-div {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+
+      .box {
+        flex: 1;
+        background: #FFFFFF33;
+        border-radius: 40px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+
+        .box-heading {
+          font-size: 1.2rem;
+          font-weight: bold;
+          color: #222;
+        }
+
+        .box-paragraph {
+          font-size: 0.9rem;
+          color: #FFFFFF80;
+          line-height: 1.4;
+        }
+
+        .box-profile {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+
+          .profile-dp {
+            width: 40px;
+            height: 40px;
+            background-color: #2F2A2A;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin-right: 10px;
+          }
+
+          .profile-info {
+            p {
+              margin: 0;
+
+              &:first-child {
+                font-size: 0.9rem;
+                font-weight: bold;
+                color: #302A2A99#333;
+              }
+
+              &:last-child {
+                font-size: 0.8rem;
+                color: #666;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 5px;
+
+    .star {
+      font-size: 20px;
+      color: #d1a100; // Yellow color for the stars
+    }
+
+    .star:last-child {
+      color: #777; // Empty star is a different shade (greyish)
+    }
+  }
+}

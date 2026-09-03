@@ -1,0 +1,258 @@
+.no-records-found {
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: larger;
+    font-weight: 600;
+  }
+}
+
+/*  Paginations Styles  */
+.mbp_pagination ul {
+  margin: 0;
+  padding: 0;
+}
+
+.mbp_pagination .page_navigation {
+  margin-bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.mbp_pagination .page-item {
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  width: 39px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  border-color: #f1fcfa;
+}
+
+.mbp_pagination .page-item:hover {
+  background-color: #f1fcfa;
+  color: #1e1425;
+  border-color: #1e1425;
+}
+
+.mbp_pagination .page-item:first-child {
+  border: 1px solid #e9e9e9;
+}
+
+.mbp_pagination .page-item:last-child {
+  border: 1px solid #e9e9e9;
+}
+
+.mbp_pagination .page-item.active .page-link {
+  background-color: #8a37d3;
+  color: #ffffff;
+  width: 39px;
+  display: flex;
+  justify-content: center;
+}
+
+.mbp_pagination .page-link {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  color: var(--headings-color);
+  font-family: var(--title-font-family);
+  font-weight: 500;
+  font-size: 15px;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  padding: 0;
+  text-align: center;
+  width: 40px;
+}
+
+// SCSS for Pagincation Start
+:host ::ng-deep .page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: var(--main-color2);
+  border-color: var(--main-color2);
+}
+
+:host ::ng-deep .page-link {
+  color: var(--main-color2);
+  border: 1px solid var(--main-color2);
+}
+
+:host ::ng-deep .page-link:focus {
+  background-color: #fff;
+  box-shadow: unset;
+}
+
+:host ::ng-deep .pagination {
+  // display: flex;
+  padding-left: 0;
+  list-style: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: center;
+}
+
+:host ::ng-deep .page-link:hover {
+  background-color: #fff;
+}
+
+.tRecord {
+  text-align: center;
+  color: var(--main-color2);
+}
+
+// SCSS for Pagincation End
+
+:host ::ng-deep .mbp_pagination .page-item.active .page-link {
+  background-color: var(--main-color2);
+  color: #ffffff;
+}
+
+.hello {
+  margin-top: -40px;
+}
+.back {
+  background: var(--gradient);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 1;
+  z-index: 995; //newchange
+
+  .modal {
+    width: 100%;
+    max-width: 28rem;
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: white;
+      }
+
+      button {
+        background: var(--gradient);
+        color: #9ca3af;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    transform: translateY(100px);
+    /* Start from below */
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    /* Move to final position */
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    transform: translateY(100px);
+    /* Start from below */
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    /* Move to final position */
+    opacity: 1;
+  }
+}
+
+.game-btn {
+  background: var(--gradient);
+}
+
+.golden-banner {
+  background: linear-gradient(
+    135deg,
+    #d4af37 0%,
+    #ffd700 25%,
+    #b8860b 50%,
+    #daa520 75%,
+    #cd853f 100%
+  );
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.slot-symbol {
+  background: linear-gradient(145deg, #8b4513, #a0522d);
+  border: 2px solid #daa520;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.game-title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #fff, #f0e68c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Game Card Styling */
+.game-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #a0956f;
+    box-shadow: 0 0 15px rgba(139, 115, 85, 0.5);
+  }
+
+  button {
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      opacity: 0.95;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  fa-icon {
+    transition: color 0.2s ease;
+  }
+}
+
+.add-score::-webkit-outer-spin-button,
+.add-score::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

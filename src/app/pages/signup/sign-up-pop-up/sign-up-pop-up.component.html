@@ -1,0 +1,58 @@
+@if(!data.isGoogleLogin){
+<div class="container">
+  <div class="popup-container">
+
+    <!-- Icon -->
+    <div class="icon">
+      <i class="fa-solid fa-check success-icon"></i>
+    </div>
+
+    <h2>Verify OTP</h2>
+
+    <p>
+      We have sent a 6-digit OTP to <br />
+      <b class="text-[#FE8006]">{{ email }}</b>
+    </p>
+
+    <!-- OTP INPUT -->
+    <div class="flex justify-center gap-2 mt-6">
+      @for(item of otpArray; track $index ){
+      <input #otpInput0  type="text" maxlength="1" inputmode="numeric"
+        pattern="[0-9]*"
+        class="digit-input w-10 h-12 text-center text-lg rounded-md bg-[#3C3C3C] text-white border border-[#FE8006] focus:border-[#FE8006] outline-none"
+        [(ngModel)]="otp[$index]" (input)="onDigitInput($event, $index)" (keydown)="onKeyDown($event, $index)"
+        (paste)="onPaste($event)" placeholder="-" />
+      }
+    </div>
+
+    <!-- TIMER -->
+    <p class="mt-4" *ngIf="timer > 0">
+      Resend OTP in
+      <span style="color:#FE8006">{{ timer }}</span> sec
+    </p>
+
+    <!-- BUTTONS -->
+    <div class="flex justify-center mt-6 gap-3">
+
+      <!-- Resend OTP -->
+      <button *ngIf="timer === 0" (click)="resendEmail()"
+        class="w-full mb-5 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black px-1 py-[0.55rem] font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-base active:scale-95 active:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#F3A630]">
+        Resend OTP
+      </button>
+
+      <!-- Verify -->
+      <button (click)="verifyCustomerOTP()"
+        class="w-full mb-5 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black px-1 py-[0.55rem] font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-base active:scale-95 active:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#F3A630]">
+        Verify
+      </button>
+
+      <!-- Login -->
+      <!-- <button (click)="redirectToLogin()"
+        class="w-full mb-5 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black px-1 py-[0.55rem] font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-base active:scale-95 active:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#F3A630]">
+        Login
+      </button> -->
+
+    </div>
+  </div>
+</div>
+}

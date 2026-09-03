@@ -1,0 +1,43 @@
+.active-tab {
+  color: #fe9e2e !important;
+}
+
+.active-tab svg {
+  stroke: #fe9e2e !important;
+}
+
+
+
+.footer-item {
+  @apply relative flex flex-col items-center justify-center text-gray-400 text-[10px] w-full h-full transition-all duration-300;
+}
+
+.footer-item .icon {
+  @apply w-5 h-5 mb-[2px] transition-all duration-300;
+}
+
+/* Active State (Pill + Lift) */
+.active-tab {
+  @apply text-[#FFD700];
+}
+
+.active-tab::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.25) 0%, transparent 70%);
+  border-radius: 9999px;
+  z-index: -1;
+}
+
+/* Icon Lift */
+.active-tab .icon {
+  transform: translateY(-3px) scale(1.15);
+}
+
+/* Smooth Hover */
+.footer-item:hover .icon {
+  transform: translateY(-2px);
+}

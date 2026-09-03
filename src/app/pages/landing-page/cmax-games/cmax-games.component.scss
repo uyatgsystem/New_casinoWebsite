@@ -1,0 +1,30 @@
+.clip-diagonal {
+  clip-path: polygon(14% 0,
+      86% 0,
+      100% 14%,
+      100% 86%,
+      86% 100%,
+      14% 100%,
+      0 86%,
+      0 14%);
+}
+
+.img-clip-diagonal {
+  clip-path: polygon(14% 0, 86% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml;utf8,<svg width='1440' height='1227' viewBox='0 0 1440 1227' fill='none' xmlns='http://www.w3.org/2000/svg'><g filter='url(%23filter0_n_1504_314)'><path d='M0 100C0 44.7715 44.7715 0 100 0H1340C1395.23 0 1440 44.7715 1440 100V1227H0V100Z' fill='%23161819'/></g><defs><filter id='filter0_n_1504_314' x='0' y='0' width='1440' height='1227' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'><feFlood flood-opacity='0' result='BackgroundImageFix'/><feBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/><feTurbulence type='fractalNoise' baseFrequency='0.666 0.666' stitchTiles='stitch' numOctaves='3' result='noise' seed='3711'/><feComponentTransfer in='noise' result='coloredNoise1'><feFuncR type='linear' slope='2' intercept='-0.5'/><feFuncG type='linear' slope='2' intercept='-0.5'/><feFuncB type='linear' slope='2' intercept='-0.5'/><feFuncA type='discrete' tableValues='1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/></feComponentTransfer><feComposite operator='in' in2='shape' in='coloredNoise1' result='noise1Clipped'/><feComponentTransfer in='noise1Clipped' result='color1'><feFuncA type='table' tableValues='0 0.15'/></feComponentTransfer><feMerge result='effect1_noise_1504_314'><feMergeNode in='shape'/><feMergeNode in='color1'/></feMerge></filter></defs></svg>");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

@@ -1,0 +1,19 @@
+<div class="chip-selector">
+  <div class="chip-title">SELECT CHIP</div>
+  <div class="chips-container">
+    @for (chipValue of gameService.CHIP_VALUES; track chipValue) {
+      <button 
+        class="chip"
+        [class.selected]="gameService.selectedChip() === chipValue"
+        [class.chip-1]="chipValue === 1"
+        [class.chip-5]="chipValue === 5"
+        [class.chip-10]="chipValue === 10"
+        [class.chip-25]="chipValue === 25"
+        [class.chip-100]="chipValue === 100"
+        (click)="selectChip(chipValue)"
+        [disabled]="gameService.isSpinning()">
+        <span class="chip-value">{{ chipValue }}</span>
+      </button>
+    }
+  </div>
+</div>

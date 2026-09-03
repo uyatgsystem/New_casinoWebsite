@@ -1,0 +1,398 @@
+// .easy-steps-container {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   padding: 6rem;
+//   background: linear-gradient(90deg, #03090F 0%, #03090F 100%);
+// }
+
+// .easy-steps-header {
+//   text-align: center;
+//   margin-bottom: 2rem;
+//   color: #9196A5;
+// }
+
+// .easy-steps-content {
+//   display: flex;
+//   justify-content: space-between;
+//   width: 100%;
+// }
+
+// .step-card {
+//   background-color: #1d293db5;
+//   border-radius: 12px;
+//   padding: 1.5rem;
+//   flex: 1;
+//   margin: 0 1rem;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .deposit-card {
+//   margin-left: auto;
+//   margin-right: 0;
+// }
+
+// .step-number {
+//   background-color: #5177d631;
+//   border-color: #5176D6;
+//   border-radius: 50%;
+//   width: 60px;
+//   height: 60px;
+//   line-height: 60px;
+//   text-align: center;
+//   color: #5176D6;
+//   font-size: 2rem;
+//   margin-bottom: 1rem;
+// }
+
+// .step-card h3 {
+//   color: #fff;
+//   margin: 0.5rem 0;
+//   text-align: center;
+//   font-size: 1.2rem;
+// }
+// .easy-steps-header h2{
+//   font-size: 56px;
+// }
+// .step-card p {
+//   color: #aaa;
+//   font-size: 1rem;
+//   text-align: center;
+//   margin-top: 0.5rem;
+// }
+
+// .purple-text {
+//   color: #9747FF;
+//   font-weight: bold;
+// }
+
+// @media (max-width: 768px) {
+//   .easy-steps-content {
+//     flex-direction: column;
+//     align-items: center;
+//   }
+
+//   .step-card {
+//     margin: 0 0 1.5rem 0;
+//     width: 95%;
+//   }
+
+//   .step-number {
+//     width: 50px;
+//     height: 50px;
+//     line-height: 50px;
+//     font-size: 1.8rem;
+//   }
+
+//   .step-card h3 {
+//     font-size: 1.1rem;
+//   }
+
+//   .step-card p {
+//     font-size: 0.9rem;
+//   }
+// }
+
+// @media (max-width: 480px) {
+//   .step-card {
+//     padding: 1rem;
+//   }
+
+//   .step-number {
+//     width: 45px;
+//     height: 45px;
+//     line-height: 45px;
+//     font-size: 1.6rem;
+//   }
+
+//   .step-card h3 {
+//     font-size: 1rem;
+//   }
+
+//   .step-card p {
+//     font-size: 0.85rem;
+//   }
+// }
+// @keyframes cardHover {
+//   0% {
+//     transform: translateY(0);
+//     box-shadow: 0 0 0 rgba(81, 118, 214, 0);
+//   }
+
+//   100% {
+//     transform: translateY(-10px);
+//     box-shadow: 0 20px 40px rgba(81, 118, 214, 0.15);
+//   }
+// }
+
+// @keyframes numberPulse {
+//   0% {
+//     transform: scale(1);
+//     background-color: #5177d631;
+//   }
+
+//   50% {
+//     transform: scale(1.1);
+//     background-color: #5177d650;
+//   }
+
+//   100% {
+//     transform: scale(1);
+//     background-color: #5177d631;
+//   }
+// }
+
+// .step-card {
+//   /* Add these properties to your existing .step-card styles */
+//   transition: all 0.3s ease;
+//   cursor: pointer;
+//   position: relative;
+//   border: 1px solid transparent;
+// }
+
+// .step-card:hover {
+//   animation: cardHover 0.3s forwards;
+//   border-color: #5176D6;
+// }
+
+// .step-card:hover .step-number {
+//   animation: numberPulse 1s infinite;
+// }
+
+// .step-card:hover h3 {
+//   color: #5176D6;
+//   transition: color 0.3s ease;
+// }
+
+// .step-card::after {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   background: radial-gradient(circle at center, rgba(81, 118, 214, 0.1) 0%, transparent 70%);
+//   opacity: 0;
+//   transition: opacity 0.3s ease;
+//   pointer-events: none;
+//   border-radius: 12px;
+// }
+
+// .step-card:hover::after {
+//   opacity: 1;
+// }
+
+// New Style 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .easy-steps-container {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   padding: 2rem 6rem;
+//   background: linear-gradient(90deg, #03090f 0%, #03090f 100%);
+// }
+
+// .easy-steps-header {
+//   text-align: center;
+//   margin-bottom: 2rem;
+//   color: #9196a5;
+// }
+
+// .easy-steps-content {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   gap: 1.5rem;
+//   width: 100%;
+// }
+
+// .step-card {
+//   background-color: #1d293db5;
+//   border-radius: 12px;
+//   padding: 1.5rem;
+//   flex: 1 1 calc(33.33% - 2rem);
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   transition: all 0.3s ease;
+//   cursor: pointer;
+//   position: relative;
+//   border: 1px solid transparent;
+//   min-width: 250px;
+// }
+
+// .step-number {
+//   background-color: #5177d631;
+//   border-color: #5176d6;
+//   border-radius: 50%;
+//   width: 60px;
+//   height: 60px;
+//   line-height: 60px;
+//   text-align: center;
+//   color: #5176d6;
+//   font-size: 2rem;
+//   //margin-bottom: 1rem;
+//   transition: background-color 0.3s ease, transform 0.3s ease;
+// }
+
+// .step-card h3 {
+//   color: #fff;
+//   margin: 0.5rem 0;
+//   text-align: center;
+//   font-size: 1.2rem;
+// }
+
+// .easy-steps-header h2 {
+//   font-size: 56px;
+// }
+
+// .step-card p {
+//   color: #aaa;
+//   font-size: 1.25rem;
+//   text-align: center;
+//   margin-top: 0.25rem;
+// }
+
+// .purple-text {
+//   color: #7de7e5;
+//   font-weight: bold;
+// }
+
+// .step-card:hover {
+//   animation: cardHover 0.3s forwards;
+//   border-color: #5176d6;
+// }
+
+// .step-card:hover .step-number {
+//   animation: numberPulse 1s infinite;
+// }
+
+// .step-card:hover h3 {
+//   color: #5176d6;
+//   transition: color 0.3s ease;
+// }
+
+// .step-card::after {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   background: radial-gradient(circle at center,
+//       rgba(81, 118, 214, 0.1) 0%,
+//       transparent 70%);
+//   opacity: 0;
+//   transition: opacity 0.3s ease;
+//   pointer-events: none;
+//   border-radius: 12px;
+// }
+
+// .step-card:hover::after {
+//   opacity: 1;
+// }
+
+// @keyframes cardHover {
+//   0% {
+//     transform: translateY(0);
+//     box-shadow: 0 0 0 rgba(81, 118, 214, 0);
+//   }
+
+//   100% {
+//     transform: translateY(-10px);
+//     box-shadow: 0 20px 40px rgba(81, 118, 214, 0.15);
+//   }
+// }
+
+// @keyframes numberPulse {
+//   0% {
+//     transform: scale(1);
+//     background-color: #5177d631;
+//   }
+
+//   50% {
+//     transform: scale(1.1);
+//     background-color: #5177d650;
+//   }
+
+//   100% {
+//     transform: scale(1);
+//     background-color: #5177d631;
+//   }
+// }
+
+// @media (max-width: 1024px) {
+//   .easy-steps-container {
+//     padding: 4rem;
+//   }
+
+//   .easy-steps-header h2 {
+//     font-size: 48px;
+//   }
+
+//   .step-card {
+//     flex: 1 1 calc(50% - 2rem);
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .easy-steps-header h2 {
+//     font-size: 40px;
+//   }
+
+//   .step-card {
+//     flex: 1 1 calc(100% - 2rem);
+//   }
+// }
+
+// @media (max-width: 480px) {
+//   .easy-steps-container {
+//     padding: 2rem;
+//   }
+
+//   .easy-steps-header h2 {
+//     font-size: 32px;
+//   }
+
+//   .step-card {
+//     padding: 1rem;
+//   }
+
+//   .step-number {
+//     width: 50px;
+//     height: 50px;
+//     line-height: 50px;
+//     font-size: 1.6rem;
+//   }
+
+//   .step-card h3 {
+//     font-size: 1rem;
+//   }
+
+//   .step-card p {
+//     font-size: 0.85rem;
+//   }
+// }

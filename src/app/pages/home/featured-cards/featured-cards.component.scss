@@ -1,0 +1,12 @@
+:host ::ng-deep .owl-theme .owl-dots .owl-dot.active span {
+  background-color: #fe8006 !important;
+  display: none;
+  width: 16px;
+  border-radius: 999px;
+}
+
+:host ::ng-deep .owl-theme .owl-dots .owl-dot span {
+  background-color: #ffffff;
+  display: none;
+  opacity: 0.6;
+}

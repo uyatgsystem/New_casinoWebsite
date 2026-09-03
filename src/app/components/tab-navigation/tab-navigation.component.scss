@@ -1,0 +1,71 @@
+/* Outer container */
+.tab-navigation-container {
+  // background: #0f172a;
+  padding: 0;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Navigation Bar */
+.tab-navigation {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 6px;
+  // background: #0a0e1f;
+  border-radius: 10px 0px 10px 0px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Default Tab Button */
+.tab-button {
+  flex: 0 0 auto;
+  padding: 8px 25px;
+  background: transparent;
+  border: none;
+  border-radius: 10px 0px 10px 0px;
+  color: #c8c8c8;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+/* Active Tab BTN (yellow rounded pill like image) */
+.tab-button.active {
+  background: linear-gradient(180deg, #fec866, #fe8006);
+  color: #000000;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 10px 0px 10px 0px;
+  box-shadow: 0 2px 5px rgba(255, 150, 0, 0.4);
+}
+
+/* First active tab (smooth left curve) */
+.tab-button.active.first-index {
+  border-radius: 10px 0px 10px 0px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+  .tab-button {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+
+  .tab-button.active {
+    padding: 6px 20px;
+    border-radius: 10px 0px 10px 0px;
+  }
+}

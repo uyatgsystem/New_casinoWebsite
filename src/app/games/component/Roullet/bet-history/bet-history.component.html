@@ -1,0 +1,34 @@
+<div class="bet-history">
+  <div class="history-header">
+    <h3 class="history-title">HISTORY</h3>
+    <span class="history-count">{{ gameService.spinHistory().length }}</span>
+  </div>
+
+  <div class="history-list">
+    @if (gameService.spinHistory().length === 0) {
+      <div class="empty-state">
+        <p>No spins yet</p>
+      </div>
+    }
+
+    @for (result of gameService.spinHistory(); track result.timestamp) {
+      <div class="history-item">
+        <div 
+          class="history-number"
+          [class.red]="result.color === 'red'"
+          [class.black]="result.color === 'black'"
+          [class.green]="result.color === 'green'">
+          {{ result.number }}
+        </div>
+        <div class="history-details">
+          <div class="history-outcome" [class.win]="result.isWin" [class.loss]="!result.isWin">
+            {{ result.isWin ? 'WON' : 'LOST' }}
+          </div>
+          <div class="history-amount">
+            {{ result.netProfit > 0 ? '+' : '' }}{{ result.netProfit.toFixed(2) }}$
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

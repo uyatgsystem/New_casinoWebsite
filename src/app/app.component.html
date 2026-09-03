@@ -1,0 +1,112 @@
+<div class="page-container p-0 m-0">
+  <div *ngIf="showSplashScreen" class="overflow-hidden overflow-y-hidden">
+    <app-splash-screen></app-splash-screen>
+  </div>
+
+  <div *ngIf="!showSplashScreen" class="content-wrap mb-6 md:mb-0">
+    <app-header
+      *ngIf="shouldshowheader()"
+      (openChatFromHeader)="openChatHandler()"
+    ></app-header>
+
+    <div *ngIf="addBalance">
+      <app-add-wallet [showModal]="addBalance"></app-add-wallet>
+    </div>
+    <router-outlet></router-outlet>
+
+    <div *ngIf="shouldShowChat()" class="fixed bottom-4 right-4 z-[999]">
+      <button
+        class="btn text-white rounded-full p-3 shadow-lg hidden md:block relative"
+        (click)="toggleChat()"
+      >
+        <!-- Unread Message Count Badge -->
+        <div
+          *ngIf="unreadCounts > 0"
+          class="absolute -top-2 -right-2 w-6 h-6 flex items-center rounded-full text-black justify-center animate-pulse bg-[#FE911A]"
+        >
+          {{ unreadCounts > 99 ? "99+" : unreadCounts }}
+        </div>
+
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-message-square">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg> -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="31"
+          height="34"
+          viewBox="0 0 31 34"
+          fill="none"
+        >
+          <path
+            d="M30.6491 10.6511C30.6491 4.77776 25.3852 0 18.9138 0C14.1746 0 10.0927 2.56678 8.24121 6.24523C9.70014 5.65393 11.3106 5.31825 13.0085 5.31825C19.4799 5.31825 24.7438 10.0953 24.7438 15.9695C24.7438 17.5353 24.3487 19.0261 23.6615 20.373C27.7649 18.7001 30.6491 14.9435 30.6491 10.6511Z"
+            fill="#000408"
+          />
+          <path
+            d="M11.7358 6.74707C5.26497 6.74707 0 11.5248 0 17.3982C0 20.8907 1.88689 24.1606 5.04924 26.1528C5.16481 29.6624 3.98355 32.7929 3.93341 32.925L3.51275 33.9999L12.0606 28.0414C18.3547 27.885 23.4717 23.1157 23.4717 17.3982C23.4711 11.5248 18.2072 6.74707 11.7358 6.74707Z"
+            fill="#000408"
+          />
+        </svg>
+      </button>
+      <app-chat *ngIf="isChatOpen"></app-chat>
+    </div>
+
+    <!-- <div *ngIf="showButton" class="z-10 absolute top-[6rem] right-4">
+      <button class="download-btn floating-icons m-2 mr-5">
+
+        <img
+          src="/Images/download icon.png"
+          alt="Download"
+          class="w-8 h-8"
+          (click)="OpenDownload()"
+        />
+        <span class="close-btn" (click)="hideButton()">✖</span>
+      </button>
+    </div> -->
+  </div>
+
+  <app-footer
+    *ngIf="shouldshowheader()"
+    [chatUnreadCount]="unreadCounts"
+  ></app-footer>
+  <!-- Fixed Cartoon Character -->
+  <img
+    *ngIf="showCharacterImage"
+    src="https://cmaxv2images2.pages.dev/assets/avatars/loginCPL.png"
+    alt="Character"
+    class="fixed-character"
+  />
+</div>
+
+<!-- <app-coming-soon></app-coming-soon> -->
+
+<app-user-manual></app-user-manual>
+<!-- Floating Install App Button (mirrors bonus button, left side) -->
+<!-- shouldShowInstallFloating -->
+<!-- PWA Install Floating Card -->
+<div
+  class="pwa-install-container fixed top-[69%] left-4 z-[999]"
+  *ngIf="showInstallFloating && pwaInstall.canInstall() && shouldShowChat()"
+>
+  <div class="pwa-card animate-bounce-slow" (click)="installFloating()">
+    <!-- Close Icon -->
+    <div class="close-x" (click)="hideInstallFloating($event)">
+      <fa-icon [icon]="cross" class="text-white text-[1rem]"></fa-icon>
+    </div>
+
+    <!-- Icon Box -->
+    <div class="icon-box">
+      <i class="fa-solid fa-mobile-screen-button"></i>
+    </div>
+
+    <!-- Text Content -->
+    <div class="content-box">
+      <span class="top-text">Free & Fast Download</span>
+      <span class="main-text">Get Mobile App</span>
+    </div>
+
+    <!-- Shine Effect -->
+    <div class="shine-effect"></div>
+  </div>
+</div>

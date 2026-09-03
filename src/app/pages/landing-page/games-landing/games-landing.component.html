@@ -1,0 +1,296 @@
+<!-- Tab Navigation Component -->
+<app-tab-navigation *ngIf="isToken && isDashboardPage" [activeTab]="selectedMainTab" [tabs]="displayMainTabs"
+  (tabChange)="onTabChange($event)">
+</app-tab-navigation>
+
+<div *ngIf="isToken && isDashboardPage && AsianLocalBlock" class="flex justify-between items-center w-full px-4">
+  <!-- LEFT: Logo -->
+  <div class="flex items-center">
+    <img src="https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png" alt="Games"
+      class="w-8 h-8 object-contain" />
+    <span class="ml-3 text-white font-bold text-md leading-none mt-4">
+      Games
+    </span>
+  </div>
+
+  <!-- RIGHT: Search -->
+  <div class="flex w-[50%] sm:w-full max-w-xs">
+    <div class="relative flex-1">
+      <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()"
+        class="w-full bg-transparent text-white border border-[#aa9a78] text-sm rounded-tl-xl rounded-br-xl py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-[#aa9a78]" />
+
+      <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2" fill="none"
+        stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Panel Games Section -->
+
+<div id="games-scroll-id" *ngIf="isToken && isDashboardPage && AsianLocalBlock"
+  class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 3xl:grid-cols-9 gap-2 sm:gap-3 lg:gap-1 2xl:gap-1 mx-auto text-center md:px-1 px-4 py-2 sm:pb-4"
+  [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''">
+  <ng-container *ngFor="let game of displayedGames">
+    <div (click)="isMobile() ? OnPlayNow(game) : null"
+      class="group mt-2 relative w-30 h-40 sm:w-32 sm:h-44 md:w-36 md:h-50 cursor-pointer rounded-tl-[25px] rounded-br-[25px] overflow-hidden transition-all duration-500 hover:scale-[1.02]">
+      <!-- Overlay for backdrop -->
+      <div class="absolute inset-0 bg-[#0f1423]/90 backdrop-blur-2xl z-0"></div>
+
+      <!-- Dynamic border -->
+      <div class="absolute inset-0 rounded-tl-[25px] rounded-br-[25px] border-[2px] z-10 pointer-events-none" [ngStyle]="{
+          background:
+            'linear-gradient(rgba(15,20,35,1), rgba(15,20,35,1)) padding-box, ' +
+            'linear-gradient(to right, transparent, ' +
+            game.bgclr +
+            ' 50%, transparent) border-box, ' +
+            'linear-gradient(to bottom, ' +
+            game.bgclr +
+            '40, ' +
+            game.bgclr +
+            '10 50%, ' +
+            game.bgclr +
+            '40) border-box',
+        }" style="border-color: transparent"></div>
+
+      <!-- Inner content with dynamic gradient -->
+      <div class="relative z-20 h-full w-full p-3 flex flex-col items-center" [ngStyle]="{
+          background:
+            'linear-gradient(to bottom, ' +
+            game.bgclr +
+            '08, ' +
+            game.bgclr +
+            '25, ' +
+            game.bgclr +
+            '08)',
+        }">
+        <div class="flex justify-between items-start w-full mb-1 gap-1">
+          <!-- BONUS TAG -->
+          <span *ngIf="game?.bonus"
+            class="flex flex-col items-center justify-center bg-gradient-to-b from-[#f3c87a] to-[#ba8b42] rounded-full px-2 py-0.5 text-black font-bold text-center shadow-lg">
+            <span class="text-[10px] font-bold leading-[1]">{{ game?.bonus }}%</span>
+          </span>
+
+          <!-- HOT Ribbon -->
+          <span *ngIf="game.isHot" class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+            <span
+              class="absolute top-1 right-[-20px] rotate-45 bg-gradient-to-r from-orange-500 to-red-600 text-white text-[8px] font-bold px-6 py-1 shadow-md tracking-wide">
+              HOT
+            </span>
+          </span>
+        </div>
+
+        <!-- Image -->
+        <div class="flex-grow w-full flex items-center justify-center min-h-0 overflow-hidden relative">
+          <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
+            <img [src]="game.image" [alt]="game.name"
+              class="min-w-[100%] h-full object-cover transition-all duration-700 ease-in-out scale-100 origin-center mb-4" />
+          </div>
+        </div>
+
+        <!-- Title & button -->
+        <div class="w-full text-center mt-auto">
+          <div
+            class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 sm:gap-2 border text-[#aa9a78] text-[8px] sm:text-[10px] sm:text-xs font-bold py-0.5 px-1 sm:py-1 sm:px-2 rounded-tl-xl rounded-br-xl shadow-lg z-10 bg-transparent"
+            [ngStyle]="{ 'border-color': game.bgclr || '#FFD700' }">
+            <span [ngStyle]="{ color: game.bgclr || '#FFD700' }">{{
+              game.name
+              }}</span>
+            <a [ngStyle]="{ color: game.bgclr || '#FFD700' }" [href]="game.downloadLink" target="_blank"
+              (click)="$event.stopPropagation()" class="hover:text-white transition-colors duration-200">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+
+          <div
+            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg"
+            *ngIf="!isMobile() && game.buttonText != ''">
+            <button
+              class="bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-gray-800 font-semibold text-xs sm:text-sm md:text-base py-0.5 sm:py-1 px-2 sm:px-2 rounded-tl-xl rounded-br-xl hover:bg-white transition"
+              (click)="OnPlayNow(game)">
+              {{ isToken ? game.buttonText : "Play Now" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<!-- Load more button -->
+
+<div *ngIf="hasMoreGames && isToken && isDashboardPage && AsianLocalBlock" class="col-span-full flex justify-end">
+  <button
+    class="mt-3 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-gray-800 font-semibold text-sm sm:text-base py-1 px-3 sm:px-3 rounded-br-xl rounded-tl-xl hover:bg-white transition"
+    (click)="toggleShowAll()">
+    {{ showAllGames ? "See Less" : "See All" }}
+  </button>
+</div>
+
+<div *ngIf="AddPlayerModal"
+  class="fixed inset-0 bg-black/80 flex items-center justify-center modal-overlay Add_Bal z-[999]"
+  (click)="CloseAddPlayer()">
+  <div
+    class="bg-noise border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-full max-w-md modal slide-up"
+    (click)="$event.stopPropagation()">
+    <div class="flex justify-between border-b border-[#C3B089] rounded-tl-[16px] items-center mb-10 px-6 py-3">
+      <h2 class="text-xl font-bold text-[#FEA234]">Add Player</h2>
+      <button (click)="CloseAddPlayer()" class="text-white">
+        <i class="bi bi-x"></i>
+        <fa-icon [icon]="croswsIcon" class="hover:text-gray-400"></fa-icon>
+      </button>
+    </div>
+    <p class="text-center text-gray-300 p-6 mb-6 text-lg font-medium">
+      Ready to join the action? Be the next player in
+      <span class="text-[#ffb24a] font-bold">{{ gamename }} </span>!
+    </p>
+    <form [formGroup]="scoreForm" class="flex flex-col gap-4 justify-center items-center">
+      <button type="submit" class="btn-primary mb-4" (click)="onPlayerSubmit()">
+        Add Player
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Instant Games Section -->
+
+<div *ngIf="isDashboardPage" class="mb-10" id="quick-scrolling-id">
+  <div class="flex items-center ml-4">
+    <img src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png" alt="Instant Games"
+      class="w-8 h-8 object-contain" />
+    <span class="ml-3 text-white font-bold text-md leading-none mt-4">
+      Instant Games
+    </span>
+  </div>
+  <app-tab-navigation *ngIf="isToken && isDashboardPage" [activeTab]="QuickgameTab[0].value" [tabs]="QuickgameTab"
+    (tabChange)="onTabChange($event)">
+  </app-tab-navigation>
+  <div *ngIf="isToken && isDashboardPage"
+    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 3xl:grid-cols-9 gap-2 sm:gap-3 lg:gap-1 2xl:gap-1 mx-auto text-center md:px-1 px-4 py-2 sm:pb-4"
+    [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''">
+    <ng-container *ngFor="let game of quickGames">
+      <div (click)="redirectTo(game.redirectLink)"
+        class="group mt-2 relative w-30 h-40 sm:w-32 sm:h-44 md:w-36 md:h-50 cursor-pointer rounded-tl-[25px] rounded-br-[25px] overflow-hidden transition-all duration-500 hover:scale-[1.02]">
+        <!-- Overlay for backdrop -->
+        <div class="absolute inset-0 bg-[#0f1423]/90 backdrop-blur-2xl z-0"></div>
+
+        <!-- Dynamic border -->
+        <div class="absolute inset-0 rounded-tl-[25px] rounded-br-[25px] border-[2px] z-10 pointer-events-none"
+          [ngStyle]="{
+            background:
+              'linear-gradient(rgba(15,20,35,1), rgba(15,20,35,1)) padding-box, ' +
+              'linear-gradient(to right, transparent, ' +
+              game.bgColor +
+              ' 50%, transparent) border-box, ' +
+              'linear-gradient(to bottom, ' +
+              game.bgColor +
+              '40, ' +
+              game.bgColor +
+              '10 50%, ' +
+              game.bgColor +
+              '40) border-box',
+          }" style="border-color: transparent"></div>
+
+        <!-- Inner content with dynamic gradient -->
+        <div class="relative z-20 h-full w-full p-3 flex flex-col items-center" [ngStyle]="{
+            background:
+              'linear-gradient(to bottom, ' +
+              game.bgColor +
+              '08, ' +
+              game.bgColor +
+              '25, ' +
+              game.bgColor +
+              '08)',
+          }">
+          <!-- Image -->
+          <div class="flex-grow w-full flex items-center justify-center min-h-0 overflow-hidden relative">
+            <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
+              <img [src]="game.image" [alt]="game.name"
+                class="min-w-[100%] h-full object-contain transition-all duration-700 ease-in-out scale-100 origin-center mb-4" />
+            </div>
+          </div>
+
+          <!-- Title & button -->
+          <div class="w-full text-center mt-auto">
+            <div
+              class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 sm:gap-2 border text-[#aa9a78] text-[8px] sm:text-[10px] sm:text-xs font-bold py-0.5 px-1 sm:py-1 sm:px-2 rounded-tl-xl rounded-br-xl shadow-lg z-10 bg-transparent"
+              [ngStyle]="{ 'border-color': game.bgColor || '#FFD700' }">
+              <span [ngStyle]="{ color: game.bgColor || '#FFD700' }">{{
+                game.name
+                }}</span>
+              <a [ngStyle]="{ color: game.bgColor || '#FFD700' }" [routerLink]="game.downloadLink" target="_blank"
+                (click)="$event.stopPropagation()" class="hover:text-white transition-colors duration-200">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- <div *ngIf="isDashboardPage" class="mb-10">
+  <div class="flex items-center ml-4">
+    <img src="https://cmaxv2images2.pages.dev/assets/icons/lottery.png" alt="Lotteries"
+      class="w-8 h-8 object-contain" />
+    <span class="ml-3 text-white font-bold text-md leading-none mt-4">
+      Lotteries
+    </span>
+  </div>
+  <app-tab-navigation *ngIf="isToken && isDashboardPage" [activeTab]="lotteryTab[0].value" [tabs]="lotteryTab"
+    (tabChange)="onTabChange($event)">
+  </app-tab-navigation>
+</div> -->
+
+<div>
+  <app-cmax-games *ngIf="!isDashboardPage" id="gameScrollSection"></app-cmax-games>
+  <!-- <app-on-boarding-steps *ngIf="!isDashboardPage"></app-on-boarding-steps> -->
+  <app-spin *ngIf="!isDashboardPage" id="spinnerScrollSection"></app-spin>
+  <app-about-us *ngIf="!isDashboardPage" id="aboutScrollSection"></app-about-us>
+  <!-- <app-lottery-cards id="lottriesScrollSection"></app-lottery-cards> -->
+  <!-- <app-lottery-winners *ngIf="!isDashboardPage"></app-lottery-winners> -->
+  <!-- <app-lottery-landing *ngIf="!isDashboardPage"></app-lottery-landing> -->
+</div>
+
+<div *ngIf="isDashboardPage" class="flex items-center ml-4">
+  <img src="https://cmaxv2images2.pages.dev/assets/icons/scratch.png" alt="Scratch Cards"
+    class="w-8 h-8 object-contain" />
+  <span class="ml-3 text-white font-bold text-md leading-none mt-4">
+    Scratch Cards
+  </span>
+</div>
+<app-tab-navigation *ngIf="isDashboardPage" [activeTab]="ScratchTab[0].value" [tabs]="ScratchTab"
+  (tabChange)="onTabChange($event)">
+</app-tab-navigation>
+
+<div>
+  <app-join-community *ngIf="!isDashboardPage"></app-join-community>
+
+  <app-sectrech-card-list id="scratchScrollSection" [isHomePage]="router.url == '/' ? true : false">
+  </app-sectrech-card-list>
+
+  <!-- Button container -->
+  <div *ngIf="isDashboardPage" class="flex justify-center mt-8 mb-6 w-full col-span-full">
+    <button (click)="toggleShowAllScratch()"
+      class="px-6 py-2 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold rounded-tl-xl rounded-br-xl shadow-md hover:opacity-90 transition">
+      Show All
+    </button>
+  </div>
+</div>
+
+<div *ngIf="isDashboardPage" class="mt-10">
+  <div class="flex items-center ml-4">
+    <img src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png" alt="Spin" class="w-8 h-8 object-contain" />
+    <span class="ml-3 text-white font-bold text-md leading-none mt-4">
+      Spin
+    </span>
+  </div>
+  <app-tab-navigation *ngIf="isDashboardPage" [activeTab]="SpinnerTab[0].value" [tabs]="SpinnerTab"
+    (tabChange)="onTabChange($event)">
+  </app-tab-navigation>
+  <!-- <app-spin id="spin-scrolling-id" *ngIf="isDashboardPage" [isHeadingShown]="false"></app-spin> -->
+  <app-spinner id="spin-scrolling-id" *ngIf="!isLandingPage" [showHeaderSection]="false"></app-spinner>
+</div>

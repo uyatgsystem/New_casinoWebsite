@@ -1,0 +1,306 @@
+import { CommonModule } from '@angular/common';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CasinoLandingComponent } from './casino-landing/casino-landing.component';
+import { GamesLandingComponent } from './games-landing/games-landing.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.component';
+import { GamePromoBannerComponent } from './game-promo-banner/game-promo-banner.component';
+import { OnBoardingStepsComponent } from './on-boarding-steps/on-boarding-steps.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { SubscribeNewslettergeComponent } from './subscribe-newsletterge/subscribe-newsletterge.component';
+import { Router } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MusicService } from '../../Services/music.service';
+import { LotteryCardsComponent } from './lottery-cards/lottery-cards.component';
+import { LotteryWinnersComponent } from './lottery-winners/lottery-winners.component';
+import { ShiningStarsOfGamesComponent } from './shining-stars-of-games/shining-stars-of-games.component';
+import { HowItWorkComponent } from './how-it-work/how-it-work.component';
+import { LandingPageService } from './landing-page.service';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SectrechCardListComponent } from '../../dashboard/Sectrech Cards/sectrech-card-list/sectrech-card-list.component';
+import { SpinComponent } from './spin/spin.component';
+import { HeroSectionComponent } from './hero-section/hero-section.component';
+import { HighlightCardComponent } from './highlight-card/highlight-card.component';
+import { GameService } from '../../Services/game.service';
+import { SafeHtml } from '@angular/platform-browser';
+import { UtilsService } from '../../Services/utils.service';
+
+@Component({
+  selector: 'app-landing-page',
+  standalone: true,
+  imports: [
+    CarouselModule,
+    CommonModule,
+    CasinoLandingComponent,
+    GamesLandingComponent,
+    AboutUsComponent,
+    CustomerReviewsComponent,
+    GamePromoBannerComponent,
+    OnBoardingStepsComponent,
+    ContactUsComponent,
+    SubscribeNewslettergeComponent,
+    ShiningStarsOfGamesComponent,
+    SpinnerComponent,
+    SectrechCardListComponent,
+    SpinComponent,
+    HeroSectionComponent,
+    FooterComponent,
+    HighlightCardComponent,
+  ],
+  templateUrl: './landing-page.component.html',
+  styleUrl: './landing-page.component.scss',
+})
+export class LandingPageComponent implements OnInit {
+  isMobile: boolean = false;
+  isLandingPage: boolean = true;
+  activeLotteries: any = [];
+  showSignupBonusPopup: boolean = true;
+  selectedGuideCard: string = 'Register';
+  grainBackdrop: SafeHtml = '';
+  constructor(
+    private router: Router,
+    private breakpointObserver: BreakpointObserver,
+    private musicService: MusicService,
+    private landingPageService: LandingPageService,
+    private gameService: GameService,
+    private _utills: UtilsService,
+  ) {
+    this.Games = this.gameService.getGames();
+    this.grainBackdrop = this._utills.getGrainBackdrop();
+  }
+  Games: any = [];
+  private interactionStarted = false;
+  ngOnInit(): void {
+    this.isLandingPage = this.router.url === '/';
+
+    // Observe screen size changes
+    this.breakpointObserver
+      .observe([Breakpoints.Handset])
+      .subscribe((result) => {
+        this.isMobile = result.matches;
+      });
+
+    setTimeout(() => {
+      this.startMusic();
+    }, 3000);
+
+    //? Add interaction listeners
+    this.addInteractionListeners();
+
+    this.landingPageService.getActiveLotteries().subscribe((data) => {
+      this.activeLotteries = data;
+    });
+
+    //  IMAGE ROTATION
+    this.imageRotationInterval = setInterval(() => {
+      this.rotateImages();
+    }, 2200);
+  }
+
+  isSticky = false;
+  showPopup = true;
+
+  closePopup() {
+    this.showPopup = false;
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const triggerHeight = 120; // works on all screens
+    this.isSticky = window.scrollY > triggerHeight;
+  }
+
+  isMobileMenuOpen = false;
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  RedirectToLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
+  RedirectToSignUp(): void {
+    this.router.navigate(['/SignUp']);
+  }
+
+  closeSignupPopup(event: Event) {
+    event.stopPropagation();
+    this.showSignupBonusPopup = false;
+  }
+
+  selectGuideCard(card: string) {
+    this.selectedGuideCard = card;
+  }
+
+  scrollTo(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -20;
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }
+
+  handleMobileNav(sectionId: string) {
+    this.scrollTo(sectionId);
+    this.isMobileMenuOpen = false;
+  }
+
+  addInteractionListeners() {
+    if (!this.interactionStarted) {
+      document.addEventListener('click', this.startMusicOnce, { once: true });
+      document.addEventListener('mousemove', this.startMusicOnce, {
+        once: true,
+      });
+      document.addEventListener('keydown', this.startMusicOnce, { once: true });
+      this.interactionStarted = true;
+    }
+  }
+
+  startMusicOnce = () => {
+    this.startMusic();
+    this.removeInteractionListeners();
+  };
+
+  removeInteractionListeners() {
+    document.removeEventListener('mousemove', this.startMusicOnce);
+    document.removeEventListener('scroll', this.startMusicOnce);
+    document.removeEventListener('click', this.startMusicOnce);
+  }
+
+  ngOnDestroy() {
+    this.removeInteractionListeners();
+    if (this.imageRotationInterval) {
+      clearInterval(this.imageRotationInterval);
+    }
+  }
+
+  startMusic() {
+    this.musicService.playMusic();
+  }
+
+  cardList = [
+    {
+      id: '01',
+      title: 'Rome Treasury',
+      subtitle: '$116 Million Win',
+      amount: '$20',
+      image: 'https://cmaxv2images2.pages.dev/assets/icons/lottery.png',
+      time: { hh: '03', mm: '03', ss: '03' },
+    },
+    {
+      id: '02',
+      title: 'Paris Vault',
+      subtitle: '$90 Million Win',
+      amount: '$15',
+      image: 'https://cmaxv2images2.pages.dev/assets/icons/lottery.png',
+      time: { hh: '01', mm: '15', ss: '42' },
+    },
+    {
+      id: '03',
+      title: 'London Luck',
+      subtitle: '$75 Million Win',
+      amount: '$10',
+      image: 'https://cmaxv2images2.pages.dev/assets/icons/lottery.png',
+      time: { hh: '05', mm: '45', ss: '22' },
+    },
+    {
+      id: '04',
+      title: 'Tokyo Draw',
+      subtitle: '$110 Million Win',
+      amount: '$25',
+      image: 'https://cmaxv2images2.pages.dev/assets/icons/lottery.png',
+      time: { hh: '02', mm: '25', ss: '08' },
+    },
+    {
+      id: '05',
+      title: 'Dubai Jackpot',
+      subtitle: '$98 Million Win',
+      amount: '$30',
+      image: 'https://cmaxv2images2.pages.dev/assets/icons/lottery.png',
+      time: { hh: '04', mm: '12', ss: '33' },
+    },
+    {
+      id: '06',
+      title: 'Vegas Vault',
+      subtitle: '$120 Million Win',
+      amount: '$40',
+      image: 'https://cmaxv2images2.pages.dev/assets/icons/lottery.png',
+      time: { hh: '06', mm: '05', ss: '18' },
+    },
+  ];
+
+  imageClasses = [
+    'h-[141px] rounded-t-2xl',
+    'h-[169px] rounded-t-2xl',
+    'h-[198px] rounded-t-2xl',
+    'h-[225px] rounded-t-2xl',
+    'h-[250px] rounded-t-2xl z-10', // CENTER
+    'h-[225px] rounded-t-2xl',
+    'h-[198px] rounded-t-2xl',
+    'h-[169px] rounded-t-2xl',
+    'h-[141px] rounded-t-2xl',
+  ];
+
+  desktopLeftPositions = [
+    '15%', '23%', '32%', '41%', '50%', '59%', '68%', '77%', '85%'
+  ];
+
+  tabletClasses = [
+    'h-[170px] rounded-t-2xl',
+    'h-[195px] rounded-t-2xl',
+    'h-[220px] rounded-t-2xl z-10',
+    'h-[195px] rounded-t-2xl',
+    'h-[170px] rounded-t-2xl',
+  ];
+
+  tabletLeftPositions = [
+    '15%', '30%', '50%', '70%', '85%'
+  ];
+
+  mobileClasses = [
+    'h-[150px] w-[28%] rounded-t-2xl z-0',
+    'h-[180px] w-[40%] rounded-t-2xl z-10',
+    'h-[150px] w-[28%] rounded-t-2xl z-0',
+  ];
+
+  mobileLeftPositions = [
+    '17%', '50%', '83%'
+  ];
+
+  desktopImages = [
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/card.png',
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/game-room.png',
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/fire-kirin.png',
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/e-game.png',
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/dragon.png', // center
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/ace.png',
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/dragon-2.png',
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/cash-machine.png',
+    'https://cmaxv2images.pages.dev/assets/games/carousel-game/dragn-game.png',
+  ];
+
+  private imageRotationInterval!: any;
+
+  rotateImages() {
+    const last = this.desktopImages.pop();
+    if (last) {
+      this.desktopImages.unshift(last);
+    }
+  }
+
+  trackByImage(index: number, img: string) {
+    return img;
+  }
+
+  get tabletImages() {
+    return this.desktopImages.slice(2, 7); // 5 images
+  }
+
+  get mobileImages() {
+    return this.desktopImages.slice(3, 6); // 3 images
+  }
+}

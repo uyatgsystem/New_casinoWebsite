@@ -1,0 +1,210 @@
+<app-loader></app-loader>
+<div class="header flex flex-col lg:flex-row">
+  <h1>Guide Lines</h1>
+  <div class="tabs flex flex-wrap justify-between items-center gap-4">
+    <!-- Filters -->
+    <div class="flex flex-wrap justify-end lg:justify-between lg:items-center w-full lg:w-auto gap-4">
+      <!-- Row 1: Toggle and Search -->
+      <div class="flex w-full lg:w-auto items-center gap-4">
+        <!-- Toggle View -->
+
+        <!-- Search Bar -->
+        <div class="relative flex-1 max-w-full">
+          <input type="text" placeholder="Search Guide" [(ngModel)]="searchTerm"
+            class="w-full bg-gray-800/50 text-white rounded-full py-2 px-4 pl-10" />
+          <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none"
+            stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Row 2: Start Date, End Date, and Search Icon -->
+      <div class="flex w-full lg:w-auto items-center gap-4">
+        <!-- Start Date -->
+        <div class="flex flex-col flex-1">
+          <input id="startDate" type="date" class="date-input bg-gray-800/50 text-white rounded-full w-full"
+            [(ngModel)]="startDate" />
+        </div>
+
+        <!-- End Date -->
+        <div class="flex flex-col flex-1">
+          <input id="endDate" type="date" class="date-input bg-gray-800/50 text-white rounded-full w-full"
+            [(ngModel)]="endDate" />
+        </div>
+
+        <!-- Search Icon -->
+        <span class="view-toggle-btn" (click)="GetGuideLines()" title="Search">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-2 mb-2 w-[100%] h-[1px] bg-[#5C496B]"></div>
+
+<div *ngIf="viewMode == 'grid'">
+  <div class="Guides-grid hidden md:block" *ngIf="filteredGuideLines.length > 0; else noRecord">
+    <div *ngFor="let Guide of filteredGuideLines" class="Guide-card">
+      <div class="Guide-header">
+        <div class="flex justify-between">
+          <div class="flex m-2">
+            <div class="Guide-icon">
+              <!-- <img [src]="getGuideImage(Guide.Name)" alt="{{ Guide.Name }}" /> -->
+            </div>
+            <div class="Guide-info m-2">
+              <h3>{{ Guide.Title }}</h3>
+            </div>
+          </div>
+
+          <p class="amount text-gray-400 text-[1.5rem] mt-4">
+            {{ Guide.Description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="min-w-full hidden md:block" *ngIf="viewMode == 'table'">
+  <div class="flex text-gray-400 text-sm mb-4">
+    <div class="w-12 flex-shrink-0">Sr.</div>
+    <div class="flex-[2]">Title</div>
+    <div class="flex-[4]">Description</div>
+    <div class="flex-1">View File</div>
+    <div class="flex-1">Download</div>
+  </div>
+
+  <div (scroll)="onTableViewScroll()" #guidelinesTable class="space-y-4 max-h-[59dvh] overflow-y-auto"
+    *ngIf="filteredGuideLines.length > 0; else noRecord">
+    <div *ngFor="let Guide of filteredGuideLines; let i = index"
+      class="flex items-center py-3 border-b border-gray-800">
+      <div class="text-gray-300 w-12 flex-shrink-0">{{ i + 1 }}</div>
+      <div class="text-gray-300 flex-[2]">{{ Guide.Title }}</div>
+      <div class="text-white flex-[4]">{{ Guide.Description }}</div>
+      <div class="text-gray-300 flex-1">
+        <fa-icon class="Eye" (click)="downloadGuideline(Guide.Id, false)" [icon]="eye"></fa-icon>
+      </div>
+      <div class="text-gray-300 flex-1">
+        <fa-icon class="Eye" (click)="downloadGuideline(Guide.Id, true)" [icon]="Download"></fa-icon>
+      </div>
+    </div>
+  </div>
+
+  <!-- pagination start  -->
+
+  <!-- <div class="row">
+    <div class="mbp_pagination mt-6 text-center">
+      <ul class="page_navigation">
+        <li class="page-item" (click)="navigatePage('prev')">
+          <a class="page-link">
+            <span class="fas fa-angle-left"></span>
+          </a>
+        </li>
+
+        <ng-container *ngFor="let page of pages">
+          <li
+            class="page-item"
+            [ngClass]="{
+              disabled: page === '...',
+              active: page === currentPage
+            }"
+            *ngIf="page !== '...'"
+            (click)="navigateToPage(page)"
+          >
+            <a class="page-link">{{ page }}</a>
+          </li>
+          <li class="page-item disabled" *ngIf="page === '...'">
+            <span class="page-link">...</span>
+          </li>
+        </ng-container>
+
+        <li class="page-item" (click)="navigatePage('next')">
+          <a class="page-link">
+            <span class="fas fa-angle-right"></span>
+          </a>
+        </li>
+      </ul>
+
+      <p class="mt-5 mb-0 pagination_page_count text-center">
+        {{ getDisplayRange() }} of
+        {{ totalRecords }}
+      </p>
+    </div>
+  </div> -->
+</div>
+
+<ng-template #noRecord>
+  <div class="flex flex-col items-center justify-center gap-5">
+    <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
+    <!-- <p class="text-gray-400 text-sm tracking-wide">No records found</p> -->
+  </div>
+</ng-template>
+<div class="h-[60dvh] backdrop-blur-sm md:hidden">
+  <div class="flex flex-col justify-between items-center mb-6 lg:flex-row">
+    <div class="flex flex-wrap justify-end lg:justify-between lg:items-center w-full lg:w-auto gap-4"></div>
+  </div>
+  <!-- Transaction Table -->
+
+  <div class="flex flex-col">
+    <div class="space-y-2 h-[50dvh] overflow-y-scroll" (scroll)="onMobileScroll($event)"
+      *ngIf="filteredGuideLines.length > 0; else noRecord">
+      <div *ngFor="let guideline of filteredGuideLines; let i = index"
+        class="flex justify-between items-center border-b border-gray-800 bg-[var(--card-back)] rounded-3xl p-4">
+        <div class="flex flex-col">
+          {{ guideline?.Title }}
+          <span class="text-gray-400 text-sm">{{
+            guideline?.Description
+            }}</span>
+          <!-- Time -->
+          <!-- <div class="text-gray-400 text-sm">
+            {{ guideline?.time }}
+          </div> -->
+        </div>
+
+        <!-- Amount -->
+        <div class="text-white flex items-center gap-2">
+          <div class="text-gray-400 text-sm">
+            <fa-icon class="Eye" (click)="downloadGuideline(guideline.Id, false)" [icon]="eye"></fa-icon>
+          </div>
+          <div class="text-gray-400 text-sm">
+            <fa-icon class="Eye" (click)="downloadGuideline(guideline.Id, true)" [icon]="Download"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noRecord>
+    <div class="flex flex-col items-center justify-center gap-5">
+      <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
+      <!-- <p class="text-gray-400 text-sm tracking-wide">No records found</p> -->
+    </div>
+  </ng-template>
+</div>
+<!-- Captcha Modal -->
+<div *ngIf="showGuidelineModal" class="fixed inset-0 bg-black/80 flex items-center justify-center" style="z-index: 999">
+  <div class="bg-[#2A2A2A] rounded-xl p-6 w-96 mt-20">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-bold">Guideline</h2>
+      <!-- <button (click)="CloseGuidelineModal()" class="text-gray-400 hover:text-white">
+      ×
+    </button> -->
+      <button (click)="CloseGuidelineModal()" class="text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 384 512">
+          <path fill="currentColor"
+            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <ng-container>
+      <object [data]="safeUrl" type="application/pdf" width="100%" height="450px">
+        <embed [src]="safeUrl" type="application/pdf" height="600px" />
+      </object>
+    </ng-container>
+  </div>
+</div>

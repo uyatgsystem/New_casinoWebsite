@@ -1,0 +1,519 @@
+/* Suppress SCSS warnings for Tailwind at-rules - these are processed by PostCSS */
+@use "swiper/css";
+@use "swiper/css/navigation";
+@use "swiper/css/pagination";
+@use "ngx-toastr/toastr";
+@use "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+// @use "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+/* SweetAlert2 default theme */
+@import "sweetalert2/dist/sweetalert2.min.css";
+
+/* Animate.css for SweetAlert2 popup animations (CDN fallback to avoid local peer-dep conflicts) */
+@import url("https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.banner-img,
+.main-banner-container {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.image-bg {
+  background-image: url("https://cmaxv2images2.pages.dev/assets/backgrounds/bg-dark.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml;utf8,<svg width='1440' height='1227' viewBox='0 0 1440 1227' fill='none' xmlns='http://www.w3.org/2000/svg'><g filter='url(%23filter0_n_1504_314)'><rect width='1440' height='1227' fill='%23161819'/></g><defs><filter id='filter0_n_1504_314' x='0' y='0' width='1440' height='1227' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'><feFlood flood-opacity='0' result='BackgroundImageFix'/><feBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/><feTurbulence type='fractalNoise' baseFrequency='0.666 0.666' stitchTiles='stitch' numOctaves='3' result='noise' seed='3711'/><feComponentTransfer in='noise' result='coloredNoise1'><feFuncR type='linear' slope='2' intercept='-0.5'/><feFuncG type='linear' slope='2' intercept='-0.5'/><feFuncB type='linear' slope='2' intercept='-0.5'/><feFuncA type='discrete' tableValues='1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/></feComponentTransfer><feComposite operator='in' in2='shape' in='coloredNoise1' result='noise1Clipped'/><feComponentTransfer in='noise1Clipped' result='color1'><feFuncA type='table' tableValues='0 0.15'/></feComponentTransfer><feMerge result='effect1_noise_1504_314'><feMergeNode in='shape'/><feMergeNode in='color1'/></feMerge></filter></defs></svg>");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.nmbr-input::-webkit-outer-spin-button,
+.nmbr-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* SweetAlert2 custom theme to match app modals */
+.swal2-container {
+  /* Darker backdrop like bg-black/80 */
+  background: rgba(0, 0, 0, 0.8) !important;
+  z-index: 2000 !important;
+  /* Above app overlays */
+}
+
+/* Hide scrollbar globally but allow scroll */
+* {
+  scrollbar-width: none !important;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+.swal2-popup {
+  background-image: url("data:image/svg+xml;utf8,<svg width='1440' height='1227' viewBox='0 0 1440 1227' fill='none' xmlns='http://www.w3.org/2000/svg'><g filter='url(%23filter0_n_1504_314)'><rect width='1440' height='1227' fill='%23161819'/></g><defs><filter id='filter0_n_1504_314' x='0' y='0' width='1440' height='1227' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'><feFlood flood-opacity='0' result='BackgroundImageFix'/><feBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/><feTurbulence type='fractalNoise' baseFrequency='0.666 0.666' stitchTiles='stitch' numOctaves='3' result='noise' seed='3711'/><feComponentTransfer in='noise' result='coloredNoise1'><feFuncR type='linear' slope='2' intercept='-0.5'/><feFuncG type='linear' slope='2' intercept='-0.5'/><feFuncB type='linear' slope='2' intercept='-0.5'/><feFuncA type='discrete' tableValues='1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/></feComponentTransfer><feComposite operator='in' in2='shape' in='coloredNoise1' result='noise1Clipped'/><feComponentTransfer in='noise1Clipped' result='color1'><feFuncA type='table' tableValues='0 0.15'/></feComponentTransfer><feMerge result='effect1_noise_1504_314'><feMergeNode in='shape'/><feMergeNode in='color1'/></feMerge></filter></defs></svg>");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* Same as app modal */
+  color: var(--text) !important;
+  border-radius: 16px 3px 16px 3px !important;
+  /* rounded-3xl */
+  padding: 1.5rem !important;
+  /* p-6 */
+  box-shadow:
+    0 0 0 1px #8c8066,
+    0 4px 12px rgba(0, 0, 0, 0.55) !important;
+  max-width: 29rem !important;
+  /* w-[32rem] */
+}
+
+/* Compact variant to match smaller modals */
+.swal-compact.swal2-popup {
+  max-width: 24rem !important;
+  /* ~384px */
+  padding: 1rem !important;
+  /* p-4 */
+}
+
+/* Custom timer progress bar for SweetAlert2 auto-close */
+.swal2-popup {
+  /* allow the progress bar to sit inside the popup */
+  overflow: visible !important;
+  position: relative !important;
+}
+
+.swal2-timer-progress-bar {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: 6px !important;
+  border-bottom-left-radius: 1.5rem !important;
+  border-bottom-right-radius: 1.5rem !important;
+  background: var(--gradient) !important;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.18) !important;
+  z-index: 2100 !important;
+  will-change: width !important;
+  transition: width 0.1s linear !important;
+}
+
+.swal2-timer-progress-bar .swal2-timer-progress-filled {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--gradient);
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  box-shadow: inherit;
+}
+
+/* compact variant: thinner progress bar and smaller radius */
+.swal-compact .swal2-timer-progress-bar {
+  height: 4px !important;
+  border-bottom-left-radius: 0.75rem !important;
+  border-bottom-right-radius: 0.75rem !important;
+}
+
+/* subtle pulsing glow while visible */
+.swal2-timer-progress-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -4px;
+  height: 4px;
+  background: linear-gradient(90deg,
+      rgba(124, 58, 237, 0.12),
+      rgba(79, 70, 229, 0.08));
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.swal-compact .swal2-title {
+  font-size: 1.125rem !important;
+  color: #fec866 !important;
+  /* text-lg */
+  margin-bottom: 0.25rem !important;
+}
+
+.swal-compact .swal2-html-container {
+  font-size: 0.95rem !important;
+}
+
+.swal2-title {
+  color: #fec866 !important;
+  font-weight: 700 !important;
+  /* font-bold */
+  font-size: 1.25rem !important;
+  /* text-xl */
+  margin-bottom: 0.5rem !important;
+}
+
+.swal2-html-container {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 1rem !important;
+}
+
+.swal2-actions {
+  gap: 0.75rem !important;
+}
+
+.swal2-styled:focus {
+  box-shadow: none !important;
+}
+
+
+.swal2-styled.swal2-confirm {
+  background: var(--gradient) !important;
+  color: black !important;
+  font-weight: 600 !important;
+
+  border-top-left-radius: 16px !important;
+  border-top-right-radius: 3px !important;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 3px;
+  padding: 0.65rem 1.25rem !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.swal2-styled.swal2-confirm:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.swal2-styled.swal2-cancel {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  border-radius: 0.75rem !important;
+  padding: 0.6rem 1.1rem !important;
+}
+
+.swal2-icon {
+  box-shadow: none !important;
+}
+
+:root {
+  --font-family: "Libre Franklin", "Helvetica Neue";
+  --nav-Background: #161819;
+  --ground: #1618199f;
+
+  --text-primary: #c86b23;
+  --text-black: #1d1c1c;
+  --text-light: #e4e4e4;
+  --background: #000000;
+  --gradient: linear-gradient(180deg, #fec866 0%, #fe8006 100%);
+  --active: linear-gradient(90deg,
+      rgba(116, 21, 163, 1) 0%,
+      rgba(90, 48, 217, 1) 100%);
+  --active-hover: linear-gradient(90deg,
+      rgba(90, 48, 217, 1) 0%,
+      rgba(116, 21, 163, 1) 100%);
+  --button-back: #c86b23;
+  --spinner-back: rgba(21, 22, 51, 0.89);
+  --darkGradient: linear-gradient(180deg, #470e5e 0%, #150b41 100%);
+  --card-back: #232627;
+  --landing-back: #0e0e1a;
+  --landing-card: rgb(23, 32, 41);
+  --main-color2: #7de7e5;
+  --card-back2: #1e8a8a;
+
+  .btn-primary {
+    @apply py-2 px-10 bg-gradient-to-b from-[#F3A630] to-[#F86E12] text-black font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .btn-outline {
+    @apply border border-[#C3B089] text-[#F3A630] py-2 px-10 font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl;
+  }
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fe8912;
+}
+
+.--button {
+  // background: var(--button-back) !important;
+  background: linear-gradient(to right, #19e4e0, #0e7e7c);
+
+  color: var(--text-black) !important;
+  font-weight: 700 !important;
+}
+
+body {
+  background-color: var(--background);
+  //background-color: #111;
+  color: var(--text);
+  font-family: var(--font-family);
+  min-height: 100%;
+  /*or 100vh */
+  position: relative;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  z-index: 99 !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #1e8a8a;
+  border-radius: 4px;
+}
+
+.shadow-custom {
+  --tw-shadow: 0 0 25px 0 rgb(255 255 255 / 0.6);
+  --tw-shadow-colored: 0 0 25px 0 var(--tw-shadow-color);
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
+}
+
+.loading-text {
+  top: 50% !important;
+}
+
+// border width : 0.5px class
+.border-0-5 {
+  border-width: 0.5px;
+}
+
+.bg_active {
+  background: var(--active);
+  transition: background 0.3s ease-in-out;
+
+  &:hover {
+    background: var(--active-hover);
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-track {
+  background: #181d2e;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #37405c;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #2c3246;
+    transform: scale(1.1);
+    box-shadow: #2c3246;
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {}
+
+.owl-item.cloned.active {
+  display: none !important;
+}
+
+.no-records-found {
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: x-large;
+    font-weight: 800;
+    color: white;
+  }
+}
+
+@media (max-width: 800px) {
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Global wrapper to unify content width for components like tab navigation and lottery cards */
+.content-wrapper {
+  width: 90vw;
+  margin: 2rem auto;
+
+  @media (max-width: 480px) {
+    width: 95vw;
+  }
+
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
+}
+
+.modal-overlay {
+  z-index: 999;
+}
+
+.Add_Bal {
+  z-index: 999;
+}
+
+.modal {
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.3s ease !important;
+  -webkit-animation-name: animatetop !important;
+  -webkit-animation-duration: 0.4s !important;
+  animation-name: animatetop !important;
+  animation-duration: 0.4s !important;
+  // background-color: #000408 !important;
+}
+
+@media (max-width: 800px) {
+  .modal-overlay {
+    padding: 0;
+    transition: opacity 0.3s ease !important;
+    z-index: 999;
+    // width: 27rem;
+  }
+
+  .modal {
+    position: fixed;
+    bottom: 12vh;
+    left: 50%;
+    transform: translate(-50%, 100%);
+
+    width: calc(100% - 32px) !important;
+    max-width: 420px !important;
+    min-height: 20dvh;
+    max-height: 80dvh;
+    overflow-y: auto;
+
+    // background-color: #000408 !important;
+    opacity: 0;
+
+    transition:
+      transform 0.5s ease-in-out,
+      opacity 0.3s ease;
+  }
+
+  .modal.slide-up {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+
+
+
+// /* Hide Google top banner completely */
+// .goog-te-banner-frame.skiptranslate {
+//   display: none !important;
+// }
+
+// /* Remove top spacing added by Google */
+// body {
+//   top: 0px !important;
+//   position: static !important;
+// }
+
+// /* Hide the floating tooltip */
+// .goog-tooltip {
+//   display: none !important;
+// }
+
+// .goog-tooltip:hover {
+//   display: none !important;
+// }
+
+// /* Optional: hide "Powered by Google" */
+// .goog-logo-link {
+//   display: none !important;
+// }
+
+// .goog-te-gadget {
+//   font-size: 0px !important;
+// }
+
+
+/* Hide entire google translate banner container */
+iframe.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* Hide that close button row/table */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* Remove that top strip completely */
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Hide Google Translate top bar */
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+}
+
+/* Remove extra top space added by Google */
+body {
+  top: 0px !important;
+}
+
+/* Hide iframe if still visible */
+iframe.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* Optional: hide translate gadget completely */
+.goog-te-gadget {
+  display: none !important;
+}

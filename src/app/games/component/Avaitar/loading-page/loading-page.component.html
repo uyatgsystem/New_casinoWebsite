@@ -1,0 +1,91 @@
+<div class="loading-bg">
+  <!-- Animated Background Elements -->
+  <div class="bg-animated">
+<div class="bg-particles">
+  <div
+    class="particle"
+    *ngFor="let p of particles"
+    [ngStyle]="{
+      left: p.left + '%',
+      top: p.top + '%',
+      animationDelay: p.delay + 's',
+      animationDuration: p.duration + 's'
+    }"
+  ></div>
+</div>
+    <div class="bg-clouds">
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+    </div>
+  </div>
+
+  <div class="loading-container">
+    <!-- Main Plane Section -->
+    <div class="hero-section">
+      <div class="plane-main-wrapper">
+        <div class="plane-shadow"></div>
+        <img src="/plane.png" class="plane-main-img" alt="Aviator Plane" loading="eager" />
+        <div class="plane-glow"></div>
+        <div class="plane-trail">
+          <div class="trail-line trail-1"></div>
+          <div class="trail-line trail-2"></div>
+          <div class="trail-line trail-3"></div>
+        </div>
+      </div>
+      
+      <!-- Floating Elements -->
+      <div class="floating-elements">
+        <div class="floating-coin coin-1">💰</div>
+        <div class="floating-coin coin-2">🪙</div>
+        <div class="floating-coin coin-3">💎</div>
+        <div class="floating-coin coin-4">💰</div>
+        <div class="floating-coin coin-5">🪙</div>
+        <div class="floating-coin coin-6">💎</div>
+        <div class="floating-coin coin-7">💰</div>
+        <div class="floating-coin coin-8">🪙</div>
+      </div>
+    </div>
+    
+    <!-- Game Title Section -->
+    <div class="game-info">
+      <div class="loading-title">AVIATOR</div>
+      <div class="loading-subtitle">High Stakes Crash Game</div>
+    </div>
+    
+    <!-- Loading Progress Section -->
+    <div class="loading-progress-section">
+      <div class="loading-text">
+        <span>Loading Game</span>
+        <div class="loading-dots">
+          <span class="dot dot1">•</span>
+          <span class="dot dot2">•</span>
+          <span class="dot dot3">•</span>
+        </div>
+      </div>
+      
+      <div class="loading-bar-container">
+        <div class="loading-bar-outer">
+          <div 
+            class="loading-bar-inner" 
+            #loadingBar>
+            <div class="loading-bar-shine"></div>
+            <div class="loading-bar-glow"></div>
+          </div>
+        </div>
+        <div class="loading-percentage" #loadingPercentage>0%</div>
+      </div>
+    </div>
+    
+    <!-- Brand Footer -->
+    <div class="brand-footer">
+      <div class="brand-text">Premium Gaming Experience</div>
+    </div>
+  </div>
+  
+  <!-- Overlay Effects -->
+  <div class="overlay-effects">
+    <div class="vignette"></div>
+    <div class="scanlines"></div>
+  </div>
+</div>

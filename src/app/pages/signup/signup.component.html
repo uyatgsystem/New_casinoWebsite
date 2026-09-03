@@ -1,0 +1,529 @@
+<app-loader></app-loader>
+<div
+  class="main-bg relative w-full h-screen min-h-[100vh] bg-cover bg-center overflow-y-auto lg:overflow-hidden"
+>
+  <!-- Main Container with Left and Right Divs -->
+  <div class="flex flex-col lg:flex-row lg:absolute lg:inset-0 min-h-screen">
+    <!-- LeftDiv: Logo, Welcome Text, Person Image -->
+
+    <div
+      class="hidden lg:flex flex-1 flex-col justify-between bg-[#00040880]"
+      style="clip-path: ellipse(85% 100% at 0% 50%)"
+    >
+      <!-- Logo -->
+      <div
+        class="hidden md:hidden lg:flex justify-start lg:mb-0 pt-4 lg:p-[1rem]"
+      >
+        <img
+          src="https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png"
+          alt="Logo"
+          class="w-[200px] h-[150px]"
+          style="
+            transform: scale(1.1);
+            transform-origin: center;
+            margin-left: 4rem;
+          "
+        />
+      </div>
+      <!-- Welcome Text -->
+      <div
+        class="mobile-welcome-text flex flex-col items-start text-left text-white max-w-xl mx-auto lg:mx-0 pl-[3rem] lg:flex"
+      >
+        <h1
+          class="text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] xl:text-[42px] 2xl:text-[42px] font-bold mb-4 leading-tight"
+        >
+          Begin Your <span class="text-[#F3A630]">CasinoMaxs Journey</span>
+        </h1>
+
+        <p
+          class="text-white-300 text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] leading-relaxed"
+        >
+          Step into the luxurious world of CasinoMaxs. Create your account and
+          experience the thrill, elegance, and excitement of gaming, where every
+          spin, card, and roll unlocks exciting rewards, premium prizes, and
+          unforgettable victories. Your ultimate gaming adventure starts here.
+        </p>
+      </div>
+
+      <!-- Person Image -->
+      <div class="hidden lg:flex justify-start items-end">
+        <img
+          src="https://cmaxv2images2.pages.dev/assets/avatars/loginCPL.png"
+          alt="Person"
+          class="w-auto h-[100px] sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[470px]"
+        />
+      </div>
+    </div>
+
+    <!-- Mobile Header -->
+    <div
+      class="lg:hidden text-center text-white relative"
+      style="clip-path: ellipse(59% 100% at 50% 25%)"
+    >
+      <img
+        src="https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png"
+        class="w-[105px] relative left-6"
+      />
+
+      <h1 class="text-lg font-semibold">
+        Begin your<br />
+        <span class="text-[#F3A630]">CasinoMaxs </span>Journey
+      </h1>
+
+      <p class="text-xs text-gray-300 px-6 mt-2 leading-relaxed">
+        Join CasinoMaxs today and experience luxury gaming where every Game
+        brings real cash prizes and big winnings.
+      </p>
+
+      <!-- Curved Overlay -->
+      <div
+        class="absolute top-0 left-0 w-full h-[50vh] bg-black opacity-80 rounded-b-[50%] -z-10"
+      ></div>
+    </div>
+
+    <!-- RightDiv: Form Section -->
+    <div
+      class="flex-1 flex items-center lg:items-center justify-center p-4 lg:p-8 lg:pr-16 pb-20 lg:pb-8"
+    >
+      <div
+        class="rounded-[1.5rem] backdrop-blur-md border border-[#FE8912] p-4 sm:p-5 md:p-6 lg:p-8 2xl:p-[3rem] w-full max-w-sm sm:max-w-sm md:max-w-md 2xl:max-w-[30rem] mx-auto lg:mx-0 overflow-hidden"
+        id="formContainer"
+      >
+        <!-- Header -->
+        <div class="my-6 lg:mb-4">
+          <div
+            class="flex items-center justify-center md:justify-start gap-2 mt-3 md:mb-3 lg:mb-2"
+          >
+            <span
+              class="text-white hover:text-[#F3A630] text-lg lg:text-[24px] font-semibold cursor-pointer"
+              routerLink="/login"
+              >Log In</span
+            >
+            <span class="text-white text-lg lg:text-[24px]">/</span>
+            <a class="text-[#F3A630] text-lg lg:text-[24px] transition-colors"
+              >Create Account</a
+            >
+          </div>
+          <p class="text-white text-xs lg:text-[1rem] mb-2 lg:mb-10 xl:mb-12">
+            Create an account to continue.
+          </p>
+        </div>
+
+        <!-- Form -->
+        <form
+          [formGroup]="signupForm"
+          autocomplete="off"
+          (ngSubmit)="createUser()"
+        >
+          <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+          <!-- First & Last Name -->
+          <div class="flex flex-col lg:flex-row gap-3 mb-4">
+            <!-- First Name -->
+            <div class="w-full lg:w-1/2">
+              <input
+                id="firstName"
+                type="text"
+                formControlName="firstName"
+                placeholder="First Name"
+                class="w-full text-white placeholder-white py-3 focus:outline-none bg-inherit text-sm"
+              />
+
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+
+              <div
+                *ngIf="
+                  signupForm.get('firstName')?.invalid &&
+                  signupForm.get('firstName')?.touched
+                "
+                class="text-red-400 text-xs mt-1"
+              >
+                First name is required.
+              </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="w-full lg:w-1/2">
+              <input
+                id="lastName"
+                type="text"
+                formControlName="lastName"
+                placeholder="Last Name"
+                class="w-full text-white placeholder-white py-3 focus:outline-none bg-inherit text-sm"
+              />
+
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+
+              <div
+                *ngIf="
+                  signupForm.get('lastName')?.invalid &&
+                  signupForm.get('lastName')?.touched
+                "
+                class="text-red-400 text-xs mt-1"
+              >
+                Last name is required.
+              </div>
+            </div>
+          </div>
+
+          <!-- Username -->
+          <div class="flex flex-col lg:flex-row gap-3 mb-4">
+            <div class="w-full lg:w-1/2">
+              <input
+                id="username"
+                type="text"
+                formControlName="username"
+                placeholder="Username"
+                class="w-full text-white placeholder-white py-3 focus:outline-none bg-inherit text-sm"
+                (input)="restrictWhiteSpaces()"
+              />
+
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+
+              <div
+                *ngIf="
+                  signupForm.get('username')?.invalid &&
+                  signupForm.get('username')?.touched
+                "
+                class="text-red-400 text-xs mt-1"
+              >
+                Username is required.
+              </div>
+            </div>
+
+            <div class="w-full lg:w-1/2">
+              <input
+                id="referralCode"
+                type="text"
+                formControlName="referralCode"
+                placeholder="Referal Code (Optional)"
+                class="w-full text-white placeholder-white py-3 focus:outline-none bg-inherit text-sm"
+                (input)="restrictWhiteSpaces()"
+              />
+
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-5">
+            <div class="relative">
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="Email Address"
+                class="w-full text-white placeholder-white py-3 pr-10 focus:outline-none bg-inherit text-sm"
+              />
+
+              <i
+                class="fas fa-envelope text-gray-300 absolute right-3 top-1/2 -translate-y-1/2"
+              ></i>
+            </div>
+
+            <!-- Gradient Border -->
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+
+            <div
+              *ngIf="
+                signupForm.get('email')?.invalid &&
+                signupForm.get('email')?.touched
+              "
+              class="text-red-400 text-xs mt-1"
+            >
+              <div *ngIf="signupForm.get('email')?.errors?.['required']">
+                Email is required.
+              </div>
+              <div *ngIf="signupForm.get('email')?.errors?.['email']">
+                Invalid email format.
+              </div>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-5 relative">
+            <input
+              id="password"
+              [type]="showpassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Password"
+              class="w-full text-white placeholder-white py-3 focus:outline-none bg-inherit text-sm"
+              (input)="checkPasswordStrength()"
+              (focus)="isPasswordFocused = true"
+              (blur)="isPasswordFocused = false"
+            />
+
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <fa-icon
+                class="cursor-pointer text-white hover:text-[#F3A630] transition-colors text-xs"
+                (click)="togglePassword()"
+                [icon]="showpassword ? hideicon : showicon"
+              ></fa-icon>
+            </div>
+          </div>
+          <!-- Password Requirements -->
+          <div
+            *ngIf="
+              signupForm.get('password')?.dirty &&
+              isPasswordFocused &&
+              !allRequirementsMet()
+            "
+            class="mb-5 p-2 bg-opacity-20 rounded text-xs"
+          >
+            <ul class="space-y-1">
+              <li
+                [class.text-green-500]="passwordChecks.length"
+                [class.text-red-500]="!passwordChecks.length"
+              >
+                Must be at least 8 characters
+              </li>
+              <li
+                [class.text-green-500]="passwordChecks.numbers"
+                [class.text-red-500]="!passwordChecks.numbers"
+              >
+                Must contain at least 2 numbers
+              </li>
+              <li
+                [class.text-green-500]="passwordChecks.uppercase"
+                [class.text-red-500]="!passwordChecks.uppercase"
+              >
+                Must contain at least 1 uppercase letter
+              </li>
+              <li
+                [class.text-green-500]="passwordChecks.lowercase"
+                [class.text-red-500]="!passwordChecks.lowercase"
+              >
+                Must contain at least 1 lowercase letter
+              </li>
+              <li
+                [class.text-green-500]="passwordChecks.special"
+                [class.text-red-500]="!passwordChecks.special"
+              >
+                Must contain at least 1 special character
+              </li>
+            </ul>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="mb-[1rem] relative">
+            <input
+              id="confirmPassword"
+              [type]="Confirmshowpassword ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              placeholder="Confirm Password"
+              class="w-full text-white placeholder-white py-3 focus:outline-none bg-inherit text-sm"
+            />
+
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <fa-icon
+                class="cursor-pointer text-white hover:text-[#F3A630] transition-colors text-xs"
+                (click)="toggleConfirmPassword()"
+                [icon]="Confirmshowpassword ? hideicon : showicon"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div
+            *ngIf="
+              signupForm.errors?.['passwordMismatch'] &&
+              signupForm.get('confirmPassword')?.dirty
+            "
+            class="text-red-400 text-xs mt-1 mb-4"
+          >
+            Passwords do not match.
+          </div>
+
+          <!-- Terms & Conditions Checkbox -->
+          <div
+            class="flex items-start gap-2 rounded transition"
+            [ngClass]="{
+              'border border-red-400':
+                signupForm.get('acceptTerms')?.touched &&
+                !signupForm.value.acceptTerms,
+            }"
+          >
+            <input
+              type="checkbox"
+              formControlName="acceptTerms"
+              class="mt-1 accent-[#F3A630] cursor-pointer"
+            />
+
+            <label class="text-xs text-white leading-4">
+              I confirm that I’m 18+ and agree to the
+              <span
+                class="text-[#F3A630] cursor-pointer underline"
+                (click)="openTermsModal()"
+              >
+                Terms & Conditions
+              </span>
+            </label>
+          </div>
+
+          <!-- Bonus Checkbox -->
+          <div
+            class="flex items-start gap-2 mt-2 mb-2 transition"
+            [ngClass]="{
+              'border border-red-400':
+                signupForm.get('acceptOffers')?.touched &&
+                !signupForm.value.acceptOffers,
+            }"
+          >
+            <input
+              type="checkbox"
+              formControlName="acceptOffers"
+              class="mt-1 accent-[#F3A630] cursor-pointer"
+            />
+
+            <label class="text-xs text-white leading-4">
+              I agree to receive personal bonuses and offers
+            </label>
+          </div>
+
+          <!-- Validation Message -->
+          <div
+            *ngIf="
+              signupForm.get('acceptTerms')?.invalid &&
+              signupForm.get('acceptTerms')?.touched
+            "
+            class="text-red-400 text-xs mt-1"
+          >
+            You must accept Terms & Conditions.
+          </div>
+
+          <!-- Sign Up Button -->
+          <button
+            type="submit"
+            [disabled]="signupForm.invalid"
+            [disabled]="!signupForm.value.acceptTerms"
+            class="w-full mb-5 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black px-1 py-[0.55rem] font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-base"
+          >
+            Sign Up
+          </button>
+
+          <!-- Google Sign Up Button -->
+          <button
+            (click)="continueWithGoogle()"
+            style="display: flex"
+            class="w-full mb-5 flex flex-row !flex-nowrap items-center justify-center gap-1 border border-[#C3B089] bg-transparent text-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] px-2 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-sm transform hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google"
+              class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+            />
+
+            <span
+              class="text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] bg-clip-text text-transparent"
+            >
+              Continue with Google
+            </span>
+          </button>
+
+          <!-- Login Link -->
+          <p class="text-center text-xs mt-4 text-gray-300">
+            Already have an account?
+            <a
+              routerLink="/login"
+              class="text-[#F3A630] hover:text-white transition-colors ml-1 underline"
+            >
+              Sign In
+            </a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Backdrop -->
+  <div
+    *ngIf="showTermsModal"
+    class="fixed inset-0 flex items-center justify-center z-50"
+  >
+    <!-- Modal Box -->
+    <div
+      class="bg-noise w-[90%] md:w-[70%] lg:w-[60%] max-h-[90vh] overflow-y-auto rounded-xl p-6 rounded-[1.5rem] backdrop-blur-md border border-[#FE8912]"
+    >
+      <h2 class="text-[#F3A630] text-xl font-semibold mb-4">
+        Terms & Conditions
+      </h2>
+
+      <div class="text-sm text-gray-300 leading-5 space-y-3">
+        <p>
+          <strong>1.</strong> By registering on
+          <span class="text-white">CMaxs</span>, you confirm that you are at
+          least 18 years old and legally allowed to participate in online gaming
+          activities.
+        </p>
+
+        <p>
+          <strong>2.</strong> Users are responsible for maintaining the
+          confidentiality of their account credentials. Any activity under your
+          account will be considered your responsibility.
+        </p>
+
+        <p>
+          <strong>3.</strong> CMaxs reserves the right to suspend or terminate
+          accounts involved in fraudulent, abusive, or suspicious activities
+          without prior notice.
+        </p>
+
+        <p>
+          <strong>4.</strong> All games available on the platform are for
+          entertainment purposes. Winning outcomes are based on random systems
+          and are not guaranteed.
+        </p>
+
+        <p>
+          <strong>5.</strong> Deposits and withdrawals must be made using valid
+          and authorized payment methods. Verification may be required before
+          processing transactions.
+        </p>
+
+        <p>
+          <strong>6.</strong> Bonus offers and promotions are subject to
+          specific wagering requirements and conditions, which must be fulfilled
+          before withdrawals.
+        </p>
+
+        <p>
+          <strong>7.</strong> CMaxs is not responsible for any financial losses
+          incurred while using the platform. Users are encouraged to play
+          responsibly.
+        </p>
+
+        <p>
+          <strong>8.</strong> The platform reserves the right to modify or
+          update these Terms & Conditions at any time. Continued use of the
+          platform means you accept the updated terms.
+        </p>
+
+        <p>
+          <strong>9.</strong> Any misuse of the platform, including attempts to
+          exploit bugs or manipulate results, may result in permanent account
+          suspension.
+        </p>
+      </div>
+      <div class="flex justify-end mt-6">
+        <button
+          (click)="closeTermsModal()"
+          class="px-4 py-2 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black px-1 py-[0.55rem] font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-sm rounded"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Bottom Character Image - Mobile Only -->
+  <div
+    class="lg:hidden fixed bottom-0 left-0 pl-2 flex justify-start items-end w-[8rem] pointer-events-none"
+  >
+    <img
+      src="https://cmaxv2images2.pages.dev/assets/avatars/loginCPL.png"
+      alt="Character"
+      class="w-[7rem] sm:w-[8rem] h-auto"
+    />
+  </div>
+</div>

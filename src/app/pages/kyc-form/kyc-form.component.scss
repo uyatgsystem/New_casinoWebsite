@@ -1,0 +1,14 @@
+.date-input,
+.select-input {
+    color: #625E5E;
+}
+
+.date-input.filled,
+.select-input.filled {
+    color: #A6B1C2;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+

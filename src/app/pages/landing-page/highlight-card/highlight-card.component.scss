@@ -1,0 +1,52 @@
+@media (max-width: 1024px) {
+    .relative>.absolute {
+        width: 65%;
+        top: 15%;
+    }
+
+    .relative>div {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .relative>.absolute {
+        width: 70%;
+        top: 20%;
+        right: 0;
+    }
+
+    .relative>div {
+        padding: 2rem;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .relative>.absolute {
+        width: 80%;
+        top: 25%;
+        right: 0;
+    }
+
+    .relative>div {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    p {
+        font-size: 13px;
+        line-height: 18px;
+    }
+}

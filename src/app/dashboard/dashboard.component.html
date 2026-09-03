@@ -1,0 +1,136 @@
+<!-- <div
+  class="flex"
+  [ngClass]="router.url !== '/dashboard/GuideLines' ? 'mb-[5rem]' : 'mb-[0rem]'"
+> -->
+<div
+  class="flex"
+  [ngClass]="
+    router.url !== '/dashboard/GuideLines' &&
+    router.url !== '/dashboard/wallet' &&
+    router.url !== '/dashboard/account' &&
+    router.url !== '/dashboard/credentials' &&
+    router.url !== '/dashboard/redeem' &&
+    router.url !== '/dashboard/TreasurePick' &&
+    router.url !== '/dashboard/Baccaret' &&
+    router.url !== '/dashboard/spinner' &&
+    router.url !== '/dashboard/lottery' &&
+    router.url !== '/dashboard/changePass' &&
+    router.url !== '/dashboard/SectrechCards' &&
+    !isTreasurePickRoute() &&
+    !router.url.startsWith('/dashboard/buy-now')
+      ? ''
+      : '-mb-[1rem]'
+  "
+>
+  <!-- &&
+    router.url !== '/dashboard/SectrechCards' &&
+    router.url.startsWith('dashboard/buy-now') -->
+  <!-- md:w-[15%]  -->
+  <div
+    *ngIf="!isTreasurePickRoute()"
+    class="flex max-w-[250px] lg:w-[250px] flex-shrink-0"
+    [class.hidden]="!isSidebarOpen"
+  >
+    <app-side-bar></app-side-bar>
+  </div>
+  <div
+    [ngClass]="[
+      router.url === '/dashboard/Avaitar' ||
+      router.url === '/dashboard/TreasurePick' ||
+      router.url === '/dashboard/Roulette' ||
+      router.url === '/dashboard/Mines' ||
+      router.url === '/dashboard/Plinko' ||
+      router.url === '/dashboard/StackBuilder' ||
+      router.url === '/dashboard/Baccaret' ||
+      router.url === '/dashboard/Double' ||
+      router.url === '/dashboard/Keno' ||
+      router.url === '/dashboard/coin' ||
+      router.url === '/dashboard/rpc' 
+        ? 'md:w-[100%] w-[100%]'
+        : 'lg:max-w-[77%] xl:max-w-[80%] 2xl:max-w-[83%] w-[100%] flex-1',
+      isSpinnerModule() ? 'mb-[0px] lg:mb-0' : '',
+    ]"
+  >
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!-- Free Spin Popup Modal -->
+<div
+  *ngIf="showFreeSpinModal"
+  class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[9999] p-4"
+  (click)="closeFreeSpinModal()"
+>
+  <div class="relative w-full max-w-2xl" (click)="$event.stopPropagation()">
+    <div
+      class="relative p-[2px] rounded-tl-[24px] rounded-tr-[6px] rounded-br-[24px] rounded-bl-[6px]"
+      style="
+        background: linear-gradient(
+          90deg,
+          #f3a630 0%,
+          #fe8912 50%,
+          #f3a630 100%
+        );
+      "
+    >
+      <div
+        class="relative bg-[#161819] rounded-tl-[24px] rounded-tr-[6px] rounded-br-[24px] rounded-bl-[6px] p-8 md:p-12"
+      >
+        <button
+          (click)="closeFreeSpinModal()"
+          class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <h2
+          class="text-2xl md:text-3xl font-bold mb-6 text-center bg-gradient-to-r from-[#F3A630] to-[#FE8912] bg-clip-text text-transparent"
+        >
+          🎉 Free Spin Available!
+        </h2>
+
+        <div class="relative flex justify-center items-center mb-8">
+          <img
+            src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png"
+            alt="Spinner Wheel"
+            class="w-80 h-80 object-contain"
+          />
+        </div>
+
+        <p class="text-center text-gray-300 text-base md:text-lg mb-8 px-4">
+          You have a
+          <span class="text-[#F3A630] font-semibold">free spin</span>
+          waiting for you. Spin the wheel now to win exciting prizes!
+        </p>
+
+        <button
+          (click)="navigateToSpinner()"
+          class="w-full md:w-auto mx-auto block bg-gradient-to-r from-[#F3A630] to-[#FE8912] text-black font-bold py-4 px-12 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-[0_0_20px_rgba(243,166,48,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(243,166,48,0.7)] text-lg"
+        >
+          Spin Now
+        </button>
+
+        <p class="text-center text-gray-500 text-xs mt-4">
+          This is your welcome gift. Don't miss out!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div>
+  <app-footer></app-footer>
+</div> -->

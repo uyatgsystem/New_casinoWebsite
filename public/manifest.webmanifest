@@ -1,0 +1,25 @@
+{
+  "name": "CasinoMaxs",
+  "short_name": "CasinoMaxs",
+  "description": "Play your favorite casino games on CasinoMaxs – the ultimate casino experience.",
+  "theme_color": "#0A0E1F",
+  "background_color": "#0A0E1F",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png?v=1",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png?v=1",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

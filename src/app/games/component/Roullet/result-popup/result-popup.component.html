@@ -1,0 +1,44 @@
+@if (show && result) {
+  <div class="popup-backdrop" (click)="onBackdropClick($event)" @fadeIn>
+    <div class="popup-content">
+      <!-- Close button -->
+      <button class="close-button" (click)="onClose()" aria-label="Close">
+        <span>&times;</span>
+      </button>
+
+      <!-- Result display -->
+      <div class="result-container">
+        <div 
+          class="result-number"
+          [class.red]="result.color === 'red'"
+          [class.black]="result.color === 'black'"
+          [class.green]="result.color === 'green'">
+          <span class="number">{{ result.number }}</span>
+        </div>
+
+        <div class="result-outcome" [class.won]="result.isWin" [class.lost]="!result.isWin">
+          <h2>{{ result.isWin ? 'YOU WON' : 'YOU LOST' }}</h2>
+        </div>
+
+        @if (result.isWin && result.totalPayout > 0) {
+          <div class="result-payout">
+            <div class="payout-label">Payout</div>
+            <div class="payout-amount">+{{ result.totalPayout.toFixed(2) }}$</div>
+          </div>
+        }
+
+        @if (result.netProfit !== 0) {
+          <div class="result-net" [class.positive]="result.netProfit > 0" [class.negative]="result.netProfit < 0">
+            <div class="net-label">Net</div>
+            <div class="net-amount">
+              {{ result.netProfit > 0 ? '+' : '' }}{{ result.netProfit.toFixed(2) }}$
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Auto-close indicator -->
+      <div class="auto-close-bar"></div>
+    </div>
+  </div>
+}

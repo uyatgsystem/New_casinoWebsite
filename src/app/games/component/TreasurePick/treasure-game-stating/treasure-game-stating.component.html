@@ -1,0 +1,66 @@
+<div class="treasure-loader-bg">
+  <!-- Game Name Top Left -->
+  <div class="game-name-img">
+    <img [src]="gameName" alt="Game Name" />
+    <div class="game-info-container" *ngIf="loaderState === 'open' || loaderState === 'done'">
+      <div class="game-info-text slide-in-info" style="animation-delay:0.2s">Choose Your Treasure Wisely</div>
+      <div class="game-info-text slide-in-info" style="animation-delay:0.8s">Unlock Hidden Rewards</div>
+      <div class="game-info-text slide-in-info" style="animation-delay:1.4s">Golden Coins Await</div>
+      <div class="game-info-text slide-in-info" style="animation-delay:2.0s">Spin for a Chance to Win</div>
+      <div class="game-info-text slide-in-info" style="animation-delay:2.6s">Every Chest Holds a Surprise</div>
+    </div>
+  </div>
+
+  <!-- Centered Loader Content -->
+  <div class="treasure-loader-center">
+    <!-- Chest Animations -->
+    <img
+      [src]="closedChest"
+      alt="Closed Chest"
+      class="treasure-chest-img closed-chest"
+      [ngClass]="{ 'chest-shake': loaderState === 'shake', 'chest-hoverable': loaderState === 'shake' }"
+      *ngIf="loaderState === 'shake'"
+    />
+
+    <img
+      [src]="openChest"
+      alt="Open Chest"
+      class="treasure-chest-img open-chest"
+      [ngClass]="{
+        'chest-opening': loaderState === 'open',
+        'chest-glow': loaderState === 'open' || loaderState === 'done',
+        'chest-hoverable': loaderState === 'open' || loaderState === 'done'
+      }"
+      *ngIf="loaderState === 'open' || loaderState === 'done'"
+    />
+
+    <!-- Loader Bar -->
+    <div
+      class="loader-bar-container"
+      *ngIf="loaderState === 'open' || loaderState === 'done'"
+    >
+      <div class="loader-bar-bg">
+        <div class="loader-bar-fg" [style.width.%]="progress"></div>
+        <div class="loader-bar-shine"></div>
+      </div>
+      <div class="loader-bar-text">{{ progress }}%</div>
+    </div>
+  </div>
+
+  <!-- Falling Coins -->
+  <div class="coin-fall-container">
+    <img
+      *ngFor="let coin of coins"
+      [src]="coinImg"
+      class="falling-coin"
+      [style.left.%]="coin.left"
+      [style.width.px]="coin.size"
+      [style.height.px]="coin.size"
+      [style.animationDuration.s]="coin.duration"
+      [style.animationDelay.s]="coin.delay"
+      [style.transform]="'rotate(' + coin.rotate + 'deg)'"
+      alt="coin"
+      draggable="false"
+    />
+  </div>
+</div>

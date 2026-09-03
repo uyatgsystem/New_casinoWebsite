@@ -1,0 +1,159 @@
+// Exact colors from your screenshot
+$neon-primary: #00e5ff; // The bright electric cyan
+$border-base: #004d53;  // The darker teal border base
+
+.neon-container {
+  // 1. The main border color
+  border: 1.8px solid $border-base;
+  
+  // 2. The multi-layered glow to match the screenshot
+  // - Inset 1: Subtle inner glow to lift the image off the background
+  // - Shadow 2: Sharp core neon line glow
+  // - Shadow 3: Wide atmospheric bloom
+  box-shadow: 
+    inset 0 0 12px rgba($neon-primary, 0.15), 
+    0 0 8px rgba($neon-primary, 0.4),          
+    0 0 20px rgba($neon-primary, 0.2);         
+
+  // 3. To get that "highlight" at the top center like the image:
+  // We use a pseudo-element for the glossy top-edge reflection
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1.8px; 
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $neon-primary, transparent);
+    z-index: 30;
+    filter: blur(0.5px);
+  }
+
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+
+  // &:hover {
+  //   border-color: rgba($neon-primary, 0.8);
+  //   transform: scale(1.02); // Slight pop-out effect
+  //   box-shadow: 
+  //     inset 0 0 20px rgba($neon-primary, 0.25),
+  //     0 0 15px rgba($neon-primary, 0.6),
+  //     0 0 35px rgba($neon-primary, 0.3);
+      
+  //   &::before {
+  //     left: 10%;
+  //     right: 10%;
+  //     background: $neon-primary;
+  //   }
+  // }
+}
+
+.adjust-image {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  // border-radius: inherit; //extra
+}
+.button-active {
+  background: var(--button-back);
+  &:hover {
+    background: var(--gradient);
+  }
+}
+.mobile {
+  z-index: 998;
+  top: 0rem;
+  height: -webkit-fill-available;
+  width: 14rem;
+  overflow-y: scroll;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.mobile.hidden {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.mobile.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+.hello {
+  cursor: pointer;
+}
+.profile {
+  // margin-top: 3rem;
+}
+@-webkit-keyframes animatetop {
+  from {
+    transform: translateX(0);
+    /* Start from below */
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    /* Move to final position */
+    opacity: 1;
+  }
+}
+@keyframes animatetop {
+  from {
+    transform: translateX(0);
+    /* Start from below */
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    /* Move to final position */
+    opacity: 1;
+  }
+}
+@media (max-width: 800px) {
+  .mobile {
+    z-index: 999;
+    transition: transform 0.5s ease-in-out, opacity 0.3s ease;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    // opacity: 0;
+  }
+  .mobile-overlay {
+    // opacity: 0;
+  }
+}
+/* Common sidebar item style */
+.sidebar-item {
+  @apply flex items-center w-full h-12 px-3 gap-7 text-gray-400 relative transition-all duration-300;
+}
+.sidebar-item img {
+  @apply w-8 h-8;
+}
+.sidebar-item span {
+  @apply ml-2 text-base font-medium;
+}
+/* Active state (ribbon effect) */
+.sidebar-item.active {
+  @apply text-white font-semibold;
+}
+.sidebar-item.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* full height */
+  width: calc(100% - 0.5rem);
+  border: 3px solid #2EE4E8;
+  border-right: 20px solid transparent;
+  border-radius: 6px 0 0 6px;
+  /* thoda aur smooth */
+}
+.booderr {
+  border-right: 1px solid #2EE4E8;
+}
+
+
+
+
+
+
+

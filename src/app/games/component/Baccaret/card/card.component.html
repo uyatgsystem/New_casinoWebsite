@@ -1,0 +1,26 @@
+   <div class="card-wrapper" 
+         [class.card-deal-animation]="dealFromDeck"
+         [style.animation-delay.ms]="dealDelay">
+      <div class="card-inner" [class.flipped]="isRevealed">
+        <!-- Card Back -->
+        <div class="card-face card-back">
+          <img 
+            src="DeckCards/CardBg.jpg" 
+            alt="Card Back"
+            class="card-image-bg"
+          />
+        </div>
+        
+        <!-- Card Front -->
+        <div class="card-face card-front">
+          <img 
+            *ngIf="card"
+            [src]="card.imagePath" 
+            [alt]="card.id"
+            class="card-image"
+            (error)="onImageError($event)"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>

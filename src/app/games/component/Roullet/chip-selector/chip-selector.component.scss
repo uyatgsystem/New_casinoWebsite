@@ -1,0 +1,213 @@
+.chip-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: 
+    linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(0, 0, 0, 0.7) 100%);
+  border-radius: 12px;
+  border: 3px solid #d4af37;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 30px rgba(212, 175, 55, 0.15);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    padding: 3px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), transparent 50%, rgba(212, 175, 55, 0.4));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+  }
+}
+
+.chip-title {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 0.875rem;
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: 'Georgia', serif;
+  text-transform: uppercase;
+  text-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.chip {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  color: black;
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.1);
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #444;
+  -webkit-tap-highlight-color: transparent;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%, rgba(0, 0, 0, 0.2) 100%);
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 
+      0 10px 25px rgba(0, 0, 0, 0.7),
+      inset 0 2px 4px rgba(255, 255, 255, 0.4),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.8);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+  }
+
+  &.selected {
+    transform: scale(1.12);
+    box-shadow: 
+      0 0 0 4px #ffd700,
+      0 12px 30px rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(255, 215, 0, 0.6),
+      inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    border-color: #ffd700;
+    animation: chip-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes chip-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 0 4px #ffd700,
+      0 12px 30px rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(255, 215, 0, 0.6),
+      inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 4px #ffd700,
+      0 12px 30px rgba(0, 0, 0, 0.7),
+      0 0 50px rgba(255, 215, 0, 0.8),
+      inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Map chip classes to images - update paths if your files live in /assets */
+.chip-01 {
+  background-image: url('/fiche_0.png');
+} /* smallest chip */
+.chip-1 {
+  background-image: url('/fiche_1.png');
+}
+.chip-5 {
+  background-image: url('/fiche_2.png');
+}
+.chip-10 {
+  background-image: url('/fiche_3.png');
+}
+.chip-25 {
+  background-image: url('/fiche_4.png');
+}
+.chip-100 {
+  background-image: url('/fiche_5.png');
+}
+
+/* Ensure chip value text remains readable on top of image */
+.chip-value {
+  position: relative;
+  z-index: 3;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.9),
+    0 0 8px rgba(255, 255, 255, 0.3);
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+}
+
+/* Slightly smaller border for small screens */
+@media (max-width: 768px) {
+  .chip {
+    width: 3rem;
+    height: 3rem;
+    border-width: 3px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chip {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-width: 3px;
+    font-size: 0.625rem;
+  }
+
+  .chip.selected {
+    box-shadow: 0 0 0 3px #ffd700, 0 8px 16px rgba(0, 0, 0, 0.6);
+  }
+}
+
+@media (max-width: 360px) {
+  .chip {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 0.56rem;
+    border-width: 2px;
+  }
+}
+
+/* Aviator-aligned chip selector override */
+.chip-selector {
+  background: linear-gradient(135deg, rgba(15, 18, 28, 0.92), rgba(36, 28, 10, 0.56)) !important;
+  border-color: rgba(254, 200, 102, 0.44) !important;
+}
+
+.chip-title {
+  color: #fec866 !important;
+}
+
+.chip.selected {
+  box-shadow:
+    0 0 0 4px #fec866,
+    0 12px 30px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(254, 137, 18, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5) !important;
+}

@@ -1,0 +1,69 @@
+<div class="main-container">
+  <div class="hero-section">
+    <div class="hero-content">
+      <div class="spinner-wheel-container">
+        <div class="wheel-with-segments">
+          <img src="https://cmax.pages.dev/assets/Spinner/spinner-circle.png" alt="Spinner Wheel"
+            class="spinner-wheel-image" />
+
+          <div class="segment-overlays">
+            <ng-container *ngFor="let segment of segments; let i = index">
+              <div class="segment-overlay" [style.transform]="'rotate(' + i * segmentAngle + 'deg)'">
+                <div class="segment-content">
+                  <ng-icon class="segment-icon" [name]="segment.icon"
+                    [style.color]="getIconColor(segment.id)"></ng-icon>
+                  <div class="segment-prize">{{ segment.prize }}</div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="winning-highlight-container" [class.show]="highlightedIndex !== null">
+            <div *ngIf="highlightedIndex !== null" class="winning-highlight" [style.transform]="
+                'rotate(' + highlightedIndex * segmentAngle + 'deg)'
+              ">
+              <div class="winning-overlay-image"></div>
+              <div class="winning-content">
+                <div class="congratulations">Congratulations</div>
+                <div class="won-amount" *ngIf="lastWin">
+                  You Won <span class="won-amount-value">{{ lastWin }}</span>
+                </div>
+                <div class="won-amount">
+                  Now You Can Easily Deposit Your Winning Amount in Any Game
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spinner-pointer">
+          <div class="map-pin-pointer">
+            <svg class="needle-svg" viewBox="0 0 40 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M23.7943 73.2531C22.4527 76.7587 18.6659 76.7587 17.3244 73.2531L7.00012 35.0002C5.78008 31.8121 8.92759 28.0002 11.6302 28.0002L29.4885 28.0002C32.1911 28.0002 34.2201 31.8121 33 35.0002L23.7943 73.2531Z"
+                fill="#3D5094" />
+              <circle cx="20" cy="19.9999" r="19.8781" transform="rotate(89.6477 20 19.9999)" fill="#3D5094" />
+              <circle cx="19.814" cy="20.2322" r="11.1293" transform="rotate(89.6477 19.814 20.2322)" fill="#7DE7E5" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="center-controls">
+          <div class="center-amount-label">Choose amount</div>
+          <div class="center-amount-controls">
+            <button class="center-amount-btn" (click)="decrementSpinAmount()">
+              -
+            </button>
+            <div class="center-amount-display">${{ spinAmount }}</div>
+            <button class="center-amount-btn" (click)="incrementSpinAmount()">
+              +
+            </button>
+          </div>
+          <button class="center-spin-button">
+            <span class="btn-text" (click)="openLoginModal()"> Spin Now! </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

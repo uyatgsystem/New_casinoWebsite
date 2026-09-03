@@ -1,0 +1,99 @@
+.ticket-card {
+  border: 1px solid #3d2e5c;
+}
+
+.ticket-card:hover {
+  border-color: #ff4c3b;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  margin-left: 5px;
+
+  @media (min-width: 768px) {
+    width: 8px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d2e5c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff4c3b;
+}
+
+@media (max-width: 640px) {
+  .ticket-card {
+    border-width: 1px;
+  }
+}
+
+// @media (max-width: 800px) {
+//   .modal-overlay {
+//     // align-items: baseline; /* Aligns modal to the bottom */
+//     padding: 0px;
+//     transition: opacity 0.3s ease;
+//     z-index: 1;
+//     // opacity: 0;
+//   }
+
+//   .modal {
+//     max-width: 100% !important;
+//     position: fixed;
+//     // top: 240px; // Starting position
+//     bottom: 0px;
+//     min-height: 30dvh;
+//     transition: transform 0.5s ease-in-out, opacity 0.3s ease;
+//     -webkit-animation-name: animatetop;
+//     -webkit-animation-duration: 0.4s;
+//     animation-name: animatetop;
+//     animation-duration: 0.4s;
+
+//     // opacity: 0;
+
+//     // &.slide-up {
+//     //   // transform: translateY(0);
+//     //   // opacity: 1;
+//     // }
+//   }
+// }
+
+// Add these animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+// Custom scrollbar
+.scrollbar-thin {
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.3);
+    border-radius: 20px;
+  }
+}

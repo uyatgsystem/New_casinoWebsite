@@ -1,0 +1,444 @@
+:host {
+  display: block;
+  padding: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  // margin-top: -55px;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  button {
+    background: #8b5cf6;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    color: white;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-weight: bold;
+  gap: 2rem;
+
+  button {
+    padding: 0.5rem 3rem;
+    position: relative;
+    font-size: 0.875rem;
+    color: white;
+    transition: all 0.2s;
+    border: none;
+    border-radius: 2rem;
+    background: transparent;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 2rem;
+      padding: 1px;
+      background: linear-gradient(to right, #8b5cf6, #d946ef);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    &:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    &.active {
+      background: var(--gradient);
+    }
+  }
+
+  button.active::after {
+    width: 100%;
+  }
+
+  .date-input {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    // color: #4a5568;
+    outline: none;
+
+    &:focus {
+      border-color: #2b6cb0;
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.4);
+    }
+  }
+
+  .view-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #c6c8cc;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: #2b6cb0;
+    }
+  }
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.game-card {
+  background: #3b2349;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0.7;
+  border-bottom: 8px solid #3b2349;
+
+  .game-header {
+    // display: flex;
+    // align-items: center;
+    gap: 0.75rem;
+
+    .game-icon {
+      width: 3rem;
+      height: 3rem;
+      background: #1e1425;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .game-info {
+      margin: 0.5rem;
+      // font-family: sans-serif;
+      font-size: 1.2rem;
+
+      h3 {
+        color: white;
+      }
+    }
+  }
+
+  .amount {
+    color: #10b981;
+    font-size: 1.5rem;
+  }
+
+  .decline {
+    color: #ff0000;
+  }
+
+  .details {
+    font-size: 0.875rem;
+    color: white;
+
+    p:first-child {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .status-button {
+    padding: 0.5rem;
+    margin: 0 3rem;
+    min-width: 150px;
+    border-radius: 0.5rem;
+    text-transform: capitalize;
+    font-size: 0.875rem;
+
+    &.Approved {
+      background: #00a43f;
+    }
+
+    &.Pending {
+      background: #92872a;
+    }
+
+    &.Declined {
+      background: #992a2a;
+    }
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  bottom: 110%;
+  /* Tooltip upar dikhane ke liye */
+  right: -100px;
+  transform: translateX(-50%);
+  background-color: #7e3491;
+  /* Tooltip ka background color */
+  color: #fff;
+  /* Text ka color */
+  padding: 8px;
+  border-radius: 4px;
+  white-space: pre-line;
+  /* Multiline text ke liye */
+  text-align: center;
+  font-size: 14px;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  max-width: 400px;
+  // z-index: 1;
+  /* Tooltip ki max width set kar rahe hain */
+  width: auto;
+  /* Auto width to fit the text */
+  word-wrap: break-word;
+  /* Long words wrap ho jayengi */
+}
+
+.hover-icon:hover+.tooltip {
+  display: block;
+  /* Icon hover hone par tooltip dikhai de */
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 1;
+
+  .modal {
+    background: #3b2349;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 28rem;
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: white;
+      }
+
+      button {
+        color: #9ca3af;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+
+      label {
+        display: block;
+        font-size: 0.875rem;
+        color: #9ca3af;
+        margin-bottom: 0.25rem;
+      }
+
+      select,
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        background: #1e1425;
+        border: 1px solid #4b5563;
+        border-radius: 0.5rem;
+        color: white;
+
+        &::placeholder {
+          color: #6b7280;
+        }
+      }
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      button {
+        flex: 1;
+        padding: 0.5rem;
+        border: 1px solid #4b5563;
+        border-radius: 0.5rem;
+        color: white;
+        transition: all 0.2s;
+
+        &.active {
+          background: #8b5cf6;
+          border-color: #8b5cf6;
+        }
+      }
+    }
+
+    .submit-button {
+      background: var(--gradient);
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      color: white;
+      margin-top: 1rem;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.no-records-found {
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: larger;
+    font-weight: 600;
+  }
+}
+
+/*  Paginations Styles  */
+.mbp_pagination ul {
+  margin: 0;
+  padding: 0;
+}
+
+.mbp_pagination .page_navigation {
+  margin-bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.mbp_pagination .page-item {
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  width: 39px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  border-color: #f1fcfa;
+}
+
+.mbp_pagination .page-item:hover {
+  background-color: #f1fcfa;
+  color: #1e1425;
+  border-color: #1e1425;
+}
+
+.mbp_pagination .page-item:first-child {
+  border: 1px solid #e9e9e9;
+}
+
+.mbp_pagination .page-item:last-child {
+  border: 1px solid #e9e9e9;
+}
+
+.mbp_pagination .page-item.active .page-link {
+  background: var(--gradient);
+  color: #ffffff;
+  width: 39px;
+  display: flex;
+  justify-content: center;
+}
+
+.mbp_pagination .page-link {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  color: var(--headings-color);
+  font-family: var(--title-font-family);
+  font-weight: 500;
+  font-size: 15px;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  padding: 0;
+  text-align: center;
+  width: 40px;
+}
+
+// SCSS for Pagincation Start
+:host ::ng-deep .page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: var(--main-color2);
+  border-color: var(--main-color2);
+}
+
+:host ::ng-deep .page-link {
+  color: var(--main-color2);
+  border: 1px solid var(--main-color2);
+}
+
+:host ::ng-deep .page-link:focus {
+  background-color: #fff;
+  box-shadow: unset;
+}
+
+:host ::ng-deep .pagination {
+  // display: flex;
+  padding-left: 0;
+  list-style: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: center;
+}
+
+:host ::ng-deep .page-link:hover {
+  background-color: #fff;
+}
+
+.tRecord {
+  text-align: center;
+  color: var(--main-color2);
+}
+
+// SCSS for Pagincation End
+
+:host ::ng-deep .mbp_pagination .page-item.active .page-link {
+  background-color: var(--main-color2);
+  color: #ffffff;
+}

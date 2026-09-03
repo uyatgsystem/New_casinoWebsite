@@ -1,0 +1,37 @@
+<app-loader></app-loader>
+<div class="flex flex-col items-center justify-center p-12 text-white rounded-lg shadow-lg">
+  <div class="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl">
+    <div class="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
+      <h2 class="text-2xl font-bold mb-4">Updated with Our Latest News!</h2>
+      <p class="text-sm">
+        "Subscribe to our newsletter and never miss an update. Get the latest
+        news, tips, and exclusive offers delivered straight to your inbox."
+      </p>
+    </div>
+    <div class="w-full md:w-1/2 flex flex-col items-center">
+      <div class="flex flex-col items-center justify-center w-full">
+        <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()"
+          class="flex flex-col md:flex-row gap-3 justify-center items-center w-full">
+          <input
+            class="w-full md:w-auto p-2 rounded md:rounded-l-2xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-purple-500"
+            type="email" formControlName="email" placeholder="Enter your email address" />
+          <button
+            class="w-full md:w-auto p-2 rounded md:rounded-r-2xl text-white font-bold hover:opacity-90 transition duration-300"
+            style="background: var(--gradient)" type="submit" [disabled]="newsletterForm.invalid"
+            [ngClass]="{'cursor-not-allowed': newsletterForm.invalid, 'cursor-pointer': !newsletterForm.invalid}">
+            Send
+          </button>
+        </form>
+        <div class="min-h-[1.5rem]">
+          <div *ngIf="
+              newsletterForm.controls['email'].invalid &&
+              newsletterForm.controls['email'].touched
+            " class="text-red-600 text-xs mt-2">
+            <p *ngIf="newsletterForm.controls['email'].errors?.['required']">Email is required.</p>
+            <p *ngIf="newsletterForm.controls['email'].errors?.['email']">Invalid email format.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

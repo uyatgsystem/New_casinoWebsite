@@ -1,0 +1,11 @@
+<div class="tab-navigation-container content-wrapper">
+  <div class="tab-navigation">
+    <ng-container *ngFor="let tab of tabs; let i = index">
+      <button *ngIf="tab.label && tab.label.trim().length > 0" class="tab-button"
+        [class.active]="activeTab === tab?.value" [class.first-index]="i === 0 && activeTab === tab?.value"
+        (click)="selectTab(tab)">
+        {{ tab.label }}
+      </button>
+    </ng-container>
+  </div>
+</div>

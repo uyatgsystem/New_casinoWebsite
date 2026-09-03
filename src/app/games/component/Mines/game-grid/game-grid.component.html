@@ -1,0 +1,41 @@
+<div class="flex justify-center p-6">
+  <div class="w-full max-w-[650px] lg:max-w-[560px]">
+    <div
+      class="grid-shell mx-auto grid gap-3 sm:gap-4 lg:gap-2 p-4 lg:p-3"
+      [style.grid-template-columns]="'repeat(' + gridSize + ', 1fr)'">
+
+      <button
+        *ngFor="let tile of tiles; trackBy: trackByTileId"
+        (click)="onTileClick(tile)"
+        [disabled]="!gameState.isPlaying || tile.revealed || gameState.gameOver"
+        class="grid-tile group aspect-square rounded-2xl lg:rounded-xl relative overflow-hidden select-none outline-none"
+        [ngClass]="{
+          'tile--hidden': !tile.revealed,
+          'tile--safe': tile.revealed && !tile.isMine,
+          'tile--mine': tile.revealed && tile.isMine,
+          'opacity-50 grayscale-[0.3]': (!gameState.isPlaying || gameState.gameOver) && !tile.revealed
+        }">
+
+        <div class="tile-gloss absolute inset-0 z-20"></div>
+
+        <div *ngIf="!tile.revealed" class="absolute inset-0 flex items-center justify-center z-10">
+          <div class="core-dot h-2 w-2 rounded-full bg-amber-200/50 transition-all duration-300"></div>
+        </div>
+
+        <div *ngIf="tile.revealed && !tile.isMine" class="absolute inset-0 flex items-center justify-center animate-in zoom-in spin-in-3 duration-500">
+          <div class="relative h-3/4 w-3/4 drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]">
+            <img src="diamond.png" class="w-full h-full object-contain" />
+            <div class="absolute inset-0 bg-gradient-to-t from-amber-400/25 to-transparent rounded-full blur-xl"></div>
+          </div>
+        </div>
+
+        <div *ngIf="tile.revealed && tile.isMine" class="absolute inset-0 flex items-center justify-center animate-in zoom-in scale-110 duration-300">
+          <div class="relative h-3/4 w-3/4 drop-shadow-[0_15px_20px_rgba(0,0,0,0.7)]">
+             <img src="bomb.png" class="w-full h-full object-contain" />
+             <div class="absolute top-1 right-1 h-4 w-4 bg-red-500 rounded-full animate-ping shadow-[0_0_20px_#ef4444]"></div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
