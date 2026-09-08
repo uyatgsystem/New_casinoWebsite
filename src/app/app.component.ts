@@ -462,7 +462,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     '/dashboard/redeem',
     '/dashboard/SectrechCards',
     '/dashboard/lottery-history',
-    '/',
     '/dashboard/spinner',
   ];
 

@@ -1,5 +1,5 @@
 <!-- landing-page.component.html -->
-<div class="image-bg mx-auto px-8 md:px-24 py-8">
+<div class="image-bg mx-auto px-8 md:px-24 py-14 lg:py-20">
   <div
     class="backdrop-blur-md text-center mb-8 px-2 py-8 border-[0.5px] border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]">
     <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
@@ -23,14 +23,14 @@
         <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
         <div class="flex items-center justify-between gap-3">
           <button (click)="openLoginModal()"
-            class="w-[87px] h-[50px] sm:w-[70px] sm:h-[40px] md:w-[87px] md:h-[50px] bg-gradient-to-b from-[#FEC866] to-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-white font-bold text-xl transition-all">
+            class="w-[87px] h-[50px] sm:w-[70px] sm:h-[40px] md:w-[87px] md:h-[50px] bg-gradient-to-b from-[#FEC866] to-[#FE8006] rounded-full text-white font-bold text-xl transition-all">
             -
           </button>
           <div class="flex-1 text-center">
             <span class="text-[#F3A630] text-3xl font-bold">$5</span>
           </div>
           <button (click)="openLoginModal()"
-            class="w-[87px] h-[50px] sm:w-[70px] sm:h-[40px] md:w-[87px] md:h-[50px] bg-gradient-to-b from-[#FEC866] to-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-white font-bold text-xl transition-all">
+            class="w-[87px] h-[50px] sm:w-[70px] sm:h-[40px] md:w-[87px] md:h-[50px] bg-gradient-to-b from-[#FEC866] to-[#FE8006] rounded-full text-white font-bold text-xl transition-all">
             +
           </button>
         </div>
@@ -84,14 +84,14 @@
         class="border-[0.5px] border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-3 lg:p-4 my-8 lg:my-10">
         <div class="flex items-center justify-between gap-2 lg:gap-3">
           <button (click)="openLoginModal()"
-            class="flex-1 h-[50px] sm:h-[40px] md:h-[45px] bg-gradient-to-r from-[#F3A630] to-[#F86E12] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-white font-bold text-xl transition-all">
+            class="flex-1 h-[50px] sm:h-[40px] md:h-[45px] bg-gradient-to-r from-[#F3A630] to-[#F86E12] rounded-full text-white font-bold text-xl transition-all">
             -
           </button>
           <div class="flex-1 text-center">
             <span class="text-[#F3A630] text-2xl lg:text-3xl font-bold">${{ spinAmount }}</span>
           </div>
           <button (click)="openLoginModal()"
-            class="flex-1 h-[50px] sm:h-[40px] md:h-[45px] bg-gradient-to-r from-[#F3A630] to-[#F86E12] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-white font-bold text-xl transition-all">
+            class="flex-1 h-[50px] sm:h-[40px] md:h-[45px] bg-gradient-to-r from-[#F3A630] to-[#F86E12] rounded-full text-white font-bold text-xl transition-all">
             +
           </button>
         </div>
@@ -99,7 +99,7 @@
 
       <!-- Spin Now Button -->
       <button (click)="openLoginModal()"
-        class="w-full bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed py-3 px-6 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        class="w-full bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed py-3 px-6 rounded-full shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl">
         Spin Now!
       </button>
     </div>
@@ -121,7 +121,7 @@
 
       <!-- Spin Now Button: Mobile Only -->
       <button
-        class="block lg:hidden w-[50%] bg-gradient-to-r from-[#F3A630] to-[#F86E12] text-black font-semibold disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed py-3 px-6 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl mt-6"
+        class="block lg:hidden w-[50%] bg-gradient-to-r from-[#F3A630] to-[#F86E12] text-black font-semibold disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed py-3 px-6 rounded-full shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl mt-6"
         (click)="openLoginModal()">
         Spin Now!
       </button>

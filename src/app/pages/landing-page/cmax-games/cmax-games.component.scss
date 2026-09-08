@@ -13,16 +13,48 @@
   clip-path: polygon(14% 0, 86% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
 }
 
-.game-card-glow {
+// Modern poster-style game card
+.modern-game-card {
+  background: #0a0e1f;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
   transition:
-    transform 0.5s ease-out,
-    box-shadow 0.5s ease-out;
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
 
   &:hover {
-    box-shadow:
-      0 0 30px rgba(254, 137, 18, 0.4),
-      0 0 0 1px rgba(254, 200, 102, 0.25);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(254, 137, 18, 0.25);
   }
+}
+
+.modern-game-cover {
+  transition: transform 0.6s ease;
+}
+
+.modern-game-card:hover .modern-game-cover {
+  transform: scale(1.08);
+}
+
+// Gradient border ring — uses a masked (hollow) layer so the center is
+// always fully transparent, no matter what, and the game cover stays visible.
+.modern-game-ring {
+  padding: 2px;
+  background: linear-gradient(160deg, #fec866 0%, #fe8912 55%, #8a5a12 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  box-shadow: 0 0 16px rgba(254, 137, 18, 0.25);
+  opacity: 0.85;
+  transition:
+    opacity 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.modern-game-card:hover .modern-game-ring {
+  opacity: 1;
+  box-shadow: 0 0 28px rgba(254, 137, 18, 0.6);
 }
 
 .scrollbar-hide {

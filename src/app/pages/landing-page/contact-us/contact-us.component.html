@@ -1,41 +1,81 @@
 <section
   id="contact"
   aria-labelledby="contact-heading"
-  class="contact-form order-1 mb-10 md:mb-0 relative bg-cover bg-center bg-no-repeat"
+  class="contact-form order-1 mb-10 md:mb-0 relative bg-no-repeat"
   role="region"
   style="
-    background-image: url(&quot;https://cmaxv2images2.pages.dev/assets/backgrounds/contact_bg.jpg&quot;);
+    background-image: url(&quot;https://spinhub-6rb.pages.dev/assets/contact_bg.png&quot;);
+    background-size: cover;
+    background-position: center 25%;
   "
 >
-  <div class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
-  <div class="relative z-10 py-24 px-6 md:px-12 lg:px-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+  <div class="absolute inset-0 bg-black/75" aria-hidden="true"></div>
+  <div class="relative z-10 py-16 lg:py-24 px-6 md:px-12 lg:px-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-start">
       <div class="contact-text max-w-[650px]">
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-[#FE8912] font-bold text-[24px] leading-[22px]">
-            Contact Us</span
-          >
-        </div>
+        <span
+          class="contact-eyebrow inline-flex items-center px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#FE9B2A] uppercase mb-4"
+        >
+          Contact Us
+        </span>
 
         <h2
           id="contact-heading"
-          class="text-white font-extrabold text-[56px] leading-[68px] mt-0 mb-6"
+          class="text-white font-extrabold text-[40px] sm:text-[48px] lg:text-[56px] leading-[1.1] mt-0 mb-6"
         >
           Reach Out
           <span class="text-[#A6B1C2]"> Anytime</span>
         </h2>
 
-        <p class="text-[#A6B1C2] font-medium text-base leading-5">
+        <p class="text-[#A6B1C2] font-medium text-base leading-6">
           If you have questions, need support, or want to share feedback, our
           team is always ready to assist. Reach out to us anytime we’re here to
           make your gaming experience smoother.
         </p>
+
+        <!-- Quick contact info -->
+        <div class="mt-8 space-y-3">
+          <div class="contact-info-chip flex items-center gap-3">
+            <span class="contact-info-icon">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <div>
+              <p class="text-white text-sm font-semibold">Email Us</p>
+              <p class="text-[#A6B1C2] text-xs">support&#64;spinclub.com</p>
+            </div>
+          </div>
+
+          <div class="contact-info-chip flex items-center gap-3">
+            <span class="contact-info-icon">
+              <i class="fas fa-headset"></i>
+            </span>
+            <div>
+              <p class="text-white text-sm font-semibold">Live Chat Support</p>
+              <p class="text-[#A6B1C2] text-xs">
+                Available directly from your dashboard
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-info-chip flex items-center gap-3">
+            <span class="contact-info-icon">
+              <i class="fas fa-clock"></i>
+            </span>
+            <div>
+              <p class="text-white text-sm font-semibold">Response Time</p>
+              <p class="text-[#A6B1C2] text-xs">
+                Our team typically replies within 24 hours
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="contact-form-wrapper">
+
+      <div class="contact-form-wrapper contact-form-card rounded-2xl p-6 sm:p-8">
         <form
           [formGroup]="contactForm"
           (ngSubmit)="onSubmit()"
-          class="space-y-6"
+          class="space-y-5"
         >
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- First Name -->
@@ -46,7 +86,7 @@
               <input
                 type="text"
                 formControlName="firstName"
-                class="w-full px-4 py-3 rounded-md bg-[#161819] border border-[#C3B089] text-white focus:outline-none focus:ring-2 focus:ring-[#C3B089]"
+                class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
               />
               <div
                 *ngIf="
@@ -67,7 +107,7 @@
               <input
                 type="text"
                 formControlName="lastName"
-                class="w-full px-4 py-3 rounded-md bg-[#161819] border border-[#C3B089] text-white focus:outline-none focus:ring-2 focus:ring-[#C3B089]"
+                class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
               />
               <div
                 *ngIf="
@@ -91,7 +131,7 @@
               <input
                 type="email"
                 formControlName="email"
-                class="w-full px-4 py-3 rounded-md bg-[#161819] border border-[#C3B089] text-white focus:outline-none focus:ring-2 focus:ring-[#C3B089]"
+                class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
               />
               <div
                 *ngIf="
@@ -115,7 +155,7 @@
                 maxlength="15"
                 formControlName="phone"
                 (input)="onPhoneInput($event)"
-                class="w-full px-4 py-3 rounded-md bg-[#161819] border border-[#C3B089] text-white focus:outline-none focus:ring-2 focus:ring-[#C3B089]"
+                class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
               />
               <div
                 *ngIf="contactForm.get('phone')?.touched"
@@ -139,7 +179,7 @@
             <textarea
               formControlName="message"
               rows="5"
-              class="w-full px-4 py-3 rounded-md bg-[#161819] border border-[#C3B089] text-white focus:outline-none focus:ring-2 focus:ring-[#C3B089]"
+              class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
             ></textarea>
             <div
               *ngIf="
@@ -153,22 +193,18 @@
           </div>
 
           <!-- Submit Button -->
-          <div class="flex justify-center">
-            <div>
-              <button
-                type="submit"
-                [disabled]="contactForm.invalid"
-                [ngClass]="
-                  contactForm.invalid
-                    ? 'opacity-50 cursor-not-allowed'
-                    : 'cursor-pointer hover:shadow-lg'
-                "
-                class="text-black font-semibold px-10 py-[0.5rem] bg-gradient-to-b from-[#FEC866] to-[#FE8006] transition rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]"
-              >
-                Send Message
-              </button>
-            </div>
-          </div>
+          <button
+            type="submit"
+            [disabled]="contactForm.invalid"
+            [ngClass]="
+              contactForm.invalid
+                ? 'opacity-50 cursor-not-allowed'
+                : 'cursor-pointer hover:scale-[1.02] hover:shadow-xl'
+            "
+            class="contact-submit-glow w-full text-black font-semibold px-10 py-3 bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] transition-all duration-300 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]"
+          >
+            Send Message
+          </button>
         </form>
       </div>
     </div>
