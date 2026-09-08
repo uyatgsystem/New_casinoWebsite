@@ -39,13 +39,6 @@
   animation: expandCircle 4s linear infinite;
 }
 
-.star {
-  position: absolute;
-  background-color: white;
-  border-radius: 50%;
-  animation: twinkle infinite;
-}
-
 .logo {
   width: 60%;
   max-width: 220px;
@@ -79,18 +72,6 @@
   100% {
     transform: scale(1.2);
     opacity: 0;
-  }
-}
-
-@keyframes twinkle {
-
-  0%,
-  100% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0.8;
   }
 }
 

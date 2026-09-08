@@ -7,11 +7,6 @@
     </div>
   </div>
 
-  <!-- Twinkling stars -->
-  <div *ngFor="let star of stars; let i = index" class="star" [style.left]="star.left" [style.top]="star.top"
-    [style.width.px]="star.size" [style.height.px]="star.size" [style.animation-duration.ms]="star.duration">
-  </div>
-
   <!-- Content container -->
   <div class="content flex flex-col gap-8 justify-center items-center flex-wrap align-middle">
     <div class="logo">
