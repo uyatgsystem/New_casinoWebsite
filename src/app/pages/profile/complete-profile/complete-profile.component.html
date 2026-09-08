@@ -8,9 +8,6 @@
           Manage your personal details, security and wallet activity.
         </p>
       </div>
-      <button type="button" class="logout-button" (click)="logout()">
-        <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
-      </button>
     </header>
 
     <div class="account-layout">
@@ -35,10 +32,35 @@
           </button>
           <h2>{{ name | uppercase }}</h2>
           <p>{{ email }}</p>
-          <span class="verification-badge" [ngClass]="getKycClass()"
-            ><i class="fa fa-check-circle" aria-hidden="true"></i>
-            {{ KYCVerification || "Not verified" | titlecase }}</span
-          >
+          <div class="verification-panel" [ngClass]="getKycClass()">
+            <div class="verification-panel-top">
+              <i class="fa fa-shield" aria-hidden="true"></i>
+              <span>KYC STATUS</span>
+            </div>
+            <strong>
+              <i
+                class="fa"
+                [ngClass]="
+                  KYCVerification === 'completed'
+                    ? 'fa-check-circle'
+                    : KYCVerification === 'pending'
+                      ? 'fa-clock-o'
+                      : 'fa-exclamation-circle'
+                "
+                aria-hidden="true"
+              ></i>
+              {{ (KYCVerification || "Not submitted") | titlecase }}
+            </strong>
+            <small *ngIf="KYCVerification === 'completed'">
+              Your identity has been verified.
+            </small>
+            <small *ngIf="KYCVerification === 'pending'">
+              Verification is currently in progress.
+            </small>
+            <small *ngIf="!KYCVerification || KYCVerification === 'not submitted'">
+              Submit your KYC details to unlock all account features.
+            </small>
+          </div>
         </div>
 
         <nav class="account-nav" aria-label="Account settings">
@@ -84,15 +106,23 @@
           </button>
         </nav>
 
-        <div class="sidebar-help">
-          <p>Wallet balance</p>
-          <strong>${{ formattedBalance }}</strong
-          ><button
+        <div class="wallet-card">
+          <div class="wallet-card-label"><i class="fa fa-credit-card"></i> Wallet</div>
+          <strong>${{ formattedBalance }}</strong>
+          <span>Available balance</span>
+          <button type="button" (click)="activeTab = 'wallet'">
+            Open wallet <i class="fa fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="kyc-action-card" *ngIf="KYCVerification !== 'completed'">
+          <span><i class="fa fa-shield"></i> Identity verification</span>
+          <p>{{ KYCVerification === "pending" ? "Your KYC review is in progress." : "Submit your details to verify your account." }}</p>
+          <button
             type="button"
             (click)="RedirectTokyc()"
-            *ngIf="KYCVerification !== 'completed'"
           >
-            Complete KYC <i class="fa fa-arrow-right"></i>
+            {{ KYCVerification === "pending" ? "View KYC status" : "Submit KYC" }}
+            <i class="fa fa-arrow-right"></i>
           </button>
         </div>
       </aside>
@@ -105,14 +135,6 @@
               <h2>Personal information</h2>
               <p>Keep your contact details up to date.</p>
             </div>
-            <button
-              type="button"
-              class="outline-button"
-              *ngIf="!isEditMode"
-              (click)="enableEdit()"
-            >
-              <i class="fa fa-pencil"></i> Edit
-            </button>
           </div>
           <form (ngSubmit)="updatePersonalInfo()" class="settings-form">
             <div class="form-grid">

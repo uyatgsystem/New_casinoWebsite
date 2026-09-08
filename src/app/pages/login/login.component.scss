@@ -98,3 +98,58 @@
   background-repeat: no-repeat;
   align-content: center;
 }
+
+:host { display: block; min-height: 100vh; background: #0c0d10; }
+.main-bg {
+  min-height: 100dvh !important;
+  background-image: linear-gradient(90deg, rgba(12,13,16,.97) 0%, rgba(12,13,16,.88) 42%, rgba(12,13,16,.42) 100%), url("https://cmaxv2images2.pages.dev/assets/backgrounds/login.png") !important;
+  background-position: center !important;
+}
+.main-bg > div { min-height: 100dvh; }
+.main-bg > div > div:first-child {
+  width: 52%;
+  flex: none;
+  padding: clamp(32px, 6vw, 92px);
+  clip-path: none !important;
+  background: linear-gradient(135deg, rgba(12,13,16,.82), rgba(12,13,16,.18)) !important;
+}
+.main-bg > div > div:first-child img { margin: 0 !important; width: 180px; height: auto; }
+.main-bg .mobile-welcome-text { max-width: 470px; padding: 0; margin: auto 0; }
+.main-bg .mobile-welcome-text h1 { font-size: clamp(2.2rem, 4vw, 4rem); letter-spacing: -.05em; }
+.main-bg .mobile-welcome-text p { color: #b9b0a1; max-width: 420px; }
+#formContainer {
+  max-width: 470px !important;
+  padding: clamp(24px, 4vw, 44px) !important;
+  border: 1px solid rgba(195,176,137,.38) !important;
+  border-radius: 18px !important;
+  background: rgba(12,13,16,.88) !important;
+  box-shadow: 0 25px 80px rgba(0,0,0,.45);
+}
+#formContainer input {
+  min-height: 52px;
+  border: 1px solid rgba(195,176,137,.28) !important;
+  border-radius: 10px;
+  background: #15181d !important;
+  padding: 14px 44px 14px 15px !important;
+}
+#formContainer input:focus { border-color: #fe8c16 !important; box-shadow: 0 0 0 3px rgba(254,140,22,.12); }
+#formContainer .bg-custom-gradient { display: none; }
+#formContainer form > div { margin-bottom: 16px !important; }
+#formContainer button[type="submit"] {
+  min-height: 50px;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg,#f3a630,#fe8006) !important;
+}
+#formContainer button:not([type="submit"]) { border-radius: 10px !important; }
+@media (max-width: 1023px) {
+  .main-bg { background-position: 65% center !important; }
+  .main-bg > div { min-height: 100dvh; }
+  .main-bg > div > div:first-child { display: flex !important; width: 100%; min-height: 31vh; padding: 22px 24px; background: rgba(12,13,16,.6) !important; }
+  .main-bg .mobile-welcome-text { margin: auto 0 0; }
+  .main-bg .mobile-welcome-text h1 { font-size: clamp(1.55rem, 6vw, 2.25rem); }
+  .main-bg .mobile-welcome-text p { display: none; }
+}
+@media (max-width: 560px) {
+  #formContainer { padding: 22px 17px !important; }
+  #formContainer .flex.items-center.justify-between { gap: 10px; flex-wrap: wrap; }
+}

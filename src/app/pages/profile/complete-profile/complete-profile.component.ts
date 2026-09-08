@@ -245,6 +245,11 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
     this.apiCallService.PostCallWithToken(payload, 'User/UpdateProfile').subscribe({
       next: (response) => {
         if (response && response.responseCode === 200) {
+          this.name = this.personalInfo.fullName;
+          this.email = this.personalInfo.email;
+          localStorage.setItem('userName', this.personalInfo.fullName);
+          localStorage.setItem('email', this.personalInfo.email);
+          this.isEditMode = false;
           this.toastr.success('Profile updated successfully', 'Success');
         } else {
           this.handleerror.handleResponseError(response);
