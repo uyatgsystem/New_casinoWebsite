@@ -209,11 +209,11 @@ $border-base: #004d53;  // The darker teal border base
 
 .hero-promo-icon {
   position: relative;
-  width: 96px;
-  height: 96px;
-  border-radius: 22px;
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
   border: 1px solid rgba(254, 137, 18, 0.4);
-  box-shadow: 0 0 26px rgba(254, 137, 18, 0.25);
+  box-shadow: 0 0 18px rgba(254, 137, 18, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,11 +226,19 @@ $border-base: #004d53;  // The darker teal border base
   }
 }
 
+.hero-promo-icon-ring {
+  inset: -6px;
+}
+
 @media (min-width: 640px) {
   .hero-promo-icon {
     width: 130px;
     height: 130px;
     border-radius: 28px;
+  }
+
+  .hero-promo-icon-ring {
+    inset: -10px;
   }
 }
 
@@ -245,33 +253,35 @@ $border-base: #004d53;  // The darker teal border base
 .hero-promo-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   color: #fe9b2a;
-  font-size: 11px;
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-bottom: 8px;
-  padding: 4px 12px;
+  margin-bottom: 4px;
+  padding: 3px 8px;
   border-radius: 9999px;
   background: rgba(254, 137, 18, 0.1);
   border: 1px solid rgba(254, 137, 18, 0.35);
+  white-space: nowrap;
 
   i {
-    font-size: 10px;
+    font-size: 8px;
   }
 }
 
 .hero-promo-title {
   color: #fff;
   font-weight: 800;
-  font-size: 1.8rem;
-  line-height: 1.05;
-  margin-bottom: 10px;
+  font-size: 1.15rem;
+  line-height: 1.1;
+  margin-bottom: 3px;
   text-shadow: 0 2px 20px rgba(254, 137, 18, 0.25);
 }
 
 .hero-promo-tagline {
+  display: none;
   color: #c3ccd9;
   font-size: 0.85rem;
   max-width: 26rem;
@@ -281,21 +291,22 @@ $border-base: #004d53;  // The darker teal border base
 .hero-promo-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: linear-gradient(90deg, #fec866 0%, #fe8006 100%);
   color: #000;
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 0.75rem 2.25rem;
+  font-size: 0.7rem;
+  padding: 0.45rem 1.1rem;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(254, 137, 18, 0.35);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
   }
 
   &:hover {
@@ -327,6 +338,7 @@ $border-base: #004d53;  // The darker teal border base
   }
 
   .hero-promo-tagline {
+    display: block;
     font-size: 1.05rem;
   }
 
