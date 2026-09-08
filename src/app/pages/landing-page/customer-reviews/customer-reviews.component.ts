@@ -20,27 +20,27 @@ export class CustomerReviewsComponent implements OnInit {
   grainBackdrop: SafeHtml = '';
   feedbacks = [
     {
-      text: "I recently hit a $5,000 jackpot on CasinoMaxs and the payout process was incredibly smooth. From verification to withdrawal, everything was handled professionally. The platform feels secure. It's easily one of the most trustworthy online casinos I’ve used so far.",
+      text: "I recently hit a $5,000 jackpot on Spin Club and the payout process was incredibly smooth. From verification to withdrawal, everything was handled professionally. The platform feels secure. It's easily one of the most trustworthy online casinos I’ve used so far.",
       name: 'Jay G.',
-      role: 'CasinoMaxs Player',
+      role: 'Spin Club Player',
       img: 'https://cmaxv2images2.pages.dev/assets/avatars/client1.jpg',
     },
     {
-      text: 'CasinoMaxs is my favorite online casino. The bonus offers are generous, and I really appreciate the 24/7 live chat support. I’ve never had a bad experience here. Withdrawals are quick, and the games run without lag. I play regularly and have recommended it to several of my friends.',
+      text: 'Spin Club is my favorite online casino. The bonus offers are generous, and I really appreciate the 24/7 live chat support. I’ve never had a bad experience here. Withdrawals are quick, and the games run without lag. I play regularly and have recommended it to several of my friends.',
       name: 'Ryan V.',
-      role: 'CasinoMaxs Player',
+      role: 'Spin Club Player',
       img: 'https://cmaxv2images2.pages.dev/assets/avatars/client2.jpg',
     },
     {
-      text: 'After trying multiple sites, CasinoMaxs became my top pick. The game variety is excellent and everything loads fast, even on mobile. Support helped me verify my account in minutes. Once that was done, my first withdrawal arrived in less than 72 hours. Great experience from start to finish.',
+      text: 'After trying multiple sites, Spin Club became my top pick. The game variety is excellent and everything loads fast, even on mobile. Support helped me verify my account in minutes. Once that was done, my first withdrawal arrived in less than 72 hours. Great experience from start to finish.',
       name: 'Daniel T.',
-      role: 'CasinoMaxs Player',
+      role: 'Spin Club Player',
       img: 'https://cmaxv2images2.pages.dev/assets/avatars/client3.jpg',
     },
     {
-      text: 'I’ve been using CasinoMaxs for a few months and I’m really impressed. They offer a huge selection of slots and table games. Plus, the welcome bonus gave me a great start. Their customer service is fast and helpful. I’ve had consistent wins and fast payouts every time.',
+      text: 'I’ve been using Spin Club for a few months and I’m really impressed. They offer a huge selection of slots and table games. Plus, the welcome bonus gave me a great start. Their customer service is fast and helpful. I’ve had consistent wins and fast payouts every time.',
       name: 'Michael R.',
-      role: 'CasinoMaxs Player',
+      role: 'Spin Club Player',
       img: 'https://cmaxv2images2.pages.dev/assets/avatars/client4.jpg',
     },
   ];

@@ -1,3 +1,14 @@
+.footer-link {
+  color: #9196a5;
+  font-size: inherit;
+  cursor: pointer;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: #fe9b2a;
+  }
+}
+
 .active-tab {
   color: #fe9e2e !important;
 }

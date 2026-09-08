@@ -11,14 +11,11 @@ import {
 })
 export class ApiCallService {
   constructor(private http: HttpClient) { }
-  // Dev Url
-  // private baseRoute = 'https://154.38.161.3:44360/api/';
-
   //Local Url
   // private baseRoute = 'https://localhost:7251/api/'
   // Live url
-  //private baseRoute = 'https://154.38.161.3:44301/api/';
-  private baseRoute = 'https://root.c-maxs.com/api/';
+  private baseRoute = 'https://154.38.161.3:44301/api/';
+  // private baseRoute = 'https://root.c-maxs.com/api/';
   // private baseRoute = 'https://154.38.161.3:44301/api/';
   PostCallWithoutToken(Payload: any, apiroute: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

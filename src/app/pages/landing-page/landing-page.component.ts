@@ -1,5 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  HostListener,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CasinoLandingComponent } from './casino-landing/casino-landing.component';
 import { GamesLandingComponent } from './games-landing/games-landing.component';
@@ -52,13 +59,89 @@ import { UtilsService } from '../../Services/utils.service';
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements OnInit, AfterViewInit {
+  private platformId = inject(PLATFORM_ID);
   isMobile: boolean = false;
   isLandingPage: boolean = true;
   activeLotteries: any = [];
   showSignupBonusPopup: boolean = true;
   selectedGuideCard: string = 'Register';
   grainBackdrop: SafeHtml = '';
+
+  premiumFeatures = [
+    {
+      icon: 'fas fa-dice',
+      title: 'Premium Games',
+      description:
+        'Hundreds of premium slots, table games, and instant-wins crafted for real thrills.',
+    },
+    {
+      icon: 'fas fa-gift',
+      title: 'Daily Rewards',
+      description:
+        'Log in daily to claim exclusive bonuses, free spins, and cash rewards.',
+    },
+    {
+      icon: 'fas fa-bolt',
+      title: 'Fast & Easy Gameplay',
+      description:
+        'Smooth, lag-free gameplay that gets you from sign-up to spinning in seconds.',
+    },
+    {
+      icon: 'fas fa-shield-halved',
+      title: 'Secure Wallet',
+      description:
+        'Bank-level encryption keeps your deposits, withdrawals, and data fully protected.',
+    },
+    {
+      icon: 'fas fa-bullseye',
+      title: 'Exciting Promotions',
+      description:
+        'Regular tournaments, leaderboards, and limited-time offers to boost your wins.',
+    },
+    {
+      icon: 'fas fa-mobile-screen-button',
+      title: 'Mobile Friendly',
+      description:
+        'Play anywhere, anytime with a fully responsive experience on any device.',
+    },
+  ];
+
+  promoOffers = [
+    {
+      icon: 'fas fa-crown',
+      tag: 'New Players',
+      title: 'Welcome Offer',
+      description:
+        'Kick off your journey with a boosted welcome bonus on your first deposit, ready to use across our top games.',
+      color: 'gold',
+    },
+    {
+      icon: 'fas fa-calendar-check',
+      tag: 'Every Day',
+      title: 'Daily Rewards',
+      description:
+        'Come back each day to claim free spins, bonus credits, and surprise rewards.',
+      color: 'orange',
+    },
+    {
+      icon: 'fas fa-fire',
+      tag: 'Limited Time',
+      title: 'Exciting Promotions',
+      description:
+        'Enjoy regularly refreshed promotions, tournaments, and leaderboard challenges.',
+      color: 'amber',
+    },
+    {
+      icon: 'fas fa-user-plus',
+      tag: 'Refer & Earn',
+      title: 'Referral Program',
+      description:
+        'Share Spin Club with friends and earn rewards together when they join and play.',
+      color: 'deep',
+    },
+  ];
+
   constructor(
     private router: Router,
     private breakpointObserver: BreakpointObserver,
@@ -97,6 +180,30 @@ export class LandingPageComponent implements OnInit {
     this.imageRotationInterval = setInterval(() => {
       this.rotateImages();
     }, 2200);
+  }
+
+  // Lightweight fade-in-on-scroll for `.reveal` elements across the page
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    setTimeout(() => {
+      const targets = document.querySelectorAll('.reveal');
+      if (!targets.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      targets.forEach((el) => observer.observe(el));
+    }, 0);
   }
 
   isSticky = false;

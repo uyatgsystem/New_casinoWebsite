@@ -6,57 +6,113 @@
   "
   id="footer"
 >
-  <div class="relative bg-[#161819] h-20 w-full">
+  <div class="relative bg-[#161819] w-full">
     <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
     <div
       class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-[#2A1C1B] to-[#8A7960]"
     ></div>
 
-    <div
-      class="absolute left-1/2 -translate-x-1/2 -top-8 flex flex-col items-center justify-center gap-2"
-    >
-      <!-- GRADIENT BORDER -->
-      <div
-        class="bg-gradient-to-t from-[#242019] to-[#8A7960] p-[1px] pb-0"
-        style="clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)"
-      >
-        <!-- INNER CONTENT -->
-        <div
-          class="bg-[#161819] px-10 flex items-center justify-center shadow-md"
-          style="clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)"
-        >
-          <img
-            src="https://cmaxv2images2.pages.dev/assets/logos/footerLogo.png"
-            alt="Center Logo"
-            class="h-20 object-contain"
-            style="transform: scale(1.75); transform-origin: center"
-          />
+    <div class="relative max-w-7xl mx-auto px-6 md:px-10 py-14">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Brand -->
+        <div class="lg:col-span-1">
+          <div class="flex flex-col leading-none mb-4">
+            <span class="flex items-center gap-1.5">
+              <i class="fas fa-dharmachakra text-[#FE8912] text-xl spin-icon"></i>
+              <span
+                class="font-extrabold tracking-wide text-xl bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent"
+              >
+                SPIN CLUB
+              </span>
+            </span>
+            <span class="text-[8px] tracking-[0.35em] text-[#C3B089] mt-1 ml-[26px]">
+              PREMIUM GAMING
+            </span>
+          </div>
+          <p class="text-[#9196A5] text-sm leading-relaxed max-w-xs">
+            A premium online gaming platform built for safe, fair, and
+            rewarding play spin, win, and enjoy nonstop entertainment.
+          </p>
+          <div class="flex items-center gap-3 mt-5">
+            <a
+              href="https://www.facebook.com/profile.php?id=61585037884179&_rdc=1&_rdr#"
+              target="_blank"
+              class="w-9 h-9 rounded-full border border-[#8A7960]/40 flex items-center justify-center text-[#9196A5] hover:border-[#FE8912] hover:text-[#FE9B2A] transition"
+            >
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/casinomaxs/"
+              target="_blank"
+              class="w-9 h-9 rounded-full border border-[#8A7960]/40 flex items-center justify-center text-[#9196A5] hover:border-[#FE8912] hover:text-[#FE9B2A] transition"
+            >
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            Quick Links
+          </h4>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a (click)="goToSection('gameScrollSection')" class="footer-link">Games</a>
+            </li>
+            <li>
+              <a (click)="goToSection('instantGameScrollSection')" class="footer-link">Instant Games</a>
+            </li>
+            <li>
+              <a (click)="goToSection('featuresScrollSection')" class="footer-link">Features</a>
+            </li>
+            <li>
+              <a (click)="goToSection('aboutScrollSection')" class="footer-link">About Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            Support
+          </h4>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a (click)="goToSection('contactScrollSection')" class="footer-link">Contact Us</a>
+            </li>
+            <li>
+              <a (click)="goToSection('contactScrollSection')" class="footer-link">FAQs</a>
+            </li>
+            <li>
+              <a routerLink="/Help" class="footer-link">Help &amp; Support</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            Legal
+          </h4>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a routerLink="/Terms&Condition" class="footer-link">Terms &amp; Conditions</a>
+            </li>
+          </ul>
+          <div
+            class="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#8A7960]/40 text-[#9196A5] text-[11px]"
+          >
+            <i class="fas fa-hand-holding-heart text-[#FE8912]"></i>
+            18+ Please Play Responsibly
+          </div>
         </div>
       </div>
-      <div class="text-xs sm:text-sm text-[#9196A5] font-medium">
-        CasinoMaxs. All rights reserved.
-      </div>
-    </div>
 
-    <div
-      class="absolute inset-x-0 top-0 flex items-center justify-end max-w-[90rem] mx-auto px-6 mt-10 md:mt-6"
-    >
-      <div class="flex items-center space-x-1 md:space-x-3">
-        <a
-          href="https://www.facebook.com/profile.php?id=61585037884179&_rdc=1&_rdr#"
-          target="_blank"
-          class="w-8 h-8 rounded bg-transparent flex items-center justify-center transition"
-        >
-          <i class="fab fa-facebook-f hover:text-[#FEBB55]"></i>
-        </a>
-
-        <a
-          href="https://www.instagram.com/casinomaxs/"
-          target="_blank"
-          class="w-8 h-8 rounded bg-transparent flex items-center justify-center transition"
-        >
-          <i class="fab fa-instagram hover:text-[#FEBB55]"></i>
-        </a>
+      <div
+        class="mt-12 pt-6 border-t border-[#8A7960]/20 text-center text-xs sm:text-sm text-[#9196A5] font-medium"
+      >
+        &copy; {{ currentYear }} Spin Club. All rights reserved.
       </div>
     </div>
   </div>

@@ -9,17 +9,23 @@
 
   <!-- CONTENT (PERFECT CENTER) -->
   <div class="relative z-10 flex flex-col items-center justify-center min-h-[35vh] lg:min-h-[50vh]">
-    <h2 class="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
-      Create your <span class="text-[#FE8912]">free account </span> today and begin your
-      <br class="hidden md:block" />
-      <span class="text-white">winning journey!</span>
+    <h2 class="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
+      Ready to <span class="text-[#FE8912]">Spin?</span>
     </h2>
+    <p class="text-[#A6B1C2] text-sm md:text-base max-w-md mb-8">
+      Join Spin Club and discover an exciting gaming experience.
+    </p>
 
-    <div class="inline-block">
-      <button (click)="RedirectToLogin()" type="submit" class="text-black font-semibold px-20 py-[0.5rem] shadow-md
+    <div class="flex flex-col sm:flex-row items-center gap-4">
+      <button (click)="RedirectToLogin()" type="button" class="text-black font-semibold px-14 py-[0.65rem] shadow-md
         rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]
-        bg-gradient-to-b from-[#FEC866] to-[#FE8006] transition">
-        Play Game
+        bg-gradient-to-b from-[#FEC866] to-[#FE8006] transition hover:scale-105 hover:shadow-lg">
+        Play Now
+      </button>
+      <button (click)="RedirectToSignUp()" type="button" class="text-[#FE9B2A] font-semibold px-10 py-[0.6rem]
+        rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]
+        border border-[#FE8912]/60 transition hover:scale-105 hover:border-[#FE8912] hover:bg-[#FE8912]/10">
+        Join Now
       </button>
     </div>
   </div>

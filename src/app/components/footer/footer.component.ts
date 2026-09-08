@@ -103,6 +103,29 @@ export class FooterComponent {
     this.router.navigate(['/SignUp']);
   }
 
+  currentYear = new Date().getFullYear();
+
+  // * Scrolls to a landing-page section, navigating home first if needed
+  goToSection(sectionId: string) {
+    if (this.router.url === '/') {
+      this.scrollToId(sectionId);
+    } else {
+      this.router.navigate(['/']).then(() => {
+        setTimeout(() => this.scrollToId(sectionId), 300);
+      });
+    }
+  }
+
+  private scrollToId(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const yOffset = -20;
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }
+
   // * Router navigation function
   changeRoute(path: string) {
     this._utils.toggleComponentVisibility(false);

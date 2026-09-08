@@ -97,7 +97,7 @@ export class ContactUsComponent {
   faqs = [
     {
       index: 1,
-      question: 'Is CasinoMaxs free to join?',
+      question: 'Is Spin Club free to join?',
       answer:
         'Yes! Signing up is completely free, and your signup bonus is automatically added so you can start playing immediately.',
     },
@@ -121,9 +121,9 @@ export class ContactUsComponent {
     },
     {
       index: 5,
-      question: 'Is it safe to play on CasinoMaxs?',
+      question: 'Is it safe to play on Spin Club?',
       answer:
-        'Yes! Your safety is our top priority. CasinoMaxs uses advanced security, encrypted transactions, and fair gaming practices to protect your account, personal information, and funds, so you can play with complete confidence.',
+        'Yes! Your safety is our top priority. Spin Club uses advanced security, encrypted transactions, and fair gaming practices to protect your account, personal information, and funds, so you can play with complete confidence.',
     },
     {
       index: 6,
@@ -141,7 +141,13 @@ export class ContactUsComponent {
       index: 8,
       question: 'Can I play on mobile?',
       answer:
-        'Absolutely! CasinoMaxs is fully optimized for smartphones and tablets, giving you a fast, secure, and seamless gaming experience. Play, deposit, and withdraw your winnings anytime, anywhere with confidence.',
+        'Absolutely! Spin Club is fully optimized for smartphones and tablets, giving you a fast, secure, and seamless gaming experience. Play, deposit, and withdraw your winnings anytime, anywhere with confidence.',
+    },
+    {
+      index: 9,
+      question: 'How do I withdraw my winnings?',
+      answer:
+        'You can request a withdrawal directly from your wallet dashboard using any of our supported secure payment methods. Once your account is verified, our team processes requests promptly.',
     },
   ];
 }

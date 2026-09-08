@@ -1,14 +1,36 @@
 <header
-  class="top-0 w-full h-[70px] bg-[#161819] header-bordered flex items-center px-4 transition-all duration-300 z-50"
+  class="top-0 w-full h-[70px] header-bordered flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50"
   [class.fixed]="isSticky"
   [class.absolute]="!isSticky"
-  [class.sticky-shadow]="isSticky"
+  [ngClass]="
+    isSticky
+      ? 'bg-[#161819]/90 backdrop-blur-xl sticky-shadow'
+      : 'bg-[#161819]/40 backdrop-blur-md'
+  "
 >
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-  <!-- Left Nav Links (Desktop) -->
-  <div
-    class="header-nav-left ml-[5rem] xl:ml-[10rem] 2xl:ml-[15rem] hidden lg:flex max-lg:hidden items-center gap-6"
-  >
+
+  <!-- Logo (Left) -->
+  <div class="flex items-center gap-2 select-none shrink-0 z-10">
+    <div class="flex flex-col leading-none">
+      <span class="flex items-center gap-1.5">
+        <i class="fas fa-dharmachakra text-[#FE8912] text-lg sm:text-xl spin-icon"></i>
+        <span
+          class="font-extrabold tracking-wide text-lg sm:text-xl bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent"
+        >
+          SPIN CLUB
+        </span>
+      </span>
+      <span
+        class="hidden sm:block text-[8px] tracking-[0.35em] text-[#C3B089] mt-0.5 ml-[26px]"
+      >
+        PREMIUM GAMING
+      </span>
+    </div>
+  </div>
+
+  <!-- Center Nav Links (Desktop) -->
+  <nav class="hidden lg:flex items-center gap-8 mx-auto">
     <a
       (click)="scrollTo('gameScrollSection')"
       class="nav-link text-white hover:text-[#FE9B2A]"
@@ -19,54 +41,43 @@
       class="nav-link text-white hover:text-[#FE9B2A]"
       >Instant Games</a
     >
-    <!-- <a (click)="scrollTo('spinnerScrollSection')" class="nav-link text-white hover:text-[#C3B089]">Spinner</a>
-    <a (click)="scrollTo('lottriesScrollSection')" class="nav-link text-white hover:text-[#C3B089]">Lotteries</a> -->
-  </div>
+    <a
+      (click)="scrollTo('featuresScrollSection')"
+      class="nav-link text-white hover:text-[#FE9B2A]"
+      >Features</a
+    >
+    <a
+      (click)="scrollTo('contactScrollSection')"
+      class="nav-link text-white hover:text-[#FE9B2A]"
+      >Contact us</a
+    >
+    <a
+      (click)="scrollTo('aboutScrollSection')"
+      class="nav-link text-white hover:text-[#FE9B2A]"
+      >About us</a
+    >
+  </nav>
 
-  <!-- Center Logo -->
-  <div
-    class="header-center-logo absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-  >
-    <div class="logo-inner">
-      <img
-        src="https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png"
-        alt="Logo"
-        class="w-[200px] h-[150px]"
-        style="transform: scale(1.1); transform-origin: center"
-      />
-    </div>
-  </div>
-
-  <!-- Right Nav Links + Login (Desktop) -->
-  <div
-    class="header-nav-right ml-[3rem] xl:ml-[7rem] 2xl:ml-[13rem] hidden lg:flex max-lg:hidden items-center gap-6 ml-auto"
-  >
-    <div class="nav-links mr-[3rem] xl:mr-[7rem] 2xl:mr-[13rem] flex gap-6">
-      <!-- <a (click)="scrollTo('scratchScrollSection')" class="nav-link text-white hover:text-[#C3B089]">Scratch Cards</a> -->
-      <a
-        (click)="scrollTo('contactScrollSection')"
-        class="nav-link text-white hover:text-[#FE9B2A]"
-        >Contact us</a
-      >
-      <a
-        (click)="scrollTo('aboutScrollSection')"
-        class="nav-link text-white hover:text-[#FE9B2A]"
-        >About us</a
-      >
-    </div>
-
+  <!-- Right: Login + Join Now (Desktop) -->
+  <div class="hidden lg:flex items-center gap-3 shrink-0 ml-auto">
     <button
       (click)="RedirectToLogin()"
-      class="login-btn ml-4 bg-[#FE8912] text-white px-4 py-2 rounded hover:bg-[#e07f0f]"
+      class="px-5 py-2 rounded-lg text-white text-sm font-medium border border-[#8A7960]/50 hover:border-[#FE8912] hover:text-[#FE9B2A] transition-all duration-300"
     >
       Login
     </button>
+    <button
+      (click)="RedirectToSignUp()"
+      class="login-btn !w-auto px-6 hero-cta-glow"
+    >
+      Join Now
+    </button>
   </div>
 
-  <!-- Hamburger Icon (Mobile) -->
+  <!-- Hamburger Icon (Mobile/Tablet) -->
   <button
     (click)="toggleMobileMenu()"
-    class="lg:hidden text-white focus:outline-none absolute right-4 top-1/2 -translate-y-1/2"
+    class="lg:hidden text-white focus:outline-none absolute right-4 top-1/2 -translate-y-1/2 z-10"
   >
     <svg
       class="w-6 h-6"
@@ -85,7 +96,7 @@
   <!-- Mobile Menu -->
   <div
     *ngIf="isMobileMenuOpen"
-    class="lg:hidden absolute top-full left-0 w-full bg-[#161819] border-t border-[#1f2437] px-4 py-6 -z-10"
+    class="lg:hidden absolute top-full left-0 w-full bg-[#161819]/95 backdrop-blur-xl border-t border-[#8A7960]/30 px-4 py-6 -z-10"
   >
     <div class="grid grid-cols-2 gap-4 text-center text-white">
       <button
@@ -99,9 +110,12 @@
         class="mobile-nav-btn hover:text-[#C3B089]"
         >Instant Games</a
       >
-      <!-- <button (click)="handleMobileNav('spinnerScrollSection')" class="mobile-nav-btn hover:text-[#C3B089]">Spinner</button>
-      <button (click)="handleMobileNav('lottriesScrollSection')" class="mobile-nav-btn hover:text-[#C3B089]">Lotteries</button> -->
-      <!-- <button (click)="handleMobileNav('scratchScrollSection')" class="mobile-nav-btn hover:text-[#C3B089]">Scratch Cards</button> -->
+      <button
+        (click)="handleMobileNav('featuresScrollSection')"
+        class="mobile-nav-btn hover:text-[#C3B089]"
+      >
+        Features
+      </button>
       <button
         (click)="handleMobileNav('aboutScrollSection')"
         class="mobile-nav-btn hover:text-[#C3B089]"
@@ -116,18 +130,37 @@
       </button>
     </div>
 
-    <button
-      (click)="RedirectToLogin()"
-      class="login-btn !w-full mr-4 mt-4 bg-[#FE8912] px-4 py-2 hover:bg-[#e07f0f]"
-    >
-      Login
-    </button>
+    <div class="flex items-center gap-3 mt-5">
+      <button
+        (click)="RedirectToLogin()"
+        class="flex-1 px-4 py-2 rounded-lg text-white text-sm font-medium border border-[#8A7960]/50 hover:border-[#FE8912] hover:text-[#FE9B2A] transition-all duration-300"
+      >
+        Login
+      </button>
+      <button
+        (click)="RedirectToSignUp()"
+        class="login-btn !w-full flex-1"
+      >
+        Join Now
+      </button>
+    </div>
   </div>
 </header>
 
 <main
   class="relative sm:h-[80vh] md:h-[90vh] pt-[70px] mt-16 overflow-hidden bg-black flex items-center main-banner-container"
 >
+  <!-- Ambient Glow / Particle Layer -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="hero-glow hero-glow-orange"></div>
+    <div class="hero-glow hero-glow-gold"></div>
+    <span class="hero-particle" style="top: 18%; left: 12%; animation-delay: 0s"></span>
+    <span class="hero-particle" style="top: 65%; left: 22%; animation-delay: 1.2s"></span>
+    <span class="hero-particle" style="top: 30%; left: 85%; animation-delay: 0.6s"></span>
+    <span class="hero-particle" style="top: 75%; left: 70%; animation-delay: 1.8s"></span>
+    <span class="hero-particle" style="top: 45%; left: 55%; animation-delay: 2.4s"></span>
+  </div>
+
   <!-- Left Image -->
   <!-- <div
     class="absolute left-0 top-0 h-full w-[70%] sm:w-[50%] md:w-[60%] flex items-center justify-start pointer-events-none">
@@ -184,47 +217,57 @@
     class="relative z-10 top-[80px] sm:top-[0px] w-full flex justify-center lg:justify-end px-4 sm:px-10 md:pr-20"
   >
     <div class="max-w-3xl text-center lg:text-left">
+      <!-- Eyebrow Badge -->
+      <div
+        class="hero-badge inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#FFD27A] uppercase mx-auto lg:mx-0"
+      >
+        <i class="fas fa-dharmachakra text-[#FE8912] spin-icon"></i>
+        Welcome to Spin Club
+      </div>
+
       <!-- Hero Text -->
       <h1
         class="text-white text-lg lg:text-xl xl:text-3xl 2xl:text-5xl font-bold leading-tight"
       >
-        Win Unlimited Money <br />
-        <span class="text-[#A6B1C2]">By Playing Online</span> <br />
+        Spin The Wheel. <br />
         <span
-          class="font-bold text-lg lg:text-xl xl:text-3xl 2xl:text-5xl leading-[100%] text-[#fe8912]"
+          class="inline-block font-bold text-lg lg:text-xl xl:text-3xl 2xl:text-5xl leading-[100%] bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
         >
-          CasinoMaxs
+          Win The World.
         </span>
-        <span
+        <br />
+        <span class="text-[#A6B1C2]">Only at </span>&nbsp;<span
           class="inline-block font-bold text-lg lg:text-xl xl:text-3xl 2xl:text-5xl leading-[100%] text-[#ffffff]"
+          >Spin Club</span
         >
-          Games
-        </span>
       </h1>
-
-      <!-- Hero Text (mobile)
-      <h1 class="md:hidden text-white font-bold leading-tight text-[26px] text-center">
-        Win <span class="text-white">Unlimited Money</span> By <br />
-        <span class="text-[#A6B1C2]">Playing Online</span>
-      </h1> -->
 
       <!-- Hero Description -->
       <p
         class="text-[#A6B1C2] my-4 2xl:max-w-[41rem] xl:max-w-[30rem] lg:max-w-[25rem] max-w-[20rem] text-sm lg:text-sm xl:text-base md:text-sm max-sm:text-sm max-sm:text-center max-sm:my-3"
       >
-        Discover a premium gaming experience crafted for champions. Spin wheels,
-        unlock rewards, and embrace the thrill of limitless opportunities all
-        inside CasinoMaxs Games, where every moment brings you closer to
-        greatness.
+        Discover a premium gaming experience crafted for champions. Spin
+        wheels, unlock rewards, and embrace the thrill of limitless
+        opportunities — where every spin brings you closer to greatness.
       </p>
 
-      <!-- Play Button -->
-      <button
-        (click)="RedirectToLogin()"
-        class="btn-primary mt-8 md:mt-0 !px-14 max-sm:!px-16 max-sm:w-auto max-sm:mx-auto"
+      <!-- CTA Buttons -->
+      <div
+        class="flex flex-col sm:flex-row items-center gap-4 mt-8 md:mt-6 justify-center lg:justify-start"
       >
-        Play Game
-      </button>
+        <button
+          (click)="RedirectToLogin()"
+          class="btn-primary hero-cta-glow !px-14 max-sm:!px-16 max-sm:w-auto max-sm:mx-auto"
+        >
+          Play Now
+        </button>
+        <button
+          (click)="RedirectToSignUp()"
+          class="btn-outline !px-10 max-sm:!px-14 max-sm:w-auto max-sm:mx-auto backdrop-blur-sm"
+        >
+          Join Spin Club
+        </button>
+      </div>
 
       <!-- Avatars Section -->
       <div
@@ -266,6 +309,43 @@
     </div>
   </div>
 </main>
+
+<!-- Premium Features Section -->
+<section
+  id="featuresScrollSection"
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-black overflow-hidden"
+>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 lg:mb-16">
+      <span
+        class="inline-block text-[#FE8912] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-3"
+      >
+        Why Spin Club
+      </span>
+      <h2
+        class="text-white font-bold text-[24px] sm:text-[32px] md:text-[40px] leading-tight max-w-2xl mx-auto"
+      >
+        Everything You Need for a
+        <span
+          class="bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
+        >
+          Premium
+        </span>
+        Experience
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      <div class="feature-card reveal" *ngFor="let feature of premiumFeatures">
+        <div class="feature-icon-wrap">
+          <i [class]="feature.icon"></i>
+        </div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Popular Games Section -->
 <section class="relative z-10 pt-12">
@@ -309,7 +389,7 @@
   </div>
 </section>
 
-<!-- CasinoMax Guide Section -->
+<!-- Spin Club Guide Section -->
 <section
   class="relative w-full py-8 px-4 md:py-0 md:px-0 flex flex-col items-center justify-center gap-4"
 >
@@ -601,6 +681,53 @@
   >
     Building Gaming Universe
   </h2>
+</section>
+
+<!-- Promotions & Rewards Section -->
+<section
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#0A0E1F] overflow-hidden"
+>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 lg:mb-16">
+      <span
+        class="inline-block text-[#FE8912] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-3"
+      >
+        Rewards & Promotions
+      </span>
+      <h2
+        class="text-white font-bold text-[24px] sm:text-[32px] md:text-[40px] leading-tight max-w-2xl mx-auto"
+      >
+        More Ways to
+        <span
+          class="bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
+        >
+          Win
+        </span>
+        Every Day
+      </h2>
+      <p class="text-[#A6B1C2] mt-3 max-w-xl mx-auto text-sm sm:text-base">
+        From your first sign-up to every day after, Spin Club keeps the
+        rewards coming.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+      <div
+        class="promo-card reveal"
+        *ngFor="let promo of promoOffers"
+        [ngClass]="'promo-card--' + promo.color"
+      >
+        <div class="promo-icon">
+          <i [class]="promo.icon"></i>
+        </div>
+        <div class="promo-body">
+          <span class="promo-tag">{{ promo.tag }}</span>
+          <h3>{{ promo.title }}</h3>
+          <p>{{ promo.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- <div class="z-10 absolute top-[12rem] right-4 group">
   <button

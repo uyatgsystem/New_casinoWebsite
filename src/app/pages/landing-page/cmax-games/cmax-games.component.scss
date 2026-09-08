@@ -13,6 +13,18 @@
   clip-path: polygon(14% 0, 86% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
 }
 
+.game-card-glow {
+  transition:
+    transform 0.5s ease-out,
+    box-shadow 0.5s ease-out;
+
+  &:hover {
+    box-shadow:
+      0 0 30px rgba(254, 137, 18, 0.4),
+      0 0 0 1px rgba(254, 200, 102, 0.25);
+  }
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

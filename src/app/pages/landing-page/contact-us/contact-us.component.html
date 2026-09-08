@@ -267,12 +267,18 @@
           </span>
         </button>
 
-        <p
-          *ngIf="openIndex === faq.index"
-          class="text-[#A6B1C2] mt-2 text-sm leading-relaxed"
+        <div
+          class="grid transition-all duration-300 ease-in-out"
+          [ngClass]="
+            openIndex === faq.index
+              ? 'grid-rows-[1fr] opacity-100 mt-2'
+              : 'grid-rows-[0fr] opacity-0'
+          "
         >
-          {{ faq.answer }}
-        </p>
+          <p class="text-[#A6B1C2] text-sm leading-relaxed overflow-hidden">
+            {{ faq.answer }}
+          </p>
+        </div>
       </div>
     </div>
   </div>

@@ -15,4 +15,8 @@ export class HeroSectionComponent {
   RedirectToLogin(): void {
     this.router.navigate(['/login']);
   }
+
+  RedirectToSignUp(): void {
+    this.router.navigate(['/SignUp']);
+  }
 }
