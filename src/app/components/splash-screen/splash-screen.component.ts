@@ -14,12 +14,6 @@ export class SplashScreenComponent implements OnInit, OnDestroy {
   isVisible = true;
   showWelcome = false;
   circles = [1, 2, 3, 4, 5];
-  stars = Array(30).fill(0).map(() => ({
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 100}%`,
-    size: Math.random() * 3 + 1,
-    duration: 2000 + Math.random() * 3000
-  }));
 
   private intervalId: any;
   private totalDuration = 5000; // Total duration to show splash screen (5 seconds)

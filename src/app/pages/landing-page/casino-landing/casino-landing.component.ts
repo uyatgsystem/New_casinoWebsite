@@ -64,6 +64,17 @@ export class CasinoLandingComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getTestimonials();
+    this.heroGames = this.gameService.getDashboardInstantGames();
+  }
+
+  // Real dashboard games shown in the hero banner (name + icon), styled
+  // in-house instead of relying on pre-made external banner graphics.
+  heroGames: any[] = [];
+
+  playHeroGame(link: string): void {
+    if (link) {
+      this.navigateAndScroll(link);
+    }
   }
   ngOnDestroy() {
     this.destroy$.next();

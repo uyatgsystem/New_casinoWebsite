@@ -1,533 +1,188 @@
 <app-loader></app-loader>
-<div class="bg-[var(--background)] p-6 pt-0 -mt-[10px] sm:pt-6 sm:mt-[0px]">
-  <!-- Filter or Search with Header / -->
+<div class="bg-[var(--background)] p-4 sm:p-6 lg:p-8 w-full flex flex-col min-h-screen text-white">
 
-  <div class="mb-6 lg:mt-[-4px] px-6 flex flex-col">
-    <div class="flex flex-row items-center gap-2 mt-4 mb-2">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M15.5809 5.80673H15.6277C15.9911 5.80683 16.3496 5.89164 16.6745 6.05444C16.9995 6.21723 17.282 6.45354 17.4997 6.74459C17.7174 7.03565 17.8643 7.37344 17.9287 7.73115C17.993 8.08887 17.9731 8.45667 17.8705 8.80535C17.768 9.15404 17.5855 9.47401 17.3377 9.73987C17.0898 10.0057 16.7834 10.2102 16.4428 10.3369C16.1022 10.4637 15.7367 10.5094 15.3753 10.4702C15.014 10.4311 14.6667 10.3083 14.3611 10.1115L14.7811 11.8458C14.8227 12.0178 14.8248 12.197 14.7871 12.3699C14.7494 12.5428 14.673 12.7048 14.5635 12.8439C14.4541 12.983 14.3145 13.0954 14.1554 13.1727C13.9962 13.2499 13.8215 13.2901 13.6446 13.2901H12.9309C12.7539 13.29 12.5792 13.2497 12.4201 13.1723C12.261 13.0949 12.1215 12.9824 12.0121 12.8432C11.9028 12.7041 11.8264 12.5419 11.7889 12.369C11.7513 12.196 11.7535 12.0168 11.7953 11.8449L12.2162 10.1115C11.8216 10.3655 11.3598 10.4949 10.8907 10.4829C10.7879 10.0866 10.5578 9.73499 10.2359 9.482C10.3995 9.0553 10.4835 8.60225 10.4838 8.14528C10.4838 7.38011 10.2537 6.66919 9.85988 6.07614C10.2104 5.89134 10.6021 5.79864 10.9983 5.80673C10.9353 5.49811 10.9353 5.17994 10.9983 4.87132C11.1223 4.2635 11.4827 3.72985 12.0003 3.38777C12.5178 3.04569 13.15 2.9232 13.7578 3.04725C14.3656 3.17129 14.8992 3.53171 15.2413 4.04921C15.5834 4.56672 15.705 5.19892 15.5809 5.80673ZM6.74213 5.33902C6.20041 5.33904 5.67027 5.49584 5.21571 5.79052C4.76114 6.08519 4.40158 6.50514 4.18043 6.99966C3.95928 7.49419 3.88599 8.04215 3.96941 8.57741C4.05283 9.11267 4.28939 9.61234 4.65053 10.0161H4.40358C4.15549 10.0161 3.91757 10.1147 3.74214 10.2901C3.56672 10.4655 3.46816 10.7035 3.46816 10.9515C3.46816 11.1996 3.56672 11.4376 3.74214 11.613C3.91757 11.7884 4.15549 11.887 4.40358 11.887H4.89C4.54203 13.5688 3.62438 14.5398 3.11271 14.9673C2.78905 15.2386 2.53275 15.6558 2.53275 16.1422C2.53275 16.8915 3.14077 17.4995 3.89004 17.4995H9.59516C10.3435 17.4995 10.9515 16.8915 10.9515 16.1422C10.9515 15.6558 10.6952 15.2386 10.3716 14.9673C9.85988 14.5398 8.94224 13.5688 8.59426 11.887H9.08068C9.32877 11.887 9.56669 11.7884 9.74212 11.613C9.91754 11.4376 10.0161 11.1996 10.0161 10.9515C10.0161 10.7035 9.91754 10.4655 9.74212 10.2901C9.56669 10.1147 9.32877 10.0161 9.08068 10.0161H8.83373C9.19488 9.61234 9.43144 9.11267 9.51485 8.57741C9.59827 8.04215 9.52498 7.49419 9.30383 6.99966C9.08268 6.50514 8.72312 6.08519 8.26856 5.79052C7.81399 5.49584 7.28385 5.33904 6.74213 5.33902Z"
-          fill="#D8D8D8" />
-        <path
-          d="M6.74173 5.57324C7.23817 5.57325 7.72453 5.71635 8.14114 5.98633C8.55773 6.25638 8.88763 6.64156 9.09036 7.09473C9.29303 7.54793 9.3601 8.05048 9.28372 8.54102C9.20726 9.03164 8.99072 9.49024 8.6597 9.86035L8.31107 10.25H9.0806C9.26656 10.25 9.44514 10.3236 9.57669 10.4551C9.70817 10.5866 9.78167 10.7652 9.78177 10.9512C9.78177 11.1372 9.70817 11.3157 9.57669 11.4473C9.44512 11.5788 9.26666 11.6533 9.0806 11.6533H8.30716L8.36478 11.9346C8.72635 13.682 9.68186 14.6958 10.2212 15.1465C10.5049 15.3842 10.7173 15.7407 10.7173 16.1426C10.7171 16.7626 10.2141 17.2656 9.59525 17.2656H3.89017C3.27018 17.2656 2.76636 16.7625 2.76614 16.1426C2.76614 15.7407 2.97955 15.3842 3.26321 15.1465L3.26224 15.1455C3.80158 14.6948 4.75709 13.6819 5.11868 11.9346L5.17728 11.6533H4.40384C4.21777 11.6533 4.03931 11.5788 3.90775 11.4473C3.77621 11.3157 3.70169 11.1372 3.70169 10.9512C3.70179 10.7652 3.77626 10.5866 3.90775 10.4551C4.03928 10.3237 4.21792 10.25 4.40384 10.25H5.17337L4.82474 9.86035C4.49369 9.49022 4.27718 9.03167 4.20071 8.54102C4.12433 8.05047 4.1914 7.54794 4.39407 7.09473C4.59681 6.64158 4.92673 6.25637 5.34329 5.98633C5.75976 5.71648 6.24548 5.57333 6.74173 5.57324ZM12.1294 3.58301C12.5952 3.27517 13.1644 3.16473 13.7115 3.27637C14.2582 3.38807 14.7386 3.71221 15.0464 4.17773C15.3541 4.64321 15.4637 5.21255 15.3521 5.75977L15.2945 6.04102H15.6275C15.9546 6.0411 16.2774 6.11715 16.5699 6.26367C16.8622 6.41016 17.1162 6.62291 17.312 6.88477C17.508 7.1467 17.6408 7.45054 17.6988 7.77246C17.7567 8.09439 17.7383 8.42545 17.646 8.73926C17.5537 9.05301 17.3895 9.34083 17.1665 9.58008C16.9435 9.81935 16.6674 10.0041 16.3609 10.1182C16.0545 10.2321 15.7259 10.2724 15.4009 10.2373C15.0757 10.2021 14.7628 10.0921 14.4878 9.91504L13.9966 9.59863L14.1343 10.167L14.5542 11.9004C14.5875 12.038 14.5883 12.182 14.5581 12.3203C14.528 12.4585 14.4669 12.5881 14.3794 12.6992C14.2919 12.8104 14.1805 12.9001 14.0533 12.9619C13.926 13.0237 13.7865 13.0566 13.6451 13.0566H12.9312C12.7896 13.0566 12.6493 13.0238 12.522 12.9619C12.3949 12.9 12.2832 12.8103 12.1958 12.6992C12.1084 12.5879 12.0472 12.4577 12.0171 12.3193C11.9871 12.1811 11.9896 12.0379 12.023 11.9004L12.4439 10.167L12.5816 9.59863L12.0894 9.91504C11.7806 10.1138 11.4259 10.2269 11.0611 10.2461C10.9471 9.92652 10.7585 9.63876 10.5093 9.4082C10.6459 9.00144 10.717 8.57534 10.7173 8.14551C10.7173 7.43051 10.5281 6.75964 10.1978 6.17969C10.4509 6.08274 10.7211 6.03545 10.9937 6.04102L11.2857 6.04688L11.2271 5.75977C11.1704 5.48208 11.1704 5.19565 11.2271 4.91797C11.3387 4.37094 11.6637 3.89088 12.1294 3.58301Z"
-          stroke="white" stroke-opacity="0.72" stroke-width="0.46771" />
-      </svg>
-
-      <span class="text-white font-semibold text-xl">Game Accounts</span>
-    </div>
-    <!-- Gradient Line -->
-    <div class="w-full h-[1px] mb-6" style="
-        background: linear-gradient(
-          90deg,
-          #4d4434 0.96%,
-          #fe8912 49.52%,
-          #4d4434 100%
-        );
-      "></div>
-    <!-- Search Bar below line -->
-    <div class="flex justify-end w-full mb-4">
-      <div class="relative" style="width: 324px">
-        <!-- fixed width -->
-        <input type="text" placeholder="Search" [(ngModel)]="searchTerm" (keyup.enter)="onEnterSearch()"
-          class="text-white text-base focus:outline-none placeholder:text-gray-400" style="
-            width: 100%;
-            height: 40px;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 16px;
-            border-bottom-left-radius: 3px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: #c3b089;
-            background: #161819;
-            padding-top: 11px;
-            padding-right: 16px;
-            padding-bottom: 11px;
-            padding-left: 40px;
-            box-shadow: 0px 1px 0px 0px #ffffff14 inset;
-            backdrop-filter: blur(64px);
-            /* margin-top: -1rem; */
-          " />
-        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
-          fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+  <!-- Header & Search Toolbar -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 px-2">
+    <!-- Title with Icon -->
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/10 border border-[#C3B089]/40 flex items-center justify-center text-[#F3A630] shadow-lg">
+        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.5809 5.80673H15.6277C15.9911 5.80683 16.3496 5.89164 16.6745 6.05444C16.9995 6.21723 17.282 6.45354 17.4997 6.74459C17.7174 7.03565 17.8643 7.37344 17.9287 7.73115C17.993 8.08887 17.9731 8.45667 17.8705 8.80535C17.768 9.15404 17.5855 9.47401 17.3377 9.73987C17.0898 10.0057 16.7834 10.2102 16.4428 10.3369C16.1022 10.4637 15.7367 10.5094 15.3753 10.4702C15.014 10.4311 14.6667 10.3083 14.3611 10.1115L14.7811 11.8458C14.8227 12.0178 14.8248 12.197 14.7871 12.3699C14.7494 12.5428 14.673 12.7048 14.5635 12.8439C14.4541 12.983 14.3145 13.0954 14.1554 13.1727C13.9962 13.2499 13.8215 13.2901 13.6446 13.2901H12.9309C12.7539 13.29 12.5792 13.2497 12.4201 13.1723C12.261 13.0949 12.1215 12.9824 12.0121 12.8432C11.9028 12.7041 11.8264 12.5419 11.7889 12.369C11.7513 12.196 11.7535 12.0168 11.7953 11.8449L12.2162 10.1115C11.8216 10.3655 11.3598 10.4949 10.8907 10.4829C10.7879 10.0866 10.5578 9.73499 10.2359 9.482C10.3995 9.0553 10.4835 8.60225 10.4838 8.14528C10.4838 7.38011 10.2537 6.66919 9.85988 6.07614C10.2104 5.89134 10.6021 5.79864 10.9983 5.80673C10.9353 5.49811 10.9353 5.17994 10.9983 4.87132C11.1223 4.2635 11.4827 3.72985 12.0003 3.38777C12.5178 3.04569 13.15 2.9232 13.7578 3.04725C14.3656 3.17129 14.8992 3.53171 15.2413 4.04921C15.5834 4.56672 15.705 5.19892 15.5809 5.80673ZM6.74213 5.33902C6.20041 5.33904 5.67027 5.49584 5.21571 5.79052C4.76114 6.08519 4.40158 6.50514 4.18043 6.99966C3.95928 7.49419 3.88599 8.04215 3.96941 8.57741C4.05283 9.11267 4.28939 9.61234 4.65053 10.0161H4.40358C4.15549 10.0161 3.91757 10.1147 3.74214 10.2901C3.56672 10.4655 3.46816 10.7035 3.46816 10.9515C3.46816 11.1996 3.56672 11.4376 3.74214 11.613C3.91757 11.7884 4.15549 11.887 4.40358 11.887H4.89C4.54203 13.5688 3.62438 14.5398 3.11271 14.9673C2.78905 15.2386 2.53275 15.6558 2.53275 16.1422C2.53275 16.8915 3.14077 17.4995 3.89004 17.4995H9.59516C10.3435 17.4995 10.9515 16.8915 10.9515 16.1422C10.9515 15.6558 10.6952 15.2386 10.3716 14.9673C9.85988 14.5398 8.94224 13.5688 8.59426 11.887H9.08068C9.32877 11.887 9.56669 11.7884 9.74212 11.613C9.91754 11.4376 10.0161 11.1996 10.0161 10.9515C10.0161 10.7035 9.91754 10.4655 9.74212 10.2901C9.56669 10.1147 9.32877 10.0161 9.08068 10.0161H8.83373C9.19488 9.61234 9.43144 9.11267 9.51485 8.57741C9.59827 8.04215 9.52498 7.49419 9.30383 6.99966C9.08268 6.50514 8.72312 6.08519 8.26856 5.79052C7.81399 5.49584 7.28385 5.33904 6.74213 5.33902Z" fill="currentColor"/>
         </svg>
       </div>
+      <h1 class="text-white font-black text-2xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-amber-200 to-amber-400">Game Accounts</h1>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="relative w-full sm:w-80">
+      <input type="text" placeholder="Search games..." [(ngModel)]="searchTerm" (keyup.enter)="onEnterSearch()"
+        class="w-full bg-[#121418]/90 backdrop-blur-xl text-white text-sm border border-[#C3B089]/50 rounded-2xl py-3 pl-11 pr-4 focus:outline-none focus:border-[#fe8912] transition shadow-xl" />
+      <svg class="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
     </div>
   </div>
 
-  <!-- Grid of Game Accounts -->
+  <!-- Gradient Divider -->
+  <div class="w-full h-[2px] mb-6 rounded-full" style="background: linear-gradient(90deg, rgba(77,68,52,0) 0%, #fe8912 50%, rgba(77,68,52,0) 100%);"></div>
+
+  <!-- Grid View -->
   <div *ngIf="viewMode == 'grid'">
     <div #accountGrid (scroll)="onGridViewScroll()"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6 pb-6 max-h-[70dvh] overflow-y-scroll justify-items-center"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-2 pb-6 max-h-[72dvh] overflow-y-auto custom-scrollbar"
       *ngIf="filteredAccounts().length > 0; else noRecord">
+      
       <div *ngFor="let account of filteredAccounts()"
-        class="game-card bg-[#161819] shadow-lg hover:shadow-[0_0_15px_rgba(195,176,137,0.5)] transition-all duration-300 w-full mx-auto flex flex-col relative"
-        style="
-          min-height: 195px;
-          border-top-left-radius: 16px;
-          border-top-right-radius: 3px;
-          border-bottom-right-radius: 16px;
-          border-bottom-left-radius: 3px;
-          border: 1px solid #c3b089;
-        ">
+        class="game-card bg-gradient-to-br from-[#181a20] via-[#121418] to-[#0a0c10] border border-[#C3B089]/30 rounded-3xl p-5 shadow-2xl hover:shadow-[0_0_30px_rgba(254,137,18,0.25)] hover:border-[#fe8912] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+        
         <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+
         <!-- Top Section: Icon and Game Name -->
-        <div class="flex items-center gap-3 p-4 pb-3">
-          <!-- Game Icon -->
-          <div style="
-              width: 56px;
-              height: 56px;
-              border-top-left-radius: 16px;
-              border-top-right-radius: 3px;
-              border-bottom-right-radius: 16px;
-              border-bottom-left-radius: 3px;
-              border: 1px solid #ffffff;
-              background: #0f1419;
-              flex-shrink: 0;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              overflow: hidden;
-            ">
+        <div class="flex items-center gap-4 mb-4 relative z-10">
+          <div class="w-14 h-14 rounded-2xl bg-black/80 border border-amber-500/30 flex items-center justify-center overflow-hidden shadow-inner flex-shrink-0 group-hover:scale-110 transition duration-300">
             <img [src]="getGameImage(account.GameName)" alt="{{ account.GameName }}"
               class="w-full h-full object-cover" />
           </div>
-
-          <!-- Game Name -->
-          <h2 class="text-white text-base font-bold">
-            {{ account.GameName }}
-          </h2>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-[10px] text-amber-500/80 font-bold uppercase tracking-wider">Casino Slot</span>
+            <h2 class="text-white text-base font-extrabold tracking-wide truncate group-hover:text-[#fe8912] transition">
+              {{ account.GameName }}
+            </h2>
+          </div>
         </div>
 
         <!-- Credentials Section -->
-        <div class="px-4 text-xs w-full" style="
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            min-height: 20px;
-          ">
-          <!-- Username -->
-          <div style="
-              display: flex;
-              align-items: center;
-              gap: 4px;
-              min-width: 0;
-              overflow: hidden;
-            ">
-            <!-- User Icon -->
-            <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M4.15019 6.0216C5.29624 6.0216 6.2253 4.67362 6.2253 3.0108C6.2253 1.34798 5.29624 0 4.15019 0C3.00413 0 2.07507 1.34798 2.07507 3.0108C2.07507 4.67362 3.00413 6.0216 4.15019 6.0216Z"
-                fill="white" />
-              <path
-                d="M8.30045 10.6127C8.30045 12.4834 8.30045 13.9999 4.15023 13.9999C0 13.9999 0 12.4834 0 10.6127C0 8.74205 1.85812 7.22559 4.15023 7.22559C6.44234 7.22559 8.30045 8.74205 8.30045 10.6127Z"
-                fill="white" />
-            </svg>
-
-            <span class="text-[#FFFFFF] truncate" style="max-width: 90px">
-              {{ account.isUsernameVisible ? account.PlayerName : "######" }}
-            </span>
+        <div class="bg-black/60 border border-white/10 rounded-2xl p-4 space-y-3 mb-5 relative z-10 shadow-inner backdrop-blur-md">
+          
+          <!-- Username Row -->
+          <div class="flex items-center justify-between text-xs">
+            <div class="flex items-center gap-2.5 overflow-hidden">
+              <div class="w-6 h-6 rounded-lg bg-white/5 flex items-center justify-center text-amber-400 flex-shrink-0">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 9 14">
+                  <path d="M4.15019 6.0216C5.29624 6.0216 6.2253 4.67362 6.2253 3.0108C6.2253 1.34798 5.29624 0 4.15019 0C3.00413 0 2.07507 1.34798 2.07507 3.0108C2.07507 4.67362 3.00413 6.0216 4.15019 6.0216Z"/>
+                  <path d="M8.30045 10.6127C8.30045 12.4834 8.30045 13.9999 4.15023 13.9999C0 13.9999 0 12.4834 0 10.6127C0 8.74205 1.85812 7.22559 4.15023 7.22559C6.44234 7.22559 8.30045 8.74205 8.30045 10.6127Z"/>
+                </svg>
+              </div>
+              <span class="text-gray-100 font-mono font-bold truncate tracking-wide">
+                {{ account.isUsernameVisible ? account.PlayerName : "######" }}
+              </span>
+            </div>
+            <button (click)="CopyToClipBoard(account.PlayerName)" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-amber-400 transition" title="Copy Username">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 16 16">
+                <path d="M3.33334 9.99967H2.66668C2.31305 9.99967 1.97392 9.8592 1.72387 9.60915C1.47382 9.3591 1.33334 9.01996 1.33334 8.66634V2.66634C1.33334 2.31272 1.47382 1.97358 1.72387 1.72353C1.97392 1.47348 2.31305 1.33301 2.66668 1.33301H8.66668C9.0203 1.33301 9.35944 1.47348 9.60949 1.72353C9.85953 1.97358 10 2.31272 10 2.66634V3.33301M7.33334 5.99967H13.3333C14.0697 5.99967 14.6667 6.59663 14.6667 7.33301V13.333C14.6667 14.0694 14.0697 14.6663 13.3333 14.6663H7.33334C6.59696 14.6663 6.00001 14.0694 6.00001 13.333V7.33301C6.00001 6.59663 6.59696 5.99967 7.33334 5.99967Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </button>
           </div>
 
-          <!-- Copy Icon for Username -->
-          <svg (click)="CopyToClipBoard(account.PlayerName)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            viewBox="0 0 16 16" class="text-[#a0a0a0] cursor-pointer hover:text-white transition-colors flex-shrink-0">
-            <g clip-path="url(#clip0_322_3832)">
-              <path
-                d="M3.33334 9.99967H2.66668C2.31305 9.99967 1.97392 9.8592 1.72387 9.60915C1.47382 9.3591 1.33334 9.01996 1.33334 8.66634V2.66634C1.33334 2.31272 1.47382 1.97358 1.72387 1.72353C1.97392 1.47348 2.31305 1.33301 2.66668 1.33301H8.66668C9.0203 1.33301 9.35944 1.47348 9.60949 1.72353C9.85953 1.97358 10 2.31272 10 2.66634V3.33301M7.33334 5.99967H13.3333C14.0697 5.99967 14.6667 6.59663 14.6667 7.33301V13.333C14.6667 14.0694 14.0697 14.6663 13.3333 14.6663H7.33334C6.59696 14.6663 6.00001 14.0694 6.00001 13.333V7.33301C6.00001 6.59663 6.59696 5.99967 7.33334 5.99967Z"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-            <defs>
-              <clipPath id="clip0_322_3832">
-                <rect width="16" height="16" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
+          <!-- Password Row -->
+          <div class="flex items-center justify-between text-xs">
+            <div class="flex items-center gap-2.5 overflow-hidden">
+              <div class="w-6 h-6 rounded-lg bg-white/5 flex items-center justify-center text-amber-400 flex-shrink-0">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 13 14">
+                  <path d="M10.2505 5.25065H9.19909V3.79232C9.19909 2.94141 8.89446 2.12536 8.35222 1.52368C7.80998 0.922004 7.07454 0.583984 6.3077 0.583984H5.78199C5.01515 0.583984 4.27971 0.922004 3.73747 1.52368C3.19523 2.12536 2.8906 2.94141 2.8906 3.79232V5.25065H1.83918C1.69976 5.25065 1.56604 5.31211 1.46745 5.4215C1.36886 5.5309 1.31348 5.67927 1.31348 5.83398V12.834C1.31348 12.9887 1.36886 13.1371 1.46745 13.2465C1.56604 13.3559 1.69976 13.4173 1.83918 13.4173H10.2505C10.3899 13.4173 10.5236 13.3559 10.6222 13.2465C10.7208 13.1371 10.7762 12.9887 10.7762 12.834V5.83398C10.7762 5.67927 10.7208 5.5309 10.6222 5.4215C10.5236 5.31211 10.3899 5.25065 10.2505 5.25065Z"/>
+                </svg>
+              </div>
+              <span class="text-gray-200 font-mono font-bold truncate tracking-wide">
+                {{ account.isPasswordVisible ? account.PlayerPassword : "••••••••••" }}
+              </span>
+            </div>
 
-          <!-- Password -->
-          <div style="
-              display: flex;
-              align-items: center;
-              gap: 4px;
-              min-width: 0;
-              overflow: hidden;
-            ">
-            <!-- Password Icon -->
+            <div class="flex items-center gap-1.5">
+              <button (click)="CopyToClipBoard(account.PlayerPassword)" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-amber-400 transition" title="Copy Password">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 16 16">
+                  <path d="M3.33334 9.99967H2.66668C2.31305 9.99967 1.97392 9.8592 1.72387 9.60915C1.47382 9.3591 1.33334 9.01996 1.33334 8.66634V2.66634C1.33334 2.31272 1.47382 1.97358 1.72387 1.72353C1.97392 1.47348 2.31305 1.33301 2.66668 1.33301H8.66668C9.0203 1.33301 9.35944 1.47348 9.60949 1.72353C9.85953 1.97358 10 2.31272 10 2.66634V3.33301M7.33334 5.99967H13.3333C14.0697 5.99967 14.6667 6.59663 14.6667 7.33301V13.333C14.6667 14.0694 14.0697 14.6663 13.3333 14.6663H7.33334C6.59696 14.6663 6.00001 14.0694 6.00001 13.333V7.33301C6.00001 6.59663 6.59696 5.99967 7.33334 5.99967Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </button>
 
-            <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10.2505 5.25065H9.19909V3.79232C9.19909 2.94141 8.89446 2.12536 8.35222 1.52368C7.80998 0.922004 7.07454 0.583984 6.3077 0.583984H5.78199C5.01515 0.583984 4.27971 0.922004 3.73747 1.52368C3.19523 2.12536 2.8906 2.94141 2.8906 3.79232V5.25065H1.83918C1.69976 5.25065 1.56604 5.31211 1.46745 5.4215C1.36886 5.5309 1.31348 5.67927 1.31348 5.83398V12.834C1.31348 12.9887 1.36886 13.1371 1.46745 13.2465C1.56604 13.3559 1.69976 13.4173 1.83918 13.4173H10.2505C10.3899 13.4173 10.5236 13.3559 10.6222 13.2465C10.7208 13.1371 10.7762 12.9887 10.7762 12.834V5.83398C10.7762 5.67927 10.7208 5.5309 10.6222 5.4215C10.5236 5.31211 10.3899 5.25065 10.2505 5.25065ZM3.94201 3.79232C3.94201 3.25083 4.13587 2.73153 4.48093 2.34864C4.82599 1.96575 5.294 1.75065 5.78199 1.75065H6.3077C6.79569 1.75065 7.2637 1.96575 7.60876 2.34864C7.95382 2.73153 8.14767 3.25083 8.14767 3.79232V5.25065H3.94201V3.79232ZM3.67916 10.209C3.5232 10.209 3.37074 10.1577 3.24106 10.0615C3.11138 9.96537 3.01031 9.82872 2.95062 9.66883C2.89094 9.50895 2.87532 9.33301 2.90575 9.16328C2.93618 8.99355 3.01128 8.83764 3.12156 8.71526C3.23185 8.59289 3.37235 8.50956 3.52532 8.4758C3.67829 8.44203 3.83684 8.45936 3.98093 8.52559C4.12502 8.59181 4.24818 8.70397 4.33483 8.84786C4.42147 8.99175 4.46772 9.16092 4.46772 9.33398C4.47139 9.44999 4.45351 9.56559 4.41518 9.67359C4.37685 9.78159 4.3189 9.87969 4.24493 9.96177C4.17096 10.0438 4.08255 10.1081 3.98522 10.1507C3.88789 10.1932 3.7837 10.2131 3.67916 10.209ZM6.04484 10.209C5.88888 10.209 5.73642 10.1577 5.60674 10.0615C5.47707 9.96537 5.37599 9.82872 5.31631 9.66883C5.25662 9.50895 5.24101 9.33301 5.27144 9.16328C5.30186 8.99355 5.37697 8.83764 5.48725 8.71526C5.59753 8.59289 5.73804 8.50956 5.891 8.4758C6.04397 8.44203 6.20252 8.45936 6.34661 8.52559C6.4907 8.59181 6.61386 8.70397 6.70051 8.84786C6.78716 8.99175 6.83341 9.16092 6.83341 9.33398C6.83708 9.44999 6.81919 9.56559 6.78086 9.67359C6.74253 9.78159 6.68458 9.87969 6.61061 9.96177C6.53664 10.0438 6.44824 10.1081 6.3509 10.1507C6.25357 10.1932 6.14939 10.2131 6.04484 10.209ZM8.41053 10.209C8.25457 10.209 8.10211 10.1577 7.97243 10.0615C7.84275 9.96537 7.74168 9.82872 7.68199 9.66883C7.62231 9.50895 7.60669 9.33301 7.63712 9.16328C7.66755 8.99355 7.74265 8.83764 7.85293 8.71526C7.96321 8.59289 8.10372 8.50956 8.25669 8.4758C8.40965 8.44203 8.56821 8.45936 8.7123 8.52559C8.85639 8.59181 8.97954 8.70397 9.06619 8.84786C9.15284 8.99175 9.19909 9.16092 9.19909 9.33398C9.20276 9.44999 9.18488 9.56559 9.14655 9.67359C9.10822 9.78159 9.05026 9.87969 8.97629 9.96177C8.90232 10.0438 8.81392 10.1081 8.71659 10.1507C8.61925 10.1932 8.51507 10.2131 8.41053 10.209Z"
-                fill="white" />
-            </svg>
-
-            <span class="text-[#FFFFFF] truncate" style="max-width: 90px">
-              {{
-              account.isPasswordVisible
-              ? account.PlayerPassword
-              : "**********"
-              }}
-            </span>
+              <!-- Eye Toggle -->
+              <button (click)="toggleVisibility(account)" class="p-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-[#fe8912] transition" title="Toggle Visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 16" fill="none">
+                  <path d="M0.833313 7.66667C0.833313 7.66667 4.16665 1 9.99998 1C15.8333 1 19.1666 7.66667 19.1666 7.66667C19.1666 7.66667 15.8333 14.3333 9.99998 14.3333C4.16665 14.3333 0.833313 7.66667 0.833313 7.66667Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9.99998 10.1667C11.3807 10.1667 12.5 9.04738 12.5 7.66667C12.5 6.28595 11.3807 5.16667 9.99998 5.16667C8.61927 5.16667 7.49998 6.28595 7.49998 7.66667C7.49998 9.04738 8.61927 10.1667 9.99998 10.1667Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path *ngIf="account.isPasswordVisible" d="M1 1L19 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
           </div>
-
-          <!-- Copy Icon for Password -->
-          <svg (click)="CopyToClipBoard(account.PlayerPassword)" xmlns="http://www.w3.org/2000/svg" width="16"
-            height="16" viewBox="0 0 16 16"
-            class="text-[#a0a0a0] cursor-pointer hover:text-white transition-colors flex-shrink-0">
-            <g clip-path="url(#clip0_322_3832)">
-              <path
-                d="M3.33334 9.99967H2.66668C2.31305 9.99967 1.97392 9.8592 1.72387 9.60915C1.47382 9.3591 1.33334 9.01996 1.33334 8.66634V2.66634C1.33334 2.31272 1.47382 1.97358 1.72387 1.72353C1.97392 1.47348 2.31305 1.33301 2.66668 1.33301H8.66668C9.0203 1.33301 9.35944 1.47348 9.60949 1.72353C9.85953 1.97358 10 2.31272 10 2.66634V3.33301M7.33334 5.99967H13.3333C14.0697 5.99967 14.6667 6.59663 14.6667 7.33301V13.333C14.6667 14.0694 14.0697 14.6663 13.3333 14.6663H7.33334C6.59696 14.6663 6.00001 14.0694 6.00001 13.333V7.33301C6.00001 6.59663 6.59696 5.99967 7.33334 5.99967Z"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-          </svg>
-
-          <!-- Eye Icon -->
-          <svg (click)="toggleVisibility(account)" xmlns="http://www.w3.org/2000/svg" width="20" height="16"
-            viewBox="0 0 20 16" class="cursor-pointer flex-shrink-0 transition-colors ml-auto" style="color: #fe8912">
-            <!-- Eye outline -->
-            <path
-              d="M0.833313 7.66667C0.833313 7.66667 4.16665 1 9.99998 1C15.8333 1 19.1666 7.66667 19.1666 7.66667C19.1666 7.66667 15.8333 14.3333 9.99998 14.3333C4.16665 14.3333 0.833313 7.66667 0.833313 7.66667Z"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <!-- Pupil -->
-            <path
-              d="M9.99998 10.1667C11.3807 10.1667 12.5 9.04738 12.5 7.66667C12.5 6.28595 11.3807 5.16667 9.99998 5.16667C8.61927 5.16667 7.49998 6.28595 7.49998 7.66667C7.49998 9.04738 8.61927 10.1667 9.99998 10.1667Z"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <!-- Slash line when visible -->
-            <path *ngIf="account.isPasswordVisible" d="M1 1L19 15" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" />
-          </svg>
         </div>
-
-        <!-- Divider Line -->
-        <div class="mx-4" style="
-            margin-top: 13px;
-            margin-bottom: 15px;
-            height: 0px;
-            border-width: 1px;
-            border-style: solid;
-            border: 1px solid;
-            border-image-source: linear-gradient(
-              110.89deg,
-              #a8371b 56.15%,
-              #2a1c1b 71.88%
-            );
-
-            border-image-slice: 1;
-          "></div>
 
         <!-- Play Button -->
-        <button (click)="openCredentialsForGame(account.GameName)" style="
-            width: 100%;
-            max-width: 170px;
-            height: 30px;
-            margin: auto auto 32px auto;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 16px;
-            border-bottom-left-radius: 3px;
-            background: linear-gradient(90deg, #fe8912 0%, #ffa52d 100%);
-            border: none;
-            color: black;
-            font-weight: bold;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-          ">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <button (click)="openCredentialsForGame(account.GameName)"
+          class="w-full py-3 rounded-2xl bg-gradient-to-r from-[#fe8912] via-[#ffa52d] to-[#ffb74d] text-black font-black text-xs uppercase tracking-widest shadow-[0_4px_20px_rgba(254,137,18,0.4)] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 relative z-10">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
-          Play
+          PLAY NOW
         </button>
-
-        <!-- Score Button -->
-        <!-- <div style="
-            width: 80px;
-            height: 30px;
-            position: absolute;
-            top: 173px;
-            left: 53px;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-image-source: linear-gradient(
-              90deg,
-              #4d4434 0.96%,
-              #fe8912 49.52%,
-              #4d4434 100%
-            );
-            border-image-slice: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          ">
-          <button (click)="openCredentialsForGame(account.GameName)" style="
-              background: none;
-              border: none;
-              font-style: semi-bold;
-              color: #766763;
-              font-weight: 600;
-              font-family: 'Libre Franklin', sans-serif;
-              /* font-size: 12px; */
-              cursor: pointer;
-              transition: all 0.1s cubic-bezier(0.7, -0.4, 0.4, 1.4);
-              animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4);
-              animation-duration: 100ms;
-              padding: 0;
-            " class="hover:text-[#ffb24a]">
-            + Score
-          </button>
-        </div> -->
-
-        <!-- Redeem Button -->
-        <!-- <div style="
-            width: 80px;
-            height: 30px;
-            position: absolute;
-            top: 173px;
-            left: 143px;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-image-source: linear-gradient(
-              90deg,
-              #4d4434 0.96%,
-              #fe8912 49.52%,
-              #4d4434 100%
-            );
-            border-image-slice: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          ">
-          <button (click)="openCredentialsForGame(account.GameName)" style="
-              background: none;
-              font-style: semi-bold;
-              border: none;
-              color: #766763;
-              font-weight: 600;
-              /* font-size: 12px; */
-              font-family: 'Libre Franklin', sans-serif;
-              cursor: pointer;
-              transition: all 0.1s cubic-bezier(0.7, -0.4, 0.4, 1.4);
-              animation-timing-function: cubic-bezier(0.7, -0.4, 0.4, 1.4);
-              animation-duration: 100ms;
-              padding: 0;
-            " class="hover:text-[#ffb24a]">
-            + Redeem
-          </button>
-        </div> -->
       </div>
+
     </div>
   </div>
-  <!-- <div class="min-w-full" *ngIf="viewMode == 'table'">
-    <div class="flex text-gray-400 text-sm mb-4">
-      <div class="w-12 flex-none">Sr No:</div>
-      <div class="flex-1">Game</div>
-      <div class="flex-1">Name</div>
-      <div class="flex-1">User Name</div>
-      <div class="flex-1">Password</div>
-      <div class="flex-1">Actions</div>
-    </div>
 
-    <div
-      class="space-y-4 h-[46vh] overflow-y-scroll"
-      #accountTable
-      (scroll)="onTableViewScroll()"
-      *ngIf="filteredAccounts().length > 0; else noRecord"
-    >
-      <div
-        *ngFor="let account of filteredAccounts(); let i = index"
-        class="flex items-center py-3 border-b border-gray-800"
-      >
-        <div class="text-gray-300 w-12 flex-none">{{ i + 1 }}</div>
-        <div class="flex items-center gap-2 flex-1">
-          <div class="w-20 h-20 rounded-full p-2 border border-purple-500">
-            <img
-              [src]="getGameImage(account.GameName)"
-              alt="{{ account.GameName }}"
-              class="w-full h-full object-cover rounded-full"
-            />
-          </div>
-        </div>
-        <div class="text-gray-300 flex-1">
-          {{ account.GameName }}
-        </div>
-        <div class="text-white flex items-center gap-2 flex-1">
-          {{ account.isUsernameVisible ? account.PlayerName : "#######" }}
-        </div>
-        <div class="text-gray-400 text-sm flex-1">
-          {{
-            account.isPasswordVisible ? account.PlayerPassword : "••••••••••"
-          }}
-        </div>
-        <div class="text-gray-400 flex text-sm flex-1">
-          <fa-icon
-            class="lg:px-2 xl:px-5 xl:py-3 lg:py-1 cursor-pointer lg:text-base xl:text-lg sm:py-1 sm:px-2 sm:text-sm text-md text-gray-200"
-            (click)="toggleVisibility(account)"
-            [icon]="
-              account.isUsernameVisible && account.isPasswordVisible
-                ? eyeSlash
-                : eye
-            "
-          >
-          </fa-icon>
-          <fa-icon
-            class="lg:px-2 xl:px-5 xl:py-4 lg:py-1 text-gray-200 fa-lg cursor-pointer"
-            (click)="copyCredentials(account)"
-            [icon]="copy"
-          >
-          </fa-icon>
-        </div>
-      </div>
-    </div> -->
-
-  <!-- Pagination -->
-  <!-- <div class="row">F
-      <div class="mbp_pagination mt-6 text-center">
-        <ul class="page_navigation">
-          <li class="page-item" (click)="navigatePage('prev')">
-            <a class="page-link">
-              <span class="fas fa-angle-left"></span>
-            </a>
-          </li>
-
-          <ng-container *ngFor="let page of pages">
-            <li
-              class="page-item"
-              [ngClass]="{
-                disabled: page === '...',
-                active: page === currentPage
-              }"
-              *ngIf="page !== '...'"
-              (click)="navigateToPage(page)"
-            >
-              <a class="page-link">{{ page }}</a>
-            </li>
-            <li class="page-item disabled" *ngIf="page === '...'">
-              <span class="page-link">...</span>
-            </li>
-          </ng-container>
-
-          <li class="page-item" (click)="navigatePage('next')">
-            <a class="page-link">
-              <span class="fas fa-angle-right"></span>
-            </a>
-          </li>
-        </ul>
-
-        <p class="mt-3 mb-0 pagination_page_count text-center">
-          {{ getDisplayRange() }} of
-          {{ totalRecords }}
-        </p>
-      </div>
-    </div> -->
-
-  <!-- </div> -->
-
+  <!-- Table View -->
   <div class="min-w-full flex flex-col h-[80vh]" *ngIf="viewMode == 'table'">
-    <div class="flex text-gray-300 font-semibold text-base mb-4 pb-3 border-b border-[#4d4434]">
-      <div class="w-12 flex-none">Sr No:</div>
+    <div class="flex text-gray-300 font-semibold text-sm mb-4 pb-3 border-b border-[#C3B089]/40 px-2 uppercase tracking-wider">
+      <div class="w-12 flex-none">Sr No</div>
       <div class="flex-1">Game</div>
       <div class="flex-1">Name</div>
       <div class="flex-1">User Name</div>
       <div class="flex-1">Password</div>
-      <div class="flex-1">Actions</div>
+      <div class="flex-1 text-center">Actions</div>
     </div>
 
-    <div class="flex-1 overflow-y-auto space-y-4 min-h-[60vh]" #accountTable (scroll)="onTableViewScroll()"
+    <div class="flex-1 overflow-y-auto space-y-3 min-h-[60vh] custom-scrollbar pr-1" #accountTable (scroll)="onTableViewScroll()"
       *ngIf="filteredAccounts().length > 0; else noRecord">
       <div *ngFor="let account of filteredAccounts(); let i = index"
-        class="flex items-center py-3 border-b border-gray-800">
-        <div class="text-gray-300 w-12 flex-none">{{ i + 1 }}</div>
+        class="flex items-center py-3 px-3 bg-[#161819]/80 border border-white/5 hover:border-[#fe8912]/40 rounded-2xl transition">
+        <div class="text-gray-400 font-mono w-12 flex-none">{{ i + 1 }}</div>
+        
         <div class="flex items-center gap-2 flex-1">
-          <div class="w-20 h-20 rounded-full p-2 border border-purple-500">
+          <div class="w-12 h-12 rounded-xl p-1 border border-[#C3B089]/30 bg-black overflow-hidden shadow-sm">
             <img [src]="getGameImage(account.GameName)" alt="{{ account.GameName }}"
-              class="w-full h-full object-cover rounded-full" />
+              class="w-full h-full object-cover rounded-lg" />
           </div>
         </div>
-        <div class="text-gray-300 flex-1">
+
+        <div class="text-white font-semibold flex-1">
           {{ account.GameName }}
         </div>
-        <div class="text-white flex items-center gap-2 flex-1">
+        <div class="text-gray-200 font-mono text-xs flex-1">
           {{ account.isUsernameVisible ? account.PlayerName : "#######" }}
         </div>
-        <div class="text-gray-400 text-sm flex-1">
-          {{
-          account.isPasswordVisible ? account.PlayerPassword : "••••••••••"
-          }}
+        <div class="text-gray-400 font-mono text-xs flex-1">
+          {{ account.isPasswordVisible ? account.PlayerPassword : "••••••••••" }}
         </div>
-        <div class="text-gray-400 flex text-sm flex-1">
-          <fa-icon
-            class="lg:px-2 xl:px-5 xl:py-3 lg:py-1 cursor-pointer lg:text-base xl:text-lg sm:py-1 sm:px-2 sm:text-sm text-md text-gray-200"
-            (click)="toggleVisibility(account)" [icon]="
-              account.isUsernameVisible && account.isPasswordVisible
-                ? eyeSlash
-                : eye
-            ">
+        
+        <div class="text-gray-300 flex items-center justify-center gap-4 flex-1">
+          <fa-icon class="cursor-pointer text-amber-500 hover:scale-110 transition"
+            (click)="toggleVisibility(account)"
+            [icon]="account.isUsernameVisible && account.isPasswordVisible ? eyeSlash : eye">
           </fa-icon>
-          <fa-icon class="lg:px-2 xl:px-5 xl:py-4 lg:py-1 text-gray-200 fa-lg cursor-pointer"
+          <fa-icon class="cursor-pointer text-gray-400 hover:text-white transition"
             (click)="copyCredentials(account)" [icon]="copy">
           </fa-icon>
         </div>
       </div>
     </div>
-    <!-- Pagination -->
-    <!-- <div class="row">F
-      <div class="mbp_pagination mt-6 text-center">
-        <ul class="page_navigation">
-          <li class="page-item" (click)="navigatePage('prev')">
-            <a class="page-link">
-              <span class="fas fa-angle-left"></span>
-            </a>
-          </li>
-
-          <ng-container *ngFor="let page of pages">
-            <li
-              class="page-item"
-              [ngClass]="{
-                disabled: page === '...',
-                active: page === currentPage
-              }"
-              *ngIf="page !== '...'"
-              (click)="navigateToPage(page)"
-            >
-              <a class="page-link">{{ page }}</a>
-            </li>
-            <li class="page-item disabled" *ngIf="page === '...'">
-              <span class="page-link">...</span>
-            </li>
-          </ng-container>
-
-          <li class="page-item" (click)="navigatePage('next')">
-            <a class="page-link">
-              <span class="fas fa-angle-right"></span>
-            </a>
-          </li>
-        </ul>
-
-        <p class="mt-3 mb-0 pagination_page_count text-center">
-          {{ getDisplayRange() }} of
-          {{ totalRecords }}
-        </p>
-      </div>
-    </div> -->
   </div>
 
+  <!-- No Record Template -->
   <ng-template #noRecord>
-    <div class="flex flex-col items-center justify-center gap-5">
-      <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
-      <!-- <p class="text-gray-400 text-sm tracking-wide">No records found</p> -->
+    <div class="flex flex-col items-center justify-center py-20 gap-4">
+      <div class="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center border border-white/10 shadow-inner">
+        <img src="/norecord.png" alt="No records found" class="w-10 h-10 object-contain opacity-40" />
+      </div>
+      <p class="text-gray-400 text-sm font-semibold tracking-wide">No game accounts found</p>
     </div>
   </ng-template>
 </div>
 
-<div *ngIf="showAddScoreModal" class="modal-overlay bg-black/80" style="z-index: 999" (click)="closeAddScoreModal()">
-  <div class="border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] w-[32rem] modal slide-up"
+<!-- Modals (Add Score, Payment, Captcha) kept untouched for full logic safety -->
+<div *ngIf="showAddScoreModal" class="modal-overlay bg-black/85 backdrop-blur-md" style="z-index: 999" (click)="closeAddScoreModal()">
+  <div class="border border-[#C3B089] rounded-2xl w-[32rem] modal slide-up bg-[#14161c] shadow-2xl overflow-hidden"
     (click)="$event.stopPropagation()">
-    <div class="bg-[#161819] flex justify-between items-center px-6 py-2 border-b border-[#C3B089] rounded-tl-[16px]">
+    <div class="bg-black/60 flex justify-between items-center px-6 py-4 border-b border-[#C3B089]/30">
       <h2 class="text-lg font-bold text-[#F3A630]">Add Score</h2>
       <button (click)="closeAddScoreModal()" class="text-white hover:text-gray-400">
         <fa-icon [icon]="cross"></fa-icon>
@@ -537,38 +192,23 @@
       class="flex flex-col gap-4 p-6 justify-center items-center">
       <div class="mt-2 w-full">
         <input type="number" formControlName="score" [placeholder]="getPlaceholder()"
-          class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-[#000408] text-[#A6B1C2] px-4 py-2 placeholder-[#625E5E] add-score"
-          placeholder="Enter Score" />
-        <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
-
-        <div class="h-5 text-red-500 text-sm">
-          <ng-container *ngIf="
-              scoreForm.get('score')?.hasError('required') &&
-              scoreForm.get('score')?.touched
-            ">
+          class="w-full border border-[#C3B089]/30 rounded-xl bg-black/50 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#fe8912] transition" />
+        <div class="h-5 text-red-400 text-xs mt-1">
+          <ng-container *ngIf="scoreForm.get('score')?.hasError('required') && scoreForm.get('score')?.touched">
             Score is required.
           </ng-container>
-          <ng-container *ngIf="
-              scoreForm.get('score')?.hasError('min') &&
-              scoreForm.get('score')?.touched
-            ">
+          <ng-container *ngIf="scoreForm.get('score')?.hasError('min') && scoreForm.get('score')?.touched">
             Score must be at least 1.
           </ng-container>
-          <!-- <ng-container *ngIf="scoreForm.get('score')?.hasError('max') && scoreForm.get('score')?.touched">
-            Score must not exceed 1000.
-          </ng-container> -->
-          <ng-container *ngIf="
-              scoreForm.get('score')?.hasError('notInteger') &&
-              scoreForm.get('score')?.touched
-            ">
+          <ng-container *ngIf="scoreForm.get('score')?.hasError('notInteger') && scoreForm.get('score')?.touched">
             Score must be an integer.
           </ng-container>
         </div>
       </div>
       <button type="submit" [disabled]="scoreForm.invalid" [ngClass]="{
-          'cursor-not-allowed': scoreForm.invalid,
-          'cursor-pointer': !scoreForm.invalid,
-        }" class="btn-primary" (click)="IsScoreValid()">
+          'opacity-50 cursor-not-allowed': scoreForm.invalid,
+          'cursor-pointer hover:brightness-110': !scoreForm.invalid
+        }" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#fe8912] to-[#ffa52d] text-black font-extrabold text-sm shadow-lg transition" (click)="IsScoreValid()">
         Add Score
       </button>
     </form>
@@ -576,39 +216,31 @@
 </div>
 
 <!-- Confirm Payment Modal -->
-<div *ngIf="showPaymentModal" class="fixed modal-overlay inset-0 bg-black/80 flex items-center justify-center"
+<div *ngIf="showPaymentModal" class="fixed modal-overlay inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
   (click)="closePaymentModal()">
-  <div
-    class="border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-[40rem] modal slide-up"
+  <div class="border border-[#C3B089] rounded-2xl w-[40rem] modal slide-up bg-[#14161c] shadow-2xl overflow-hidden"
     (click)="$event.stopPropagation()">
-    <div
-      class="bg-[#161819] px-6 py-2 border-b border-[#C3B089] rounded-tl-[16px] flex justify-between items-center mb-6">
-      <h2 class="text-lg font-bold">Add Score</h2>
-      <button (click)="closePaymentModal()" class="text-white hover:text-gray-400">
-        X
-      </button>
+    <div class="bg-black/60 px-6 py-4 border-b border-[#C3B089]/30 flex justify-between items-center mb-4">
+      <h2 class="text-lg font-bold text-white">Add Score</h2>
+      <button (click)="closePaymentModal()" class="text-white hover:text-gray-400">✕</button>
     </div>
-    <form [formGroup]="paymentForm" class="flex flex-col gap-4 p-6 justify-center items-center">
-      <div class="grid grid-cols-2 gap-4 mb-4">
+    <form [formGroup]="paymentForm" class="flex flex-col gap-4 p-6">
+      <div class="grid grid-cols-2 gap-4 mb-2">
         <div>
-          <label class="text-[#625E5E] text-sm">Purchase</label>
+          <label class="text-gray-400 text-xs font-semibold">Purchase</label>
           <input type="text" formControlName="purchase" [(ngModel)]="addedScore" readonly
-            class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-[#000408] text-[#A6B1C2] px-4 py-2 placeholder-[#625E5E] add-score mt-1" />
-          <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+            class="w-full border border-white/10 rounded-xl bg-black/50 text-white px-4 py-3 text-sm mt-1" />
         </div>
         <div>
-          <label class="text-[#625E5E] text-sm">Score</label>
+          <label class="text-gray-400 text-xs font-semibold">Score</label>
           <input type="text" formControlName="confirmScore" [(ngModel)]="roundedUpdatedGivenScore" readonly
-            class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-[#000408] text-[#A6B1C2] px-4 py-2 placeholder-[#625E5E] add-score mt-1" />
-          <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
+            class="w-full border border-white/10 rounded-xl bg-black/50 text-white px-4 py-3 text-sm mt-1" />
         </div>
       </div>
-      <p class="text-[#625E5E] text-sm mb-4" *ngIf="offerOnGame > 0">
-        With the current offer, your score will be increased by
-        {{ offerOnGame }}% for a purchase of ${{ addedScore }}, resulting in a
-        total score of {{ updatedGivenScore }}.
+      <p class="text-gray-300 text-xs bg-white/5 p-3 rounded-xl border border-white/5" *ngIf="offerOnGame > 0">
+        With the current offer, your score will be increased by {{ offerOnGame }}% for a purchase of ${{ addedScore }}, resulting in a total score of {{ updatedGivenScore }}.
       </p>
-      <button type="submit" (click)="onPaymentSubmit()" class="btn-primary">
+      <button type="submit" (click)="onPaymentSubmit()" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#fe8912] to-[#ffa52d] text-black font-extrabold text-sm shadow-lg hover:brightness-110 transition">
         Confirm
       </button>
     </form>
@@ -616,23 +248,20 @@
 </div>
 
 <!-- Captcha Modal -->
-<div *ngIf="showCaptchaModal"
-  class="fixed inset-0 bg-black/80 flex items-center justify-center opacity-95 modal-overlay"
+<div *ngIf="showCaptchaModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay p-4"
   (click)="closeCaptchaModal()">
-  <div class="bg-[#2A2A2A] rounded-xl p-6 w-96 modal slide-up" (click)="$event.stopPropagation()">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-xl font-bold">CAPTCHA Security Check</h2>
-      <button (click)="closeCaptchaModal()" class="text-gray-400 hover:text-white">
-        X
-      </button>
+  <div class="bg-[#14161c] border border-[#C3B089]/50 rounded-2xl p-6 w-96 modal slide-up shadow-2xl" (click)="$event.stopPropagation()">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-base font-bold text-white">CAPTCHA Security Check</h2>
+      <button (click)="closeCaptchaModal()" class="text-gray-400 hover:text-white">✕</button>
     </div>
-    <form [formGroup]="captchaForm" (ngSubmit)="onCaptchaSubmit()">
-      <div class="mb-4">
-        <img [src]="captchaImage" alt="CAPTCHA" class="w-full mb-4 rounded-lg" />
-        <input type="text" formControlName="captcha" placeholder="Write the text you see on the image"
-          class="w-full bg-[#2a2438] border border-gray-700 rounded-lg px-4 py-2 text-white" />
+    <form [formGroup]="captchaForm" (ngSubmit)="onCaptchaSubmit()" class="space-y-4">
+      <div>
+        <img [src]="captchaImage" alt="CAPTCHA" class="w-full mb-3 rounded-xl border border-white/10" />
+        <input type="text" formControlName="captcha" placeholder="Enter CAPTCHA text"
+          class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#fe8912]" />
       </div>
-      <button type="submit" class="w-full back hover:bg-purple-700 py-2 rounded-lg">
+      <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-sm shadow-lg hover:brightness-110 transition">
         Submit
       </button>
     </form>
@@ -644,13 +273,9 @@
     [selectedGame]="selectedGame" (isModalOpen)="showRedeemModal = $event"></app-add-redeem>
 </div>
 
-<!-- <ng-template> -->
 @if (isCopied()) {
-<div
-  class="fixed bottom-[15%] left-1/2 transform -translate-x-1/2 bg-[#2C2C2C] text-white px-5 py-3 rounded-lg shadow-[0_4px_10px_rgba(0,0,0,0.2)] transition-opacity duration-300 z-50 flex items-center gap-3 border border-[#3A3A3A]">
-  <fa-icon [icon]="faCheck" class="text-[#4CAF50] text-lg"></fa-icon>
-  <span class="text-sm font-medium">Copied to clipboard</span>
+<div class="fixed bottom-[15%] left-1/2 transform -translate-x-1/2 bg-[#1a1c23] text-white px-5 py-3 rounded-2xl shadow-2xl z-50 flex items-center gap-3 border border-[#C3B089]/40 backdrop-blur-xl">
+  <fa-icon [icon]="faCheck" class="text-green-400 text-base"></fa-icon>
+  <span class="text-xs font-bold tracking-wide">Copied to clipboard</span>
 </div>
 }
-
-<!-- </ng-template> -->
