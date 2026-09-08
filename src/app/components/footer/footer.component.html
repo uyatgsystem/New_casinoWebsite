@@ -1,5 +1,6 @@
 <footer
   class="bg-[#0A0E1F] text-white relative mt-4"
+  [class.dashboard-footer]="isDashboardRoute() && !isScreenWidthLessThan800()"
   *ngIf="
     (!isDashboardRoute() || !isScreenWidthLessThan800()) &&
     !isTreasurePickRoute()
@@ -18,20 +19,24 @@
         <div class="lg:col-span-1">
           <div class="flex flex-col leading-none mb-4">
             <span class="flex items-center gap-1.5">
-              <i class="fas fa-dharmachakra text-[#FE8912] text-xl spin-icon"></i>
+              <i
+                class="fas fa-dharmachakra text-[#FE8912] text-xl spin-icon"
+              ></i>
               <span
                 class="font-extrabold tracking-wide text-xl bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent"
               >
                 SPIN CLUB
               </span>
             </span>
-            <span class="text-[8px] tracking-[0.35em] text-[#C3B089] mt-1 ml-[26px]">
+            <span
+              class="text-[8px] tracking-[0.35em] text-[#C3B089] mt-1 ml-[26px]"
+            >
               PREMIUM GAMING
             </span>
           </div>
           <p class="text-[#9196A5] text-sm leading-relaxed max-w-xs">
-            A premium online gaming platform built for safe, fair, and
-            rewarding play spin, win, and enjoy nonstop entertainment.
+            A premium online gaming platform built for safe, fair, and rewarding
+            play spin, win, and enjoy nonstop entertainment.
           </p>
           <div class="flex items-center gap-3 mt-5">
             <a
@@ -51,38 +56,62 @@
           </div>
         </div>
 
-        <!-- Quick Links -->
-        <div>
-          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+        <!-- Landing-page links are only shown on the public landing page. -->
+        <div *ngIf="!isDashboardRoute()">
+          <h4
+            class="text-white font-semibold text-sm uppercase tracking-wider mb-4"
+          >
             Quick Links
           </h4>
           <ul class="space-y-2.5 text-sm">
             <li>
-              <a (click)="goToSection('gameScrollSection')" class="footer-link">Games</a>
+              <a (click)="goToSection('gameScrollSection')" class="footer-link"
+                >Games</a
+              >
             </li>
             <li>
-              <a (click)="goToSection('instantGameScrollSection')" class="footer-link">Instant Games</a>
+              <a
+                (click)="goToSection('instantGameScrollSection')"
+                class="footer-link"
+                >Instant Games</a
+              >
             </li>
             <li>
-              <a (click)="goToSection('featuresScrollSection')" class="footer-link">Features</a>
+              <a
+                (click)="goToSection('featuresScrollSection')"
+                class="footer-link"
+                >Features</a
+              >
             </li>
             <li>
-              <a (click)="goToSection('aboutScrollSection')" class="footer-link">About Us</a>
+              <a (click)="goToSection('aboutScrollSection')" class="footer-link"
+                >About Us</a
+              >
             </li>
           </ul>
         </div>
 
         <!-- Support -->
         <div>
-          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+          <h4
+            class="text-white font-semibold text-sm uppercase tracking-wider mb-4"
+          >
             Support
           </h4>
           <ul class="space-y-2.5 text-sm">
-            <li>
-              <a (click)="goToSection('contactScrollSection')" class="footer-link">Contact Us</a>
+            <li *ngIf="!isDashboardRoute()">
+              <a
+                (click)="goToSection('contactScrollSection')"
+                class="footer-link"
+                >Contact Us</a
+              >
             </li>
-            <li>
-              <a (click)="goToSection('contactScrollSection')" class="footer-link">FAQs</a>
+            <li *ngIf="!isDashboardRoute()">
+              <a
+                (click)="goToSection('contactScrollSection')"
+                class="footer-link"
+                >FAQs</a
+              >
             </li>
             <li>
               <a routerLink="/Help" class="footer-link">Help &amp; Support</a>
@@ -92,12 +121,16 @@
 
         <!-- Legal -->
         <div>
-          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+          <h4
+            class="text-white font-semibold text-sm uppercase tracking-wider mb-4"
+          >
             Legal
           </h4>
           <ul class="space-y-2.5 text-sm">
             <li>
-              <a routerLink="/Terms&Condition" class="footer-link">Terms &amp; Conditions</a>
+              <a routerLink="/Terms&Condition" class="footer-link"
+                >Terms &amp; Conditions</a
+              >
             </li>
           </ul>
           <div

@@ -31,11 +31,6 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
   // Profile Image Modal
   isProfileImageModalOpen = false;
 
-  // Delete Profile Modal
-  isDeleteProfileModalOpen = false;
-  deleteProfilePassword: string = '';
-  showDeletePasswordVisibility: boolean = false;
-
   eye = faEye;
   eyeSlash = faEyeSlash;
   checkIcon = faCheck;
@@ -747,59 +742,6 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
   onDeletePhotoClick() {
     this.deleteUserProfileImage();
     this.closeProfileImageModal();
-  }
-
-  // * Delete Profile Account Modal Methods
-  openDeleteProfileModal() {
-    this.isDeleteProfileModalOpen = true;
-  }
-
-  closeDeleteProfileModal() {
-    this.isDeleteProfileModalOpen = false;
-    this.deleteProfilePassword = '';
-    this.showDeletePasswordVisibility = false;
-  }
-
-  toggleDeletePasswordVisibility() {
-    this.showDeletePasswordVisibility = !this.showDeletePasswordVisibility;
-  }
-
-  confirmDeleteProfile() {
-    if (!this.deleteProfilePassword.trim()) {
-      this.toastr.warning('Please enter your password', 'Warning');
-      return;
-    }
-    this.deleteProfileAccount();
-  }
-
-  // * Delete Profile Account API
-  deleteProfileAccount() {
-    this.loaderService.show();
-    const payload = {
-      email: localStorage.getItem('email'),
-      password: this.deleteProfilePassword,
-    };
-
-    this.apiCallService.PostCallWithToken(payload, 'User/DeleteMoblieUser').subscribe({
-      next: (response) => {
-        if (response && response.responseCode === 200) {
-          this.toastr.success('Account deleted successfully', 'Success');
-          localStorage.removeItem('email');
-          localStorage.removeItem('userName');
-          localStorage.removeItem('token');
-          this.router.navigate(['/login']);
-          this.closeDeleteProfileModal();
-        } else {
-          this.handleerror.handleResponseError(response);
-        }
-      },
-      error: (error) => {
-        this.handleerror.handleHttpError(error);
-      },
-      complete: () => {
-        this.loaderService.hide();
-      }
-    });
   }
 
 

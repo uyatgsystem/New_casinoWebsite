@@ -125,6 +125,7 @@ export class KycFormComponent implements OnInit {
     this.showKycPopup = false;
   }
 
+
   ngAfterViewInit(): void {
     this.isPending = localStorage.getItem('KYC');
     const KycValues = this.utilsService.getData();
