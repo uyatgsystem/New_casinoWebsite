@@ -7,39 +7,19 @@
     </div>
   </div>
 
-  <!-- Twinkling stars -->
-  <div *ngFor="let star of stars; let i = index" class="star" [style.left]="star.left" [style.top]="star.top"
-    [style.width.px]="star.size" [style.height.px]="star.size" [style.animation-duration.ms]="star.duration">
-  </div>
-
   <!-- Content container -->
-  <div class="content flex flex-col gap-6 justify-center items-center flex-wrap align-middle">
+  <div class="content flex flex-col gap-8 justify-center items-center flex-wrap align-middle">
     <div class="logo">
-      <img src="https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png" alt="splash">
+      <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Spin Club">
     </div>
 
-
-    <!-- Modern loader progress bar -->
-    <!-- <div class="progress-bar">
-      <div class="progress" [style.width.%]="progress"></div>
-    </div> -->
-
-    <!-- New Uiverse Loader -->
-    <div class="loader-rotate">
-      <div class="loader">
-        <span><span></span><span></span><span></span><span></span></span>
-        <div class="base">
-          <span></span>
-          <div class="face"></div>
-        </div>
-      </div>
+    <!-- Spin Club wheel loader -->
+    <div class="spin-loader">
+      <div class="spin-loader-ring"></div>
+      <div class="spin-loader-ring spin-loader-ring--reverse"></div>
+      <i class="fas fa-dharmachakra spin-loader-icon"></i>
     </div>
 
-    <div class="longfazers">
-      <span></span><span></span><span></span><span></span>
-    </div>
-
-
-    <!-- <p class="progress-text">{{progress}}% Loaded</p> -->
+    <p class="progress-text">{{ progress }}% Loaded</p>
   </div>
 </div>

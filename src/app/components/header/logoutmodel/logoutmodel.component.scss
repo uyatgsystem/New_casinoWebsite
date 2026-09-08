@@ -1,3 +1,92 @@
-.logout-btn {
-    background: var(--gradient);
+.logout-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(4, 5, 7, .78);
+  backdrop-filter: blur(8px);
+}
+
+.logout-dialog {
+  width: min(420px, 100%);
+  padding: 34px 30px 28px;
+  border: 1px solid rgba(195, 176, 137, .42);
+  border-radius: 18px;
+  background: #0c0d10;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, .58), 0 0 0 1px rgba(254, 140, 22, .08);
+  text-align: center;
+}
+
+.logout-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border: 1px solid rgba(254, 140, 22, .42);
+  border-radius: 16px;
+  background: rgba(254, 140, 22, .08);
+  color: #fe8c16;
+}
+
+.logout-icon svg { width: 27px; height: 27px; }
+.logout-kicker {
+  color: #fe8c16;
+  font-size: .66rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.logout-dialog h2 {
+  margin: 9px 0 10px;
+  color: #fff;
+  font-size: clamp(1.25rem, 4vw, 1.55rem);
+  font-weight: 800;
+}
+
+.logout-dialog p {
+  max-width: 320px;
+  margin: 0 auto;
+  color: #9299a3;
+  font-size: .82rem;
+  line-height: 1.65;
+}
+
+.logout-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.logout-actions button {
+  min-height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 800;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.logout-actions button:hover { transform: translateY(-2px); }
+.logout-cancel {
+  border: 1px solid rgba(195, 176, 137, .4);
+  background: #15181d;
+  color: #c3b089;
+}
+.logout-cancel:hover { border-color: #fe8c16; color: #fff; }
+.logout-confirm {
+  border: 1px solid #fe8c16;
+  background: linear-gradient(135deg, #f3a630, #fe8006);
+  color: #17120a;
+}
+.logout-confirm:hover { box-shadow: 0 8px 24px rgba(254, 140, 22, .25); }
+
+@media (max-width: 420px) {
+  .logout-dialog { padding: 28px 18px 20px; }
+  .logout-actions { grid-template-columns: 1fr; }
+  .logout-confirm { grid-row: 1; }
 }

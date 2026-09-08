@@ -1,12 +1,16 @@
 <div class="terms-container">
   <div class="wrapper">
     <!-- Header -->
-    <div class="relative mb-6 pb-2">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 cursor-pointer">
+    <div class="terms-topbar">
+      <div class="terms-header">
+        <button
+          type="button"
+          (click)="goBack()"
+          class="terms-back"
+          aria-label="Go back"
+        >
           <svg
-            (click)="goBack()"
-            class="w-6 h-6 relative z-10 text-[#F3A630]"
+            class="w-6 h-6 relative z-10"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
@@ -19,17 +23,29 @@
               d="M15 19l-7-7 7-7"
             ></path>
           </svg>
+          <span>Back</span>
+        </button>
+        <div class="terms-header-meta">
+          <span class="terms-eyebrow">Spin Club / Legal</span>
+          <span class="terms-status"><i></i> Public document</span>
         </div>
       </div>
-
-      <div
-        class="h-[2px] w-full absolute bottom-0 left-0 bg-custom-gradient"
-      ></div>
     </div>
 
     <!-- Terms Content -->
-    <div class="terms-content text-gray-200 mt-6">
-      <h2 class="text-2xl font-bold text-center mb-6">Terms & Conditions</h2>
+    <div class="terms-content">
+      <div class="terms-title-block">
+        <span class="terms-kicker">Please read carefully</span>
+        <h1>Terms &amp; Conditions</h1>
+        <p>
+          These terms explain how Spin Club accounts, games, payments and
+          rewards work.
+        </p>
+        <div class="terms-meta-row">
+          <span>Last updated: 08 Sep 2026</span><span>•</span
+          ><span>Estimated reading time: 4 min</span>
+        </div>
+      </div>
 
       <div class="space-y-6 leading-relaxed">
         <!-- Intro -->

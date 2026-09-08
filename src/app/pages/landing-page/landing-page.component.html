@@ -12,21 +12,11 @@
 
   <!-- Logo (Left) -->
   <div class="flex items-center gap-2 select-none shrink-0 z-10">
-    <div class="flex flex-col leading-none">
-      <span class="flex items-center gap-1.5">
-        <i class="fas fa-dharmachakra text-[#FE8912] text-lg sm:text-xl spin-icon"></i>
-        <span
-          class="font-extrabold tracking-wide text-lg sm:text-xl bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent"
-        >
-          SPIN CLUB
-        </span>
-      </span>
-      <span
-        class="hidden sm:block text-[8px] tracking-[0.35em] text-[#C3B089] mt-0.5 ml-[26px]"
-      >
-        PREMIUM GAMING
-      </span>
-    </div>
+    <img
+      src="https://spinhub-6rb.pages.dev/assets/logo.png"
+      alt="Spin Club"
+      class="h-10 sm:h-12 w-auto object-contain"
+    />
   </div>
 
   <!-- Center Nav Links (Desktop) -->
@@ -62,7 +52,7 @@
   <div class="hidden lg:flex items-center gap-3 shrink-0 ml-auto">
     <button
       (click)="RedirectToLogin()"
-      class="px-5 py-2 rounded-lg text-white text-sm font-medium border border-[#8A7960]/50 hover:border-[#FE8912] hover:text-[#FE9B2A] transition-all duration-300"
+      class="px-5 py-2 rounded-full bg-black text-white text-sm font-medium border border-[#8A7960]/50 hover:border-[#FE8912] hover:text-[#FE9B2A] transition-all duration-300"
     >
       Login
     </button>
@@ -133,7 +123,7 @@
     <div class="flex items-center gap-3 mt-5">
       <button
         (click)="RedirectToLogin()"
-        class="flex-1 px-4 py-2 rounded-lg text-white text-sm font-medium border border-[#8A7960]/50 hover:border-[#FE8912] hover:text-[#FE9B2A] transition-all duration-300"
+        class="flex-1 px-4 py-2 rounded-full bg-black text-white text-sm font-medium border border-[#8A7960]/50 hover:border-[#FE8912] hover:text-[#FE9B2A] transition-all duration-300"
       >
         Login
       </button>
@@ -172,8 +162,8 @@
     class="absolute lg:flex hidden left-1/2 top-0 -translate-x-1/2 sm:left-0 sm:top-0 sm:translate-x-0 h-[40%] sm:h-full w-full sm:w-[50%] md:w-[60%] items-start sm:items-center justify-center sm:justify-start pointer-events-none"
   >
     <img
-      src="https://cmaxnewimages.pages.dev/assets/newitems/bglandingbanner.png"
-      class="h-full sm:h-[90%] md:h-full object-contain opacity-100 sm:opacity-100 brightness-125 sm:brightness-150"
+      src="https://spinhub-6rb.pages.dev/assets/bglandingbanner.png"
+      class="h-[68%] sm:h-[62%] md:h-[70%] w-full max-w-full object-contain opacity-100 sm:opacity-100 brightness-125 sm:brightness-150"
       alt="Left Design"
     />
   </div>
@@ -188,8 +178,8 @@
     class="lg:hidden absolute top-0 left-0 w-full h-[55%] flex items-start justify-center pointer-events-none"
   >
     <img
-      src="https://cmaxnewimages.pages.dev/assets/extra/mobile-home.png"
-      class="w-full h-full object-cover object-top opacity-100 brightness-125"
+      src="https://spinhub-6rb.pages.dev/assets/bglandingbanner.png"
+      class="w-full h-full object-contain object-top opacity-100 brightness-125"
       alt="Mobile Background"
     />
     <!-- Bottom fade so image blends into dark bg -->
@@ -257,13 +247,13 @@
       >
         <button
           (click)="RedirectToLogin()"
-          class="btn-primary hero-cta-glow !px-14 max-sm:!px-16 max-sm:w-auto max-sm:mx-auto"
+          class="pill-btn-primary hero-cta-glow px-14 max-sm:px-16 max-sm:w-auto max-sm:mx-auto"
         >
           Play Now
         </button>
         <button
           (click)="RedirectToSignUp()"
-          class="btn-outline !px-10 max-sm:!px-14 max-sm:w-auto max-sm:mx-auto backdrop-blur-sm"
+          class="pill-btn-outline px-10 max-sm:px-14 max-sm:w-auto max-sm:mx-auto backdrop-blur-sm"
         >
           Join Spin Club
         </button>
@@ -347,345 +337,101 @@
   </div>
 </section>
 
+<!-- Spin Club - How to Get Started Heading -->
+
+<section class="relative z-10 pt-16 lg:pt-20 pb-6 flex flex-col items-center justify-center gap-2">
+
+  <div class="flex items-center gap-2 justify-center">
+    <span
+      class="inline-block font-bold text-[16px] sm:text-[24px] md:text-[28px] leading-[100%] text-[#fe8912]"
+    >
+      Get Ready
+    </span>
+
+    <span
+      class="font-bold text-[16px] sm:text-[24px] md:text-[28px] text-white"
+    >
+      To Play
+    </span>
+  </div>
+
+  <h2
+    class="text-center font-semibold text-[20px] sm:text-[36px] md:text-[42px] uppercase text-white max-w-4xl px-4 lg:leading-tight"
+  >
+    Start Playing in 4 Easy Steps
+  </h2>
+
+</section>
+
 <!-- Popular Games Section -->
-<section class="relative z-10 pt-12">
-  <!-- IMAGE STRIP -->
-  <div class="relative w-full overflow-hidden">
-    <!-- DESKTOP  -->
-    <div class="relative hidden lg:block h-[270px] w-full">
+<section class="relative z-10 pb-12 overflow-hidden">
+  <!-- IMAGE MARQUEE -->
+  <div class="game-marquee-viewport">
+    <div class="game-marquee-track">
       <img
-        *ngFor="let img of desktopImages; let i = index; trackBy: trackByImage"
+        *ngFor="let img of marqueeImages; let i = index; trackBy: trackByImage"
         [src]="img"
-        class="absolute bottom-0 transition-all duration-700 ease-in-out will-change-transform"
-        [ngClass]="imageClasses[i]"
-        [style.left]="desktopLeftPositions[i]"
-        [style.transform]="'translateX(-50%)'"
-      />
-    </div>
-
-    <!-- TABLET  -->
-    <div class="relative hidden md:block lg:hidden h-[220px] w-full">
-      <img
-        *ngFor="let img of tabletImages; let i = index; trackBy: trackByImage"
-        [src]="img"
-        [ngClass]="tabletClasses[i]"
-        class="absolute bottom-0 transition-all duration-700 ease-in-out will-change-transform"
-        [style.left]="tabletLeftPositions[i]"
-        [style.transform]="'translateX(-50%)'"
-      />
-    </div>
-
-    <!-- MOBILE -->
-    <div class="relative block md:hidden h-[180px] w-full">
-      <img
-        *ngFor="let img of mobileImages; let i = index; trackBy: trackByImage"
-        [src]="img"
-        [ngClass]="mobileClasses[i]"
-        class="absolute bottom-0 transition-all duration-700 ease-in-out will-change-transform"
-        [style.left]="mobileLeftPositions[i]"
-        [style.transform]="'translateX(-50%)'"
+        class="game-strip-img h-[130px] sm:h-[160px] lg:h-[200px] w-auto rounded-2xl object-cover flex-shrink-0"
       />
     </div>
   </div>
 </section>
 
 <!-- Spin Club Guide Section -->
-<section
-  class="relative w-full py-8 px-4 md:py-0 md:px-0 flex flex-col items-center justify-center gap-4"
->
-  <div class="w-full border-y border-[#FE8912]">
-    <div class="mx-auto grid grid-cols-1 md:grid-cols-5">
-      <div class="md:hidden grid grid-cols-2 border-b border-[#FE8912]">
-        <!-- LEFT -->
-        <div class="flex flex-col justify-between border-r border-[#FE8912]">
-          <!-- HOW TO PLAY -->
-          <div
-            class="flex flex-col items-center justify-center pl-10 pr-8 py-10 cursor-pointer transition-all duration-200"
-            [ngClass]="
-              selectedGuideCard === 'HowToPlay'
-                ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black  shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-                : 'bg-transparent text-white'
-            "
-            (click)="selectGuideCard('HowToPlay')"
-          >
-            <h3 class="text-[18px] relative right-4">How to</h3>
-            <span
-              class="font-bold text-[42px] leading-none"
-              [ngClass]="
-                selectedGuideCard === 'HowToPlay' ? '' : 'text-[#fe8912]'
-              "
-            >
-              Play
-            </span>
-          </div>
-
-          <!-- WITHDRAW -->
-          <div
-            class="flex flex-col items-center justify-center px-5 py-10 cursor-pointer transition-all duration-200"
-            [ngClass]="
-              selectedGuideCard === 'Withdraw'
-                ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-                : 'bg-transparent text-white'
-            "
-            (click)="selectGuideCard('Withdraw')"
-          >
-            <h3 class="text-[18px]">Withdraw</h3>
-            <span
-              class="font-bold text-[23px] leading-none"
-              [ngClass]="
-                selectedGuideCard === 'Withdraw' ? '' : 'text-[#fe8912]'
-              "
-            >
-              Win Amount
-            </span>
-          </div>
-        </div>
-
-        <!-- RIGHT -->
-        <div class="flex flex-col">
-          <!-- REGISTER -->
-          <div
-            class="flex flex-col justify-center text-center px-4 py-10 border-b border-[#FE8912] cursor-pointer transition-all duration-200"
-            [ngClass]="
-              selectedGuideCard === 'Register'
-                ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-                : 'bg-transparent text-white'
-            "
-            (click)="selectGuideCard('Register')"
-          >
-            <h3
-              class="text-[20px] font-bold mb-2"
-              [ngClass]="
-                selectedGuideCard === 'Register' ? 'text-black' : 'text-white'
-              "
-            >
-              Register
-            </h3>
-            <p
-              class="text-[11px]"
-              [ngClass]="
-                selectedGuideCard === 'Register'
-                  ? 'text-black'
-                  : 'text-[#A6B1C2]'
-              "
-            >
-              Sign up now and claim your welcome bonus!
-            </p>
-          </div>
-
-          <!-- DEPOSIT -->
-          <div
-            class="flex flex-col justify-center text-center px-4 py-10 border-b border-[#FE8912] cursor-pointer transition-all duration-200"
-            [ngClass]="
-              selectedGuideCard === 'Deposit'
-                ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-                : 'bg-transparent text-white'
-            "
-            (click)="selectGuideCard('Deposit')"
-          >
-            <h3
-              class="text-[20px] font-bold mb-2"
-              [ngClass]="
-                selectedGuideCard === 'Deposit' ? 'text-black' : 'text-white'
-              "
-            >
-              Deposit
-            </h3>
-            <p
-              class="text-[11px]"
-              [ngClass]="
-                selectedGuideCard === 'Deposit'
-                  ? 'text-black'
-                  : 'text-[#A6B1C2]'
-              "
-            >
-              Deposit now and claim your Deposit bonus!
-            </p>
-          </div>
-
-          <!-- ENJOY -->
-          <div
-            class="flex flex-col justify-center text-center px-2 py-10 cursor-pointer transition-all duration-200"
-            [ngClass]="
-              selectedGuideCard === 'Enjoy'
-                ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black  shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-                : 'bg-transparent text-white'
-            "
-            (click)="selectGuideCard('Enjoy')"
-          >
-            <h3
-              class="text-[20px] font-bold mb-2"
-              [ngClass]="
-                selectedGuideCard === 'Enjoy' ? 'text-black' : 'text-white'
-              "
-            >
-              Enjoy the game
-            </h3>
-            <p
-              class="text-[11px]"
-              [ngClass]="
-                selectedGuideCard === 'Enjoy' ? 'text-black' : 'text-[#A6B1C2]'
-              "
-            >
-              Start playing now and win cash awards!
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- HOW TO PLAY -->
+<section class="relative w-full py-14 lg:py-20 px-4 sm:px-8 lg:px-16 bg-black overflow-hidden">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 items-start">
+      <!-- HOW TO PLAY heading -->
       <div
-        class="hidden md:flex flex-col items-center lg:items-start justify-center px-12 py-20 border-b md:border-b-0 md:border-r border-[#FE8912] cursor-pointer transition-all duration-200"
-        [ngClass]="
-          selectedGuideCard === 'HowToPlay'
-            ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-            : 'bg-transparent text-white'
-        "
+        class="how-to-play-heading text-center lg:text-left cursor-pointer"
+        [ngClass]="selectedGuideCard === 'HowToPlay' ? 'is-active' : ''"
         (click)="selectGuideCard('HowToPlay')"
       >
-        <h3 class="text-[22px]">How to</h3>
+        <span class="block text-[#A6B1C2] text-lg font-medium leading-none">How to</span>
         <span
-          class="font-bold text-[32px] md:text-[56px] leading-none"
-          [ngClass]="selectedGuideCard === 'HowToPlay' ? '' : 'text-[#fe8912]'"
+          class="block font-extrabold text-[46px] lg:text-[54px] leading-[0.95] bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent"
         >
           Play
         </span>
-      </div>
-
-      <!-- REGISTER -->
-      <div
-        class="hidden md:flex flex-col justify-center text-center px-8 py-10 border-b md:border-b-0 md:border-r border-[#FE8912] cursor-pointer transition-all duration-200"
-        [ngClass]="
-          selectedGuideCard === 'Register'
-            ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-            : 'bg-transparent text-white'
-        "
-        (click)="selectGuideCard('Register')"
-      >
-        <h3
-          class="text-[22px] font-bold mb-2"
-          [ngClass]="
-            selectedGuideCard === 'Register' ? 'text-black' : 'text-white'
-          "
-        >
-          Register
-        </h3>
-        <p
-          class="text-[12px]"
-          [ngClass]="
-            selectedGuideCard === 'Register' ? 'text-black' : 'text-white'
-          "
-        >
-          Sign up now and claim your welcome bonus!
+        <p class="hidden lg:block text-[#A6B1C2] text-sm mt-4 max-w-[14rem]">
+          Follow these simple steps to start winning at Spin Club.
         </p>
       </div>
 
-      <!-- DEPOSIT -->
-      <div
-        class="hidden md:flex flex-col justify-center text-center px-8 py-10 border-b md:border-b-0 md:border-r border-[#FE8912] cursor-pointer transition-all duration-200"
-        [ngClass]="
-          selectedGuideCard === 'Deposit'
-            ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-            : 'bg-transparent text-white'
-        "
-        (click)="selectGuideCard('Deposit')"
-      >
-        <h3
-          class="text-[22px] font-bold mb-2"
-          [ngClass]="
-            selectedGuideCard === 'Deposit' ? 'text-black' : 'text-white'
-          "
-        >
-          Deposit
-        </h3>
-        <p
-          class="text-[12px]"
-          [ngClass]="
-            selectedGuideCard === 'Deposit' ? 'text-black' : 'text-[#A6B1C2]'
-          "
-        >
-          Deposit now and claim your Deposit bonus!
-        </p>
-      </div>
+      <!-- STEPS -->
+      <div class="relative">
+        <!-- Connecting line (desktop only) -->
+        <div
+          class="hidden lg:block absolute top-[3.25rem] left-[9%] right-[9%] h-[2px] bg-gradient-to-r from-transparent via-[#FE8912]/30 to-transparent"
+        ></div>
 
-      <!-- ENJOY -->
-      <div
-        class="hidden md:flex flex-col justify-center text-center px-6 py-10 border-b md:border-b-0 md:border-r border-[#FE8912] cursor-pointer transition-all duration-200"
-        [ngClass]="
-          selectedGuideCard === 'Enjoy'
-            ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-            : 'bg-transparent text-white'
-        "
-        (click)="selectGuideCard('Enjoy')"
-      >
-        <h3
-          class="text-[22px] font-bold mb-2"
-          [ngClass]="
-            selectedGuideCard === 'Enjoy' ? 'text-black' : 'text-white'
-          "
-        >
-          Enjoy the game
-        </h3>
-        <p
-          class="text-[12px]"
-          [ngClass]="
-            selectedGuideCard === 'Enjoy' ? 'text-black' : 'text-[#A6B1C2]'
-          "
-        >
-          Start playing now and win cash awards!
-        </p>
-      </div>
-
-      <!-- WITHDRAW -->
-      <div
-        class="hidden md:flex flex-col items-center justify-center py-10 cursor-pointer transition-all duration-200"
-        [ngClass]="
-          selectedGuideCard === 'Withdraw'
-            ? 'bg-gradient-to-b from-[#FFBC4B] to-[#FE8912] text-black shadow-[0_10px_30px_rgba(254,184,102,0.25)]'
-            : 'bg-transparent text-white'
-        "
-        (click)="selectGuideCard('Withdraw')"
-      >
-        <h3 class="text-[22px]">Withdraw</h3>
-        <span
-          class="font-bold text-[26px] leading-none"
-          [ngClass]="selectedGuideCard === 'Withdraw' ? '' : 'text-[#fe8912]'"
-        >
-          Win Amount
-        </span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+          <div
+            *ngFor="let step of guideSteps"
+            class="guide-step-card"
+            [ngClass]="selectedGuideCard === step.id ? 'is-active' : ''"
+            (click)="selectGuideCard(step.id)"
+          >
+            <div class="flex items-center justify-between mb-4">
+              <span class="guide-step-number">{{ step.number }}</span>
+              <span class="guide-step-icon">
+                <i [class]="step.icon"></i>
+              </span>
+            </div>
+            <h3 class="guide-step-title">{{ step.title }}</h3>
+            <p class="guide-step-desc">{{ step.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section
-  class="relative w-full py-16 lg:py-28 flex flex-col items-center justify-center gap-2"
->
-  <!-- Gateway + To Gaming -->
-  <div class="flex items-center gap-2 justify-center mt-2">
-    <span
-      class="inline-block font-bold text-[16px] sm:text-[38px] md:text-[28px] leading-[100%] text-[#fe8912]"
-    >
-      Gateway
-    </span>
-    <span
-      class="font-bold text-[16px] sm:text-[24px] md:text-[28px] text-white"
-    >
-      To Gaming
-    </span>
-  </div>
 
-  <!-- Main title (placed below the heading, responsive) -->
-  <h2
-    class="text-center font-semibold text-[20px] sm:text-[36px] md:text-[42px] uppercase text-white max-w-4xl px-4 lg:leading-3"
-  >
-    Building Gaming Universe
-  </h2>
-</section>
 
 <!-- Promotions & Rewards Section -->
 <section
-  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#0A0E1F] overflow-hidden"
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-black overflow-hidden"
 >
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-12 lg:mb-16">
@@ -740,37 +486,37 @@
     <span class="relative z-10 tracking-wide">Start Winning</span>
   </button>
 </div> -->
-
 <!-- Sign-up Bonus Floating Pop-up -->
 <div class="fixed inset-0 z-50 pointer-events-none">
   <div
     *ngIf="showPopup"
     (click)="RedirectToSignUp()"
-    class="popup pointer-events-auto absolute flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-[#FE8912] via-[#ff9f2f] to-[#d97706] text-white shadow-xl cursor-pointer overflow-visible hover:scale-105 transition-all duration-300"
+    class="popup pointer-events-auto absolute flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#161819]/95 backdrop-blur-md border border-[#FE8912]/50 text-white shadow-xl cursor-pointer overflow-visible hover:scale-105 hover:border-[#FE8912] transition-all duration-300"
+    style="box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 0 25px rgba(254, 137, 18, 0.25);"
   >
     <!--  Close Button -->
     <div
-      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-black text-white text-xs hover:bg-red-500 cursor-pointer z-20"
+      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-black border border-[#FE8912]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
       (click)="$event.stopPropagation(); closePopup()"
     >
       ✕
     </div>
 
-    <span
-      class="absolute inset-0 bg-gradient-to-r from-[#FE8912] to-[#e07f0f] opacity-20 blur-xl rounded-xl"
-    ></span>
-
     <div
-      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-[#fff2e6] shadow-inner"
+      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912]"
     >
-      <i class="fas fa-gift text-[#ff7a00] text-lg"></i>
+      <i class="fas fa-gift text-black text-lg"></i>
     </div>
 
     <div class="relative z-10 leading-tight pr-10">
       <div class="relative z-10 leading-tight pr-10">
-        <div class="text-sm font-bold">150% BONUS</div>
+        <div
+          class="text-sm font-bold bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
+        >
+          150% BONUS
+        </div>
 
-        <div class="text-[11px] text-white/90">After signup</div>
+        <div class="text-[11px] text-[#A6B1C2]">After signup</div>
 
         <!-- Badge -->
         <span
@@ -797,8 +543,8 @@
 <div id="gameScrollSection">
   <app-games-landing></app-games-landing>
 </div>
-<app-game-promo-banner></app-game-promo-banner>
-<app-customer-reviews></app-customer-reviews>
+<!-- <app-game-promo-banner></app-game-promo-banner> -->
+<!-- <app-customer-reviews></app-customer-reviews> -->
 <div id="contactScrollSection">
   <app-contact-us></app-contact-us>
 </div>

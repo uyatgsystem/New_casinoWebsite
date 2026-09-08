@@ -1,22 +1,26 @@
 <div class="terms-container">
   <div class="wrapper">
     <!-- Header -->
-    <div class="relative mb-6 pb-2">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 cursor-pointer">
-          <svg (click)="goBack()" class="w-6 h-6 relative z-10 text-[#F3A630]" fill="none" stroke="currentColor"
+    <div class="guide-topbar">
+      <div class="guide-header">
+        <button type="button" (click)="goBack()" class="guide-back" aria-label="Go back">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor"
             stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
           </svg>
-        </div>
+          <span>Back</span>
+        </button>
+        <span class="guide-eyebrow">Spin Club / Getting started</span>
       </div>
-
-      <div class="h-[2px] w-full absolute bottom-0 left-0 bg-custom-gradient"></div>
     </div>
 
     <!-- Terms Content -->
     <div class="terms-content text-gray-200 mt-6">
-      <h2 class="text-2xl font-bold text-center mb-6">Guide Lines</h2>
+      <div class="guide-title">
+        <span class="guide-kicker">Your quick start playbook</span>
+        <h1>Guidelines</h1>
+        <p>Everything you need to move around Spin Club with confidence.</p>
+      </div>
 
       <div class="space-y-6 leading-relaxed">
 

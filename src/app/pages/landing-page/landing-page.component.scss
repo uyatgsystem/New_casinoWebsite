@@ -122,6 +122,175 @@
   box-shadow: 0 0 25px rgba(254, 137, 18, 0.45);
 }
 
+// Popular Games marquee strip
+.game-marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.game-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: max-content;
+  animation: marqueeScroll 35s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+// The track holds 4 copies of the image set — shifting by exactly one
+// copy-width (-25%) keeps the loop seamless even on very wide screens.
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+// Popular Games image strip — subtle glow + lift on hover
+.game-strip-img {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: scale(1.06);
+    box-shadow: 0 14px 36px rgba(254, 137, 18, 0.3);
+  }
+}
+
+// "How to Play" heading (guide section)
+.how-to-play-heading {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &.is-active {
+    filter: drop-shadow(0 0 14px rgba(254, 137, 18, 0.4));
+  }
+}
+
+// Guide step cards (Register / Deposit / Enjoy / Withdraw)
+.guide-step-card {
+  position: relative;
+  cursor: pointer;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 24, 25, 0.9) 0%,
+    rgba(10, 14, 31, 0.9) 100%
+  );
+  border: 1px solid rgba(138, 121, 96, 0.25);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: #fe8912;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  &:hover .guide-step-icon {
+    transform: scale(1.1);
+    border-color: #fe8912;
+  }
+}
+
+.guide-step-number {
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: rgba(254, 137, 18, 0.5);
+  letter-spacing: 0.03em;
+}
+
+.guide-step-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(254, 137, 18, 0.4);
+  color: #fe9b2a;
+  font-size: 0.95rem;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.guide-step-title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0.75rem 0 0.35rem;
+}
+
+.guide-step-desc {
+  color: #a6b1c2;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.guide-step-card.is-active {
+  background: linear-gradient(180deg, #ffbc4b 0%, #fe8912 100%);
+  border-color: transparent;
+  box-shadow: 0 10px 30px rgba(254, 137, 18, 0.35);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 3px;
+    border-radius: 0 0 4px 4px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  }
+
+  .guide-step-number {
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  .guide-step-icon {
+    background: rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.25);
+    color: #000;
+  }
+
+  .guide-step-title,
+  .guide-step-desc {
+    color: #000;
+  }
+}
+
 // Staggered fade-in for card grids
 .feature-card.reveal,
 .promo-card.reveal {
@@ -135,7 +304,6 @@
 // Promotions & Rewards banners
 .promo-card {
   --promo-accent: #fe8912;
-  --promo-accent-soft: rgba(254, 137, 18, 0.15);
 
   position: relative;
   display: flex;
@@ -144,11 +312,11 @@
   padding: 1.75rem;
   border-radius: 18px;
   background: linear-gradient(
-    135deg,
-    var(--promo-accent-soft) 0%,
-    rgba(10, 14, 31, 0.6) 55%
+    180deg,
+    rgba(22, 24, 25, 0.9) 0%,
+    rgba(10, 14, 31, 0.9) 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(138, 121, 96, 0.25);
   overflow: hidden;
   transition:
     transform 0.4s ease,
@@ -172,22 +340,18 @@
 
   &--gold {
     --promo-accent: #fec866;
-    --promo-accent-soft: rgba(254, 200, 102, 0.18);
   }
 
   &--orange {
     --promo-accent: #fe8912;
-    --promo-accent-soft: rgba(254, 137, 18, 0.16);
   }
 
   &--amber {
     --promo-accent: #ffb347;
-    --promo-accent-soft: rgba(255, 179, 71, 0.16);
   }
 
   &--deep {
     --promo-accent: #fe8006;
-    --promo-accent-soft: rgba(254, 128, 6, 0.18);
   }
 }
 
@@ -329,18 +493,54 @@
     0 0 0 1px rgba(254, 200, 102, 0.25) inset;
 }
 
+// Pill-shaped landing-page buttons (fully rounded)
+.pill-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #fec866 0%, #fe8006 100%);
+  color: #000;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.pill-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2.5rem;
+  border-radius: 9999px;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  border: 1px solid rgba(138, 121, 96, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    border-color: #fe8912;
+  }
+}
+
 .login-btn {
   width: 120px;
   height: 40px;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 16px;
-  border-bottom-left-radius: 3px;
-  background: linear-gradient(180deg, #fec866 0%, #fe8006 100%);
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #fec866 0%, #fe8006 100%);
   color: black;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   border: none;
+  box-shadow: 0 6px 18px rgba(254, 137, 18, 0.35);
   transition: all 0.3s ease-in-out;
 
   &:hover {

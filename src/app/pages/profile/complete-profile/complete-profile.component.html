@@ -1,1796 +1,593 @@
-<div class="min-h-screen bg-black/90 py-8 px-4 ml-2">
-  <div class="max-w-7xl mx-auto">
-    <!-- PROFILE HEADER CARD -->
-    <div
-      class="profile-page-header border-2 border-[#C3B089] rounded-3xl p-4 md:p-4 bg-noise"
-    >
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-        <!-- Profile Image - Col 1-2 -->
-        <div class="md:col-span-2 flex justify-center md:justify-start">
-          <div
-            class="relative cursor-pointer"
-            (click)="openProfileImageModal()"
-          >
-            <div
-              class="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-2 border-[#C3B089] overflow-hidden flex items-center justify-center hover:border-[#FE8C16] transition"
-            >
-              <img
-                *ngIf="profileImage"
-                [src]="profileImage"
-                alt="Profile"
-                class="w-full h-full object-cover"
-              />
-              <svg
-                *ngIf="!profileImage"
-                class="w-20 h-20 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-            <button
-              (click)="openProfileImageModal(); $event.stopPropagation()"
-              class="absolute bottom-2 right-2 bg-[#FE8C16] text-black rounded-full p-2 hover:bg-[#E57A00] transition shadow-xl"
-            >
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2.5"
-                  d="M12 4v16m8-8H4"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- User Info - Col 3-7 -->
-        <div class="md:col-span-5 text-center md:text-left">
-          <h1 class="text-xl md:text-xl font-black text-white mb-2">
-            {{ name | uppercase }}
-          </h1>
-          <p class="text-md md:text-md text-gray-200 mb-4">{{ email }}</p>
-          <div
-            class="flex flex-col md:flex-row md:items-center md:space-x-3 items-center justify-center md:justify-start mb-2"
-            [ngClass]="getKycClass()"
-          >
-            <div class="flex items-center space-x-2">
-              <!-- ICON -->
-              <ng-container [ngSwitch]="KYCVerification">
-                <span class="text-md md:text-md text-gray-300">KYC :</span>
-                <span class="text-md tracking-wide">
-                  {{ KYCVerification | titlecase }}
-                </span>
-                <!-- ✅ Completed -->
-                <svg
-                  *ngSwitchCase="'completed'"
-                  class="w-6 h-6 text-green-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-
-                <!-- 🟡 Pending -->
-                <svg
-                  *ngSwitchCase="'pending'"
-                  class="w-6 h-6 animate-spin"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    class="opacity-30"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="4"
-                  ></circle>
-                  <path
-                    class="opacity-90"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v4l3-3-3-3v4a12 12 0 00-12 12h4z"
-                  ></path>
-                </svg>
-
-                <!-- 🔴 Not Submitted -->
-                <svg
-                  *ngSwitchCase="'not submitted'"
-                  class="w-6 h-6 text-red-500"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14h-2v-2h2v2zm0-4h-2V6h2v6z"
-                  />
-                </svg>
-
-                <div
-                  class="relative flex items-center gap-2"
-                  *ngSwitchCase="'declined'"
-                >
-                  <!-- i icon -->
-                  <div class="relative group cursor-pointer">
-                    <span
-                      class="w-4 h-4 flex items-center justify-center text-xs rounded-full bg-red-500 text-white"
-                    >
-                      i
-                    </span>
-
-                    <!-- Tooltip -->
-                    <div
-                      class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden group-hover:block bg-noise text-white text-sm px-4 py-2 rounded-lg shadow-xl whitespace-nowrap z-50 border"
-                      style="border-color: #c3b089"
-                    >
-                      {{ personalInfo.reason || "Declined" }}
-                    </div>
-                  </div>
-                </div>
-              </ng-container>
-
-              <!-- TEXT -->
-            </div>
-          </div>
-          <p class="text-md md:text-md text-gray-300">
-            Wallet Balance :
-            <span class="text-[#FE8C16] font-black text-2xl md:text-2xl"
-              >${{ formattedBalance }}</span
-            >
-          </p>
-        </div>
-
-        <div
-          class="md:col-span-5 flex justify-center md:justify-center md:items-center"
-        >
-          <div class="text-center md:text-center space-y-4">
-            <!-- LEVEL BADGE -->
-            <div class="mt-4">
-              <div class="flex items-end justify-center gap-6 flex-wrap">
-                <!-- BRONZE -->
-                <div
-                  class="relative flex flex-col items-center transition-all duration-300"
-                  [ngClass]="profileLevel === 1 ? 'scale-110' : 'opacity-60'"
-                >
-                  <img
-                    src="/BrornzeLevel.png"
-                    [ngClass]="profileLevel === 1 ? 'w-28 h-28' : 'w-16 h-16'"
-                    class="object-contain drop-shadow-lg transition-all duration-300 transition-transform duration-300 hover:scale-110 cursor-pointer"
-                    alt="Bronze"
-                  />
-
-                  <span class="mt-2 text-xs font-semibold text-amber-600">
-                    Bronze
-                  </span>
-                </div>
-
-                <!-- SILVER -->
-                <div
-                  class="relative flex flex-col items-center transition-all duration-300"
-                  [ngClass]="profileLevel === 2 ? 'scale-110' : 'opacity-60'"
-                >
-                  <img
-                    src="/SilverLevel.png"
-                    [ngClass]="profileLevel === 2 ? 'w-28 h-28' : 'w-16 h-16'"
-                    class="object-contain drop-shadow-lg transition-all duration-300 transition-transform duration-300 hover:scale-110 cursor-pointer"
-                    alt="Silver"
-                  />
-
-                  <span class="mt-2 text-xs font-semibold text-gray-300">
-                    Silver
-                  </span>
-                </div>
-
-                <!-- GOLD -->
-                <div
-                  class="relative flex flex-col items-center transition-all duration-300"
-                  [ngClass]="profileLevel === 3 ? 'scale-110' : 'opacity-60'"
-                >
-                  <img
-                    src="/GoldLevel.png"
-                    [ngClass]="profileLevel === 3 ? 'w-28 h-28' : 'w-16 h-16'"
-                    class="object-contain drop-shadow-lg transition-all duration-300 transition-transform duration-300 hover:scale-110 cursor-pointer"
-                    alt="Gold"
-                  />
-
-                  <span class="mt-2 text-xs font-semibold text-yellow-400">
-                    Gold
-                  </span>
-                </div>
-
-                <!-- PLATINUM -->
-                <div
-                  class="relative flex flex-col items-center transition-all duration-300"
-                  [ngClass]="profileLevel === 4 ? 'scale-110' : 'opacity-60'"
-                >
-                  <img
-                    src="/PlatinumLevel.png"
-                    [ngClass]="profileLevel === 4 ? 'w-28 h-28' : 'w-16 h-16'"
-                    class="object-contain drop-shadow-lg transition-all duration-300 transition-transform duration-300 hover:scale-110 cursor-pointer"
-                    alt="Platinum"
-                  />
-
-                  <span class="mt-2 text-xs font-semibold text-[#F2F5FC]">
-                    Platinum
-                  </span>
-                </div>
-
-                <!-- DIAMOND -->
-                <div
-                  class="relative flex flex-col items-center transition-all duration-300"
-                  [ngClass]="profileLevel === 5 ? 'scale-110' : 'opacity-60'"
-                >
-                  <img
-                    src="/DiamondLevel.png"
-                    [ngClass]="profileLevel === 5 ? 'w-28 h-28' : 'w-16 h-16'"
-                    class="object-contain drop-shadow-lg transition-all duration-300 transition-transform duration-300 hover:scale-110 cursor-pointer"
-                    alt="Diamond"
-                  />
-
-                  <span class="mt-2 text-xs font-semibold text-[#B692F9]">
-                    Diamond
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- XP BAR -->
-            <!-- <div class="mt-3">
-
-              <div class="flex justify-between text-xs text-gray-400 mb-1">
-                <span>Profile Level</span>
-                <span>{{ completedSteps }}/5</span>
-              </div>
-
-              <div class="flex gap-1 w-full md:w-96">
-
-                <div *ngFor="let step of [1,2,3,4,5]" class="h-2 flex-1 rounded-full transition-all duration-500"
-                  [ngClass]="step <= completedSteps
-           ? 'bg-gradient-to-r from-[#FE830A] to-[#FEC05B] shadow-md shadow-orange-500/40'
-           : 'bg-gray-700'">
-                </div>
-
-              </div>
-
-            </div> -->
-          </div>
-        </div>
+<div class="account-page">
+  <div class="account-shell">
+    <header class="account-topbar">
+      <div>
+        <p class="breadcrumb">Account / Profile</p>
+        <h1>Account settings</h1>
+        <p class="intro">
+          Manage your personal details, security and wallet activity.
+        </p>
       </div>
-    </div>
+    </header>
 
-    <!--Web View TABS -->
-    <div
-      class="hidden md:flex gap-4 mb-6 px-6 md:px-8 pt-4 pb-1 shadow-[0_4px_6px_-4px_rgba(195,176,137,0.5)]"
-    >
-      <button
-        (click)="activeTab = 'personal'"
-        class="px-6 py-2 rounded-lg font-bold text-sm transition-all border"
-        [ngClass]="
-          activeTab === 'personal'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black border-transparent shadow-md'
-            : 'border-gray-600 text-gray-300 hover:border-[#FE8006] hover:text-white'
-        "
-      >
-        Personal Info
-      </button>
-
-      <button
-        (click)="activeTab = 'security'"
-        class="px-6 py-2 rounded-lg font-bold text-sm transition-all border"
-        [ngClass]="
-          activeTab === 'security'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black border-transparent shadow-md'
-            : 'border-gray-600 text-gray-300 hover:border-[#FE8006] hover:text-white'
-        "
-      >
-        Security
-      </button>
-
-      <button
-        (click)="activeTab = 'wallet'"
-        class="px-6 py-2 rounded-lg font-bold text-sm transition-all border"
-        [ngClass]="
-          activeTab === 'wallet'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black border-transparent shadow-md'
-            : 'border-gray-600 text-gray-300 hover:border-[#FE8006] hover:text-white'
-        "
-      >
-        Wallet & Payments
-      </button>
-
-      <button
-        (click)="activeTab = 'referrals'"
-        class="px-6 py-2 rounded-lg font-bold text-sm transition-all border"
-        [ngClass]="
-          activeTab === 'referrals'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black border-transparent shadow-md'
-            : 'border-gray-600 text-gray-300 hover:border-[#FE8006] hover:text-white'
-        "
-      >
-        Referrals
-      </button>
-
-      <button
-        (click)="activeTab = 'Levels'"
-        class="px-6 py-2 rounded-lg font-bold text-sm transition-all border"
-        [ngClass]="
-          activeTab === 'Levels'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black border-transparent shadow-md'
-            : 'border-gray-600 text-gray-300 hover:border-[#FE8006] hover:text-white'
-        "
-      >
-        Profile Levels
-      </button>
-    </div>
-
-    <!-- Mobile Tabs -->
-
-    <div class="md:hidden flex flex-row gap-2 mb-6 mt-4 px-4">
-      <button
-        (click)="activeTab = 'personal'"
-        class="flex-1 py-2 text-xs font-bold rounded-lg border transition"
-        [ngClass]="
-          activeTab === 'personal'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black'
-            : 'bg-transparent border-gray-600 text-gray-300'
-        "
-      >
-        Personal
-      </button>
-
-      <button
-        (click)="activeTab = 'security'"
-        class="flex-1 py-2 text-xs font-bold rounded-lg border transition"
-        [ngClass]="
-          activeTab === 'security'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black'
-            : 'bg-transparent border-gray-600 text-gray-300'
-        "
-      >
-        Security
-      </button>
-
-      <button
-        (click)="activeTab = 'wallet'"
-        class="flex-1 py-2 text-xs font-bold rounded-lg border transition"
-        [ngClass]="
-          activeTab === 'wallet'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black'
-            : 'bg-transparent border-gray-600 text-gray-300'
-        "
-      >
-        Wallet
-      </button>
-      <button
-        (click)="activeTab = 'referrals'"
-        class="flex-1 py-2 text-xs font-bold rounded-lg border transition"
-        [ngClass]="
-          activeTab === 'referrals'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black'
-            : 'bg-transparent border-gray-600 text-gray-300'
-        "
-      >
-        Referrals
-      </button>
-      <button
-        (click)="activeTab = 'Levels'"
-        class="flex-1 py-2 text-xs font-bold rounded-lg border transition"
-        [ngClass]="
-          activeTab === 'Levels'
-            ? 'bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black'
-            : 'bg-transparent border-gray-600 text-gray-300'
-        "
-      >
-        P-Levels
-      </button>
-    </div>
-
-    <!-- TAB CONTENT -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- LEFT COLUMN - Forms (2 cols) -->
-      <div class="lg:col-span-2">
-        <!-- Personal Info Tab -->
-        <div
-          *ngIf="activeTab === 'personal'"
-          class="border-2 border-[#C3B089] rounded-2xl p-8 bg-noise"
-        >
-          <!-- <div class="flex justify-end mb-4">
-            <button type="button" (click)="enableEdit()" *ngIf="!isEditMode"
-              class="text-sm px-4 py-2 rounded-md border border-[#C3B089] text-[#C3B089] hover:bg-[#C3B089] hover:text-black transition">
-              Edit
-            </button>
-          </div> -->
-          <form (ngSubmit)="updatePersonalInfo()" class="space-y-5">
-            <div>
-              <label class="block text-white font-bold text-lg mb-3"
-                >Full Name</label
-              >
-              <input
-                [(ngModel)]="personalInfo.fullName"
-                name="fullName"
-                [disabled]="!isEditMode"
-                type="text"
-                placeholder="Name"
-                class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 ng-touched ng-dirty"
-              />
-              <div
-                class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
-              ></div>
+    <div class="account-layout">
+      <aside class="account-sidebar">
+        <div class="profile-summary">
+          <button
+            type="button"
+            class="avatar-button"
+            (click)="openProfileImageModal()"
+            aria-label="Manage profile photo"
+          >
+            <span class="avatar"
+              ><img *ngIf="profileImage" [src]="profileImage" alt="Profile" /><i
+                *ngIf="!profileImage"
+                class="fa fa-user"
+                aria-hidden="true"
+              ></i
+            ></span>
+            <span class="avatar-edit"
+              ><i class="fa fa-camera" aria-hidden="true"></i
+            ></span>
+          </button>
+          <h2>{{ name | uppercase }}</h2>
+          <p>{{ email }}</p>
+          <div class="verification-panel" [ngClass]="getKycClass()">
+            <div class="verification-panel-top">
+              <i class="fa fa-shield" aria-hidden="true"></i>
+              <span>KYC STATUS</span>
             </div>
-
-            <div>
-              <label class="block text-white font-bold text-lg mb-3"
-                >Email
-              </label>
-              <input
-                [(ngModel)]="personalInfo.email"
-                name="email"
-                [disabled]="!isEditMode"
-                type="email"
-                placeholder="Email"
-                class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 ng-touched ng-dirty"
-              />
-              <div
-                class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
-              ></div>
-            </div>
-
-            <div>
-              <label class="block text-white font-bold text-lg mb-3"
-                >Phone Number</label
-              >
-              <input
-                [(ngModel)]="personalInfo.phone"
-                name="phone"
-                [disabled]="!isEditMode"
-                type="tel"
-                placeholder="Phone Number"
-                class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 ng-touched ng-dirty"
-              />
-              <div
-                class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
-              ></div>
-            </div>
-
-            <div>
-              <label class="block text-white font-bold text-lg mb-3"
-                >Country</label
-              >
-              <input
-                [(ngModel)]="personalInfo.country"
-                name="country"
-                [disabled]="!isEditMode"
-                type="text"
-                placeholder="Country"
-                class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 ng-touched ng-dirty"
-              />
-              <div
-                class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
-              ></div>
-            </div>
-
-            <div>
-              <label class="block text-white font-bold text-lg mb-3"
-                >Address</label
-              >
-              <input
-                [(ngModel)]="personalInfo.address"
-                name="address"
-                [disabled]="!isEditMode"
-                type="text"
-                placeholder="Address"
-                class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 ng-touched ng-dirty"
-              />
-              <div
-                class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
-              ></div>
-            </div>
-
-            <div>
-              <label class="block text-white font-bold text-lg mb-3"
-                >Zip Code</label
-              >
-              <input
-                [(ngModel)]="personalInfo.zipcode"
-                name="zipcode"
-                [disabled]="!isEditMode"
-                type="text"
-                placeholder="Zip Code"
-                class="w-full border-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 bg-transparent text-white px-2 md:px-4 py-1 md:py-2 placeholder-white placeholder:text-xs md:placeholder:text-base mb-0 md:mb-2 ng-touched ng-dirty"
-              />
-              <div
-                class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
-              ></div>
-            </div>
-
-            <button
-              *ngIf="isEditMode"
-              class="btn-primary w-full px-2 py-4 md:!px-10 text-xs md:text-sm rounded-lg"
-            >
-              Save Changes
-            </button>
-          </form>
+            <strong>
+              <i
+                class="fa"
+                [ngClass]="
+                  KYCVerification === 'completed'
+                    ? 'fa-check-circle'
+                    : KYCVerification === 'pending'
+                      ? 'fa-clock-o'
+                      : 'fa-exclamation-circle'
+                "
+                aria-hidden="true"
+              ></i>
+              {{ (KYCVerification || "Not submitted") | titlecase }}
+            </strong>
+            <small *ngIf="KYCVerification === 'completed'">
+              Your identity has been verified.
+            </small>
+            <small *ngIf="KYCVerification === 'pending'">
+              Verification is currently in progress.
+            </small>
+            <small *ngIf="!KYCVerification || KYCVerification === 'not submitted'">
+              Submit your KYC details to unlock all account features.
+            </small>
+          </div>
         </div>
 
-        <!-- Security Tab -->
-        <div *ngIf="activeTab === 'security'" class="space-y-6">
-          <!-- <div class="border-2 border-[#C3B089] rounded-2xl p-6 bg-noise backdrop-blur-md">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-2xl font-bold text-white">Two-Factor Authentication</h3>
-              <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <button
-              class="px-8 py-3 border-2 border-[#C3B089] text-[#C3B089] rounded-lg font-bold hover:bg-[#C3B089]/10 transition text-lg">
-              Manage 2FA
-            </button>
-          </div> -->
-
-          <div
-            class="border border-[#C3B089] rounded-2xl p-6 bg-noise shadow-lg"
+        <nav class="account-nav" aria-label="Account settings">
+          <button
+            type="button"
+            (click)="activeTab = 'personal'"
+            [class.active]="activeTab === 'personal'"
           >
-            <!-- Header -->
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-bold text-white">Password</h3>
+            <i class="fa fa-user-o"></i><span>Personal information</span
+            ><i class="fa fa-angle-right"></i>
+          </button>
+          <button
+            type="button"
+            (click)="activeTab = 'security'"
+            [class.active]="activeTab === 'security'"
+          >
+            <i class="fa fa-lock"></i><span>Password & security</span
+            ><i class="fa fa-angle-right"></i>
+          </button>
+          <button
+            type="button"
+            (click)="activeTab = 'wallet'"
+            [class.active]="activeTab === 'wallet'"
+          >
+            <i class="fa fa-credit-card"></i><span>Wallet activity</span
+            ><i class="fa fa-angle-right"></i>
+          </button>
+          <button
+            type="button"
+            (click)="activeTab = 'referrals'"
+            [class.active]="activeTab === 'referrals'"
+          >
+            <i class="fa fa-users"></i><span>Referrals</span
+            ><i class="fa fa-angle-right"></i>
+          </button>
+          <button
+            type="button"
+            (click)="activeTab = 'Levels'"
+            [class.active]="activeTab === 'Levels'"
+          >
+            <i class="fa fa-trophy"></i><span>Membership levels</span
+            ><i class="fa fa-angle-right"></i>
+          </button>
+        </nav>
+
+        <div class="wallet-card">
+          <div class="wallet-card-label"><i class="fa fa-credit-card"></i> Wallet</div>
+          <strong>${{ formattedBalance }}</strong>
+          <span>Available balance</span>
+          <button type="button" (click)="activeTab = 'wallet'">
+            Open wallet <i class="fa fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="kyc-action-card" *ngIf="KYCVerification !== 'completed'">
+          <span><i class="fa fa-shield"></i> Identity verification</span>
+          <p>{{ KYCVerification === "pending" ? "Your KYC review is in progress." : "Submit your details to verify your account." }}</p>
+          <button
+            type="button"
+            (click)="RedirectTokyc()"
+          >
+            {{ KYCVerification === "pending" ? "View KYC status" : "Submit KYC" }}
+            <i class="fa fa-arrow-right"></i>
+          </button>
+        </div>
+      </aside>
+
+      <main class="account-content">
+        <section *ngIf="activeTab === 'personal'" class="settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Profile details</span>
+              <h2>Personal information</h2>
+              <p>Keep your contact details up to date.</p>
             </div>
-
-            <!-- Info Box -->
-            <div
-              class="bg-[#111] border border-[#C3B089]/30 rounded-xl p-4 text-sm text-gray-300 space-y-3"
-            >
-              <p class="text-xs text-gray-400">
-                Last changed:
-                <span class="text-white font-medium">10 Jan 2026</span>
-              </p>
-
-              <div>
-                <p class="text-white font-semibold mb-2">Security Tips</p>
-
-                <ul class="space-y-1 text-gray-400 list-disc list-inside">
-                  <li>Change your password regularly</li>
-                  <li>Use a strong combination of characters</li>
-                  <li>Never share your login details</li>
-                  <li>Keep your account information safe</li>
-                </ul>
-              </div>
+          </div>
+          <form (ngSubmit)="updatePersonalInfo()" class="settings-form">
+            <div class="form-grid">
+              <label
+                >Full name<input
+                  [(ngModel)]="personalInfo.fullName"
+                  name="fullName"
+                  [disabled]="!isEditMode"
+                  type="text"
+                  placeholder="Full name"
+              /></label>
+              <label
+                >Email address<input
+                  [(ngModel)]="personalInfo.email"
+                  name="email"
+                  [disabled]="!isEditMode"
+                  type="email"
+                  placeholder="Email address"
+              /></label>
+              <label
+                >Phone number<input
+                  [(ngModel)]="personalInfo.phone"
+                  name="phone"
+                  [disabled]="!isEditMode"
+                  type="tel"
+                  placeholder="Phone number"
+              /></label>
+              <label
+                >Country<input
+                  [(ngModel)]="personalInfo.country"
+                  name="country"
+                  [disabled]="!isEditMode"
+                  type="text"
+                  placeholder="Country"
+              /></label>
+              <label class="wide-field"
+                >Address<input
+                  [(ngModel)]="personalInfo.address"
+                  name="address"
+                  [disabled]="!isEditMode"
+                  type="text"
+                  placeholder="Address"
+              /></label>
+              <label
+                >Zip code<input
+                  [(ngModel)]="personalInfo.zipcode"
+                  name="zipcode"
+                  [disabled]="!isEditMode"
+                  type="text"
+                  placeholder="Zip code"
+              /></label>
             </div>
+            <div class="form-actions" *ngIf="isEditMode">
+              <button type="submit" class="solid-button">Save changes</button
+              ><button
+                type="button"
+                class="outline-button"
+                (click)="disableEdit()"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </section>
 
-            <form
-              [formGroup]="changePasswordForm"
-              (ngSubmit)="onSubmit()"
-              autocomplete="off"
-              class="w-full"
+        <section *ngIf="activeTab === 'security'" class="settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Account protection</span>
+              <h2>Password & security</h2>
+              <p>Use a strong password to keep your account protected.</p>
+            </div>
+            <span class="secure-label"
+              ><i class="fa fa-shield"></i> Secure</span
             >
-              <!-- Old Password -->
-              <div class="mb-5">
-                <div class="relative mt-1">
-                  <input
-                    [type]="
-                      passwordVisibility['oldPassword'] ? 'text' : 'password'
-                    "
-                    formControlName="oldPassword"
-                    placeholder="Current Password"
-                    class="w-full bg-transparent py-2 text-white outline-none pl-2 pr-16 placeholder-white"
-                  />
-
-                  <!-- Eye Icon (Exactly touching the underline border) -->
+          </div>
+          <div class="security-note">
+            <i class="fa fa-info-circle"></i
+            ><span
+              >Use at least 8 characters, including an uppercase letter, number
+              and special character.</span
+            >
+          </div>
+          <form
+            [formGroup]="changePasswordForm"
+            (ngSubmit)="onSubmit()"
+            class="settings-form password-form"
+            autocomplete="off"
+          >
+            <label
+              >Current password
+              <div class="password-input">
+                <input
+                  [type]="
+                    passwordVisibility['oldPassword'] ? 'text' : 'password'
+                  "
+                  formControlName="oldPassword"
+                  placeholder="Current password"
+                /><button
+                  type="button"
+                  (click)="toggleVisibility('oldPassword')"
+                >
                   <i
-                    class="fa absolute inset-y-0 top-[14px] right-16 cursor-pointer text-[#F3A630] hover:text-white transition"
+                    class="fa"
                     [ngClass]="
                       passwordVisibility['oldPassword']
                         ? 'fa-eye'
                         : 'fa-eye-slash'
                     "
-                    (click)="toggleVisibility('oldPassword')"
                   ></i>
-
-                  <!-- Divider Line -->
-                  <span class="absolute right-10 top-[14px] text-white-400"
-                    >|</span
-                  >
-
-                  <!-- Lock Icon (Right Side) -->
-                  <!-- Lock SVG -->
-                  <div class="absolute right-2 top-[14px]">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M14.6668 14.6667H13.3335V13.3334H14.6668V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        d="M10.6665 14.6667H11.9998V13.3334H10.6665V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        d="M17.3333 14.6667H16V13.3334H17.3333V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M4 8V4.66667C4 2.08933 6.08933 0 8.66667 0C11.244 0
-      13.3333 2.08933 13.3333 4.66667V8H15.3333C16.4379 8
-      17.3333 8.89543 17.3333 10V10.7333C18.8548 11.0422 20
-      12.3874 20 14C20 15.6127 18.8548 16.9579 17.3333
-      17.2667V18C17.3333 19.1045 16.4379 20 15.3333 20H2C0.895431
-      20 0 19.1045 0 18V10C0 8.89543 0.895431 8 2 8H4ZM5.33333
-      4.66667C5.33333 2.82572 6.82572 1.33333 8.66667
-      1.33333C10.5076 1.33333 12 2.82572 12 4.66667V8H5.33333V4.66667ZM11.3333
-      12C10.2288 12 9.33333 12.8954 9.33333 14C9.33333 15.1045 10.2288 16
-      11.3333 16H16.6667C17.7712 16 18.6667 15.1045 18.6667
-      14C18.6667 12.8954 17.7712 12 16.6667 12H11.3333Z"
-                        fill="#F3A630"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Gradient Bottom Border -->
-                <div class="h-[1px] w-full bg-custom-gradient"></div>
-
-                <p
-                  *ngIf="
-                    changePasswordForm.get('oldPassword')?.invalid &&
-                    changePasswordForm.get('oldPassword')?.touched
+                </button></div
+            ></label>
+            <label
+              >New password
+              <div class="password-input">
+                <input
+                  [type]="
+                    passwordVisibility['newPassword'] ? 'text' : 'password'
                   "
-                  class="text-red-400 text-xs mt-1"
+                  formControlName="newPassword"
+                  placeholder="New password"
+                  (input)="checkPasswordStrength()"
+                /><button
+                  type="button"
+                  (click)="toggleVisibility('newPassword')"
                 >
-                  Old password is required.
-                </p>
-              </div>
-
-              <!-- New Password -->
-              <div class="mb-5">
-                <div class="relative">
-                  <input
-                    [type]="
-                      passwordVisibility['newPassword'] ? 'text' : 'password'
-                    "
-                    id="newPassword"
-                    formControlName="newPassword"
-                    placeholder="Enter new password"
-                    class="w-full bg-transparent py-2 text-white outline-none pl-2 pr-16 placeholder-white"
-                  />
-
-                  <!-- Eye Icon (Exactly touching the underline) -->
                   <i
-                    class="fa absolute top-[14px] right-16 cursor-pointer text-[#F3A630] hover:text-white transition"
+                    class="fa"
                     [ngClass]="
                       passwordVisibility['newPassword']
                         ? 'fa-eye'
                         : 'fa-eye-slash'
                     "
-                    (click)="toggleVisibility('newPassword')"
                   ></i>
-
-                  <!-- Divider Line -->
-                  <span class="absolute right-10 top-[14px] text-white-400"
-                    >|</span
-                  >
-
-                  <!-- Lock Icon (Right Side) -->
-                  <!-- Lock SVG -->
-                  <div class="absolute right-2 top-[14px]">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M14.6668 14.6667H13.3335V13.3334H14.6668V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        d="M10.6665 14.6667H11.9998V13.3334H10.6665V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        d="M17.3333 14.6667H16V13.3334H17.3333V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M4 8V4.66667C4 2.08933 6.08933 0 8.66667 0C11.244 0
-      13.3333 2.08933 13.3333 4.66667V8H15.3333C16.4379 8
-      17.3333 8.89543 17.3333 10V10.7333C18.8548 11.0422 20
-      12.3874 20 14C20 15.6127 18.8548 16.9579 17.3333
-      17.2667V18C17.3333 19.1045 16.4379 20 15.3333 20H2C0.895431
-      20 0 19.1045 0 18V10C0 8.89543 0.895431 8 2 8H4ZM5.33333
-      4.66667C5.33333 2.82572 6.82572 1.33333 8.66667
-      1.33333C10.5076 1.33333 12 2.82572 12 4.66667V8H5.33333V4.66667ZM11.3333
-      12C10.2288 12 9.33333 12.8954 9.33333 14C9.33333 15.1045 10.2288 16
-      11.3333 16H16.6667C17.7712 16 18.6667 15.1045 18.6667
-      14C18.6667 12.8954 17.7712 12 16.6667 12H11.3333Z"
-                        fill="#F3A630"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <!-- Gradient Bottom Border -->
-                <div class="h-[1px] w-full bg-custom-gradient"></div>
-
-                <p
-                  *ngIf="
-                    changePasswordForm.get('newPassword')?.invalid &&
-                    changePasswordForm.get('newPassword')?.touched
-                  "
-                  class="text-red-400 text-xs mt-1"
-                >
-                  New password is required.
-                </p>
+                </button></div
+            ></label>
+            <div
+              class="password-strength"
+              *ngIf="changePasswordForm.get('newPassword')?.value"
+            >
+              <div>
+                <span>Password strength</span
+                ><strong>{{ getPasswordStrengthText() }}</strong>
               </div>
-
-              <!-- Confirm Password -->
-              <div class="mb-5">
-                <div class="relative">
-                  <input
-                    [type]="
-                      passwordVisibility['confirmPassword']
-                        ? 'text'
-                        : 'password'
-                    "
-                    id="confirmPassword"
-                    formControlName="confirmPassword"
-                    placeholder="Confirm new password"
-                    class="w-full bg-transparent py-2 text-white outline-none pl-2 pr-16 placeholder-white"
-                  />
-
-                  <!-- Eye Icon (Exactly touching the underline) -->
+              <div class="strength-line">
+                <span [style.width.%]="passwordStrength"></span>
+              </div>
+              <small [class.good]="validateGuidelines('length')"
+                >8+ characters</small
+              ><small [class.good]="validateGuidelines('digit')">Number</small
+              ><small [class.good]="validateGuidelines('uppercase')"
+                >Uppercase</small
+              ><small [class.good]="validateGuidelines('specialChar')"
+                >Special character</small
+              >
+            </div>
+            <label
+              >Confirm new password
+              <div class="password-input">
+                <input
+                  [type]="
+                    passwordVisibility['confirmPassword'] ? 'text' : 'password'
+                  "
+                  formControlName="confirmPassword"
+                  placeholder="Confirm new password"
+                /><button
+                  type="button"
+                  (click)="toggleVisibility('confirmPassword')"
+                >
                   <i
-                    class="fa absolute top-[14px] right-16 cursor-pointer text-[#F3A630] hover:text-white transition"
+                    class="fa"
                     [ngClass]="
                       passwordVisibility['confirmPassword']
                         ? 'fa-eye'
                         : 'fa-eye-slash'
                     "
-                    (click)="toggleVisibility('confirmPassword')"
                   ></i>
-
-                  <!-- Divider Line -->
-                  <span class="absolute right-10 top-[14px] text-white-400"
-                    >|</span
-                  >
-
-                  <!-- Lock Icon (Right Side) -->
-                  <div class="absolute right-2 top-[14px]">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M14.6668 14.6667H13.3335V13.3334H14.6668V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        d="M10.6665 14.6667H11.9998V13.3334H10.6665V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        d="M17.3333 14.6667H16V13.3334H17.3333V14.6667Z"
-                        fill="#F3A630"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M4 8V4.66667C4 2.08933 6.08933 0 8.66667 0C11.244 0
-13.3333 2.08933 13.3333 4.66667V8H15.3333C16.4379 8
-17.3333 8.89543 17.3333 10V10.7333C18.8548 11.0422 20
-12.3874 20 14C20 15.6127 18.8548 16.9579 17.3333
-17.2667V18C17.3333 19.1045 16.4379 20 15.3333 20H2C0.895431
-20 0 19.1045 0 18V10C0 8.89543 0.895431 8 2 8H4ZM5.33333
-4.66667C5.33333 2.82572 6.82572 1.33333 8.66667
-1.33333C10.5076 1.33333 12 2.82572 12 4.66667V8H5.33333V4.66667ZM11.3333
-12C10.2288 12 9.33333 12.8954 9.33333 14C9.33333 15.1045 10.2288 16
-11.3333 16H16.6667C17.7712 16 18.6667 15.1045 18.6667
-14C18.6667 12.8954 17.7712 12 16.6667 12H11.3333Z"
-                        fill="#F3A630"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <!-- Gradient Bottom Border -->
-                <div class="h-[1px] w-full bg-custom-gradient"></div>
-
-                <p
-                  *ngIf="
-                    changePasswordForm.get('confirmPassword')?.invalid &&
-                    changePasswordForm.get('confirmPassword')?.touched
-                  "
-                  class="text-red-400 text-xs mt-1"
-                >
-                  Confirm password is required.
-                </p>
-                <p
-                  *ngIf="
-                    changePasswordForm.get('confirmPassword')?.value !==
-                      changePasswordForm.get('newPassword')?.value &&
-                    changePasswordForm.get('confirmPassword')?.touched
-                  "
-                  class="text-red-400 text-xs mt-1"
-                >
-                  Passwords do not match.
-                </p>
-              </div>
-
+                </button></div
+            ></label>
+            <div class="form-actions">
               <button
                 type="submit"
+                class="solid-button"
                 [disabled]="changePasswordForm.invalid"
-                class="w-full mb-5 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black px-1 py-[0.55rem] font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-base active:scale-95 active:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#F3A630]"
               >
-                Reset Password
-              </button>
-
-              <!-- Sign Up Link -->
-              <p class="text-center text-xs mt-4 text-gray-300">
-                Don't have an account?
-                <a
-                  routerLink="/SignUp"
-                  class="text-[#F3A630] hover:text-white transition-colors ml-1 underline"
-                >
-                  Sign Up
-                </a>
-              </p>
-            </form>
-            <!-- Action -->
-            <div class="mt-5 flex justify-end">
-              <button
-                (click)="changeRoute('/dashboard/changePass')"
-                class="btn-primary px-6 py-3 text-sm rounded-lg font-medium transition hover:scale-[1.02]"
+                Update password</button
+              ><button
+                type="button"
+                class="outline-button"
+                (click)="resetForm()"
               >
-                Change Password
+                Clear
               </button>
             </div>
-          </div>
-        </div>
+          </form>
+        </section>
 
-        <!-- Wallet Tab -->
-        <div
-          *ngIf="activeTab === 'wallet'"
-          class="border-2 border-[#C3B089] bg-noise rounded-2xl p-6 md:p-8"
-        >
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-            <div class="col-span-1 sm:col-span-3 flex justify-center">
-              <div class="flex gap-3">
-                <button
-                  (click)="setWalletView('all')"
-                  [ngClass]="
-                    walletView === 'all'
-                      ? 'bg-gradient-to-t from-[#FE860F] to-[#FEC460] text-black'
-                      : 'border-2 border-[#FEC460] text-[#FEC460] bg-transparent hover:bg-[#FEC460]/10'
-                  "
-                  class="min-w-[90px] font-bold py-2 px-4 text-sm rounded-tl-xl rounded-br-xl transition-all shadow-md text-center"
-                >
-                  All
-                </button>
-
-                <button
-                  (click)="setWalletView('deposits')"
-                  [ngClass]="
-                    walletView === 'deposits'
-                      ? 'bg-gradient-to-r from-green-500 to-green-600 text-black'
-                      : 'border-2 border-green-500 text-green-400 bg-transparent hover:bg-green-500/10'
-                  "
-                  class="min-w-[90px] font-bold py-2 px-4 text-sm rounded-tl-xl rounded-br-xl transition-all shadow-md text-center"
-                >
-                  Deposits
-                </button>
-
-                <button
-                  (click)="setWalletView('withdrawals')"
-                  [ngClass]="
-                    walletView === 'withdrawals'
-                      ? 'bg-gradient-to-r from-red-500 to-red-600 text-black'
-                      : 'border-2 border-red-500 text-red-400 bg-transparent hover:bg-red-500/10'
-                  "
-                  class="min-w-[90px] font-bold py-2 px-4 text-sm rounded-tl-xl rounded-br-xl transition-all shadow-md text-center"
-                >
-                  Withdraw
-                </button>
-              </div>
+        <section *ngIf="activeTab === 'wallet'" class="settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Money overview</span>
+              <h2>Wallet activity</h2>
+              <p>Review your deposits and withdrawals.</p>
+            </div>
+            <div class="balance-box">
+              <span>Available balance</span
+              ><strong>${{ formattedBalance }}</strong>
             </div>
           </div>
-
-          <div class="border-t border-[#C3B089] pt-6">
-            <h3 class="text-2xl font-black text-white mb-4">Wallet History</h3>
-            <div
-              class="space-y-4 max-h-80 overflow-y-auto pr-2"
-              (scroll)="onScroll($event)"
-            >
-              <div
-                *ngIf="
-                  transactions && transactions.length > 0;
-                  else noTransactions
-                "
-              >
-                <div
-                  *ngFor="let transaction of filteredTransactions"
-                  class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-gray-800/70 rounded-2xl border border-gray-700"
-                >
-                  <div>
-                    <p class="text-white font-semibold">
-                      {{
-                        transaction.source ||
-                          (transaction.type === "credit"
-                            ? "Deposit"
-                            : "Withdrawal")
-                      }}
-                    </p>
-                    <p class="text-gray-400 text-sm">
-                      {{ transaction.time | date: "short" }}
-                    </p>
-                    <p
-                      class="text-gray-500 text-xs mt-1"
-                      *ngIf="transaction.status"
-                    >
-                      Status:
-                      <span
-                        [ngClass]="
-                          transaction.status?.toLowerCase() === 'complete'
-                            ? 'text-green-400'
-                            : 'text-yellow-400'
-                        "
-                        class="font-semibold"
-                        >{{ transaction.status }}</span
-                      >
-                    </p>
-                  </div>
-                  <p
-                    [ngClass]="
-                      transaction.type === 'credit'
-                        ? 'text-green-400'
-                        : 'text-red-400'
-                    "
-                    class="font-black text-xl mt-3 sm:mt-0"
-                  >
-                    {{ transaction.type === "credit" ? "+" : "-" }}${{
-                      transaction.balance ||
-                        transaction.debitAmount ||
-                        transaction.creditBalance ||
-                        0 | number: "1.2-2"
-                    }}
-                  </p>
-                </div>
-                <!-- Loading indicator for pagination -->
-                <div *ngIf="isLoadingMore" class="text-center py-4">
-                  <div
-                    class="inline-flex items-center space-x-2 text-yellow-400"
-                  >
-                    <svg
-                      class="animate-spin h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        class="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        stroke-width="4"
-                      ></circle>
-                      <path
-                        class="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    <span class="text-sm">Loading more transactions...</span>
-                  </div>
-                </div>
-              </div>
-              <ng-template #noTransactions>
-                <div class="text-center py-8">
-                  <p class="text-gray-400 text-lg">No transactions found</p>
-                </div>
-              </ng-template>
-            </div>
-          </div>
-        </div>
-
-        <!-- Levels Tab -->
-        <!-- Security Tab -->
-        <div *ngIf="activeTab === 'Levels'" class="space-y-6">
-          <div
-            class="border border-[#C3B089] rounded-2xl p-6 bg-[#0b0b0b] shadow-xl"
-          >
-            <!-- Header -->
-            <div class="flex items-center justify-between mb-6">
-              <h3 class="text-xl font-semibold text-white tracking-wide">
-                Profile Level Guide
-              </h3>
-            </div>
-
-            <!-- GRID -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              <div
-                *ngFor="let badge of badgeList"
-                class="relative rounded-2xl border border-[#C3B089] p-5 bg-[#0f0f0f] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <!-- ACTIVE -->
-                <div
-                  *ngIf="profileLevel === badge.level"
-                  class="absolute top-3 right-3 bg-green-600 rounded-full p-1.5 shadow-md"
-                >
-                  <!-- Check Icon -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-3.5 h-3.5 text-white"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                  >
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                </div>
-
-                <!-- TOP -->
-                <div class="flex items-center gap-4 mb-4">
-                  <img
-                    [src]="getLevelImage(badge.level)"
-                    class="w-14 h-14 object-contain"
-                  />
-
-                  <div>
-                    <h4 class="font-medium text-white text-sm">
-                      {{ getLevelName(badge.level) }}
-                    </h4>
-                    <p
-                      class="text-xs text-gray-500 mt-2"
-                      *ngIf="getLevelName(badge.level) === 'Bronze'"
-                    >
-                      <span>KYC:</span>
-                      <span class="text-white">
-                        {{ KYCVerification | titlecase }}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                <!-- REQUIREMENTS -->
-                <div class="space-y-3 text-xs">
-                  <!-- Deposit -->
-                  <div class="w-full overflow-hidden">
-                    <div
-                      class="flex justify-between items-center text-gray-400"
-                    >
-                      <div class="flex items-center gap-1.5">
-                        <!-- Wallet Icon -->
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="w-3.5 h-3.5"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <rect x="2" y="6" width="20" height="12" rx="2" />
-                          <path d="M16 12h2" />
-                        </svg>
-                        <span>Deposit</span>
-                      </div>
-
-                      <span
-                        >{{ TotalDepositAmount }} /
-                        {{ badge.depositAmount }}</span
-                      >
-                    </div>
-
-                    <div
-                      class="w-full bg-gray-800 h-1.5 rounded-full mt-1 overflow-hidden"
-                    >
-                      <div
-                        class="bg-[#FE8C16] h-1.5 rounded-full transition-all duration-300"
-                        [style.width.%]="
-                          getDepositProgress(badge.depositAmount)
-                        "
-                      ></div>
-                    </div>
-                  </div>
-
-                  <!-- Referral -->
-                  <div>
-                    <div
-                      class="flex justify-between items-center text-gray-400"
-                    >
-                      <div class="flex items-center gap-1.5">
-                        <!-- Users Icon -->
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="w-3.5 h-3.5"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <path d="M17 21v-2a4 4 0 0 0-3-3.87" />
-                          <path d="M7 21v-2a4 4 0 0 1 3-3.87" />
-                          <circle cx="12" cy="7" r="4" />
-                        </svg>
-                        <span>Referral</span>
-                      </div>
-
-                      <span
-                        >{{ TotalReferral }} / {{ badge.referralCount }}</span
-                      >
-                    </div>
-
-                    <div class="w-full bg-gray-800 h-1.5 rounded-full mt-1">
-                      <div
-                        class="bg-gray-400 h-1.5 rounded-full"
-                        [style.width.%]="
-                          (TotalReferral / badge.referralCount) * 100
-                        "
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- BENEFITS -->
-                <div class="mt-4 pt-3 border-t border-gray-700">
-                  <!-- Header -->
-                  <div class="flex items-center gap-2 mb-2 text-gray-400">
-                    <!-- Gift Icon -->
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-4 h-4 flex-shrink-0 mb-[8px]"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <rect x="3" y="8" width="18" height="13" rx="2" />
-                      <path d="M12 8v13M3 12h18" />
-                    </svg>
-
-                    <h5 class="text-xs font-medium leading-none">Benefits</h5>
-                  </div>
-
-                  <!-- List -->
-                  <ul class="list-disc pl-5 text-xs text-gray-300 space-y-1.5">
-                    <li *ngFor="let benefit of badge.benefits">
-                      {{ benefit }}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Referrals Tab -->
-        <div
-          *ngIf="activeTab === 'referrals'"
-          class="border-2 border-[#C3B089] bg-noise rounded-2xl p-3 md:p-6"
-        >
-          <!-- ================= DESKTOP TABLE ================= -->
-          <div class="hidden md:block overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-              <!-- HEADER -->
-              <thead>
-                <tr
-                  class="border-b border-gray-700 text-gray-300 text-sm md:text-base"
-                >
-                  <th class="py-4 px-3">Sr</th>
-                  <th class="py-4 px-3">Name</th>
-                  <th class="py-4 px-3">Deposit Count</th>
-                  <th class="py-4 px-3">Referral %</th>
-                  <th class="py-4 px-3">Bonus</th>
-                  <th class="py-4 px-3">Date</th>
-                </tr>
-              </thead>
-
-              <!-- BODY -->
-              <tbody>
-                <tr
-                  *ngFor="let item of referrals; let i = index"
-                  class="border-b border-gray-800 hover:bg-[#1a1a1a] transition"
-                >
-                  <td class="py-5 px-3 text-white">{{ i + 1 }}</td>
-
-                  <td class="py-5 px-3 text-white">
-                    {{
-                      item.username?.length > 15
-                        ? item.username?.substring(0, 22) + "..."
-                        : item.username || "-"
-                    }}
-                  </td>
-
-                  <td class="py-5 px-3 text-blue-400 flex items-center gap-2">
-                    <i
-                      class="fa fa-eye cursor-pointer hover:text-white"
-                      (click)="openDepositDetails(item)"
-                    ></i>
-                    {{ item.depositCount | number: "1.0-2" }}
-                  </td>
-
-                  <td class="py-5 px-3 text-purple-400">
-                    {{ item.referralPercentage | number: "1.0-2" }}%
-                  </td>
-
-                  <td class="py-5 px-3 text-gray-300">
-                    {{
-                      item.addedDate
-                        ? (item.addedDate | date: "dd-MM-yyyy")
-                        : "-"
-                    }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- ================= MOBILE CARDS ================= -->
-          <div class="md:hidden flex flex-col gap-4">
-            <div
-              *ngFor="let item of referrals; let i = index"
-              class="bg-[#1a1a1a] rounded-xl p-4 border border-gray-700"
-            >
-              <!-- Top Row -->
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-gray-400 text-sm">#{{ i + 1 }}</span>
-                <span class="text-gray-300 text-xs">
-                  {{
-                    item.addedDate ? (item.addedDate | date: "dd-MM-yyyy") : "-"
-                  }}
-                </span>
-              </div>
-
-              <!-- Name -->
-              <div class="text-white font-semibold mb-3">
-                {{ item.username || "-" }}
-              </div>
-
-              <!-- Info Grid -->
-
-              <div class="flex items-center text-sm mt-3">
-                <!-- Deposits -->
-                <div class="flex-1 flex flex-col items-center px-2">
-                  <p class="text-gray-400 text-xs">Deposits</p>
-                  <div
-                    class="flex items-center gap-1 text-blue-400 font-semibold"
-                  >
-                    <i
-                      class="fa fa-eye cursor-pointer text-xs"
-                      (click)="openDepositDetails(item)"
-                    ></i>
-                    {{ item.depositCount | number: "1.0-2" }}
-                  </div>
-                </div>
-
-                <!-- Referral -->
-                <div
-                  class="flex-1 flex flex-col items-center px-2 border-l border-r border-gray-700"
-                >
-                  <p class="text-gray-400 text-xs">Referral</p>
-                  <p class="text-purple-400 font-semibold">
-                    {{ item.referralPercentage | number: "1.0-2" }}%
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- NO DATA -->
-            <div
-              *ngIf="referrals?.length === 0"
-              class="flex flex-col items-center justify-center gap-5"
-            >
-              <img
-                src="/norecord.png"
-                class="w-60 h-60 object-contain opacity-60"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Deposit detail Modal -->
-
-      <div
-        *ngIf="isDepositModalOpen"
-        class="fixed inset-0 bg-black/60 flex justify-center items-center z-50 px-3"
-      >
-        <!-- Modal -->
-        <div
-          class="w-full max-w-md sm:max-w-lg backdrop-blur-md border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-white p-4 sm:p-5 shadow-lg"
-        >
-          <!-- Header -->
-          <div
-            class="flex justify-between items-center border-b border-gray-700 pb-2 mb-3 sm:mb-4"
-          >
-            <h2 class="text-base sm:text-lg font-semibold">Deposit Details</h2>
-
+          <div class="filter-tabs">
             <button
-              (click)="closeModal()"
-              class="text-white hover:text-red-400 text-lg transition"
+              type="button"
+              (click)="setWalletView('all')"
+              [class.active]="walletView === 'all'"
             >
-              ✖
+              All activity</button
+            ><button
+              type="button"
+              (click)="setWalletView('deposits')"
+              [class.active]="walletView === 'deposits'"
+            >
+              Deposits</button
+            ><button
+              type="button"
+              (click)="setWalletView('withdrawals')"
+              [class.active]="walletView === 'withdrawals'"
+            >
+              Withdrawals
             </button>
           </div>
-
-          <!-- User -->
-          <p class="mb-3 sm:mb-4 text-xs sm:text-sm text-gray-300">
-            <span class="font-semibold text-white">User:</span>
-            {{ selectedItem?.userName || "N/A" }}
-          </p>
-
-          <!-- Table -->
-          <div class="overflow-x-auto">
-            <table class="w-full text-xs sm:text-sm min-w-[320px]">
-              <!-- Header -->
-              <thead>
-                <tr class="border-b border-gray-700 text-gray-300">
-                  <th class="py-2 px-3 w-[20%]">Sr</th>
-                  <th class="py-2 px-3 w-[40%]">Amount</th>
-                  <th class="py-2 px-3 w-[40%]">Date</th>
-                </tr>
-              </thead>
-
-              <!-- Body -->
-              <tbody>
-                <!-- Loading -->
-                <tr *ngIf="isLoadingDeposits">
-                  <td colspan="3" class="text-center py-4 text-gray-400">
-                    Loading deposits...
-                  </td>
-                </tr>
-
-                <!-- Empty -->
-                <tr *ngIf="!isLoadingDeposits && depositList.length === 0">
-                  <td colspan="3" class="text-center py-4 text-gray-400">
-                    No deposits found
-                  </td>
-                </tr>
-
-                <!-- Data -->
-                <tr
-                  *ngFor="let d of depositList; let i = index"
-                  class="border-b border-gray-800 hover:bg-white/5 transition"
-                >
-                  <td class="py-2 px-3">
-                    {{ i + 1 }}
-                  </td>
-
-                  <td class="py-2 px-3 font-medium">
-                    {{ d.DepositAmount | currency: "USD" : "symbol" : "1.0-2" }}
-                  </td>
-
-                  <td class="py-2 px-3 whitespace-nowrap">
-                    {{ d.date || d.AddedDate | date: "mediumDate" }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT COLUMN - Sidebar (1 col) -->
-      <div class="col-span-1 space-y-6">
-        <!-- Referral Code - spans 1 col -->
-        <div class="border-2 border-[#C3B089] rounded-2xl p-6 bg-noise">
-          <div class="flex items-center space-x-3 mb-4">
-            <h3 class="text-xl font-black text-white">Referral Code</h3>
-          </div>
-          <div class="p-2 text-center relative">
-            <p class="block text-gray-300 font-bold text-lg">
-              {{ referralCode }}
-            </p>
-            <div
-              class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"
-            ></div>
-
-            <div
-              *ngIf="isCopied"
-              class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-3 py-1 rounded-md shadow-lg animate-fade"
-            >
-              Copied!
-            </div>
-          </div>
-
-          <button
-            (click)="copyCode()"
-            class="w-full btn-primary px-2 py-4 md:!px-10 text-xs md:text-sm rounded-lg"
-          >
-            <span>Copy</span>
-          </button>
-        </div>
-
-        <div
-          class="profile-sidebar-card border-2 border-[#C3B089] rounded-2xl p-6 bg-noise"
-        >
-          <div class="flex items-center space-x-3 mb-3">
-            <h3 class="text-xl font-black text-white">KYC Status</h3>
-          </div>
-          <p class="block text-gray-300 font-bold text-lg text-center">
-            {{ KYCVerification }}
-          </p>
-          <div class="h-[1px] w-full bottom-0 left-0 bg-custom-gradient"></div>
-          ">
-
-          <button
-            *ngIf="KYCVerification !== 'completed'"
-            (click)="RedirectTokyc()"
-            class="w-full btn-primary px-2 py-4 md:!px-10 text-xs md:text-sm rounded-lg"
-          >
-            <span>KYC Form</span>
-          </button>
-        </div>
-
-        <div
-          class="profile-sidebar-card border-2 border-[#C3B089] rounded-2xl p-6 bg-noise"
-        >
-          <h3 class="text-xl font-black text-white mb-4">
-            Recent Wallet Activity
-          </h3>
-          <div class="space-y-3 max-h-80 overflow-y-auto pr-2">
-            <div
-              class="min-h-70"
-              *ngIf="transactions && transactions.length > 0"
-              (click)="onScroll($event)"
-            >
+          <div class="activity-list" (scroll)="onScroll($event)">
+            <div *ngIf="filteredTransactions.length; else emptyWallet">
               <div
-                *ngFor="let transaction of transactions.slice(0, 4)"
-                class="flex items-center justify-between p-4 bg-gray-800/70 rounded-2xl border border-gray-700"
+                *ngFor="let transaction of filteredTransactions"
+                class="activity-row"
               >
-                <div>
-                  <p class="text-white font-semibold text-sm">
-                    {{
-                      transaction.source ||
-                        (transaction.type === "credit"
-                          ? "Deposit"
-                          : "Withdrawal")
-                    }}
-                  </p>
-                  <p class="text-gray-400 text-xs">
-                    {{ transaction.time | date: "short" }}
-                  </p>
+                <span
+                  class="activity-icon"
+                  [class.withdrawal]="transaction.type === 'debit'"
+                  ><i
+                    class="fa"
+                    [ngClass]="
+                      transaction.type === 'credit'
+                        ? 'fa-arrow-down'
+                        : 'fa-arrow-up'
+                    "
+                  ></i
+                ></span>
+                <div class="activity-detail">
+                  <strong>{{
+                    transaction.source ||
+                      (transaction.type === "credit" ? "Deposit" : "Withdrawal")
+                  }}</strong
+                  ><small
+                    >{{ transaction.time | date: "mediumDate" }}
+                    <span *ngIf="transaction.status"
+                      >· {{ transaction.status }}</span
+                    ></small
+                  >
                 </div>
-                <p
-                  [ngClass]="
-                    transaction.type === 'credit'
-                      ? 'text-green-400'
-                      : 'text-red-400'
-                  "
-                  class="font-black text-lg"
-                >
-                  {{ transaction.type === "credit" ? "+" : "-" }}${{
+                <strong
+                  [class.amount-positive]="transaction.type === 'credit'"
+                  [class.amount-negative]="transaction.type === 'debit'"
+                  >{{ transaction.type === "credit" ? "+" : "-" }}${{
                     transaction.balance ||
                       transaction.debitAmount ||
                       transaction.creditBalance ||
                       0 | number: "1.2-2"
-                  }}
-                </p>
+                  }}</strong
+                >
               </div>
+              <p *ngIf="isLoadingMore" class="loading-text">Loading more...</p>
             </div>
-            <ng-template #noRecentActivity>
-              <p class="text-gray-400 text-sm text-center py-4">
-                No transactions yet
-              </p>
-            </ng-template>
-          </div>
-          <p class="text-xs text-gray-500 mt-4">
-            Open Wallet tab for full history and payment actions.
-          </p>
-        </div>
-
-        <!-- Logout - spans 1 col -->
-        <!-- <div class="flex items-end">
-          <button
-            (click)="openDeleteProfileModal()"
-            class="w-full bg-red-700 hover:bg-red-600 text-white font-black py-4 rounded-2xl transition text-lg shadow-lg flex items-center justify-center space-x-3"
-          >
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <ng-template #emptyWallet
+              ><div class="empty-state">
+                <i class="fa fa-credit-card"></i>
+                <p>No wallet activity yet</p>
+              </div></ng-template
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-              ></path>
-            </svg>
-            <span>Delete Profile</span>
-          </button>
-        </div> -->
-      </div>
+          </div>
+        </section>
+
+        <section *ngIf="activeTab === 'referrals'" class="settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Invite & earn</span>
+              <h2>Referral network</h2>
+              <p>Share your code and track your referrals.</p>
+            </div>
+          </div>
+          <div class="referral-code">
+            <div>
+              <span>Your referral code</span><strong>{{ referralCode }}</strong>
+            </div>
+            <button type="button" (click)="copyCode()">
+              <i class="fa fa-copy"></i> {{ isCopied ? "Copied" : "Copy code" }}
+            </button>
+          </div>
+          <div class="referral-table">
+            <div class="table-row table-heading">
+              <span>#</span><span>Member</span><span>Deposits</span
+              ><span>Referral</span><span>Date</span>
+            </div>
+            <div
+              *ngFor="let item of referrals; let i = index"
+              class="table-row"
+            >
+              <span>{{ i + 1 }}</span
+              ><strong>{{ item.username || "-" }}</strong
+              ><span
+                ><button
+                  type="button"
+                  class="view-button"
+                  (click)="openDepositDetails(item)"
+                >
+                  <i class="fa fa-eye"></i></button
+                >{{ item.depositCount | number: "1.0-2" }}</span
+              ><span>{{ item.referralPercentage | number: "1.0-2" }}%</span
+              ><span>{{
+                item.addedDate ? (item.addedDate | date: "dd-MM-yyyy") : "-"
+              }}</span>
+            </div>
+            <div *ngIf="referrals?.length === 0" class="empty-state">
+              <p>No referrals found</p>
+            </div>
+          </div>
+        </section>
+
+        <section *ngIf="activeTab === 'Levels'" class="settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Rewards program</span>
+              <h2 class="section-title-with-icon">
+                <span class="section-title-icon" aria-hidden="true">
+                  <i class="fa fa-trophy"></i>
+                </span>
+                <span>Membership levels</span>
+              </h2>
+              <p>Complete milestones to unlock more benefits.</p>
+            </div>
+          </div>
+          <div class="level-summary">
+            <span>Current level</span
+            ><strong>{{ getLevelName(profileLevel || 1) }}</strong
+            ><span
+              >{{ TotalReferral }} referrals · ${{
+                TotalDepositAmount
+              }}
+              deposited</span
+            >
+          </div>
+          <div class="levels-list">
+            <div
+              *ngFor="let badge of badgeList"
+              class="level-row"
+              [class.current-level]="profileLevel === badge.level"
+            >
+              <img
+                [src]="getLevelImage(badge.level)"
+                [alt]="getLevelName(badge.level)"
+              />
+              <div class="level-info">
+                <div>
+                  <h3>{{ getLevelName(badge.level) }}</h3>
+                  <span
+                    *ngIf="profileLevel === badge.level"
+                    class="current-label"
+                    >Current level</span
+                  >
+                </div>
+                <p>
+                  Deposit ${{ badge.depositAmount }} ·
+                  {{ badge.referralCount }} referrals
+                </p>
+                <div class="level-progress">
+                  <span
+                    [style.width.%]="getDepositProgress(badge.depositAmount)"
+                  ></span>
+                </div>
+              </div>
+              <i
+                *ngIf="profileLevel === badge.level"
+                class="fa fa-check-circle level-check"
+              ></i>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
-
-    <!-- BOTTOM SECTION - 2 More Cards + Logout -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-      <!-- Security - spans 1 col -->
-      <!-- <div class="border-2 border-yellow-700 rounded-2xl p-6 bg-gray-900/60">
-        <div class="flex items-center space-x-3 mb-4">
-          <svg class="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-              clip-rule="evenodd"></path>
-          </svg>
-          <h3 class="text-xl font-black text-white">Security</h3>
-        </div>
-        <p class="text-gray-400 text-sm">Two-Factor Authentication</p>
-        <svg class="w-6 h-6 text-green-400 mt-3" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-            clip-rule="evenodd"></path>
-        </svg>
-      </div> -->
-
-      <!-- Logout - spans 1 col -->
-      <!-- <div class="flex items-end">
-        <button (click)="logout()"
-          class="w-full bg-red-700 hover:bg-red-600 text-white font-black py-4 rounded-2xl transition text-lg shadow-lg flex items-center justify-center space-x-3">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-          </svg>
-          <span>Logout</span>
-        </button>
-      </div> -->
-    </div>
-
-    <!-- GAME STATS -->
-    <!-- <div class="border-2 border-yellow-700 rounded-2xl p-8 bg-gray-900/60">
-      <h2 class="text-3xl font-black text-yellow-400 mb-8">Game Stats</h2>
-      <div class="grid grid-cols-3 gap-8">
-
-        <div class="border-2 border-yellow-700/60 rounded-2xl p-6 bg-gray-800/50 text-center">
-          <p class="text-gray-400 font-bold text-sm mb-3">Total Wins</p>
-          <p class="text-4xl font-black text-yellow-400 mb-4">{{ gameStats.totalWins }}</p>
-          <div class="text-5xl">💰</div>
-        </div>
-
-        <div class="border-2 border-yellow-700/60 rounded-2xl p-6 bg-gray-800/50 text-center">
-          <p class="text-gray-400 font-bold text-sm mb-3">Total Spins</p>
-          <p class="text-4xl font-black text-yellow-400 mb-4">{{ gameStats.totalSpins }}</p>
-          <div class="text-5xl">🎡</div>
-        </div>
-
-        <div class="border-2 border-yellow-700/60 rounded-2xl p-6 bg-gray-800/50 text-center">
-          <p class="text-gray-400 font-bold text-sm mb-3">Rewards Earned</p>
-          <p class="text-3xl font-black text-yellow-400 mb-4">${{ gameStats.rewardsEarned.toFixed(2) }}</p>
-          <div class="text-5xl">🎁</div>
-        </div>
-
-      </div>
-    </div> -->
   </div>
 </div>
 
-<!-- Profile Image Modal -->
-<div
-  *ngIf="isProfileImageModalOpen"
-  class="fixed inset-0 z-50 flex items-start justify-center pt-20 overflow-y-auto"
->
-  <!-- Backdrop -->
-  <div
-    class="absolute inset-0 bg-black/80 backdrop-blur-sm"
-    (click)="closeProfileImageModal()"
-  ></div>
-
-  <!-- Modal Content -->
-  <div
-    class="relative bg-noise border-2 border-[#C3B089] rounded-3xl p-5 sm:p-8 max-w-sm sm:max-w-md w-[92%] sm:w-full mx-4 shadow-2xl z-10 mt-[20px]"
-  >
-    <!-- Close Button -->
-    <button
-      (click)="closeProfileImageModal()"
-      class="absolute top-4 right-4 text-gray-400 hover:text-white transition text-2xl font-bold"
-    >
-      ✕
-    </button>
-
-    <!-- Title -->
-    <h2 class="text-2xl font-bold text-white mb-6 text-center">
-      Profile Photo
-    </h2>
-
-    <!-- Profile Image Large -->
-    <div class="w-full flex justify-center mb-6">
+<div *ngIf="isDepositModalOpen" class="modal-backdrop">
+  <div class="modal-card modal-wide">
+    <div class="modal-title">
+      <h2>Deposit details</h2>
+      <button type="button" (click)="closeModal()">&times;</button>
+    </div>
+    <p>
+      Member: <strong>{{ selectedItem?.userName || "N/A" }}</strong>
+    </p>
+    <div class="modal-table">
+      <div class="table-row table-heading">
+        <span>#</span><span>Amount</span><span>Date</span>
+      </div>
+      <div *ngIf="isLoadingDeposits" class="empty-state">
+        <p>Loading deposits...</p>
+      </div>
       <div
-        class="w-48 h-48 rounded-full border-3 border-[#C3B089] overflow-hidden flex items-center justify-center bg-gray-800"
+        *ngIf="!isLoadingDeposits && !depositList.length"
+        class="empty-state"
       >
-        <img
-          *ngIf="profileImage"
-          [src]="profileImage"
-          alt="Profile"
-          class="w-full h-full object-cover"
-        />
-        <svg
-          *ngIf="!profileImage"
-          class="w-32 h-32 text-gray-500"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
+        <p>No deposits found</p>
       </div>
-    </div>
-
-    <!-- Username -->
-    <p class="text-center text-gray-300 text-lg font-semibold mb-8">
-      {{ name }}
-    </p>
-
-    <!-- Action Buttons -->
-    <div class="space-y-3">
-      <div class="flex flex-col sm:flex-row gap-3">
-        <!-- Update Photo Button -->
-        <button
-          (click)="onUpdatePhotoClick()"
-          class="w-full btn-primary text-black font-bold !px-0 transition duration-200 flex items-center justify-center gap-1"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 4v16m8-8H4"
-            ></path>
-          </svg>
-          Update Photo
-        </button>
-
-        <!-- Delete Photo Button -->
-        <button
-          (click)="onDeletePhotoClick()"
-          class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm transition duration-200 flex items-center justify-center gap-2"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-            ></path>
-          </svg>
-          Delete Photo
-        </button>
+      <div *ngFor="let d of depositList; let i = index" class="table-row">
+        <span>{{ i + 1 }}</span
+        ><span>{{
+          d.DepositAmount | currency: "USD" : "symbol" : "1.0-2"
+        }}</span
+        ><span>{{ d.date || d.AddedDate | date: "mediumDate" }}</span>
       </div>
-      <!-- Close Button -->
-      <button
-        (click)="closeProfileImageModal()"
-        class="hidden md:block w-full bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 rounded-lg transition duration-200"
-      >
-        Close
-      </button>
     </div>
   </div>
 </div>
-
-<!-- Delete Profile Account Modal -->
-<div
-  *ngIf="isDeleteProfileModalOpen"
-  class="fixed inset-0 z-50 flex items-start justify-center pt-20 overflow-y-auto"
->
-  <!-- Backdrop -->
-  <div
-    class="absolute inset-0 bg-black/80 backdrop-blur-sm"
-    (click)="closeDeleteProfileModal()"
-  ></div>
-
-  <!-- Modal Content -->
-  <div
-    class="relative bg-noise border-2 border-[#C3B089] rounded-3xl p-5 sm:p-8 max-w-sm sm:max-w-md w-[92%] sm:w-full mx-4 shadow-2xl z-10 mt-[20px]"
-  >
-    <!-- Close Button -->
+<div *ngIf="isProfileImageModalOpen" class="modal-backdrop">
+  <div class="modal-card modal-small">
     <button
-      (click)="closeDeleteProfileModal()"
-      class="absolute top-4 right-4 text-gray-400 hover:text-white transition text-2xl font-bold"
+      type="button"
+      class="modal-close"
+      (click)="closeProfileImageModal()"
     >
-      ✕
+      &times;
     </button>
-
-    <!-- Warning Icon -->
-    <div class="flex justify-center mb-4">
-      <svg
-        class="w-16 h-16 text-red-500"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        ></path>
-      </svg>
+    <h2>Profile photo</h2>
+    <div class="modal-avatar">
+      <img *ngIf="profileImage" [src]="profileImage" alt="Profile" /><i
+        *ngIf="!profileImage"
+        class="fa fa-user"
+      ></i>
     </div>
-
-    <!-- Title -->
-    <h2 class="text-2xl font-bold text-white mb-2 text-center">
-      Delete Account
-    </h2>
-    <p class="text-center text-red-400 text-sm mb-6 font-semibold">
-      This action cannot be undone
-    </p>
-
-    <!-- Warning Message -->
-    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
-      <p class="text-red-400 text-sm">
-        Are you sure you want to permanently delete your account? All your data,
-        wallet balance, and game history will be lost.
-      </p>
-    </div>
-
-    <!-- Password Input -->
-    <div class="mb-6">
-      <label class="block text-white font-semibold text-sm mb-3"
-        >Enter your password to confirm:</label
-      >
-      <div class="relative">
-        <input
-          [type]="showDeletePasswordVisibility ? 'text' : 'password'"
-          [(ngModel)]="deleteProfilePassword"
-          placeholder="Enter password"
-          class="w-full bg-gray-800 text-white rounded-lg px-4 py-3 border border-gray-700 focus:border-red-500 focus:outline-none text-sm placeholder-gray-500"
-        />
-        <button
-          type="button"
-          (click)="toggleDeletePasswordVisibility()"
-          class="absolute right-3 top-3.5 text-gray-400 hover:text-white transition"
-        >
-          <fa-icon
-            [icon]="showDeletePasswordVisibility ? eyeSlash : eye"
-            class="w-4 h-4"
-          ></fa-icon>
-        </button>
-      </div>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="space-y-3">
-      <!-- Confirm Delete Button -->
-      <button
-        (click)="confirmDeleteProfile()"
-        [disabled]="!deleteProfilePassword.trim()"
-        class="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-3 rounded-lg transition duration-200"
-      >
-        Yes, Delete My Account
-      </button>
-    </div>
+    <p>{{ name }}</p>
+    <button
+      type="button"
+      class="solid-button full-button"
+      (click)="onUpdatePhotoClick()"
+    >
+      Update photo</button
+    ><button
+      type="button"
+      class="delete-button full-button"
+      (click)="onDeletePhotoClick()"
+    >
+      Delete photo
+    </button>
   </div>
 </div>
