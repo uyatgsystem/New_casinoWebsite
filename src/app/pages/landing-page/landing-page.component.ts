@@ -68,6 +68,39 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   selectedGuideCard: string = 'Register';
   grainBackdrop: SafeHtml = '';
 
+  // Display data for the "How to Play" guide cards — ids match the existing
+  // selectedGuideCard/selectGuideCard values, so behavior is unchanged.
+  guideSteps = [
+    {
+      id: 'Register',
+      number: '01',
+      icon: 'fas fa-user-plus',
+      title: 'Register',
+      description: 'Sign up now and claim your welcome offer!',
+    },
+    {
+      id: 'Deposit',
+      number: '02',
+      icon: 'fas fa-wallet',
+      title: 'Deposit',
+      description: 'Deposit now and claim your deposit offer!',
+    },
+    {
+      id: 'Enjoy',
+      number: '03',
+      icon: 'fas fa-gamepad',
+      title: 'Enjoy the Game',
+      description: 'Start playing now and enjoy the experience!',
+    },
+    {
+      id: 'Withdraw',
+      number: '04',
+      icon: 'fas fa-sack-dollar',
+      title: 'Withdraw',
+      description: 'Withdraw your winnings easily.',
+    },
+  ];
+
   premiumFeatures = [
     {
       icon: 'fas fa-dice',
@@ -175,11 +208,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     this.landingPageService.getActiveLotteries().subscribe((data) => {
       this.activeLotteries = data;
     });
-
-    //  IMAGE ROTATION
-    this.imageRotationInterval = setInterval(() => {
-      this.rotateImages();
-    }, 2200);
   }
 
   // Lightweight fade-in-on-scroll for `.reveal` elements across the page
@@ -280,9 +308,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
 
   ngOnDestroy() {
     this.removeInteractionListeners();
-    if (this.imageRotationInterval) {
-      clearInterval(this.imageRotationInterval);
-    }
   }
 
   startMusic() {
@@ -340,44 +365,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     },
   ];
 
-  imageClasses = [
-    'h-[141px] rounded-t-2xl',
-    'h-[169px] rounded-t-2xl',
-    'h-[198px] rounded-t-2xl',
-    'h-[225px] rounded-t-2xl',
-    'h-[250px] rounded-t-2xl z-10', // CENTER
-    'h-[225px] rounded-t-2xl',
-    'h-[198px] rounded-t-2xl',
-    'h-[169px] rounded-t-2xl',
-    'h-[141px] rounded-t-2xl',
-  ];
-
-  desktopLeftPositions = [
-    '15%', '23%', '32%', '41%', '50%', '59%', '68%', '77%', '85%'
-  ];
-
-  tabletClasses = [
-    'h-[170px] rounded-t-2xl',
-    'h-[195px] rounded-t-2xl',
-    'h-[220px] rounded-t-2xl z-10',
-    'h-[195px] rounded-t-2xl',
-    'h-[170px] rounded-t-2xl',
-  ];
-
-  tabletLeftPositions = [
-    '15%', '30%', '50%', '70%', '85%'
-  ];
-
-  mobileClasses = [
-    'h-[150px] w-[28%] rounded-t-2xl z-0',
-    'h-[180px] w-[40%] rounded-t-2xl z-10',
-    'h-[150px] w-[28%] rounded-t-2xl z-0',
-  ];
-
-  mobileLeftPositions = [
-    '17%', '50%', '83%'
-  ];
-
   desktopImages = [
     'https://cmaxv2images.pages.dev/assets/games/carousel-game/card.png',
     'https://cmaxv2images.pages.dev/assets/games/carousel-game/game-room.png',
@@ -390,24 +377,18 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     'https://cmaxv2images.pages.dev/assets/games/carousel-game/dragn-game.png',
   ];
 
-  private imageRotationInterval!: any;
-
-  rotateImages() {
-    const last = this.desktopImages.pop();
-    if (last) {
-      this.desktopImages.unshift(last);
-    }
-  }
-
   trackByImage(index: number, img: string) {
-    return img;
+    return img + '-' + index;
   }
 
-  get tabletImages() {
-    return this.desktopImages.slice(2, 7); // 5 images
-  }
-
-  get mobileImages() {
-    return this.desktopImages.slice(3, 6); // 3 images
+  // Repeated 4x so the track is always wider than the viewport — otherwise
+  // the seamless loop point exposes empty background on wide screens.
+  get marqueeImages() {
+    return [
+      ...this.desktopImages,
+      ...this.desktopImages,
+      ...this.desktopImages,
+      ...this.desktopImages,
+    ];
   }
 }
