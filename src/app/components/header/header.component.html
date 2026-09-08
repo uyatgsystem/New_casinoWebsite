@@ -192,7 +192,6 @@
             <div class="max-h-[380px] overflow-y-auto p-4 space-y-3 relative z-10 custom-scrollbar">
               @for (notification of notifications; track notification.id; let i = $index) {
                 <div class="notif-card relative flex items-start gap-3.5 bg-black/60 hover:bg-black/80 border border-[#C3B089]/20 p-4 rounded-2xl transition-all duration-300 ease-in-out group shadow-md">
-                  
                   <!-- Bell Icon -->
                   <div class="w-10 h-10 rounded-xl bg-[#F3A630]/10 border border-[#F3A630]/30 flex items-center justify-center shrink-0 text-[#F3A630]">
                     <i class="fas fa-bell text-sm"></i>
@@ -211,8 +210,8 @@
                     </span>
                   </div>
 
-                  <!-- Remove / Delete Notification Button -->
-                  <button (click)="removeNotification(i, $event)" 
+                  <!-- Remove notification -->
+                  <button (click)="removeNotification(i, $event)"
                     class="absolute top-3.5 right-3.5 text-gray-400 hover:text-red-400 transition-all duration-200 w-6 h-6 rounded-lg flex items-center justify-center bg-white/5 hover:bg-white/15 cursor-pointer"
                     title="Remove notification">
                     ✕
