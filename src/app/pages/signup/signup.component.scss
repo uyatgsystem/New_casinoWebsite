@@ -15,7 +15,7 @@
 
 .main-bg {
   position: relative;
-  background-image: linear-gradient(#000000CC, #000000CC), url("/auth-background.png");
+  background-image: linear-gradient(#00000099, #00000099), url("https://spinhub-6rb.pages.dev/assets/auth-background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -26,7 +26,7 @@
 
 .main-bg {
   min-height: 100dvh !important;
-  background-image: linear-gradient(180deg, rgba(12,13,16,.85) 0%, rgba(12,13,16,.92) 100%), url("/auth-background.png") !important;
+  background-image: linear-gradient(180deg, rgba(12,13,16,.55) 0%, rgba(12,13,16,.78) 100%), url("https://spinhub-6rb.pages.dev/assets/auth-background.png") !important;
   background-size: cover !important;
   background-position: center !important;
 }
@@ -106,6 +106,8 @@
   .main-bg {
     overflow: hidden !important;
     height: 100dvh;
+    background-position: center top !important;
+    background-size: auto 100% !important;
   }
   
   .main-bg > div {
@@ -121,8 +123,8 @@
     align-items: center;
     text-align: center;
     padding: 14px 16px 6px;
-    background: rgba(12, 13, 16, 0.85);
-    backdrop-filter: blur(8px);
+    background: linear-gradient(180deg, rgba(12, 13, 16, 0.3), rgba(12, 13, 16, 0.08));
+   
     width: 100%;
   }
 
@@ -153,6 +155,7 @@
     padding: 8px 16px 4px;
     justify-content: center;
     overflow: hidden;
+    background: transparent;
   }
 
   .main-bg > div > div:nth-child(2) img {
