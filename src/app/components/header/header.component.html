@@ -120,10 +120,11 @@
                 </svg>
 
                 <span class="absolute -top-2 -right-1 flex justify-center items-center
-                 min-w-[20px] h-5 px-1 rounded-full text-[10px]
-                 bg-[#FEC866] text-black font-extrabold shadow">
+                  min-w-[20px] h-5 px-1 rounded-full text-[10px]
+                  bg-[#FEC866] text-black font-extrabold shadow">
                   {{ currentLanguage.toUpperCase() }}
                 </span>
+
               </div>
             </button>
 
@@ -165,6 +166,7 @@
                   class="absolute -top-2 -right-2 flex justify-center items-center w-5 h-5 rounded-full bg-[#FEC866] text-black text-xs font-bold shadow-lg animate-pulse">
                   {{ notificationCount >= 10 ? "9+" : notificationCount }}
                 </span>
+
               </div>
             </div>
           </button>
@@ -228,71 +230,116 @@
           </div>
         </div>
 
-        <!-- User Profile Dropdown Button -->
-        <button (click)="toggleDropdown($event)" class="flex items-center focus:outline-none group cursor-pointer">
-          <div class="relative flex items-center">
-            <div class="relative inline-block">
-              <img [src]="profileImage" alt="Profile"
-                class="h-11 w-11 border border-gray-700 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] object-cover" />
+        <!-- User Profile Dropdown Container -->
+        <div class="relative">
+          <!-- User Profile Dropdown Button -->
+          <button (click)="toggleDropdown($event)" class="flex items-center focus:outline-none group cursor-pointer">
+            <div class="relative flex items-center">
+              <div class="relative inline-block">
+                <img [src]="profileImage" alt="Profile"
+                  class="h-11 w-11 border border-[#C3B089]/60 group-hover:border-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] object-cover transition shadow-md" />
 
-              <img *ngIf="profileLevel" [src]="getLevelImage(profileLevel)" alt="Level Badge"
-                class="absolute -top-2.5 -right-1.5 h-6 w-6" />
+                <img *ngIf="profileLevel" [src]="getLevelImage(profileLevel)" alt="Level Badge"
+                  class="absolute -top-2.5 -right-1.5 h-6 w-6 drop-shadow-md" />
+              </div>
             </div>
-          </div>
-        </button>
+          </button>
 
-        <!-- Profile Dropdown Menu -->
-        <div *ngIf="isDropdownOpen"
-          class="backdrop-blur-md bg-[#161819] absolute right-0 mt-3 w-56 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-lg border border-[#8c8066] top-14 overflow-hidden z-50">
-          <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-          
-          <div class="px-4 py-3">
-            <div class="flex items-center space-x-3">
-              <img [src]="profileImage" alt="Profile" class="w-10 h-10 rounded-full object-cover" />
-              <span class="text-white ml-2" [title]="username">👑{{ username | slice: 0 : 8 }}
-                <span *ngIf="(username || '').length > 8">..</span> ツ</span>
+          <!-- ✅ Revamped Ultra-Luxury VIP Profile Dropdown Menu -->
+          <div *ngIf="isDropdownOpen"
+            class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#121417]/95 backdrop-blur-2xl border border-[#C3B089]/50 shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+            <div class="grain-Backdrop absolute inset-0 pointer-events-none opacity-25" [innerHTML]="grainBackdrop"></div>
+            
+            <!-- Dropdown Header: User Info Card -->
+            <div class="p-4 bg-gradient-to-b from-[#1c1f26] to-[#121417] border-b border-[#C3B089]/20 flex items-center gap-3.5 relative z-10">
+              <div class="relative">
+                <div class="w-12 h-12 rounded-2xl overflow-hidden border-2 border-[#FE8006] shadow-[0_0_12px_rgba(254,128,6,0.5)]">
+                  <img [src]="profileImage" alt="Profile" class="w-full h-full object-cover" />
+                </div>
+                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-black rounded-full"></div>
+              </div>
+              <div class="overflow-hidden">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-base leading-none">👑</span>
+                  <h4 class="text-white font-black text-sm tracking-wide truncate" [title]="username">
+                    {{ username | slice: 0 : 8 }}<span *ngIf="(username || '').length > 8">..</span> ツ
+                  </h4>
+                </div>
+                <p class="text-[10px] text-[#A6B1C2] uppercase tracking-wider mt-1 font-bold">VIP Tier 1 Member</p>
+              </div>
             </div>
-          </div>
 
-          <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
+            <!-- Dropdown Links Navigation -->
+            <div class="p-2 space-y-1 relative z-10">
+              
+              <!-- My Profile -->
+              <a type="button" (click)="showComletePorfile()"
+                class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-gray-200 hover:text-white hover:bg-white/5 transition group cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-black/40 border border-white/5 flex items-center justify-center text-[#FEC866] group-hover:scale-110 transition shadow-inner">
+                    👤
+                  </div>
+                  <span class="text-xs font-bold tracking-wide">My Profile</span>
+                </div>
+                <svg class="w-4 h-4 text-gray-500 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </a>
 
-          <div class="py-2 text-sm">
-            <a type="button" class="block px-4 py-2 text-white hover:bg-[#2e2a2a] transition-colors cursor-pointer"
-              (click)="showComletePorfile()">
-              My Profile
-            </a>
+              <!-- Terms & Conditions -->
+              <a type="button" (click)="redirecttoTermsConditions()"
+                class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-gray-200 hover:text-white hover:bg-white/5 transition group cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-black/40 border border-white/5 flex items-center justify-center text-blue-400 group-hover:scale-110 transition shadow-inner">
+                    📄
+                  </div>
+                  <span class="text-xs font-bold tracking-wide">Terms & Conditions</span>
+                </div>
+                <svg class="w-4 h-4 text-gray-500 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </a>
 
-            <a type="button" class="block px-4 py-2 text-white hover:bg-[#2e2a2a] transition-colors cursor-pointer"
-              (click)="redirecttoTermsConditions()">
-              Terms & Conditions
-            </a>
+              <!-- KYC Verification -->
+              <a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-gray-200 hover:text-white hover:bg-white/5 transition group cursor-pointer"
+                [class.cursor-not-allowed]="kycVerfication === 'completed'"
+                [class.opacity-60]="kycVerfication === 'completed'"
+                (click)="kycVerfication !== 'completed' && redirectToKYCform()">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-black/40 border border-white/5 flex items-center justify-center text-amber-400 group-hover:scale-110 transition shadow-inner">
+                    🛡️
+                  </div>
+                  <span class="text-xs font-bold tracking-wide">KYC Verification</span>
+                </div>
+                <span>
+                  <ng-container *ngIf="kycVerfication === 'completed'; else notVerified">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </ng-container>
+                  <ng-template #notVerified>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none"
+                      viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 9v2m0 4h.01M12 3a9 9 0 110 18 9 9 0 010-18z" />
+                    </svg>
+                  </ng-template>
+                </span>
+              </a>
 
-            <a class="flex justify-between items-center w-full px-4 py-2 text-white hover:bg-[#2e2a2a] transition-colors cursor-pointer"
-              [class.cursor-not-allowed]="kycVerfication === 'completed'"
-              [class.opacity-60]="kycVerfication === 'completed'"
-              (click)="kycVerfication !== 'completed' && redirectToKYCform()">
-              <span>KYC Verification</span>
-              <span>
-                <ng-container *ngIf="kycVerfication === 'completed'; else notVerified">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </ng-container>
-                <ng-template #notVerified>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 9v2m0 4h.01M12 3a9 9 0 110 18 9 9 0 010-18z" />
-                  </svg>
-                </ng-template>
-              </span>
-            </a>
+            </div>
 
-            <a type="button" class="block px-4 py-2 text-red-400 hover:bg-[#2e2a2a] transition-colors cursor-pointer"
-              (click)="showLogoutModal()">
-              Logout
-            </a>
+            <!-- Divider -->
+            <div class="h-px bg-gradient-to-r from-transparent via-[#C3B089]/30 to-transparent mx-3 my-1 relative z-10"></div>
+
+            <!-- Logout Section -->
+            <div class="p-2 pb-2.5 relative z-10">
+              <button type="button" (click)="showLogoutModal()"
+                class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-red-400 hover:text-red-300 hover:bg-red-500/10 transition group font-bold text-xs">
+                <div class="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center group-hover:scale-110 transition shadow-inner">
+                  🚪
+                </div>
+                <span>Logout</span>
+              </button>
+            </div>
+
           </div>
         </div>
 

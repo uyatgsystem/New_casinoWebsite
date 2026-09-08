@@ -68,7 +68,6 @@
   }
 
   button {
-    // background: #8b5cf6;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-size: 16px;
@@ -91,7 +90,7 @@
   bottom: 0;
   border-radius: 2rem;
   padding: 1px;
-  background: #7de7e5; // 👈 border color set here
+  background: #7de7e5;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -129,11 +128,6 @@
     text-align: center;
   }
 
-  // .flex-col img {
-  //   margin: 0 auto 12px;
-  //   height: 200px;
-  // }
-
   .icon-small {
     height: 50px !important;
     width: 50px !important;
@@ -147,21 +141,13 @@
   clip-path: polygon(36% 0, 66% 0, 71% 13%, 100% 13%, 100% 100%, 0 100%, 0 13%, 29% 13%);
 }
 
-/*
-        The actual top banner has an inverse clip-path and a slight lift.
-        We'll use a pseudo-element for the outer shape and the main div for the inner content.
-        */
 .cash-blaze-card {
   background: #113c42;
-  /* A dark teal/blue-green background for the main card */
   border: 2px solid #00c6a7;
-  /* Teal border for the main container */
-  /* Add a box-shadow to match the slight glow/depth */
   box-shadow: 0 4px 15px rgba(0, 198, 167, 0.4);
 }
 
 .scratch-area {
-  /* Brushed gold-foil scratch-off look, matching the site's gold/orange theme */
   background: linear-gradient(120deg,
       #8a7960 0%,
       #d9bd85 22%,
@@ -178,12 +164,10 @@
 }
 
 @keyframes scratchShimmer {
-
   0%,
   100% {
     background-position: 0% 50%;
   }
-
   50% {
     background-position: 100% 50%;
   }
@@ -198,14 +182,10 @@
 }
 
 .price-chip {
-  /* Position relative for the parent is necessary for the absolute child */
   position: relative;
   background: #252525;
-  /* Dark background for the chip */
   border: 1px solid #00c6a7;
-  /* Teal border for the chip */
   border-radius: 9999px;
-  /* Fully rounded corners */
   padding: 2px 20px;
   font-weight: bold;
   color: white;

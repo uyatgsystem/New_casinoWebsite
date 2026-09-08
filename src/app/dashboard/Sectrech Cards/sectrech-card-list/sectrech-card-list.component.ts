@@ -37,8 +37,6 @@ interface Card {
   styleUrls: ['./sectrech-card-list.component.scss'],
 })
 export class SectrechCardListComponent implements OnInit {
-  // activeTab: ActiveTabType = 'All';
-  showModal = false;
   selectedGame: any;
   score = '';
   accountType = '';
@@ -46,8 +44,6 @@ export class SectrechCardListComponent implements OnInit {
   startDate: string | null = null;
   endDate: string | null = null;
   viewMode: 'grid' | 'table' = 'grid';
-  // plusIcon = faPlus;
-  //infoIcon = faCircleInfo;
   leftArrow = faChevronLeft;
   showDateFilter: boolean = false;
   dropdownOpen: boolean = false;
@@ -67,6 +63,7 @@ export class SectrechCardListComponent implements OnInit {
     private location: Location,
     private utils: UtilsService,
   ) { }
+
   isLandingPage: boolean = true;
   isDashboardPage: boolean = true;
   isScratchCardPage: boolean = true;
@@ -76,8 +73,6 @@ export class SectrechCardListComponent implements OnInit {
     this.isLandingPage = this.router.url === '/';
     this.isDashboardPage = this.router.url === '/dashboard/home';
     this.isScratchCardPage = this.router.url === '/dashboard/SectrechCards';
-
-    // this.isDashboardPage = this.router.url.startsWith('/dashboard');
 
     if (this.isDashboardPage) {
       this.scratchCards = this.scratchCards.slice(0, 3);
@@ -89,7 +84,6 @@ export class SectrechCardListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    // Calculate card section position after view init
     setTimeout(() => {
       if (this.cardScrollSection) {
         this.cardSectionTop = this.cardScrollSection.nativeElement.offsetTop;
@@ -105,10 +99,8 @@ export class SectrechCardListComponent implements OnInit {
     const rect = element.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
-    // Calculate progress through the section (0 to 1)
     const progress = 1 - rect.bottom / (element.offsetHeight + viewportHeight);
 
-    // Map progress to card index
     if (progress >= 0 && progress <= 1) {
       this.activeIndex = Math.floor(progress * this.totalCards);
       this.activeIndex = Math.max(
@@ -126,15 +118,12 @@ export class SectrechCardListComponent implements OnInit {
     const rect = element.getBoundingClientRect();
     const delta = event.deltaY;
 
-    // Only intercept when section is stuck at top
     if (rect.top <= 1 && rect.top >= -1) {
-      // Scrolling down through cards
       if (delta > 0 && this.activeIndex < this.totalCards - 1) {
         event.preventDefault();
         this.lockScroll();
         this.activeIndex++;
 
-        // Manually scroll the page by one card height worth
         const scrollAmount = element.offsetHeight / this.totalCards;
         window.scrollBy({
           top: scrollAmount,
@@ -143,13 +132,11 @@ export class SectrechCardListComponent implements OnInit {
         return;
       }
 
-      // Scrolling up through cards
       if (delta < 0 && this.activeIndex > 0) {
         event.preventDefault();
         this.lockScroll();
         this.activeIndex--;
 
-        // Manually scroll the page by one card height worth
         const scrollAmount = element.offsetHeight / this.totalCards;
         window.scrollBy({
           top: -scrollAmount,
@@ -158,7 +145,6 @@ export class SectrechCardListComponent implements OnInit {
         return;
       }
 
-      // At first card, prevent scrolling up
       if (delta < 0 && this.activeIndex === 0) {
         event.preventDefault();
         return;
@@ -183,12 +169,9 @@ export class SectrechCardListComponent implements OnInit {
     const sectionHeight = element.offsetHeight;
     const sectionTop = this.cardSectionTop;
 
-    // Calculate target scroll position for this card
-    // Each card takes up (sectionHeight / totalCards) of scroll
     const cardScrollHeight = sectionHeight / this.totalCards;
     const targetScroll = sectionTop + cardScrollHeight * index;
 
-    // Smooth scroll to target position
     window.scrollTo({
       top: targetScroll,
       behavior: 'smooth',
@@ -202,6 +185,7 @@ export class SectrechCardListComponent implements OnInit {
   get token() {
     return this.utils.getItem('token');
   }
+
   goToBuyNow(cardData: any) {
     if (this.token && this.token != null) {
       const encodedData = encodeURIComponent(JSON.stringify(cardData));
@@ -214,7 +198,7 @@ export class SectrechCardListComponent implements OnInit {
   }
 
   get isToken(): boolean {
-    return !!localStorage.getItem('token'); // returns true if token exists, false otherwise
+    return !!localStorage.getItem('token');
   }
 
   onStartDateChange(date: string) {
@@ -222,20 +206,17 @@ export class SectrechCardListComponent implements OnInit {
       this.endDate = null;
     }
   }
+
   resetDates() {
     this.startDate = null;
     this.endDate = null;
-    // this.GetAllGames(true);
   }
 
   showGuide() {
     const steps: GuideStep[] = [
       {
-        imageUrl:
-          'https://cmaxv2images2.pages.dev/assets/user-manual/scratchguide.png',
-
-        // imageUrlLg: '/Images/user-manual/scratch-cards/card-1.png',
-        alt: 'scratch card',
+        imageUrl: 'https://spinhub-6rb.pages.dev/assets/scratchguide.png',
+        alt: 'Scratch Card Guide',
       },
     ];
 
@@ -293,13 +274,12 @@ export class SectrechCardListComponent implements OnInit {
       cardImage: '/scratchcard/scratch3.png',
       iconImage: '/scratchcard/scratch3.png',
     },
-    // Add more cards as needed
   ];
 
   card = {
-    backgroundColor: '#062b35', // Card background color
-    ribbonGradient: 'from-[#0c3b4a] to-[#12485c]', // Ribbon gradient
-    buttonGradient: 'from-[#70e1f5] to-[#536976]', // Button gradient
+    backgroundColor: '#062b35',
+    ribbonGradient: 'from-[#0c3b4a] to-[#12485c]',
+    buttonGradient: 'from-[#70e1f5] to-[#536976]',
     title: 'Scratch and Win',
     description:
       'Get ready to uncover incredible prizes! Our scratch card section is the perfect place to test your luck and see if fortune is on your side.',
@@ -320,6 +300,7 @@ export class SectrechCardListComponent implements OnInit {
       winning: '$200',
       treasure: 'https://cmaxv2images2.pages.dev/assets/icons/treasure.png',
       buttonText: 'Buy Now!',
+      scratchText: 'Scratch For Diamond Luck!',
     },
     {
       ticketprice: 10,
@@ -329,6 +310,7 @@ export class SectrechCardListComponent implements OnInit {
       winning: '$300',
       treasure: 'https://cmaxv2images2.pages.dev/assets/icons/treasure.png',
       buttonText: 'Buy Now!',
+      scratchText: 'Unleash The Golden Fortune!',
     },
     {
       ticketprice: 15,
@@ -338,6 +320,7 @@ export class SectrechCardListComponent implements OnInit {
       winning: '$400',
       treasure: 'https://cmaxv2images2.pages.dev/assets/icons/treasure.png',
       buttonText: 'Buy Now!',
+      scratchText: 'Claim Your Royal Crown!',
     },
     {
       ticketprice: 20,
@@ -347,6 +330,7 @@ export class SectrechCardListComponent implements OnInit {
       winning: '$500',
       treasure: 'https://cmaxv2images2.pages.dev/assets/icons/treasure.png',
       buttonText: 'Buy Now!',
+      scratchText: 'Reveal Your Hidden Gems!',
     },
     {
       ticketprice: 25,
@@ -356,6 +340,7 @@ export class SectrechCardListComponent implements OnInit {
       winning: '$1000',
       treasure: 'https://cmaxv2images2.pages.dev/assets/icons/treasure.png',
       buttonText: 'Buy Now!',
+      scratchText: 'Scratch To Hit The Jackpot!',
     },
     {
       ticketprice: 30,
@@ -365,6 +350,7 @@ export class SectrechCardListComponent implements OnInit {
       winning: '$2000',
       treasure: 'https://cmaxv2images2.pages.dev/assets/icons/treasure.png',
       buttonText: 'Buy Now!',
+      scratchText: 'Discover Ultimate Riches!',
     },
   ];
 }
