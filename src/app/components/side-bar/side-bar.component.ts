@@ -27,11 +27,14 @@ export class SideBarComponent implements OnInit, AfterViewInit {
   faHouse = faHouse;
   faUserEdit = faUserEdit;
   referralCode: any = 'Referral code not available';
-  // profileImage = 'https://cmax-2.pages.dev/assets/icons/profileimage.png';
   profileImage: string = '';
   userName: any;
   email: any;
   grainBackdrop: SafeHtml = '';
+
+  // Default active tab set to 'games' so it matches the initial load
+  activeQuickTab: string = 'games';
+
   constructor(
     private sidebarService: SidebarService,
     private router: Router,
@@ -57,9 +60,7 @@ export class SideBarComponent implements OnInit, AfterViewInit {
     this.referralCode =
       localStorage.getItem('referralCode') ?? 'Referral code not available';
   }
-  destroy$(destroy$: any): import("rxjs").OperatorFunction<any, unknown> {
-    throw new Error('Method not implemented.');
-  }
+
   ngAfterViewInit(): void {
     setInterval(() => {
       this.profileImage =
@@ -71,7 +72,7 @@ export class SideBarComponent implements OnInit, AfterViewInit {
 
     this.UpdateCustomerLevel();
   }
-  // @HostListener('window:resize', ['$event'])
+
   @HostListener('window:resize')
   onResize() {
     this.checkScreenSize();
@@ -84,7 +85,6 @@ export class SideBarComponent implements OnInit, AfterViewInit {
     } else {
       this.isSidebarOpen = true;
     }
-    // Adjust the width as needed
   }
 
   showCopiedTooltip = false;
@@ -109,10 +109,10 @@ export class SideBarComponent implements OnInit, AfterViewInit {
 
   closeSidebarMobile() {
     if (this.isMobile) {
-      // this.isSidebarOpen = false;
       this.sidebarService.toggleSidebar();
     }
   }
+
   isLogoutModalOpen: boolean = false;
   closeLogoutModal() {
     this.isLogoutModalOpen = false;
@@ -129,21 +129,16 @@ export class SideBarComponent implements OnInit, AfterViewInit {
     this.isSidebarOpen = false;
   }
 
-  // onResize() {
-  //   this.checkScreenSize();
-  // }
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const sidebar = document.querySelector('.mobile'); // Use the actual class name
+    const sidebar = document.querySelector('.mobile');
 
-    // Check if sidebar is not null before calling contains
     if (sidebar && this.isSidebarOpen && !sidebar.contains(target)) {
-      this.isSidebarOpen = false; // Close the sidebar if clicked outside
+      this.isSidebarOpen = false;
     }
   }
 
-  // * Router navigation function
   redirectTo(path: string) {
     this.router.navigate([path]);
     this.utilsService.toggleComponentVisibility(false);
@@ -152,33 +147,39 @@ export class SideBarComponent implements OnInit, AfterViewInit {
   isActive(path: string): boolean {
     return this.router.url === path;
   }
+
   RedirectToScratchCard() {
-    // this.router.navigate(['/dashboard/SectrechCards']);
     this.utilsService.toggleComponentVisibility(false);
     this.closeSidebarMobile();
   }
+
   redirectToGame(path: string) {
     this.router.navigate([path]);
     this.utilsService.toggleComponentVisibility(false);
     this.closeSidebarMobile();
   }
 
-  // Navigate to a route (if needed) and then scroll to the given section id
+  selectQuickTab(tab: string, path: string, sectionId: string) {
+    this.activeQuickTab = tab;
+    this.navigateAndScroll(path, sectionId);
+  }
+
   navigateAndScroll(path: string, sectionId: string) {
     const doScroll = () => {
       setTimeout(() => {
         this.scrollToId(sectionId);
-      }, 100);
+      }, 50);
       this.utilsService.toggleComponentVisibility(false);
       this.closeSidebarMobile();
     };
 
-    if (this.router.url === path) {
+    if (this.router.url.startsWith(path)) {
       doScroll();
     } else {
       this.router.navigate([path]).then(() => doScroll());
     }
   }
+
   private scrollToId(id: string) {
     const el =
       document.getElementById(id) ||
@@ -186,7 +187,6 @@ export class SideBarComponent implements OnInit, AfterViewInit {
 
     if (el) {
       const offset = 120;
-
       const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
 
       window.scrollTo({
@@ -195,6 +195,7 @@ export class SideBarComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
   isTreasurePickRoute(): boolean {
     const current = this.router.url;
     return (
@@ -204,15 +205,10 @@ export class SideBarComponent implements OnInit, AfterViewInit {
     );
   }
 
-  // redirection for my profile
-
   showComletePorfile() {
     this.router.navigate(['dashboard/complete-profile']);
     this.closeSidebarMobile();
   }
-
-
-  // User Level UpDate Api Call
 
   profileLevel: any;
   getLevelImage(level: number): string {
@@ -244,7 +240,3 @@ export class SideBarComponent implements OnInit, AfterViewInit {
     });
   }
 }
-function takeUntil(destroy$: any): import("rxjs").OperatorFunction<any, unknown> {
-  throw new Error('Function not implemented.');
-}
-

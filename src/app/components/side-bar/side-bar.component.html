@@ -1,186 +1,134 @@
 <!-- Component Start -->
 <div *ngIf="!isTreasurePickRoute()"
-  class="booderr flex-col items-center flex-shrink-0 w-[250px] h-screen overflow-hidden text-gray-400 bg-[#161819] md:gap-12 transition-all duration-300 ease-in-out fixed z-[997] top-0 flex"
+  class="booderr flex-col items-center flex-shrink-0 w-[250px] h-screen overflow-y-auto text-gray-400 bg-[#121418] transition-all duration-300 ease-in-out fixed z-[997] top-0 flex shadow-2xl custom-scrollbar"
   [class.hidden]="!isSidebarOpen" [ngClass]="{ mobile: isMobile }">
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-  <div class="w-full flex flex-col py-12 px-2 mobile-overlay custom-border-r">
+  
+  <div class="w-full flex flex-col pt-24 pb-6 px-3 mobile-overlay custom-border-r">
+    
     <!-- Profile (mobile only) -->
-    <div class="block lg:hidden">
-      <div class="flex items-center px-2 gap-3 w-full">
-
-        <!-- FIXED wrapper -->
+    <div class="block lg:hidden mb-4 px-1">
+      <div class="flex items-center gap-3 w-full p-2 rounded-2xl bg-black/40 border border-[#bfa97a]/20">
         <div class="relative inline-block flex-shrink-0">
-          <!-- Profile Image -->
           <img [src]="profileImage" alt="Profile"
-            class="h-11 w-11 min-w-[44px] min-h-[44px] rounded-full border-2 cursor-pointer object-cover" />
-
-          <!-- Badge -->
+            class="h-10 w-10 rounded-full border-2 border-[#bfa97a]/40 object-cover shadow-md" />
           <img *ngIf="profileLevel" [src]="getLevelImage(profileLevel)" alt="Level Badge"
-            class="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 h-6 w-6  shadow-md" />
+            class="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 h-5 w-5" />
         </div>
-
-        <div class="flex items-center w-full">
-
-          <span class="text-lg font-bold text-white">
+        <div class="flex items-center w-full overflow-hidden">
+          <span class="text-xs font-bold text-white truncate">
             {{ userName | slice:0:8 }}{{ userName?.length > 8 ? '...' : '' }}
           </span>
-
-          <button (click)="showComletePorfile()" class="ml-auto text-[#FE8006] transition hover:scale-110 mr-2">
+          <button (click)="showComletePorfile()" class="ml-auto text-[#FE8006] hover:scale-110 transition p-1">
             <fa-icon [icon]="faUserEdit"></fa-icon>
           </button>
-
         </div>
-
       </div>
     </div>
 
-    <div class="flex flex-row items-center w-50 gap-4 mx-auto mt-3 mb-4">
-      <!-- Instant BUTTON -->
-      <div
-        class="hidden lg:flex w-[75px] h-[85px] cursor-pointer rounded-[16px_3px] bg-gradient-to-b from-[#FC552D] to-[#F3A630] flex flex-col items-center pt-3"
-        (click)="navigateAndScroll('/dashboard/home', 'quick-scrolling-id')">
-        <span class="text-white font-semibold text-[16px] leading-[19px]">
-          Instant
+    <!-- Switcher: Games First (Left), Instant Second (Right) -->
+    <div class="hidden lg:flex items-center justify-between w-full max-w-[220px] mx-auto mb-4 p-1 bg-black/70 backdrop-blur-md border border-[#C3B089]/30 rounded-2xl shadow-inner relative">
+      
+      <!-- Games Tab (Left) -->
+      <div (click)="selectQuickTab('games', '/dashboard/home', 'games-scroll-id')"
+        class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl cursor-pointer transition-all duration-300 group"
+        [ngClass]="{
+          'bg-gradient-to-r from-[#DD256A]/20 to-[#F3A630]/20 border border-[#DD256A]/40 shadow-sm': activeQuickTab === 'games',
+          'border border-transparent hover:bg-white/5': activeQuickTab !== 'games'
+        }">
+        <span class="text-xs font-semibold tracking-wide"
+          [ngClass]="activeQuickTab === 'games' ? 'text-pink-400 font-extrabold' : 'text-gray-400 group-hover:text-white'">
+          🎮 Games
         </span>
-
-        <img src="https://cmaxv2images2.pages.dev/assets/icons/quick.png"
-          class="w-[62px] h-[35px] mt-2 object-contain" />
       </div>
 
-      <!-- GAMES BUTTON -->
-      <div
-        class="hidden lg:flex w-[75px] h-[85px] cursor-pointer rounded-[16px_3px] bg-gradient-to-b from-[#5F3155] to-[#DD256A] flex flex-col items-center pt-3"
-        (click)="navigateAndScroll('/dashboard/home', 'games-scroll-id')">
-        <span class="text-white font-semibold text-[16px] leading-[19px]">
-          Games
+      <!-- Instant Tab (Right) -->
+      <div (click)="selectQuickTab('instant', '/dashboard/home', 'quick-scrolling-id')"
+        class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl cursor-pointer transition-all duration-300 group"
+        [ngClass]="{
+          'bg-gradient-to-r from-[#FC552D]/20 to-[#F3A630]/20 border border-[#F3A630]/40 shadow-sm': activeQuickTab === 'instant',
+          'border border-transparent hover:bg-white/5': activeQuickTab !== 'instant'
+        }">
+        <span class="text-xs font-extrabold tracking-wide"
+          [ngClass]="activeQuickTab === 'instant' ? 'text-amber-400' : 'text-gray-400 group-hover:text-white'">
+          ⚡ Instant
         </span>
-
-        <img src="https://cmaxv2images2.pages.dev/assets/icons/games.png"
-          class="w-[62px] h-[35px] mt-2 object-contain" />
       </div>
+
     </div>
 
-
-    <div class="flex items-center justify-between gap-3 w-full max-w-[200px] mx-auto mb-2
-         px-4 py-2
-border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]
-         shadow-[0_0_25px_rgba(254,137,18,0.10)]">
-
-      <!-- Left Content -->
-      <div class="flex items-center gap-3 overflow-hidden">
-        <!-- Code -->
+    <!-- Referral Card Component -->
+    <div class="flex items-center justify-between gap-2 w-full max-w-[220px] mx-auto mb-4 px-3 py-2 bg-black/60 backdrop-blur-md border border-[#C3B089]/40 rounded-2xl shadow-lg relative">
+      <div class="flex items-center gap-2 overflow-hidden">
+        <div class="w-7 h-7 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-[#F3A630] flex-shrink-0">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/></svg>
+        </div>
         <div class="flex flex-col overflow-hidden">
-          <span class="text-[8px] text-[#8f8f8f] uppercase tracking-[1.5px]">
-            Referral Code
-          </span>
-
-          <span class="text-white text-sm font-semibold truncate tracking-wide">
-            {{ referralCode }}
-          </span>
+          <span class="text-[8px] text-[#bfa97a] uppercase tracking-wider font-bold">Referral Code</span>
+          <span class="text-white text-xs font-mono font-bold truncate">{{ referralCode }}</span>
         </div>
       </div>
 
-      <!-- Copy Button -->
-      <!-- Copy Button -->
       <div class="relative">
-
-        <!-- Tooltip -->
-        <div *ngIf="showCopiedTooltip" class="absolute -top-9 left-1/2 -translate-x-1/2
-           bg-[#fe8912] text-black text-[10px] font-semibold
-           px-2 py-[4px] rounded-md whitespace-nowrap
-           shadow-lg z-20">
+        <div *ngIf="showCopiedTooltip" class="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#fe8912] text-black text-[9px] font-bold px-2 py-[2px] rounded-md whitespace-nowrap shadow-xl z-20 animate-bounce">
           Copied ✓
         </div>
-
-        <button (click)="copyReferralCode()" class="group relative flex items-center justify-center
-           w-[34px] h-[34px]
-           rounded-lg
-           bg-gradient-to-br from-[#F3A630]/20 to-[#F3A630]/5
-           border border-[#F3A630]/25
-           hover:border-[#F3A630]/60
-           active:scale-95
-           transition-all duration-200">
-
-          <!-- SVG Copy Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" class="w-[15px] h-[15px]
-             text-[#F3A630]
-             opacity-90">
-
+        <button (click)="copyReferralCode()" class="flex items-center justify-center w-7 h-7 rounded-xl bg-gradient-to-br from-[#F3A630]/25 to-[#F3A630]/5 border border-[#F3A630]/40 hover:border-[#F3A630] hover:scale-105 active:scale-95 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-[#F3A630]">
             <rect x="9" y="9" width="11" height="11" rx="2"></rect>
             <path d="M5 14H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
-
           </svg>
         </button>
       </div>
     </div>
-    <!-- Menu Items -->
-    <div
-      class="relative flex flex-col items-center w-45 bg-[#0f0f0f]/80 mx-4 border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] mb-16 md:mb-0 md:mt-0 overflow-hidden">
+
+    <!-- Menu Items Section -->
+    <div class="relative flex flex-col items-center w-full max-w-[220px] bg-[#0c0d10]/90 backdrop-blur-xl mx-auto border border-[#C3B089]/30 rounded-3xl p-1.5 mb-4 shadow-2xl overflow-hidden">
       <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-      <!-- Content -->
-      <div class="relative z-10 my-4 gap-3 flex flex-col">
-        <a class="sidebar-item" routerLink="/dashboard/home" routerLinkActive="active" (click)="closeSidebarMobile()">
+      
+      <div class="relative z-10 w-full gap-1.5 flex flex-col">
+        <a class="sidebar-item" routerLink="/dashboard/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeSidebarMobile()">
           <img src="/home.png" alt="icon" />
-          <span>Home</span>
+          <span class="text-xs font-medium">Home</span>
         </a>
 
         <a class="sidebar-item" routerLink="/dashboard/wallet" routerLinkActive="active" (click)="closeSidebarMobile()">
           <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Wallet.png" alt="icon" />
-          <span class="text-sm">Wallet</span>
+          <span class="text-xs font-medium">Wallet</span>
         </a>
 
-        <a class="sidebar-item" routerLink="/dashboard/account" routerLinkActive="active"
-          (click)="closeSidebarMobile()">
+        <a class="sidebar-item" routerLink="/dashboard/account" routerLinkActive="active" (click)="closeSidebarMobile()">
           <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/GameAccount.png" alt="icon" />
-          <!-- <svg width="30" height="26" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M6.585 13.1984C6.09577 12.6977 5.42034 12.3885 4.67464 12.3885C3.92807 12.3885 3.25264 12.6977 2.76341 13.1984C2.27418 13.6992 1.97205 14.3905 1.97205 15.1537C1.97205 15.9169 2.27508 16.6091 2.76341 17.1089C3.25264 17.6096 3.92807 17.9189 4.67464 17.9189C5.42122 17.9189 6.09665 17.6096 6.585 17.1089C7.07423 16.6082 7.37636 15.9169 7.37636 15.1537C7.37636 14.3905 7.07333 13.6992 6.585 13.1984ZM4.67377 11.9309C5.54331 11.9309 6.33029 12.2923 6.90031 12.8748C7.47035 13.4583 7.82256 14.2637 7.82256 15.1537C7.82256 16.0436 7.47035 16.8491 6.90031 17.4325C6.33027 18.0159 5.54329 18.3764 4.67377 18.3764C3.80422 18.3764 3.01724 18.0159 2.44723 17.4325C1.87721 16.8491 1.52498 16.0436 1.52498 15.1537C1.52498 14.2637 1.87718 13.4582 2.44723 12.8748C3.01727 12.2923 3.80425 11.9309 4.67377 11.9309ZM18.2404 13.194C17.7503 12.6923 17.0731 12.3822 16.3256 12.3822C15.5782 12.3822 14.901 12.6924 14.4109 13.194C13.9208 13.6956 13.6178 14.3887 13.6178 15.1537C13.6178 15.9196 13.9208 16.6118 14.4109 17.1134C14.901 17.615 15.5782 17.9251 16.3256 17.9251C17.0731 17.9251 17.7503 17.615 18.2404 17.1134C18.7305 16.6118 19.0335 15.9187 19.0335 15.1537C19.0335 14.3887 18.7305 13.6956 18.2404 13.194ZM16.3256 11.9255C17.1969 11.9255 17.9857 12.2869 18.5566 12.8712C19.1275 13.4556 19.4806 14.2628 19.4806 15.1537C19.4806 16.0446 19.1275 16.8527 18.5566 17.4361C17.9857 18.0205 17.1969 18.3819 16.3256 18.3819C15.4543 18.3819 14.6656 18.0205 14.0947 17.4361C13.5238 16.8518 13.1707 16.0446 13.1707 15.1537C13.1707 14.2628 13.5238 13.4547 14.0947 12.8712C14.6656 12.2869 15.4543 11.9255 16.3256 11.9255ZM14.9326 14.9532C14.9827 15.0044 15.0134 15.0754 15.0134 15.1536C15.0134 15.2318 14.9827 15.3028 14.9326 15.3541C14.8825 15.4053 14.8132 15.4368 14.7367 15.4368C14.6603 15.4368 14.5909 15.4053 14.5409 15.3541C14.4908 15.3028 14.4601 15.2318 14.4601 15.1536C14.4601 15.0754 14.4908 15.0044 14.5409 14.9532C14.591 14.9019 14.6603 14.8705 14.7367 14.8705C14.8132 14.8705 14.8826 14.9028 14.9326 14.9532ZM14.7376 14.4138C14.937 14.4138 15.1179 14.4965 15.2488 14.6304C15.3797 14.7644 15.4605 14.9495 15.4605 15.1536C15.4605 15.3586 15.3797 15.5429 15.2488 15.6768C15.1179 15.8116 14.937 15.8943 14.7376 15.8943C14.5382 15.8943 14.3573 15.8116 14.2264 15.6768C14.0956 15.5428 14.0148 15.3577 14.0148 15.1536C14.0148 14.9495 14.0956 14.7644 14.2264 14.6304C14.3564 14.4965 14.5374 14.4138 14.7376 14.4138ZM18.1095 14.9532C18.1596 15.0044 18.1903 15.0754 18.1903 15.1536C18.1903 15.2318 18.1596 15.3028 18.1095 15.3541C18.0594 15.4053 17.99 15.4368 17.9136 15.4368C17.8372 15.4368 17.7678 15.4053 17.7178 15.3541C17.6677 15.3028 17.637 15.2318 17.637 15.1536C17.637 15.0754 17.6677 15.0044 17.7178 14.9532C17.7678 14.9019 17.8372 14.8705 17.9136 14.8705C17.99 14.8705 18.0594 14.9028 18.1095 14.9532ZM17.9136 14.4138C18.113 14.4138 18.2939 14.4965 18.4248 14.6304C18.5557 14.7644 18.6365 14.9495 18.6365 15.1536C18.6365 15.3586 18.5557 15.5429 18.4248 15.6768C18.2939 15.8116 18.113 15.8943 17.9136 15.8943C17.7142 15.8943 17.5333 15.8116 17.4024 15.6768C17.2716 15.5428 17.1908 15.3577 17.1908 15.1536C17.1908 14.9495 17.2716 14.7644 17.4024 14.6304C17.5333 14.4965 17.7142 14.4138 17.9136 14.4138ZM16.5206 13.3647C16.5707 13.4159 16.6014 13.4869 16.6014 13.5652C16.6014 13.6434 16.5707 13.7144 16.5206 13.7656C16.4705 13.8169 16.4012 13.8483 16.3247 13.8483C16.2483 13.8483 16.1789 13.8169 16.1289 13.7656C16.0788 13.7144 16.0481 13.6434 16.0481 13.5652C16.0481 13.4869 16.0788 13.4159 16.1289 13.3647C16.1789 13.3134 16.2483 13.282 16.3247 13.282C16.402 13.282 16.4714 13.3134 16.5206 13.3647ZM16.3256 12.8244C16.525 12.8244 16.7059 12.9071 16.8368 13.0411C16.9677 13.1759 17.0485 13.3602 17.0485 13.5651C17.0485 13.7692 16.9677 13.9544 16.8368 14.0883C16.7059 14.2223 16.525 14.305 16.3256 14.305C16.1262 14.305 15.9453 14.2223 15.8144 14.0883C15.6836 13.9544 15.6028 13.7692 15.6028 13.5651C15.6028 13.3602 15.6836 13.1759 15.8144 13.0411C15.9444 12.9071 16.1254 12.8244 16.3256 12.8244ZM16.4521 16.8022V16.804L16.5777 17.0279H16.0718L16.1974 16.804C16.2 16.7996 16.2018 16.7951 16.2035 16.7906L16.3239 16.5775L16.4521 16.8022ZM16.5197 16.0112L16.8377 16.5748V16.5739L17.1574 17.1402C17.2189 17.249 17.1829 17.3892 17.0766 17.4513C17.0415 17.472 17.0028 17.4819 16.9651 17.4819V17.4828H15.688C15.5641 17.4828 15.4649 17.3803 15.4649 17.2544C15.4649 17.2068 15.4789 17.1627 15.5035 17.1268L15.8153 16.5739C15.8171 16.5703 15.8197 16.5658 15.8223 16.5622L16.1341 16.0085C16.1956 15.8997 16.3318 15.862 16.4381 15.924C16.4723 15.9465 16.5004 15.9761 16.5197 16.0112ZM4.34517 14.1243C4.34517 14.0802 4.36274 14.0407 4.39084 14.011C4.41895 13.9822 4.45847 13.9633 4.50151 13.9633H4.8467C4.88974 13.9633 4.92927 13.9813 4.95737 14.011C4.98548 14.0398 5.00305 14.0802 5.00305 14.1243V14.589C5.00305 14.7149 5.10318 14.8174 5.22614 14.8174H5.67935C5.72239 14.8174 5.76191 14.8353 5.79002 14.8641C5.81813 14.8938 5.83569 14.9333 5.83569 14.9774V15.3307C5.83569 15.3747 5.81813 15.4152 5.79002 15.4439C5.76104 15.4727 5.72239 15.4907 5.67935 15.4907H5.22614C5.1023 15.4907 5.00305 15.5932 5.00305 15.7199V16.1838C5.00305 16.2278 4.98548 16.2683 4.95737 16.297C4.92927 16.3258 4.88974 16.3438 4.8467 16.3438H4.50151C4.45847 16.3438 4.41895 16.3258 4.39084 16.297C4.36274 16.2683 4.34517 16.2278 4.34517 16.1838V15.7199C4.34517 15.5932 4.24504 15.4907 4.12208 15.4907H3.66799C3.62495 15.4907 3.58543 15.4727 3.55732 15.4439C3.52921 15.4152 3.51165 15.3747 3.51165 15.3307V14.9774C3.51165 14.9333 3.52922 14.8938 3.55732 14.8641C3.58543 14.8353 3.62495 14.8174 3.66799 14.8174H4.12208C4.24504 14.8174 4.34517 14.7149 4.34517 14.589V14.1243ZM3.8981 14.3598V14.1243C3.8981 13.9544 3.96573 13.7997 4.07464 13.6883C4.18356 13.5768 4.33462 13.5067 4.5015 13.5067H4.84669C5.01357 13.5067 5.16378 13.5759 5.27355 13.6883C5.38246 13.8006 5.45009 13.9544 5.45009 14.1243V14.3598H5.68021C5.84621 14.3598 5.99729 14.429 6.10706 14.5414C6.21685 14.6537 6.28361 14.8074 6.28361 14.9774V15.3307C6.28361 15.5015 6.21598 15.6552 6.10706 15.7666C5.99815 15.879 5.84709 15.9482 5.68021 15.9482H5.45009V16.1837C5.45009 16.3545 5.38246 16.5083 5.27355 16.6197C5.16464 16.7321 5.01358 16.8013 4.84669 16.8013H4.5015C4.3355 16.8013 4.18442 16.7321 4.07464 16.6197C3.96573 16.5083 3.8981 16.3537 3.8981 16.1837V15.9482H3.66799C3.50199 15.9482 3.3509 15.879 3.24113 15.7666C3.13222 15.6552 3.06459 15.5006 3.06459 15.3307V14.9774C3.06459 14.8066 3.13222 14.6528 3.24113 14.5414C3.35004 14.4299 3.5011 14.3598 3.66799 14.3598H3.8981ZM11.9813 13.3422H9.01773V14.1198H11.9804V13.3422H11.9813ZM8.86506 12.8855H12.1342C12.215 12.8855 12.2888 12.9196 12.3415 12.9736C12.3494 12.9808 12.3564 12.9898 12.3625 12.9987C12.4029 13.05 12.4275 13.1156 12.4275 13.1866V14.2771C12.4275 14.3598 12.3941 14.4344 12.3415 14.4883L12.3406 14.4892L12.3415 14.4901C12.2879 14.545 12.215 14.5782 12.1342 14.5782L8.86506 14.5764C8.78425 14.5764 8.71047 14.5423 8.65777 14.4883C8.64987 14.4811 8.64284 14.4721 8.63669 14.4632C8.59629 14.4119 8.5717 14.3463 8.5717 14.2753V13.1848C8.5717 13.1021 8.60507 13.0275 8.65777 12.9736V12.9718C8.71047 12.9187 8.78425 12.8855 8.86506 12.8855ZM9.62305 11.8804H11.3771V11.4454H9.62305V11.8804ZM12.0411 0.162543C12.4803 0.547302 12.8737 1.09117 13.2023 1.75819C13.3358 2.02968 13.4587 2.32094 13.5694 2.63019C14.0683 2.37219 14.5329 2.05127 14.9519 1.67999L14.9466 1.6755C14.9299 1.66022 14.9123 1.64583 14.8948 1.63055L14.8842 1.62156C14.8675 1.60718 14.8509 1.59279 14.8342 1.57931L14.8219 1.56942C14.8052 1.55504 14.7885 1.54156 14.7718 1.52717L14.7613 1.51818C14.7419 1.5029 14.7235 1.48762 14.7042 1.47234L14.6963 1.46604C14.6769 1.45076 14.6585 1.43638 14.6392 1.4211L14.6321 1.4157C14.6128 1.40042 14.5935 1.38514 14.5733 1.37076L14.568 1.36716C13.8285 0.799008 12.9712 0.3837 12.0411 0.162543ZM7.42986 2.63118C7.5414 2.32192 7.66438 2.03067 7.79699 1.75918C8.12548 1.09127 8.51897 0.546496 8.95815 0.163532C8.62878 0.241741 8.30819 0.344223 7.99902 0.468274L7.99112 0.47187C7.97531 0.478163 7.95862 0.485355 7.94281 0.491647C7.927 0.49794 7.91207 0.505132 7.89626 0.511424L7.88484 0.515919C7.87254 0.521313 7.86113 0.525808 7.84883 0.531201L7.82248 0.542888L7.80052 0.552776L7.77593 0.563564L7.77505 0.564463L7.74255 0.578846L7.71444 0.591431L7.70478 0.595926C7.10049 0.874594 6.54275 1.24228 6.04738 1.68096C6.46723 2.05223 6.93098 2.37228 7.42986 2.63118ZM7.44918 11.182C7.75484 11.4004 8.03415 11.6557 8.28095 11.9398C8.39425 12.0702 8.52424 12.17 8.66918 12.2365C8.81498 12.303 8.97396 12.3381 9.14348 12.3381H11.8574C12.0269 12.3381 12.1859 12.3039 12.3317 12.2365C12.4767 12.17 12.6067 12.0702 12.72 11.9398C12.9668 11.6548 13.2461 11.4004 13.5517 11.1811C13.5561 11.1784 13.5596 11.1757 13.564 11.173C13.802 11.0031 14.0568 10.8557 14.3238 10.7325C14.9158 10.4601 15.5728 10.3082 16.2649 10.3082C17.5727 10.3082 18.7558 10.8512 19.6131 11.7276C20.4695 12.6041 21 13.8159 21 15.1536C21 16.4922 20.4704 17.704 19.6131 18.5805C18.7568 19.457 17.5728 20 16.2649 20C15.5728 20 14.9158 19.8481 14.3238 19.5757C13.7072 19.2916 13.1617 18.8781 12.72 18.3684C12.6066 18.238 12.4767 18.1382 12.3317 18.0717C12.1859 18.0043 12.0269 17.9701 11.8574 17.9701H9.14257C8.97306 17.9701 8.81497 18.0043 8.66827 18.0717C8.52335 18.1382 8.39335 18.2371 8.28005 18.3684C7.83826 18.8781 7.29282 19.2925 6.67623 19.5757C6.08424 19.8481 5.42725 20 4.73514 20C3.42731 20 2.24424 19.4579 1.38688 18.5805C0.530513 17.7041 0 16.4923 0 15.1536C0 13.8151 0.529636 12.6042 1.38688 11.7276C2.24325 10.8512 3.42722 10.3082 4.73514 10.3082C5.42725 10.3082 6.08424 10.4601 6.67623 10.7325C6.94412 10.8557 7.19795 11.004 7.43598 11.173C7.44037 11.1757 7.44479 11.1784 7.44918 11.182ZM17.3013 7.17722H14.2613C14.2507 7.84065 14.1963 8.4852 14.104 9.0992C14.0311 9.58284 13.9336 10.044 13.816 10.4791C13.9214 10.4207 14.0294 10.3667 14.1383 10.3164C14.7874 10.0179 15.5067 9.85163 16.263 9.85163C16.4035 9.85163 16.5432 9.85703 16.6802 9.86871C16.8725 9.4435 17.0236 8.99313 17.1299 8.52386C17.2283 8.08967 17.2863 7.63928 17.3013 7.17722ZM14.2613 6.71965C14.2411 5.3829 14.0434 4.13342 13.7141 3.06629C14.2823 2.77773 14.8085 2.41635 15.2801 1.99203C15.2898 2.00282 15.3003 2.01271 15.3109 2.02349C16.4931 3.23349 17.2423 4.8875 17.3003 6.7205H14.2612L14.2613 6.71965ZM10.2762 3.37467C9.47783 3.3486 8.71545 3.18139 8.01108 2.89822C7.95223 2.87485 7.89339 2.84968 7.83542 2.82451C7.94345 2.51797 8.06465 2.23031 8.19554 1.9651C8.74712 0.844999 9.47701 0.115939 10.2763 0.000872181L10.2762 3.37467ZM10.2762 6.71965V3.83217C9.42249 3.8052 8.60478 3.62721 7.84852 3.32337C7.79669 3.30269 7.74487 3.28112 7.69305 3.25865C7.38739 4.26996 7.20382 5.45119 7.18451 6.72053L10.2762 6.71965ZM10.7224 3.83217V6.72057H13.8141C13.7948 5.45215 13.6112 4.26919 13.3056 3.25868C13.2538 3.28115 13.2019 3.30273 13.1501 3.32341C12.3939 3.62725 11.5771 3.80522 10.7224 3.83217ZM10.7224 0C11.5217 0.115066 12.2525 0.844127 12.8032 1.96423C12.934 2.23031 13.0544 2.51798 13.1633 2.82364C13.1053 2.84881 13.0465 2.87398 12.9876 2.89735C12.2832 3.18143 11.5208 3.34772 10.7225 3.3738L10.7224 0ZM10.7224 10.0655C11.1818 10.0799 11.6324 10.1384 12.0698 10.2381C12.4966 10.3343 12.9103 10.4701 13.3047 10.64C13.4558 10.1402 13.577 9.5999 13.6631 9.02995C13.7518 8.44472 13.8036 7.82355 13.8133 7.1772H10.7216L10.7224 10.0655ZM7.69301 10.6391C8.08825 10.4692 8.50108 10.3343 8.92793 10.2373C9.36534 10.1384 9.81592 10.0799 10.2753 10.0647L10.2762 7.17717H7.18446C7.19413 7.82353 7.24595 8.4438 7.33466 9.02993C7.42073 9.59987 7.54193 10.1393 7.69301 10.6391ZM10.2761 10.5231V10.9879H9.48999C9.41182 10.9879 9.33892 11.0166 9.28447 11.0625C9.21771 11.1182 9.17555 11.2 9.17555 11.2926V11.8805H9.14218C9.0359 11.8805 8.93841 11.8599 8.85145 11.8203C8.76273 11.7799 8.68281 11.7187 8.61342 11.6378C8.41755 11.4122 8.20325 11.2027 7.97311 11.014C8.31126 10.8755 8.66259 10.7641 9.02447 10.6822C9.42675 10.5914 9.84483 10.5366 10.2761 10.5231ZM13.0253 11.0139C12.7952 11.2027 12.5809 11.4122 12.385 11.6378C12.3157 11.7187 12.2357 11.7789 12.147 11.8203C12.0601 11.8599 11.9626 11.8805 11.8563 11.8805H11.8229V11.2926C11.8229 11.1991 11.7816 11.1182 11.714 11.0625C11.6595 11.0166 11.5866 10.9879 11.5085 10.9879H10.7224V10.5231C11.1527 10.5375 11.5708 10.5914 11.974 10.6831C12.3367 10.764 12.6881 10.8755 13.0253 11.0139ZM3.75992 5.25971C3.69404 5.19228 3.60182 5.15003 3.50082 5.15003C3.39982 5.15003 3.30847 5.19228 3.24172 5.25971C3.17585 5.32713 3.13457 5.42152 3.13457 5.52489C3.13457 5.62917 3.17585 5.72266 3.24172 5.79007C3.3076 5.85749 3.39982 5.89974 3.50082 5.89974C3.60182 5.89974 3.69317 5.85749 3.75992 5.79007C3.82579 5.72265 3.86707 5.62826 3.86707 5.52489C3.86707 5.42151 3.82667 5.32802 3.75992 5.25971ZM4.2386 6.61533C4.02341 6.48228 3.77134 6.40587 3.50082 6.40587C3.23118 6.40587 2.9791 6.48138 2.76392 6.61353C2.63392 6.69443 2.5171 6.79512 2.41785 6.91199H4.58291C4.48454 6.79692 4.36858 6.69624 4.2386 6.61533ZM3.98301 6.09483C4.14199 6.13978 4.29131 6.2072 4.43008 6.29171C4.71027 6.46521 4.94038 6.71421 5.09409 7.01177L5.09497 7.01447C5.1424 7.10706 5.10814 7.22123 5.01768 7.26888C4.99045 7.28416 4.96059 7.29135 4.9316 7.29135V7.29225H2.07082C1.96894 7.29225 1.8855 7.20775 1.8855 7.10257C1.8855 7.06751 1.89428 7.03605 1.91097 7.00728C2.06467 6.71151 2.29479 6.46341 2.57585 6.29081C2.71287 6.20631 2.86218 6.13978 3.02029 6.09484C3.00712 6.08315 2.99394 6.07057 2.98164 6.05798C2.84902 5.92224 2.76558 5.73345 2.76558 5.5249C2.76558 5.31724 2.84814 5.12845 2.98164 4.99182C3.11515 4.85608 3.29873 4.77158 3.50249 4.77158C3.70538 4.77158 3.88984 4.85608 4.02333 4.99182C4.15684 5.12846 4.23852 5.31635 4.23852 5.5249C4.23852 5.73345 4.15596 5.92135 4.02333 6.05798C4.00928 6.07056 3.99619 6.08315 3.98301 6.09483ZM5.18983 4.42817C5.62197 4.87046 5.88898 5.48174 5.88898 6.15686C5.88898 6.83108 5.6211 7.44325 5.18983 7.88465C4.75769 8.32694 4.16044 8.60022 3.50082 8.60022C2.8412 8.60022 2.24395 8.32694 1.81181 7.88465C1.37967 7.44235 1.11266 6.83108 1.11266 6.15686C1.11266 5.48174 1.38054 4.87046 1.81181 4.42817C2.24395 3.98587 2.8412 3.71259 3.50082 3.71259C4.16044 3.71169 4.75769 3.98498 5.18983 4.42817ZM6.28247 6.7196C6.31761 6.53711 6.33605 6.34833 6.33605 6.15596C6.33605 5.35408 6.01897 4.62953 5.50604 4.10363C5.24782 3.83935 4.93952 3.62539 4.59696 3.47887C4.90438 2.9323 5.28294 2.43158 5.71859 1.992C6.19026 2.4154 6.71724 2.7777 7.28463 3.06626C6.95527 4.13332 6.75762 5.38278 6.73743 6.71962L6.28247 6.7196ZM3.99799 9.01375C4.03751 9.14499 4.08055 9.27265 4.12622 9.39851C4.18507 9.55852 4.24919 9.71494 4.31858 9.86867C4.45647 9.85698 4.59525 9.85159 4.73579 9.85159C5.49203 9.85159 6.21137 10.0179 6.86045 10.3163C6.97024 10.3667 7.07739 10.4215 7.18279 10.4791C7.0651 10.0449 6.96761 9.5828 6.89471 9.09915C6.80161 8.48516 6.74804 7.8406 6.73749 7.17717H6.15605C6.01289 7.56732 5.78892 7.91882 5.5061 8.20829C5.10382 8.62002 4.58118 8.90768 3.99799 9.01375Z"
-              fill="#978A86" fill-opacity="0.7" />
-          </svg> -->
-
-          <span class="text-sm">Game Account</span>
+          <span class="text-xs font-medium">Game Account</span>
         </a>
 
-        <a class="sidebar-item" routerLink="/dashboard/spinner" routerLinkActive="active"
-          (click)="closeSidebarMobile()">
+        <a class="sidebar-item" routerLink="/dashboard/spinner" routerLinkActive="active" (click)="closeSidebarMobile()">
           <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/spin.png" alt="icon" />
-          <span>Spin</span>
+          <span class="text-xs font-medium">Spin</span>
         </a>
 
         <a class="sidebar-item" routerLink="/dashboard/guides" routerLinkActive="active" (click)="closeSidebarMobile()">
           <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Redeem.png" alt="icon" />
-          <span>Guide</span>
+          <span class="text-xs font-medium">Guide</span>
         </a>
 
-        <a *ngIf="isMobile == true" (click)="redirecttoTermsConditions()" class="sidebar-item hello border-[#451e54]">
-          <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Lotteries.png" class="h-[4vh]" alt="icon" />
-          <span class="text-sm">Term&Condition</span>
+        <a *ngIf="isMobile == true" (click)="redirecttoTermsConditions()" class="sidebar-item hello">
+          <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Lotteries.png" class="h-4 object-contain" alt="icon" />
+          <span class="text-xs font-medium">Terms & Condition</span>
         </a>
 
-        <!-- <a class="sidebar-item" routerLink="/dashboard/lottery" routerLinkActive="active"
-          (click)="closeSidebarMobile()">
-          <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Lotteries.png" alt="icon" />
-          <span class="text-sm">Lottery</span>
-        </a>
-
-        <a class="sidebar-item" routerLink="/dashboard/SectrechCards" routerLinkActive="active"
-          (click)="closeSidebarMobile()">
-          <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/ScratchCard.png" alt="icon" />
-          <span class="text-sm whitespace-nowrap">Scratch Cards</span>
-        </a> -->
-
-        <!-- <a class="sidebar-item" routerLink="/dashboard/redeem" routerLinkActive="active" (click)="closeSidebarMobile()">
-          <img src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Redeem.png" alt="icon" />
-          <span class="text-sm">Redeem</span>
-        </a> -->
-
-        <a *ngIf="isMobile == true" (click)="showLogoutModal()" class="sidebar-item hello border-[#451e54]">
-          <img src="https://cmax.pages.dev/assets/icons/sidebar-icons/logout.png" class="h-[4vh]" alt="icon" />
-          <span class="text-sm">Logout</span>
+        <a *ngIf="isMobile == true" (click)="showLogoutModal()" class="sidebar-item hello text-red-400 hover:text-red-300">
+          <img src="https://cmax.pages.dev/assets/icons/sidebar-icons/logout.png" class="h-4 object-contain" alt="icon" />
+          <span class="text-xs font-medium">Logout</span>
         </a>
       </div>
     </div>
+    
+    <!-- Optional Bottom Characters Image -->
+    <div class="mt-auto px-2 flex justify-center pb-4">
+      <img src="https://cmaxv2images2.pages.dev/assets/banners/sidebar-characters.png" alt="Characters" class="w-full max-w-[160px] object-contain opacity-90 drop-shadow-lg" onerror="this.style.display='none'" />
+    </div>
+
   </div>
 </div>
 

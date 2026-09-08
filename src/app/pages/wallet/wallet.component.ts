@@ -7,6 +7,8 @@ import {
   ChangeDetectorRef,
   HostListener,
   OnDestroy,
+  Inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +22,7 @@ import {
 } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { Transaction } from '../../Interfaces/interfaces';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule, Location, isPlatformBrowser } from '@angular/common';
 import { ApiCallService } from '../../Services/api-call-service.service';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { LoaderService } from '../../Services/loader-service.service';
@@ -94,6 +96,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     private fb: FormBuilder,
     private location: Location,
     private route: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.grainBackdrop = this.utilsService.getGrainBackdrop();
     this.paymentForm = this.fb.group({
@@ -166,21 +169,17 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onScroll(): void {
-    // console.log('scrolling');
     const element = this.transactionTable.nativeElement;
     if (element.offsetHeight + element.scrollTop + 1 >= element.scrollHeight) {
       this.currentPage++;
-      // console.log('Scrolled to the bottom');
       this.getWalletBalance(this.currentPage, this.currentSearchTerm);
     }
   }
 
   onMobileScroll(event: any) {
     const element = event.target;
-    // Use a threshold of 100px instead of exact equality to handle fractional pixels
     const threshold = 100;
     if (element.scrollHeight - (element.scrollTop + element.clientHeight) <= threshold) {
-      // Prevent multiple simultaneous requests
       if (!this.isLoadingMore) {
         this.isLoadingMore = true;
         this.currentPage++;
@@ -192,21 +191,15 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  onScrollTop(): void {
-    // console.log('Scrolled to the top');
-  }
-
-  onScrollBottom(): void {
-    // console.log('Scrolled to the bottom');
-  }
+  onScrollTop(): void {}
+  onScrollBottom(): void {}
 
   dropdownOpen = false;
   selectedFilter = 'All Transactions';
   filterSearchTerm = '';
 
-  filterOptions = ['All Transactions', 'Credited', 'Debited']; // NEW
+  filterOptions = ['All Transactions', 'Credited', 'Debited'];
 
-  // Add filtered options getter
   get filteredOptions() {
     if (!this.filterSearchTerm) {
       return this.filterOptions;
@@ -217,13 +210,10 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   selectFilter(filter: string, event: Event) {
-    event.preventDefault(); // prevent page jump
+    event.preventDefault();
     this.selectedFilter = filter;
     this.dropdownOpen = false;
     this.filterSearchTerm = '';
-
-    // Filter logic will be handled in the filteredTransactions getter
-    console.log('Filter selected:', filter);
   }
   onSearchClick(event: Event) {
     event.stopPropagation();
@@ -248,9 +238,14 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleData(bar: string) {
     this.selectedTab = bar;
   }
+
   WalletPayload() {
+    let customerIdVal = 0;
+    if (isPlatformBrowser(this.platformId)) {
+      customerIdVal = Number(localStorage.getItem('customerId'));
+    }
     return {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: customerIdVal,
       pageNumber: this.currentPage,
       pageSize: 10,
       searchText: this.currentSearchTerm || '',
@@ -258,15 +253,10 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       endDate: this.endDate || '',
     };
   }
+
   getWalletBalance(pageNumber: number = 1, searchText: string = '') {
     this.loaderService.show();
-    const CustomerID = localStorage.getItem('customerId');
-    // let payload = `Wallet/GetWalletBalance?CustomerId=${CustomerID}&PageNumber=${pageNumber}&PageSize=${10}`;
     let payload = this.WalletPayload();
-
-    // if (searchText.trim()) {
-    //   payload += `&SearchText=${encodeURIComponent(searchText.trim())}`;
-    // }
 
     this.apiCallService
       .PostCallWithToken(payload, 'Wallet/GetWalletBalance')
@@ -280,7 +270,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
                 ? this.totalBalance
                 : parseFloat(response.data.totalBalance);
 
-            // Combine and transform creditWallets and debitWallets
             const creditTransactions = response.data.creditWallets.map(
               (transaction: any) => ({
                 ...transaction,
@@ -299,7 +288,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
               }),
             );
 
-            // Combine and sort by time in descending order
             const newTransactions = [
               ...creditTransactions,
               ...debitTransactions,
@@ -307,14 +295,12 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
               (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime(),
             );
 
-            // Reset transactions for new search or append for pagination
             if (pageNumber === 1) {
               this.transactions = newTransactions;
             } else {
               this.transactions = [...this.transactions, ...newTransactions];
             }
 
-            // Update withdraw pending flag
             const isAnyTransactionPending = this.transactions.some(
               (transaction) =>
                 transaction.source == 'Withdraw' &&
@@ -324,14 +310,10 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
 
             this.loaderService.hide();
           } else {
-            // console.log('Data fetch failed', response);
-            // this.loaderService.hide();
             this.handleError.handleResponseError(response);
           }
         },
         (error) => {
-          // console.error('Data fetch error', error);
-          // this.loaderService.hide();
           this.handleError.handleHttpError(error);
         },
       );
@@ -344,39 +326,33 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   get filteredTransactions() {
     let allTransactions = this.transactions;
 
-    // Filter by dropdown selection only
     switch (this.selectedFilter) {
-      case 'Credited': // ✅ Changed from 'Credit'
+      case 'Credited':
         allTransactions = allTransactions.filter(
           (transaction) => transaction.type === 'credit',
         );
         break;
-      case 'Debited': // ✅ Changed from 'Debit'
+      case 'Debited':
         allTransactions = allTransactions.filter(
           (transaction) => transaction.type === 'debit',
         );
         break;
-      case 'All Transactions': // ✅ Changed from 'All'
+      case 'All Transactions':
       default:
-        // Show all transactions
         break;
     }
 
     return allTransactions;
   }
 
-  // Search method to handle search button click
   performSearch() {
     this.currentSearchTerm = this.searchControl;
-    this.currentPage = 1; // Reset to first page for new search
+    this.currentPage = 1;
     this.getWalletBalance(1, this.currentSearchTerm);
   }
 
-  // Handle search input changes
   onSearchInputChange(event: any) {
-    // Only handle if it's not the Enter key (Enter key is handled separately)
     if (event.key !== 'Enter') {
-      // If search input is empty, automatically show all data
       if (!this.searchControl || this.searchControl.trim() === '') {
         this.clearSearch();
         this.closeFilter();
@@ -384,7 +360,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  // Clear search and reset to show all transactions
   clearSearch() {
     this.searchControl = '';
     this.currentSearchTerm = '';
@@ -394,7 +369,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.getWalletBalance();
-    // Listen for query param to auto-open withdraw modal (header triggers navigation with ?openWithdraw=1)
     this.route.queryParams
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
@@ -434,16 +408,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     );
     this.utilsService.setWithdrawPending(isAnyTransactionPending);
     this.handleError.showModalSubject.next(true);
-    // this.showModal = true;
-    // this.showcard=true;
-    // this.paymentForm.reset();
-    // this.showcashApp=false;
-    // this.cashappForm.reset();
-    // this.getAccountsDropdown();
-    // this.isAcountDropDownSelected = true;
-    // this.newBalance = 0;
-    // this.selectedAccount = 'Manual';
-    // this.selectedAccounttitle = '';
   }
 
   openWithdrawBalanceModal() {
@@ -459,84 +423,56 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getCustomerID(): number | null {
-    return Number(localStorage.getItem('customerId'));
+    if (isPlatformBrowser(this.platformId)) {
+      return Number(localStorage.getItem('customerId'));
+    }
+    return null;
   }
   getToken(): string | null {
-    return localStorage.getItem('token');
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('token');
+    }
+    return null;
   }
   getUsername(): string | null {
-    return localStorage.getItem('userName');
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('userName');
+    }
+    return null;
   }
+
   addBalance() {
     if (this.newBalance > 0 && this.newBalance >= 5 && this.newBalance <= 300) {
       if (this.isShowManualEntry) {
         this.addWalletRequest();
       } else {
-        // window.open(
-        //   `http://5.189.131.230:8079/?amount=${
-        //     this.newBalance
-        //   }&userid=${this.getCustomerID()}&token=${this.getToken()}`,
-        //   '_blank'
-        // );
-
         this.loaderService.show();
-        // const posturl = `Wallet/CreateWhopPayment?Payment=${
-        //   this.newBalance
-        // }&JToken=${this.getToken()}`;
+        const apiurl = `Wallet/CreateCoralPayment?Payment=${this.newBalance}&Username=${this.getUsername()}`;
 
-        // // Open a new blank tab immediately to prevent browser pop-up blockers
-        // const newTab = window.open('', '_blank');
-
-        // this.apiCallService.PostCallWithToken(null, posturl).subscribe({
-        //   next: (response) => {
-        //     if (response && response.responseCode === 200) {
-        //       this.toastr.success(response.responseMessage, 'Success');
-        //       if (newTab) {
-        //         newTab.location.href = response.data.purchaseURL; // Redirect the blank tab
-        //       } else {
-        //         window.open(response.data.purchaseURL, '_blank'); // Fallback in case tab is blocked
-        //       }
-        //     } else {
-        //       this.handleError.handleResponseError(response);
-        //       if (newTab) newTab.close(); // Close the tab if API fails
-        //     }
-        //     this.loaderService.hide();
-        //     this.hideWalletModal();
-        //   },
-        //   error: (error) => {
-        //     this.handleError.handleHttpError(error);
-        //     if (newTab) newTab.close(); // Close the tab on error
-        //     this.loaderService.hide();
-        //     this.hideWalletModal();
-        //   },
-        // });
-
-        // coral payment
-        const apiurl = `Wallet/CreateCoralPayment?Payment=${this.newBalance
-          }&Username=${this.getUsername()}`;
-
-        // Open a new blank tab immediately to prevent browser pop-up blockers
-        const newTab = window.open('', '_blank');
+        let newTab: Window | null = null;
+        if (isPlatformBrowser(this.platformId)) {
+          newTab = window.open('', '_blank');
+        }
 
         this.apiCallService.GetCallWithToken(apiurl).subscribe({
           next: (response) => {
             if (response && response.responseCode === 200) {
               this.toastr.success(response.responseMessage, 'Success');
               if (newTab) {
-                newTab.location.href = response.data.purchaseURL; // Redirect the blank tab
-              } else {
-                window.open(response.data.purchaseURL, '_blank'); // Fallback in case tab is blocked
+                newTab.location.href = response.data.purchaseURL;
+              } else if (isPlatformBrowser(this.platformId)) {
+                window.open(response.data.purchaseURL, '_blank');
               }
             } else {
               this.handleError.handleResponseError(response);
-              if (newTab) newTab.close(); // Close the tab if API fails
+              if (newTab) newTab.close();
             }
             this.loaderService.hide();
             this.hideWalletModal();
           },
           error: (error) => {
             this.handleError.handleHttpError(error);
-            if (newTab) newTab.close(); // Close the tab on error
+            if (newTab) newTab.close();
             this.loaderService.hide();
             this.hideWalletModal();
           },
@@ -546,6 +482,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       this.toastr.info('Amount must be within 5 to 300', 'Invalid Amount');
     }
   }
+
   showBalance: boolean = false;
 
   addWalletRequestPayload() {
@@ -559,6 +496,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       imageUrl: this.uploadProfileImage || '',
     };
   }
+
   addWalletRequest() {
     const payload = this.addWalletRequestPayload();
     if (
@@ -578,13 +516,11 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
               this.hideWalletModal();
             } else {
               this.handleError.handleResponseError(response);
-              // this.loaderService.hide();
               this.hideWalletModal();
             }
           },
           error: (error) => {
             this.handleError.handleHttpError(error);
-            // this.loaderService.hide();
             this.hideWalletModal();
           },
         });
@@ -597,14 +533,16 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   toggleBalance() {
-    this.showBalance = !this.showBalance; // Toggle the visibility state
-    const balanceElement = document.getElementById('balance');
-    balanceElement!.textContent = this.showBalance
-      ? `$${this.totalBalance.toLocaleString()}`
-      : '•••••';
+    this.showBalance = !this.showBalance;
+    if (isPlatformBrowser(this.platformId)) {
+      const balanceElement = document.getElementById('balance');
+      if (balanceElement) {
+        balanceElement.textContent = this.showBalance
+          ? `$${this.totalBalance.toLocaleString()}`
+          : '•••••';
+      }
+    }
   }
-
-  // filter section
 
   viewMode: 'grid' | 'table' = 'grid';
 
@@ -612,109 +550,24 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.viewMode = this.viewMode === 'grid' ? 'table' : 'grid';
   }
 
-  // filter section
-
   currentPage: number = 1;
   isLoadingMore: boolean = false;
 
-  // TS Code for Pagination Start
-  // pages: (number | string)[] = [];
-
-  // totalRecords: number = 0;
-  // itemsPerPage: number = 10;
-  // maxVisiblePages: number = 1;
-
-  // calculatePages(): void {
-  //   const totalPages = Math.ceil(this.totalRecords / this.itemsPerPage);
-  //   this.pages = [];
-  //   if (totalPages <= this.maxVisiblePages) {
-  //     this.pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-  //   } else {
-  //     const startPage = Math.max(
-  //       this.currentPage - Math.floor(this.maxVisiblePages / 2),
-  //       1
-  //     );
-  //     const endPage = Math.min(
-  //       startPage + this.maxVisiblePages - 1,
-  //       totalPages
-  //     );
-
-  //     if (startPage > 1) {
-  //       this.pages.push(1);
-  //       if (startPage > 2) {
-  //         this.pages.push('...');
-  //       }
-  //     }
-
-  //     for (let i = startPage; i <= endPage; i++) {
-  //       this.pages.push(i);
-  //     }
-
-  //     if (endPage < totalPages) {
-  //       if (endPage < totalPages - 1) {
-  //         this.pages.push('...');
-  //       }
-  //       this.pages.push(totalPages);
-  //     }
-  //   }
-  // }
-
-  // navigateToPage(page: any): void {
-  //   if (
-  //     (page >= 1 && page <= this.pages.length) ||
-  //     (page >= 1 && page >= this.pages.length)
-  //   ) {
-  //     this.currentPage = page;
-  //     this.filteredTransactions;
-  //   }
-  // }
-
-  // navigatePage(direction: 'prev' | 'next'): void {
-  //   if (direction === 'prev' && this.currentPage > 1) {
-  //     this.currentPage--;
-  //   } else if (
-  //     direction === 'next' &&
-  //     this.currentPage < Math.ceil(this.totalRecords / this.itemsPerPage)
-  //   ) {
-  //     this.currentPage++;
-  //   }
-  //   this.filteredTransactions;
-  // }
-
-  // getDisplayRange(): string {
-  //   const start = (this.currentPage - 1) * this.itemsPerPage + 1;
-  //   const end = Math.min(start + this.itemsPerPage - 1, this.totalRecords);
-  //   return `${start} – ${end}`;
-  // }
-  // TS Code for Pagination End
   isAccountSelected: boolean = false;
   isShowManualEntry: boolean = true;
   isAcountDropDownSelected: boolean = false;
+
   onAccountChange(selectedValue: any): void {
     this.isAcountDropDownSelected = true;
     this.selectedAccounttitle = '';
     this.selectedAccount = selectedValue?.name || '';
     this.accountsTitle = selectedValue?.accounts || [];
     this.isAccountSelected = true;
-    // if (selectedValue === 'Chime') {
-    //   this.accountsTitle = this.ChimeAccounts;
-    // } else if (selectedValue === 'CashApp') {
-    //   this.accountsTitle = this.CashtagAccounts;
-    // } else if (selectedValue === 'Zelle') {
-    //   this.accountsTitle = this.ZelleAccounts;
-    // }
   }
+
   onAccountTypesChange(selectedValue: string): void {
     this.isAcountDropDownSelected = false;
     this.selectedAccountType = selectedValue;
-
-    // if (selectedValue === 'Chime') {
-    //   this.accountsTitle = this.ChimeAccounts;
-    // } else if (selectedValue === 'CashApp') {
-    //   this.accountsTitle = this.CashtagAccounts;
-    // } else if (selectedValue === 'Zelle') {
-    //   this.accountsTitle = this.ZelleAccounts;
-    // }
   }
 
   accountDropdownOpen = false;
@@ -725,13 +578,13 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.accountDropdownOpen = false;
     this.onAccountChange(account || '');
   }
+
   selectAccountTypes(name: string, event: Event) {
     event.preventDefault();
     this.selectedAccountType = name;
     if (name == 'Manual') {
       this.accountDropdownOpen = true;
     }
-    // this.onAccountChange(name);
   }
 
   @HostListener('document:click')
@@ -742,6 +595,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleManualEntry() {
     this.isShowManualEntry = !this.isShowManualEntry;
   }
+
   manualEntry(event: Event) {
     event.stopPropagation();
     this.isShowManualEntry = true;
@@ -761,7 +615,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   ChimeAccounts: any;
   ZelleAccounts: any;
   Customertag: any = '';
-  // api/
 
   manualAccounts: any = [];
   getAccountsDropdown() {
@@ -770,8 +623,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe({
         next: (response) => {
           if (response && response.responseCode === 200) {
-            // this.ChimeAccounts = response.data.chime;
-            // this.CashtagAccounts = response.data.cashApp;
             this.manualAccounts = Object.keys(response.data).map((key) => ({
               name: key,
               accounts: response.data[key],
@@ -789,25 +640,15 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
                 ? response.data.zelle
                 : [{ accountDetail: 'No data found' }];
           } else {
-            // this.handleError.handleResponseError(response);
-            // this.hideWalletModal();
-
             this.ChimeAccounts = [{ accountDetail: 'No data found' }];
             this.CashtagAccounts = [{ accountDetail: 'No data found' }];
           }
         },
-        error: (error) => {
-          // this.handleError.handleHttpError(error);
-          // this.hideWalletModal();
-        },
+        error: (error) => {},
       });
   }
+
   AccountType = [
-    // {
-    //   id: 0,
-    //   name: 'Manual',
-    //   bg_image: '/payments/manual.png',
-    // },
     {
       id: 3,
       name: 'Card',
@@ -889,111 +730,62 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   uploadProfileImage: string = '';
-  // async onFileSelected(event: Event) {
-  //   const file = (event.target as HTMLInputElement)?.files?.[0];
 
-  //   if (file) {
-  //     try {
-  //       //? Show loader while processing
-  //       this.loaderService.show();
+  async onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement)?.files?.[0];
 
-  //       //? Convert the file to a base64 string
-  //       const base64Image = await this.convertFileToBase64(file);
-
-  //       //? Create the API payload
-  //       const payload: any = {
-  //         base64Image: base64Image,
-  //       };
-  //       this.uploadProfileImage = base64Image;
-  //       this.loaderService.hide();
-  //     } catch { }
-  //   }
-  // }
-  // private convertFileToBase64(file: File): Promise<string> {
-  //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.onload = () => resolve(reader.result as string);
-  //     reader.onerror = (error) => reject(error);
-  //     reader.readAsDataURL(file);
-  //   });
-  // }
-  
-async onFileSelected(event: Event) {
-  const file = (event.target as HTMLInputElement)?.files?.[0];
-
-  if (file) {
-    try {
-      this.loaderService.show();
-
-      const base64Image = await this.convertFileToBase64(file);
-
-      const payload: any = {
-        base64Image: base64Image,
-      };
-
-      this.uploadProfileImage = base64Image;
-      // this.withdrawImage = base64Image;
-
-      this.loaderService.hide();
-    } catch (error) {
-      this.loaderService.hide();
-      console.error(error);
+    if (file) {
+      try {
+        this.loaderService.show();
+        const base64Image = await this.convertFileToBase64(file);
+        this.uploadProfileImage = base64Image;
+        this.loaderService.hide();
+      } catch (error) {
+        this.loaderService.hide();
+        console.error(error);
+      }
     }
   }
-}
 
-private convertFileToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
+  private convertFileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
-    reader.onload = (e: any) => {
-      const img = new Image();
+      reader.onload = (e: any) => {
+        if (!isPlatformBrowser(this.platformId)) {
+          resolve('');
+          return;
+        }
+        const img = new Image();
 
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
 
-        // Keep original dimensions
-        canvas.width = img.width;
-        canvas.height = img.height;
+          canvas.width = img.width;
+          canvas.height = img.height;
 
-        ctx?.drawImage(img, 0, 0);
+          ctx?.drawImage(img, 0, 0);
 
-        // Compress quality (0.1 - 1)
-        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.6);
+          const compressedBase64 = canvas.toDataURL('image/jpeg', 0.6);
+          resolve(compressedBase64);
+        };
 
-        // Logs
-        console.log(
-          'Original Size:',
-          (file.size / 1024).toFixed(2),
-          'KB'
-        );
-
-        const byteString = atob(compressedBase64.split(',')[1]);
-
-        console.log(
-          'Compressed Size:',
-          (byteString.length / 1024).toFixed(2),
-          'KB'
-        );
-
-        resolve(compressedBase64);
+        img.onerror = reject;
+        img.src = e.target.result;
       };
 
-      img.onerror = reject;
-      img.src = e.target.result;
-    };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
   clearSelection() {
     this.uploadProfileImage = '';
   }
+
   hideWalletModal() {
     this.showModal = false;
-    // this.isShowManualEntry = false;
     this.uploadProfileImage = '';
     this.selectedAccount = '';
     this.selectedAccounttitle = '';
@@ -1012,30 +804,17 @@ private convertFileToBase64(file: File): Promise<string> {
     this.selectedAccountType = name;
     this.accountInfo = '';
     this.Customertag = '';
-    // Clear fields when switching payment method
   }
 
   onAccountTypeChange(event: Event) {
     this.isAccountTypeSelected = true;
     this.sourceAccount = (event.target as HTMLSelectElement).value;
   }
+
   accountTypeData: any = [
-    {
-      id: 1,
-      name: 'CashApp',
-    },
-    {
-      id: 2,
-      name: 'Chime',
-    },
-    {
-      id: 3,
-      name: 'Zelle',
-    },
-    // {
-    //   id: 4,
-    //   name: 'Transic (payment link)',
-    // },
+    { id: 1, name: 'CashApp' },
+    { id: 2, name: 'Chime' },
+    { id: 3, name: 'Zelle' },
   ];
 
   amouttowithdraw: number | null = null;
@@ -1043,24 +822,17 @@ private convertFileToBase64(file: File): Promise<string> {
   serverFees: number = 0;
   accountInfo: string = '';
 
-  // get actualWithdrawAmount(): number {
-  //   const amount = Number(this.amouttowithdraw) || 0;
-  //   const tip = Number(this.tipAmount) || 0;
-  //   const finalAmount = amount - tip - this.serverFees;
-  //   return finalAmount > 0 ? parseFloat(finalAmount.toFixed(2)) : 0;
-  // }
-
   get actualWithdrawAmount(): number {
     const amount = Number(this.amouttowithdraw) || 0;
     const tip = Number(this.tipAmount) || 0;
     const serverFeePercent = Number(this.serverFees) || 0;
 
     const serverFeeAmount = (amount * serverFeePercent) / 100;
-
     const finalAmount = amount - tip - serverFeeAmount;
 
     return finalAmount > 0 ? parseFloat(finalAmount.toFixed(2)) : 0;
   }
+
   getPlatformFees() {
     this.apiCallService.GetCallWithToken('Wallet/GetLookupsettings').subscribe(
       (response) => {
@@ -1076,6 +848,7 @@ private convertFileToBase64(file: File): Promise<string> {
       },
     );
   }
+
   createUpdateWithdrawRequest() {
     if (this.editingTransactionId) {
       this.updateWalletWithdrawRequest();
@@ -1083,18 +856,11 @@ private convertFileToBase64(file: File): Promise<string> {
       this.createWithdrawRequest();
     }
   }
+
   createWithdrawRequest() {
     const withdrawAmount = Number(this.amouttowithdraw) || 0;
     const tipAmount = Number(this.tipAmount) || 0;
-    const totalRequestedAmount = withdrawAmount + tipAmount;
 
-    // if (withdrawAmount > this.totalBalance) {
-    //   this.toastr.error(
-    //     'Withdraw amount + tip cannot be greater than available balance.',
-    //     'Insufficient Balance',
-    //   );
-    //   return;
-    // }
     if (
       !withdrawAmount ||
       withdrawAmount <= 0 ||
@@ -1110,8 +876,13 @@ private convertFileToBase64(file: File): Promise<string> {
       return;
     }
 
+    let customerIdVal = 0;
+    if (isPlatformBrowser(this.platformId)) {
+      customerIdVal = Number(localStorage.getItem('customerId'));
+    }
+
     const payload: any = {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: customerIdVal,
       balance: withdrawAmount,
       tip: tipAmount,
       source: this.selectedAccountType,
@@ -1150,10 +921,10 @@ private convertFileToBase64(file: File): Promise<string> {
         },
       });
   }
+
   updateWalletWithdrawRequest() {
     const withdrawAmount = Number(this.amouttowithdraw) || 0;
     const tipAmount = Number(this.tipAmount) || 0;
-    const totalRequestedAmount = withdrawAmount + tipAmount;
 
     if (withdrawAmount > this.totalBalance + withdrawAmount) {
       this.toastr.error(
@@ -1177,8 +948,13 @@ private convertFileToBase64(file: File): Promise<string> {
       return;
     }
 
+    let customerIdVal = 0;
+    if (isPlatformBrowser(this.platformId)) {
+      customerIdVal = Number(localStorage.getItem('customerId'));
+    }
+
     const payload: any = {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: customerIdVal,
       balance: withdrawAmount,
       tip: tipAmount,
       source: this.selectedAccountType,
@@ -1187,9 +963,7 @@ private convertFileToBase64(file: File): Promise<string> {
       accountInfo: this.Customertag,
     };
 
-    // if (this.editingTransactionId) {
     payload.requestId = this.editingTransactionId;
-    // }
 
     this.loaderService.show();
     this.apiCallService
@@ -1218,7 +992,6 @@ private convertFileToBase64(file: File): Promise<string> {
       });
   }
 
-  // Authorize.Net Payment Integration Start
   async pay() {
     this.loaderService.show();
     if (this.paymentForm.invalid) {
@@ -1235,7 +1008,6 @@ private convertFileToBase64(file: File): Promise<string> {
         year: formValue.year.toString().slice(-2),
         cardCode: formValue.cvv.toString(),
       };
-      // These come from Authorize.Net merchant account (client key + login ID)
       const authData = {
         clientKey:
           '8CRkkTs9N2M69SY6p6XMen7mk5xKP4khDmVwu2jTun93F3rK7VTqyq3kGZybTBC9',
@@ -1253,8 +1025,8 @@ private convertFileToBase64(file: File): Promise<string> {
   opaquePayload: any;
   getPaymentNonce(cardData: any, authData: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (!(window as any).Accept) {
-        console.error('Authorize.Net Accept.js library not loaded.');
+      if (!isPlatformBrowser(this.platformId) || !(window as any).Accept) {
+        console.error('Authorize.Net Accept.js library not loaded or SSR environment.');
         this.loaderService.hide();
         return;
       }
@@ -1269,9 +1041,12 @@ private convertFileToBase64(file: File): Promise<string> {
             this.loaderService.hide();
           } else {
             resolve(response.opaqueData);
-            // this.opaquePayload = { opaqueData: response.opaqueData };
+            let customerIdVal = 0;
+            if (isPlatformBrowser(this.platformId)) {
+              customerIdVal = Number(localStorage.getItem('customerId'));
+            }
             this.opaquePayload = {
-              customerId: Number(localStorage.getItem('customerId')),
+              customerId: customerIdVal,
               amount: this.paymentForm.value.amount,
               source: 'Card',
               opaqueData: {
@@ -1280,7 +1055,6 @@ private convertFileToBase64(file: File): Promise<string> {
               },
             };
 
-            console.log('Payment nonce (opaqueData):', this.opaquePayload);
             this.sendDatatoApi();
           }
         },
@@ -1311,12 +1085,7 @@ private convertFileToBase64(file: File): Promise<string> {
         },
       });
   }
-  // Authorize.Net Payment Integration End
 
-  // Cash aApp Payment Integration Start
-  getCustomerId(): string | null {
-    return localStorage.getItem('customerId');
-  }
   paycashApp() {
     this.loaderService.show();
 
@@ -1325,11 +1094,14 @@ private convertFileToBase64(file: File): Promise<string> {
       this.loaderService.hide();
       return;
     }
-    // Open a new blank tab immediately to prevent browser pop-up blockers
-    const newTab = window.open('', '_blank');
-    // const amount = this.cashappForm.get('amount')?.value;
+
+    let newTab: Window | null = null;
+    if (isPlatformBrowser(this.platformId)) {
+      newTab = window.open('', '_blank');
+    }
+
     const amount = this.cashappForm.get('amount')?.value * 100;
-    const customerId = this.getCustomerId();
+    const customerId = this.getCustomerID();
     const posturl = `PaymentIntent/CreatePaymentIntent?amount=${amount}&CustomerId=${customerId}`;
 
     this.apiCallService.PostCallWithToken(null, posturl).subscribe({
@@ -1337,29 +1109,25 @@ private convertFileToBase64(file: File): Promise<string> {
         if (response && response.responseCode === 200) {
           this.toastr.success(response.responseMessage, 'Success');
           if (newTab) {
-            newTab.location.href = response.data.mobile_auth_url; // Redirect the blank tab
-          } else {
-            window.open(response.data.mobile_auth_url, '_blank'); // Fallback in case tab is blocked
+            newTab.location.href = response.data.mobile_auth_url;
+          } else if (isPlatformBrowser(this.platformId)) {
+            window.open(response.data.mobile_auth_url, '_blank');
           }
         } else {
           this.handleError.handleResponseError(response);
-          if (newTab) newTab.close(); // Close the tab if API fails
+          if (newTab) newTab.close();
         }
         this.loaderService.hide();
         this.hideWalletModal();
       },
       error: (error) => {
         this.handleError.handleHttpError(error);
-        if (newTab) newTab.close(); // Close the tab on error
+        if (newTab) newTab.close();
         this.loaderService.hide();
         this.hideWalletModal();
       },
     });
   }
-
-  // Cash aApp Payment Integration end
-
-  // toogles payment buttons
 
   togglePayment(name: string, event: Event) {
     event.preventDefault();
@@ -1395,11 +1163,8 @@ private convertFileToBase64(file: File): Promise<string> {
     this.Customertag = transaction.accountInfo || '';
     this.amouttowithdraw = transaction.balance;
     this.tipAmount = transaction.tip || 0;
-
-    // // Mapping back based on create payload format
-    // this.accountInfo = transaction.accountTitle || '';
-    // this.Customertag = transaction.accountInfo || '';
   }
+
   limitDecimals(field: 'amouttowithdraw' | 'tipAmount', event: Event) {
     const input = event.target as HTMLInputElement;
     const value = input.value;
@@ -1411,6 +1176,7 @@ private convertFileToBase64(file: File): Promise<string> {
       }
     }
   }
+
   limitToBalance(event: Event) {
     const input = event.target as HTMLInputElement;
     let value = Number(input.value);
@@ -1421,7 +1187,6 @@ private convertFileToBase64(file: File): Promise<string> {
     }
 
     if (value > this.totalBalance) {
-      // Update both the input element AND the model
       input.value = this.totalBalance.toString();
       this.amouttowithdraw = this.totalBalance;
     }
@@ -1466,21 +1231,15 @@ private convertFileToBase64(file: File): Promise<string> {
     });
   }
 
-  ///////// Format amount with commas and 2 decimal places
-
   onAmountInput(event: any) {
     let value = event.target.value;
-
-    // Allow only numbers and decimal
     value = value.replace(/[^0-9.]/g, '');
 
-    // Prevent multiple dots
     const parts = value.split('.');
     if (parts.length > 2) {
       value = parts[0] + '.' + parts[1];
     }
 
-    // Limit to 2 decimal places
     if (parts[1]) {
       parts[1] = parts[1].substring(0, 2);
       value = parts[0] + '.' + parts[1];
