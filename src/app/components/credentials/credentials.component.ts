@@ -1025,8 +1025,8 @@ export class CredentialsComponent implements OnInit, OnDestroy {
     }
   }
 
-  getCustomerID(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getCustomerID(): string | null {
+    return localStorage.getItem('customerId');
   }
 
   //////////////////////////////////For Non PlayerName Games Modal
