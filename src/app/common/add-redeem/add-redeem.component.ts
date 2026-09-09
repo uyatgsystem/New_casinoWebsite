@@ -234,11 +234,11 @@ export class AddRedeemComponent implements OnInit, AfterViewInit {
 
     if (this.score === 0) {
       debugger
-    this.toastr.warning(
-          `Score must be more than 0 to Request Reddem`,
-        );
-    return; // Exits the function early
-  }
+      this.toastr.warning(
+        `Score must be more than 0 to Request Reddem`,
+      );
+      return; // Exits the function early
+    }
     // All validations passed
     this.addRedeemRequest();
     this.closeModal();
@@ -277,8 +277,8 @@ export class AddRedeemComponent implements OnInit, AfterViewInit {
       requestId: this.requestId || '',
     };
   }
-  getCustomerID(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getCustomerID(): string | null {
+    return localStorage.getItem('customerId');
   }
   score: any;
   addRedeemRequest() {
@@ -427,10 +427,11 @@ export class AddRedeemComponent implements OnInit, AfterViewInit {
     // 3.
     const playerID = selectedplayer ? selectedplayer.PlayerId : 0;
     return {
-      gameName: this.selectedGame || 0,
+      gameName: this.selectedGame || '',
       gameId: gameId,
-      customerID: this.getCustomerID()?.toString(),
+      customerID: this.getCustomerID(),
       playerID: playerID,
+      panelId: selectedplayer?.PanelId,
     };
   }
 
@@ -448,7 +449,7 @@ export class AddRedeemComponent implements OnInit, AfterViewInit {
         (response) => {
           if (response && response.responseCode === 200) {
             // this.currentScore = response?.data;
-            this.currentScore = response?.data ? Math.floor(response.data) : 0;
+            this.currentScore = response?.data ? Math.floor(response.data?.score) : 0;
             this.isScoreLoading = false;
           } else if (response && response.responseCode === 400) {
             // When opening the redeem modal a 400 is expected in some cases.

@@ -140,7 +140,7 @@ export class WebSocketService {
           //   timeOut: 0,
           //   tapToDismiss: false,
           // });
-          this._utilService.triggerLogoutFunction();
+          // this._utilService.triggerLogoutFunction();
         }
       } else if (messageData?.type === 'GameState') {
         this.invokeGameState.emit(messageData.data);

@@ -247,6 +247,89 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.walletView = view;
   }
 
+  showMoveToWalletModal = false;
+  isMoveToWalletLoading = false;
+  isMovingToWallet = false;
+  redeemPercentageOnBonusWallet = 0;
+
+  get moveToWalletAmount(): number {
+    return (this.totalBonusBalance * this.redeemPercentageOnBonusWallet) / 100;
+  }
+
+  openMoveToWalletModal() {
+    this.showMoveToWalletModal = true;
+    this.redeemPercentageOnBonusWallet = 0;
+    this.isMoveToWalletLoading = true;
+
+    const customerId = this.getCustomerID() || '';
+
+    this.apiCallService
+      .GetCallWithToken(`Customer/GetCustomerLevel?CustomerId=${customerId}`)
+      .subscribe({
+        next: (response) => {
+          if (response && response.responseCode === 200) {
+            const data = response.data;
+            const levels = data?.levels || [];
+            const currentLevel = levels.find(
+              (lvl: any) => lvl.LevelName === data?.playerLevel,
+            );
+            this.redeemPercentageOnBonusWallet =
+              Number(currentLevel?.RedeemPercentageOnBonusWallet) || 0;
+          } else {
+            this.handleError.handleResponseError(response);
+          }
+          this.isMoveToWalletLoading = false;
+        },
+        error: (error) => {
+          this.handleError.handleHttpError(error);
+          this.isMoveToWalletLoading = false;
+        },
+      });
+  }
+
+  closeMoveToWalletModal() {
+    this.showMoveToWalletModal = false;
+  }
+
+  confirmMoveToWallet() {
+    if (this.isMovingToWallet || this.moveToWalletAmount <= 0) {
+      return;
+    }
+
+    const customerId = this.getCustomerID() || '';
+    this.isMovingToWallet = true;
+    this.loaderService.show();
+
+    this.apiCallService
+      .PostCallWithToken(
+        {},
+        `Wallet/TransferBonusBalanceToTotalBalance?CustomerID=${customerId}`,
+      )
+      .subscribe({
+        next: (response) => {
+          this.isMovingToWallet = false;
+          this.loaderService.hide();
+
+          if (response && response.responseCode === 200) {
+            this.toastr.success(response.responseMessage, 'Success');
+            this.totalBalance =
+              response.data?.currentBalance ?? this.totalBalance;
+            this.totalBonusBalance =
+              response.data?.currentBonusBalance ?? this.totalBonusBalance;
+            this.closeMoveToWalletModal();
+            this.getWalletBalance();
+          } else {
+            this.handleError.handleResponseError(response);
+          }
+        },
+        error: (error) => {
+          this.isMovingToWallet = false;
+          this.loaderService.hide();
+          this.handleError.handleHttpError(error);
+        },
+      });
+  }
+
   WalletPayload() {
     let customerIdVal = '';
     if (isPlatformBrowser(this.platformId)) {
