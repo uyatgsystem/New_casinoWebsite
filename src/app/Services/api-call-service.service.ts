@@ -9,7 +9,7 @@ import { CryptooService } from './cryptoo.service'; // Ensure this path matches 
 })
 export class ApiCallService {
 
-    private baseRoute = 'https://154.38.161.3:44364/api/';
+    private baseRoute = 'https://154.38.161.3:44301/api/';
     // private baseRoute = 'https://cz.lessonplay.win/api/';
   constructor(
     private http: HttpClient,
