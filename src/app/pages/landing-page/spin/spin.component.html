@@ -1,163 +1,169 @@
-<!-- landing-page.component.html -->
-<div class="image-bg mx-auto px-8 md:px-24 py-14 lg:py-20">
-  <div
-    class="backdrop-blur-md text-center mb-8 px-2 py-8 border-[0.5px] border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]">
-    <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-    <!-- <h1 class="text-[2.5rem] text-[#fe8912] font-bold">Spin Club</h1> -->
-    <h1 class="text-[14px] md:text-[2.7rem] font-bold text-white mt-0 lg:-mt-4 mb-2 md:mb-0">
-      <span class="text-[#fe8912]">Spin</span> Wheel Unlock Cash Rewards
-    </h1>
-    <p class="text-[#A6B1C2] text-xs md:text-base max-w-5xl mx-auto">
-      Take your chance on the Spin Club Golden Wheel and win exciting cash
-      rewards. One spin could bring you fortune, thrill, and real earnings.
-    </p>
-  </div>
+<div class="mx-auto px-4 md:px-8 py-6 relative overflow-hidden min-h-screen flex flex-col justify-between" style="background: linear-gradient(135deg, #0b0c0f 0%, #15181c 50%, #08090b 100%);" (click)="openLoginModal()">
+  
+  <!-- Ambient Backlight Glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#FE8006]/10 to-[#F3A630]/5 blur-[160px] pointer-events-none rounded-full"></div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 items-start">
-    <!-- Left Panel: Set the Value of Spin -->
-    @if (isMobile()) {
-    <!-- only custom input buttons  -->
-    <div class="lg:col-span-3">
-      <div
-        class="border-[0.5px] border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-4 mb-10">
-        <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-        <div class="flex items-center justify-between gap-3">
-          <button (click)="openLoginModal()"
-            class="w-[87px] h-[50px] sm:w-[70px] sm:h-[40px] md:w-[87px] md:h-[50px] bg-gradient-to-b from-[#FEC866] to-[#FE8006] rounded-full text-white font-bold text-xl transition-all">
-            -
-          </button>
-          <div class="flex-1 text-center">
-            <span class="text-[#F3A630] text-3xl font-bold">$5</span>
-          </div>
-          <button (click)="openLoginModal()"
-            class="w-[87px] h-[50px] sm:w-[70px] sm:h-[40px] md:w-[87px] md:h-[50px] bg-gradient-to-b from-[#FEC866] to-[#FE8006] rounded-full text-white font-bold text-xl transition-all">
-            +
-          </button>
-        </div>
-      </div>
-    </div>
-    } @else {
-    <div
-      class="lg:col-span-3 max-w-sm lg:max-w-none xl:max-w-sm mx-auto backdrop-blur-md border-[0.5px] border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-3">
-      <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-      <h2 class="text-white text-md font-semibold mb-2 text-center">
-        Set the Value of Your Spin
-      </h2>
-
-      <!-- Quick Amount Buttons -->
-      <div class="relative mb-4">
-        <div class="h-[2px] w-full absolute top-0 left-0 bg-custom-gradient"></div>
-
-        <div class="grid grid-cols-3 gap-3 lg:gap-4 py-7 relative z-10">
-          <ng-container *ngFor="let amount of allowedSpinAmounts">
-            <div (click)="openLoginModal()"
-              class="cursor-pointer relative rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all flex justify-center">
-              <svg width="83" height="38" viewBox="0 0 90 38" fill="none" xmlns="http://www.w3.org/2000/svg"
-                class="w-full max-w-[83px]">
-                <path
-                  d="M16 0.5H87C88.3807 0.5 89.5 1.61929 89.5 3V22C89.5 30.5604 82.5604 37.5 74 37.5H3C1.61929 37.5 0.5 36.3807 0.5 35V16C0.5 7.43959 7.43959 0.5 16 0.5Z"
-                  stroke="url(#paint0_linear_409_612)" stroke-width="3" />
-                <defs>
-                  <linearGradient id="paint0_linear_409_612" x1="0" y1="19" x2="90" y2="19"
-                    gradientUnits="userSpaceOnUse">
-                    <stop offset="0.00961538" stop-color="#4D4434" />
-                    <stop offset="0.495192" stop-color="#FE8912" />
-                    <stop offset="1" stop-color="#4D4434" />
-                  </linearGradient>
-                </defs>
-
-                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" [attr.fill]="
-                      spinAmount === amount.toString() ? '#FE8912' : 'white'
-                    " font-size="14" font-weight="bold">
-                  {{ amount }}$
-                </text>
-              </svg>
-            </div>
-          </ng-container>
-        </div>
-
-        <div class="h-[2px] w-full absolute bottom-0 left-0 bg-custom-gradient"></div>
-      </div>
-
-      <!-- Custom Amount Input -->
-      <div
-        class="border-[0.5px] border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-3 lg:p-4 my-8 lg:my-10">
-        <div class="flex items-center justify-between gap-2 lg:gap-3">
-          <button (click)="openLoginModal()"
-            class="flex-1 h-[50px] sm:h-[40px] md:h-[45px] bg-gradient-to-r from-[#F3A630] to-[#F86E12] rounded-full text-white font-bold text-xl transition-all">
-            -
-          </button>
-          <div class="flex-1 text-center">
-            <span class="text-[#F3A630] text-2xl lg:text-3xl font-bold">${{ spinAmount }}</span>
-          </div>
-          <button (click)="openLoginModal()"
-            class="flex-1 h-[50px] sm:h-[40px] md:h-[45px] bg-gradient-to-r from-[#F3A630] to-[#F86E12] rounded-full text-white font-bold text-xl transition-all">
-            +
-          </button>
-        </div>
-      </div>
-
-      <!-- Spin Now Button -->
-      <button (click)="openLoginModal()"
-        class="w-full bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed py-3 px-6 rounded-full shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-        Spin Now!
-      </button>
-    </div>
-    }
-
-    <!-- Center Panel: Spinner Wheel -->
-    <div class="lg:col-span-6 flex justify-center flex-col items-center">
-      <div class="relative">
-        <img src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png" alt="Spinner Preview"
-          class="spinner-image w-[350px] sm:w-[400px] lg:w-[450px] xl:w-[425px]" />
-
-        <button (click)="openLoginModal()"
-          class="spin-now-btn absolute top-[35%] sm:top-[49%] left-1/2 transform -translate-x-1/2 translate-y-[87%]">
-          <!-- <span class="btn-text text-sm sm:text-base sm:mb-0" (click)="openLoginModal()">
-            Spin Now!
-          </span> -->
+  <!-- Top Section with Centered Luxury Heading & Glow Badge -->
+  @if (showHeaderSection) {
+    <div class="relative mb-8 pb-6 border-b border-gradient z-10 text-center" style="border-image: linear-gradient(to right, transparent, rgba(195, 176, 137, 0.4), transparent) 1;">
+      <div class="flex items-center justify-between absolute left-0 top-0">
+        <button (click)="goBack(); $event.stopPropagation();" class="w-10 h-10 rounded-2xl bg-black/60 border border-[#C3B089]/40 flex items-center justify-center text-[#F3A630] md:hidden hover:bg-white/10 transition">
+          <fa-icon [icon]="leftArrow"></fa-icon>
         </button>
       </div>
+      
+      <div class="max-w-2xl mx-auto space-y-2 pt-2">
+        <!-- Glowing Mini Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FE8006]/10 border border-[#FE8006]/30 shadow-[0_0_15px_rgba(254,128,6,0.2)] mb-1">
+          <span class="w-2 h-2 rounded-full bg-[#FE8006] animate-pulse"></span>
+          <span class="text-[10px] font-black uppercase tracking-widest text-[#F9C846]">VIP Spin Club Experience</span>
+        </div>
 
-      <!-- Spin Now Button: Mobile Only -->
-      <button
-        class="block lg:hidden w-[50%] bg-gradient-to-r from-[#F3A630] to-[#F86E12] text-black font-semibold disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed py-3 px-6 rounded-full shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl mt-6"
-        (click)="openLoginModal()">
-        Spin Now!
-      </button>
+        <!-- Main Attractive Heading -->
+        <h1 class="text-white font-black text-2xl md:text-4xl tracking-wider uppercase bg-gradient-to-r from-[#FFE07A] via-[#FE9B2A] to-[#FE8006] bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(254,128,6,0.4)]">
+          Experience The Ultimate Spinner
+        </h1>
+
+        <!-- Promo Tagline -->
+        <p class="text-xs md:text-sm text-[#A6B1C2] tracking-wide font-medium max-w-lg mx-auto">
+          Take a chance on the golden wheel, test your luck, and unlock massive cash rewards instantly!
+        </p>
+      </div>
+    </div>
+  }
+
+  <!-- Main Content Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 relative z-10 my-auto">
+    
+    <!-- Left Panel: Bet Amount & Controls -->
+    <div class="lg:col-span-3">
+      <div class="backdrop-blur-2xl bg-black/85 border border-[#C3B089]/40 rounded-[28px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.8)] relative overflow-hidden">
+        <div class="relative z-10 space-y-5">
+          <div class="flex items-center gap-2 pb-3 border-b border-[#C3B089]/20">
+            <div class="w-1.5 h-4 bg-[#F3A630] rounded-full shadow-[0_0_8px_rgba(243,166,48,0.6)]"></div>
+            <h3 class="text-white text-xs font-black uppercase tracking-wider">Bet Amount</h3>
+          </div>
+
+          <!-- Quick Selector -->
+          @if (!isMobile()) {
+            <div class="grid grid-cols-3 gap-2">
+              <ng-container *ngFor="let amount of allowedSpinAmounts">
+                <button (click)="spinAmount = amount.toString(); $event.stopPropagation();"
+                  class="h-10 rounded-xl font-mono font-black text-xs transition-all border flex items-center justify-center shadow cursor-pointer"
+                  [ngClass]="spinAmount === amount.toString() ? 'bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black border-transparent shadow-[0_0_12px_rgba(254,168,102,0.5)] scale-105' : 'bg-black/60 text-white border-white/10 hover:border-[#F3A630]/60'">
+                  {{ amount }}$
+                </button>
+              </ng-container>
+            </div>
+          }
+
+          <!-- Custom Step Adjuster -->
+          <div class="bg-black/60 border border-white/10 rounded-2xl p-3 flex items-center justify-between gap-3 shadow-inner">
+            <button (click)="decrementSpinAmount(); $event.stopPropagation();" class="w-11 h-10 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-black text-lg transition flex items-center justify-center active:scale-95 cursor-pointer">-</button>
+            <div class="flex-1 text-center font-mono">
+              <span class="text-[#F9C846] text-2xl font-black drop-shadow-[0_2px_8px_rgba(249,200,70,0.4)]">${{ spinAmount }}</span>
+            </div>
+            <button (click)="incrementSpinAmount(); $event.stopPropagation();" class="w-11 h-10 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-black text-lg transition flex items-center justify-center active:scale-95 cursor-pointer">+</button>
+          </div>
+
+          <!-- Spin Now Button -->
+          @if (!isMobile()) {
+            <button (click)="openLoginModal()"
+              class="w-full py-4 rounded-2xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(245,158,11,0.5)] hover:brightness-110 active:scale-[0.98] transition cursor-pointer">
+              Spin Now!
+            </button>
+
+            <!-- Free Spin Promo Box -->
+            <div class="pt-3 border-t border-white/10 text-center">
+              <div class="bg-gradient-to-r from-[#FE8006]/20 via-[#F9C846]/20 to-[#FE8006]/20 border border-[#C3B089]/40 rounded-xl py-2.5 px-3 shadow-[0_0_15px_rgba(254,128,6,0.15)]">
+                <span class="text-[#FFE07A] font-black text-xs uppercase tracking-wider drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                  🎁 First Free Spin Available!
+                </span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Panel: Stunning Realistic Casino Wheel -->
+    <div class="lg:col-span-6 flex flex-col items-center justify-center">
+      <div class="relative flex items-center justify-center my-6 cursor-pointer">
+        
+        <!-- Professional Large 3D Triangular Pointer Pin at Top Center -->
+        <div class="absolute -top-7 left-1/2 -translate-x-1/2 z-40 pointer-events-none flex flex-col items-center drop-shadow-[0_8px_16px_rgba(0,0,0,0.95)]">
+          <div class="w-10 h-14 bg-gradient-to-b from-[#FFE07A] via-[#FE8006] to-[#C3B089] clip-triangle border-2 border-white/80 shadow-2xl"></div>
+          <div class="w-4 h-4 rounded-full bg-[#121415] border-2 border-[#FFE07A] -mt-2 shadow-lg"></div>
+        </div>
+
+        <!-- Wheel Outer Golden Luxury Bezel -->
+        <div class="relative p-4 rounded-full bg-gradient-to-b from-[#2a2d32] via-[#0b0c0d] to-[#161819] border-[6px] border-[#C3B089] shadow-[0_0_60px_rgba(243,166,48,0.4)]">
+          <div class="wheel-container">
+            
+            <!-- Static Wheel Slices -->
+            <div class="wheel">
+              <div class="outer-ring w-full h-full absolute inset-0">
+                <div class="segment" *ngFor="let segment of segments; let i = index"
+                  [style.transform]="'rotate(' + (i * segmentAngle) + 'deg)'">
+                  
+                  <!-- Clean Prize Card Inside Segment -->
+                  <div class="segment-content">
+                    <div class="prize-group">
+                      <img class="prize-icon-img" [src]="getPrizeImageByIndex(i)" alt="prize" />
+                      <span class="prize-text">{{ segment.prize }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Central Hub with Lock Icon -->
+            <div class="central-hub cursor-pointer flex items-center justify-center">
+              <div class="central-hub__disc flex items-center justify-center">
+                <fa-icon [icon]="lockIcon" class="text-black text-2xl drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]"></fa-icon>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Spin Controls -->
+      @if (isMobile()) {
+        <button (click)="openLoginModal()"
+          class="block lg:hidden w-full max-w-xs mt-2 py-3.5 rounded-2xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.4)] cursor-pointer">
+          Spin Now!
+        </button>
+      }
     </div>
 
     <!-- Right Panel: Spin History -->
-    <div
-      class="mt-8 md:mt-0 min-h-[480px] lg:col-span-3 max-w-md lg:max-w-none xl:max-w-sm backdrop-blur-md border-[0.5px] border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-3">
-      <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-      <h2 class="text-white text-md font-semibold mb-2 text-center">
-        Spin History
-      </h2>
-      <div class="h-[2px] mb-2 w-full bg-custom-gradient"></div>
-
-      <div class="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar">
-        <!-- History items -->
-        <div class="w-full">
-          <div class="flex text-xs lg:text-sm font-semibold text-white mb-2 text-left px-1">
-            <span class="flex-[1] min-w-[30px]">No</span>
-            <span class="flex-[2] text-center min-w-[50px]">Price</span>
-            <span class="flex-[3] text-center min-w-[80px]">Date</span>
+    <div class="lg:col-span-3">
+      <div class="backdrop-blur-2xl bg-black/85 border border-[#C3B089]/40 rounded-[28px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.8)] relative overflow-hidden min-h-[400px] flex flex-col">
+        <div class="absolute inset-0 pointer-events-none opacity-30"><div class="grain-Backdrop absolute inset-0 w-full h-full" [innerHTML]="grainBackdrop"></div></div>
+        
+        <div class="relative z-10 flex-1 flex flex-col">
+          <div class="flex items-center gap-2 pb-3 border-b border-[#C3B089]/20 mb-3">
+            <div class="w-1.5 h-4 bg-[#F3A630] rounded-full shadow-[0_0_8px_rgba(243,166,48,0.6)]"></div>
+            <h3 class="text-white text-xs font-black uppercase tracking-wider">Spin History</h3>
           </div>
 
-          <div *ngFor="let item of customerSpinnerHistory; let i = index" class="pt-2 px-1">
-            <div class="flex text-xs lg:text-sm text-left">
-              <span class="flex-[1] text-white min-w-[30px]">{{
-                item.NO
-                }}</span>
-              <span class="flex-[2] text-[#FE8912] font-bold text-center min-w-[50px]">{{ item.Balance }}$</span>
-              <span class="flex-[3] text-white text-xs text-right min-w-[80px]">{{ item.AddedDate | date: "MM/dd/yy,
-                h:mm a" }}</span>
+          <div class="flex text-[11px] font-extrabold text-[#A6B1C2] mb-2 px-1 uppercase tracking-wider">
+            <span class="w-8">No</span>
+            <span class="flex-1 text-center">Price</span>
+            <span class="w-24 text-right">Date</span>
+          </div>
+
+          <div class="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar flex-1">
+            <div class="bg-black/40 border border-white/5 p-2 rounded-xl flex items-center text-xs font-medium">
+              <span class="w-8 text-gray-400 font-mono">1</span>
+              <span class="flex-1 text-center text-[#F9C846] font-black font-mono">0$</span>
+              <span class="w-24 text-right text-gray-400 font-mono text-[9px]">09/09/26, 4:25 PM</span>
             </div>
-            <div class="h-[1px] w-full mt-3 bg-custom-gradient"></div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
