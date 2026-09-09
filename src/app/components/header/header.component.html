@@ -3,12 +3,12 @@
 <!-- ================= MOBILE HEADER (< 800px) ================= -->
 <header
   *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()"
-  class="body-font sticky z-[997] w-[100%] top-0"
+  class="body-font sticky z-[997] w-[100%] top-0 overflow-hidden"
 >
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
   <div
     *ngIf="isDashboardRoute()"
-    class="text-[var(--text)] bg-[#161819] border-b border-[#C3B089]/20"
+    class="text-[var(--text)] bg-[#121417] border-b border-white/10"
   >
     <div class="flex justify-between items-center px-3 py-3">
       <a
@@ -31,7 +31,7 @@
         <!-- Main Wallet -->
         <button
           type="button"
-          class="wallet-balance-control flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-10 px-3 shrink-0"
+          class="wallet-balance-control flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-10 px-3 shrink-0"
           (click)="openWalletHistory()"
         >
           <img
@@ -53,7 +53,7 @@
 
         <!-- Bonus Wallet -->
         <div
-          class="flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-10 px-3 cursor-pointer shrink-0"
+          class="flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-10 px-3 cursor-pointer shrink-0"
           (click)="openBonusWallet()"
           title="Bonus Wallet"
         >
@@ -72,7 +72,7 @@
 
         <button
           (click)="toggleNotifications()"
-          class="relative flex items-center justify-center w-9 h-9 bg-black/85 border border-[#C3B089]/40 rounded-2xl text-[#F3A630] shrink-0"
+          class="relative flex items-center justify-center w-9 h-9 bg-black/85 border border-white/10 rounded-2xl text-[#F3A630] shrink-0"
         >
           <i class="fas fa-bell text-sm"></i>
           <span
@@ -84,7 +84,7 @@
         </button>
 
         <div
-          class="flex items-center justify-center w-9 h-9 bg-black/85 border border-[#C3B089]/40 rounded-2xl text-[#FEC866] cursor-pointer shrink-0"
+          class="flex items-center justify-center w-9 h-9 bg-black/85 border border-white/10 rounded-2xl text-[#FEC866] cursor-pointer shrink-0"
           (click)="toggleSidebar($event)"
         >
           <ng-container *ngIf="CrossIcon">
@@ -126,13 +126,13 @@
 <!-- ================= DESKTOP HEADER (>= 800px) ================= -->
 <header
   *ngIf="!isScreenWidthLessThan800() && !isTreasurePickRoute()"
-  class="body-font sticky z-[999] w-[100%] top-0"
+  class="body-font sticky z-[999] w-[100%] top-0 overflow-hidden"
 >
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
 
   <div
     *ngIf="isDashboardRoute()"
-    class="text-[var(--text)] bg-[#161819] custom-border shadow-md"
+    class="text-[var(--text)] bg-[#121417] border-b border-white/10 shadow-md"
   >
     <div
       class="container mx-auto flex justify-between items-center px-6 py-2.5 max-w-[3000px]"
@@ -147,7 +147,7 @@
           alt="Spin Club"
           class="relative w-14 h-14 object-contain"
         />
-        <span class="h-10 w-[1px] bg-[#8a7960]"></span>
+        <span class="h-10 w-[1px] bg-white/20"></span>
       </a>
 
       <!-- Right Action Controls -->
@@ -156,7 +156,7 @@
         <button
           type="button"
           (click)="openWalletHistory()"
-          class="wallet-balance-control relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-12 px-4 shadow-md"
+          class="wallet-balance-control relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-12 px-4 shadow-md"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-30 pointer-events-none z-0"
@@ -196,7 +196,7 @@
 
         <!-- 2. Bonus Wallet Pill -->
         <div
-          class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-12 px-4 gap-3 shadow-md cursor-pointer"
+          class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-12 px-4 gap-3 shadow-md cursor-pointer"
           (click)="openBonusWallet()"
           title="Bonus Wallet"
         >
@@ -227,7 +227,7 @@
         <div class="relative flex items-center h-12">
           <button
             (click)="openWithdrawBalanceModal()"
-            class="relative z-10 bg-black/50 border border-[#C3B089]/40 text-white hover:text-amber-300 px-6 h-12 rounded-2xl font-bold text-sm shadow-md hover:bg-[#C3B089]/10 transition cursor-pointer flex items-center"
+            class="relative z-10 bg-black/50 border border-white/10 text-white hover:text-amber-300 px-6 h-12 rounded-2xl font-bold text-sm shadow-md hover:bg-white/5 transition cursor-pointer flex items-center"
           >
             {{ Withdraw | translate }}
           </button>
@@ -242,7 +242,7 @@
               class="notification-icon p-0 border-0 bg-transparent cursor-pointer"
             >
               <div
-                class="relative flex justify-center items-center w-12 h-12 bg-black/85 border border-[#C3B089]/40 rounded-2xl shadow-md hover:border-[#F3A630] transition"
+                class="relative flex justify-center items-center w-12 h-12 bg-black/85 border border-white/10 rounded-2xl shadow-md hover:border-[#F3A630] transition"
               >
                 <svg
                   class="relative z-10 w-5 h-5 text-[#F3A630]"
@@ -270,10 +270,10 @@
             <div
               *ngIf="isLangOpen"
               [ngStyle]="dropdownStyle"
-              class="absolute z-50 w-44 max-h-60 overflow-y-auto bg-[#161819] right-0 rounded-2xl shadow-2xl border border-[#8c8066] top-14 custom-scrollbar"
+              class="absolute z-50 w-44 max-h-60 overflow-y-auto bg-[#121417] right-0 rounded-2xl shadow-2xl border border-white/10 top-14 custom-scrollbar"
             >
               <div
-                class="p-2.5 border-b border-[#8c8066]/40 sticky top-0 bg-[#161819]"
+                class="p-2.5 border-b border-white/10 sticky top-0 bg-[#121417]"
               >
                 <input
                   type="text"
@@ -287,7 +287,7 @@
                 <div
                   *ngFor="let lang of filteredLanguages()"
                   (click)="selectLanguage(lang.code)"
-                  class="px-4 py-2 text-xs text-white hover:bg-[#C3B089]/20 cursor-pointer flex items-center justify-between"
+                  class="px-4 py-2 text-xs text-white hover:bg-white/10 cursor-pointer flex items-center justify-between"
                 >
                   <span>{{ lang.name }}</span>
                   <svg
@@ -319,7 +319,7 @@
           >
             <div class="notification-icon p-0 border-0 bg-transparent">
               <div
-                class="relative flex justify-center items-center w-12 h-12 bg-black/85 border border-[#C3B089]/40 rounded-2xl shadow-md hover:border-[#F3A630] transition"
+                class="relative flex justify-center items-center w-12 h-12 bg-black/85 border border-white/10 rounded-2xl shadow-md hover:border-[#F3A630] transition"
               >
                 <svg
                   width="20"
@@ -347,7 +347,7 @@
           <!-- Revamped Notification Dropdown -->
           <div
             *ngIf="showNotifications"
-            class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#161819] border border-[#C3B089]/60 rounded-3xl shadow-2xl overflow-hidden z-[999] backdrop-blur-xl"
+            class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#121417] border border-white/10 rounded-3xl shadow-2xl overflow-hidden z-[999] backdrop-blur-xl"
           >
             <!-- Fixed Grain Background Layer -->
             <div
@@ -361,7 +361,7 @@
 
             <!-- Sticky Header -->
             <div
-              class="flex items-center justify-between px-5 py-4 border-b border-[#C3B089]/30 relative z-20 bg-[#161819]/95 backdrop-blur-md"
+              class="flex items-center justify-between px-5 py-4 border-b border-white/10 relative z-20 bg-[#121417]/95 backdrop-blur-md"
             >
               <h3
                 class="text-sm font-extrabold text-white tracking-wider uppercase"
@@ -380,64 +380,59 @@
             <div
               class="max-h-[380px] overflow-y-auto p-4 space-y-3 relative z-10 custom-scrollbar"
             >
-              @for (
-                notification of notifications;
-                track notification.id;
-                let i = $index
-              ) {
+              @for (notification of notifications; track notification.id; let i =
+              $index) {
+              <div
+                class="notif-card relative flex items-start gap-3.5 bg-black/60 hover:bg-black/80 border border-white/10 p-4 rounded-2xl transition-all duration-300 ease-in-out group shadow-md"
+              >
+                <!-- Bell Icon -->
                 <div
-                  class="notif-card relative flex items-start gap-3.5 bg-black/60 hover:bg-black/80 border border-[#C3B089]/20 p-4 rounded-2xl transition-all duration-300 ease-in-out group shadow-md"
+                  class="w-10 h-10 rounded-xl bg-[#F3A630]/10 border border-[#F3A630]/30 flex items-center justify-center shrink-0 text-[#F3A630]"
                 >
-                  <!-- Bell Icon -->
-                  <div
-                    class="w-10 h-10 rounded-xl bg-[#F3A630]/10 border border-[#F3A630]/30 flex items-center justify-center shrink-0 text-[#F3A630]"
-                  >
-                    <i class="fas fa-bell text-sm"></i>
-                  </div>
-
-                  <!-- Notification Text & Details -->
-                  <div class="flex-1 pr-6">
-                    <h4 class="text-xs font-extrabold text-white tracking-wide">
-                      {{ notification.title || "Wallet Update" }}
-                    </h4>
-                    <p
-                      class="text-xs text-gray-200 mt-1 leading-relaxed font-medium"
-                    >
-                      {{
-                        notification.message ||
-                          notification.text ||
-                          "Your transaction was successful."
-                      }}
-                    </p>
-                    <span
-                      class="text-[10px] text-gray-400 font-mono mt-1.5 block"
-                    >
-                      {{
-                        notification.date ||
-                          notification.createdAt ||
-                          "Just now"
-                      }}
-                    </span>
-                  </div>
-
-                  <!-- Remove notification -->
-                  <button
-                    (click)="removeNotification(i, $event)"
-                    class="absolute top-3.5 right-3.5 text-gray-400 hover:text-red-400 transition-all duration-200 w-6 h-6 rounded-lg flex items-center justify-center bg-white/5 hover:bg-white/15 cursor-pointer"
-                    title="Remove notification"
-                  >
-                    ✕
-                  </button>
+                  <i class="fas fa-bell text-sm"></i>
                 </div>
+
+                <!-- Notification Text & Details -->
+                <div class="flex-1 pr-6">
+                  <h4 class="text-xs font-extrabold text-white tracking-wide">
+                    {{ notification.title || "Wallet Update" }}
+                  </h4>
+                  <p
+                    class="text-xs text-gray-200 mt-1 leading-relaxed font-medium"
+                  >
+                    {{
+                      notification.message ||
+                        notification.text ||
+                        "Your transaction was successful."
+                    }}
+                  </p>
+                  <span
+                    class="text-[10px] text-gray-400 font-mono mt-1.5 block"
+                  >
+                    {{
+                      notification.date ||
+                        notification.createdAt ||
+                        "Just now"
+                    }}
+                  </span>
+                </div>
+
+                <!-- Remove notification -->
+                <button
+                  (click)="removeNotification(i, $event)"
+                  class="absolute top-3.5 right-3.5 text-gray-400 hover:text-red-400 transition-all duration-200 w-6 h-6 rounded-lg flex items-center justify-center bg-white/5 hover:bg-white/15 cursor-pointer"
+                  title="Remove notification"
+                >
+                  ✕
+                </button>
+              </div>
               }
 
               <!-- Empty State -->
               @if (!notifications || notifications.length === 0) {
-                <div
-                  class="py-10 text-center text-gray-400 text-xs font-medium"
-                >
-                  No new notifications
-                </div>
+              <div class="py-10 text-center text-gray-400 text-xs font-medium">
+                No new notifications
+              </div>
               }
             </div>
           </div>
@@ -455,7 +450,7 @@
                 <img
                   [src]="profileImage"
                   alt="Profile"
-                  class="h-12 w-12 border border-[#C3B089]/60 group-hover:border-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] object-cover transition shadow-md"
+                  class="h-11 w-11 border border-white/20 group-hover:border-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] object-cover transition shadow-md"
                 />
 
                 <img
@@ -471,7 +466,7 @@
           <!-- ✅ Revamped Ultra-Luxury VIP Profile Dropdown Menu -->
           <div
             *ngIf="isDropdownOpen"
-            class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#121417]/95 backdrop-blur-2xl border border-[#C3B089]/50 shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+            class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#121417]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200"
           >
             <div
               class="grain-Backdrop absolute inset-0 pointer-events-none opacity-25"
@@ -480,7 +475,7 @@
 
             <!-- Dropdown Header: User Info Card -->
             <div
-              class="p-4 bg-gradient-to-b from-[#1c1f26] to-[#121417] border-b border-[#C3B089]/20 flex items-center gap-3.5 relative z-10"
+              class="p-4 bg-gradient-to-b from-[#1c1f26] to-[#121417] border-b border-white/10 flex items-center gap-3.5 relative z-10"
             >
               <div class="relative">
                 <div
@@ -529,9 +524,7 @@
                   >
                     👤
                   </div>
-                  <span class="text-xs font-bold tracking-wide"
-                    >My Profile</span
-                  >
+                  <span class="text-xs font-bold tracking-wide">My Profile</span>
                 </div>
                 <svg
                   class="w-4 h-4 text-gray-500 group-hover:translate-x-0.5 transition"
@@ -637,7 +630,7 @@
 
             <!-- Divider -->
             <div
-              class="h-px bg-gradient-to-r from-transparent via-[#C3B089]/30 to-transparent mx-3 my-1 relative z-10"
+              class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mx-3 my-1 relative z-10"
             ></div>
 
             <!-- Logout Section -->
