@@ -269,6 +269,7 @@ export class AddRedeemComponent implements OnInit, AfterViewInit {
       addScore: this.score.toString(),
       capatchaCode: '',
       tCode: '',
+      panelId: selectedGameData?.PanelId,
       source: this.selectedPaymentMethod || 'Wallet',
       accountType: this.accountType || '',
       accountInfo: this.accountInfo || '',

@@ -155,7 +155,7 @@ export class GamesLandingComponent {
       redirectLink: '/dashboard/TreasurePick',
       bgColor: '#a0fdde', // purple
     },
-        {
+    {
       id: 18,
       name: 'Toss',
       image:
@@ -466,8 +466,8 @@ export class GamesLandingComponent {
     return this.filteredGames.slice(0, count);
   }
 
-  getCustomerID(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getCustomerID(): string | null {
+    return localStorage.getItem('customerId');
   }
   getCustomerName(): string {
     return localStorage.getItem('userName') || '';
@@ -660,7 +660,7 @@ export class GamesLandingComponent {
   // }
   NewPlayerAddPayload: any = {
     gameName: '',
-    customerID: this.getCustomerID(),
+    customerId: localStorage.getItem('customerId') || '',
     playerUserName: '',
     rechargeBalance: 0,
     playerPassword: '',
@@ -686,6 +686,7 @@ export class GamesLandingComponent {
     // this.payloadaddnewPlayer(details)
     this.NewPlayerAddPayload.gameName = details.name;
     this.NewPlayerAddPayload.gameId = details.id;
+    this.NewPlayerAddPayload.customerId = localStorage.getItem('customerId') || '';
   }
 
   RedirectToSpinner() {
@@ -708,6 +709,7 @@ export class GamesLandingComponent {
   onPlayerSubmit() {
     this._loaderService.show();
     const payload = this.NewPlayerAddPayload;
+    payload.customerId = localStorage.getItem('customerId') || '';
     if (payload.playerUserName == '') {
       payload.playerUserName = this.generateGameAccountIdentifier(
         this.getCustomerName(),
@@ -802,53 +804,53 @@ export class GamesLandingComponent {
 
   //   return `${prefix}${randomDigits}${gameInitials}`;
   // }
-generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
-    // 1. Clean the name: Remove anything that isn't a letter or number
-    let cleanedName = CustomerName.replace(/[^a-zA-Z0-9]/g, () => {
-      return String.fromCharCode(97 + Math.floor(Math.random() * 26));
-    });
+  generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
+    // 1. Clean the name: Remove anything that isn't a letter or number
+    let cleanedName = CustomerName.replace(/[^a-zA-Z0-9]/g, () => {
+      return String.fromCharCode(97 + Math.floor(Math.random() * 26));
+    });
 
-    // --- NEW FIX START ---
-    // if only numbers
-    if (/^\d+$/.test(cleanedName)) {
-      // replce first 2 with alpahbet
-      const randomChar1 = String.fromCharCode(97 + Math.floor(Math.random() * 26));
-    const randomChar2 = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+    // --- NEW FIX START ---
+    // if only numbers
+    if (/^\d+$/.test(cleanedName)) {
+      // replce first 2 with alpahbet
+      const randomChar1 = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+      const randomChar2 = String.fromCharCode(97 + Math.floor(Math.random() * 26));
 
-      cleanedName = randomChar1 + randomChar2 + cleanedName.slice(2);
-    }
-    // --- NEW FIX END ---
+      cleanedName = randomChar1 + randomChar2 + cleanedName.slice(2);
+    }
+    // --- NEW FIX END ---
 
-    // Then take the first 5 chars
-    let prefix: string = cleanedName.slice(0, 5).toLowerCase();
+    // Then take the first 5 chars
+    let prefix: string = cleanedName.slice(0, 5).toLowerCase();
 
-    // 2. Pad if shorter than 5
-    if (prefix.length < 5) {
-      const charsNeeded = 5 - prefix.length;
-      for (let i = 0; i < charsNeeded; i++) {
-        prefix += String.fromCharCode(97 + Math.floor(Math.random() * 26));
-      }
-    }
+    // 2. Pad if shorter than 5
+    if (prefix.length < 5) {
+      const charsNeeded = 5 - prefix.length;
+      for (let i = 0; i < charsNeeded; i++) {
+        prefix += String.fromCharCode(97 + Math.floor(Math.random() * 26));
+      }
+    }
 
-    // 3. Get game initials
-    let gameInitials: string = this._utilsService.gameNameInitials(gameId);
+    // 3. Get game initials
+    let gameInitials: string = this._utilsService.gameNameInitials(gameId);
 
-    // 4. Generate the 3 random components (2 digits, 1 letter)
-    const digit1 = Math.floor(Math.random() * 10).toString();
-    const digit2 = Math.floor(Math.random() * 10).toString();
-    const letter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+    // 4. Generate the 3 random components (2 digits, 1 letter)
+    const digit1 = Math.floor(Math.random() * 10).toString();
+    const digit2 = Math.floor(Math.random() * 10).toString();
+    const letter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
 
-    // 5. Place them in an array and shuffle
-    let components = [digit1, digit2, letter];
-    for (let i = components.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [components[i], components[j]] = [components[j], components[i]];
-    }
+    // 5. Place them in an array and shuffle
+    let components = [digit1, digit2, letter];
+    for (let i = components.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [components[i], components[j]] = [components[j], components[i]];
+    }
 
-    // 6. Join the shuffled components and return
-    const randomPart = components.join('');
-    return `${prefix}${randomPart}${gameInitials}`;
-}
+    // 6. Join the shuffled components and return
+    const randomPart = components.join('');
+    return `${prefix}${randomPart}${gameInitials}`;
+  }
   ///////////////////////////Hitting Hot Games
 
   HotLottery: any;
