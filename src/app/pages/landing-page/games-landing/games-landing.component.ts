@@ -686,6 +686,7 @@ export class GamesLandingComponent {
     // this.payloadaddnewPlayer(details)
     this.NewPlayerAddPayload.gameName = details.name;
     this.NewPlayerAddPayload.gameId = details.id;
+    this.NewPlayerAddPayload.customerId = localStorage.getItem('customerId') || '';
   }
 
   RedirectToSpinner() {
@@ -708,6 +709,7 @@ export class GamesLandingComponent {
   onPlayerSubmit() {
     this._loaderService.show();
     const payload = this.NewPlayerAddPayload;
+    payload.customerId = localStorage.getItem('customerId') || '';
     if (payload.playerUserName == '') {
       payload.playerUserName = this.generateGameAccountIdentifier(
         this.getCustomerName(),
