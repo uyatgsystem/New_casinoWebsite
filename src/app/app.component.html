@@ -27,11 +27,6 @@
           {{ unreadCounts > 99 ? "99+" : unreadCounts }}
         </div>
 
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="feather feather-message-square">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg> -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="31"
@@ -51,57 +46,36 @@
       </button>
       <app-chat *ngIf="isChatOpen"></app-chat>
     </div>
-
-    <!-- <div *ngIf="showButton" class="z-10 absolute top-[6rem] right-4">
-      <button class="download-btn floating-icons m-2 mr-5">
-
-        <img
-          src="/Images/download icon.png"
-          alt="Download"
-          class="w-8 h-8"
-          (click)="OpenDownload()"
-        />
-        <span class="close-btn" (click)="hideButton()">✖</span>
-      </button>
-    </div> -->
   </div>
 
   <app-footer
     *ngIf="shouldshowheader()"
     [chatUnreadCount]="unreadCounts"
   ></app-footer>
-  <!-- Fixed Cartoon Character -->
- 
 </div>
 
-<!-- <app-coming-soon></app-coming-soon> -->
-
 <app-user-manual></app-user-manual>
-<!-- Floating Install App Button (mirrors bonus button, left side) -->
-<!-- shouldShowInstallFloating -->
-<!-- PWA Install Floating Card -->
+
+<!-- Redesigned Premium PWA Install Floating Card -->
 <div
   class="pwa-install-container fixed top-[69%] left-4 z-[999]"
   *ngIf="showInstallFloating && pwaInstall.canInstall() && shouldShowChat()"
 >
   <div class="pwa-card animate-bounce-slow" (click)="installFloating()">
     <!-- Close Icon -->
-    <div class="close-x" (click)="hideInstallFloating($event)">
-      <fa-icon [icon]="cross" class="text-white text-[1rem]"></fa-icon>
+    <div class="close-x" (click)="hideInstallFloating($event)" title="Close">
+      ✕
     </div>
 
-    <!-- Icon Box -->
+    <!-- Icon Box with Pulse Effect -->
     <div class="icon-box">
       <i class="fa-solid fa-mobile-screen-button"></i>
     </div>
 
     <!-- Text Content -->
     <div class="content-box">
-      <span class="top-text">Free & Fast Download</span>
+      <span class="top-text">Free & Fast</span>
       <span class="main-text">Get Mobile App</span>
     </div>
-
-    <!-- Shine Effect -->
-    <div class="shine-effect"></div>
   </div>
 </div>

@@ -44,7 +44,6 @@ import { UtilsService } from '../../Services/utils.service';
 
 @Component({
   selector: 'app-account',
-
   imports: [
     CommonModule,
     FormsModule,
@@ -81,6 +80,7 @@ export class AccountComponent {
   Lock = faLock;
   faCheck = faCheck;
   captchaImage = '/assets/captcha.png';
+
   constructor(
     private apiCallService: ApiCallService,
     private ErrorHandle: ErrorhandlingService,
@@ -102,7 +102,6 @@ export class AccountComponent {
         [
           Validators.required,
           Validators.min(1),
-          // Validators.max(1000),
           this.integerValidator.bind(this),
         ],
       ],
@@ -121,11 +120,8 @@ export class AccountComponent {
   getPlaceholder(): string {
     switch (this.gameName) {
       case 'GameRoom':
-        return 'e.g 10';
       case 'MilkyWay':
-        return 'e.g 10';
       case 'OrionStar':
-        return 'e.g 10';
       case 'FireKirin':
         return 'e.g 10';
       default:
@@ -144,12 +140,17 @@ export class AccountComponent {
     }
     return null;
   }
+
   ngOnInit() {
     if (
       this.loaderService.getArrayInLocalStorage() &&
       this.loaderService.getArrayInLocalStorage().length > 0
     ) {
-      this.gameAccounts = this.loaderService.getArrayInLocalStorage();
+      this.gameAccounts = this.loaderService.getArrayInLocalStorage().map((acc: any) => ({
+        ...acc,
+        isUsernameVisible: true,
+        isPasswordVisible: false
+      }));
     } else {
       this.getGameAccount();
     }
@@ -160,6 +161,7 @@ export class AccountComponent {
   upToScore: number = 0;
   user = faUser;
   lock = faLock;
+
   openAddScoreModal(GameName: any): void {
     this.scoreForm.reset();
     this.AddScorePayload().tCode = '';
@@ -168,18 +170,6 @@ export class AccountComponent {
     this.showAddScoreModal = true;
     this.gameName = GameName;
     this.getSelectedGameData();
-    // if (!this.isAddScoreDisable) {
-    //   this.showAddScoreModal = true;
-    // } else {
-    //   const gameName =
-    //     this.GameData?.GameName != undefined
-    //       ? this.GameData?.GameName
-    //       : this.gameName;
-    //   this.Toaster.warning(
-    //     'Your deposit request of ' + gameName + ' already in process',
-    //     'Previous pending requests '
-    //   );
-    // }
   }
 
   closeAddScoreModal(): void {
@@ -199,8 +189,6 @@ export class AccountComponent {
   onScoreSubmit(): void {
     if (this.scoreForm.valid) {
       this.addedScore = this.scoreForm?.value?.score;
-      // const bonus = (this.upToScore * this.offerOnGame) / 100;
-      // this.updatedGivenScore = Number(this.addedScore) + bonus;
       let bonus: number = 0;
       if (this.addedScore > this.upToScore) {
         bonus = (this.upToScore * this.offerOnGame) / 100;
@@ -224,7 +212,6 @@ export class AccountComponent {
   onPaymentSubmit(): void {
     if (this.paymentForm.valid) {
       this.PalyerSubmit();
-      // this.showCaptchaModal = true;
     }
   }
 
@@ -233,25 +220,9 @@ export class AccountComponent {
     this.captchaForm.reset();
   }
 
-  onCaptchaSubmit(): void {
-    // if (this.captchaForm.valid) {
-    //   if (this.isBalanceShown) {
-    //     this.showGameBalance();
-    //   } else {
-    //     // Handle final submission
-    //     this.PalyerSubmit();
-    //     // Add success notification or further processing here
-    //   }
-    // } else {
-    //   this.captchaForm.markAllAsTouched();
-    // }
-  }
-
-  //////////////////for game image
+  onCaptchaSubmit(): void {}
 
   games: any = [];
-
-  ///////////////////Add Game Score Api call
 
   IsScoreValid() {
     if (this.scoreForm.valid) {
@@ -263,10 +234,8 @@ export class AccountComponent {
     return Number(localStorage.getItem('customerId'));
   }
 
-  //////////////////////////////////For Non PlayerName Games Modal
   OpenCaptchaAddPlayer(details: any) {
     this.showCaptchaModal = true;
-    // this.payloadaddnewPlayer(details)
   }
 
   CloseCaptchaAddPlayer() {
@@ -275,6 +244,7 @@ export class AccountComponent {
     this.tCode = '';
     this.AddScorePayload().capatchaCode = '';
   }
+
   AddScorePayload() {
     return {
       gameName: this.gameName || '',
@@ -289,12 +259,13 @@ export class AccountComponent {
       bonus: '0',
     };
   }
+
   tCode: string = '';
   addedScore: any;
+
   PalyerSubmit() {
     this.loaderService.show();
     const payload = this.AddScorePayload();
-    // payload.addScore = this.updatedGivenScore;
     payload.capatchaCode = this.captchaForm?.value?.captcha?.toString() || '';
     this.apiCallService
       .PostCallWithToken(payload, 'AddGameScore/AddGameScore')
@@ -324,11 +295,7 @@ export class AccountComponent {
               this.loaderService.hide();
               this.loaderService?.triggerWalletFunction();
               this.closeCaptchaModal();
-              if (this.showBalance) {
-                // this.getGameBalance();
-              }
             }
-            // this.getScoreHistory();
           } else {
             this.ErrorHandle.handleResponseError(response);
             this.loaderService.hide();
@@ -340,6 +307,7 @@ export class AccountComponent {
         },
       );
   }
+
   getcustomerId(): number | null {
     return Number(localStorage.getItem('customerId'));
   }
@@ -386,10 +354,12 @@ export class AccountComponent {
     this._gameService.setGameData(matchedGameDetails);
     this.router.navigate(['/dashboard/credentials']);
   }
+
   openRedeemModal(gameName: any) {
     this.selectedGame = gameName;
     this.showRedeemModal = true;
   }
+
   showRedeemModal: boolean = false;
   closeRedeemModal() {
     this.showRedeemModal = false;
@@ -398,6 +368,7 @@ export class AccountComponent {
   selectedPlayerId: number = 0;
   captchaCode: any;
   gameName?: any;
+
   getSelectedGameData() {
     const gameData = this._gameService.getArrayInLocalStorage('bis_data');
     if (this.GameData) {
@@ -428,19 +399,14 @@ export class AccountComponent {
       }
     }
 
-    // this.playerName = selectedGameData.PlayerName;
-    // this.playerPassword = selectedGameData.PlayerPassword;
     this.gameID = selectedGameData.GameID;
     this.selectedPlayerId = selectedGameData.PlayerId;
-    // this.downloadLink = selectedGameData.downloadLink;
   }
+
   playGame(downloadLink: any): void {
     const game = this.games.find((g: any) => g.name === downloadLink);
     if (game && game.downloadLink) {
-      // Open the download link in a new tab
       window.open(game.downloadLink, '_blank');
-    } else {
-      // console.error('Game not found or download link is missing');
     }
   }
 
@@ -449,10 +415,9 @@ export class AccountComponent {
 
   getGameImage(gameName: string): string {
     const game = this.games.find((g: any) => g.name === gameName);
-    return game ? game.image : ''; // Return empty string if no game is found
+    return game ? game.image : '';
   }
 
-  // filter section
   startDate: string | null = null;
   endDate: string | null = null;
   viewMode: 'grid' | 'table' = 'grid';
@@ -462,9 +427,6 @@ export class AccountComponent {
     this.viewMode = this.viewMode === 'grid' ? 'table' : 'grid';
   }
 
-  // filter section
-
-  // games: any[] = [];
   getGameAccount() {
     this.loaderService.show();
     const customerID = localStorage.getItem('customerId');
@@ -474,7 +436,11 @@ export class AccountComponent {
       (response) => {
         this.loaderService.hide();
         if (response && response.responseCode === 200) {
-          this.gameAccounts = response.data;
+          this.gameAccounts = (response.data || []).map((account: any) => ({
+            ...account,
+            isUsernameVisible: true,
+            isPasswordVisible: false
+          }));
 
           if (this.searchTerm && this.searchTerm.trim() !== '') {
             const filtered = this.gameAccounts.filter(
@@ -504,10 +470,6 @@ export class AccountComponent {
     );
   }
 
-  // {
-  //   this.ErrorHandle.handleHttpError(error);
-  // }
-
   recordsLengthToShow: number = 10;
   filteredAccounts(): GameAccount[] {
     this.totalRecords = this.gameAccounts.length;
@@ -528,17 +490,8 @@ export class AccountComponent {
   }
 
   onEnterSearch() {
-    this.getGameAccountFromSearch(); // new API call for search
+    this.getGameAccountFromSearch();
   }
-
-  // onTyping() {
-  //   if (!this.searchTerm || this.searchTerm.trim() === '') {
-  //     this.initializeComponent();
-  //   }
-  // }
-  // initializeComponent() {
-  //   this.getGameAccount(); // full reload
-  // }
 
   getGameAccountFromSearch() {
     this.loaderService.show();
@@ -550,7 +503,11 @@ export class AccountComponent {
     this.apiCallService.GetCallWithToken(payload).subscribe(
       (response) => {
         if (response && response.responseCode === 200) {
-          this.gameAccounts = response.data;
+          this.gameAccounts = (response.data || []).map((account: any) => ({
+            ...account,
+            isUsernameVisible: true,
+            isPasswordVisible: false
+          }));
 
           if (this.gameAccounts.length === 0) {
             this.toaster.warning('Record not found');
@@ -565,11 +522,6 @@ export class AccountComponent {
     );
   }
 
-  toggleVisibility(account: GameAccount): void {
-    account.isUsernameVisible = !account.isUsernameVisible;
-    account.isPasswordVisible = !account.isPasswordVisible;
-  }
-
   togglePasswordVisibility(account: GameAccount): void {
     account.isPasswordVisible = !account.isPasswordVisible;
   }
@@ -579,10 +531,7 @@ export class AccountComponent {
     this.toaster.info('Copied', 'Info');
     try {
       await navigator.clipboard.writeText(textToCopy);
-      // console.log('Copied to clipboard!');
-    } catch (err) {
-      // console.error('Failed to copy text: ', err);
-    }
+    } catch (err) {}
   }
 
   isCopied = signal(false);
@@ -593,7 +542,7 @@ export class AccountComponent {
       this.isCopied.set(false);
     }, 2000);
   }
-  // TS Code for Pagination Start
+
   pages: (number | string)[] = [];
   currentPage: number = 1;
   totalRecords: number = 0;
@@ -662,13 +611,9 @@ export class AccountComponent {
     const end = Math.min(start + this.itemsPerPage - 1, this.totalRecords);
     return `${start} – ${end}`;
   }
-  // TS Code for Pagination End
-
-  //? Scroll Functionality
 
   @ViewChild('accountGrid', { static: false }) accountGrid!: ElementRef;
   onGridViewScroll(): void {
-    // console.log('scrolling');
     const chatListElement = this.accountGrid.nativeElement;
     if (
       chatListElement.offsetHeight + chatListElement.scrollTop + 1 >=
@@ -676,8 +621,6 @@ export class AccountComponent {
       this.recordsLengthToShow < this.gameAccounts.length
     ) {
       this.currentPage++;
-      // this.GetAllGames();
-      // spinner
       this.loaderService.show();
       this.recordsLengthToShow = 11;
       setTimeout(() => {
@@ -686,19 +629,14 @@ export class AccountComponent {
     }
   }
 
-  //? For Table View
   @ViewChild('accountTable', { static: false }) accountTable!: ElementRef;
   onTableViewScroll(): void {
-    // console.log("scrolling");
     const element = this.accountTable.nativeElement;
-    //? Calculate if scrolled to the bottom
     const isAtBottom =
       Math.ceil(element.scrollTop + element.offsetHeight) >=
       element.scrollHeight;
     if (isAtBottom && this.recordsLengthToShow < this.gameAccounts.length) {
-      // console.log('Scrolled to bottom');
       this.currentPage++;
-      // this.getScoreHistory();
       this.loaderService.show();
       this.recordsLengthToShow = 11;
       setTimeout(() => {
