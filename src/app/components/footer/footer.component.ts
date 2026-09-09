@@ -137,6 +137,11 @@ export class FooterComponent {
   showChatComponent() {
     this._utils.toggleComponentVisibility(true);
   }
+
+  openDeposit() {
+    this._utils.toggleComponentVisibility(false);
+    this.router.navigate(['/dashboard/wallet'], { queryParams: { openDeposit: 'true' } });
+  }
   isDashboardRoute(): boolean {
     // if (localStorage.getItem('token')) {
     return this.router.url.includes('dashboard');

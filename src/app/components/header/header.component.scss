@@ -33,6 +33,32 @@ header {
   animation: scroll 25s linear infinite;
 }
 
+.wallet-balance-control,
+.deposit-control {
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease, border-color .2s ease;
+}
+
+.wallet-balance-control:hover,
+.deposit-control:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.wallet-balance-control {
+  border-color: rgba(195, 176, 137, .4);
+}
+
+.bonus-wallet-label {
+  white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .bonus-wallet-label {
+    font-size: 9px;
+  }
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0%);

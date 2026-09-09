@@ -536,6 +536,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this._errorHandleService.showModalSubject.next(true);
   }
 
+  openWalletHistory() {
+    this.updateChatComponent(false);
+    this.router.navigate(['/dashboard/wallet'], { queryParams: { view: 'wallet' } });
+  }
+
+  openBonusWallet() {
+    this.updateChatComponent(false);
+    this.router.navigate(['/dashboard/wallet'], { queryParams: { view: 'bonus' } });
+  }
+
   redirectToLogin() {
     this.router.navigate(['login']);
   }

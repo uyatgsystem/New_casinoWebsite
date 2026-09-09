@@ -500,6 +500,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.queryParams
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
+        if (params && (params['view'] === 'wallet' || params['view'] === 'bonus')) {
+          this.walletView = params['view'];
+        }
         if (params && params['openWithdraw']) {
           this.showwithdrawModal = true;
           this.getAccountsDropdown();
@@ -508,6 +511,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
           this.tipAmount = null;
           this.accountInfo = '';
           this.Customertag = '';
+        }
+        if (params && params['openDeposit']) {
+          this.openAddBalanceModal();
         }
       });
     this.utilsService
