@@ -1042,6 +1042,10 @@ export class CredentialsComponent implements OnInit, OnDestroy {
     this.AddScorePayload().capatchaCode = '';
   }
   AddScorePayload() {
+
+    const selectedFromStorage = (
+      this.Gameservice.getArrayInLocalStorage('bis_data') || []
+    ).find((data: any) => data?.GameName === this.gameName);
     return {
       gameName: this.gameName || 0,
       customerID: localStorage.getItem('customerId') || '',
@@ -1054,7 +1058,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
       totalScore: this.updatedGivenScore.toString(),
       bonus: '0',
       gameId: this.getCurrentGameId(),
-      panelId: this.getCurrentGameId(),
+      panelId: selectedFromStorage?.PanelId,
       requestId: this.requestId?.toString() || '',
       requestType: this.scoreSourceType === 'bonus' ? '2' : '1',
     };
