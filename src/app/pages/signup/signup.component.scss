@@ -5,7 +5,7 @@
     max-width: 100% !important;
   }
 
-  #formContainer input,
+  #formContainer input:not([type="checkbox"]),
   #formContainer .form-input {
     font-size: 0.85rem !important;
     padding: 0.35rem 0.5rem !important;
@@ -58,7 +58,7 @@
   overflow: visible !important;
 }
 
-#formContainer input,
+#formContainer input:not([type="checkbox"]),
 #formContainer select,
 #formContainer textarea {
   color: #fff !important;
@@ -66,7 +66,7 @@
   font-weight: 500;
 }
 
-#formContainer input::placeholder {
+#formContainer input:not([type="checkbox"])::placeholder {
   color: #c5bcae !important;
   opacity: 1;
 }
@@ -77,7 +77,7 @@
   color: #f4f4f4;
 }
 
-#formContainer input {
+#formContainer input:not([type="checkbox"]) {
   min-height: 38px;
   border: 1px solid rgba(195,176,137,.28) !important;
   border-radius: 8px;
@@ -97,7 +97,7 @@
   caret-color: #fff;
 }
 
-#formContainer input:focus { border-color: #fe8c16 !important; box-shadow: 0 0 0 3px rgba(254,140,22,.12); }
+#formContainer input:not([type="checkbox"]):focus { border-color: #fe8c16 !important; box-shadow: 0 0 0 3px rgba(254,140,22,.12); }
 #formContainer .bg-custom-gradient { display: none; }
 #formContainer button[type="submit"] { min-height: 42px; border-radius: 8px !important; background: linear-gradient(135deg,#f3a630,#fe8006) !important; }
 
@@ -195,7 +195,7 @@
   }
 
   #formContainer form > div { margin-bottom: 8px !important; }
-  #formContainer input { min-height: 38px; padding: 6px 32px 6px 9px !important; }
+  #formContainer input:not([type="checkbox"]) { min-height: 38px; padding: 6px 32px 6px 9px !important; }
   #formContainer button[type="submit"] { min-height: 40px; margin-bottom: 8px !important; }
   #formContainer .my-6 { margin-top: 0 !important; margin-bottom: 8px !important; }
   #formContainer .lg\:mb-10,
