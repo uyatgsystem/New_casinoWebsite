@@ -879,19 +879,18 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getPlatformFees() {
-    this.apiCallService.GetCallWithToken('Wallet/GetLookupsettings').subscribe(
-      (response) => {
-        if (response && response.responseCode == 200) {
-          const platformFees = response?.data?.find(
-            (x: any) => x.Type === 'Plateformfee',
-          );
-          this.serverFees = platformFees?.Value || 0;
-        }
-      },
-      (error) => {
-        this.handleError.handleHttpError(error);
-      },
-    );
+    this.apiCallService
+      .GetCallWithToken('WalletRequest/GetTransactionfee')
+      .subscribe(
+        (response) => {
+          if (response && response.responseCode == 200) {
+            this.serverFees = Number(response?.data) || 0;
+          }
+        },
+        (error) => {
+          this.handleError.handleHttpError(error);
+        },
+      );
   }
 
   createUpdateWithdrawRequest() {

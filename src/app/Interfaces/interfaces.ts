@@ -87,7 +87,7 @@ export interface Transaction {
   typesofRequest?: string;
 }
 export interface CreateUser {
-  userID: number;
+  userID: string;
   clientId: number;
   firstName: string;
   lastName: string;
@@ -99,7 +99,7 @@ export interface CreateUser {
   contactNumber: string;
   isMobileUser: boolean;
   panelType: string;
-  referralCode: string;
+  refferCode: string;
   ad?:string;
    DeviceId: string;
    deviceFingerprint: string;

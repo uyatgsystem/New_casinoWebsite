@@ -10,7 +10,7 @@ export class ApiPayloadService {
   createCreateUserPayload(data: Partial<CreateUser>): CreateUser {
     const addCode = sessionStorage.getItem('adCode');
     return {
-      userID: data.userID || 0,
+      userID: data.userID || '0',
       clientId: data.clientId || 12,
       firstName: data.firstName || '',
       lastName: data.lastName || '',
@@ -22,7 +22,7 @@ export class ApiPayloadService {
       contactNumber: data.contactNumber || '',
       isMobileUser: true,
       panelType: 'customer',
-      referralCode: data.referralCode || '',
+      refferCode: data.refferCode || (data as any).referralCode || '',
       ad:addCode|| '',
         DeviceId: data.DeviceId || '' ,
         deviceFingerprint: data.deviceFingerprint ||''
