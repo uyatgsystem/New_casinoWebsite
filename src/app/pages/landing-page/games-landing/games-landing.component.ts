@@ -660,7 +660,7 @@ export class GamesLandingComponent {
   // }
   NewPlayerAddPayload: any = {
     gameName: '',
-    customerID: this.getCustomerID(),
+    customerId: localStorage.getItem('customerId') || '',
     playerUserName: '',
     rechargeBalance: 0,
     playerPassword: '',

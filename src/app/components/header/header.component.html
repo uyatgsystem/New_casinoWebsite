@@ -3,7 +3,7 @@
 <!-- ================= MOBILE HEADER (< 800px) ================= -->
 <header *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()" class="body-font sticky z-[997] w-[100%] top-0">
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-  <div *ngIf="isDashboardRoute()" class="text-[var(--text)] bg-[#161819] border-b border-[#C3B089]/20">
+  <div *ngIf="isDashboardRoute()" class="text-[var(--text)] header-panel border-b border-[#C3B089]/20">
     <div class="flex justify-between items-center px-3 py-3">
       
       <a routerLink="/dashboard/home" class="flex title-font font-medium items-center">
@@ -68,7 +68,7 @@
 <header *ngIf="!isScreenWidthLessThan800() && !isTreasurePickRoute()" class="body-font sticky z-[999] w-[100%] top-0">
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
   
-  <div *ngIf="isDashboardRoute()" class="text-[var(--text)] bg-[#161819] custom-border shadow-md">
+  <div *ngIf="isDashboardRoute()" class="text-[var(--text)] header-panel custom-border shadow-md">
     <div class="container mx-auto flex justify-between items-center px-6 py-2.5 max-w-[3000px]">
       
       <!-- Logo Section -->

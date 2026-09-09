@@ -1,22 +1,22 @@
 <app-loader></app-loader>
 
 <!-- Add Balance Modal -->
-<div *ngIf="showModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[999]"
+<div *ngIf="showModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[999] p-3 sm:p-4"
   (click)="hideWalletModal()">
-  
+
   <div
     class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[90vh] flex flex-col z-50 relative overflow-hidden"
     (click)="$event.stopPropagation()">
-    
+
     <!-- Fixed Grain Background Layer -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-0 opacity-40">
       <div class="grain-Backdrop absolute inset-0 w-full h-full" [innerHTML]="grainBackdrop"></div>
     </div>
 
     <!-- Sticky Header -->
-    <div class="flex items-center justify-between px-6 py-4 border-b border-[#C3B089]/30 relative z-20 bg-[#161819]/95 backdrop-blur-md shrink-0">
-      <h2 class="text-xl font-extrabold text-white tracking-wide">Add Balance</h2>
-      <button (click)="hideWalletModal()" class="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition">
+    <div class="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#C3B089]/30 relative z-20 bg-[#161819]/95 backdrop-blur-md shrink-0">
+      <h2 class="text-lg sm:text-xl font-extrabold text-white tracking-wide">Add Balance</h2>
+      <button (click)="hideWalletModal()" class="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition shrink-0">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18" />
@@ -26,10 +26,10 @@
     </div>
 
     <!-- Scrollable Content Area -->
-    <div class="p-6 overflow-y-auto space-y-5 relative z-10 custom-scrollbar flex-1">
+    <div class="p-4 sm:p-6 overflow-y-auto space-y-5 relative z-10 custom-scrollbar flex-1">
       <!-- Payment Methods Selection -->
       <div>
-        <div class="flex items-center justify-between mb-3">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div class="flex items-center gap-2">
             <div class="w-1.5 h-4 bg-[#F3A630] rounded-full"></div>
             <span class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider">
@@ -37,7 +37,7 @@
             </span>
           </div>
 
-          <span class="text-xs font-semibold bg-[#FE9B2A]/10 border border-[#FE9B2A]/20 px-3 py-1 rounded-xl flex items-center gap-1.5">
+          <span class="text-[11px] sm:text-xs font-semibold bg-[#FE9B2A]/10 border border-[#FE9B2A]/20 px-3 py-1 rounded-xl flex flex-wrap items-center gap-1.5">
             <span class="text-[#ABB7BD]">Deposit:</span>
             <span class="text-[#9CA3AF]">Min</span>
             <span class="text-[#FE9B2A] font-bold">{{ minAmount }}</span>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="payment-methods-grid">
-          @for (account of AccountType; track account.id) {
+          @for (account of visibleAccountTypes; track account.id) {
           <div class="payment-card" [class.selected]="selectedAccountType === account.name" (click)="
                 togglePayment(
                   account.name,

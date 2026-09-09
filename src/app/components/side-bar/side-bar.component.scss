@@ -128,5 +128,7 @@
 }
 
 .booderr {
-  border-right: 1px solid rgba(55, 65, 81, 0.5);
+  background:
+    radial-gradient(420px circle at 50% 0%, rgba(243, 166, 48, 0.09), transparent 60%),
+    linear-gradient(180deg, #14161c 0%, #111318 45%, #0a0b0d 100%);
 }
