@@ -39,10 +39,8 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import { KycPopupComponent } from '../../common/kyc-popup/kyc-popup.component';
 import { SafeHtml } from '@angular/platform-browser';
 import { PwaInstallService } from '../../Services/pwa-install.service';
-import { GamesLandingComponent } from '../../pages/landing-page/games-landing/games-landing.component';
 import { LocationService } from '../../Services/ip-check.service';
 
 @Component({
@@ -57,9 +55,7 @@ import { LocationService } from '../../Services/ip-check.service';
     NotificationsComponent,
     deleteaccountmodelComponent,
     LoaderComponent,
-    KycPopupComponent,
     TranslateModule,
-    GamesLandingComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -393,15 +389,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   showNotifications = false;
 
   notificationCount: number = 0;
-  receiveNotificationCount(event: number) {
-    this.notificationCount = event;
-  }
 
-  updateNotificationCount(count: number) {
-    this.notificationCount = count;
-  }
-
-  // ✨ Immediate Notification Removal & Upward Shift
   removeNotification(index: number, event?: Event) {
     if (event) {
       event.stopPropagation();
