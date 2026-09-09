@@ -747,7 +747,7 @@ export class SpinnerNewDesignComponent implements OnInit {
 
 WalletPayload() {
     return {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: localStorage.getItem('customerId') || '',
       pageNumber: 1,
       pageSize: 10,
       searchText: '',

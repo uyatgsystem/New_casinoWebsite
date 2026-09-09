@@ -53,199 +53,385 @@
       </div>
     </div>
 
-    <!-- Mobile Balance Card (Glossy & Premium) -->
-    <div class="relative p-6 rounded-3xl border border-[#bfa97a]/40 bg-gradient-to-br from-[#181a20] via-[#111318] to-black shadow-2xl overflow-hidden">
-      <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-gradient-to-br from-amber-500/10 to-orange-500/5 rounded-full blur-2xl pointer-events-none"></div>
-      
-      <div class="relative z-10 flex flex-col gap-5">
-        <div class="flex items-center justify-between">
-          <div class="flex flex-col">
-            <span class="text-gray-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-              Total Balance
-              <button (click)="toggleBalance()" class="text-[#f3a630] hover:text-white transition p-1">
-                <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
-              </button>
-            </span>
-            <span class="text-white text-3xl font-black tracking-wider mt-1.5 font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-200 to-amber-400">
-              {{ showBalance ? "$" + totalBalance.toLocaleString() : "********" }}
-            </span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
-          <button (click)="openAddBalanceModal()" class="bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-extrabold py-3 px-4 rounded-2xl shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:brightness-110 transition text-sm flex items-center justify-center gap-1.5">
-            <span class="text-lg leading-none">+</span> Deposit
-          </button>
-          <button (click)="openWithdrawBalanceModal()" class="bg-black/60 border border-[#bfa97a]/40 text-[#bfa97a] font-bold py-3 px-4 rounded-2xl hover:bg-[#bfa97a]/10 transition text-sm flex items-center justify-center shadow-md">
-            Withdraw
-          </button>
-        </div>
-      </div>
+    <!-- Mobile Wallet / Bonus Wallet Tabs -->
+    <div class="flex items-center gap-2 bg-black/40 border border-[#bfa97a]/20 rounded-2xl p-1.5">
+      <button (click)="toggleWalletView('wallet')"
+        class="flex-1 py-2.5 rounded-xl text-xs font-bold tracking-wide transition"
+        [ngClass]="walletView === 'wallet' ? 'bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black shadow-md' : 'text-gray-400 hover:text-white'">
+        Wallet
+      </button>
+      <button (click)="toggleWalletView('bonus')"
+        class="flex-1 py-2.5 rounded-xl text-xs font-bold tracking-wide transition"
+        [ngClass]="walletView === 'bonus' ? 'bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black shadow-md' : 'text-gray-400 hover:text-white'">
+        Bonus Wallet
+      </button>
     </div>
 
-    <!-- Mobile Transactions List -->
-    <div class="flex flex-col mt-2">
-      <div class="flex items-center justify-between mb-3 px-1">
-        <h3 class="text-white font-bold text-base tracking-wide flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-amber-500"></span> Transaction History
-        </h3>
-        <span class="text-xs text-gray-400 font-medium bg-white/5 px-2.5 py-1 rounded-full border border-white/5">{{ filteredTransactions.length }} records</span>
-      </div>
+    <ng-container *ngIf="walletView === 'wallet'">
+      <!-- Mobile Balance Card (Glossy & Premium) -->
+      <div class="relative p-6 rounded-3xl border border-[#bfa97a]/40 bg-gradient-to-br from-[#181a20] via-[#111318] to-black shadow-2xl overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-gradient-to-br from-amber-500/10 to-orange-500/5 rounded-full blur-2xl pointer-events-none"></div>
 
-      <div class="overflow-y-auto max-h-[calc(100vh-340px)] space-y-3 pb-20" (scroll)="onMobileScroll($event)"
-        *ngIf="filteredTransactions.length > 0; else noRecord">
-        
-        <div *ngFor="let transaction of filteredTransactions"
-          class="border border-[#bfa97a]/20 rounded-2xl p-4 bg-gradient-to-r from-[#14161b] to-[#1a1d24] shadow-xl flex flex-col gap-3 relative overflow-hidden group hover:border-[#bfa97a]/50 transition duration-300">
-          
-          <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
-            <span class="px-3 py-1 text-xs font-bold rounded-lg border border-current bg-black/40 tracking-wider shadow-inner"
-              [ngClass]="{
-                'text-green-400 border-green-500/30': transaction.status === 'Complete',
-                'text-red-400 border-red-500/30': transaction.status === 'Decline',
-                'text-yellow-400 border-yellow-500/30': transaction.status === 'Pending'
-              }">
-              {{ transaction.status }}
-            </span>
-
-            <div *ngIf="transaction.type === 'debit' && transaction.status === 'Pending'" class="flex gap-3 text-gray-400">
-              <fa-icon [icon]="faEdit" class="cursor-pointer hover:text-[#EEA137] transition" (click)="editWithdrawTransaction(transaction, $event)" title="Edit"></fa-icon>
-              <fa-icon [icon]="faTrash" class="cursor-pointer hover:text-red-400 transition" (click)="deleteWithdrawTransaction(transaction, $event)" title="Delete"></fa-icon>
+        <div class="relative z-10 flex flex-col gap-5">
+          <div class="flex items-center justify-between">
+            <div class="flex flex-col">
+              <span class="text-gray-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                Total Balance
+                <button (click)="toggleBalance()" class="text-[#f3a630] hover:text-white transition p-1">
+                  <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
+                </button>
+              </span>
+              <span class="text-white text-3xl font-black tracking-wider mt-1.5 font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-200 to-amber-400">
+                {{ showBalance ? "$" + totalBalance.toLocaleString() : "********" }}
+              </span>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-y-2 text-xs">
-            <div *ngIf="transaction.type !== 'debit'" class="text-gray-400">Bonus</div>
-            <div *ngIf="transaction.type !== 'debit'" class="text-right text-yellow-400 font-bold">${{ transaction.bonus || 0 }}</div>
-
-            <div class="text-gray-400">Amount</div>
-            <div class="text-right font-extrabold text-sm font-mono" [style.color]="transaction.type === 'credit' ? '#4ade80' : '#f87171'">
-              {{ transaction.type === "credit" ? "+" : "-" }}${{ transaction.balance.toLocaleString() }}
-            </div>
-
-            <div class="text-gray-400">Type</div>
-            <div class="text-right text-gray-300 capitalize font-medium">{{ transaction.type }} by {{ transaction.source }}</div>
-
-            <div class="text-gray-400">Request ID</div>
-            <div class="text-right text-gray-400 font-mono text-[11px]">{{ transaction.orderID || "//" }}</div>
-
-            <div class="text-gray-400">Date & Time</div>
-            <div class="text-right text-gray-400 text-[11px] font-mono">{{ transaction.time | localTime }}</div>
+          <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
+            <button (click)="openAddBalanceModal()" class="bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-extrabold py-3 px-4 rounded-2xl shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:brightness-110 transition text-sm flex items-center justify-center gap-1.5">
+              <span class="text-lg leading-none">+</span> Deposit
+            </button>
+            <button (click)="openWithdrawBalanceModal()" class="bg-black/60 border border-[#bfa97a]/40 text-[#bfa97a] font-bold py-3 px-4 rounded-2xl hover:bg-[#bfa97a]/10 transition text-sm flex items-center justify-center shadow-md">
+              Withdraw
+            </button>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- Mobile Transactions List -->
+      <div class="flex flex-col mt-2">
+        <div class="flex items-center justify-between mb-3 px-1">
+          <h3 class="text-white font-bold text-base tracking-wide flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Transaction History
+          </h3>
+          <span class="text-xs text-gray-400 font-medium bg-white/5 px-2.5 py-1 rounded-full border border-white/5">{{ filteredTransactions.length }} records</span>
+        </div>
+
+        <div class="overflow-y-auto max-h-[calc(100vh-340px)] space-y-3 pb-20" (scroll)="onMobileScroll($event)"
+          *ngIf="filteredTransactions.length > 0; else noRecord">
+
+          <div *ngFor="let transaction of filteredTransactions"
+            class="border border-[#bfa97a]/20 rounded-2xl p-4 bg-gradient-to-r from-[#14161b] to-[#1a1d24] shadow-xl flex flex-col gap-3 relative overflow-hidden group hover:border-[#bfa97a]/50 transition duration-300">
+
+            <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+              <span class="px-3 py-1 text-xs font-bold rounded-lg border border-current bg-black/40 tracking-wider shadow-inner"
+                [ngClass]="{
+                  'text-green-400 border-green-500/30': transaction.status === 'Complete',
+                  'text-red-400 border-red-500/30': transaction.status === 'Decline',
+                  'text-yellow-400 border-yellow-500/30': transaction.status === 'Pending'
+                }">
+                {{ transaction.status }}
+              </span>
+
+              <div *ngIf="transaction.type === 'debit' && transaction.status === 'Pending'" class="flex gap-3 text-gray-400">
+                <fa-icon [icon]="faEdit" class="cursor-pointer hover:text-[#EEA137] transition" (click)="editWithdrawTransaction(transaction, $event)" title="Edit"></fa-icon>
+                <fa-icon [icon]="faTrash" class="cursor-pointer hover:text-red-400 transition" (click)="deleteWithdrawTransaction(transaction, $event)" title="Delete"></fa-icon>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-y-2 text-xs">
+              <div *ngIf="transaction.type !== 'debit'" class="text-gray-400">Bonus</div>
+              <div *ngIf="transaction.type !== 'debit'" class="text-right text-yellow-400 font-bold">${{ transaction.bonus || 0 }}</div>
+
+              <div class="text-gray-400">Amount</div>
+              <div class="text-right font-extrabold text-sm font-mono" [style.color]="transaction.type === 'credit' ? '#4ade80' : '#f87171'">
+                {{ transaction.type === "credit" ? "+" : "-" }}${{ transaction.balance.toLocaleString() }}
+              </div>
+
+              <div class="text-gray-400">Type</div>
+              <div class="text-right text-gray-300 capitalize font-medium">{{ transaction.type }} by {{ transaction.source }}</div>
+
+              <div class="text-gray-400">Request ID</div>
+              <div class="text-right text-gray-400 font-mono text-[11px]">{{ transaction.orderID || "//" }}</div>
+
+              <div class="text-gray-400">Date & Time</div>
+              <div class="text-right text-gray-400 text-[11px] font-mono">{{ transaction.time | localTime }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="walletView === 'bonus'">
+      <!-- Mobile Bonus Balance Card -->
+      <div class="relative p-6 rounded-3xl border border-[#bfa97a]/40 bg-gradient-to-br from-[#181a20] via-[#111318] to-black shadow-2xl overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-gradient-to-br from-amber-500/10 to-orange-500/5 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col gap-5">
+          <div class="flex items-center justify-between">
+            <div class="flex flex-col">
+              <span class="text-gray-400 text-xs font-bold uppercase tracking-widest">Bonus Balance</span>
+              <span class="text-white text-3xl font-black tracking-wider mt-1.5 font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-200 to-amber-400">
+                {{ showBalance ? "$" + totalBonusBalance.toLocaleString() : "********" }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Bonus Transactions List -->
+      <div class="flex flex-col mt-2">
+        <div class="flex items-center justify-between mb-3 px-1">
+          <h3 class="text-white font-bold text-base tracking-wide flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Bonus History
+          </h3>
+          <span class="text-xs text-gray-400 font-medium bg-white/5 px-2.5 py-1 rounded-full border border-white/5">{{ filteredBonusTransactions.length }} records</span>
+        </div>
+
+        <div class="overflow-y-auto max-h-[calc(100vh-340px)] space-y-3 pb-20"
+          *ngIf="filteredBonusTransactions.length > 0; else noRecord">
+
+          <div *ngFor="let transaction of filteredBonusTransactions"
+            class="border border-[#bfa97a]/20 rounded-2xl p-4 bg-gradient-to-r from-[#14161b] to-[#1a1d24] shadow-xl flex flex-col gap-3 relative overflow-hidden group hover:border-[#bfa97a]/50 transition duration-300">
+
+            <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+              <span class="px-3 py-1 text-xs font-bold rounded-lg border border-current bg-black/40 tracking-wider shadow-inner"
+                [ngClass]="{
+                  'text-green-400 border-green-500/30': transaction.status === 'Complete',
+                  'text-red-400 border-red-500/30': transaction.status === 'Decline',
+                  'text-yellow-400 border-yellow-500/30': transaction.status === 'Pending'
+                }">
+                {{ transaction.status }}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-y-2 text-xs">
+              <div class="text-gray-400">Bonus Amount</div>
+              <div class="text-right font-extrabold text-sm font-mono" [style.color]="transaction.type === 'credit' ? '#4ade80' : '#f87171'">
+                {{ transaction.type === "credit" ? "+" : "-" }}${{ transaction.bonus || 0 }}
+              </div>
+
+              <div class="text-gray-400">Before / After</div>
+              <div class="text-right text-gray-300 font-mono">${{ transaction.beforeBonusBalance || 0 }} → ${{ transaction.afterBonusBalance || 0 }}</div>
+
+              <div class="text-gray-400">Type</div>
+              <div class="text-right text-gray-300 capitalize font-medium">{{ transaction.type }} by {{ transaction.source }}</div>
+
+              <div class="text-gray-400">Request ID</div>
+              <div class="text-right text-gray-400 font-mono text-[11px]">{{ transaction.orderID || "//" }}</div>
+
+              <div class="text-gray-400">Date & Time</div>
+              <div class="text-right text-gray-400 text-[11px] font-mono">{{ transaction.time | localTime }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 
 
   <!-- ================= DESKTOP VIEW ================= -->
   <div class="hidden md:flex flex-col w-full gap-6">
-    
-    <!-- Top Modern Banner Card -->
-    <div class="border border-[#bfa97a]/30 bg-gradient-to-r from-[#14161c] via-[#1b1e26] to-[#121419] rounded-3xl p-8 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden">
-      <!-- Glow Effect -->
-      <div class="absolute -left-20 -top-20 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div class="flex flex-col z-10">
-        <span class="text-gray-400 text-xs font-bold uppercase tracking-widest">Available Balance</span>
-        <div class="mt-2 text-white font-mono text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-200 to-amber-400 flex items-center gap-3">
-          {{ showBalance ? "$" + totalBalance.toLocaleString() : "******" }}
-          <button aria-label="Toggle balance visibility" (click)="toggleBalance()" class="text-[#f3a630] hover:text-white transition text-xl">
-            <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
+
+    <!-- Desktop Wallet / Bonus Wallet Tabs -->
+    <div class="flex items-center gap-2 bg-black/40 border border-[#bfa97a]/20 rounded-2xl p-1.5 w-fit">
+      <button (click)="toggleWalletView('wallet')"
+        class="px-8 py-2.5 rounded-xl text-sm font-bold tracking-wide transition"
+        [ngClass]="walletView === 'wallet' ? 'bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black shadow-md' : 'text-gray-400 hover:text-white'">
+        Wallet
+      </button>
+      <button (click)="toggleWalletView('bonus')"
+        class="px-8 py-2.5 rounded-xl text-sm font-bold tracking-wide transition"
+        [ngClass]="walletView === 'bonus' ? 'bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black shadow-md' : 'text-gray-400 hover:text-white'">
+        Bonus Wallet
+      </button>
+    </div>
+
+    <ng-container *ngIf="walletView === 'wallet'">
+      <!-- Top Modern Banner Card -->
+      <div class="border border-[#bfa97a]/30 bg-gradient-to-r from-[#14161c] via-[#1b1e26] to-[#121419] rounded-3xl p-8 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden">
+        <!-- Glow Effect -->
+        <div class="absolute -left-20 -top-20 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col z-10">
+          <span class="text-gray-400 text-xs font-bold uppercase tracking-widest">Available Balance</span>
+          <div class="mt-2 text-white font-mono text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-200 to-amber-400 flex items-center gap-3">
+            {{ showBalance ? "$" + totalBalance.toLocaleString() : "******" }}
+            <button aria-label="Toggle balance visibility" (click)="toggleBalance()" class="text-[#f3a630] hover:text-white transition text-xl">
+              <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center z-10">
+          <h1 class="text-white font-black text-3xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-[#f3a630] to-[#bfa97a]">Wallet Dashboard</h1>
+          <div class="w-56 h-[3px] bg-gradient-to-r from-transparent via-[#f3a630] to-transparent mt-3 rounded-full shadow-[0_0_10px_#f3a630]"></div>
+        </div>
+
+        <div class="flex items-center gap-4 z-10">
+          <button (click)="openAddBalanceModal()" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-extrabold shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:scale-105 transition text-sm flex items-center gap-2">
+            <span>+ Deposit Funds</span>
+          </button>
+          <button (click)="openWithdrawBalanceModal()" class="px-7 py-3.5 rounded-2xl bg-black/60 border border-[#bfa97a]/40 text-[#bfa97a] hover:bg-[#bfa97a]/10 hover:border-[#bfa97a] transition text-sm font-bold shadow-lg">
+            Withdraw
           </button>
         </div>
       </div>
 
-      <div class="flex-1 flex flex-col items-center z-10">
-        <h1 class="text-white font-black text-3xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-[#f3a630] to-[#bfa97a]">Wallet Dashboard</h1>
-        <div class="w-56 h-[3px] bg-gradient-to-r from-transparent via-[#f3a630] to-transparent mt-3 rounded-full shadow-[0_0_10px_#f3a630]"></div>
-      </div>
+      <!-- Main Transactions Container -->
+      <div class="bg-[#0f1115]/90 backdrop-blur-xl p-8 rounded-3xl border border-[#bfa97a]/30 shadow-2xl flex flex-col relative overflow-hidden">
 
-      <div class="flex items-center gap-4 z-10">
-        <button (click)="openAddBalanceModal()" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-extrabold shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:scale-105 transition text-sm flex items-center gap-2">
-          <span>+ Deposit Funds</span>
-        </button>
-        <button (click)="openWithdrawBalanceModal()" class="px-7 py-3.5 rounded-2xl bg-black/60 border border-[#bfa97a]/40 text-[#bfa97a] hover:bg-[#bfa97a]/10 hover:border-[#bfa97a] transition text-sm font-bold shadow-lg">
-          Withdraw
-        </button>
-      </div>
-    </div>
-
-    <!-- Main Transactions Container -->
-    <div class="bg-[#0f1115]/90 backdrop-blur-xl p-8 rounded-3xl border border-[#bfa97a]/30 shadow-2xl flex flex-col relative overflow-hidden">
-      
-      <!-- Header row inside container -->
-      <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-        <div class="flex items-center gap-3">
-          <div class="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_#f59e0b]"></div>
-          <h2 class="text-white font-extrabold text-xl tracking-wide">Transaction History</h2>
+        <!-- Header row inside container -->
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_#f59e0b]"></div>
+            <h2 class="text-white font-extrabold text-xl tracking-wide">Transaction History</h2>
+          </div>
+          <div class="text-xs text-gray-400 font-semibold bg-white/5 px-4 py-2 rounded-xl border border-white/10">
+            Total Records: <span class="text-amber-400 font-bold">{{ filteredTransactions.length }}</span>
+          </div>
         </div>
-        <div class="text-xs text-gray-400 font-semibold bg-white/5 px-4 py-2 rounded-xl border border-white/10">
-          Total Records: <span class="text-amber-400 font-bold">{{ filteredTransactions.length }}</span>
+
+        <!-- Table Head -->
+        <div class="grid grid-cols-[0.5fr_1.2fr_1fr_0.8fr_0.8fr_0.8fr_1fr_1.2fr_1.2fr] text-[#bfa97a] font-bold text-xs mb-3 items-center px-5 py-4 bg-black/60 rounded-2xl border border-[#bfa97a]/20 uppercase tracking-widest shadow-inner">
+          <div>Sr</div>
+          <div>Type</div>
+          <div>Amount</div>
+          <div>Bonus</div>
+          <div>Tip</div>
+          <div>Fee</div>
+          <div>Status</div>
+          <div>Transaction ID</div>
+          <div>Date & Time</div>
         </div>
-      </div>
 
-      <!-- Table Head -->
-      <div class="grid grid-cols-[0.5fr_1.2fr_1fr_0.8fr_0.8fr_0.8fr_1fr_1.2fr_1.2fr] text-[#bfa97a] font-bold text-xs mb-3 items-center px-5 py-4 bg-black/60 rounded-2xl border border-[#bfa97a]/20 uppercase tracking-widest shadow-inner">
-        <div>Sr</div>
-        <div>Type</div>
-        <div>Amount</div>
-        <div>Bonus</div>
-        <div>Tip</div>
-        <div>Fee</div>
-        <div>Status</div>
-        <div>Transaction ID</div>
-        <div>Date & Time</div>
-      </div>
+        <!-- Table Body Rows -->
+        <div #transactionTable (scroll)="onScroll()" class="space-y-3 h-[44dvh] overflow-y-auto pr-2 custom-scroll"
+          *ngIf="filteredTransactions.length > 0; else noRecord">
 
-      <!-- Table Body Rows -->
-      <div #transactionTable (scroll)="onScroll()" class="space-y-3 h-[44dvh] overflow-y-auto pr-2 custom-scroll"
-        *ngIf="filteredTransactions.length > 0; else noRecord">
-        
-        <div *ngFor="let transaction of filteredTransactions; let i = index"
-          class="grid grid-cols-[0.5fr_1.2fr_1fr_0.8fr_0.8fr_0.8fr_1fr_1.2fr_1.2fr] items-center px-5 py-4 bg-gradient-to-r from-black/50 via-[#13151b]/80 to-black/50 hover:from-[#1a1d26] hover:to-[#161920] border border-white/5 hover:border-[#bfa97a]/40 rounded-2xl transition duration-300 text-xs shadow-md">
-          
-          <div class="text-gray-400 font-mono font-bold">{{ i + 1 }}</div>
+          <div *ngFor="let transaction of filteredTransactions; let i = index"
+            class="grid grid-cols-[0.5fr_1.2fr_1fr_0.8fr_0.8fr_0.8fr_1fr_1.2fr_1.2fr] items-center px-5 py-4 bg-gradient-to-r from-black/50 via-[#13151b]/80 to-black/50 hover:from-[#1a1d26] hover:to-[#161920] border border-white/5 hover:border-[#bfa97a]/40 rounded-2xl transition duration-300 text-xs shadow-md">
 
-          <div class="flex items-center justify-between pr-2">
-            <span class="truncate pr-2 flex items-center gap-2 font-semibold text-gray-200">
-              <i class="fa fa-university text-amber-500/80"></i>
-              {{ transaction.type === "debit" ? "Debit" : "Credit" }} <span class="text-gray-400 font-normal">({{ transaction.source }})</span>
-            </span>
+            <div class="text-gray-400 font-mono font-bold">{{ i + 1 }}</div>
 
-            <div *ngIf="transaction.type === 'debit' && transaction.status === 'Pending'" class="flex gap-2 text-gray-400">
-              <fa-icon [icon]="faEdit" class="cursor-pointer hover:text-[#EEA137] transition" (click)="editWithdrawTransaction(transaction, $event)" title="Edit"></fa-icon>
-              <fa-icon [icon]="faTrash" class="cursor-pointer hover:text-red-400 transition" (click)="deleteWithdrawTransaction(transaction, $event)" title="Delete"></fa-icon>
+            <div class="flex items-center justify-between pr-2">
+              <span class="truncate pr-2 flex items-center gap-2 font-semibold text-gray-200">
+                <i class="fa fa-university text-amber-500/80"></i>
+                {{ transaction.type === "debit" ? "Debit" : "Credit" }} <span class="text-gray-400 font-normal">({{ transaction.source }})</span>
+              </span>
+
+              <div *ngIf="transaction.type === 'debit' && transaction.status === 'Pending'" class="flex gap-2 text-gray-400">
+                <fa-icon [icon]="faEdit" class="cursor-pointer hover:text-[#EEA137] transition" (click)="editWithdrawTransaction(transaction, $event)" title="Edit"></fa-icon>
+                <fa-icon [icon]="faTrash" class="cursor-pointer hover:text-red-400 transition" (click)="deleteWithdrawTransaction(transaction, $event)" title="Delete"></fa-icon>
+              </div>
             </div>
+
+            <div class="font-extrabold text-sm font-mono tracking-wide" [style.color]="transaction.type === 'credit' ? '#4ade80' : '#f87171'">
+              {{ transaction.type === "credit" ? "+" : "-" }}${{ transaction.balance.toLocaleString() }}
+            </div>
+
+            <div class="text-gray-300 font-medium">{{ transaction.bonus > 0 ? ('$' + transaction.bonus) : '-' }}</div>
+            <div class="text-gray-300 font-medium">{{ transaction.tip > 0 ? ('$' + transaction.tip) : '-' }}</div>
+            <div class="text-gray-300 font-medium">{{ transaction.plateformFee ? ('$' + transaction.plateformFee) : '-' }}</div>
+
+            <div class="font-bold flex items-center gap-1.5" [ngClass]="{
+                'text-green-400': transaction.status === 'Complete',
+                'text-red-400': transaction.status === 'Decline',
+                'text-yellow-400': transaction.status === 'Pending'
+              }">
+              <span class="px-2.5 py-0.5 rounded-md bg-black/40 border border-current text-[11px] tracking-wider">{{ transaction.status }}</span>
+              <span class="relative" *ngIf="transaction.status == 'Decline'">
+                <fa-icon [icon]="infoIcon" class="hover-icon cursor-pointer text-red-400"></fa-icon>
+                <div class="tooltip">Reason: {{ transaction?.comment }}</div>
+              </span>
+            </div>
+
+            <div class="text-gray-400 font-mono truncate text-[11px]">{{ transaction.orderID || '//' }}</div>
+            <div class="text-gray-400 text-[11px] font-mono">{{ transaction.time | localTime }}</div>
           </div>
 
-          <div class="font-extrabold text-sm font-mono tracking-wide" [style.color]="transaction.type === 'credit' ? '#4ade80' : '#f87171'">
-            {{ transaction.type === "credit" ? "+" : "-" }}${{ transaction.balance.toLocaleString() }}
+          <div id="sentinel"></div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="walletView === 'bonus'">
+      <!-- Bonus Wallet Banner Card -->
+      <div class="border border-[#bfa97a]/30 bg-gradient-to-r from-[#14161c] via-[#1b1e26] to-[#121419] rounded-3xl p-8 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden">
+        <!-- Glow Effect -->
+        <div class="absolute -left-20 -top-20 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col z-10">
+          <span class="text-gray-400 text-xs font-bold uppercase tracking-widest">Bonus Balance</span>
+          <div class="mt-2 text-white font-mono text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-200 to-amber-400 flex items-center gap-3">
+            {{ showBalance ? "$" + totalBonusBalance.toLocaleString() : "******" }}
+            <button aria-label="Toggle balance visibility" (click)="toggleBalance()" class="text-[#f3a630] hover:text-white transition text-xl">
+              <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
+            </button>
           </div>
-
-          <div class="text-gray-300 font-medium">{{ transaction.bonus > 0 ? ('$' + transaction.bonus) : '-' }}</div>
-          <div class="text-gray-300 font-medium">{{ transaction.tip > 0 ? ('$' + transaction.tip) : '-' }}</div>
-          <div class="text-gray-300 font-medium">{{ transaction.plateformFee ? ('$' + transaction.plateformFee) : '-' }}</div>
-
-          <div class="font-bold flex items-center gap-1.5" [ngClass]="{
-              'text-green-400': transaction.status === 'Complete',
-              'text-red-400': transaction.status === 'Decline',
-              'text-yellow-400': transaction.status === 'Pending'
-            }">
-            <span class="px-2.5 py-0.5 rounded-md bg-black/40 border border-current text-[11px] tracking-wider">{{ transaction.status }}</span>
-            <span class="relative" *ngIf="transaction.status == 'Decline'">
-              <fa-icon [icon]="infoIcon" class="hover-icon cursor-pointer text-red-400"></fa-icon>
-              <div class="tooltip">Reason: {{ transaction?.comment }}</div>
-            </span>
-          </div>
-
-          <div class="text-gray-400 font-mono truncate text-[11px]">{{ transaction.orderID || '//' }}</div>
-          <div class="text-gray-400 text-[11px] font-mono">{{ transaction.time | localTime }}</div>
         </div>
 
-        <div id="sentinel"></div>
+        <div class="flex-1 flex flex-col items-center z-10">
+          <h1 class="text-white font-black text-3xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-[#f3a630] to-[#bfa97a]">Bonus Wallet</h1>
+          <div class="w-56 h-[3px] bg-gradient-to-r from-transparent via-[#f3a630] to-transparent mt-3 rounded-full shadow-[0_0_10px_#f3a630]"></div>
+        </div>
       </div>
-    </div>
+
+      <!-- Bonus Transactions Container -->
+      <div class="bg-[#0f1115]/90 backdrop-blur-xl p-8 rounded-3xl border border-[#bfa97a]/30 shadow-2xl flex flex-col relative overflow-hidden">
+
+        <!-- Header row inside container -->
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_#f59e0b]"></div>
+            <h2 class="text-white font-extrabold text-xl tracking-wide">Bonus History</h2>
+          </div>
+          <div class="text-xs text-gray-400 font-semibold bg-white/5 px-4 py-2 rounded-xl border border-white/10">
+            Total Records: <span class="text-amber-400 font-bold">{{ filteredBonusTransactions.length }}</span>
+          </div>
+        </div>
+
+        <!-- Table Head -->
+        <div class="grid grid-cols-[0.5fr_1.2fr_1fr_1.2fr_1fr_1.2fr_1.2fr] text-[#bfa97a] font-bold text-xs mb-3 items-center px-5 py-4 bg-black/60 rounded-2xl border border-[#bfa97a]/20 uppercase tracking-widest shadow-inner">
+          <div>Sr</div>
+          <div>Type</div>
+          <div>Bonus Amount</div>
+          <div>Before / After</div>
+          <div>Status</div>
+          <div>Transaction ID</div>
+          <div>Date & Time</div>
+        </div>
+
+        <!-- Table Body Rows -->
+        <div class="space-y-3 h-[44dvh] overflow-y-auto pr-2 custom-scroll"
+          *ngIf="filteredBonusTransactions.length > 0; else noRecord">
+
+          <div *ngFor="let transaction of filteredBonusTransactions; let i = index"
+            class="grid grid-cols-[0.5fr_1.2fr_1fr_1.2fr_1fr_1.2fr_1.2fr] items-center px-5 py-4 bg-gradient-to-r from-black/50 via-[#13151b]/80 to-black/50 hover:from-[#1a1d26] hover:to-[#161920] border border-white/5 hover:border-[#bfa97a]/40 rounded-2xl transition duration-300 text-xs shadow-md">
+
+            <div class="text-gray-400 font-mono font-bold">{{ i + 1 }}</div>
+
+            <div class="flex items-center pr-2">
+              <span class="truncate pr-2 flex items-center gap-2 font-semibold text-gray-200">
+                <i class="fa fa-gift text-amber-500/80"></i>
+                {{ transaction.type === "debit" ? "Debit" : "Credit" }} <span class="text-gray-400 font-normal">({{ transaction.source }})</span>
+              </span>
+            </div>
+
+            <div class="font-extrabold text-sm font-mono tracking-wide" [style.color]="transaction.type === 'credit' ? '#4ade80' : '#f87171'">
+              {{ transaction.type === "credit" ? "+" : "-" }}${{ transaction.bonus || 0 }}
+            </div>
+
+            <div class="text-gray-300 font-mono text-[11px]">${{ transaction.beforeBonusBalance || 0 }} → ${{ transaction.afterBonusBalance || 0 }}</div>
+
+            <div class="font-bold flex items-center gap-1.5" [ngClass]="{
+                'text-green-400': transaction.status === 'Complete',
+                'text-red-400': transaction.status === 'Decline',
+                'text-yellow-400': transaction.status === 'Pending'
+              }">
+              <span class="px-2.5 py-0.5 rounded-md bg-black/40 border border-current text-[11px] tracking-wider">{{ transaction.status }}</span>
+              <span class="relative" *ngIf="transaction.status == 'Decline'">
+                <fa-icon [icon]="infoIcon" class="hover-icon cursor-pointer text-red-400"></fa-icon>
+                <div class="tooltip">Reason: {{ transaction?.comment }}</div>
+              </span>
+            </div>
+
+            <div class="text-gray-400 font-mono truncate text-[11px]">{{ transaction.orderID || '//' }}</div>
+            <div class="text-gray-400 text-[11px] font-mono">{{ transaction.time | localTime }}</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 
   <!-- No Record Template -->

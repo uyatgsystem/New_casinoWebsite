@@ -376,6 +376,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
     this.AddScorePayload().tCode = '';
     this.tCode = '';
     this.AddScorePayload().capatchaCode = '';
+    this.scoreSourceType = 'wallet';
     this.showAddScoreModal = true;
     this.getScoreforAddding();
     // if (!this.isAddScoreDisable) {
@@ -533,7 +534,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
     return {
       id: currentGameId,
       gameName: selectedGameName,
-      customerID: this.getCustomerID(),
+      customerId: localStorage.getItem('customerId') || '',
       playerUserName: '',
       playerPassword: '',
       rechargeBalance: 0,
@@ -897,6 +898,7 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
         purchase: this.addedScore,
         confirmScore: this.updatedGivenScore,
       });
+      this.scoreSourceType = 'wallet';
       this.showPaymentModal = true;
       return;
     }
@@ -959,7 +961,8 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
     return {
       gameName: this.GameData?.GameName || this.gameName || 0,
       gameId,
-      customerID: this.getCustomerID()?.toString(),
+      panelId: this.getCurrentGameId(),
+      customerID: localStorage.getItem('customerId') || '',
       playerID: this.selectedPlayerId || 0,
     };
   }
@@ -990,7 +993,7 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
       .subscribe(
         (response) => {
           if (response && response.responseCode === 200) {
-            this.currentScore = response?.data;
+            this.currentScore = response?.data?.score ?? 'allow';
           } else {
             this.currentScore = 'allow';
           }
@@ -1045,7 +1048,7 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
   AddScorePayload() {
     return {
       gameName: this.gameName || 0,
-      customerID: this.getCustomerID()?.toString(),
+      customerID: localStorage.getItem('customerId') || '',
       playerID: this.selectedPlayerId || 0,
       addScore:
         this.addedScore?.toString() || this.scoreForm?.value?.score?.toString(),
@@ -1055,13 +1058,21 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
       totalScore: this.updatedGivenScore.toString(),
       bonus: '0',
       gameId: this.getCurrentGameId(),
+      panelId: this.getCurrentGameId(),
       requestId: this.requestId?.toString() || '',
+      requestType: this.scoreSourceType === 'bonus' ? '2' : '1',
     };
   }
   tCode: string = '';
   addedScore: any;
   requestId: any = '';
   firstPendingIndex: number = -1;
+
+  // 'wallet' -> requestType "1", 'bonus' -> requestType "2"
+  scoreSourceType: 'wallet' | 'bonus' = 'wallet';
+  selectScoreSource(type: 'wallet' | 'bonus'): void {
+    this.scoreSourceType = type;
+  }
 
   getFirstPendingIndex(): number {
     return this.ScoreHistory?.findIndex((e) => e.Status === 1) ?? -1;
@@ -1155,8 +1166,8 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
         },
       );
   }
-  getcustomerId(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getcustomerId(): string | null {
+    return localStorage.getItem('customerId') || '';
   }
 
   onStatusChange() {

@@ -213,7 +213,7 @@ export class StackBuilderComponent implements AfterViewInit, OnDestroy {
   // ─── API Methods ───────────────────────────────────────
   WalletPayload() {
     return {
-      customerId: this.customerId,
+      customerId: localStorage.getItem('customerId') || '',
       pageNumber: 1,
       pageSize: 10,
       searchText: '',

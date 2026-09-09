@@ -820,7 +820,7 @@ export class DoubleComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private loadBalance() {
     const p = {
-      customerId: this.customerId,
+      customerId: localStorage.getItem('customerId') || '',
       pageNumber: 1,
       pageSize: 10,
       searchText: '',

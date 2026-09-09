@@ -70,7 +70,7 @@ export class SideBarComponent implements OnInit, AfterViewInit {
       this.email = localStorage.getItem('email') ?? '';
     }, 2000);
 
-    this.UpdateCustomerLevel();
+    // this.UpdateCustomerLevel();
   }
 
   @HostListener('window:resize')

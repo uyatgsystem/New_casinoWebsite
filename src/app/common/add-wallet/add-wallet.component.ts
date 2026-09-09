@@ -328,7 +328,7 @@ export class AddWalletComponent implements OnInit, AfterViewInit {
 
   WalletPayload() {
     return {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: localStorage.getItem('customerId') || '',
       pageNumber: this.currentPage,
       pageSize: 10,
       searchText: this.currentSearchTerm || '',

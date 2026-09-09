@@ -260,10 +260,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.translate.use(savedLang);
     });
 
-    this.UpdateCustomerLevel();
+    // this.UpdateCustomerLevel();
   }
 
   walletAmount: number = 0;
+  bonusWalletAmount: number = 0;
 
   ngOnDestroy() {
     this.destroy$.next();
@@ -583,7 +584,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   WalletPayload() {
     return {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: localStorage.getItem('customerId') || '',
       pageNumber: 1,
       pageSize: 10,
       searchText: '',
@@ -606,6 +607,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
             this.walletAmount = balance;
             this.totalBalance = balance;
+
+            this.bonusWalletAmount =
+              response.data.totalBonusBalance === '' ||
+              response.data.totalBonusBalance == null
+                ? this.bonusWalletAmount
+                : parseFloat(response.data.totalBonusBalance);
           } else {
             this._errorHandleService.handleResponseError(response);
           }
@@ -870,7 +877,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     const payload = {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: localStorage.getItem('customerId') || '',
       balance: withdrawAmount,
       tip: tipAmount,
       source: this.selectedAccountType,

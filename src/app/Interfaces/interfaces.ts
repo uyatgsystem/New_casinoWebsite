@@ -78,6 +78,13 @@ export interface Transaction {
   creditTime: string;
   source: string;
   type: 'credit' | 'debit';
+  netPaidAmount?: string;
+  beforebalance?: string;
+  afterbalance?: string;
+  beforeBonusBalance?: string;
+  afterBonusBalance?: string;
+  playerlevel?: string;
+  typesofRequest?: string;
 }
 export interface CreateUser {
   userID: number;

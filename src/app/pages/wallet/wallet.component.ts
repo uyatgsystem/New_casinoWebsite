@@ -239,10 +239,18 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.selectedTab = bar;
   }
 
+  public totalBonusBalance = 0;
+  bonusTransactions: any[] = [];
+  walletView: 'wallet' | 'bonus' = 'wallet';
+
+  toggleWalletView(view: 'wallet' | 'bonus') {
+    this.walletView = view;
+  }
+
   WalletPayload() {
-    let customerIdVal = 0;
+    let customerIdVal = '';
     if (isPlatformBrowser(this.platformId)) {
-      customerIdVal = Number(localStorage.getItem('customerId'));
+      customerIdVal = localStorage.getItem('customerId') || '';
     }
     return {
       customerId: customerIdVal,
@@ -270,6 +278,12 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
                 ? this.totalBalance
                 : parseFloat(response.data.totalBalance);
 
+            this.totalBonusBalance =
+              response.data.totalBonusBalance === '' ||
+              response.data.totalBonusBalance == null
+                ? this.totalBonusBalance
+                : parseFloat(response.data.totalBonusBalance);
+
             const creditTransactions = response.data.creditWallets.map(
               (transaction: any) => ({
                 ...transaction,
@@ -295,10 +309,19 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
               (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime(),
             );
 
+            const newBonusTransactions = newTransactions.filter(
+              (transaction) => transaction.typesofRequest === 'bonus',
+            );
+
             if (pageNumber === 1) {
               this.transactions = newTransactions;
+              this.bonusTransactions = newBonusTransactions;
             } else {
               this.transactions = [...this.transactions, ...newTransactions];
+              this.bonusTransactions = [
+                ...this.bonusTransactions,
+                ...newBonusTransactions,
+              ];
             }
 
             const isAnyTransactionPending = this.transactions.some(
@@ -343,6 +366,28 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     return allTransactions;
+  }
+
+  get filteredBonusTransactions() {
+    let allBonusTransactions = this.bonusTransactions;
+
+    switch (this.selectedFilter) {
+      case 'Credited':
+        allBonusTransactions = allBonusTransactions.filter(
+          (transaction) => transaction.type === 'credit',
+        );
+        break;
+      case 'Debited':
+        allBonusTransactions = allBonusTransactions.filter(
+          (transaction) => transaction.type === 'debit',
+        );
+        break;
+      case 'All Transactions':
+      default:
+        break;
+    }
+
+    return allBonusTransactions;
   }
 
   performSearch() {
@@ -422,9 +467,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.Customertag = '';
   }
 
-  getCustomerID(): number | null {
+  getCustomerID(): string | null {
     if (isPlatformBrowser(this.platformId)) {
-      return Number(localStorage.getItem('customerId'));
+      return localStorage.getItem('customerId') || '';
     }
     return null;
   }
@@ -876,9 +921,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    let customerIdVal = 0;
+    let customerIdVal = '';
     if (isPlatformBrowser(this.platformId)) {
-      customerIdVal = Number(localStorage.getItem('customerId'));
+      customerIdVal = localStorage.getItem('customerId') || '';
     }
 
     const payload: any = {
@@ -948,9 +993,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    let customerIdVal = 0;
+    let customerIdVal = '';
     if (isPlatformBrowser(this.platformId)) {
-      customerIdVal = Number(localStorage.getItem('customerId'));
+      customerIdVal = localStorage.getItem('customerId') || '';
     }
 
     const payload: any = {
@@ -1041,9 +1086,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loaderService.hide();
           } else {
             resolve(response.opaqueData);
-            let customerIdVal = 0;
+            let customerIdVal = '';
             if (isPlatformBrowser(this.platformId)) {
-              customerIdVal = Number(localStorage.getItem('customerId'));
+              customerIdVal = localStorage.getItem('customerId') || '';
             }
             this.opaquePayload = {
               customerId: customerIdVal,

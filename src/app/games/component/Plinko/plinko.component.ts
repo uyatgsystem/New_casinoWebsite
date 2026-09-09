@@ -132,7 +132,7 @@ export class PlinkoComponent implements OnInit, AfterViewInit, OnDestroy {
   // --- Wallet ---
   WalletPayload() {
     return {
-      customerId: this.customerId,
+      customerId: localStorage.getItem('customerId') || '',
       pageNumber: 1,
       pageSize: 10,
       searchText: '',

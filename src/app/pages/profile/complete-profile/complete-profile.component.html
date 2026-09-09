@@ -478,45 +478,44 @@
           </div>
           <div class="level-summary">
             <span>Current level</span
-            ><strong>{{ getLevelName(profileLevel || 1) }}</strong
+            ><strong>{{ playerLevel || '-' }}</strong
             ><span
-              >{{ TotalReferral }} referrals · ${{
-                TotalDepositAmount
+              >{{ referrals?.length || 0 }} referrals · ${{
+                customerTotalDeposit
               }}
               deposited</span
             >
           </div>
           <div class="levels-list">
             <div
-              *ngFor="let badge of badgeList"
+              *ngFor="let lvl of levels"
               class="level-row"
-              [class.current-level]="profileLevel === badge.level"
+              [class.current-level]="playerLevel === lvl.LevelName"
             >
               <img
-                [src]="getLevelImage(badge.level)"
-                [alt]="getLevelName(badge.level)"
+                [src]="getLevelImage(lvl.LevelName)"
+                [alt]="lvl.LevelName"
               />
               <div class="level-info">
                 <div>
-                  <h3>{{ getLevelName(badge.level) }}</h3>
+                  <h3>{{ lvl.LevelName }}</h3>
                   <span
-                    *ngIf="profileLevel === badge.level"
+                    *ngIf="playerLevel === lvl.LevelName"
                     class="current-label"
                     >Current level</span
                   >
                 </div>
                 <p>
-                  Deposit ${{ badge.depositAmount }} ·
-                  {{ badge.referralCount }} referrals
+                  Deposit ${{ lvl.MinDepositRange }} - ${{ lvl.MaxDepositRange }}
                 </p>
                 <div class="level-progress">
                   <span
-                    [style.width.%]="getDepositProgress(badge.depositAmount)"
+                    [style.width.%]="getDepositProgress(lvl)"
                   ></span>
                 </div>
               </div>
               <i
-                *ngIf="profileLevel === badge.level"
+                *ngIf="playerLevel === lvl.LevelName"
                 class="fa fa-check-circle level-check"
               ></i>
             </div>

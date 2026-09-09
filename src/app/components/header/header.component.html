@@ -25,6 +25,12 @@
           </button>
         </div>
 
+        <div class="flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-9 px-2.5"
+          (click)="RedirectToWallet()" title="Bonus Wallet">
+          <i class="fas fa-gift text-[#F3A630] text-xs mr-1.5"></i>
+          <span class="text-[#F3A630] font-bold text-xs font-mono">${{ bonusWalletAmount | number: "1.2-2" }}</span>
+        </div>
+
         <button (click)="toggleNotifications()" class="relative flex items-center justify-center w-9 h-9 bg-black/85 border border-[#C3B089]/40 rounded-2xl text-[#F3A630]">
           <i class="fas fa-bell text-sm"></i>
           <span *ngIf="notifications.length > 0"
@@ -96,6 +102,15 @@
             class="relative z-10 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black px-5 h-full rounded-r-2xl font-black text-xs uppercase tracking-wider hover:brightness-110 transition">
             <span>+</span> {{Deposit | translate}}
           </button>
+        </div>
+
+        <!-- Bonus Wallet Pill -->
+        <div class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-11 px-4 gap-2 shadow-md cursor-pointer"
+          (click)="RedirectToWallet()" title="Bonus Wallet">
+          <i class="fas fa-gift text-[#F3A630] text-sm"></i>
+          <span class="text-[#F3A630] font-bold font-mono text-sm">
+            ${{ bonusWalletAmount | number: "1.2-2" }}
+          </span>
         </div>
 
         <!-- Withdraw Button -->

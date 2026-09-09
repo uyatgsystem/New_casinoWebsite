@@ -153,7 +153,7 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
 
     this.getCustomerReferrals();
     this.GetCustomerLevel();
-    this.UpdateCustomerLevel();
+    // this.UpdateCustomerLevel();
   }
 
 
@@ -624,7 +624,7 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
   // * Wallet Payload
   WalletPayload(pageNumber?: number) {
     return {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: localStorage.getItem('customerId') || '',
       pageNumber: pageNumber || this.currentPage,
       pageSize: 10,
       searchText: this.currentSearchTerm || '',
@@ -779,8 +779,9 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
 
   referrals: any[] | null = []; getCustomerReferrals() {
     this.loaderService.show();
+    const customerId = localStorage.getItem('customerId') || '';
     this.apiCallService
-      .GetCallWithToken(`User/GetCustomerReferrals`)
+      .GetCallWithToken(`User/GetCustomerReferrals?customerId=${customerId}`)
       .subscribe({
         next: (response) => {
           if (response?.responseCode === 200) {
@@ -883,106 +884,48 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
 
 
   profileLevel: number = 0;
-  setProfileLevel() {
-    const deposit = this.TotalDepositAmount;
-    const referral = this.TotalReferral;
-    const kyc = this.IsKycCompleted;
-
-    // // Bronze
-    // if (deposit >= 10 && referral >= 1 && kyc === 1) {
-    //   this.profileLevel = 1;
-    //   this.UpdateCustomerLevel();
-    // }
-
-    // // Silver
-    // if (deposit >= 100 && referral >= 10 && kyc === 1) {
-    //   this.profileLevel = 2;
-    //   this.UpdateCustomerLevel();
-    // }
-
-    // // Gold
-    // if (deposit >= 500 && referral >= 20 && kyc === 1) {
-    //   this.profileLevel = 3;
-    //   this.UpdateCustomerLevel();
-    // }
-
-    // // Platinum
-    // if (deposit >= 1000 && referral >= 50 && kyc === 1) {
-    //   this.profileLevel = 4;
-    //   this.UpdateCustomerLevel();
-    // }
-
-    // // Diamond
-    // if (deposit >= 5000 && referral >= 100 && kyc === 1) {
-    //   this.profileLevel = 5;
-    //   this.UpdateCustomerLevel();
-    // }
-  }
 
 
-  getLevelName(level: number): string {
-    switch (level) {
-      case 1: return 'Bronze';
-      case 2: return 'Silver';
-      case 3: return 'Gold';
-      case 4: return 'Platinum';
-      case 5: return 'Diamond';
-      default: return 'Level ' + level;
-    }
-  }
-
-  getLevelImage(level: number): string {
-    switch (level) {
-      case 1: return '/BrornzeLevel.png';
-      case 2: return '/SilverLevel.png';
-      case 3: return '/GoldLevel.png';
-      case 4: return '/PlatinumLevel.png';
-      case 5: return '/DiamondLevel.png';
+  getLevelImage(levelName: string): string {
+    switch ((levelName || '').toLowerCase()) {
+      case 'bronze': return '/BrornzeLevel.png';
+      case 'silver': return '/SilverLevel.png';
+      case 'gold': return '/GoldLevel.png';
+      case 'diamond': return '/DiamondLevel.png';
       default: return '/default.png';
     }
   }
 
-  getDepositProgress(target: number): number {
-    if (!target) return 0;
+  getDepositProgress(lvl: any): number {
+    const min = Number(lvl?.MinDepositRange) || 0;
+    const max = Number(lvl?.MaxDepositRange) || 0;
+    if (max <= min) return 0;
 
-    const percent = (this.TotalDepositAmount / target) * 100;
+    const percent = ((this.customerTotalDeposit - min) / (max - min)) * 100;
 
-    return Math.min(percent, 100); // never exceed 100%
+    return Math.min(Math.max(percent, 0), 100); // clamp between 0-100%
   }
 
   //* User Level Badge Api Call
-  TotalDepositAmount: number = 0;
-  TotalReferral: number = 0;
-  IsKycCompleted: number = 0;
-  BadgeRules: any;
-  badgeList: any[] = [];
+  playerLevel: string = '';
+  customerTotalDeposit: number = 0;
+  levels: any[] = [];
 
   // API CALL
   GetCustomerLevel() {
-    const customerId = localStorage.getItem('customerId');
+    const customerId = localStorage.getItem('customerId') || '';
 
     this.apiCallService
-      .GetCallWithToken(`User/GetCustomerLevelRecord?customerId=` + customerId)
+      .GetCallWithToken(`Customer/GetCustomerLevel?CustomerId=${customerId}`)
       .subscribe({
         next: (response) => {
           if (response && response.responseCode === 200) {
-
             const data = response.data;
-            const redeemInfo = data.redeemInformation[0];
-            this.TotalDepositAmount = redeemInfo.TotalDepositAmount;
-            this.TotalReferral = redeemInfo.TotalReferral;
-            this.IsKycCompleted = redeemInfo.IsKycCompleted;
-
-            const levels = data.customerLevels;
-            this.badgeList = Object.keys(levels).map(key => ({
-              level: Number(key),
-              depositAmount: levels[key].depositAmount,
-              referralCount: levels[key].referralCount,
-              benefits: levels[key].benefits
-            }));
-
-            this.badgeList.sort((a, b) => a.level - b.level);
-
+            this.playerLevel = data.playerLevel || '';
+            this.customerTotalDeposit = Number(data.customerTotalDeposit) || 0;
+            this.levels = (data.levels || [])
+              .slice()
+              .sort((a: any, b: any) => (a.MinDepositRange || 0) - (b.MinDepositRange || 0));
           } else {
             this.handleerror.handleResponseError(response);
           }

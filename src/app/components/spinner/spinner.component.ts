@@ -951,7 +951,7 @@ export class SpinnerComponent implements OnInit, OnDestroy {
 
   WalletPayload() {
     return {
-      customerId: Number(localStorage.getItem('customerId')),
+      customerId: localStorage.getItem('customerId') || '',
       pageNumber: 1,
       pageSize: 10,
       searchText: '',

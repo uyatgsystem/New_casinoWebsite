@@ -245,7 +245,7 @@ export class GameTableComponent implements OnInit {
   // --- WALLET ---
   getWalletBalance(): void {
     const payload = {
-      customerId: Number(this.utilsService.getItem('customerId')),
+      customerId: this.utilsService.getItem('customerId') || '',
       pageNumber: 1,
       pageSize: 10,
       searchText: '',

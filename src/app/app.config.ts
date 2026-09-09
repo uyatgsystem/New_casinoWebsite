@@ -4,10 +4,11 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay, withHttpTransferCacheOptions } from '@angular/platform-browser';
-import { provideHttpClient, withFetch, HttpTransferCacheOptions } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors, HttpTransferCacheOptions } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { TranslateModule } from '@ngx-translate/core';
+import { clockDriftRetryInterceptor } from './Services/clock-drift-retry.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withHttpTransferCacheOptions({
       includePostRequests: true
     })),
-    provideHttpClient(withFetch()), provideToastr({}),
+    provideHttpClient(withFetch(), withInterceptors([clockDriftRetryInterceptor])), provideToastr({}),
     importProvidersFrom(NgxSpinnerModule.forRoot({ type: 'ball-clip-rotate-multiple' })),
     importProvidersFrom(TranslateModule.forRoot({
       defaultLanguage: 'en'
