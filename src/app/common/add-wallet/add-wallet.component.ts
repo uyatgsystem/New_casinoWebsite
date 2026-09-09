@@ -730,6 +730,14 @@ export class AddWalletComponent implements OnInit, AfterViewInit {
     // },
   ];
 
+  // Cap "Coming Soon" placeholders shown in the payment method grid to 2, so the
+  // grid isn't dominated by inactive tiles when the backend returns many.
+  get visibleAccountTypes(): any[] {
+    const active = this.AccountType.filter((a: any) => a.isActive);
+    const comingSoon = this.AccountType.filter((a: any) => !a.isActive).slice(0, 2);
+    return [...active, ...comingSoon];
+  }
+
   getActivePaymentMethods() {
     this.loaderService.show();
     this.apiCallService
