@@ -710,53 +710,49 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   //   const randomPart = components.join('');
   //   return `${prefix}${randomPart}${gameInitials}`;
   // }
-generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
-    // 1. Clean the name: Remove anything that isn't a letter or number
-    let cleanedName = CustomerName.replace(/[^a-zA-Z0-9]/g, () => {
-      return String.fromCharCode(97 + Math.floor(Math.random() * 26));
-    });
+  generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
+    // 1. Clean the name: Remove anything that isn't a letter or number
+    let cleanedName = CustomerName.replace(/[^a-zA-Z0-9]/g, () => {
+      return String.fromCharCode(97 + Math.floor(Math.random() * 26));
+    }); // --- NEW FIX START ---
+    // if only numbers
 
-    // --- NEW FIX START ---
-    // if only numbers
-    if (/^\d+$/.test(cleanedName)) {
-      // replce first 2 with alpahbet
-      const randomChar1 = String.fromCharCode(97 + Math.floor(Math.random() * 26));
-      const randomChar2 = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+    if (/^\d+$/.test(cleanedName)) {
+      // replce first 2 with alpahbet
+      const randomChar1 = String.fromCharCode(
+        97 + Math.floor(Math.random() * 26),
+      );
+      const randomChar2 = String.fromCharCode(
+        97 + Math.floor(Math.random() * 26),
+      );
 
-      cleanedName = randomChar1 + randomChar2 + cleanedName.slice(2);
-    }
-    // --- NEW FIX END ---
+      cleanedName = randomChar1 + randomChar2 + cleanedName.slice(2);
+    } // --- NEW FIX END ---
+    // Then take the first 5 chars
+    let prefix: string = cleanedName.slice(0, 5).toLowerCase(); // 2. Pad if shorter than 5
 
-    // Then take the first 5 chars
-    let prefix: string = cleanedName.slice(0, 5).toLowerCase();
+    if (prefix.length < 5) {
+      const charsNeeded = 5 - prefix.length;
+      for (let i = 0; i < charsNeeded; i++) {
+        prefix += String.fromCharCode(97 + Math.floor(Math.random() * 26));
+      }
+    } // 3. Get game initials
 
-    // 2. Pad if shorter than 5
-    if (prefix.length < 5) {
-      const charsNeeded = 5 - prefix.length;
-      for (let i = 0; i < charsNeeded; i++) {
-        prefix += String.fromCharCode(97 + Math.floor(Math.random() * 26));
-      }
-    }
+    let gameInitials: string = this.utilsService.gameNameInitials(gameId); // 4. Generate the 3 random components (2 digits, 1 letter)
 
-    // 3. Get game initials
-    let gameInitials: string = this.utilsService.gameNameInitials(gameId);
+    const digit1 = Math.floor(Math.random() * 10).toString();
+    const digit2 = Math.floor(Math.random() * 10).toString();
+    const letter = String.fromCharCode(97 + Math.floor(Math.random() * 26)); // 5. Place them in an array and shuffle
 
-    // 4. Generate the 3 random components (2 digits, 1 letter)
-    const digit1 = Math.floor(Math.random() * 10).toString();
-    const digit2 = Math.floor(Math.random() * 10).toString();
-    const letter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+    let components = [digit1, digit2, letter];
+    for (let i = components.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [components[i], components[j]] = [components[j], components[i]];
+    } // 6. Join the shuffled components and return
 
-    // 5. Place them in an array and shuffle
-    let components = [digit1, digit2, letter];
-    for (let i = components.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [components[i], components[j]] = [components[j], components[i]];
-    }
-
-    // 6. Join the shuffled components and return
-    const randomPart = components.join('');
-    return `${prefix}${randomPart}${gameInitials}`;
-}
+    const randomPart = components.join('');
+    return `${prefix}${randomPart}${gameInitials}`;
+  }
   generateGameIdentifier(gameId: number): string {
     let prefix: string = this.utilsService.gameNameInitials(gameId);
     const randomDigits = Math.floor(1000 + Math.random() * 9000);
@@ -957,18 +953,19 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
         game.GameName === (this.GameData?.GameName || this.gameName),
     );
     const gameId = selectedGame ? selectedGame.GameId : 0;
-
+    const selectedFromStorage = (
+      this.Gameservice.getArrayInLocalStorage('bis_data') || []
+    ).find((data: any) => data?.GameName === selectedGame?.GameName);
     return {
       gameName: this.GameData?.GameName || this.gameName || 0,
       gameId,
-      panelId: this.getCurrentGameId(),
+      panelId: selectedFromStorage?.PanelId,
       customerID: localStorage.getItem('customerId') || '',
       playerID: this.selectedPlayerId || 0,
     };
   }
 
   getScoreforAddding() {
-
     if (this.isScoreLoading) {
       return;
     }
@@ -983,8 +980,7 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
         this.suppressScoreHistory = false;
         this.suppressTimer = null;
       }, this.suppressMs);
-    } catch {
-    }
+    } catch { }
 
     const payload = this.showScorePayload();
 
@@ -1220,7 +1216,6 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
       .subscribe({
         next: (response) => {
           if (response?.responseCode === 200) {
-
             const apiData = Array.isArray(response?.data)
               ? response.data
               : response?.data?.data || [];
@@ -1233,8 +1228,8 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
 
               this.ScoreHistory = Array.from(
                 new Map(
-                  combinedGames.map((game: any) => [game.Id, game])
-                ).values()
+                  combinedGames.map((game: any) => [game.Id, game]),
+                ).values(),
               );
             }
 
@@ -1242,15 +1237,14 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
             this.ScoreHistory.sort(
               (a: any, b: any) =>
                 new Date(b.AddedDate).getTime() -
-                new Date(a.AddedDate).getTime()
+                new Date(a.AddedDate).getTime(),
             );
 
             // Reset state every time
             this.isAddScoreDisable = false;
 
             const pendingScore = this.ScoreHistory.find(
-              (item: any) =>
-                item.Status === 1 || item.Status === '1'
+              (item: any) => item.Status === 1 || item.Status === '1',
             );
 
             if (pendingScore) {
@@ -1260,7 +1254,7 @@ generateGameAccountIdentifier(CustomerName: string, gameId: any): string {
             const firstPendingIndex = this.ScoreHistory.findIndex(
               (item: any) =>
                 (item.Status === 1 || item.Status === '1') &&
-                item?.RequestType?.toLowerCase() === 'automation'
+                item?.RequestType?.toLowerCase() === 'automation',
             );
 
             if (firstPendingIndex > -1) {
