@@ -1,20 +1,12 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-// export interface Game {
-//   id: number;
-//   name: string;
-//   image: string;
-//   offer: number;
-//   buttonText: string;
-//   downloadLink: string;
-//   provider: string;
-//   hot: string;
-// }
+
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
   private gameData: any;
+  
   getGames(): any[] {
     return this.games;
   }
@@ -63,6 +55,7 @@ export class GameService {
   getGameById(id: number): any | undefined {
     return this.games.find((game) => game.id === id);
   }
+
   games: any[] = [
     {
       id: 1,
@@ -94,8 +87,7 @@ export class GameService {
       id: 3,
       name: 'GoldenTreasure',
       image: 'https://cmax-2.pages.dev/assets/game/GoldenTreasure-game.png',
-      coverImage:
-        'https://cmax-2.pages.dev/assets/game/GoldenTreasure-game-old.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/GoldenTreasure-game-old.png',
       offer: 0,
       buttonText: 'Add Player',
       downloadLink: 'https://www.goldentreasure.mobi/',
@@ -121,8 +113,7 @@ export class GameService {
       id: 5,
       name: 'UltraPanda',
       image: 'https://cmax-2.pages.dev/assets/game/UltraPanda-game.png',
-      coverImage:
-        'https://cmax-2.pages.dev/assets/game/UltraPanda-game-old.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/UltraPanda-game-old.png',
       offer: 0,
       buttonText: 'Add Player',
       downloadLink: 'https://www.ultrapanda.mobi/',
@@ -222,57 +213,45 @@ export class GameService {
       bgclr: '#00f260',
       color2: '#0575e6',
     },
-    // {
-    //   id: 13,
-    //   name: 'CashMachine',
-    //   image: 'https://cmax-2.pages.dev/assets/game/cash-machine-jackpots.png',
-    //   coverImage:
-    //     'https://cmax-2.pages.dev/assets/game/cash-machine-jackpots-old.jpg',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'https://www.cashmachine777.com/m',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#36d1dc',
-    //   color2: '#5b86e5',
-    // },
-    // {
-    //   id: 14,
-    //   name: 'BlueDragon',
-    //   image: 'https://cmax-2.pages.dev/assets/game/blue-dragon.png',
-    //   coverImage: 'https://cmax-2.pages.dev/assets/game/blue-dragon-old.jpeg',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'http://app.bluedragon777.com/',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#c471f5',
-    //   color2: '#fa71cd',
-    // },
-    // // {
-    // //   id: 15,
-    // //   name: 'RiverPay',
-    // //   image: 'https://cmax-2.pages.dev/assets/game/river-pay.png',
-    // //   coverImage: 'https://cmax-2.pages.dev/assets/game/river-pay-old.jpeg',
-    // //   offer: 0,
-    // //   buttonText: 'Add Player',
-    // //   downloadLink: 'https://bet777.eu/',
-    // //   provider: 'Master Gaming',
-    // //   isHot: false,
-    // // },
-    // {
-    //   id: 16,
-    //   name: 'CashVault',
-    //   image: 'https://cmax-2.pages.dev/assets/game/cash-vault.png',
-    //   coverImage: 'https://cmax-2.pages.dev/assets/game/cash-vault-old.jpeg',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'cashvault777.com',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#31CCD9',
-    //   color2: '#EF7C5F',
-    // },
+    {
+      id: 13,
+      name: 'CashMachine',
+      image: 'https://cmax-2.pages.dev/assets/game/cash-machine-jackpots.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/cash-machine-jackpots-old.jpg',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'https://www.cashmachine777.com/m',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#36d1dc',
+      color2: '#5b86e5',
+    },
+    {
+      id: 14,
+      name: 'BlueDragon',
+      image: 'https://cmax-2.pages.dev/assets/game/blue-dragon.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/blue-dragon-old.jpeg',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'http://app.bluedragon777.com/',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#c471f5',
+      color2: '#fa71cd',
+    },
+    {
+      id: 16,
+      name: 'CashVault',
+      image: 'https://cmax-2.pages.dev/assets/game/cash-vault.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/cash-vault-old.jpeg',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'https://download.cashvault777.com',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#31CCD9',
+      color2: '#EF7C5F',
+    },
     {
       id: 17,
       name: 'MrAll',
@@ -286,161 +265,165 @@ export class GameService {
       bgclr: '#40e9ff',
       color2: '#5fe3fa',
     },
-    // {
-    //   id: 18,
-    //   name: 'CashFrenzy',
-    //   image: 'https://cmax-2.pages.dev/assets/game/cash-frenzy.png',
-    //   coverImage: 'https://cmax-2.pages.dev/assets/game/cash-frenzy-old.png',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'http://www.cashfrenzy777.com/',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#E9ADCF',
-    //   color2: '#4a00e0',
-    // },
-    // {
-    //   id: 19,
-    //   name: 'Mafia',
-    //   image: 'https://cmax-2.pages.dev/assets/game/mafia.png',
-    //   coverImage: 'https://cmax-2.pages.dev/assets/game/mafia-old.jpg',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'http://www.mafia77777.com',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#b7ebfa',
-    //   color2: '#1E1CB0',
-    // },
-    // {
-    //   id: 20,
-    //   name: 'VegasLuck',
-    //   image: 'https://cmax-2.pages.dev/assets/game/vegas-luck.png',
-    //   coverImage: 'https://cmax-2.pages.dev/assets/game/vegas-luck-old.jpeg',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'https://start.vegasluck777.com',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#3bdaafff',
-    //   color2: '#99f2c8',
-    // },
-    // // {
-    // //   id: 21,
-    // //   name: 'Gem',
-    // //   image: 'https://cmax-2.pages.dev/assets/game/gem.png',
-    // //   coverImage: 'https://cmax-2.pages.dev/assets/game/gem-old.png',
-    // //   offer: 0,
-    // //   buttonText: 'Add Player',
-    // //   downloadLink: 'https://www.gem77777.com',
-    // //   provider: 'Master Gaming',
-    // //   isHot: false,
-    // // },
-    // {
-    //   id: 22,
-    //   name: 'WinStar',
-    //   image: 'https://cmax-2.pages.dev/assets/game/win-star.png',
-    //   coverImage: 'https://cmax-2.pages.dev/assets/game/win-star-old.jpeg',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'http://www.winstar99999.com',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#FDD74E',
-    //   color2: '#ff1e56',
-    // },
-    // {
-    //   id: 23,
-    //   name: 'AceClub',
-    //   image: 'https://cmax-2.pages.dev/assets/game/ace-club.png',
-    //   coverImage: 'https://cmax-2.pages.dev/assets/game/ace-club-old.jpeg',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'https://www.ace777.club',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#07A3B2',
-    //   color2: '#D9ECC7',
-    // },
-    // {
-    //   id: 24,
-    //   name: 'LuckyStar',
-    //   image: 'https://cmax-2.pages.dev/assets/game/lucky-star.png',
-    //   coverImage: 'https://cmax-2.pages.dev/assets/game/lucky-star-old.jpeg',
-    //   offer: 0,
-    //   buttonText: 'Add Player',
-    //   downloadLink: 'https://www.luckystars.games/',
-    //   provider: 'Master Gaming',
-    //   isHot: false,
-    //   bgclr: '#59dddd',
-    //   color2: '#00ffe0',
-    // },
+    {
+      id: 18,
+      name: 'CashFrenzy',
+      image: 'https://cmax-2.pages.dev/assets/game/cash-frenzy.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/cash-frenzy-old.png',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'http://www.cashfrenzy777.com/',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#E9ADCF',
+      color2: '#4a00e0',
+    },
+    {
+      id: 19,
+      name: 'Mafia',
+      image: 'https://cmax-2.pages.dev/assets/game/mafia.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/mafia-old.jpg',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'http://www.mafia77777.com',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#b7ebfa',
+      color2: '#1E1CB0',
+    },
+    {
+      id: 20,
+      name: 'VegasLuck',
+      image: 'https://cmax-2.pages.dev/assets/game/vegas-luck.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/vegas-luck-old.jpeg',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'https://start.vegasluck777.com',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#3bdaafff',
+      color2: '#99f2c8',
+    },
+    {
+      id: 22,
+      name: 'WinStar',
+      image: 'https://cmax-2.pages.dev/assets/game/win-star.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/win-star-old.jpeg',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'http://www.winstar99999.com',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#FDD74E',
+      color2: '#ff1e56',
+    },
+    {
+      id: 23,
+      name: 'AceClub',
+      image: 'https://cmax-2.pages.dev/assets/game/ace-club.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/ace-club-old.jpeg',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'https://www.ace777.club',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#07A3B2',
+      color2: '#D9ECC7',
+    },
+    {
+      id: 24,
+      name: 'LuckyStar',
+      image: 'https://cmax-2.pages.dev/assets/game/lucky-star.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/lucky-star-old.jpeg',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'https://www.luckystars.games/',
+      provider: 'Master Gaming',
+      isHot: false,
+      bgclr: '#59dddd',
+      color2: '#00ffe0',
+    },
+    {
+      id: 10014,
+      name: 'Juwa2',
+      image: 'https://cmax-2.pages.dev/assets/game/juwa2.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/Juwa-game-old.png',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'https://m.juwa2.com/',
+      provider: 'Juwa',
+      isHot: false,
+      bgclr: '#00dbde',
+      color2: '#00c853',
+    },
+    {
+      id: 10016,
+      name: 'PandaMaster',
+      image: 'https://cmax-2.pages.dev/assets/game/PandaMaster.png',
+      coverImage: 'https://cmax-2.pages.dev/assets/game/PandaMaster.png',
+      offer: 0,
+      buttonText: 'Add Player',
+      downloadLink: 'https://pandamaster.vip:8888/index.html',
+      provider: 'PandaMaster',
+      isHot: false,
+      bgclr: '#00dbde',
+      color2: '#00c853',
+    },
   ];
-  constructor() { }
+
+  constructor() {}
+
   showChat: boolean = false;
-  // Setter function
+
   setGameData(data: any): void {
     this.gameData = data;
   }
 
-  // Getter function
   getGameData(): any {
     return this.gameData;
   }
-  //   Funtion call service use
+
   private triggerSubject = new EventEmitter<void>();
 
   triggerFunction() {
-    // Check if the function is already in the process of being triggered
     this.triggerSubject.emit();
   }
 
   getTriggerObservable() {
     return this.triggerSubject.asObservable();
   }
-  //   Funtion call service use
+
   private triggerChatSubject = new EventEmitter<void>();
 
   triggerShowChatFunction() {
-    // Check if the function is already in the process of being triggered
     this.triggerChatSubject.emit();
   }
 
   getTriggerShowChatObservable() {
     return this.triggerChatSubject.asObservable();
   }
+
   getCustomerID(): number {
     return Number(localStorage.getItem('customerId')?.length);
   }
+
   setArrayInLocalStorage(data: any[]) {
     localStorage.setItem('bis_data', JSON.stringify(data));
   }
+
   getArrayInLocalStorage(locale: string): any[] {
     return JSON.parse(localStorage.getItem(locale) || '[]');
   }
 
-  /////////////////////geter setter for balance
-
   private _balance!: number;
 
-  // Getter to retrieve the balance
   get balance(): number {
     return this._balance;
   }
 
-  // Setter to update the balance
   set balance(value: number) {
     this._balance = value;
   }
-
-  // Function to handle wallet values Start
-  // private actionSource = new Subject<void>(); // Can pass data if needed
-  // action$ = this.actionSource.asObservable();
-
-  // triggerAction() {
-  //   this.actionSource.next(); // Notify subscribers
-  // }
-  // Function to handle wallet values End
 
   saveTotalBalance(totalBalance: number) {
     localStorage.setItem('totalBalance', totalBalance.toString());

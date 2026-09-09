@@ -42,15 +42,6 @@
           to win.
         </p>
       </div>
-
-      <!-- Person Image -->
-      <!-- <div class="hidden lg:flex justify-start items-end">
-        <img
-          src="https://cmaxv2images2.pages.dev/assets/avatars/loginCPL.png"
-          alt="Person"
-          class="w-auto h-[100px] sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[470px]"
-        />
-      </div> -->
     </div>
 
     <!-- Mobile Header -->
@@ -305,7 +296,7 @@
             Passwords do not match.
           </div>
 
-          <!-- Terms & Conditions Checkbox (Clean layout structure) -->
+          <!-- Terms & Conditions Checkbox -->
           <div class="flex items-start gap-2.5 mt-2.5">
             <input
               type="checkbox"
@@ -323,7 +314,7 @@
             </label>
           </div>
 
-          <!-- Bonus Checkbox (Clean layout structure) -->
+          <!-- Bonus Checkbox -->
           <div class="flex items-start gap-2.5 mt-2.5 mb-3">
             <input
               type="checkbox"
@@ -389,18 +380,23 @@
   </div>
 
   <!-- Modal Backdrop -->
+  <!-- Modal Backdrop -->
   <div
     *ngIf="showTermsModal"
     class="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/80"
   >
     <div
-      class="bg-[#121418] w-[95%] md:w-[70%] lg:w-[60%] max-h-[85vh] overflow-y-auto p-5 md:p-6 rounded-[1.5rem] border border-[#FE8912]"
+      class="bg-[#121418] w-[95%] md:w-[70%] lg:w-[60%] max-h-[85vh] flex flex-col p-5 md:p-6 rounded-[1.5rem] border border-[#FE8912] shadow-2xl"
     >
-      <h2 class="text-[#F3A630] text-lg md:text-xl font-semibold mb-3">
+      <h2
+        class="text-[#F3A630] text-lg md:text-xl font-semibold mb-3 flex-shrink-0"
+      >
         Terms & Conditions
       </h2>
 
-      <div class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-2">
+      <div
+        class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-2 overflow-y-auto pr-2 custom-scrollbar"
+      >
         <p>
           <strong>1.</strong> By registering, you confirm that you are at least
           18 years old.
@@ -422,10 +418,14 @@
           transactions.
         </p>
       </div>
-      <div class="flex justify-end mt-5">
+
+      <div
+        class="flex justify-end mt-5 pt-3 border-t border-white/10 flex-shrink-0"
+      >
         <button
+          type="button"
           (click)="closeTermsModal()"
-          class="px-4 py-2 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black font-semibold rounded-tl-[10px] rounded-tr-[3px] rounded-br-[10px] rounded-bl-[3px] text-xs"
+          class="px-5 py-2 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black font-semibold rounded-tl-[10px] rounded-tr-[3px] rounded-br-[10px] rounded-bl-[3px] text-xs md:text-sm transition-transform active:scale-95"
         >
           Close
         </button>
