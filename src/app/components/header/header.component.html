@@ -3,7 +3,7 @@
 <!-- ================= MOBILE HEADER (< 800px) ================= -->
 <header *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()" class="body-font sticky z-[997] w-[100%] top-0">
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-  <div *ngIf="isDashboardRoute()" class="text-[var(--text)] header-panel border-b border-[#C3B089]/20">
+  <div *ngIf="isDashboardRoute()" class="text-[var(--text)] bg-[#121417] border-b border-white/10">
     <div class="flex justify-between items-center px-3 py-3">
       
       <a routerLink="/dashboard/home" class="flex title-font font-medium items-center">
@@ -14,7 +14,7 @@
         <app-notifications *ngIf="showNotifications"
           (closeNotification)="showNotifications = false"></app-notifications>
         
-        <div class="flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-9">
+        <div class="flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-9">
           <div class="flex items-center px-2.5 h-full">
             <img src="https://cmaxv2images2.pages.dev/assets/icons/coins.png" class="h-4 w-4 mr-1.5" alt="coins" />
             <span class="text-white font-bold text-xs font-mono">${{ walletAmount | number: "1.2-2" }}</span>
@@ -25,13 +25,13 @@
           </button>
         </div>
 
-        <div class="flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-9 px-2.5"
+        <div class="flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-9 px-2.5"
           (click)="RedirectToWallet()" title="Bonus Wallet">
           <i class="fas fa-gift text-[#F3A630] text-xs mr-1.5"></i>
           <span class="text-[#F3A630] font-bold text-xs font-mono">${{ bonusWalletAmount | number: "1.2-2" }}</span>
         </div>
 
-        <button (click)="toggleNotifications()" class="relative flex items-center justify-center w-9 h-9 bg-black/85 border border-[#C3B089]/40 rounded-2xl text-[#F3A630]">
+        <button (click)="toggleNotifications()" class="relative flex items-center justify-center w-9 h-9 bg-black/85 border border-white/10 rounded-2xl text-[#F3A630]">
           <i class="fas fa-bell text-sm"></i>
           <span *ngIf="notifications.length > 0"
             class="absolute -top-1 -right-1 flex justify-center items-center w-4 h-4 rounded-full bg-[#F3A630] text-black text-[10px] font-black">
@@ -39,7 +39,7 @@
           </span>
         </button>
 
-        <div class="flex items-center justify-center w-9 h-9 bg-black/85 border border-[#C3B089]/40 rounded-2xl text-[#FEC866] cursor-pointer" (click)="toggleSidebar($event)">
+        <div class="flex items-center justify-center w-9 h-9 bg-black/85 border border-white/10 rounded-2xl text-[#FEC866] cursor-pointer" (click)="toggleSidebar($event)">
           <ng-container *ngIf="CrossIcon">
             <fa-icon [icon]="cross" class="text-white text-base"></fa-icon>
           </ng-container>
@@ -68,21 +68,21 @@
 <header *ngIf="!isScreenWidthLessThan800() && !isTreasurePickRoute()" class="body-font sticky z-[999] w-[100%] top-0">
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
   
-  <div *ngIf="isDashboardRoute()" class="text-[var(--text)] header-panel custom-border shadow-md">
+  <div *ngIf="isDashboardRoute()" class="text-[var(--text)] bg-[#121417] border-b border-white/10 shadow-md">
     <div class="container mx-auto flex justify-between items-center px-6 py-2.5 max-w-[3000px]">
       
       <!-- Logo Section -->
       <a routerLink="/dashboard/home" class="flex items-center gap-3 relative overflow-visible group">
         <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Spin Club"
           class="relative w-14 h-14 object-contain" />
-        <span class="h-10 w-[1px] bg-[#8a7960]"></span>
+        <span class="h-10 w-[1px] bg-white/20"></span>
       </a>
 
       <!-- Right Action Controls -->
       <div class="relative flex items-center gap-4 mr-2">
         
         <!-- Wallet & Deposit Pill -->
-        <div class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-11 shadow-md">
+        <div class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-11 shadow-md">
           <svg class="absolute inset-0 w-full h-full opacity-30 pointer-events-none z-0"
             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <filter id="noiseFilter">
@@ -105,7 +105,7 @@
         </div>
 
         <!-- Bonus Wallet Pill -->
-        <div class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/40 h-11 px-4 gap-2 shadow-md cursor-pointer"
+        <div class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-11 px-4 gap-2 shadow-md cursor-pointer"
           (click)="RedirectToWallet()" title="Bonus Wallet">
           <i class="fas fa-gift text-[#F3A630] text-sm"></i>
           <span class="text-[#F3A630] font-bold font-mono text-sm">
@@ -116,7 +116,7 @@
         <!-- Withdraw Button -->
         <div class="relative flex items-center h-11">
           <button (click)="openWithdrawBalanceModal()"
-            class="relative z-10 bg-black/50 border border-[#C3B089]/40 text-white hover:text-amber-300 px-6 h-11 rounded-2xl font-bold text-sm shadow-md hover:bg-[#C3B089]/10 transition cursor-pointer">
+            class="relative z-10 bg-black/50 border border-white/10 text-white hover:text-amber-300 px-6 h-11 rounded-2xl font-bold text-sm shadow-md hover:bg-white/5 transition cursor-pointer">
             {{Withdraw | translate}}
           </button>
         </div>
@@ -126,7 +126,7 @@
           <div class="notify-btn">
             <button (click)="toggleLangDropdown(btn)" #btn class="notification-icon p-0 border-0 bg-transparent cursor-pointer">
               <div class="relative flex justify-center items-center w-11 h-11
-                 bg-black/85 border border-[#C3B089]/40
+                 bg-black/85 border border-white/10
                  rounded-2xl shadow-md hover:border-[#F3A630] transition">
 
                 <svg class="relative z-10 w-5 h-5 text-[#F3A630]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -145,17 +145,17 @@
 
             <!-- Language Dropdown -->
             <div *ngIf="isLangOpen" [ngStyle]="dropdownStyle" class="absolute z-50 w-44 max-h-60 overflow-y-auto
-              bg-[#161819] right-0 rounded-2xl
-              shadow-2xl border border-[#8c8066] top-14 custom-scrollbar">
+              bg-[#121417] right-0 rounded-2xl
+              shadow-2xl border border-white/10 top-14 custom-scrollbar">
 
-              <div class="p-2.5 border-b border-[#8c8066]/40 sticky top-0 bg-[#161819]">
+              <div class="p-2.5 border-b border-white/10 sticky top-0 bg-[#121417]">
                 <input type="text" [(ngModel)]="searchText" placeholder="Search language..."
                   class="w-full px-2.5 py-1 text-xs bg-black/60 border border-white/10 rounded-xl outline-none text-white placeholder-gray-400" />
               </div>
 
               <div class="py-1">
                 <div *ngFor="let lang of filteredLanguages()" (click)="selectLanguage(lang.code)"
-                  class="px-4 py-2 text-xs text-white hover:bg-[#C3B089]/20 cursor-pointer flex items-center justify-between">
+                  class="px-4 py-2 text-xs text-white hover:bg-white/10 cursor-pointer flex items-center justify-between">
                   <span>{{ lang.name }}</span>
                   <svg *ngIf="currentLanguage === lang.code" xmlns="http://www.w3.org/2000/svg"
                     class="w-3.5 h-3.5 text-[#C3B089]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,7 +171,7 @@
         <div class="relative">
           <button (click)="toggleNotifications()" class="notify-btn p-0 border-0 bg-transparent cursor-pointer">
             <div class="notification-icon p-0 border-0 bg-transparent">
-              <div class="relative flex justify-center items-center w-11 h-11 bg-black/85 border border-[#C3B089]/40 rounded-2xl shadow-md hover:border-[#F3A630] transition">
+              <div class="relative flex justify-center items-center w-11 h-11 bg-black/85 border border-white/10 rounded-2xl shadow-md hover:border-[#F3A630] transition">
                 
                 <svg width="20" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M21.7936 12.6755L20.3234 10.6913C19.9981 10.2586 19.7118 9.4248 19.7118 8.91821V6.94459C19.7118 3.11346 15.8735 0 11.1634 0C6.4403 0.0105541 2.60197 3.11346 2.60197 6.94459V8.90765C2.60197 9.41425 2.31572 10.248 2.00345 10.6807L0.533168 12.6649C-0.0263179 13.4354 -0.156431 14.3113 0.194874 15.0712C0.54618 15.8417 1.33987 16.4538 2.38077 16.7282C3.786 17.1082 5.20423 17.3826 6.64848 17.5831C6.79161 17.6042 6.93473 17.6148 7.07786 17.6359C7.26001 17.657 7.45518 17.6781 7.65035 17.6992C7.98865 17.7414 8.32694 17.7731 8.67825 17.7942C9.49796 17.8575 10.3307 17.8892 11.1634 17.8892C11.9831 17.8892 12.8028 17.8575 13.6095 17.7942C13.9088 17.7731 14.2081 17.752 14.4943 17.7203C14.7285 17.6992 14.9627 17.6781 15.1969 17.6464C15.34 17.6359 15.4832 17.6148 15.6263 17.5937C17.0835 17.4037 18.5278 17.1082 19.933 16.7282C20.9349 16.4538 21.7026 15.8417 22.0669 15.0607C22.4312 14.2691 22.3271 13.4037 21.7936 12.6755ZM12.1132 8.3905C12.1132 8.83377 11.6708 9.19261 11.1244 9.19261C10.5779 9.19261 10.1355 8.83377 10.1355 8.3905V5.11873C10.1355 4.67546 10.5779 4.31662 11.1244 4.31662C11.6708 4.31662 12.1132 4.67546 12.1132 5.11873V8.3905Z" fill="#F3A630"/>
@@ -187,14 +187,14 @@
           </button>
 
           <!-- Revamped Notification Dropdown -->
-          <div *ngIf="showNotifications" class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#161819] border border-[#C3B089]/60 rounded-3xl shadow-2xl overflow-hidden z-[999] backdrop-blur-xl">
+          <div *ngIf="showNotifications" class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#121417] border border-white/10 rounded-3xl shadow-2xl overflow-hidden z-[999] backdrop-blur-xl">
             <!-- Fixed Grain Background Layer -->
             <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-0 opacity-40">
               <div class="grain-Backdrop absolute inset-0 w-full h-full" [innerHTML]="grainBackdrop"></div>
             </div>
 
             <!-- Sticky Header -->
-            <div class="flex items-center justify-between px-5 py-4 border-b border-[#C3B089]/30 relative z-20 bg-[#161819]/95 backdrop-blur-md">
+            <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 relative z-20 bg-[#121417]/95 backdrop-blur-md">
               <h3 class="text-sm font-extrabold text-white tracking-wider uppercase">
                 Notifications ({{ notifications.length }})
               </h3>
@@ -206,7 +206,7 @@
             <!-- Notifications List -->
             <div class="max-h-[380px] overflow-y-auto p-4 space-y-3 relative z-10 custom-scrollbar">
               @for (notification of notifications; track notification.id; let i = $index) {
-                <div class="notif-card relative flex items-start gap-3.5 bg-black/60 hover:bg-black/80 border border-[#C3B089]/20 p-4 rounded-2xl transition-all duration-300 ease-in-out group shadow-md">
+                <div class="notif-card relative flex items-start gap-3.5 bg-black/60 hover:bg-black/80 border border-white/10 p-4 rounded-2xl transition-all duration-300 ease-in-out group shadow-md">
                   <!-- Bell Icon -->
                   <div class="w-10 h-10 rounded-xl bg-[#F3A630]/10 border border-[#F3A630]/30 flex items-center justify-center shrink-0 text-[#F3A630]">
                     <i class="fas fa-bell text-sm"></i>
@@ -251,7 +251,7 @@
             <div class="relative flex items-center">
               <div class="relative inline-block">
                 <img [src]="profileImage" alt="Profile"
-                  class="h-11 w-11 border border-[#C3B089]/60 group-hover:border-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] object-cover transition shadow-md" />
+                  class="h-11 w-11 border border-white/20 group-hover:border-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] object-cover transition shadow-md" />
 
                 <img *ngIf="profileLevel" [src]="getLevelImage(profileLevel)" alt="Level Badge"
                   class="absolute -top-2.5 -right-1.5 h-6 w-6 drop-shadow-md" />
@@ -261,11 +261,11 @@
 
           <!-- ✅ Revamped Ultra-Luxury VIP Profile Dropdown Menu -->
           <div *ngIf="isDropdownOpen"
-            class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#121417]/95 backdrop-blur-2xl border border-[#C3B089]/50 shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+            class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#121417]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
             <div class="grain-Backdrop absolute inset-0 pointer-events-none opacity-25" [innerHTML]="grainBackdrop"></div>
             
             <!-- Dropdown Header: User Info Card -->
-            <div class="p-4 bg-gradient-to-b from-[#1c1f26] to-[#121417] border-b border-[#C3B089]/20 flex items-center gap-3.5 relative z-10">
+            <div class="p-4 bg-gradient-to-b from-[#1c1f26] to-[#121417] border-b border-white/10 flex items-center gap-3.5 relative z-10">
               <div class="relative">
                 <div class="w-12 h-12 rounded-2xl overflow-hidden border-2 border-[#FE8006] shadow-[0_0_12px_rgba(254,128,6,0.5)]">
                   <img [src]="profileImage" alt="Profile" class="w-full h-full object-cover" />
@@ -341,7 +341,7 @@
             </div>
 
             <!-- Divider -->
-            <div class="h-px bg-gradient-to-r from-transparent via-[#C3B089]/30 to-transparent mx-3 my-1 relative z-10"></div>
+            <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mx-3 my-1 relative z-10"></div>
 
             <!-- Logout Section -->
             <div class="p-2 pb-2.5 relative z-10">
@@ -375,7 +375,7 @@
   class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[999]"
   (click)="hideWithdrawModal()">
   <div
-    class="backdrop-blur-2xl border border-[#C3B089]/50 bg-gradient-to-b from-[#1c1f21] to-[#121415] rounded-[28px] w-full max-w-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] modal slide-up max-h-[90vh] flex flex-col z-50 relative overflow-hidden"
+    class="backdrop-blur-2xl border border-white/10 bg-gradient-to-b from-[#1c1f21] to-[#121415] rounded-[28px] w-full max-w-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] modal slide-up max-h-[90vh] flex flex-col z-50 relative overflow-hidden"
     (click)="$event.stopPropagation()">
     
     <!-- Fixed Grain Background Layer -->
@@ -387,7 +387,7 @@
     <div class="absolute top-0 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-[#F3A630] to-transparent z-20"></div>
 
     <!-- Sticky Header -->
-    <div class="flex items-center justify-between px-7 py-5 border-b border-[#C3B089]/20 relative z-20 bg-[#161819]/90 backdrop-blur-xl shrink-0">
+    <div class="flex items-center justify-between px-7 py-5 border-b border-white/10 relative z-20 bg-[#121417]/90 backdrop-blur-xl shrink-0">
       <div class="flex items-center gap-2.5">
         <div class="w-2 h-5 bg-gradient-to-b from-[#F3A630] to-[#FE8006] rounded-full shadow-[0_0_10px_rgba(243,166,48,0.5)]"></div>
         <h2 class="text-xl font-black text-white tracking-wider uppercase">Withdraw Balance</h2>
@@ -401,7 +401,7 @@
     <div class="p-7 overflow-y-auto space-y-6 relative z-10 custom-scrollbar flex-1">
       
       <!-- Balance Summary Box -->
-      <div class="grid grid-cols-2 gap-4 bg-gradient-to-r from-black/80 via-black/60 to-black/80 border border-[#C3B089]/30 p-5 rounded-2xl text-center shadow-inner relative overflow-hidden">
+      <div class="grid grid-cols-2 gap-4 bg-gradient-to-r from-black/80 via-black/60 to-black/80 border border-white/10 p-5 rounded-2xl text-center shadow-inner relative overflow-hidden">
         <div class="absolute inset-0 bg-[#F3A630]/5 pointer-events-none"></div>
         <div class="border-r border-white/10 pr-2 relative z-10">
           <p class="text-white text-3xl font-black font-mono text-[#F9C846] drop-shadow-[0_2px_10px_rgba(249,200,70,0.3)]">${{ totalBalance }}</p>
@@ -451,7 +451,7 @@
           <span class="absolute left-4 text-gray-400 font-bold font-mono">$</span>
           <input [(ngModel)]="amouttowithdraw" type="number" step="0.01"
                  (input)="limitToBalance($event); limitDecimals('amouttowithdraw', $event)"
-                 class="w-full bg-black/70 border border-[#C3B089]/30 rounded-2xl text-white pl-8 pr-4 py-3.5 text-sm font-mono focus:outline-none focus:border-[#F3A630] focus:ring-2 focus:ring-[#F3A630]/20 transition shadow-inner placeholder-gray-600"
+                 class="w-full bg-black/70 border border-white/10 rounded-2xl text-white pl-8 pr-4 py-3.5 text-sm font-mono focus:outline-none focus:border-[#F3A630] focus:ring-2 focus:ring-[#F3A630]/20 transition shadow-inner placeholder-gray-600"
                  placeholder="0.00" />
         </div>
       </div>
@@ -461,12 +461,12 @@
         <div class="space-y-1.5">
           <label class="block text-xs text-gray-300 font-extrabold uppercase tracking-wider">Account Title</label>
           <input placeholder="Enter account title" [(ngModel)]="accountInfo"
-                 class="w-full bg-black/70 border border-[#C3B089]/30 rounded-2xl text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#F3A630] focus:ring-2 focus:ring-[#F3A630]/20 transition shadow-inner placeholder-gray-600" />
+                 class="w-full bg-black/70 border border-white/10 rounded-2xl text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#F3A630] focus:ring-2 focus:ring-[#F3A630]/20 transition shadow-inner placeholder-gray-600" />
         </div>
         <div class="space-y-1.5">
           <label class="block text-xs text-gray-300 font-extrabold uppercase tracking-wider">Account Number / Tag</label>
           <input placeholder="Enter tag or number" [(ngModel)]="Customertag"
-                 class="w-full bg-black/70 border border-[#C3B089]/30 rounded-2xl text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#F3A630] focus:ring-2 focus:ring-[#F3A630]/20 transition shadow-inner placeholder-gray-600" />
+                 class="w-full bg-black/70 border border-white/10 rounded-2xl text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#F3A630] focus:ring-2 focus:ring-[#F3A630]/20 transition shadow-inner placeholder-gray-600" />
         </div>
       </div>
 
@@ -478,7 +478,7 @@
             <span class="absolute left-4 text-gray-400 font-bold font-mono">$</span>
             <input [(ngModel)]="tipAmount" type="number" min="0" step="0.01"
                    (input)="limitDecimals('tipAmount', $event)"
-                   class="w-full bg-black/70 border border-[#C3B089]/30 rounded-2xl text-white pl-8 pr-4 py-3.5 text-sm font-mono focus:outline-none focus:border-[#F3A630] focus:ring-2 focus:ring-[#F3A630]/20 transition shadow-inner placeholder-gray-600"
+                   class="w-full bg-black/70 border border-white/10 rounded-2xl text-white pl-8 pr-4 py-3.5 text-sm font-mono focus:outline-none focus:border-[#F3A630] focus:ring-2 focus:ring-[#F3A630]/20 transition shadow-inner placeholder-gray-600"
                    placeholder="0.00" />
           </div>
         </div>
