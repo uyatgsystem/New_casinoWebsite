@@ -31,6 +31,7 @@ import { UtilsService } from '../../../Services/utils.service';
 import { Subject, takeUntil } from 'rxjs';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ReferalCtaComponent } from '../../../common/referal-cta/referal-cta.component';
+
 @Component({
   selector: 'app-casino-landing',
   standalone: true,
@@ -63,12 +64,37 @@ export class CasinoLandingComponent implements OnInit {
   private destroy$ = new Subject<void>();
 
   ngOnInit(): void {
-    // this.getTestimonials();
-    this.heroGames = this.gameService.getDashboardInstantGames();
+    // Correct image paths for Game Vault, Ultra Panda, and Game Room matching your dashboard assets
+    this.heroGames = [
+      {
+        name: 'Game Vault',
+        image: 'https://cmaxnewimages.pages.dev/assets/games/gamevault.png',
+        redirectLink: '/dashboard',
+        bgclr: '#FE8912',
+        isHot: true,
+        bonus: '20'
+      },
+      {
+        name: 'Ultra Panda',
+        image: 'https://cmaxnewimages.pages.dev/assets/games/ultrapanda.png',
+        redirectLink: '/dashboard',
+        bgclr: '#00e5ff',
+        isHot: true,
+        bonus: '10'
+      },
+      {
+        name: 'Game Room',
+        image: 'https://cmaxnewimages.pages.dev/assets/games/gameroom.png',
+        redirectLink: '/dashboard',
+        bgclr: '#ffd700',
+        isHot: true,
+        bonus: '10'
+      },
+      ...this.gameService.getDashboardInstantGames()
+    ];
   }
 
-  // Real dashboard games shown in the hero banner (name + icon), styled
-  // in-house instead of relying on pre-made external banner graphics.
+  // Hero banner games array
   heroGames: any[] = [];
 
   playHeroGame(link: string): void {
@@ -76,6 +102,7 @@ export class CasinoLandingComponent implements OnInit {
       this.navigateAndScroll(link);
     }
   }
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
@@ -92,8 +119,7 @@ export class CasinoLandingComponent implements OnInit {
   GameName: any;
   matchedGameDetails: any = null;
 
-  testimonialsImages: any[] = 
-  [
+  testimonialsImages: any[] = [
     {
       Name: '',
       Description: 'Fly high and cash out big.',
@@ -158,14 +184,6 @@ export class CasinoLandingComponent implements OnInit {
       ImageBase64: 'https://bannerscmaxs.pages.dev/assets/spin.png',
       lookup: 'spinner',
     },
-    // {
-    //   Name: "",
-    //   Description: "Stack higher to win more.",
-    //   ImageUrl: "https://bannerscmaxs.pages.dev/assets/stack.png",
-    //   Route: "StackBuilder",
-    //   ImageBase64: "https://bannerscmaxs.pages.dev/assets/stack.png",
-    //    lookup: "Treasure"
-    // },
     {
       Name: '',
       Description: 'Fast-paced action, legendary rewards.',
@@ -188,9 +206,7 @@ export class CasinoLandingComponent implements OnInit {
       .subscribe(
         (response) => {
           if (response && response.responseCode === 200) {
-            // console.log('Testimonials Data:', response.data);
             this.testimonialsImages.push(...response.data);
-            //? add isLoading attribute
             this.testimonialsImages.forEach((testimonial) => {
               testimonial.isLoading = true;
             });
@@ -203,8 +219,8 @@ export class CasinoLandingComponent implements OnInit {
         },
       );
   }
-  gameOffers: any;
 
+  gameOffers: any;
   HotLottery: any;
   HotSctrach: any;
   HotSpinner: any;
@@ -226,41 +242,18 @@ export class CasinoLandingComponent implements OnInit {
     margin: 0,
     stagePadding: 0,
     responsive: {
-      0: {
-        items: 1,
-        stagePadding: 0,
-        margin: 0,
-      },
-      480: {
-        items: 1,
-        stagePadding: 0,
-        margin: 0,
-      },
-      640: {
-        items: 1,
-        stagePadding: 0,
-        margin: 0,
-      },
-      768: {
-        items: 1,
-        stagePadding: 0,
-        margin: 0,
-      },
-      1024: {
-        items: 1,
-        stagePadding: 0,
-        margin: 0,
-      },
+      0: { items: 1, stagePadding: 0, margin: 0 },
+      480: { items: 1, stagePadding: 0, margin: 0 },
+      640: { items: 1, stagePadding: 0, margin: 0 },
+      768: { items: 1, stagePadding: 0, margin: 0 },
+      1024: { items: 1, stagePadding: 0, margin: 0 },
     },
     nav: false,
   };
+
   textName: string = '';
 
-  /**
-   * Navigate to a route and scroll to top with smooth animation when navigation completes.
-   */
   private navigateAndScroll(path: string) {
-    // `navigate` returns a Promise<boolean> that resolves when navigation succeeds/fails
     this.router
       .navigate([path])
       .then((navigated) => {
@@ -269,37 +262,26 @@ export class CasinoLandingComponent implements OnInit {
         }
       })
       .catch(() => {
-        // On error, still attempt to scroll to top as a fallback
         this.scrollToTopSmooth();
       });
   }
 
-  /** Smooth scroll to top with graceful fallback. */
   private scrollToTopSmooth(): void {
     try {
-      // Use smooth scrolling when supported
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (e) {
-      // Fallback for older browsers/environments
       try {
         window.scrollTo(0, 0);
-      } catch {
-        // ignore
-      }
+      } catch {}
     }
   }
 
   isdownloadApps: boolean = false;
 
   onPlayNow(name: any) {
-    // 2. Retrieve and parse data from LocalStorage
     const storedGames = JSON.parse(localStorage.getItem('bis_offer') || '[]');
-    // 3. Find the specific game in the stored array
-    // Ensure the name in quickGames matches the GameName in your local storage
     const gameStatus = storedGames.find((g: any) => g.GameName === name.lookup);
-    // 4. Check if game is on update
     if (gameStatus && gameStatus.IsOnUpdate === 'True') {
-      // Show error (e.g., Alert, Snackbar, or Toast)
       this.toastr.warning(
         'warning',
         'Game is under update!. Please try again later.',
@@ -308,7 +290,6 @@ export class CasinoLandingComponent implements OnInit {
     }
 
     const targetRoute = name.Route || '';
-
     if (targetRoute !== '') {
       this.navigateAndScroll(`/dashboard/${targetRoute}`);
     } else {

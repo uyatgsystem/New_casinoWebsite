@@ -1,8 +1,8 @@
 .game-card {
-  @apply relative overflow-hidden rounded-tl-xl rounded-br-xl transition-transform duration-300;
+  @apply relative overflow-hidden rounded-3xl transition-transform duration-300;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 
     .game-overlay {
       opacity: 1;
@@ -19,7 +19,6 @@
   font-weight: 900;
   font-size: 24px;
   display: flex;
-  //background-color: #dc2626;
   padding: 4px;
   border-radius: 10px;
 
@@ -41,7 +40,6 @@
 }
 
 @keyframes letter-pulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -52,7 +50,6 @@
   }
 }
 
-/* md ≥ 768px */
 @media (max-width: 768px) {
   .hot-text-on-video {
     position: absolute;
@@ -63,44 +60,11 @@
     font-weight: 900;
     font-size: 16px;
     display: flex;
-    // background-color: #dc2626;
     padding: 4px;
     border-radius: 10px;
   }
 }
 
-// .hot-text-on-video {
-//   position: absolute;
-//   top: 75%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   color: white;
-//   font-size: 20px;
-//   font-weight: 900;
-//   font-family: "Arial Black", Gadget, sans-serif;
-//   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-//   animation: hot-text-flicker 2s infinite alternate,
-//     hot-text-bounce 1.5s infinite;
-// }
-
-// @keyframes hot-text-flicker {
-//   0% {
-//     color: #fff;
-//     text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff6600,
-//       0 0 82px #ff6600, 0 0 92px #ff6600, 0 0 102px #ff6600, 0 0 151px #ff6600;
-//   }
-//   50% {
-//     color: #ffddba;
-//     text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff6600,
-//       0 0 82px #ff6600, 0 0 92px #ff6600, 0 0 102px #ff6600, 0 0 151px #ff6600;
-//   }
-//   100% {
-//     color: #fff;
-//     text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff6600,
-//       0 0 82px #ff6600, 0 0 92px #ff6600, 0 0 102px #ff6600, 0 0 151px #ff6600;
-//   }
-
-// }
 .empty-div {
   visibility: hidden;
 }
@@ -113,53 +77,8 @@
   display: none;
 }
 
-/* Mobile-first default (no media query) */
-.game-card {
-  width: 7rem;
-  /* base width */
-}
-
-/* sm ≥ 640px */
-@media (min-width: 640px) {
-  .game-card {
-    width: 120px;
-    /* your sm width */
-  }
-}
-
-/* md ≥ 768px */
-@media (min-width: 768px) {
-  .hot-text-on-video {
-    font-size: 14px;
-  }
-
-  .game-card {
-    width: 120px !important;
-    /* your md width */
-  }
-}
-
-/* lg ≥ 1024px (small laptops) */
-@media (min-width: 1024px) {
-  .game-card {
-    width: 150px !important;
-    /* your lg width */
-  }
-}
-
-/* xl ≥ 1280px (desktops) */
-//@media (min-width: 1280px) {
-//  .game-card {
-//    width: 190px; /* your xl width */
-//  }
-//}
-
-/* 2xl ≥ 1536px (very large screens) */
-@media (min-width: 1536px) {
-  .game-card {
-    width: 190px;
-    /* optional — can keep same as xl or adjust */
-  }
+.dash-game-card {
+  width: 100% !important;
 }
 
 .centered-text {
@@ -170,26 +89,18 @@
 
 @media screen and (min-width: 768px) {
   .button-active {
-    // background-color: var(--button-back);
-    // cursor: pointer;
     background: var(--gradient);
-    // background-color: var(--button-back);
 
     &:hover {
       background: var(--gradient);
     }
-
-    // &:hover {
-    // }
   }
 }
 
-// Wolf Animation
 .wolf {
   animation: floatWolf 3s ease-in-out infinite;
 }
 
-// Character Animation
 .character1 {
   animation: floatCharacter 4s ease-in-out infinite;
 }
@@ -197,16 +108,6 @@
 .image-margin {
   margin-top: 0.5rem;
   margin-bottom: 1.8rem;
-
-  @media (max-width: 768px) {
-    margin-top: 0.5rem;
-    margin-bottom: 1.8rem;
-  }
-
-  @media (min-width: 1024px) {
-    margin-top: 0.5rem;
-    margin-bottom: 1.8rem;
-  }
 }
 
 .margin-grid {
@@ -214,10 +115,6 @@
 
   @media (min-width: 768px) {
     margin: 1rem 3rem;
-
-    .centered-text {
-      padding: 0;
-    }
   }
 
   @media (min-width: 1024px) {
@@ -225,13 +122,11 @@
   }
 }
 
-/* Animations */
 @keyframes fadeInDown {
   from {
     opacity: 0;
     transform: translateY(-20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -239,46 +134,33 @@
 }
 
 @keyframes floatWolf {
-
   0%,
   100% {
     transform: translateY(0);
   }
-
   50% {
     transform: translateY(-10px);
   }
 }
 
 @keyframes floatCharacter {
-
   0%,
   100% {
     transform: translateY(0);
   }
-
   50% {
     transform: translateY(-15px);
   }
 }
 
-//   Hover Effects
 .group {
-  // clip-path: inset(0 round 12px);
-
   &:hover {
     box-shadow: none;
   }
 }
 
-// Button Styles
 button {
   transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-    // box-shadow: 0 0 10px rgba(244, 179, 49, 0.5);
-  }
 }
 
 .chat {
@@ -291,38 +173,11 @@ button {
 }
 
 @media (max-width: 576px) {
-  .group {
-    // background: linear-gradient(
-    //   90deg,
-    //   rgb(87, 17, 122) 0%,
-    //   rgba(90, 48, 217, 1) 100%
-    // );
-  }
-
   .showOnLargeScreen {
     display: none !important;
   }
-
   .showOnSmallScreen {
     display: block !important;
-  }
-
-  /* Mobile size */
-  .character1 {
-    left: 1rem !important;
-  }
-
-  .wolf {
-    // width: %;
-    right: 0rem;
-  }
-
-  .wol {
-    font-size: large;
-  }
-
-  .Wolo {
-    font-size: medium;
   }
 }
 
@@ -334,28 +189,17 @@ button {
   z-index: 999;
 }
 
-.margin {
-  margin-top: -20px;
-}
-
-// .bottum {
-//   margin-bottom: 160px;
-// }
 .bottum {
   scroll-behavior: smooth;
-}
 
-.bottum::-webkit-scrollbar {
-  width: 8px;
-}
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
 
-.bottum::-webkit-scrollbar-thumb {
-  background-color: #7e22ce;
-  border-radius: 4px;
-}
-
-.bottum::-webkit-scrollbar-track {
-  // background: #f1f1f1;
+  &::-webkit-scrollbar-thumb {
+    background-color: #7e22ce;
+    border-radius: 4px;
+  }
 }
 
 .download-btn {
@@ -369,27 +213,27 @@ button {
   position: relative;
   border: none;
   cursor: pointer;
-}
 
-.download-btn .tooltip {
-  position: absolute;
-  top: -30px;
-  left: 20%;
-  transform: translateX(-50%);
-  background-color: #6b46c1;
-  color: white;
-  padding: 5px 10px;
-  font-size: 12px;
-  border-radius: 4px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out;
-  white-space: nowrap;
-}
+  .tooltip {
+    position: absolute;
+    top: -30px;
+    left: 20%;
+    transform: translateX(-50%);
+    background-color: #6b46c1;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    white-space: nowrap;
+  }
 
-.download-btn:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
+  &:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .close-btn {
@@ -411,27 +255,22 @@ button {
 .floating-icon {
   animation: float 2s ease-in-out infinite;
   transition: transform 0.3s ease;
-  /* Transition for the image */
   height: 10vh;
   background: none;
-}
 
-.floating-icon:hover {
-  // animation: none; /* Stop floating animation on hover */
-  // transform: translateX(-5px); /* Move image slightly left on hover */
-  background-color: transparent;
-  box-shadow: none;
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+  }
 }
 
 @keyframes float {
   0% {
     transform: translateY(0);
   }
-
   50% {
     transform: translateY(-10px);
   }
-
   100% {
     transform: translateY(0);
   }
@@ -440,73 +279,18 @@ button {
 .spin-button {
   height: 3pc;
   margin-top: 1rem;
-  // display: inline-block;
-  // border: none;
-  // border-radius: 0.5rem;
-  // margin-top: 0.5rem; /* Space between image and button */
-  // transition: opacity 0.3s ease; /* Transition for button */
-}
 
-.spin-button.hidden {
-  opacity: 0;
-  /* Initially hidden */
+  &.hidden {
+    opacity: 0;
+  }
 }
 
 .group:hover .spin-button {
   opacity: 1;
-  /* Show button on hover */
 }
 
 .helo {
   margin-top: -70px;
-}
-
-.floating-icons {
-  animation: float 2s ease-in-out infinite;
-  transition: transform 0.3s ease;
-  /* Transition for the image */
-  // height: 10vh;
-  // background: none;
-}
-
-@-webkit-keyframes animatetop {
-  from {
-    transform: translateY(100px);
-    /* Start from below */
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    /* Move to final position */
-    opacity: 1;
-  }
-}
-
-@keyframes animatetop {
-  from {
-    transform: translateY(100px);
-    /* Start from below */
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    /* Move to final position */
-    opacity: 1;
-  }
-}
-
-.btn-header {
-  background: var(--button-back);
-}
-
-.game-btn {
-  background: var(--button-back);
-}
-
-.download-btn {
-  padding: 10px 15px;
 }
 
 .loader {
@@ -526,7 +310,6 @@ button {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
@@ -536,49 +319,44 @@ button {
   display: none;
 }
 
-
-/* Tailwind custom CSS in your global styles or component styles */
-/* Fire Ash / Spark Background */
-/* Fire dots remain the same, but they are now inside the image wrapper */
+// Fire Ash / Spark Background
 .fire-dots {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
   border-radius: inherit;
-  /* keep same rounded corners as image */
-}
 
-/* same CSS for ::before and ::after, animation etc. */
-.fire-dots::before,
-.fire-dots::after {
-  content: '';
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffdd66 0%, #ff5500 70%, #ff0000 100%);
-  box-shadow:
-    30px 40px #ff9900,
-    70px 90px #ffcc33,
-    110px 130px #ff5500,
-    170px 70px #ff3300,
-    220px 200px #ffcc66,
-    260px 60px #ff6600;
-  animation: fireDotsFloat 6s linear infinite;
-  opacity: 0.8;
-}
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffdd66 0%, #ff5500 70%, #ff0000 100%);
+    box-shadow:
+      30px 40px #ff9900,
+      70px 90px #ffcc33,
+      110px 130px #ff5500,
+      170px 70px #ff3300,
+      220px 200px #ffcc66,
+      260px 60px #ff6600;
+    animation: fireDotsFloat 6s linear infinite;
+    opacity: 0.8;
+  }
 
-.fire-dots::after {
-  width: 7px;
-  height: 7px;
-  box-shadow:
-    40px 50px #ffcc33,
-    80px 110px #ff9900,
-    120px 140px #ff6600,
-    180px 90px #ff3300,
-    240px 220px #ffbb33;
-  animation-duration: 8s;
+  &::after {
+    width: 7px;
+    height: 7px;
+    box-shadow:
+      40px 50px #ffcc33,
+      80px 110px #ff9900,
+      120px 140px #ff6600,
+      180px 90px #ff3300,
+      240px 220px #ffbb33;
+    animation-duration: 8s;
+  }
 }
 
 @keyframes fireDotsFloat {

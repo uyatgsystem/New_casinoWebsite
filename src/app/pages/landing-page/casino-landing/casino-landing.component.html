@@ -1,11 +1,11 @@
 <div class="bg-game-purple">
-  <div *ngIf="heroGames.length > 0">
+  <div *ngIf="heroGames && heroGames.length > 0">
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let game of heroGames; let i = index">
 
         <div
           class="hero-promo-slide relative mx-1 my-2 h-[30vh] min-h-[190px] sm:h-[34vh] sm:min-h-0 md:h-[40vh] overflow-hidden cursor-pointer rounded-2xl"
-          (click)="playHeroGame(game.redirectLink)"
+          (click)="playHeroGame(game.redirectLink || game.downloadLink)"
         >
           <!-- Gradient border frame -->
           <div class="hero-promo-border"></div>
@@ -22,34 +22,34 @@
           <span class="hero-promo-particle" style="top: 30%; left: 85%; animation-delay: 0.6s"></span>
           <span class="hero-promo-particle" style="top: 75%; left: 70%; animation-delay: 1.8s"></span>
 
-          <!-- Large faded watermark icon filling the empty space -->
-          <img [src]="game.image" [alt]="''" class="hero-promo-watermark" />
+          <!-- Large faded watermark icon with fallback error handler -->
+          <img [src]="game.image" [alt]="''" class="hero-promo-watermark object-contain" (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'" />
 
           <div class="relative z-10 h-full w-full flex items-center px-4 sm:px-12 md:px-20 gap-3 sm:gap-10">
-            <!-- Game icon -->
+            <!-- Game icon with fallback error handler -->
             <div class="hero-promo-icon-wrap flex-shrink-0">
               <div class="hero-promo-icon-ring"></div>
               <div class="hero-promo-icon">
-                <img [src]="game.image" [alt]="game.name" />
+                <img [src]="game.image" [alt]="game.name" class="object-contain p-2" (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'" />
               </div>
             </div>
 
-            <!-- Text -->
+            <!-- Text & Branding -->
             <div class="flex flex-col items-start">
               <span class="hero-promo-eyebrow">
-                <i class="fas fa-bolt"></i> Instant Game
+                <i class="fas fa-crown"></i> Elite Gaming Lobby
               </span>
               <h2 class="hero-promo-title">{{ game.name }}</h2>
               <p class="hero-promo-tagline">
-                Play now and chase exciting rewards at Spin Club.
+                Play now and chase massive jackpots & rewards at Spin Club.
               </p>
               <div class="flex items-center gap-4 flex-wrap">
-                <button class="hero-promo-btn" (click)="$event.stopPropagation(); playHeroGame(game.redirectLink)">
+                <button class="hero-promo-btn" (click)="$event.stopPropagation(); playHeroGame(game.redirectLink || game.downloadLink)">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                   Play Now
                 </button>
                 <span class="hero-promo-trust">
-                  <i class="fas fa-users"></i> 12k+ Players
+                  <i class="fas fa-users"></i> 15k+ Active Players
                 </span>
               </div>
             </div>
@@ -59,5 +59,6 @@
       </ng-template>
     </owl-carousel-o>
   </div>
-   <app-referal-cta></app-referal-cta>
+  
+  <app-referal-cta></app-referal-cta>
 </div>
