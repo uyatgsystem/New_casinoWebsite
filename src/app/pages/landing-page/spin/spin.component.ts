@@ -1,30 +1,100 @@
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  Inject,
+  PLATFORM_ID,
+  Input,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, Input, input, PLATFORM_ID } from '@angular/core';
-import { SpinnerComponent } from '../spinner/spinner.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faChevronLeft, faXmark, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { SpinnerSegment } from '../../../Interfaces/interfaces';
-import { ApiCallService } from '../../../Services/api-call-service.service';
+import { FormsModule } from '@angular/forms';
 import { SafeHtml } from '@angular/platform-browser';
 import { UtilsService } from '../../../Services/utils.service';
+import { SpinnerSegment } from '../../../Interfaces/interfaces';
 
 @Component({
   selector: 'app-spin',
-  imports: [CommonModule, SpinnerComponent],
+  standalone: true,
+  imports: [CommonModule, FontAwesomeModule, FormsModule],
   templateUrl: './spin.component.html',
   styleUrl: './spin.component.scss',
 })
-export class SpinComponent {
-  @Input() isHeadingShown: boolean = true;
+export class SpinComponent implements OnInit {
+  @Input() showHeaderSection: boolean = true;
+  @Output() spinEnd = new EventEmitter<string>();
+
+  grainBackdrop: SafeHtml = '';
+  leftArrow = faChevronLeft;
+  crossicon = faXmark;
+  lockIcon = faLock; // Lock icon added here
+
+  segments: SpinnerSegment[] = [
+    { id: 'seg-01', prize: '$1', icon: 'heroTrophy' },
+    { id: 'seg-02', prize: '$2', icon: 'ionDiamond' },
+    { id: 'seg-03', prize: '$3', icon: 'heroTrophy' },
+    { id: 'seg-04', prize: '$5', icon: 'hugeMoneyBag02' },
+    { id: 'seg-05', prize: '$9', icon: 'heroCurrencyDollar' },
+    { id: 'seg-06', prize: '$8', icon: 'ionDiamond' },
+    { id: 'seg-07', prize: '$6', icon: 'heroCurrencyDollar' },
+    { id: 'seg-08', prize: '$10', icon: 'hugeMoneyBag02' },
+    { id: 'seg-09', prize: '$13', icon: 'heroGift' },
+    { id: 'seg-10', prize: '$15', icon: 'heroCurrencyDollar' },
+  ];
+
+  private prizeImages = [
+    'https://cmaxv2images2.pages.dev/assets/icons/money-bag.png',
+    'https://cmaxv2images2.pages.dev/assets/icons/money-box.png',
+  ];
+
+  getPrizeImageByIndex(index: number): string {
+    return this.prizeImages[index % this.prizeImages.length];
+  }
+
+  spinAmount: string = '5';
+  allowedSpinAmounts = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30];
+  public readonly segmentAngle = 360 / this.segments.length;
 
   constructor(
     private router: Router,
-    private _apiCall: ApiCallService,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private utilsService: UtilsService,
-  ) {}
-  grainBackdrop: SafeHtml = '';
-  ngOnInit() {
-    this.grainBackdrop = this.utilsService.getGrainBackdrop();
+    private _utils: UtilsService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.grainBackdrop = this._utils.getGrainBackdrop();
+  }
+
+  ngOnInit(): void {}
+
+  isMobile(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return window.innerWidth < 768;
+    }
+    return false;
+  }
+
+  goBack() {
+    if (isPlatformBrowser(this.platformId)) {
+      window.history.back();
+    }
+  }
+
+  incrementSpinAmount(): void {
+    let current = Number(this.spinAmount) || 1;
+    const idx = this.allowedSpinAmounts.indexOf(current);
+    if (idx < this.allowedSpinAmounts.length - 1) {
+      this.spinAmount = this.allowedSpinAmounts[idx + 1].toString();
+    }
+  }
+
+  decrementSpinAmount(): void {
+    let current = Number(this.spinAmount) || 1;
+    const idx = this.allowedSpinAmounts.indexOf(current);
+    if (idx > 0) {
+      this.spinAmount = this.allowedSpinAmounts[idx - 1].toString();
+    }
   }
 
   openLoginModal() {
@@ -39,59 +109,4 @@ export class SpinComponent {
       }
     }
   }
-
-  isMobile() {
-    return window.innerWidth < 768;
-  }
-
-  allowedSpinAmounts = [1, 2, 3, 4, 5, 10, 15, 20];
-
-  private _spinAmount: string = '5';
-
-  get spinAmount(): string {
-    return this._spinAmount;
-  }
-
-  private baseSegments: SpinnerSegment[] = [
-    { id: 'seg-01', prize: '$1', icon: 'heroTrophy' },
-    { id: 'seg-02', prize: '$2', icon: 'ionDiamond' },
-    { id: 'seg-03', prize: '$3', icon: 'heroTrophy' },
-    { id: 'seg-04', prize: '$5', icon: 'hugeMoneyBag02' },
-    // { id: 'seg-05', prize: '$6', icon: 'heroCurrencyDollar' },
-    { id: 'seg-06', prize: '$8', icon: 'ionDiamond' },
-    // { id: 'seg-07', prize: '$9', icon: 'heroCurrencyDollar' },
-    { id: 'seg-08', prize: '$13', icon: 'hugeMoneyBag02' },
-    { id: 'seg-09', prize: '$15', icon: 'heroGift' },
-    { id: 'seg-10', prize: '$20', icon: 'heroCurrencyDollar' },
-  ];
-
-  segments: SpinnerSegment[] = [...this.baseSegments];
-
-  private prizeImages = [
-    'https://cmaxv2images2.pages.dev/assets/icons/money-bag.png',
-    'https://cmaxv2images2.pages.dev/assets/icons/money-box.png',
-  ];
-
-  getPrizeImageByIndex(index: number): string {
-    const imageIndex = index % this.prizeImages.length;
-    return this.prizeImages[imageIndex];
-  }
-
-  customerSpinnerHistory = [
-    { NO: 1, Balance: 35, AddedDate: new Date('2026-04-07T16:45:00') },
-    { NO: 2, Balance: 50, AddedDate: new Date('2026-04-07T16:20:00') },
-    { NO: 3, Balance: 12, AddedDate: new Date('2026-04-07T15:55:00') },
-    { NO: 4, Balance: 16, AddedDate: new Date('2026-04-07T15:30:00') },
-    { NO: 5, Balance: 11, AddedDate: new Date('2026-04-07T15:05:00') },
-    { NO: 6, Balance: 21, AddedDate: new Date('2026-04-07T14:40:00') },
-    { NO: 7, Balance: 10, AddedDate: new Date('2026-04-07T14:15:00') },
-    { NO: 8, Balance: 18, AddedDate: new Date('2026-04-07T13:50:00') },
-    { NO: 9, Balance: 12, AddedDate: new Date('2026-04-07T13:25:00') },
-    { NO: 10, Balance: 30, AddedDate: new Date('2026-04-07T13:00:00') },
-    { NO: 11, Balance: 11, AddedDate: new Date('2026-04-06T22:30:00') },
-    { NO: 12, Balance: 10, AddedDate: new Date('2026-04-06T21:10:00') },
-    { NO: 13, Balance: 40, AddedDate: new Date('2026-04-06T19:45:00') },
-    { NO: 14, Balance: 13, AddedDate: new Date('2026-04-06T18:20:00') },
-    { NO: 15, Balance: 19, AddedDate: new Date('2026-04-06T17:00:00') },
-  ];
 }

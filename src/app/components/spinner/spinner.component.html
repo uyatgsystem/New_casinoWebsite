@@ -123,13 +123,17 @@
               </div>
             </div>
 
-            <!-- Central Glossy Spin Hub -->
+            <!-- Central Glossy Spin Hub with Lock Icon -->
             <div class="central-hub" (click)="onCentralHubClick($event)"
               [style.cursor]="isSpinning || showCongratsModal || !isBalanceSufficient || !isSpinAllowed ? 'not-allowed' : 'pointer'">
-              <div class="central-hub__disc">
+              <div class="central-hub__disc flex items-center justify-center">
                 <span *ngIf="isSpinning || showCongratsModal" class="hub-text hub-text--spinning">SPINNING</span>
                 <span *ngIf="!isSpinning && !showCongratsModal && isBalanceSufficient && isSpinAllowed" class="hub-text">SPIN</span>
-                <span *ngIf="!isSpinning && !showCongratsModal && (!isBalanceSufficient || !isSpinAllowed)" class="hub-text text-[10px]">LOCKED</span>
+                <div *ngIf="!isSpinning && !showCongratsModal && (!isBalanceSufficient || !isSpinAllowed)" class="flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
               </div>
             </div>
             
