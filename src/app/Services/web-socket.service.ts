@@ -66,7 +66,7 @@ export class WebSocketService {
     // Dev Url
 
     // Live Url
-    const url = `wss://154.38.161.3:44364/api/chat?token=${token}`;
+    const url = `wss://154.38.161.3:44301/api/chat?token=${token}`;
     // const url = `wss://root.c-maxs.com/api/chat?token=${token}`;
     //  const url = `wss://root.c-maxs.com/api/chat?token=${token}`;
 
