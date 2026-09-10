@@ -521,6 +521,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(() => {
         this.getWalletBalance();
       });
+
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   onStartDateChange(date: string) {
