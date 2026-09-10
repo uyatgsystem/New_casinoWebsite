@@ -220,7 +220,7 @@ export class FeaturedCardsComponent {
       key: 'aviatar',
       title: 'Aviator',
       subtitle: 'Flying to win',
-      image: 'https://cmaxv2images2.pages.dev/assets/icons/aviator.png',
+      image: 'https://spinhub-6rb.pages.dev/assets/Aviator.png',
       gradient: 'from-[#2a1f3d] via-[#4b2d7f] to-[#6a4bc0]',
       hotKey: 'Aviatar',
     },

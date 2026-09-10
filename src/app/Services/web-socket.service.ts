@@ -132,14 +132,15 @@ export class WebSocketService {
       if (messageData?.Type === 'Login') {
         const verifyPaymentTabOpen = this.isVerifyPaymentTabOpen();
         if (!verifyPaymentTabOpen) {
-          this.errorhandilingService.showAlert('error', this.messege);
-          // this.toastr.info('You have been logged into another place', 'Info', {
-          //   closeButton: true,
-          //   extendedTimeOut: 0,
-          //   timeOut: 0,
-          //   tapToDismiss: false,
-          // });
-          // this._utilService.triggerLogoutFunction();
+          // Show a persistent error popup (autoCloseMs = 0) so user must acknowledge
+          this.errorhandilingService.showAlert('error', this.messege, true, 0);
+
+          // Trigger logout flow so header (and any dropdowns) close cleanly
+          try {
+            this._utilService.triggerLogoutFunction();
+          } catch (e) {
+            // swallow any errors here to avoid breaking message handling
+          }
         }
       } else if (messageData?.type === 'GameState') {
         this.invokeGameState.emit(messageData.data);

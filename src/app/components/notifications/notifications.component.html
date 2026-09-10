@@ -1,6 +1,6 @@
-<div class="container mx-auto p-4 absolute sm:w-[25rem] w-[20rem] top-16 sm:right-0 -right-4">
-  <div *ngIf="isVisible"
-    class="bg-[#161819] bg-noise border border-[#8c8066] p-4 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] relative">
+<div class="container notifications-panel mx-auto p-4 absolute sm:w-[25rem] w-[20rem] top-16 sm:right-0 -right-4">
+  <div *ngIf="isVisible" [class.closing]="isClosing"
+    class="bg-[#161819] bg-noise border border-[#8c8066] p-4 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] relative panel-enter">
 
     <div class="flex justify-between items-center mb-3 pb-2 border-b border-[#8c8066]/30">
       <h3 class="text-white font-semibold text-sm">Notifications</h3>
@@ -28,6 +28,8 @@
           class="cursor-pointer notification-card flex items-center bg-noise p-4 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] relative text-white w-full"
           (click)="onNotificationClick(notification)" [class.removing]="notification.removing">
 
+          <!-- Visible removed label while animating out -->
+          <span *ngIf="notification.removing" class="removed-pill">Removed</span>
           <div class="notification-icon text-[#ffb24a] rounded-full p-2 mr-4 flex-shrink-0">
             <i class="fas fa-bell"></i>
           </div>
