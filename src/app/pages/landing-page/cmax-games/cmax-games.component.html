@@ -39,53 +39,17 @@
       </button>
     </div>
 
-    <div class="grid grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-0 lg:gap-y-6 py-0 lg:pb-4">
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-6 py-2">
       <ng-container *ngFor="let game of displayedAllGames; let i = index">
-        <div class="relative w-[130px] md:w-full h-[145px] lg:h-[393px] flex justify-center group">
-          <div class="relative z-10 flex items-center justify-center w-full h-full">
-            <div
-              class="modern-game-card relative w-[130px] md:w-[328px] h-[145px] md:h-[370px] lg:w-[300px] lg:h-[370px] rounded-2xl overflow-hidden cursor-pointer"
-              (click)="onPlayGame(game)">
-              <!-- Cover image (full bleed) -->
-              <img [src]="getGameImage(game.name)?.coverImage" [alt]="game.name"
-                class="modern-game-cover absolute inset-0 w-full h-full object-cover" />
+        <div (click)="onPlayGame(game)" class="dash-game-card group">
+          <img [src]="getGameImage(game.name)?.image || getGameImage(game.name)?.coverImage" [alt]="game.name" class="game-image" />
 
-              <!-- Bottom gradient scrim for legible text -->
-              <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none"></div>
+          <div class="play-overlay">
+            <span class="play-btn">Play Now</span>
+          </div>
 
-              <!-- Category Tag -->
-              <span
-                class="absolute z-20 top-2 left-2 md:top-3 md:left-3 bg-black/60 backdrop-blur-sm border border-[#FE8912]/50 text-[#FE9B2A] text-[6px] md:text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 md:px-2.5 md:py-1 rounded-full">
-                Featured
-              </span>
-
-              <!-- Circular game icon badge -->
-              <div
-                class="absolute z-20 hidden sm:flex top-3 right-3 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center shadow-md">
-                <img [src]="getGameImage(game.name)?.image" [alt]="game.name + ' icon'"
-                  class="w-5 h-5 object-contain" />
-              </div>
-
-              <!-- Title -->
-              <div class="absolute bottom-0 inset-x-0 z-20 p-2.5 sm:p-3 md:p-4">
-                <span class="text-white font-bold text-[9px] sm:text-sm md:text-lg leading-tight">{{ game.name }}</span>
-              </div>
-
-              <!-- Play Button - Hover Overlay -->
-              <div
-                class="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-30">
-                <button
-                  class="bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-bold text-sm md:text-lg px-4 py-1.5 md:px-8 md:py-3 rounded-full hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 md:gap-2">
-                  <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  Play
-                </button>
-              </div>
-
-              <!-- Glowing border ring -->
-              <div class="modern-game-ring absolute inset-0 rounded-2xl pointer-events-none"></div>
-            </div>
+          <div class="card-footer-pill">
+            <span class="game-title">{{ game.name }}</span>
           </div>
         </div>
       </ng-container>
@@ -107,46 +71,17 @@
       </button>
     </div>
 
-    <div class="grid grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-0 lg:gap-y-6 py-0 lg:pb-4">
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-6 py-2">
       <ng-container *ngFor="let game of displayedQuickGames; let i = index">
-        <div class="relative w-[130px] md:w-full h-[145px] lg:h-[393px] flex justify-center group">
-          <div class="relative z-10 flex items-center justify-center w-full h-full">
-            <div
-              class="modern-game-card relative w-[130px] md:w-[328px] h-[145px] md:h-[370px] lg:w-[300px] lg:h-[370px] rounded-2xl overflow-hidden cursor-pointer"
-              (click)="onPlayGame(game)">
-              <!-- Cover image (full bleed) -->
-              <img [src]="game.image || game.coverImage" [alt]="game.name"
-                class="modern-game-cover absolute inset-0 w-full h-full object-cover" />
+        <div (click)="onPlayGame(game)" class="dash-game-card group">
+          <img [src]="game.image || game.coverImage" [alt]="game.name" class="game-image" />
 
-              <!-- Bottom gradient scrim for legible text -->
-              <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none"></div>
+          <div class="play-overlay">
+            <span class="play-btn">Play Now</span>
+          </div>
 
-              <!-- Category Tag -->
-              <span
-                class="absolute z-20 top-2 left-2 md:top-3 md:left-3 bg-black/60 backdrop-blur-sm border border-[#FE8912]/50 text-[#FE9B2A] text-[6px] md:text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 md:px-2.5 md:py-1 rounded-full">
-                Instant Win
-              </span>
-
-              <!-- Title -->
-              <div class="absolute bottom-0 inset-x-0 z-20 p-2.5 sm:p-3 md:p-4">
-                <span class="text-white font-bold text-[9px] sm:text-sm md:text-lg leading-tight">{{ game.name }}</span>
-              </div>
-
-              <!-- Play Button - Hover Overlay -->
-              <div
-                class="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-30">
-                <button
-                  class="bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-bold text-sm md:text-lg px-4 py-1.5 md:px-8 md:py-3 rounded-full hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 md:gap-2">
-                  <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  Play
-                </button>
-              </div>
-
-              <!-- Glowing border ring -->
-              <div class="modern-game-ring absolute inset-0 rounded-2xl pointer-events-none"></div>
-            </div>
+          <div class="card-footer-pill">
+            <span class="game-title">{{ game.name }}</span>
           </div>
         </div>
       </ng-container>

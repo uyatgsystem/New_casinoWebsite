@@ -12,41 +12,42 @@ export class GameService {
   }
 
   getDashboardInstantGames(): any[] {
+    // Same image links used by the dashboard "Quick Win Casino" cards (games-landing.component.ts quickGames)
     return [
       {
         id: 1,
         name: 'Spin',
-        image: 'https://cmaxnewimages.pages.dev/assets/newitems/spin.png',
+        image: 'https://spinhub-6rb.pages.dev/assets/Spin.png',
         redirectLink: '/dashboard/spinner',
       },
       {
         id: 2,
         name: 'Lottery',
-        image: 'https://cmaxnewimages.pages.dev/assets/newitems/landing_2.png',
+        image: '/lottery.png',
         redirectLink: '/dashboard/lottery',
       },
       {
         id: 3,
         name: 'Scratch',
-        image: 'https://cmaxnewimages.pages.dev/assets/newitems/sactrach.png',
+        image: 'https://spinhub-6rb.pages.dev/assets/scratch.png',
         redirectLink: '/dashboard/SectrechCards',
       },
       {
         id: 4,
         name: 'Treasure',
-        image: 'https://cmaxnewimages.pages.dev/assets/newitems/treasure-vault.png',
+        image: 'https://spinhub-6rb.pages.dev/assets/Treasure.png',
         redirectLink: '/dashboard/TreasurePick',
       },
       {
         id: 5,
         name: 'Aviator',
-        image: 'https://cmaxnewimages.pages.dev/assets/newitems/Avaitar.png',
+        image: 'https://spinhub-6rb.pages.dev/assets/Aviator.png',
         redirectLink: '/dashboard/Avaitar',
       },
       {
         id: 6,
         name: 'Baccarat',
-        image: 'https://cmaxnewimages.pages.dev/assets/newitems/Baccarat.png',
+        image: 'https://spinhub-6rb.pages.dev/assets/baccarat.png',
         redirectLink: '/dashboard/Baccaret',
       },
     ];

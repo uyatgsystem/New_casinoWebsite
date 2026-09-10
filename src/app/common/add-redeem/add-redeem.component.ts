@@ -249,18 +249,31 @@ export class AddRedeemComponent implements OnInit, AfterViewInit {
   addRedeemPayload() {
     const gameData = this.loaderService.getArrayInLocalStorage();
     var selectedGameData = gameData.find(
-      (data: any) => data.GameName === this.selectedGame,
+      (data: any) =>
+        data.GameName ===
+        (typeof this.selectedGame === 'string'
+          ? this.selectedGame
+          : this.selectedGame?.GameName),
     );
     // 1.
     const bisOfferData = localStorage.getItem('bis_offer');
     const offerList = bisOfferData ? JSON.parse(bisOfferData) : [];
     // 2.
     const selectedGame = offerList.find(
-      (game: any) => game.GameName === this.selectedGame,
+      (game: any) =>
+        game.GameName ===
+        (typeof this.selectedGame === 'string'
+          ? this.selectedGame
+          : this.selectedGame?.GameName),
     );
     // 3.
     this.selectedGame = selectedGame;
     const gameId = selectedGame ? selectedGame.GameId : 0;
+    const rawPanelId = selectedGameData?.PanelId;
+    const panelId =
+      rawPanelId !== undefined && rawPanelId !== null && rawPanelId !== '' && !isNaN(Number(rawPanelId))
+        ? Number(rawPanelId)
+        : null;
     return {
       gameName: selectedGameData?.GameName,
       customerID: this.getCustomerID()?.toString(),
@@ -269,7 +282,7 @@ export class AddRedeemComponent implements OnInit, AfterViewInit {
       addScore: this.score.toString(),
       capatchaCode: '',
       tCode: '',
-      panelId: selectedGameData?.PanelId,
+      panelId: panelId,
       source: this.selectedPaymentMethod || 'Wallet',
       accountType: this.accountType || '',
       accountInfo: this.accountInfo || '',

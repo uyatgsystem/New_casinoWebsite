@@ -1,10 +1,10 @@
 <div
   *ngIf="showModal"
-  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay z-[999]"
+  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay z-[9999] p-4"
   (click)="closeModal()"
 >
   <div
-    class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[90vh] flex flex-col z-50 relative overflow-hidden"
+    class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[85vh] flex flex-col z-50 relative overflow-hidden"
     (click)="$event.stopPropagation()"
   >
     <!-- Fixed Grain Background Layer -->

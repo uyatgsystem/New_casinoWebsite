@@ -150,10 +150,13 @@ export class CmaxGamesComponent implements OnInit {
     return this.games.length > this.getInitialVisibleCount();
   }
 
-  // Show 4 cards on desktop and 2 on small screens by default
+  // Match the grid columns (grid-cols-3 sm:4 md:5 lg:6) so the first row is always full
   private getInitialVisibleCount(): number {
     const w = window.innerWidth || 0;
-    return w >= 1024 ? 4 : 9;
+    if (w >= 1024) return 6;
+    if (w >= 768) return 5;
+    if (w >= 640) return 4;
+    return 3;
   }
 
   getGameImageUrl(game: any): string {
