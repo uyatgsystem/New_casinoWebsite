@@ -67,7 +67,7 @@ export class GameService {
       downloadLink: 'https://www.egame99.club/',
       provider: 'Dragon Gaming',
       isHot: false,
-      bgclr: 'rgb(252, 225, 71)',
+      bgclr: '#fce147',
       color2: '#3333ff',
     },
     {

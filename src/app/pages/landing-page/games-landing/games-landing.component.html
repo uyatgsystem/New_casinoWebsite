@@ -46,8 +46,8 @@
   [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''">
   <ng-container *ngFor="let game of displayedGames">
     <div (click)="isMobile() ? OnPlayNow(game) : null"
-      class="dash-game-card group relative w-full h-36 sm:h-56 md:h-60 cursor-pointer rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 bg-black border border-[#ffffff]/15 hover:border-[#FE8912] shadow-[0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_35px_rgba(254,137,18,0.4)]"
-      [ngStyle]="{ 'box-shadow': '0 10px 25px rgba(0,0,0,0.8), 0 0 0 1.5px ' + (game.bgclr || '#FE8912') + '40' }">
+      class="dash-game-card group relative w-full h-36 sm:h-56 md:h-60 cursor-pointer rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 bg-gradient-to-br from-[#1c1f27] via-[#14161c] to-[#0a0b0d] border border-[#bfa97a]/60 hover:border-[#FE8912] shadow-[0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_35px_rgba(254,137,18,0.4)]"
+      [ngStyle]="{ 'box-shadow': '0 10px 25px rgba(0,0,0,0.8), 0 0 0 2px ' + (game.bgclr || '#FE8912') + 'cc' }">
 
       <!-- Cover image -->
       <img [src]="game.image" [alt]="game.name"
@@ -151,12 +151,12 @@
 
 <!-- Instant Games Section - Renamed to Quick Win Casino -->
 <div *ngIf="isDashboardPage" class="mb-10 mt-8" id="quick-scrolling-id">
-  <div class="flex items-center ml-4 gap-3">
-    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#2a2d35] to-[#121417] border border-[#C3B089]/40 flex items-center justify-center shadow-lg">
+  <div class="flex items-center ml-4 gap-2 sm:gap-3">
+    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#2a2d35] to-[#121417] border border-[#C3B089]/40 flex items-center justify-center shadow-lg shrink-0">
       <img src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png" alt="Quick Win Casino"
-        class="w-5 h-5 object-contain" />
+        class="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
     </div>
-    <span class="text-white font-black text-lg tracking-wider uppercase bg-gradient-to-r from-white via-amber-100 to-amber-500 bg-clip-text text-transparent drop-shadow-md">
+    <span class="text-white font-black text-xs sm:text-base md:text-lg tracking-wider uppercase bg-gradient-to-r from-white via-amber-100 to-amber-500 bg-clip-text text-transparent drop-shadow-md whitespace-nowrap">
       Quick Win Casino
     </span>
   </div>
@@ -166,8 +166,8 @@
     [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''">
     <ng-container *ngFor="let game of quickGames">
       <div (click)="redirectTo(game.redirectLink)"
-        class="dash-game-card group relative w-full h-36 sm:h-56 md:h-60 cursor-pointer rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 bg-black border border-[#ffffff]/15 hover:border-[#FE8912] shadow-[0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_35px_rgba(254,137,18,0.4)]"
-        [ngStyle]="{ 'box-shadow': '0 10px 25px rgba(0,0,0,0.8), 0 0 0 1.5px ' + (game.bgColor || '#FE8912') + '40' }">
+        class="dash-game-card group relative w-full h-36 sm:h-56 md:h-60 cursor-pointer rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 bg-gradient-to-br from-[#1c1f27] via-[#14161c] to-[#0a0b0d] border border-[#bfa97a]/60 hover:border-[#FE8912] shadow-[0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_35px_rgba(254,137,18,0.4)]"
+        [ngStyle]="{ 'box-shadow': '0 10px 25px rgba(0,0,0,0.8), 0 0 0 2px ' + (game.bgColor || '#FE8912') + 'cc' }">
 
         <!-- Cover image -->
         <img [src]="game.image" [alt]="game.name"
