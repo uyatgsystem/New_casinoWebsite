@@ -1,84 +1,83 @@
 <app-loader></app-loader>
 
 <!-- Add Balance Modal -->
-<div *ngIf="showModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[999] p-3 sm:p-4"
+<div *ngIf="showModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[999] p-4 overflow-y-auto"
   (click)="hideWalletModal()">
 
   <div
-    class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[90vh] flex flex-col z-50 relative overflow-hidden"
+    class="bg-[#121417] border border-[#C3B089]/40 rounded-[32px] w-full max-w-2xl p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white my-8 modal slide-up"
     (click)="$event.stopPropagation()">
 
-    <!-- Fixed Grain Background Layer -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-0 opacity-40">
-      <div class="grain-Backdrop absolute inset-0 w-full h-full" [innerHTML]="grainBackdrop"></div>
+    <!-- Header Title & Close Button -->
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-black text-white tracking-wide">Add Balance</h2>
+      <button (click)="hideWalletModal()" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition cursor-pointer">✕</button>
     </div>
 
-    <!-- Sticky Header -->
-    <div class="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#C3B089]/30 relative z-20 bg-[#161819]/95 backdrop-blur-md shrink-0">
-      <h2 class="text-lg sm:text-xl font-extrabold text-white tracking-wide">Add Balance</h2>
-      <button (click)="hideWalletModal()" class="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition shrink-0">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Scrollable Content Area -->
-    <div class="p-4 sm:p-6 overflow-y-auto space-y-5 relative z-10 custom-scrollbar flex-1">
-      <!-- Payment Methods Selection -->
-      <div>
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <div class="flex items-center gap-2">
-            <div class="w-1.5 h-4 bg-[#F3A630] rounded-full"></div>
-            <span class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider">
-              Select Payment Method
-            </span>
-          </div>
-
-          <span class="text-[11px] sm:text-xs font-semibold bg-[#FE9B2A]/10 border border-[#FE9B2A]/20 px-3 py-1 rounded-xl flex flex-wrap items-center gap-1.5">
-            <span class="text-[#ABB7BD]">Deposit:</span>
-            <span class="text-[#9CA3AF]">Min</span>
-            <span class="text-[#FE9B2A] font-bold">{{ minAmount }}</span>
-            <span class="text-[#9CA3AF]">| Max</span>
-            <span class="text-[#FE9B2A] font-bold">{{ maxAmount }}</span>
+    <!-- Payment Methods Selection -->
+    <div class="mb-6">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-3.5 bg-[#F3A630] rounded-full"></span>
+          <span class="text-xs font-bold text-gray-300 uppercase tracking-wider">
+            Select Payment Method
           </span>
         </div>
 
-        <div class="payment-methods-grid">
-          @for (account of visibleAccountTypes; track account.id) {
-          <div class="payment-card" [class.selected]="selectedAccountType === account.name" (click)="
-                togglePayment(
-                  account.name,
-                  account.isActive,
-                  account.kycStatus,
-                  $event,
-                  account
-                )
-              ">
-            @if (account.isActive && account.Bonus != 0 && account.Bonus != 0.0) {
-              <div class="bonus-tag">{{ account.Bonus }}% Extra</div>
-            }
-            <div class="icon-wrapper">
-              <img [src]="account.bg_image" [alt]="account.name" />
-            </div>
-            <span class="method-name text-xs">
+        <span class="text-[11px] sm:text-xs font-semibold bg-[#FE9B2A]/10 border border-[#FE9B2A]/20 px-3 py-1 rounded-xl flex flex-wrap items-center gap-1.5">
+          <span class="text-[#ABB7BD]">Deposit:</span>
+          <span class="text-[#9CA3AF]">Min</span>
+          <span class="text-[#FE9B2A] font-bold">{{ minAmount }}</span>
+          <span class="text-[#9CA3AF]">| Max</span>
+          <span class="text-[#FE9B2A] font-bold">{{ maxAmount }}</span>
+        </span>
+      </div>
+
+      <!-- Payment Methods Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        @for (account of visibleAccountTypes; track account.id) {
+        <div (click)="
+              togglePayment(
+                account.name,
+                account.isActive,
+                account.kycStatus,
+                $event,
+                account
+              )
+            "
+          class="relative flex items-center gap-3 p-3 rounded-2xl border transition cursor-pointer overflow-hidden group"
+          [ngClass]="{
+            'bg-black/60 border-[#F3A630] shadow-[0_0_15px_rgba(243,166,48,0.25)]': selectedAccountType === account.name,
+            'bg-black/40 border-white/10 hover:border-white/30': selectedAccountType !== account.name && account.isActive,
+            'opacity-40 cursor-not-allowed bg-black/20 border-white/5': !account.isActive
+          }">
+
+          @if (account.isActive && account.Bonus != 0 && account.Bonus != 0.0) {
+            <div class="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded-full shadow whitespace-nowrap leading-none z-10">{{ account.Bonus }}% Extra</div>
+          }
+
+          <div class="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center p-1.5 shrink-0">
+            <img [src]="account.bg_image" [alt]="account.name" class="w-full h-full object-contain" />
+          </div>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-xs font-bold text-white truncate">
               {{ nameMap[account.name] || account.name }}
             </span>
-            @if (!account.isActive) {
-              <div class="coming-soon-overlay">
-                <div class="cs-badge">Coming Soon</div>
-              </div>
-            }
           </div>
+
+          @if (!account.isActive) {
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center">
+              <span class="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 border border-white/10 px-2 py-0.5 rounded-full">Coming Soon</span>
+            </div>
           }
         </div>
+        }
       </div>
+    </div>
 
       <!-- Card Form -->
       <form [formGroup]="paymentForm" (ngSubmit)="payCard()" *ngIf="showcard">
-        <div class="space-y-4 max-w-md mx-auto bg-black/40 p-5 rounded-2xl border border-white/5 shadow-inner">
+        <div class="space-y-4 max-w-md mx-auto bg-[#0a0b0d]/90 p-5 rounded-2xl border border-white/10 shadow-inner">
           <div>
             <input type="text" inputmode="numeric" formControlName="cardNumber" placeholder="Card Number"
               (input)="onCardNumberInput($event)"
@@ -114,11 +113,11 @@
 
           <div class="flex items-center gap-3 pt-2">
             <button (click)="hideWalletModal()" type="button"
-              class="w-1/3 py-3.5 rounded-xl border border-white/20 text-gray-300 text-sm font-semibold hover:bg-white/5 transition">
+              class="w-1/3 bg-black/50 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/5 transition cursor-pointer">
               Cancel
             </button>
             <button type="submit" [disabled]="isWithdrawPending" [class.opacity-50]="isWithdrawPending"
-              class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black text-sm font-extrabold shadow-lg hover:brightness-110 transition">
+              class="w-2/3 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(254,128,6,0.35)] hover:brightness-110 transition cursor-pointer">
               <span>Add Balance</span>
             </button>
           </div>
@@ -127,7 +126,7 @@
 
       <!-- Cash App Form -->
       <form [formGroup]="cashappForm" (ngSubmit)="paycashApp()" *ngIf="showcashApp">
-        <div class="space-y-4 max-w-md mx-auto bg-black/40 p-5 rounded-2xl border border-white/5 shadow-inner">
+        <div class="space-y-4 max-w-md mx-auto bg-[#0a0b0d]/90 p-5 rounded-2xl border border-white/10 shadow-inner">
           <div>
             <input type="text" inputmode="decimal" formControlName="amount" placeholder="Amount"
               (input)="onAmountInput($event, 'cashapp')"
@@ -136,11 +135,11 @@
 
           <div class="flex items-center gap-3 pt-2">
             <button type="button" (click)="hideWalletModal()"
-              class="w-1/3 py-3.5 rounded-xl border border-white/20 text-gray-300 text-sm font-semibold hover:bg-white/5 transition">
+              class="w-1/3 bg-black/50 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/5 transition cursor-pointer">
               Cancel
             </button>
             <button type="submit" [disabled]="isWithdrawPending" [class.opacity-50]="isWithdrawPending"
-              class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black text-sm font-extrabold shadow-lg hover:brightness-110 transition">
+              class="w-2/3 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(254,128,6,0.35)] hover:brightness-110 transition cursor-pointer">
               <span>Pay ${{ cashappForm.get("amount")?.value || "..." }} Now</span>
             </button>
           </div>
@@ -148,9 +147,9 @@
       </form>
 
       <!-- Manual / Chime / Zelle / ApplePay / GooglePay / Paypal Section -->
-      <div *ngIf="showChimeZelle" class="space-y-4 bg-black/40 p-5 rounded-2xl border border-white/5 shadow-inner">
+      <div *ngIf="showChimeZelle" class="space-y-4 bg-[#0a0b0d]/90 p-5 rounded-2xl border border-white/10 shadow-inner">
         <div *ngIf="selectedAccountType !== 'GooglePay' && selectedAccountType !== 'ApplePay' && selectedAccountType !== 'Paypal'">
-          <label for="amount" class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">Add Amount</label>
+          <label for="amount" class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Add Amount</label>
           <input id="amount" type="text" inputmode="decimal" (blur)="touchedAmount = true" [(ngModel)]="manualAmount"
             [ngModelOptions]="{ standalone: true }" (input)="onAmountInput($event, 'manual')"
             class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500"
@@ -158,7 +157,7 @@
         </div>
 
         <div *ngIf="selectedAccountType === 'GooglePay' || selectedAccountType === 'ApplePay' || selectedAccountType === 'Paypal'">
-          <label class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">Enter Amount</label>
+          <label class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Enter Amount</label>
           <input type="text" inputmode="decimal" (blur)="touchedAmount = true" [(ngModel)]="googleApplePayAmount"
             [ngModelOptions]="{ standalone: true }" (input)="onAmountInput($event, 'googlepay')"
             class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500"
@@ -167,7 +166,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" *ngIf="selectedAccountType !== 'GooglePay' && selectedAccountType !== 'ApplePay' && selectedAccountType !== 'Paypal'">
           <div class="relative">
-            <label for="accountsTitle" class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">Account Title</label>
+            <label for="accountsTitle" class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Account Title</label>
             <div
               class="w-full bg-black/60 border border-white/10 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-sm"
               (click)="accountTitleDropdownOpen = !accountTitleDropdownOpen">
@@ -195,7 +194,7 @@
           </div>
 
           <div class="relative">
-            <label class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">Account Number / Tag</label>
+            <label class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Account Number / Tag</label>
             <div class="relative flex items-center">
               <input type="text" placeholder="Enter Tag" [value]="CustomerTag" [disabled]="true"
                 class="w-full bg-black/40 border border-white/10 rounded-xl text-white px-4 py-3 text-sm pr-10" />
@@ -206,7 +205,7 @@
         </div>
 
         <div>
-          <label for="email" class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">Add Email</label>
+          <label for="email" class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Add Email</label>
           <input id="email" type="text" [(ngModel)]="email"
             class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500"
             placeholder="Add Email" />
@@ -215,7 +214,7 @@
         <!-- Upload Receipt & QR Code Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center pt-2">
           <div>
-            <label class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">Upload Deposit Receipt</label>
+            <label class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Upload Deposit Receipt</label>
             <input id="receipt" type="file" (change)="onFileSelected($event)" class="hidden" accept="image/*" />
             <label for="receipt"
               class="cursor-pointer inline-flex items-center gap-2 bg-[#2a2d35] hover:bg-[#353942] text-white rounded-xl px-4 py-2.5 transition text-xs font-semibold border border-white/10 shadow-sm">
@@ -227,7 +226,7 @@
             </div>
           </div>
           <div *ngIf="qrCodeImage && qrCodeImage != ''" class="flex flex-col items-start sm:items-end">
-            <label class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">QR Code</label>
+            <label class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">QR Code</label>
             <img [src]="qrCodeImage" alt="QR Code" class="w-28 h-28 rounded-xl border border-white/20 object-contain bg-black/50 p-1 cursor-pointer hover:scale-105 transition shadow-md" (click)="openQrPopup()" />
           </div>
         </div>
@@ -235,21 +234,21 @@
         <!-- Buttons -->
         <div class="flex items-center gap-3 pt-3 pb-2">
           <button (click)="hideWalletModal()" type="button"
-            class="w-1/3 py-3.5 rounded-xl border border-white/20 text-gray-300 text-sm font-semibold hover:bg-white/5 transition">
+            class="w-1/3 bg-black/50 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/5 transition cursor-pointer">
             Cancel
           </button>
           <button (click)="addBalance()" type="button"
-            class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black text-sm font-extrabold shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:brightness-110 transition">
+            class="w-2/3 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(254,128,6,0.35)] hover:brightness-110 transition cursor-pointer">
             Add Balance
           </button>
         </div>
       </div>
 
       <!-- Cash App Tap Tap Section -->
-      <div *ngIf="showCashAppTapTap" class="space-y-4 max-w-md mx-auto bg-black/40 p-5 rounded-2xl border border-white/5 shadow-inner">
+      <div *ngIf="showCashAppTapTap" class="space-y-4 max-w-md mx-auto bg-[#0a0b0d]/90 p-5 rounded-2xl border border-white/10 shadow-inner">
         @if (selectedAccountType === "CashApp2") {
         <div>
-          <label for="amount" class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">Add Amount</label>
+          <label for="amount" class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Add Amount</label>
           <select
             id="amount"
             [(ngModel)]="newBalance"
@@ -264,7 +263,7 @@
 
         @if (selectedAccountType === "GooglePay" || selectedAccountType === "ApplePay") {
         <div>
-          <label for="amount" class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider">Add Amount</label>
+          <label for="amount" class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Add Amount</label>
           <select
             id="amount"
             [(ngModel)]="newBalance"
@@ -279,18 +278,17 @@
 
         <div class="flex items-center gap-3 pt-2 pb-2">
           <button (click)="hideWalletModal()" type="button"
-            class="w-1/3 py-3.5 rounded-xl border border-white/20 text-gray-300 text-sm font-semibold hover:bg-white/5 transition">
+            class="w-1/3 bg-black/50 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/5 transition cursor-pointer">
             Cancel
           </button>
 
           <button (click)="AddTapTapCashApp()" type="button"
-            class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black text-sm font-extrabold shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:brightness-110 transition">
+            class="w-2/3 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(254,128,6,0.35)] hover:brightness-110 transition cursor-pointer">
             Add Balance
           </button>
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 @if (isCopied()) {
