@@ -167,15 +167,16 @@ export class CmaxGamesComponent implements OnInit {
         ? `${baseUrl}${game.image}`
         : 'assets/placeholder.png';
   }
-  // All Games (top section)
+  // All Games (top section) — show 24 games by default
+  private readonly allGamesInitialCount = 24;
+
   get displayedAllGames() {
     if (this.showAllGamesExpanded) return this.allGames;
-    const count = this.getInitialVisibleCount();
-    return this.allGames.slice(0, count);
+    return this.allGames.slice(0, this.allGamesInitialCount);
   }
 
   get hasMoreAllGames(): boolean {
-    return this.allGames.length > this.getInitialVisibleCount();
+    return this.allGames.length > this.allGamesInitialCount;
   }
 
   toggleAllGamesView() {
