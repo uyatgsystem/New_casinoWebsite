@@ -536,6 +536,12 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openAddBalanceModal() {
+    this.showModal = true;
+    this.selectedAccountType = '';
+    this.newBalance = 0;
+    this.selectedAccounttitle = '';
+    this.Customertag = '';
+    this.uploadProfileImage = '';
     const isAnyTransactionPending = this.filteredTransactions.some(
       (transaction) =>
         transaction.source == 'Withdraw' && transaction.status === 'Pending',
@@ -923,6 +929,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.uploadProfileImage = '';
     this.selectedAccount = '';
     this.selectedAccounttitle = '';
+    this.handleError.showModalSubject.next(false);
   }
 
   hideWithdrawModal() {
