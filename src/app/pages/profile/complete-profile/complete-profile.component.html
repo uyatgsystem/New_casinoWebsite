@@ -66,7 +66,7 @@
         <nav class="account-nav" aria-label="Account settings">
           <button
             type="button"
-            (click)="activeTab = 'personal'"
+            (click)="activeTab = 'personal'; scrollTabIntoView($event)"
             [class.active]="activeTab === 'personal'"
           >
             <i class="fa fa-user-o"></i><span>Personal information</span
@@ -74,7 +74,7 @@
           </button>
           <button
             type="button"
-            (click)="activeTab = 'security'"
+            (click)="activeTab = 'security'; scrollTabIntoView($event)"
             [class.active]="activeTab === 'security'"
           >
             <i class="fa fa-lock"></i><span>Password & security</span
@@ -82,7 +82,7 @@
           </button>
           <button
             type="button"
-            (click)="activeTab = 'wallet'"
+            (click)="activeTab = 'wallet'; scrollTabIntoView($event)"
             [class.active]="activeTab === 'wallet'"
           >
             <i class="fa fa-credit-card"></i><span>Wallet activity</span
@@ -90,7 +90,7 @@
           </button>
           <button
             type="button"
-            (click)="activeTab = 'referrals'"
+            (click)="activeTab = 'referrals'; scrollTabIntoView($event)"
             [class.active]="activeTab === 'referrals'"
           >
             <i class="fa fa-users"></i><span>Referrals</span
@@ -98,33 +98,21 @@
           </button>
           <button
             type="button"
-            (click)="activeTab = 'Levels'"
+            (click)="activeTab = 'Levels'; scrollTabIntoView($event)"
             [class.active]="activeTab === 'Levels'"
           >
             <i class="fa fa-trophy"></i><span>Membership levels</span
             ><i class="fa fa-angle-right"></i>
           </button>
-        </nav>
-
-        <div class="wallet-card">
-          <div class="wallet-card-label"><i class="fa fa-credit-card"></i> Wallet</div>
-          <strong>${{ formattedBalance }}</strong>
-          <span>Available balance</span>
-          <button type="button" (click)="activeTab = 'wallet'">
-            Open wallet <i class="fa fa-arrow-right"></i>
-          </button>
-        </div>
-        <div class="kyc-action-card" *ngIf="KYCVerification !== 'completed'">
-          <span><i class="fa fa-shield"></i> Identity verification</span>
-          <p>{{ KYCVerification === "pending" ? "Your KYC review is in progress." : "Submit your details to verify your account." }}</p>
           <button
             type="button"
-            (click)="RedirectTokyc()"
+            (click)="activeTab = 'kyc'; scrollTabIntoView($event)"
+            [class.active]="activeTab === 'kyc'"
           >
-            {{ KYCVerification === "pending" ? "View KYC status" : "Submit KYC" }}
-            <i class="fa fa-arrow-right"></i>
+            <i class="fa fa-shield"></i><span>Identity verification</span
+            ><i class="fa fa-angle-right"></i>
           </button>
-        </div>
+        </nav>
       </aside>
 
       <main class="account-content">
@@ -519,6 +507,51 @@
                 class="fa fa-check-circle level-check"
               ></i>
             </div>
+          </div>
+        </section>
+
+        <section *ngIf="activeTab === 'kyc'" class="settings-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Account security</span>
+              <h2>Identity verification</h2>
+              <p>Verify your identity to unlock all account features.</p>
+            </div>
+          </div>
+          <div class="verification-status">
+            <div class="status-card" [ngClass]="'status-' + (KYCVerification?.toLowerCase() || 'not-submitted')">
+              <div class="status-icon">
+                <i class="fa" [ngClass]="
+                  KYCVerification === 'completed'
+                    ? 'fa-check-circle'
+                    : KYCVerification === 'pending'
+                      ? 'fa-clock-o'
+                      : 'fa-exclamation-circle'
+                "></i>
+              </div>
+              <div class="status-content">
+                <h3>{{ (KYCVerification || "Not submitted") | titlecase }}</h3>
+                <p *ngIf="KYCVerification === 'completed'">
+                  Your identity has been verified.
+                </p>
+                <p *ngIf="KYCVerification === 'pending'">
+                  Verification is currently in progress. Please check back soon.
+                </p>
+                <p *ngIf="!KYCVerification || KYCVerification === 'not submitted'">
+                  Submit your details to verify your account and unlock all features.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button
+              type="button"
+              class="solid-button"
+              (click)="RedirectTokyc()"
+            >
+              {{ KYCVerification === "pending" ? "View KYC status" : "Submit KYC" }}
+              <i class="fa fa-arrow-right"></i>
+            </button>
           </div>
         </section>
       </main>
