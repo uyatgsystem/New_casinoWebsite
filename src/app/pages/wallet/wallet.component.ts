@@ -230,7 +230,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   searchControl: string = '';
   showModal = false;
   showwithdrawModal = false;
-  newBalance = 0;
 
   showicon = faEye;
   hideicon = faEyeSlash;
@@ -536,12 +535,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openAddBalanceModal() {
-    this.showModal = true;
-    this.selectedAccountType = '';
-    this.newBalance = 0;
-    this.selectedAccounttitle = '';
-    this.Customertag = '';
-    this.uploadProfileImage = '';
     const isAnyTransactionPending = this.filteredTransactions.some(
       (transaction) =>
         transaction.source == 'Withdraw' && transaction.status === 'Pending',
@@ -581,96 +574,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     return null;
   }
 
-  addBalance() {
-    if (this.newBalance > 0 && this.newBalance >= 5 && this.newBalance <= 300) {
-      if (this.isShowManualEntry) {
-        this.addWalletRequest();
-      } else {
-        this.loaderService.show();
-        const apiurl = `Wallet/CreateCoralPayment?Payment=${this.newBalance}&Username=${this.getUsername()}`;
-
-        let newTab: Window | null = null;
-        if (isPlatformBrowser(this.platformId)) {
-          newTab = window.open('', '_blank');
-        }
-
-        this.apiCallService.GetCallWithToken(apiurl).subscribe({
-          next: (response) => {
-            if (response && response.responseCode === 200) {
-              this.toastr.success(response.responseMessage, 'Success');
-              if (newTab) {
-                newTab.location.href = response.data.purchaseURL;
-              } else if (isPlatformBrowser(this.platformId)) {
-                window.open(response.data.purchaseURL, '_blank');
-              }
-            } else {
-              this.handleError.handleResponseError(response);
-              if (newTab) newTab.close();
-            }
-            this.loaderService.hide();
-            this.hideWalletModal();
-          },
-          error: (error) => {
-            this.handleError.handleHttpError(error);
-            if (newTab) newTab.close();
-            this.loaderService.hide();
-            this.hideWalletModal();
-          },
-        });
-      }
-    } else {
-      this.toastr.info('Amount must be within 5 to 300', 'Invalid Amount');
-    }
-  }
-
   showBalance: boolean = false;
-
-  addWalletRequestPayload() {
-    return {
-      customerId: this.getCustomerID(),
-      balance: this.newBalance || 0,
-      type: 'Credit',
-      status: 'Pending',
-      source: this.selectedAccount || '',
-      accountTitle: this.selectedAccounttitle || '',
-      imageUrl: this.uploadProfileImage || '',
-    };
-  }
-
-  addWalletRequest() {
-    const payload = this.addWalletRequestPayload();
-    if (
-      payload.imageUrl != '' &&
-      payload.source != '' &&
-      payload.accountTitle != ''
-    ) {
-      this.loaderService.show();
-      this.apiCallService
-        .PostCallWithToken(payload, 'Wallet/CreateWalletPaymentRequest')
-        .subscribe({
-          next: (response) => {
-            if (response && response.responseCode === 200) {
-              this.toastr.success(response.responseMessage, 'Success');
-              this.getWalletBalance();
-              this.loaderService.hide();
-              this.hideWalletModal();
-            } else {
-              this.handleError.handleResponseError(response);
-              this.hideWalletModal();
-            }
-          },
-          error: (error) => {
-            this.handleError.handleHttpError(error);
-            this.hideWalletModal();
-          },
-        });
-    } else {
-      this.toastr.info(
-        'Please Select Account Details and Upload image',
-        'Validation',
-      );
-    }
-  }
 
   toggleBalance() {
     this.showBalance = !this.showBalance;
@@ -787,39 +691,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
         error: (error) => {},
       });
   }
-
-  AccountType = [
-    {
-      id: 3,
-      name: 'Card',
-      bg_image:
-        'https://cmaxv2images2.pages.dev/assets/icons/payments/master.png',
-    },
-    {
-      id: 1,
-      name: 'CashApp',
-      bg_image:
-        'https://cmaxv2images2.pages.dev/assets/icons/payments/cashapp.png',
-    },
-    {
-      id: 2,
-      name: 'Chime',
-      bg_image:
-        'https://cmaxv2images2.pages.dev/assets/icons/payments/chime.png',
-    },
-    {
-      id: 3,
-      name: 'Zelle',
-      bg_image:
-        'https://cmaxv2images2.pages.dev/assets/icons/payments/zelle.png',
-    },
-    {
-      id: 3,
-      name: 'Paypal',
-      bg_image:
-        'https://cmaxv2images2.pages.dev/assets/icons/payments/paypal.svg',
-    },
-  ];
 
   withdrawPaymentMethods = [
     {

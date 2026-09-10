@@ -529,41 +529,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   // DEPOSIT / ADD BALANCE MODAL METHODS
-  showDepositModal = false;
-  selectedDepositMethod: string = '';
-  depositAmount: number | null = null;
-  depositAccountTitle: string = '';
-  depositAccountTag: string = '';
-  selectedReceiptName: string = '';
-
   RedirectToWallet() {
     this.updateChatComponent(false);
-    this.showDepositModal = true;
-    this.selectedDepositMethod = '';
-    this.depositAmount = null;
-    this.depositAccountTitle = '';
-    this.depositAccountTag = '';
-    this.selectedReceiptName = '';
-  }
-
-  hideDepositModal() {
-    this.showDepositModal = false;
-  }
-
-  onReceiptSelected(event: Event) {
-    const file = (event.target as HTMLInputElement)?.files?.[0];
-    if (file) {
-      this.selectedReceiptName = file.name;
-    }
-  }
-
-  submitDepositRequest() {
-    if (!this.depositAmount || !this.selectedDepositMethod) {
-      this.toastr.info('Please select a payment method and enter an amount.', 'Validation');
-      return;
-    }
     this._errorHandleService.showModalSubject.next(true);
-    this.showDepositModal = false;
   }
 
   openWalletHistory() {
@@ -791,16 +759,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         error: (error) => {},
       });
   }
-
-  depositPaymentMethods = [
-    { id: 1, name: 'ApplePay', bg_image: 'https://cmaxv2images2.pages.dev/assets/icons/payments/master.png', isActive: true },
-    { id: 2, name: 'Card2', bg_image: 'https://cmaxv2images2.pages.dev/assets/icons/payments/master.png', isActive: true },
-    { id: 3, name: 'Chime', bg_image: 'https://cmaxv2images2.pages.dev/assets/icons/payments/chime.png', isActive: true },
-    { id: 4, name: 'G-Pay', bg_image: 'https://cmaxv2images2.pages.dev/assets/icons/payments/master.png', isActive: true },
-    { id: 5, name: 'Paypal', bg_image: 'https://cmaxv2images2.pages.dev/assets/icons/payments/paypal.svg', isActive: true },
-    { id: 6, name: 'CashApp', bg_image: 'https://cmaxv2images2.pages.dev/assets/icons/payments/cashapp.png', isActive: true },
-    { id: 7, name: 'Zelle', bg_image: 'https://cmaxv2images2.pages.dev/assets/icons/payments/zelle.png', isActive: true },
-  ];
 
   withdrawPaymentMethods = [
     { id: 1, name: 'Chime', bg_image: 'https://cmaxv2images2.pages.dev/assets/icons/payments/chime.png', isActive: true },
