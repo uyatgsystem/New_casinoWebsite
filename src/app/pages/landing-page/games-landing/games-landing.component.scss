@@ -9,11 +9,8 @@
   overflow: hidden;
   background: linear-gradient(135deg, rgba(22, 27, 38, 0.96) 0%, rgba(10, 13, 19, 0.99) 100%);
   
-  /* Normal state mein glow color ka border */
   border: 1.8px solid var(--card-glow, #FE8912);
-  
-  /* Normal state ka shadow aur border glow */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px rgba(254, 137, 18, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px var(--card-glow, #FE8912);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   @media (min-width: 640px) {
@@ -23,7 +20,6 @@
     height: 230px;
   }
 
-  /* Ambient Glow Behind Card */
   &::before {
     content: '';
     position: absolute;
@@ -34,7 +30,6 @@
     pointer-events: none;
   }
 
-  /* Top glossy edge reflection */
   &::after {
     content: '';
     position: absolute;
@@ -47,9 +42,8 @@
     pointer-events: none;
   }
 
-  /* ================= CONTROLLED & SMOOTH SELF-LIFT HOVER ================= */
   &:hover {
-    transform: translateY(-4px) scale(1.02); /* Apni hi jagah par halka sa upar uthega */
+    transform: translateY(-4px) scale(1.02);
     border-color: var(--card-glow, #FE8912);
     box-shadow: 
       0 20px 40px rgba(0, 0, 0, 0.95), 
@@ -107,24 +101,31 @@
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 30;
 
+  /* FIX: Button size chota, compact aur card ke andar perfectly fit kar diya hai */
   .play-btn {
     background: linear-gradient(135deg, #FEC866 0%, #FE9B2A 50%, #FE8006 100%);
     color: #000;
     font-weight: 900;
     text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    padding: 12px 26px;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 35px rgba(254, 128, 6, 0.95), inset 0 2px 5px rgba(255, 255, 255, 0.6);
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 15px rgba(254, 128, 6, 0.8), inset 0 1px 3px rgba(255, 255, 255, 0.6);
     cursor: pointer;
-    transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+
+    @media (min-width: 640px) {
+      font-size: 11px;
+      padding: 8px 18px;
+      border-radius: 10px;
+    }
 
     &:hover {
-      transform: scale(1.12);
+      transform: scale(1.08);
       filter: brightness(1.15);
-      box-shadow: 0 0 45px rgba(254, 128, 6, 1), inset 0 2px 8px rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 25px rgba(254, 128, 6, 1), inset 0 2px 5px rgba(255, 255, 255, 0.9);
     }
   }
 }

@@ -75,7 +75,7 @@
   </div>
 </div>
 
-<!-- Panel Games Section with Border Frame -->
+<!-- Panel Games Section with Dynamic Border Colors -->
 <div
   id="games-scroll-id"
   *ngIf="isToken && isDashboardPage && AsianLocalBlock"
@@ -86,7 +86,10 @@
     <div
       (click)="isMobile() ? OnPlayNow(game) : null"
       class="dash-game-card group"
-      [style.--card-glow]="game.bgclr || '#FE8912'"
+      [ngStyle]="{
+        'border-color': game.bgclr || '#FE8912',
+        '--card-glow': game.bgclr || '#FE8912',
+      }"
     >
       <!-- Cover Image -->
       <img [src]="game.image" [alt]="game.name" class="game-image" />
@@ -239,7 +242,10 @@
       <div
         (click)="redirectTo(game.redirectLink)"
         class="dash-game-card group"
-        [style.--card-glow]="game.bgColor || '#FE8912'"
+        [ngStyle]="{
+          'border-color': game.bgColor || '#FE8912',
+          '--card-glow': game.bgColor || '#FE8912',
+        }"
       >
         <img [src]="game.image" [alt]="game.name" class="game-image" />
 
