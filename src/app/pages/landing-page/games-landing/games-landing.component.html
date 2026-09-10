@@ -247,7 +247,12 @@
           '--card-glow': game.bgColor || '#FE8912',
         }"
       >
-        <img [src]="game.image" [alt]="game.name" class="game-image" />
+        <img
+          [src]="game.image"
+          [alt]="game.name"
+          class="game-image"
+          [class.game-image--boost]="game.name !== 'Spin'"
+        />
 
         <div class="play-overlay" *ngIf="!isMobile()">
           <span class="play-btn">Play Now</span>
