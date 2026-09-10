@@ -107,16 +107,6 @@ export class GamesLandingComponent {
 
   lotteryTab: TabItem[] = [{ id: 2, label: '', value: 'lotteries' }];
 
-  ScratchTab: TabItem[] = [{ id: 3, label: '', value: 'Scratch Cards' }];
-
-  SpinnerTab: TabItem[] = [
-    { id: 4, label: '', value: 'spin', scrollingId: 'spin-scrolling-id' },
-  ];
-
-  QuickgameTab: TabItem[] = [
-    { id: 1, label: '', value: 'quick', scrollingId: 'quick-scrolling-id' },
-  ];
-
   quickGames: any[] = [
     {
       id: 9,
@@ -296,8 +286,6 @@ export class GamesLandingComponent {
       );
     }
 
-    // search hone ke baad showAllGames reset kar do (taake limit se start ho)
-    this.showAllGames = false;
   }
 
   games: any[] = [];
@@ -443,27 +431,8 @@ export class GamesLandingComponent {
       });
   }
 
-  private getInitialVisibleCount(): number {
-    try {
-      const w = window.innerWidth || 0;
-      if (w >= 1900) {
-        return 20; // lg
-      }
-      if (w >= 1200) {
-        return 16; // lg
-      }
-      return 6; // small / default
-    } catch (e) {
-      return 10;
-    }
-  }
-
-  // Load more / pagination for featured games
-  showAllGames: boolean = false;
   get displayedGames() {
-    if (this.showAllGames) return this.filteredGames;
-    const count = this.getInitialVisibleCount();
-    return this.filteredGames.slice(0, count);
+    return this.filteredGames;
   }
 
   getCustomerID(): string | null {
@@ -515,19 +484,6 @@ export class GamesLandingComponent {
       );
   }
 
-  loadMoreGames() {
-    this.showAllGames = true;
-  }
-
-  // Toggle show all / show less
-  toggleShowAll() {
-    this.showAllGames = !this.showAllGames;
-  }
-
-  // whether there are more games than initial visible count
-  get hasMoreGames(): boolean {
-    return this.filteredGames.length > this.getInitialVisibleCount();
-  }
   isMobileScreen: boolean = false;
   isMobile(): boolean {
     return this.isMobileScreen;

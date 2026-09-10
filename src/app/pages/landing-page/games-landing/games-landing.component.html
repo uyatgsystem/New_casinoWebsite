@@ -42,28 +42,28 @@
 
 <!-- Panel Games Section -->
 <div id="games-scroll-id" *ngIf="isToken && isDashboardPage && AsianLocalBlock"
-  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4 sm:gap-6 mx-auto text-center px-4 py-3"
+  class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2.5 sm:gap-6 mx-auto text-center px-3 sm:px-4 py-3"
   [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''">
   <ng-container *ngFor="let game of displayedGames">
     <div (click)="isMobile() ? OnPlayNow(game) : null"
-      class="dash-game-card group relative w-full h-52 sm:h-56 md:h-60 cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 bg-black border border-[#ffffff]/15 hover:border-[#FE8912] shadow-[0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_35px_rgba(254,137,18,0.4)]"
+      class="dash-game-card group relative w-full h-36 sm:h-56 md:h-60 cursor-pointer rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 bg-black border border-[#ffffff]/15 hover:border-[#FE8912] shadow-[0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_35px_rgba(254,137,18,0.4)]"
       [ngStyle]="{ 'box-shadow': '0 10px 25px rgba(0,0,0,0.8), 0 0 0 1.5px ' + (game.bgclr || '#FE8912') + '40' }">
 
       <!-- Cover image -->
       <img [src]="game.image" [alt]="game.name"
-        class="absolute inset-0 w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-110" />
+        class="absolute inset-0 w-full h-full object-contain p-1.5 sm:p-2 transition-transform duration-500 group-hover:scale-110" />
 
       <!-- Top Badges Area -->
-      <div class="absolute top-3 inset-x-3 z-20 flex items-start justify-between pointer-events-none gap-1.5">
+      <div class="absolute top-1.5 sm:top-3 inset-x-1.5 sm:inset-x-3 z-20 flex items-start justify-between pointer-events-none gap-1">
         <!-- BONUS TAG -->
         <span *ngIf="game?.bonus"
-          class="bg-gradient-to-r from-[#ffe135] via-[#ffb700] to-[#ff8c00] text-black font-black text-[9px] px-2 py-0.5 rounded-full shadow-[0_0_10px_rgba(255,183,0,0.5)] border border-white/40 uppercase tracking-wider flex items-center gap-0.5">
+          class="bg-gradient-to-r from-[#ffe135] via-[#ffb700] to-[#ff8c00] text-black font-black text-[7px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 rounded-full shadow-[0_0_10px_rgba(255,183,0,0.5)] border border-white/40 uppercase tracking-wider flex items-center gap-0.5">
           <span>🔥</span> {{ game?.bonus }}%
         </span>
         <span *ngIf="!game?.bonus"></span>
 
         <!-- HOT Ribbon -->
-        <span *ngIf="game.isHot" class="bg-gradient-to-r from-red-600 via-rose-500 to-orange-500 text-white font-black text-[8px] px-2 py-0.5 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.6)] uppercase tracking-widest border border-white/30 flex items-center gap-0.5">
+        <span *ngIf="game.isHot" class="bg-gradient-to-r from-red-600 via-rose-500 to-orange-500 text-white font-black text-[6px] sm:text-[8px] px-1.5 sm:px-2 py-0.5 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.6)] uppercase tracking-widest border border-white/30 flex items-center gap-0.5">
           <span>⚡</span> HOT
         </span>
 
@@ -81,26 +81,17 @@
       </div>
 
       <!-- Bottom Glass Footer Bar -->
-      <div class="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black via-black/90 to-transparent pt-6 pb-2.5 px-3 flex items-center justify-between gap-1.5">
-        <span class="text-[10px] sm:text-xs font-extrabold truncate text-left max-w-[78%] drop-shadow" [ngStyle]="{ color: game.bgclr || '#FFD700' }">
+      <div class="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black via-black/90 to-transparent pt-4 sm:pt-6 pb-1.5 sm:pb-2.5 px-2 sm:px-3 flex items-center justify-between gap-1">
+        <span class="text-[8px] sm:text-xs font-extrabold truncate text-left max-w-[70%] drop-shadow" [ngStyle]="{ color: game.bgclr || '#FFD700' }">
           {{ game.name }}
         </span>
         <a [ngStyle]="{ color: game.bgclr || '#FFD700' }" [href]="game.downloadLink" target="_blank"
-          (click)="$event.stopPropagation()" class="w-6 h-6 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#FE8912] hover:text-black transition-all duration-200 flex-shrink-0 shadow">
-          <i class="fas fa-download text-[9px]"></i>
+          (click)="$event.stopPropagation()" class="w-[18px] h-[18px] sm:w-6 sm:h-6 rounded-md sm:rounded-lg bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#FE8912] hover:text-black transition-all duration-200 flex-shrink-0 shadow">
+          <i class="fas fa-download text-[7px] sm:text-[9px]"></i>
         </a>
       </div>
     </div>
   </ng-container>
-</div>
-
-<!-- Load more button -->
-<div *ngIf="hasMoreGames && isToken && isDashboardPage && AsianLocalBlock" class="col-span-full flex justify-end px-4 mt-3 mb-8">
-  <button
-    class="bg-gradient-to-r from-[#FEC866] via-[#FE9B2A] to-[#FE8006] text-black font-extrabold text-xs sm:text-sm py-2 px-6 rounded-xl shadow-[0_4px_15px_rgba(254,128,6,0.3)] hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer uppercase tracking-wider"
-    (click)="toggleShowAll()">
-    {{ showAllGames ? "See Less" : "See All" }}
-  </button>
 </div>
 
 <!-- ================= PERFECTED LUXURY CASINO POPUP ================= -->
@@ -171,16 +162,16 @@
   </div>
 
   <div *ngIf="isToken && isDashboardPage"
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4 sm:gap-6 mx-auto text-center px-4 py-3 mt-3"
+    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2.5 sm:gap-6 mx-auto text-center px-3 sm:px-4 py-3"
     [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''">
     <ng-container *ngFor="let game of quickGames">
       <div (click)="redirectTo(game.redirectLink)"
-        class="dash-game-card group relative w-full h-52 sm:h-56 md:h-60 cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 bg-black border border-[#ffffff]/15 hover:border-[#FE8912] shadow-[0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_35px_rgba(254,137,18,0.4)]"
+        class="dash-game-card group relative w-full h-36 sm:h-56 md:h-60 cursor-pointer rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 bg-black border border-[#ffffff]/15 hover:border-[#FE8912] shadow-[0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_35px_rgba(254,137,18,0.4)]"
         [ngStyle]="{ 'box-shadow': '0 10px 25px rgba(0,0,0,0.8), 0 0 0 1.5px ' + (game.bgColor || '#FE8912') + '40' }">
 
         <!-- Cover image -->
         <img [src]="game.image" [alt]="game.name"
-          class="absolute inset-0 w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-110" />
+          class="absolute inset-0 w-full h-full object-contain p-1.5 sm:p-2 transition-transform duration-500 group-hover:scale-110" />
 
         <!-- Hover Play Overlay -->
         <div
@@ -192,12 +183,12 @@
         </div>
 
         <!-- Bottom Glass Footer Bar -->
-        <div class="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black via-black/90 to-transparent pt-6 pb-2.5 px-3 flex items-center justify-between gap-1.5">
-          <span class="text-[10px] sm:text-xs font-extrabold truncate text-left max-w-[78%] drop-shadow"
+        <div class="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black via-black/90 to-transparent pt-4 sm:pt-6 pb-1.5 sm:pb-2.5 px-2 sm:px-3 flex items-center justify-between gap-1">
+          <span class="text-[8px] sm:text-xs font-extrabold truncate text-left max-w-[70%] drop-shadow"
             [ngStyle]="{ color: game.bgColor || '#FFD700' }">{{ game.name }}</span>
           <a [ngStyle]="{ color: game.bgColor || '#FFD700' }" [routerLink]="game.downloadLink" target="_blank"
-            (click)="$event.stopPropagation()" class="w-6 h-6 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#FE8912] hover:text-black transition-all duration-200 flex-shrink-0 shadow">
-            <i class="fas fa-download text-[9px]"></i>
+            (click)="$event.stopPropagation()" class="w-[18px] h-[18px] sm:w-6 sm:h-6 rounded-md sm:rounded-lg bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#FE8912] hover:text-black transition-all duration-200 flex-shrink-0 shadow">
+            <i class="fas fa-download text-[7px] sm:text-[9px]"></i>
           </a>
         </div>
       </div>
