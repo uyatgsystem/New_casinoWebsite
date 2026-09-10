@@ -150,8 +150,9 @@
 
 @media (max-width: 768px) {
   .wheel-container {
-    width: min(20rem, calc(100vw - 5rem));
-    height: min(20rem, calc(100vw - 5rem));
+    width: min(20rem, calc(100vw - 6rem));
+    height: min(20rem, calc(100vw - 6rem));
+    max-width: 100%;
   }
   .central-hub {
     width: 4.5rem;
