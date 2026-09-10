@@ -1,11 +1,11 @@
 <app-loader></app-loader>
 
 <!-- Add Balance Modal -->
-<div *ngIf="showModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[999] p-4 overflow-y-auto"
+<div *ngIf="showModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[9999] p-4 overflow-hidden"
   (click)="hideWalletModal()">
 
   <div
-    class="bg-[#121417] border border-[#C3B089]/40 rounded-[32px] w-full max-w-2xl p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white my-8 modal slide-up"
+    class="bg-[#121417] border border-[#C3B089]/40 rounded-[32px] w-full max-w-2xl p-6 md:p-8 pb-12 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white max-h-[85vh] overflow-y-auto modal slide-up"
     (click)="$event.stopPropagation()">
 
     <!-- Header Title & Close Button -->
