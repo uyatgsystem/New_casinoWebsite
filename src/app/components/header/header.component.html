@@ -3,68 +3,68 @@
 <!-- ================= MOBILE HEADER (< 800px) ================= -->
 <header
   *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()"
-  class="body-font sticky z-[997] w-[100%] top-0 overflow-hidden"
+  class="body-font sticky z-[997] w-[100%] top-0 h-[64px] overflow-hidden"
 >
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
   <div
     *ngIf="isDashboardRoute()"
-    class="text-[var(--text)] bg-[#121417] border-b border-white/10"
+    class="text-[var(--text)] header-panel border-b border-[#C3B089]/50 h-full overflow-hidden relative"
   >
-    <div class="flex justify-between items-center px-3 py-3">
+    <div class="flex justify-between items-center px-2 h-full">
       <a
         routerLink="/dashboard/home"
-        class="flex title-font font-medium items-center"
+        class="flex title-font font-medium items-center shrink-0"
       >
         <img
           src="https://spinhub-6rb.pages.dev/assets/logo.png"
           alt="Spin Club"
-          class="w-12 h-12 object-contain"
+          class="w-9 h-9 object-contain drop-shadow"
         />
       </a>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1.5">
         <app-notifications
           *ngIf="showNotifications"
           (closeNotification)="showNotifications = false"
         ></app-notifications>
 
-        <!-- Main Wallet -->
+        <!-- Wallet -->
         <button
           type="button"
-          class="wallet-balance-control flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-10 px-3 shrink-0"
+          class="wallet-balance-control flex items-center bg-black/90 rounded-xl overflow-hidden border border-[#C3B089]/60 h-8 px-2 shrink-0 shadow-inner"
           (click)="openWalletHistory()"
         >
           <img
             src="https://cmaxv2images2.pages.dev/assets/icons/coins.png"
-            class="h-4 w-4 mr-2 shrink-0"
+            class="h-3 w-3 mr-1.5 shrink-0"
             alt="coins"
           />
           <div class="flex flex-col text-left">
             <span
-              class="text-[9px] text-gray-400 font-bold uppercase tracking-wider leading-none"
-              >Main Wallet</span
+              class="text-[7.5px] text-[#F3A630] font-bold uppercase tracking-wider leading-none"
+              >Wallet</span
             >
             <span
-              class="text-white font-bold text-xs font-mono mt-1 leading-none"
+              class="text-white font-bold text-[11px] font-mono mt-0.5 leading-none"
               >${{ walletAmount | number: "1.2-2" }}</span
             >
           </div>
         </button>
 
-        <!-- Bonus Wallet -->
+        <!-- B-Wallet -->
         <div
-          class="flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-10 px-3 cursor-pointer shrink-0"
+          class="flex items-center bg-black/90 rounded-xl overflow-hidden border border-[#C3B089]/60 h-8 px-2 cursor-pointer shrink-0 shadow-inner"
           (click)="openBonusWallet()"
           title="Bonus Wallet"
         >
-          <i class="fas fa-gift text-[#F3A630] text-xs mr-2 shrink-0"></i>
+          <i class="fas fa-gift text-[#F3A630] text-[10px] mr-1.5 shrink-0"></i>
           <div class="flex flex-col text-left">
             <span
-              class="text-[9px] text-[#F3A630]/80 font-bold uppercase tracking-wider leading-none"
-              >Bonus Wallet</span
+              class="text-[7.5px] text-[#F3A630] font-bold uppercase tracking-wider leading-none"
+              >B-Wallet</span
             >
             <span
-              class="bonus-wallet-label text-[#F3A630] font-bold text-xs font-mono mt-1 leading-none"
+              class="bonus-wallet-label text-[#F3A630] font-bold text-[11px] font-mono mt-0.5 leading-none"
               >${{ bonusWalletAmount | number: "1.2-2" }}</span
             >
           </div>
@@ -72,27 +72,27 @@
 
         <button
           (click)="toggleNotifications()"
-          class="relative flex items-center justify-center w-9 h-9 bg-black/85 border border-white/10 rounded-2xl text-[#F3A630] shrink-0"
+          class="relative flex items-center justify-center w-8 h-8 bg-black/85 border border-[#C3B089]/60 rounded-xl text-[#F3A630] shrink-0 shadow-inner"
         >
-          <i class="fas fa-bell text-sm"></i>
+          <i class="fas fa-bell text-xs"></i>
           <span
             *ngIf="notifications.length > 0"
-            class="absolute -top-1 -right-1 flex justify-center items-center w-4 h-4 rounded-full bg-[#F3A630] text-black text-[10px] font-black"
+            class="absolute -top-1 -right-1 flex justify-center items-center w-3.5 h-3.5 rounded-full bg-[#F3A630] text-black text-[9px] font-black"
           >
             {{ notifications.length >= 10 ? "9+" : notifications.length }}
           </span>
         </button>
 
         <div
-          class="flex items-center justify-center w-9 h-9 bg-black/85 border border-white/10 rounded-2xl text-[#FEC866] cursor-pointer shrink-0"
+          class="flex items-center justify-center w-8 h-8 bg-black/85 border border-[#C3B089]/60 rounded-xl text-[#FEC866] cursor-pointer shrink-0 shadow-inner"
           (click)="toggleSidebar($event)"
         >
           <ng-container *ngIf="CrossIcon">
-            <fa-icon [icon]="cross" class="text-white text-base"></fa-icon>
+            <fa-icon [icon]="cross" class="text-white text-sm"></fa-icon>
           </ng-container>
           <ng-container *ngIf="!CrossIcon">
             <svg
-              class="w-5 h-5"
+              class="w-4 h-4"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -126,16 +126,16 @@
 <!-- ================= DESKTOP HEADER (>= 800px) ================= -->
 <header
   *ngIf="!isScreenWidthLessThan800() && !isTreasurePickRoute()"
-  class="body-font sticky z-[999] w-[100%] top-0 overflow-hidden"
+  class="body-font sticky z-[999] w-[100%] top-0 overflow-hidden h-[74px]"
 >
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
 
   <div
     *ngIf="isDashboardRoute()"
-    class="text-[var(--text)] bg-[#121417] border-b border-white/10 shadow-md"
+    class="text-[var(--text)] header-panel border-b border-[#C3B089]/50 shadow-md overflow-hidden relative h-full"
   >
     <div
-      class="container mx-auto flex justify-between items-center px-6 py-2.5 max-w-[3000px]"
+      class="container mx-auto flex justify-between items-center px-6 h-full max-w-[3000px]"
     >
       <!-- Logo Section -->
       <a
@@ -145,35 +145,18 @@
         <img
           src="https://spinhub-6rb.pages.dev/assets/logo.png"
           alt="Spin Club"
-          class="relative w-14 h-14 object-contain"
+          class="relative w-14 h-14 object-contain drop-shadow-md"
         />
-        <span class="h-10 w-[1px] bg-white/20"></span>
       </a>
 
       <!-- Right Action Controls -->
       <div class="relative flex items-center gap-4 mr-2">
-        <!-- 1. Main Wallet Balance -->
+        <!-- 1. Wallet Balance -->
         <button
           type="button"
           (click)="openWalletHistory()"
-          class="wallet-balance-control relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-12 px-4 shadow-md"
+          class="wallet-balance-control relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/60 h-12 px-4 shadow-md hover:border-[#F3A630] transition"
         >
-          <svg
-            class="absolute inset-0 w-full h-full opacity-30 pointer-events-none z-0"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-          >
-            <filter id="noiseFilter">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.7"
-                numOctaves="2"
-                stitchTiles="stitch"
-              />
-            </filter>
-            <rect width="100%" height="100%" filter="url(#noiseFilter)" />
-          </svg>
-
           <div class="flex items-center relative z-15 gap-3">
             <img
               src="https://cmaxv2images2.pages.dev/assets/icons/coins.png"
@@ -182,8 +165,8 @@
             />
             <div class="flex flex-col text-left">
               <span
-                class="text-[10px] text-gray-400 font-bold uppercase tracking-wider leading-none"
-                >Main Wallet</span
+                class="text-[10px] text-[#F3A630] font-bold uppercase tracking-wider leading-none"
+                >Wallet</span
               >
               <span
                 class="text-white font-bold font-mono text-sm mt-1 leading-none"
@@ -194,17 +177,17 @@
           </div>
         </button>
 
-        <!-- 2. Bonus Wallet Pill -->
+        <!-- 2. B-Wallet Pill -->
         <div
-          class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-white/10 h-12 px-4 gap-3 shadow-md cursor-pointer"
+          class="relative flex items-center bg-black/90 rounded-2xl overflow-hidden border border-[#C3B089]/60 h-12 px-4 gap-3 shadow-md cursor-pointer hover:border-[#F3A630] transition"
           (click)="openBonusWallet()"
           title="Bonus Wallet"
         >
           <i class="fas fa-gift text-[#F3A630] text-base shrink-0"></i>
           <div class="flex flex-col text-left">
             <span
-              class="text-[10px] text-[#F3A630]/80 font-bold uppercase tracking-wider leading-none"
-              >Bonus Wallet</span
+              class="text-[10px] text-[#F3A630] font-bold uppercase tracking-wider leading-none"
+              >B-Wallet</span
             >
             <span
               class="bonus-wallet-label text-[#F3A630] font-bold font-mono text-sm mt-1 leading-none"
@@ -218,7 +201,7 @@
         <button
           type="button"
           (click)="RedirectToWallet()"
-          class="deposit-control relative z-10 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black px-5 h-12 rounded-2xl font-black text-xs uppercase tracking-wider hover:brightness-110 transition flex items-center"
+          class="deposit-control relative z-10 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black px-5 h-12 rounded-2xl font-black text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(254,128,6,0.3)] hover:brightness-110 transition flex items-center"
         >
           <span>+</span>&nbsp;{{ Deposit | translate }}
         </button>
@@ -227,7 +210,7 @@
         <div class="relative flex items-center h-12">
           <button
             (click)="openWithdrawBalanceModal()"
-            class="relative z-10 bg-black/50 border border-white/10 text-white hover:text-amber-300 px-6 h-12 rounded-2xl font-bold text-sm shadow-md hover:bg-white/5 transition cursor-pointer flex items-center"
+            class="relative z-10 bg-black/50 border border-[#C3B089]/60 text-white hover:text-amber-300 px-6 h-12 rounded-2xl font-bold text-sm shadow-md hover:bg-[#C3B089]/10 transition cursor-pointer flex items-center"
           >
             {{ Withdraw | translate }}
           </button>
@@ -242,7 +225,7 @@
               class="notification-icon p-0 border-0 bg-transparent cursor-pointer"
             >
               <div
-                class="relative flex justify-center items-center w-12 h-12 bg-black/85 border border-white/10 rounded-2xl shadow-md hover:border-[#F3A630] transition"
+                class="relative flex justify-center items-center w-12 h-12 bg-black/85 border border-[#C3B089]/60 rounded-2xl shadow-md hover:border-[#F3A630] transition"
               >
                 <svg
                   class="relative z-10 w-5 h-5 text-[#F3A630]"
@@ -270,10 +253,10 @@
             <div
               *ngIf="isLangOpen"
               [ngStyle]="dropdownStyle"
-              class="absolute z-50 w-44 max-h-60 overflow-y-auto bg-[#121417] right-0 rounded-2xl shadow-2xl border border-white/10 top-14 custom-scrollbar"
+              class="absolute z-50 w-44 max-h-60 overflow-y-auto header-panel right-0 rounded-2xl shadow-2xl border border-[#C3B089]/60 top-14 custom-scrollbar"
             >
               <div
-                class="p-2.5 border-b border-white/10 sticky top-0 bg-[#121417]"
+                class="p-2.5 border-b border-[#C3B089]/40 sticky top-0 header-panel"
               >
                 <input
                   type="text"
@@ -287,7 +270,7 @@
                 <div
                   *ngFor="let lang of filteredLanguages()"
                   (click)="selectLanguage(lang.code)"
-                  class="px-4 py-2 text-xs text-white hover:bg-white/10 cursor-pointer flex items-center justify-between"
+                  class="px-4 py-2 text-xs text-white hover:bg-[#C3B089]/20 cursor-pointer flex items-center justify-between"
                 >
                   <span>{{ lang.name }}</span>
                   <svg
@@ -319,7 +302,7 @@
           >
             <div class="notification-icon p-0 border-0 bg-transparent">
               <div
-                class="relative flex justify-center items-center w-12 h-12 bg-black/85 border border-white/10 rounded-2xl shadow-md hover:border-[#F3A630] transition"
+                class="relative flex justify-center items-center w-12 h-12 bg-black/85 border border-[#C3B089]/60 rounded-2xl shadow-md hover:border-[#F3A630] transition"
               >
                 <svg
                   width="20"
@@ -347,7 +330,7 @@
           <!-- Revamped Notification Dropdown -->
           <div
             *ngIf="showNotifications"
-            class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#121417] border border-white/10 rounded-3xl shadow-2xl overflow-hidden z-[999] backdrop-blur-xl"
+            class="absolute right-0 mt-3 w-80 sm:w-96 header-panel border border-[#C3B089]/60 rounded-3xl shadow-2xl overflow-hidden z-[999] backdrop-blur-xl"
           >
             <!-- Fixed Grain Background Layer -->
             <div
@@ -361,7 +344,7 @@
 
             <!-- Sticky Header -->
             <div
-              class="flex items-center justify-between px-5 py-4 border-b border-white/10 relative z-20 bg-[#121417]/95 backdrop-blur-md"
+              class="flex items-center justify-between px-5 py-4 border-b border-[#C3B089]/40 relative z-20 header-panel backdrop-blur-md"
             >
               <h3
                 class="text-sm font-extrabold text-white tracking-wider uppercase"
@@ -383,7 +366,7 @@
               @for (notification of notifications; track notification.id; let i =
               $index) {
               <div
-                class="notif-card relative flex items-start gap-3.5 bg-black/60 hover:bg-black/80 border border-white/10 p-4 rounded-2xl transition-all duration-300 ease-in-out group shadow-md"
+                class="notif-card relative flex items-start gap-3.5 bg-black/60 hover:bg-black/80 border border-[#C3B089]/30 p-4 rounded-2xl transition-all duration-300 ease-in-out group shadow-md"
               >
                 <!-- Bell Icon -->
                 <div
@@ -450,7 +433,7 @@
                 <img
                   [src]="profileImage"
                   alt="Profile"
-                  class="h-11 w-11 border border-white/20 group-hover:border-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] object-cover transition shadow-md"
+                  class="h-11 w-11 border border-[#C3B089]/60 group-hover:border-[#FE8006] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] object-cover transition shadow-md"
                 />
 
                 <img
@@ -466,7 +449,7 @@
           <!-- ✅ Revamped Ultra-Luxury VIP Profile Dropdown Menu -->
           <div
             *ngIf="isDropdownOpen"
-            class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#121417]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+            class="absolute right-0 mt-3 w-72 rounded-[24px] header-panel backdrop-blur-2xl border border-[#C3B089]/60 shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200"
           >
             <div
               class="grain-Backdrop absolute inset-0 pointer-events-none opacity-25"
@@ -475,7 +458,7 @@
 
             <!-- Dropdown Header: User Info Card -->
             <div
-              class="p-4 bg-gradient-to-b from-[#1c1f26] to-[#121417] border-b border-white/10 flex items-center gap-3.5 relative z-10"
+              class="p-4 header-panel border-b border-[#C3B089]/40 flex items-center gap-3.5 relative z-10"
             >
               <div class="relative">
                 <div
@@ -630,7 +613,7 @@
 
             <!-- Divider -->
             <div
-              class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mx-3 my-1 relative z-10"
+              class="h-px bg-gradient-to-r from-transparent via-[#C3B089]/40 to-transparent mx-3 my-1 relative z-10"
             ></div>
 
             <!-- Logout Section -->

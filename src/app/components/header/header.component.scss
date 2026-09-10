@@ -4,14 +4,20 @@
 }
 
 .header-panel {
-  background:
-    radial-gradient(700px circle at 12% 0%, rgba(243, 166, 48, 0.1), transparent 60%),
-    radial-gradient(500px circle at 95% 100%, rgba(191, 169, 122, 0.06), transparent 55%),
-    linear-gradient(90deg, #14161c 0%, #1b1e26 50%, #121419 100%);
+  background: 
+    linear-gradient(90deg, 
+      rgba(243, 166, 48, 0.35) 0%, 
+      rgba(243, 166, 48, 0.12) 22%, 
+      #0e1013 50%, 
+      rgba(243, 166, 48, 0.12) 78%, 
+      rgba(243, 166, 48, 0.35) 100%
+    ),
+    linear-gradient(180deg, #161920 0%, #0d0f12 100%);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.85);
 }
 
 .custom-border {
-  border-bottom: 1px solid rgba(195, 176, 137, 0.25);
+  border-bottom: 1px solid rgba(243, 166, 48, 0.4);
 }
 
 header {
@@ -22,7 +28,7 @@ header {
   width: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(195, 176, 137, 0.2);
+  background: rgba(243, 166, 48, 0.3);
   border-radius: 4px;
 }
 
@@ -53,7 +59,7 @@ header {
 }
 
 .wallet-balance-control {
-  border-color: rgba(195, 176, 137, .4);
+  border-color: rgba(243, 166, 48, 0.5);
 }
 
 .bonus-wallet-label {
@@ -92,7 +98,7 @@ header {
   gap: 10px;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(195, 176, 137, 0.2);
+  border: 1px solid rgba(243, 166, 48, 0.25);
   border-radius: 16px;
   padding: 10px 12px;
   cursor: pointer;
@@ -113,7 +119,7 @@ header {
   }
 
   &:hover {
-    border-color: rgba(243, 166, 48, 0.5);
+    border-color: rgba(243, 166, 48, 0.6);
     background: rgba(20, 22, 26, 0.9);
   }
 
@@ -142,7 +148,7 @@ header {
   &.selected {
     background: rgba(243, 166, 48, 0.15);
     border-color: #f3a630;
-    box-shadow: 0 0 15px rgba(243, 166, 48, 0.2);
+    box-shadow: 0 0 15px rgba(243, 166, 48, 0.25);
 
     &::before {
       height: 70%;
