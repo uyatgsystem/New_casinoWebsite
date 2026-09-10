@@ -67,8 +67,7 @@ export class WebSocketService {
 
     // Live Url
     const url = `wss://154.38.161.3:44301/api/chat?token=${token}`;
-    // const url = `wss://root.c-maxs.com/api/chat?token=${token}`;
-    //  const url = `wss://root.c-maxs.com/api/chat?token=${token}`;
+
 
     this.socket = new WebSocket(url);
     this.socket.binaryType = 'arraybuffer'; // Set binary type to handle large binary data
