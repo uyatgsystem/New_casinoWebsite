@@ -33,6 +33,7 @@ export class NotificationsComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
   isVisible = true;
+  isClosing = false;
   pageNumber = 1;
   pageSize = 10;
   isLoading = false;
@@ -63,6 +64,19 @@ export class NotificationsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // Start panel close animation then emit close after animation completes
+  startClose() {
+    if (this.isClosing) return;
+    this.isClosing = true;
+    // wait for CSS animation to finish (match 320ms in scss)
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isClosing = false;
+      this.closeNotification.emit();
+      this.cdr.detectChanges();
+    }, 360);
+  }
+
   onScroll(event: any) {
     const element = event.target;
     if (
@@ -90,8 +104,8 @@ export class NotificationsComponent implements OnInit, AfterViewInit {
     this.navigateByType(type, lastWord);
 
     this.notificationService.loadNotifications(true);
-    this.isVisible = false;
-    this.closeNotification.emit();
+    // animate panel close for nicer mobile/desktop vibe
+    this.startClose();
   }
   navigateByType(type: string, gameName: string = '') {
     switch (type.toLowerCase()) {
@@ -146,8 +160,7 @@ export class NotificationsComponent implements OnInit, AfterViewInit {
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     if (!this.eRef.nativeElement.contains(event.target)) {
-      this.isVisible = false;
-      this.closeNotification.emit();
+      this.startClose();
     }
   }
 }

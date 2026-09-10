@@ -513,6 +513,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   public pwaInstall = inject(PwaInstallService);
   public showInstallFloating: boolean = true;
+  public isPwaClosing: boolean = false;
 
   isBonusButton(): boolean {
     const currentUrl = this.router.url;
@@ -555,7 +556,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   hideInstallFloating(event: Event) {
     event.stopPropagation();
-    this.showInstallFloating = false;
+    if (this.isPwaClosing) return;
+    this.isPwaClosing = true;
+    // delay to allow CSS closing animation to play
+    setTimeout(() => {
+      this.showInstallFloating = false;
+      this.isPwaClosing = false;
+    }, 320);
   }
 
     private listenToOtherTabsLogout() {

@@ -107,21 +107,21 @@ export class GamesLandingComponent {
     {
       id: 9,
       name: 'Plinko',
-      image: '/plinko.png',
+      image: 'https://spinhub-6rb.pages.dev/assets/Plinko.png',
       redirectLink: '/dashboard/Plinko',
       bgColor: '#c8c100', // green
     },
     {
       id: 5,
       name: 'Aviator',
-      image: 'Aviator.png',
+      image: 'https://spinhub-6rb.pages.dev/assets/Aviator.png',
       redirectLink: '/dashboard/Avaitar',
       bgColor: '#00d5a7', // red
     },
     {
       id: 12,
       name: 'Double',
-      image: 'Images/double.png',
+      image: 'https://spinhub-6rb.pages.dev/assets/Double.png',
       redirectLink: '/dashboard/Double',
       bgColor: '#f883bd',
     },
@@ -129,7 +129,7 @@ export class GamesLandingComponent {
     {
       id: 7,
       name: 'Roulette',
-      image: '/Rouleet.png',
+      image: 'https://spinhub-6rb.pages.dev/assets/Roulette.png',
       redirectLink: '/dashboard/Roulette',
       bgColor: '#f8b678', // green
     },
@@ -137,7 +137,7 @@ export class GamesLandingComponent {
       id: 4,
       name: 'Treasure',
       image:
-        '/Treasure.png',
+        'https://spinhub-6rb.pages.dev/assets/Treasure.png',
       redirectLink: '/dashboard/TreasurePick',
       bgColor: '#a0fdde', // purple
     },
@@ -145,7 +145,7 @@ export class GamesLandingComponent {
       id: 18,
       name: 'Toss',
       image:
-        '/toss.png',
+        'https://spinhub-6rb.pages.dev/assets/toss.png',
       redirectLink: '/dashboard/coin',
       bgColor: '#caff09', // green
     },
@@ -153,7 +153,7 @@ export class GamesLandingComponent {
       id: 6,
       name: 'Baccarat',
       image:
-        'https://cmaxv2images.pages.dev/assets/games/instant-games/Baccarat.png',
+        'https://spinhub-6rb.pages.dev/assets/baccarat.png',
       redirectLink: '/dashboard/Baccaret',
       bgColor: '#00ACC1', // cyan
     },
@@ -170,7 +170,7 @@ export class GamesLandingComponent {
       id: 3,
       name: 'Scratch',
       image:
-        '/Scratch.png',
+        'https://spinhub-6rb.pages.dev/assets/scratch.png',
       redirectLink: '/dashboard/SectrechCards',
       bgColor: '#eefcbb', // blue
     },
@@ -178,7 +178,7 @@ export class GamesLandingComponent {
     {
       id: 8,
       name: 'Mines',
-      image: '/Mines.png',
+      image: 'https://spinhub-6rb.pages.dev/assets/mines.png',
 
       redirectLink: '/dashboard/Mines',
       bgColor: '#a6ebaf', // green
@@ -195,7 +195,7 @@ export class GamesLandingComponent {
     {
       id: 11,
       name: 'Keno',
-      image: 'Images/keno.png',
+      image: 'https://spinhub-6rb.pages.dev/assets/Keno.png',
 
       redirectLink: '/dashboard/Keno',
       bgColor: '#09b9ff', // green
@@ -204,7 +204,7 @@ export class GamesLandingComponent {
       id: 1,
       name: 'Spin',
       image:
-        'https://cmaxv2images.pages.dev/assets/games/instant-games/spin.png',
+        'https://spinhub-6rb.pages.dev/assets/Spin.png',
       redirectLink: '/dashboard/spinner',
       bgColor: '#FFB300', // gold/orange
     },

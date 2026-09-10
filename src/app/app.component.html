@@ -61,7 +61,7 @@
   class="pwa-install-container fixed top-[69%] left-4 z-[999]"
   *ngIf="showInstallFloating && pwaInstall.canInstall() && shouldShowChat()"
 >
-  <div class="pwa-card animate-bounce-slow" (click)="installFloating()">
+  <div class="pwa-card v2 animate-bounce-slow" [class.closing]="isPwaClosing" (click)="installFloating()">
     <!-- Close Icon -->
     <div class="close-x" (click)="hideInstallFloating($event)" title="Close">
       ✕
@@ -74,7 +74,7 @@
 
     <!-- Text Content -->
     <div class="content-box">
-      <span class="top-text">Free & Fast</span>
+      <span class="top-text">FREE & FAST</span>
       <span class="main-text">Get Mobile App</span>
     </div>
   </div>
