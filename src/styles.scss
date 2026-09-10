@@ -7,6 +7,123 @@
 /* SweetAlert2 default theme */
 @import "sweetalert2/dist/sweetalert2.min.css";
 
+#toast-container {
+  z-index: 99999 !important;
+}
+
+#toast-container > div {
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(17, 19, 24, 0.96) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
+  color: #fff !important;
+  margin: 0 0 12px !important;
+  padding: 14px 16px 14px 52px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  width: min(360px, calc(100vw - 24px)) !important;
+}
+
+#toast-container > div:before {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+#toast-container > .toast-warning,
+#toast-container > .toast-error,
+#toast-container > .toast-success,
+#toast-container > .toast-info {
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
+}
+
+#toast-container > .toast-warning {
+  background: rgba(42, 26, 10, 0.96) !important;
+  border-color: rgba(255, 176, 71, 0.35) !important;
+}
+
+#toast-container > .toast-warning:before {
+  content: "!";
+  background: rgba(255, 176, 71, 0.18);
+  color: #ffc76a;
+}
+
+#toast-container > .toast-error {
+  background: rgba(38, 15, 15, 0.96) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+
+#toast-container > .toast-error:before {
+  content: "×";
+  background: rgba(239, 68, 68, 0.18);
+  color: #ff7e7e;
+}
+
+#toast-container > .toast-success {
+  background: rgba(10, 30, 19, 0.96) !important;
+  border-color: rgba(34, 197, 94, 0.35) !important;
+}
+
+#toast-container > .toast-success:before {
+  content: "✓";
+  background: rgba(34, 197, 94, 0.18);
+  color: #78f4b6;
+}
+
+#toast-container > .toast-info {
+  background: rgba(12, 24, 38, 0.96) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+}
+
+#toast-container > .toast-info:before {
+  content: "i";
+  background: rgba(59, 130, 246, 0.18);
+  color: #8bd3ff;
+}
+
+#toast-container .toast-title,
+#toast-container .toast-message {
+  display: block;
+  line-height: 1.5;
+}
+
+#toast-container .toast-title {
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: #fff !important;
+}
+
+#toast-container .toast-message {
+  font-size: 0.78rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#toast-container .toast-close-button {
+  right: 12px !important;
+  top: 10px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 18px !important;
+  opacity: 1 !important;
+}
+
+#toast-container .toast-close-button:hover {
+  color: #fff !important;
+}
+
 /* Animate.css for SweetAlert2 popup animations */
 @import url("https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css");
 
@@ -133,6 +250,8 @@
   overflow: hidden !important;
   background: radial-gradient(circle at 50% -20%, rgba(254, 200, 102, .08), transparent 50%), #0c0d10 !important;
   border: 1px solid rgba(195, 176, 137, .42) !important;
+  border-left: none !important;
+  border-right: none !important;
   border-radius: 18px !important;
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(254, 140, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
   color: #fff !important;
@@ -147,10 +266,25 @@
   height: 58px !important;
   margin: 0 auto 18px !important;
   border: 1px solid rgba(254, 140, 22, .42) !important;
+  border-left: none !important;
+  border-right: none !important;
   border-radius: 16px !important;
   background: rgba(254, 140, 22, .08) !important;
   color: #fe8c16 !important;
   box-shadow: 0 8px 20px rgba(254, 140, 22, 0.15) !important;
+}
+
+.swal2-popup::before,
+.swal2-popup::after,
+.swal2-icon::before,
+.swal2-icon::after {
+  display: none !important;
+  content: none !important;
+}
+
+.swal2-timer-progress-bar,
+.swal2-timer-progress-filled {
+  display: none !important;
 }
 
 .swal2-icon svg {
