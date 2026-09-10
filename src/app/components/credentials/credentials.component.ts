@@ -123,6 +123,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
 
   playerName?: any;
   playerPassword?: any;
+  isPasswordVisible: boolean = false;
   gameName?: any;
   gameID?: any;
   gameUserID?: any;
@@ -842,6 +843,10 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   toggleVisibility(account: any): void {
     account.isUsernameVisible = !account.isUsernameVisible;
     account.isPasswordVisible = !account.isPasswordVisible;
+  }
+
+  togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 
   async copyCredentials(account: any): Promise<void> {
