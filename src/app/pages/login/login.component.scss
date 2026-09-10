@@ -12,10 +12,19 @@
 }
 
 .remember-checkbox {
-  border: none !important;
+  appearance: auto !important;
+  -webkit-appearance: checkbox !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  border: 1px solid rgba(195,176,137,0.5) !important;
   box-shadow: none !important;
   outline: none !important;
   background-clip: padding-box !important;
+  background-color: #15181d !important;
+  margin-right: 8px !important;
+  cursor: pointer;
 }
 
 .remember-checkbox:checked {
@@ -67,7 +76,7 @@
   overflow: visible !important;
 }
 
-#formContainer input {
+#formContainer input:not([type="checkbox"]) {
   min-height: 42px;
   border: 1px solid rgba(195,176,137,.28) !important;
   border-radius: 8px;
@@ -92,14 +101,14 @@
   opacity: 1;
 }
 
-#formContainer input { color: #fff !important; font-size: 0.9rem !important; font-weight: 500; }
+#formContainer input:not([type="checkbox"]) { color: #fff !important; font-size: 0.9rem !important; font-weight: 500; }
 #formContainer p,
 #formContainer label { color: #f4f4f4; }
 #formContainer .text-xs { font-size: .82rem !important; }
 #formContainer .text-sm { font-size: .95rem !important; }
 #formContainer .auth-switch { flex-wrap: nowrap; }
 #formContainer .auth-switch > * { white-space: nowrap; }
-#formContainer input:focus { border-color: #fe8c16 !important; box-shadow: 0 0 0 3px rgba(254,140,22,.12); }
+#formContainer input:not([type="checkbox"]):focus { border-color: #fe8c16 !important; box-shadow: 0 0 0 3px rgba(254,140,22,.12); }
 #formContainer .bg-custom-gradient { display: none; }
 #formContainer form > div { margin-bottom: 12px !important; }
 #formContainer button[type="submit"] {
@@ -120,7 +129,7 @@
     background: transparent !important;
     backdrop-filter: none !important;
     width: 100%;
-    padding-top: 24px !important; /* Fix top text cutting issue */
+    padding-top: 24px !important;
     margin-bottom: 8px;
   }
 

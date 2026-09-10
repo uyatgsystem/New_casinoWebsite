@@ -139,26 +139,43 @@
 </header>
 
 <!-- Ultra-Compact Hero Section (Zero Bottom Spacing) -->
-<main class="relative pt-[70px] pb-0 bg-black flex items-center overflow-hidden main-banner-container">
-  
+<main
+  class="relative pt-[70px] pb-0 bg-black flex items-center overflow-hidden main-banner-container"
+>
   <!-- Ambient Glow / Particle Layer -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
     <div class="hero-glow hero-glow-orange"></div>
     <div class="hero-glow hero-glow-gold"></div>
-    <span class="hero-particle" style="top: 18%; left: 12%; animation-delay: 0s"></span>
-    <span class="hero-particle" style="top: 65%; left: 22%; animation-delay: 1.2s"></span>
-    <span class="hero-particle" style="top: 30%; left: 85%; animation-delay: 0.6s"></span>
-    <span class="hero-particle" style="top: 75%; left: 70%; animation-delay: 1.8s"></span>
-    <span class="hero-particle" style="top: 45%; left: 55%; animation-delay: 2.4s"></span>
+    <span
+      class="hero-particle"
+      style="top: 18%; left: 12%; animation-delay: 0s"
+    ></span>
+    <span
+      class="hero-particle"
+      style="top: 65%; left: 22%; animation-delay: 1.2s"
+    ></span>
+    <span
+      class="hero-particle"
+      style="top: 30%; left: 85%; animation-delay: 0.6s"
+    ></span>
+    <span
+      class="hero-particle"
+      style="top: 75%; left: 70%; animation-delay: 1.8s"
+    ></span>
+    <span
+      class="hero-particle"
+      style="top: 45%; left: 55%; animation-delay: 2.4s"
+    ></span>
   </div>
 
   <!-- Expanded Container with Zero Bottom Padding -->
   <div class="relative z-10 w-full px-4 sm:px-8 lg:px-16 pt-4 pb-0">
     <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-10">
-      
       <!-- Left Side: Expanded Casino Graphic Banner -->
       <div class="lg:col-span-7 flex justify-center items-center relative">
-        <div class="absolute w-[400px] h-[400px] bg-[#FE8912]/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div
+          class="absolute w-[400px] h-[400px] bg-[#FE8912]/20 rounded-full blur-[120px] pointer-events-none"
+        ></div>
         <img
           src="https://spinhub-6rb.pages.dev/assets/bglandingbanner.png"
           class="w-full max-w-[750px] lg:max-w-none h-auto object-contain relative z-10 drop-shadow-[0_25px_50px_rgba(0,0,0,0.9)] rounded-2xl"
@@ -167,8 +184,9 @@
       </div>
 
       <!-- Right Side: Clean Typography & CTA Content -->
-      <div class="lg:col-span-5 text-center lg:text-left flex flex-col items-center lg:items-start pb-4">
-        
+      <div
+        class="lg:col-span-5 text-center lg:text-left flex flex-col items-center lg:items-start pb-4"
+      >
         <!-- Eyebrow Badge -->
         <div
           class="hero-badge inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#FFD27A] uppercase"
@@ -178,23 +196,35 @@
         </div>
 
         <!-- Hero Text -->
-        <h1 class="text-white text-3xl sm:text-4xl xl:text-5xl font-bold leading-tight">
+        <h1
+          class="text-white text-3xl sm:text-4xl xl:text-5xl font-bold leading-tight"
+        >
           Spin The Wheel. <br />
-          <span class="bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent">
+          <span
+            class="bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
+          >
             Win The World.
           </span>
           <br />
-          <span class="text-[#A6B1C2] font-normal text-xl sm:text-2xl">Only at </span>
+          <span class="text-[#A6B1C2] font-normal text-xl sm:text-2xl"
+            >Only at
+          </span>
           <span class="text-white">Spin Club</span>
         </h1>
 
         <!-- Hero Description -->
-        <p class="text-[#A6B1C2] my-3 text-sm sm:text-base leading-relaxed max-w-xl">
-          Discover a premium gaming experience crafted for champions. Spin wheels, unlock rewards, and embrace the thrill of limitless opportunities — where every spin brings you closer to greatness.
+        <p
+          class="text-[#A6B1C2] my-3 text-sm sm:text-base leading-relaxed max-w-xl"
+        >
+          Discover a premium gaming experience crafted for champions. Spin
+          wheels, unlock rewards, and embrace the thrill of limitless
+          opportunities — where every spin brings you closer to greatness.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full sm:w-auto">
+        <div
+          class="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full sm:w-auto"
+        >
           <button
             (click)="RedirectToLogin()"
             class="pill-btn-primary hero-cta-glow px-10 py-3.5 w-full sm:w-auto cursor-pointer font-bold uppercase tracking-wider text-sm"
@@ -212,21 +242,43 @@
         <!-- Avatars Section -->
         <div class="relative mt-6 flex items-center gap-3 z-20">
           <div class="flex -space-x-3">
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20472.png" class="w-10 h-10 rounded-full object-cover border-2 border-black" alt="User 1" />
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20473.png" class="w-10 h-10 rounded-full object-cover border-2 border-black" alt="User 2" />
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20474.png" class="w-10 h-10 rounded-full object-cover border-2 border-black" alt="User 3" />
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20475.png" class="w-10 h-10 rounded-full object-cover border-2 border-black" alt="User 4" />
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20476.png" class="w-10 h-10 rounded-full object-cover border-2 border-black" alt="User 5" />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20472.png"
+              class="w-10 h-10 rounded-full object-cover border-2 border-black"
+              alt="User 1"
+            />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20473.png"
+              class="w-10 h-10 rounded-full object-cover border-2 border-black"
+              alt="User 2"
+            />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20474.png"
+              class="w-10 h-10 rounded-full object-cover border-2 border-black"
+              alt="User 3"
+            />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20475.png"
+              class="w-10 h-10 rounded-full object-cover border-2 border-black"
+              alt="User 4"
+            />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20476.png"
+              class="w-10 h-10 rounded-full object-cover border-2 border-black"
+              alt="User 5"
+            />
           </div>
 
           <div class="text-left">
-            <span class="text-white font-black text-base block font-mono">12k+</span>
-            <span class="text-gray-400 text-xs font-medium">Total Active Players</span>
+            <span class="text-white font-black text-base block font-mono"
+              >12k+</span
+            >
+            <span class="text-gray-400 text-xs font-medium"
+              >Total Active Players</span
+            >
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
 </main>
@@ -269,7 +321,9 @@
 </section>
 
 <!-- Spin Club - How to Get Started Heading -->
-<section class="relative z-10 pt-12 pb-4 flex flex-col items-center justify-center gap-2">
+<section
+  class="relative z-10 pt-12 pb-4 flex flex-col items-center justify-center gap-2"
+>
   <div class="flex items-center gap-2 justify-center">
     <span
       class="inline-block font-bold text-[16px] sm:text-[24px] md:text-[28px] leading-[100%] text-[#fe8912]"
@@ -306,16 +360,22 @@
 </section>
 
 <!-- Spin Club Guide Section -->
-<section class="relative w-full py-12 lg:py-16 px-4 sm:px-8 lg:px-16 bg-black overflow-hidden">
+<section
+  class="relative w-full py-12 lg:py-16 px-4 sm:px-8 lg:px-16 bg-black overflow-hidden"
+>
   <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 items-start">
+    <div
+      class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 items-start"
+    >
       <!-- HOW TO PLAY heading -->
       <div
         class="how-to-play-heading text-center lg:text-left cursor-pointer"
         [ngClass]="selectedGuideCard === 'HowToPlay' ? 'is-active' : ''"
         (click)="selectGuideCard('HowToPlay')"
       >
-        <span class="block text-[#A6B1C2] text-lg font-medium leading-none">How to</span>
+        <span class="block text-[#A6B1C2] text-lg font-medium leading-none"
+          >How to</span
+        >
         <span
           class="block font-extrabold text-[46px] lg:text-[54px] leading-[0.95] bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent"
         >
@@ -333,7 +393,9 @@
           class="hidden lg:block absolute top-[3.25rem] left-[9%] right-[9%] h-[2px] bg-gradient-to-r from-transparent via-[#FE8912]/30 to-transparent"
         ></div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
+        >
           <div
             *ngFor="let step of guideSteps"
             class="guide-step-card cursor-pointer"
@@ -378,8 +440,8 @@
         Every Day
       </h2>
       <p class="text-[#A6B1C2] mt-3 max-w-xl mx-auto text-sm sm:text-base">
-        From your first sign-up to every day after, Spin Club keeps the
-        rewards coming.
+        From your first sign-up to every day after, Spin Club keeps the rewards
+        coming.
       </p>
     </div>
 
@@ -402,13 +464,17 @@
   </div>
 </section>
 
-<!-- Sign-up Bonus Floating Pop-up -->
-<div class="fixed inset-0 z-50 pointer-events-none">
+<!-- Sign-up Bonus Floating Pop-up Container -->
+<div class="fixed inset-0 z-50 pointer-events-none overflow-hidden">
   <div
     *ngIf="showPopup"
     (click)="RedirectToSignUp()"
     class="popup pointer-events-auto absolute flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#161819]/95 backdrop-blur-md border border-[#FE8912]/50 text-white shadow-xl cursor-pointer overflow-visible hover:scale-105 hover:border-[#FE8912] transition-all duration-300"
-    style="box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 0 25px rgba(254, 137, 18, 0.25);"
+    style="
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(254, 137, 18, 0.25);
+    "
   >
     <!-- Close Button -->
     <div
@@ -424,7 +490,7 @@
       <i class="fas fa-gift text-black text-lg"></i>
     </div>
 
-    <div class="relative z-10 leading-tight pr-10">
+    <div class="relative z-10 leading-tight pr-6">
       <div
         class="text-sm font-bold bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
       >
