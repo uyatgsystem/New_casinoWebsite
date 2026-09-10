@@ -107,27 +107,6 @@ export class NotificationsComponent implements OnInit, AfterViewInit {
     // animate panel close for nicer mobile/desktop vibe
     this.startClose();
   }
-  markAllAsRead(event: Event) {
-  event.stopPropagation();
-
-  this.apiCallService
-    .PostCallWithToken('', 'NotificationMessages/MarkAllAsRead?userId=' + localStorage.getItem('userId'))
-    .subscribe({
-      next: () => {
-        // Trigger the exit animation for all items
-        this.notifications.forEach(n => n.removing = true);
-
-        // Wait for CSS animation (0.6s) then clear and refresh
-        setTimeout(() => {
-          this.notifications = [];
-          this.notificationService.loadNotifications(true);
-          this.notificationsCount.emit(0);
-          this.cdr.detectChanges();
-        }, 600);
-      },
-      error: (err) => console.error("Error marking all as read:", err)
-    });
-}
   navigateByType(type: string, gameName: string = '') {
     switch (type.toLowerCase()) {
       case 'wallet':

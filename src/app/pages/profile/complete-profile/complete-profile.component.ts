@@ -1,4 +1,4 @@
-import { Component, input, OnInit, OnDestroy } from '@angular/core';
+import { Component, input, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -66,7 +66,8 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private utilsService: UtilsService,
     private fb: FormBuilder,
-    private UpdateCustomerService: LocationService
+    private UpdateCustomerService: LocationService,
+    private elementRef: ElementRef
   ) {
 
     this.changePasswordForm = this.fb.group({
@@ -173,6 +174,26 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  //* Scroll Tab Button into View on Mobile
+  scrollTabIntoView(event: Event): void {
+    const button = event.target as HTMLElement;
+    
+    // Scroll button into view on mobile
+    if (button && window.innerWidth <= 768) {
+      setTimeout(() => {
+        button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }, 50);
+    }
+    
+    // Scroll content section into view after tab change
+    setTimeout(() => {
+      const mainContent = this.elementRef.nativeElement.querySelector('.account-content');
+      if (mainContent) {
+        mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 150);
+  }
+
 
 
 
@@ -183,7 +204,7 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
   email: string = '';
   name: string = '';
   profileImage: string = '';
-  activeTab: 'personal' | 'security' | 'wallet' | 'referrals' | 'Levels' = 'personal';
+  activeTab: 'personal' | 'security' | 'wallet' | 'referrals' | 'Levels' | 'kyc' = 'personal';
   walletBalance: number = 0.00;
   userLevel: number = 16;
   referralCode: string = '';
