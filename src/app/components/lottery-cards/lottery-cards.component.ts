@@ -39,7 +39,7 @@ export class LotteryCardsComponent implements OnInit, OnDestroy {
   showAll = false;
   intervalRef: any;
   status: any;
-  customerId: number = 0;
+  customerId: string = '';
   isLoading: boolean = true;
   platformId = inject(PLATFORM_ID);
 

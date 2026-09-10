@@ -135,7 +135,7 @@ export class GameTableComponent implements OnInit {
     if (this.betAmounts.banker > 0) bets.push({ betType: 'Banker', betAmount: this.betAmounts.banker });
     if (this.betAmounts.tie > 0) bets.push({ betType: 'Tie', betAmount: this.betAmounts.tie });
 
-    const customerID = Number(this.utilsService.getItem('customerId'));
+    const customerID = this.utilsService.getItem('customerId') || '';
     const payload = { customerID, bets };
 
     this.apiCallService.PostCallWithToken(payload, 'BACCHRAT/PlayBACCHRATBets').subscribe({

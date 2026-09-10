@@ -32,10 +32,10 @@ export class MinesComponent {
   gridSize = 5;
   selectionLimit = 0;
   requestId: string = '';
-  customerId: number = 0;
+  customerId: string = '';
   constructor(private minesApiService: MinesApiService, private apiCallService: ApiCallService, private errorHandling: ErrorhandlingService, private location: Location, private toastr: ToastrService, private utilsService: UtilsService) {
 
-    this.customerId = Number(localStorage.getItem('customerId'));
+    this.customerId = localStorage.getItem('customerId') || '';
   }
 
   goBack() {

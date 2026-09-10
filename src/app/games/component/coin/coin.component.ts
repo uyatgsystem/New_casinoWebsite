@@ -59,7 +59,7 @@ export class CoinFlipComponent implements OnInit, OnDestroy {
   resultMessage          = 'Place your bet!';
   resultType: 'win' | 'lose' | 'neutral' = 'neutral';
   rolls: FlipRoll[]      = [];
-  customerId             = 0;
+  customerId             = '';
   showInsufficientBanner = false;
 
   coinRotation = 0;
@@ -83,7 +83,7 @@ export class CoinFlipComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.customerId = Number(localStorage.getItem('customerId'));
+      this.customerId = localStorage.getItem('customerId') || '';
     }
     this.loadBalance();
     this.startBettingPhase();

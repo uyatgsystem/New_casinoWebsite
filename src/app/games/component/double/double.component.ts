@@ -107,7 +107,7 @@ export class DoubleComponent implements OnInit, AfterViewInit, OnDestroy {
   resultMessage = 'Place your bet and spin!';
   resultType: 'win' | 'lose' | 'neutral' = 'neutral';
   rolls: Roll[] = [];
-  customerId = 0;
+  customerId = '';
   showControls = true;
   isMobileView = false;
   showInsufficientBanner = false;
@@ -156,7 +156,7 @@ export class DoubleComponent implements OnInit, AfterViewInit, OnDestroy {
   // ─────────────────────────────────────────────────────
 
   ngOnInit() {
-    this.customerId = Number(localStorage.getItem('customerId'));
+    this.customerId = localStorage.getItem('customerId') || '';
     this.loadBalance();
   }
 

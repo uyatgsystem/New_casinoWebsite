@@ -75,7 +75,7 @@ export class StackBuilderComponent implements AfterViewInit, OnDestroy {
   betAmount = 10;
   readonly MAX_BET = 50;
   betError = '';
-  customerId: number = 0;
+  customerId: string = '';
   requestId: string = '';
   grainBackdrop: SafeHtml = '';
 
@@ -187,7 +187,7 @@ export class StackBuilderComponent implements AfterViewInit, OnDestroy {
       });
     });
 
-    this.customerId = Number(localStorage.getItem('customerId')) || 0;
+    this.customerId = localStorage.getItem('customerId') || '';
     this.getWalletBalance();
   }
 

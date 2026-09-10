@@ -46,7 +46,7 @@ export class LotteryListComponent implements OnInit, OnDestroy {
   showAll = false;
   intervalRef: any;
   status: any = 'open';
-  customerId: number = 0;
+  customerId: string = '';
   isLoading: boolean = false;
   selectedTab: 'Today' | 'upcoming' | 'winners' | 'myLottery' | 'claim' =
     'Today';
@@ -128,7 +128,7 @@ export class LotteryListComponent implements OnInit, OnDestroy {
     if (tab === 'Today') {
       //this.setTodayDate();
       this.status = 'open';
-      this.customerId = 0;
+      this.customerId = '';
     } else {
       this.startDate = null;
     }
@@ -136,17 +136,17 @@ export class LotteryListComponent implements OnInit, OnDestroy {
     if (tab === 'upcoming') {
       this.status = 'open';
       this.startDate = null;
-      this.customerId = 0;
+      this.customerId = '';
     }
 
     if (tab === 'winners') {
       this.status = 'close';
-      this.customerId = 0;
+      this.customerId = '';
     }
 
     if (tab === 'myLottery') {
       this.status = 'open';
-      this.customerId = Number(localStorage.getItem('customerId')) || 0;
+      this.customerId = localStorage.getItem('customerId') || '';
     }
 
     this.GetAllLotteries();

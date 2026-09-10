@@ -44,7 +44,7 @@ export class KenoComponent {
   currentAutoRound = 0;
   autoPlayRounds = 0;
   autoPlayTotalPayout = 0;
-  customerId: number = 0;
+  customerId: string = '';
   grainBackdrop: SafeHtml = '';
 
   constructor(private location: Location, private router: Router) { }
@@ -77,7 +77,7 @@ export class KenoComponent {
   get paytableEntries(): PaytableEntry[] { return this.kenoService.getPaytableEntries(this.paytableSpotCount); }
 
   ngOnInit(): void {
-    this.customerId = Number(localStorage.getItem('customerId')) || 0;
+    this.customerId = localStorage.getItem('customerId') || '';
     this.grainBackdrop = this.utilsService.getGrainBackdrop();
     this.getWalletBalance();
     this.scrollToTopSmooth();

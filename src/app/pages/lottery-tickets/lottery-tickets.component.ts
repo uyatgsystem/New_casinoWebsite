@@ -293,9 +293,8 @@ export class LotteryTicketsComponent implements OnInit, OnDestroy {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }
 
-  get getCustomerId(): number | 0 {
-    const customerId = localStorage.getItem('customerId');
-    return Number(customerId);
+  get getCustomerId(): string {
+    return localStorage.getItem('customerId') || '';
   }
   reservedTickets: number = 0;
   // Add this method to get purchased tickets

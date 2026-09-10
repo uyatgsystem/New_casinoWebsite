@@ -345,8 +345,8 @@ export class RedeemComponent implements OnInit, OnDestroy {
       accountInfo: this.accountInfo || '',
     };
   }
-  getCustomerID(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getCustomerID(): string | null {
+    return localStorage.getItem('customerId');
   }
   addRedeemRequest() {
     this.loaderService.show();
@@ -618,7 +618,7 @@ export class RedeemComponent implements OnInit, OnDestroy {
       );
       // Define the payload with customerID, gameId, and score
       const payload = {
-        customerID: this.getCustomerID() || 0,
+        customerID: this.getCustomerID() || '',
         gameId: selectedGameData.GameID || 0,
         score: this.score || 0,
       };

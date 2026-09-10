@@ -471,8 +471,8 @@ export class AddWalletComponent implements OnInit, AfterViewInit {
     this.touchedAmount = false;
   }
 
-  getCustomerID(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getCustomerID(): string | null {
+    return localStorage.getItem('customerId');
   }
   getToken(): string | null {
     return localStorage.getItem('token');
@@ -1114,7 +1114,7 @@ private convertFileToBase64(file: File): Promise<string> {
             resolve(response.opaqueData);
             // this.opaquePayload = { opaqueData: response.opaqueData };
             this.opaquePayload = {
-              customerId: Number(localStorage.getItem('customerId')),
+              customerId: localStorage.getItem('customerId') || '',
               amount: this.paymentForm.value.amount,
               source: 'AuthorizeNet',
               accountId: accountid,
@@ -1544,7 +1544,7 @@ private convertFileToBase64(file: File): Promise<string> {
 
   createTapTapPayload() {
     const localEmail = localStorage.getItem('email') || '';
-    const localCustomerId = parseInt(localStorage.getItem('customerId') || '0', 10);
+    const localCustomerId = localStorage.getItem('customerId') || '';
 
     // Logic for Source
     const source = this.selectedAccountType === 'CashApp2'

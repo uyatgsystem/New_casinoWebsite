@@ -147,8 +147,8 @@ export class Guidelines implements OnInit {
     });
   }
 
-  getCustomerID(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getCustomerID(): string | null {
+    return localStorage.getItem('customerId');
   }
 
   // TS Code for Pagination Start

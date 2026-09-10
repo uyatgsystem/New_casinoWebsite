@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ApiCallService } from '../../Services/api-call-service.service';
 
 export interface PaymentRequestPayload {
-  customerId: number;
+  customerId: string;
   source: string;
   amount: number;
 }
@@ -25,7 +25,7 @@ export interface BetResponse {
 }
 
 export interface CheckoutPayload {
-  customerId: number;
+  customerId: string;
   requestId: string;
   source: string;
   amount: number;
@@ -51,7 +51,7 @@ export class MinesApiService {
 
 
   // payload must include customerId, requestId, totalMines and cubeSize
-  placeBet(payload: { customerId: number; requestId: string; totalMines: number; cubeSize: string }): Observable<BetResponse> {
+  placeBet(payload: { customerId: string; requestId: string; totalMines: number; cubeSize: string }): Observable<BetResponse> {
     return this.apiCallService.PostCallWithToken(payload, 'Customer/MinesBet');
   }
 

@@ -230,8 +230,8 @@ export class AccountComponent {
     }
   }
 
-  getCustomerID(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getCustomerID(): string | null {
+    return localStorage.getItem('customerId');
   }
 
   OpenCaptchaAddPlayer(details: any) {
@@ -308,8 +308,8 @@ export class AccountComponent {
       );
   }
 
-  getcustomerId(): number | null {
-    return Number(localStorage.getItem('customerId'));
+  getcustomerId(): string | null {
+    return localStorage.getItem('customerId');
   }
 
   isCaptchaGames(gameName: string): boolean {

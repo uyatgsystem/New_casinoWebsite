@@ -436,7 +436,7 @@ export class AvaitarComponent implements OnInit, OnDestroy, AfterViewInit {
     const previousBalance = this.balance;
     this.balance -= this.betAmount;
 
-    const customerId = Number(localStorage.getItem('customerId')) || 0;
+    const customerId = localStorage.getItem('customerId') || '';
     this.isBetRequestInFlight = true;
     try {
       const response = await this.placeBetRequest(customerId, this.betAmount);
@@ -495,7 +495,7 @@ export class AvaitarComponent implements OnInit, OnDestroy, AfterViewInit {
     // Trigger celebration animation
     this.triggerCashoutCelebration();
 
-    const customerId = Number(localStorage.getItem('customerId')) || 0;
+    const customerId = localStorage.getItem('customerId') || '';
     try {
       const response = await this.cashOutRequest(customerId, this.multiplier);
       if (response && response.responseCode === 200) {
@@ -524,7 +524,7 @@ export class AvaitarComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  private placeBetRequest(customerId: number, amount: number): Promise<any> {
+  private placeBetRequest(customerId: string, amount: number): Promise<any> {
     if (this.USE_DUMMY_API) {
       return this.simulateCreateBet(customerId, amount);
     }
@@ -538,7 +538,7 @@ export class AvaitarComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  private cashOutRequest(customerId: number, multiplier: number): Promise<any> {
+  private cashOutRequest(customerId: string, multiplier: number): Promise<any> {
     if (this.USE_DUMMY_API) {
       return this.simulateCashOut(customerId, multiplier);
     }
@@ -553,7 +553,7 @@ export class AvaitarComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  private simulateCreateBet(_customerId: number, _amount: number): Promise<any> {
+  private simulateCreateBet(_customerId: string, _amount: number): Promise<any> {
     return new Promise((resolve) => {
       const simulatedCrashPoint = this.getDefaultFrontendCrashPoint();
       setTimeout(() => {
@@ -568,7 +568,7 @@ export class AvaitarComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  private simulateCashOut(_customerId: number, _multiplier: number): Promise<any> {
+  private simulateCashOut(_customerId: string, _multiplier: number): Promise<any> {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({ responseCode: 200 });

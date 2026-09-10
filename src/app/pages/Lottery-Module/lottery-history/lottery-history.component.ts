@@ -58,7 +58,7 @@ export class LotteryHistoryComponent implements OnInit {
   dropdownOpen: boolean = false;
   isModalShown: boolean = false;
 
-  customerId: number = 0;
+  customerId: string = '';
   grainBackdrop: SafeHtml = '';
 
   constructor(
@@ -80,7 +80,7 @@ export class LotteryHistoryComponent implements OnInit {
       });
 
     const storedId = localStorage.getItem('customerId');
-    this.customerId = storedId ? Number(storedId) : 0;
+    this.customerId = storedId || '';
 
     if (!this.customerId) {
       this.toaster.error('Customer ID not found in localStorage.');

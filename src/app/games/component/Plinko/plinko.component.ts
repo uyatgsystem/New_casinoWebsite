@@ -30,7 +30,7 @@ export class PlinkoComponent implements OnInit, AfterViewInit, OnDestroy {
   private utilsService = inject(UtilsService);
 
   title = 'Plinko';
-  customerId: number = 0;
+  customerId: string = '';
 
   // --- Board / Canvas ---
   @ViewChild('boardCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
@@ -74,7 +74,7 @@ export class PlinkoComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   constructor() {
-    this.customerId = Number(localStorage.getItem('customerId'));
+    this.customerId = localStorage.getItem('customerId') || '';
   }
 
   ngOnInit() {

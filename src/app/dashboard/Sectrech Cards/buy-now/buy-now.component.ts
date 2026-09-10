@@ -219,7 +219,7 @@ export class BuyNowComponent implements AfterViewInit {
     this.isDisabled = true;
 
     const payload = {
-      customerId: Number(this.customerId),
+      customerId: this.customerId,
       betType: 'scratch',
       bet: this.cardData.ticketprice,
     };
