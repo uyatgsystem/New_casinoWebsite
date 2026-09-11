@@ -11,6 +11,89 @@ export class GameService {
     return this.games;
   }
 
+  getQuickWinGames(): any[] {
+    // Same list/links/colors used by the dashboard "Quick Win Casino" cards (games-landing.component.ts quickGames)
+    return [
+      {
+        id: 9,
+        name: 'Plinko',
+        image: 'https://spinhub-6rb.pages.dev/assets/Plinko.png',
+        redirectLink: '/dashboard/Plinko',
+        bgColor: '#c8c100',
+      },
+      {
+        id: 5,
+        name: 'Aviator',
+        image: 'https://spinhub-6rb.pages.dev/assets/Aviator.png',
+        redirectLink: '/dashboard/Avaitar',
+        bgColor: '#00d5a7',
+      },
+      {
+        id: 12,
+        name: 'Double',
+        image: 'https://spinhub-6rb.pages.dev/assets/Double.png',
+        redirectLink: '/dashboard/Double',
+        bgColor: '#f883bd',
+      },
+      {
+        id: 7,
+        name: 'Roulette',
+        image: 'https://spinhub-6rb.pages.dev/assets/Roulette.png',
+        redirectLink: '/dashboard/Roulette',
+        bgColor: '#f8b678',
+      },
+      {
+        id: 4,
+        name: 'Treasure',
+        image: 'https://spinhub-6rb.pages.dev/assets/Treasure.png',
+        redirectLink: '/dashboard/TreasurePick',
+        bgColor: '#a0fdde',
+      },
+      {
+        id: 18,
+        name: 'Toss',
+        image: 'https://spinhub-6rb.pages.dev/assets/toss.png',
+        redirectLink: '/dashboard/coin',
+        bgColor: '#caff09',
+      },
+      {
+        id: 6,
+        name: 'Baccarat',
+        image: 'https://spinhub-6rb.pages.dev/assets/baccarat.png',
+        redirectLink: '/dashboard/Baccaret',
+        bgColor: '#00ACC1',
+      },
+      {
+        id: 3,
+        name: 'Scratch',
+        image: 'https://spinhub-6rb.pages.dev/assets/scratch.png',
+        redirectLink: '/dashboard/SectrechCards',
+        bgColor: '#eefcbb',
+      },
+      {
+        id: 8,
+        name: 'Mines',
+        image: 'https://spinhub-6rb.pages.dev/assets/mines.png',
+        redirectLink: '/dashboard/Mines',
+        bgColor: '#a6ebaf',
+      },
+      {
+        id: 11,
+        name: 'Keno',
+        image: 'https://spinhub-6rb.pages.dev/assets/Keno.png',
+        redirectLink: '/dashboard/Keno',
+        bgColor: '#09b9ff',
+      },
+      {
+        id: 1,
+        name: 'Spin',
+        image: 'https://spinhub-6rb.pages.dev/assets/Spin.png',
+        redirectLink: '/dashboard/spinner',
+        bgColor: '#FFB300',
+      },
+    ];
+  }
+
   getDashboardInstantGames(): any[] {
     // Same image links used by the dashboard "Quick Win Casino" cards (games-landing.component.ts quickGames)
     return [
@@ -19,36 +102,42 @@ export class GameService {
         name: 'Spin',
         image: 'https://spinhub-6rb.pages.dev/assets/Spin.png',
         redirectLink: '/dashboard/spinner',
+        bgColor: '#FFB300',
       },
       {
         id: 2,
         name: 'Lottery',
         image: '/lottery.png',
         redirectLink: '/dashboard/lottery',
+        bgColor: '#4394b9',
       },
       {
         id: 3,
         name: 'Scratch',
         image: 'https://spinhub-6rb.pages.dev/assets/scratch.png',
         redirectLink: '/dashboard/SectrechCards',
+        bgColor: '#eefcbb',
       },
       {
         id: 4,
         name: 'Treasure',
         image: 'https://spinhub-6rb.pages.dev/assets/Treasure.png',
         redirectLink: '/dashboard/TreasurePick',
+        bgColor: '#a0fdde',
       },
       {
         id: 5,
         name: 'Aviator',
         image: 'https://spinhub-6rb.pages.dev/assets/Aviator.png',
         redirectLink: '/dashboard/Avaitar',
+        bgColor: '#00d5a7',
       },
       {
         id: 6,
         name: 'Baccarat',
         image: 'https://spinhub-6rb.pages.dev/assets/baccarat.png',
         redirectLink: '/dashboard/Baccaret',
+        bgColor: '#00ACC1',
       },
     ];
   }

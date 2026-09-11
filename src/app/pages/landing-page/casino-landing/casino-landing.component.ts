@@ -64,34 +64,29 @@ export class CasinoLandingComponent implements OnInit {
   private destroy$ = new Subject<void>();
 
   ngOnInit(): void {
-    // Correct image paths for Game Vault, Ultra Panda, and Game Room matching your dashboard assets
-    this.heroGames = [
-      {
-        name: 'Game Vault',
-        image: 'https://cmaxnewimages.pages.dev/assets/games/gamevault.png',
-        redirectLink: '/dashboard',
-        bgclr: '#FE8912',
-        isHot: true,
-        bonus: '20'
-      },
-      {
-        name: 'Ultra Panda',
-        image: 'https://cmaxnewimages.pages.dev/assets/games/ultrapanda.png',
-        redirectLink: '/dashboard',
-        bgclr: '#00e5ff',
-        isHot: true,
-        bonus: '10'
-      },
-      {
-        name: 'Game Room',
-        image: 'https://cmaxnewimages.pages.dev/assets/games/gameroom.png',
-        redirectLink: '/dashboard',
-        bgclr: '#ffd700',
-        isHot: true,
-        bonus: '10'
-      },
-      ...this.gameService.getDashboardInstantGames()
-    ];
+    // Use the same proven Quick Win Casino games/logos (spinhub-6rb.pages.dev) used
+    // elsewhere in the app, so every slide reliably shows its own correct logo.
+    // Their PNGs carry a lot of internal transparent padding, so zoom the icon in —
+    // except Spin, whose logo is already sized right.
+    const quickWinSlides = this.gameService.getQuickWinGames().map((g: any) => ({
+      ...g,
+      iconZoom: g.name !== 'Spin',
+    }));
+
+    // Plus 12 Elite Games (panel games are launched via the Add Player flow on
+    // their own card, so route these slides to the dashboard where that lives).
+    // Keep their logo at its original (unzoomed) size.
+    const eliteSlides = this.gameService
+      .getGames()
+      .slice(0, 12)
+      .map((g: any) => ({
+        name: g.name,
+        image: g.image,
+        redirectLink: '/dashboard/home',
+        iconZoom: false,
+      }));
+
+    this.heroGames = [...quickWinSlides, ...eliteSlides];
   }
 
   // Hero banner games array

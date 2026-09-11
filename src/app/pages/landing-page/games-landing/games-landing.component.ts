@@ -158,15 +158,6 @@ export class GamesLandingComponent {
       bgColor: '#00ACC1', // cyan
     },
     {
-      id: 2,
-      name: 'Lottery',
-      image:
-        '/lottery.png',
-      redirectLink: '/dashboard/lottery',
-      bgColor: '#4394b9', // green
-    },
-
-    {
       id: 3,
       name: 'Scratch',
       image:

@@ -170,7 +170,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
       tag: 'Refer & Earn',
       title: 'Referral Program',
       description:
-        'Share Spin Club with friends and earn rewards together when they join and play.',
+        'Share Spin Hub with friends and earn rewards together when they join and play.',
       color: 'deep',
     },
   ];

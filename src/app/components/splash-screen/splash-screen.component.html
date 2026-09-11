@@ -9,15 +9,13 @@
 
   <!-- Content container -->
   <div class="content flex flex-col gap-8 justify-center items-center flex-wrap align-middle">
-    <div class="logo">
-      <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Spin Club">
-    </div>
-
-    <!-- Spin Club wheel loader -->
-    <div class="spin-loader">
+    <!-- Logo with the loading ring orbiting around it -->
+    <div class="loader-orbit">
       <div class="spin-loader-ring"></div>
       <div class="spin-loader-ring spin-loader-ring--reverse"></div>
-      <i class="fas fa-dharmachakra spin-loader-icon"></i>
+      <div class="logo">
+        <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Spin Hub">
+      </div>
     </div>
 
     <p class="progress-text">{{ progress }}% Loaded</p>

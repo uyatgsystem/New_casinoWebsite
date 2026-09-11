@@ -6,7 +6,7 @@
       <div class="lg:col-span-6 text-center lg:text-left">
         <div class="flex items-center !text-center justify-center lg:justify-normal lg:text-left gap-4">
           <span class="inline-flex items-center justify-center text-[#fe8912] font-bold text-[20px] leading-[22px]">
-            Spin Club
+            Spin Hub
           </span>
           <span class="text-white font-bold text-[20px] leading-[22px]">Games</span>
         </div>
@@ -32,7 +32,7 @@
   <!-- All Games Section -->
   <div class="w-full max-w-[1444px] mx-auto mt-8">
     <div class="flex items-center justify-between">
-      <h3 class="text-[#FE8912] font-bold text-[30px]">Games</h3>
+      <h3 class="text-[#FE8912] font-bold text-[30px]">Elite Games</h3>
       <button *ngIf="hasMoreAllGames" (click)="toggleAllGamesView()"
         class="mt-0 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold text-sm sm:text-base py-2 px-4 sm:px-12 rounded-full transition">
         {{ showAllGamesExpanded ? "View Less Games" : "View All Games" }}
@@ -74,24 +74,35 @@
   <!-- Instant Games  -->
   <div class="w-full max-w-[1444px] mx-auto mt-8 mb-12">
     <div class="flex items-center justify-between">
-      <h3 class="text-[#FE8912] font-bold text-[30px]">Instant Games</h3>
-      <button *ngIf="hasMoreQuickGames" (click)="toggleQuickGamesView()"
-        class="mt-0 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold text-sm sm:text-base py-2 px-4 sm:px-12 rounded-full transition">
-        {{ showQuickGamesExpanded ? "View Less Games" : "View All Games" }}
-      </button>
+      <h3 class="text-[#FE8912] font-bold text-[30px]">Quick Win Casino</h3>
     </div>
 
     <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-6 py-2">
-      <ng-container *ngFor="let game of displayedQuickGames; let i = index">
-        <div (click)="onPlayGame(game)" class="dash-game-card group">
-          <img [src]="game.image || game.coverImage" [alt]="game.name" class="game-image" />
+      <ng-container *ngFor="let game of dashboardInstantGames; let i = index">
+        <div
+          (click)="onPlayGame(game)"
+          class="dash-game-card group"
+          [ngStyle]="{
+            'border-color': game.bgColor || '#FE8912',
+            '--card-glow': game.bgColor || '#FE8912'
+          }"
+        >
+          <img
+            [src]="game.image || game.coverImage"
+            [alt]="game.name"
+            class="game-image"
+            [class.game-image--quickwin-zoom]="game.name !== 'Spin'"
+          />
 
           <div class="play-overlay">
             <span class="play-btn">Play Now</span>
           </div>
 
           <div class="card-footer-pill">
-            <span class="game-title">{{ game.name }}</span>
+            <span
+              class="game-title"
+              [ngStyle]="{ color: game.bgColor || '#FFD700' }"
+            >{{ game.name }}</span>
           </div>
         </div>
       </ng-container>

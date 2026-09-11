@@ -31,11 +31,13 @@
     [class.opacity-100]="cardsOpen"
   >
     <owl-carousel-o [options]="carouselOptions">
-      <ng-template carouselSlide *ngFor="let card of cards">
+      <ng-template carouselSlide *ngFor="let card of cards; trackBy: trackByCardKey">
         <div
-          (click)="$event.stopPropagation(); openModule(card.key, $event)"
+          (click)="$event.stopPropagation(); onCardClick(card, $event)"
+          [ngStyle]="{
+            background: 'linear-gradient(135deg, ' + card.color1 + ', ' + card.color2 + ')'
+          }"
           class="relative flex items-center justify-between rounded-tl-xl rounded-br-xl p-4
-         bg-gradient-to-br {{ card.gradient }}
          overflow-hidden h-36 sm:h-40 md:h-44"
         >
           <!-- Decorative circles -->
