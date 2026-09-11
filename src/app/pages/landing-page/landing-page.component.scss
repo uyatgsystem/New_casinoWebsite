@@ -1,9 +1,17 @@
+header,
+header.header-bordered,
+header[class*="header-bordered"] {
+  background: #000000 !important;
+  background-color: #000000 !important;
+}
+
 :root {
   background-color: #0a0e1f;
 }
 
 .header-bordered {
-  background: #0B0C0E;
+  background: #000000 !important;
+  background-color: #000000 !important;
   border-bottom: 1px solid rgba(195, 176, 137, 0.3);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
@@ -745,7 +753,6 @@
   box-shadow: 0 0 40px #19e4e0 !important;
 }
 
-// Fixed popup styles to completely prevent overflowing on mobile
 .popup {
   position: fixed;
   z-index: 50;

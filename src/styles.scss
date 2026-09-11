@@ -7,6 +7,17 @@
 /* SweetAlert2 default theme */
 @import "sweetalert2/dist/sweetalert2.min.css";
 
+/* FORCE HEADER BACKGROUND GLOBALLY TO PURE BLACK */
+header,
+.header-bordered,
+header.header-bordered,
+header[class*="header-bordered"] {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  border-bottom: 1px solid rgba(195, 176, 137, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
 #toast-container {
   z-index: 99999 !important;
 }
@@ -378,8 +389,8 @@
 
 :root {
   --font-family: "Libre Franklin", "Helvetica Neue";
-  --nav-Background: #161819;
-  --ground: #1618199f;
+  --nav-Background: #000000;
+  --ground: rgba(0, 0, 0, 0.95);
   --text-primary: #c86b23;
   --text-black: #1d1c1c;
   --text-light: #e4e4e4;
