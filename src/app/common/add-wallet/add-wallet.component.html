@@ -48,11 +48,10 @@
           class="relative flex items-center gap-3 p-3 rounded-2xl border transition cursor-pointer overflow-hidden group"
           [ngClass]="{
             'bg-black/60 border-[#F3A630] shadow-[0_0_15px_rgba(243,166,48,0.25)]': selectedAccountType === account.name,
-            'bg-black/40 border-white/10 hover:border-white/30': selectedAccountType !== account.name && account.isActive,
-            'opacity-40 cursor-not-allowed bg-black/20 border-white/5': !account.isActive
+            'bg-black/40 border-white/10 hover:border-white/30': selectedAccountType !== account.name
           }">
 
-          @if (account.isActive && account.Bonus != 0 && account.Bonus != 0.0) {
+          @if (account.Bonus != 0 && account.Bonus != 0.0) {
             <div class="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded-full shadow whitespace-nowrap leading-none z-10">{{ account.Bonus }}% Extra</div>
           }
 
@@ -64,12 +63,6 @@
               {{ nameMap[account.name] || account.name }}
             </span>
           </div>
-
-          @if (!account.isActive) {
-            <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center">
-              <span class="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 border border-white/10 px-2 py-0.5 rounded-full">Coming Soon</span>
-            </div>
-          }
         </div>
         }
       </div>

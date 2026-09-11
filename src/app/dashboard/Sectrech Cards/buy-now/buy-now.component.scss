@@ -1,3 +1,30 @@
+// Metallic foil texture for the scratch surface — deliberately NOT button-like
+// (no solid fill / shadow), so it reads as a scratchable panel, not a tappable button.
+.scratch-foil-surface {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5) 0px,
+      rgba(255, 255, 255, 0.5) 2px,
+      rgba(210, 210, 214, 0.5) 2px,
+      rgba(210, 210, 214, 0.5) 4px
+    ),
+    linear-gradient(135deg, #d4d4d8 0%, #a1a1aa 50%, #d4d4d8 100%);
+}
+
+@keyframes scratchNowPulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(254, 128, 6, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 48px rgba(254, 128, 6, 0.85);
+  }
+}
+
+.scratch-now-btn {
+  animation: scratchNowPulse 1.8s ease-in-out infinite;
+}
+
 @keyframes titleGlow {
   0%,
   100% {

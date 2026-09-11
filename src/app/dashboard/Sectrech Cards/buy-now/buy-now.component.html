@@ -1,6 +1,6 @@
 <app-loader></app-loader>
 
-<div class="min-h-[90vh] flex flex-col items-center relative overflow-hidden bg-gradient-to-b from-[#0b0c0f] via-[#121418] to-[#07080a] px-4 md:px-8 py-6">
+<div class="min-h-[90vh] flex flex-col items-center relative overflow-hidden bg-gradient-to-b from-[#0b0c0f] via-[#121418] to-[#07080a] px-4 md:px-8 py-6 pb-28 md:pb-6">
   
   <!-- Ambient Backlight Glow -->
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#FE8006]/10 to-[#F3A630]/5 blur-[160px] pointer-events-none rounded-full"></div>
@@ -27,7 +27,7 @@
     <div class="relative w-full mx-auto">
       
       <!-- Luxury Card Shell with Golden Border and Backdrop Blur -->
-      <div class="relative w-full p-6 lg:p-8 bg-gradient-to-br from-[#16181b]/95 via-[#0e1013]/95 to-[#08090a]/95 rounded-[32px] border border-[#C3B089]/40 shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden backdrop-blur-2xl">
+      <div class="relative w-full p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-[#16181b]/95 via-[#0e1013]/95 to-[#08090a]/95 rounded-[24px] sm:rounded-[32px] border border-[#C3B089]/40 shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden backdrop-blur-2xl">
         
         <!-- Grain Texture Overlay -->
         <div class="absolute inset-0 pointer-events-none opacity-25" [innerHTML]="grainBackdrop"></div>
@@ -36,10 +36,10 @@
         <div class="absolute -right-12 -top-12 w-48 h-48 bg-[#FE8912]/15 blur-[60px] rounded-full pointer-events-none"></div>
 
         <!-- Inner Content Body -->
-        <div class="relative z-10 flex flex-col items-center text-center space-y-6">
+        <div class="relative z-10 flex flex-col items-center text-center space-y-3 sm:space-y-6">
           
           <!-- Top Row: Icon + Title & Winning Prize Badge -->
-          <div class="w-full flex items-center justify-between border-b border-[#C3B089]/20 pb-4">
+          <div class="w-full flex items-center justify-between border-b border-[#C3B089]/20 pb-2 sm:pb-4">
             <div class="flex items-center gap-3">
               <img [src]="cardData?.icon" alt="Game Icon" class="w-8 h-8 object-contain drop-shadow" />
               <h2 class="text-xl lg:text-2xl font-black text-white tracking-wide uppercase">
@@ -56,14 +56,14 @@
           </div>
 
           <!-- Middle Section: Treasure Chest Accent & Description -->
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4 w-full py-2">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-2 sm:gap-4 w-full py-1 sm:py-2">
             <div class="md:col-span-5 flex justify-center relative">
               <div class="absolute inset-0 bg-[#FE8006]/20 blur-2xl rounded-full"></div>
               <img src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png" alt="Treasure"
-                class="w-[130px] lg:w-[160px] h-auto relative z-10 drop-shadow-[0_12px_24px_rgba(0,0,0,0.9)] hover:scale-105 transition duration-300" />
+                class="w-16 sm:w-[130px] lg:w-[160px] h-auto relative z-10 drop-shadow-[0_12px_24px_rgba(0,0,0,0.9)] hover:scale-105 transition duration-300" />
             </div>
 
-            <div class="md:col-span-7 text-center md:text-left space-y-2">
+            <div class="md:col-span-7 text-center md:text-left space-y-1 sm:space-y-2">
               <span class="text-xs text-[#C3B089] font-extrabold uppercase tracking-wider block">Uncover Royal Treasures!</span>
               <p class="text-xs text-gray-300 leading-relaxed font-medium">
                 Reveal your prize by scratching the card. Every turn brings a chance to win exciting rewards. Stay lucky and have fun uncovering hidden treasures!
@@ -72,11 +72,11 @@
           </div>
 
           <!-- Scratch Area Box (Fully Preserved Logic & Canvas) -->
-          <div class="w-full pt-2">
-            <div class="bg-black/80 border-2 border-[#C3B089]/60 rounded-2xl p-2.5 shadow-inner">
+          <div class="w-full pt-1 sm:pt-2">
+            <div class="bg-black/80 border-2 border-dashed border-[#C3B089]/50 rounded-2xl p-2.5">
               <div #scratchArea
-                class="relative bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 rounded-xl shadow-lg h-[3.8rem] w-full flex items-center justify-center hover:cursor-pointer overflow-hidden">
-                
+                class="scratch-foil-surface relative rounded-xl shadow-inner h-11 sm:h-[3.8rem] w-full flex items-center justify-center cursor-default overflow-hidden">
+
                 <!-- Scratch Canvas (Bottom layer - z-10) -->
                 <canvas *ngIf="!playScratching" #canvas width="380" height="60"
                   class="absolute inset-0 w-full h-full rounded-xl z-10" (mousedown)="startScratching($event)"
@@ -85,10 +85,12 @@
                 </canvas>
 
                 <!-- Default Text (Middle layer - z-15) -->
-                <p *ngIf="!isRevealed"
-                  class="text-xl lg:text-2xl text-center font-black text-gray-900 tracking-wider uppercase relative z-[15] drop-shadow-sm font-mono">
-                  Best Of Luck
-                </p>
+                <div *ngIf="!isRevealed" class="relative z-[15] flex flex-col items-center gap-0.5">
+                  <span class="text-[9px] sm:text-[10px] font-bold text-gray-700/80 tracking-[0.2em] uppercase">👆 Scratch Here</span>
+                  <p class="text-xs sm:text-lg lg:text-xl text-center font-black text-gray-900 tracking-wider uppercase drop-shadow-sm font-mono">
+                    Best Of Luck
+                  </p>
+                </div>
 
                 <!-- Video overlay for scratching animation (Above text - z-20) -->
                 <video *ngIf="playScratching" autoplay muted loop playsinline
@@ -105,21 +107,21 @@
             </div>
           </div>
 
-        </div>
-      </div>
+          <!-- Action Button (inside the card, like the reference) -->
+          <div class="w-full flex justify-center pt-1 sm:pt-2">
+            <button (click)="BuyAndOpenScratchTicket(null, true)"
+              class="scratch-now-btn w-full py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-[#FEC866] via-[#FE9B2A] to-[#FE8006] text-black font-black text-sm uppercase tracking-[0.15em] hover:brightness-110 active:scale-[0.98] transition cursor-pointer">
+              {{
+                isScratching
+                ? "Scratching..."
+                : isRevealed
+                ? "Scratch Again!"
+                : "Scratch Now!"
+              }}
+            </button>
+          </div>
 
-      <!-- Action Button -->
-      <div class="w-full flex justify-center mt-6">
-        <button (click)="BuyAndOpenScratchTicket(null, true)"
-          class="w-[70%] max-w-[380px] py-4 rounded-2xl bg-gradient-to-r from-[#FEC866] via-[#FE9B2A] to-[#FE8006] text-black font-black text-xs uppercase tracking-[0.15em] shadow-[0_0_30px_rgba(254,128,6,0.5)] hover:brightness-110 active:scale-[0.98] transition cursor-pointer">
-          {{
-            isScratching
-            ? "Scratching..."
-            : isRevealed
-            ? "Scratch Again!"
-            : "Scratch Now!"
-          }}
-        </button>
+        </div>
       </div>
 
     </div>

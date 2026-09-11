@@ -303,27 +303,27 @@ export class AddRedeemComponent implements OnInit, AfterViewInit {
         'warning',
         'Game is under update!. Please try again later.',
       );
+      this.loaderService.hide();
       return;
     }
     this._apiCall
       .PostCallWithToken(payload, 'AddGameScore/RedeemGameScoreFromPanel')
       .subscribe({
         next: (response) => {
+          this.loaderService.hide();
           if (response && response.responseCode === 200) {
             this.toastr.success(response.responseMessage, 'Success');
             this.utilsService.triggerRedeemHistory();
-            this.loaderService.hide();
             this.utilsService.triggerScoreHistory();
           } else {
             this.handleError.handleResponseError(response);
             this.utilsService.triggerScoreHistory();
-            // this.loaderService.hide();
           }
         },
         error: (error) => {
+          this.loaderService.hide();
           this.handleError.handleHttpError(error);
           this.utilsService.triggerScoreHistory();
-          // this.loaderService.hide();
         },
       });
   }
