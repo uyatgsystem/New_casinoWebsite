@@ -49,7 +49,7 @@
   </div>
 
   <app-footer
-    *ngIf="shouldshowheader()"
+    *ngIf="shouldshowheader() && !addBalance"
     [chatUnreadCount]="unreadCounts"
   ></app-footer>
 </div>

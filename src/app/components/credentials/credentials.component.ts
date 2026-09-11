@@ -34,7 +34,9 @@ import {
   faDownload,
   faCheck,
   faChevronLeft,
+  faChevronRight,
   faRotateRight,
+  faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 import { LoaderComponent } from '../loader/loader.component';
 import { LoaderService } from '../../Services/loader-service.service';
@@ -87,6 +89,8 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   faCheck = faCheck;
   refresh = faRotateRight;
   leftArrow = faChevronLeft;
+  rightArrow = faChevronRight;
+  warningIcon = faTriangleExclamation;
   captchaImage = '/assets/captcha.png';
 
   history = [
@@ -1566,5 +1570,67 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   showRedeemModal: boolean = false;
   closeRedeemModal() {
     this.showRedeemModal = false;
+  }
+
+  showChangePasswordModal: boolean = false;
+  openChangePasswordModal() {
+    this.showChangePasswordModal = true;
+  }
+  closeChangePasswordModal() {
+    this.showChangePasswordModal = false;
+  }
+  isChangingPassword: boolean = false;
+
+  changePasswordPayload() {
+    const selectedGameName = this.GameData?.GameName || this.gameName;
+    const gameId = this.getCurrentGameId();
+    const selectedFromStorage = (
+      this.Gameservice.getArrayInLocalStorage('bis_data') || []
+    ).find((data: any) => data?.GameName === selectedGameName);
+
+    return {
+      customerID: localStorage.getItem('customerId') || '',
+      gameId,
+      gameName: selectedGameName,
+      panelId: selectedFromStorage?.PanelId,
+      playerPassword: this.generateGameIdentifier(gameId),
+      playerUserName: this.playerName,
+      rechargeBalance: 0,
+    };
+  }
+
+  confirmChangePassword() {
+    if (this.isChangingPassword) {
+      return;
+    }
+
+    const payload = this.changePasswordPayload();
+    this.isChangingPassword = true;
+    this.loaderService.show();
+
+    this.apicallservice
+      .PostCallWithToken(payload, 'AddGameScore/ChangePlayerPasswordFromPanel')
+      .subscribe({
+        next: (response) => {
+          this.isChangingPassword = false;
+          this.loaderService.hide();
+          if (response && response.responseCode === 200) {
+            this.playerPassword = payload.playerPassword;
+            this.isPasswordVisible = true;
+            this.Toaster.success(
+              response.responseMessage || 'Password changed successfully.',
+              'Success',
+            );
+            this.closeChangePasswordModal();
+          } else {
+            this.ErroHandling.handleResponseError(response);
+          }
+        },
+        error: (error) => {
+          this.isChangingPassword = false;
+          this.loaderService.hide();
+          this.ErroHandling.handleHttpError(error);
+        },
+      });
   }
 }

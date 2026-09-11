@@ -20,20 +20,18 @@
 // ─── Mobile: bottom sheet behaviour ─────────────────────────────────────────
 @media (max-width: 640px) {
   .modal-overlay {
-    align-items: flex-end !important;
-    padding: 0 !important;
+    align-items: center !important;
+    padding: 12px !important;
+    padding-bottom: max(24px, env(safe-area-inset-bottom) + 12px) !important;
   }
 
   .modal {
     width: 100% !important;
     max-width: 100% !important;
-    max-height: 90dvh !important;
+    max-height: calc(100dvh - 48px) !important;
     display: flex;
     flex-direction: column;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    border-top-left-radius: 28px !important;
-    border-top-right-radius: 28px !important;
+    border-radius: 20px !important;
     position: relative;
     margin: 0 !important;
     animation-name: animatetop;
