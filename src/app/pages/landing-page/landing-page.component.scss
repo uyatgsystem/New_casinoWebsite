@@ -3,9 +3,9 @@
 }
 
 .header-bordered {
-  border-bottom: 1px solid transparent;
-  border-image: linear-gradient(90deg, #8a7960 0.08%, #2a1c1b 100%);
-  border-image-slice: 1;
+  background: #0B0C0E;
+  border-bottom: 1px solid rgba(195, 176, 137, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .download-btn {

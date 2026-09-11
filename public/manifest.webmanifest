@@ -1,7 +1,7 @@
 {
-  "name": "Spin Club",
-  "short_name": "Spin Club",
-  "description": "Play your favorite casino games on Spin Club – the ultimate casino experience.",
+  "name": "Spin Hub",
+  "short_name": "Spin Hub",
+  "description": "Play your favorite casino games on Spin Hub – the ultimate casino experience.",
   "theme_color": "#0A0E1F",
   "background_color": "#0A0E1F",
   "display": "standalone",
@@ -10,13 +10,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png?v=1",
+      "src": "https://spinhub-6rb.pages.dev/assets/logo.png?v=1",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://cmaxv2images2.pages.dev/assets/logos/loginLogo.png?v=1",
+      "src": "https://spinhub-6rb.pages.dev/assets/logo.png?v=1",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

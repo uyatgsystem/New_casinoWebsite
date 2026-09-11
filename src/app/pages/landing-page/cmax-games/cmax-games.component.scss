@@ -100,6 +100,16 @@
   transform: scale(1.3);
 }
 
+/* Quick Win Casino logo PNGs carry a lot of internal transparent padding —
+   zoom them further so the artwork actually fills the card (Spin excluded, already sized right). */
+.game-image--quickwin-zoom {
+  transform: scale(1.7);
+}
+
+.dash-game-card:hover .game-image--quickwin-zoom {
+  transform: scale(1.85);
+}
+
 .play-overlay {
   position: absolute;
   inset: 0;

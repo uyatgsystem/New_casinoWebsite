@@ -34,7 +34,6 @@ export class CmaxGamesComponent implements OnInit {
   quickGames: any[] = [];
   dashboardInstantGames: any[] = [];
   showAllGamesExpanded = false;
-  showQuickGamesExpanded = false;
   platformId = inject(PLATFORM_ID);
 
   // Carousel properties
@@ -167,34 +166,25 @@ export class CmaxGamesComponent implements OnInit {
         ? `${baseUrl}${game.image}`
         : 'assets/placeholder.png';
   }
-  // All Games (top section)
+  // All Games (top section) — show 24 games by default.
+  // Only games with a known logo/color mapping (getGameImage) are shown, so no blank/broken cards appear.
+  private readonly allGamesInitialCount = 24;
+
+  private get validAllGames() {
+    return this.allGames.filter((g: any) => !!this.getGameImage(g?.name));
+  }
+
   get displayedAllGames() {
-    if (this.showAllGamesExpanded) return this.allGames;
-    const count = this.getInitialVisibleCount();
-    return this.allGames.slice(0, count);
+    if (this.showAllGamesExpanded) return this.validAllGames;
+    return this.validAllGames.slice(0, this.allGamesInitialCount);
   }
 
   get hasMoreAllGames(): boolean {
-    return this.allGames.length > this.getInitialVisibleCount();
+    return this.validAllGames.length > this.allGamesInitialCount;
   }
 
   toggleAllGamesView() {
     this.showAllGamesExpanded = !this.showAllGamesExpanded;
-  }
-
-  // Quick Games (bottom section)
- get displayedQuickGames() {
-  if (this.showQuickGamesExpanded) return this.dashboardInstantGames;
-  const count = this.getInitialVisibleCount();
-  return this.dashboardInstantGames.slice(0, count);
-}
-
-get hasMoreQuickGames(): boolean {
-  return this.dashboardInstantGames.length > this.getInitialVisibleCount();
-}
-
-  toggleQuickGamesView() {
-    this.showQuickGamesExpanded = !this.showQuickGamesExpanded;
   }
 
   // Generic loader for other types (hot/upcoming)

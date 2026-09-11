@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiCallService } from '../../../Services/api-call-service.service';
 import { LoaderService } from '../../../Services/loader-service.service';
 import { ErrorhandlingService } from '../../../Services/error-handling.service';
+import { GameService } from '../../../Services/game.service';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
@@ -21,11 +22,52 @@ export class FeaturedCardsComponent {
     private apiCallService: ApiCallService,
     private _loaderService: LoaderService,
     private ErroHandling: ErrorhandlingService,
+    private gameService: GameService,
   ) {}
   showReferralInsect = true;
 
   ngOnInit() {
+    this.buildCards();
     this.getGameNews();
+  }
+
+  // Build the Hero Banner from every Elite Games + Quick Win Casino game,
+  // each using that exact game's own logo/color.
+  buildCards() {
+    const eliteCards = this.gameService.getGames().map((g: any) => ({
+      key: g.name,
+      title: g.name,
+      subtitle: 'Play & Win',
+      image: g.image,
+      color1: g.bgclr || '#FE8912',
+      color2: g.color2 || g.bgclr || '#FE8912',
+      hotKey: g.name,
+      scrollTo: 'games-scroll-id',
+    }));
+
+    // The hot-hitting-games API reports these under their older display names
+    const hotKeyAlias: Record<string, string> = {
+      Aviator: 'Aviatar',
+      Spin: 'Spinner',
+      Scratch: 'ScratchCard',
+    };
+
+    const quickWinCards = this.gameService.getQuickWinGames().map((g: any) => ({
+      key: g.name,
+      title: g.name,
+      subtitle: 'Play & Win',
+      image: g.image,
+      color1: g.bgColor || '#FE8912',
+      color2: g.bgColor || '#FE8912',
+      hotKey: hotKeyAlias[g.name] || g.name,
+      redirectLink: g.redirectLink,
+    }));
+
+    this.cards = [...eliteCards, ...quickWinCards];
+  }
+
+  trackByCardKey(index: number, card: any) {
+    return card?.key ?? index;
   }
 
   toggleCards() {
@@ -37,28 +79,20 @@ export class FeaturedCardsComponent {
   }
 
   // Navigation handler
-
-  openModule(key: string, event?: Event) {
+  onCardClick(card: any, event?: Event) {
     if (event) {
       event.stopPropagation();
     }
 
-    switch ((key || '').toLowerCase()) {
-      case 'aviatar':
-        this.navigateAndScroll('/dashboard/Avaitar');
-        break;
-      case 'lottery':
-        this.navigateAndScroll('/dashboard/lottery');
-        break;
-      case 'scratch':
-        this.navigateAndScroll('/dashboard/SectrechCards');
-        break;
-      case 'spinner':
-        this.navigateAndScroll('/dashboard/spinner');
-        break;
-      default:
-        console.warn('[openModule] Unknown module key:', key);
-        break;
+    if (card.redirectLink) {
+      // Quick Win Casino games have a direct route
+      this.navigateAndScroll(card.redirectLink);
+    } else if (card.scrollTo) {
+      // Elite Games are launched from their own card (Add Player flow) — scroll to that grid
+      const el = document.getElementById(card.scrollTo);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   }
 
@@ -183,46 +217,6 @@ export class FeaturedCardsComponent {
     },
   };
 
-  cards = [
-    {
-      key: 'aviatar',
-      title: 'Aviatar',
-      subtitle: 'Flying to win',
-      image: 'https://cmaxv2images2.pages.dev/assets/icons/aviator.png',
-      gradient: 'from-[#2a1f3d] via-[#4b2d7f] to-[#6a4bc0]',
-      hotKey: 'Aviatar',
-    },
-    {
-      key: 'spinner',
-      title: 'Spin',
-      subtitle: 'Spin to win',
-      image: 'https://cmaxv2images2.pages.dev/assets/icons/spinner.png',
-      gradient: 'from-[#003f41] via-[#006b6f] to-[#00a4a8]',
-      hotKey: 'Spinner',
-    },
-    {
-      key: 'lottery',
-      title: 'Lottery',
-      subtitle: 'Try your luck with numbers',
-      image: 'https://cmaxv2images2.pages.dev/assets/icons/lottery.png',
-      gradient: 'from-[#3d0046] via-[#7a1da1] to-[#d474ff]',
-      hotKey: 'Lottery',
-    },
-    {
-      key: 'scratch',
-      title: 'Scratch',
-      subtitle: 'Instant wins await',
-      image: 'https://cmaxv2images2.pages.dev/assets/icons/scratch.png',
-      gradient: 'from-[#422800] via-[#b45f00] to-[#ffae00]',
-      hotKey: 'ScratchCard',
-    },
-    {
-      key: 'aviatar',
-      title: 'Aviator',
-      subtitle: 'Flying to win',
-      image: 'https://spinhub-6rb.pages.dev/assets/Aviator.png',
-      gradient: 'from-[#2a1f3d] via-[#4b2d7f] to-[#6a4bc0]',
-      hotKey: 'Aviatar',
-    },
-  ];
+  // Populated in buildCards() from Elite Games + Quick Win Casino
+  cards: any[] = [];
 }

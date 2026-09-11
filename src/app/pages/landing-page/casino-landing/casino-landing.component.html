@@ -30,7 +30,7 @@
             <div class="hero-promo-icon-wrap flex-shrink-0">
               <div class="hero-promo-icon-ring"></div>
               <div class="hero-promo-icon">
-                <img [src]="game.image" [alt]="game.name" class="object-contain p-2" (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'" />
+                <img [src]="game.image" [alt]="game.name" class="hero-promo-icon-img" [class.hero-promo-icon-img--zoom]="game.iconZoom" (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'" />
               </div>
             </div>
 
@@ -41,7 +41,7 @@
               </span>
               <h2 class="hero-promo-title">{{ game.name }}</h2>
               <p class="hero-promo-tagline">
-                Play now and chase massive jackpots & rewards at Spin Club.
+                Play now and chase massive jackpots & rewards at Spin Hub.
               </p>
               <div class="flex items-center gap-4 flex-wrap">
                 <button class="hero-promo-btn" (click)="$event.stopPropagation(); playHeroGame(game.redirectLink || game.downloadLink)">

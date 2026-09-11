@@ -25,7 +25,7 @@ $border-base: #004d53;
   cursor: pointer;
 }
 
-// Hero promo banner — Spin Club theme
+// Hero promo banner — Spin Hub theme
 .hero-promo-slide {
   background: linear-gradient(120deg, #1a1a1a 0%, #0d0d0d 55%, #000000 100%);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -181,12 +181,16 @@ $border-base: #004d53;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+.hero-promo-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-promo-icon-img--zoom {
+  transform: scale(1.6);
 }
 
 @media (min-width: 640px) {
