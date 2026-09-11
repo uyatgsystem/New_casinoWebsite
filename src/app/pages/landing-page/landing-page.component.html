@@ -2,11 +2,7 @@
   class="top-0 w-full h-[70px] header-bordered flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50"
   [class.fixed]="isSticky"
   [class.absolute]="!isSticky"
-  [ngClass]="
-    isSticky
-      ? 'bg-[#161819]/90 backdrop-blur-xl sticky-shadow'
-      : 'bg-[#161819]/40 backdrop-blur-md'
-  "
+  [class.sticky-shadow]="isSticky"
 >
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
 
@@ -15,7 +11,7 @@
     <img
       src="https://spinhub-6rb.pages.dev/assets/logo.png"
       alt="Spin Hub"
-      class="h-14 sm:h-16 w-auto object-contain"
+      class="h-16 sm:h-20 w-auto object-contain drop-shadow-md"
     />
   </div>
 

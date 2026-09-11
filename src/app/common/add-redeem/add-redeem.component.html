@@ -4,7 +4,7 @@
   (click)="closeModal()"
 >
   <div
-    class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[85vh] flex flex-col z-50 relative overflow-hidden"
+    class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[80vh] flex flex-col z-50 relative overflow-hidden"
     (click)="$event.stopPropagation()"
   >
     <!-- Fixed Grain Background Layer -->
@@ -51,7 +51,7 @@
     <form
       [formGroup]="redeemForm"
       (click)="$event.stopPropagation()"
-      class="p-6 overflow-y-auto space-y-5 relative z-10 flex-1 custom-scrollbar"
+      class="p-6 pb-[max(2rem,env(safe-area-inset-bottom))] overflow-y-auto space-y-5 relative z-10 flex-1 custom-scrollbar"
     >
       <!-- Retry Request ID Banner -->
       <div
