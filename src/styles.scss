@@ -7,17 +7,6 @@
 /* SweetAlert2 default theme */
 @import "sweetalert2/dist/sweetalert2.min.css";
 
-/* FORCE HEADER BACKGROUND GLOBALLY TO PURE BLACK */
-header,
-.header-bordered,
-header.header-bordered,
-header[class*="header-bordered"] {
-  background: #000000 !important;
-  background-color: #000000 !important;
-  border-bottom: 1px solid rgba(195, 176, 137, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-}
-
 #toast-container {
   z-index: 99999 !important;
 }

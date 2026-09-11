@@ -177,14 +177,19 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
   //* Scroll Tab Button into View on Mobile
   scrollTabIntoView(event: Event): void {
     const button = event.target as HTMLElement;
-    
+
+    // Only scroll on mobile — on laptop/desktop, switching tabs shouldn't jump the page.
+    if (window.innerWidth > 768) {
+      return;
+    }
+
     // Scroll button into view on mobile
-    if (button && window.innerWidth <= 768) {
+    if (button) {
       setTimeout(() => {
         button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }, 50);
     }
-    
+
     // Scroll content section into view after tab change
     setTimeout(() => {
       const mainContent = this.elementRef.nativeElement.querySelector('.account-content');
