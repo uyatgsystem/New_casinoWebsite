@@ -1,17 +1,25 @@
 <header
-  class="top-0 w-full h-[70px] header-bordered flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50"
+  class="top-0 w-full h-[70px] bg-black backdrop-blur-xl border-b border-[#C3B089]/40 flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50 header-bordered"
   [class.fixed]="isSticky"
   [class.absolute]="!isSticky"
   [class.sticky-shadow]="isSticky"
+  style="background: #000000 !important; background-color: #000000 !important;"
 >
-  <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+  <!-- Grain backdrop remove kar diya gaya hai taake dots khatam ho jayein -->
 
   <!-- Logo (Left) -->
   <div class="flex items-center gap-2 select-none shrink-0 z-10">
+    <!-- Mobile Logo -->
+    <img
+      src="https://spinhub-6rb.pages.dev/assets/logo.png"
+      alt="Spin Hub"
+      class="block lg:hidden h-16 sm:h-20 w-auto object-contain drop-shadow-md"
+    />
+    <!-- Desktop Logo -->
     <img
       src="https://spinhub-6rb.pages.dev/assets/DestopLogo.png"
       alt="Spin Hub"
-      class="h-12 sm:h-16 w-auto object-contain drop-shadow-md"
+      class="hidden lg:block h-12 w-auto object-contain drop-shadow-md"
     />
   </div>
 
@@ -82,7 +90,8 @@
   <!-- Mobile Menu -->
   <div
     *ngIf="isMobileMenuOpen"
-    class="lg:hidden absolute top-full left-0 w-full bg-[#161819]/95 backdrop-blur-xl border-t border-[#8A7960]/30 px-4 py-6 z-50 shadow-2xl"
+    class="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-[#8A7960]/30 px-4 py-6 z-50 shadow-2xl"
+    style="background: #000000 !important;"
   >
     <div class="grid grid-cols-2 gap-4 text-center text-white">
       <button
