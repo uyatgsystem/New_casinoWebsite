@@ -360,14 +360,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   getUserRole(): string | null {
     return localStorage.getItem('userType');
   }
-  getUserId(): number | null {
-    return Number(localStorage.getItem('userId'));
+  getUserId(): string {
+    return localStorage.getItem('userId') || '';
   }
-  getUserName(): string | null {
-    return localStorage.getItem('userName');
+  getUserName(): string {
+    return localStorage.getItem('userName') || '';
   }
   sendMessagePayload: any = {
-    UserId: this.swapSendingId || 0,
+    UserId: this.swapSendingId || '',
     SenderId: this.getUserId(),
     SenderName: this.getUserName(),
     Message: '',
@@ -387,7 +387,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ///////////////// Receive Chat from Agent
 
   IsMessageType?: boolean = false;
-  swapSendingId?: number;
+  swapSendingId?: string;
   // handleIncomingMsg() {
   //   this._websocketService.invokeMessages.subscribe((message: any) => {
   //     if (message.MessageFrom != 'Customer') {
@@ -479,7 +479,7 @@ export class ChatComponent implements OnInit, OnDestroy {
           message.MessageFrom != 'Customer' &&
           message.MessageType != 'UnEngaged'
         ) {
-          if (message.AgentId && message.AgentId > 0) {
+          if (message.AgentId != '00000000-0000-0000-0000-000000000000') {
             this.swapSendingId = message.AgentId;
           } else {
             this.swapSendingId = message.SenderId;
@@ -502,7 +502,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         message.MessageType == 'UnEngaged' ||
         message.MessageType == 'Agent_UnEngaged'
       ) {
-        this.swapSendingId = 0;
+        this.swapSendingId = '';
         this.IsMessageType = false;
         this.sendMessagePayload.UserId = this.swapSendingId;
         this.sendMessagePayload.MessageType = 'Agent';
@@ -636,7 +636,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
 
-  onScrollUp(customerId: number): void {
+  onScrollUp(customerId: string): void {
     this.MessageHistory();
   }
   // function for scroll to bottom

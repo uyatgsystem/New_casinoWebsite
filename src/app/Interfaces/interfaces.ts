@@ -33,7 +33,7 @@ export interface ComingMessage {
 export interface UserReceive {
   AgentId: number;
   UserId: number;
-  SenderId: number;
+  SenderId: string;
   Message: string;
   SenderName: string;
   MessageType: string;
@@ -100,9 +100,9 @@ export interface CreateUser {
   isMobileUser: boolean;
   panelType: string;
   refferCode: string;
-  ad?:string;
-   DeviceId: string;
-   deviceFingerprint: string;
+  ad?: string;
+  DeviceId: string;
+  deviceFingerprint: string;
 }
 export interface LoginUser {
   username: string;
