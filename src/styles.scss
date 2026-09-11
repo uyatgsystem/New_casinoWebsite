@@ -218,6 +218,7 @@ header[class*="header-bordered"] {
    ======================================================== */
 .swal2-container {
   padding: 18px !important;
+  padding-bottom: max(18px, env(safe-area-inset-bottom)) !important;
   background: rgba(4, 5, 7, 0.78) !important;
   backdrop-filter: blur(12px) !important;
   z-index: 9999 !important;
@@ -257,8 +258,11 @@ header[class*="header-bordered"] {
   width: min(420px, 100%) !important;
   max-width: 420px !important;
   min-height: 0 !important;
+  max-height: 85vh !important;
+  max-height: 85dvh !important;
   padding: 34px 30px 28px !important;
-  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
   background: radial-gradient(circle at 50% -20%, rgba(254, 200, 102, .08), transparent 50%), #0c0d10 !important;
   border: 1px solid rgba(195, 176, 137, .42) !important;
   border-left: none !important;

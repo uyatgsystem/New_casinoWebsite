@@ -287,18 +287,19 @@
     gap: 13px;
   }
 
-  // Keep the modal within the viewport and scrollable on mobile, so content
-  // (payment grid + forms) that doesn't fit is still reachable.
+  // The bottom nav is hidden while this modal is open (see app.component.html),
+  // so just keep the modal centered, scrollable, and clear of the notch/home bar.
   .modal {
-    max-height: 92vh !important;
+    max-height: 94vh !important;
+    max-height: 94dvh !important;
     overflow-y: auto !important;
     border-radius: 16px;
   }
 
   .modal-overlay {
-    align-items: flex-start !important;
-    padding-top: 12px !important;
-    padding-bottom: 12px;
+    align-items: center !important;
+    padding-top: 6px !important;
+    padding-bottom: max(6px, env(safe-area-inset-bottom)) !important;
   }
 }
 

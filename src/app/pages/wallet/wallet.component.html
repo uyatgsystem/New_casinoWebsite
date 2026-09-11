@@ -831,41 +831,42 @@
   <!-- ================= WITHDRAW MODAL ================= -->
   <div
     *ngIf="showwithdrawModal"
-    class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[9999] p-4 overflow-y-auto"
+    class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[9999] p-3 sm:p-4 overflow-y-auto"
     (click)="hideWithdrawModal()"
   >
     <div
-      class="bg-[#121417] border border-[#C3B089]/40 rounded-[32px] w-full max-w-2xl p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white my-8 mb-24 modal slide-up"
+      class="bg-[#121417] border border-[#C3B089]/40 rounded-[24px] sm:rounded-[32px] w-full max-w-2xl p-4 sm:p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white my-auto modal slide-up"
       (click)="$event.stopPropagation()"
     >
       <!-- Header Title & Close Button -->
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-lg font-black text-white tracking-wide">
+      <div class="flex items-center justify-between mb-4 sm:mb-6">
+        <h2 class="text-base sm:text-lg font-black text-white tracking-wide">
           Withdraw Balance
         </h2>
         <button
           (click)="hideWithdrawModal()"
-          class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition cursor-pointer"
+          class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition cursor-pointer"
         >
           ✕
         </button>
       </div>
 
       <!-- Select Payment Method Section -->
-      <div class="mb-6">
-        <div class="flex items-center gap-2 mb-3">
+      <div class="mb-4 sm:mb-6">
+        <div class="flex items-center gap-2 mb-2 sm:mb-3">
           <span class="w-1.5 h-3.5 bg-[#F3A630] rounded-full"></span>
-          <span class="text-xs font-bold text-gray-300 uppercase tracking-wider"
+          <span
+            class="text-[11px] sm:text-xs font-bold text-gray-300 uppercase tracking-wider"
             >Select Payment Method</span
           >
         </div>
 
         <!-- Payment Methods Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
           <div
             *ngFor="let method of withdrawPaymentMethods"
             (click)="method.isActive && (selectedAccountType = method.name)"
-            class="relative flex items-center gap-3 p-3 rounded-2xl border transition cursor-pointer overflow-hidden group"
+            class="relative flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border transition cursor-pointer overflow-hidden group"
             [ngClass]="{
               'bg-black/60 border-[#F3A630] shadow-[0_0_15px_rgba(243,166,48,0.25)]':
                 selectedAccountType === method.name,
@@ -876,7 +877,7 @@
             }"
           >
             <div
-              class="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center p-1.5 shrink-0"
+              class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/5 flex items-center justify-center p-1.5 shrink-0"
             >
               <img
                 [src]="method.bg_image"
@@ -885,9 +886,10 @@
               />
             </div>
             <div class="flex flex-col overflow-hidden">
-              <span class="text-xs font-bold text-white truncate">{{
-                method.name
-              }}</span>
+              <span
+                class="text-[11px] sm:text-xs font-bold text-white truncate"
+                >{{ method.name }}</span
+              >
             </div>
 
             <div
@@ -895,7 +897,7 @@
               class="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center"
             >
               <span
-                class="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 border border-white/10 px-2 py-0.5 rounded-full"
+                class="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 border border-white/10 px-1.5 py-0.5 rounded-full"
                 >Coming Soon</span
               >
             </div>
@@ -905,27 +907,31 @@
 
       <!-- Form Container Box -->
       <div
-        class="bg-[#0a0b0d]/90 border border-white/10 rounded-2xl p-5 space-y-4 shadow-inner"
+        class="bg-[#0a0b0d]/90 border border-white/10 rounded-xl sm:rounded-2xl p-3.5 sm:p-5 space-y-3.5 sm:space-y-4 shadow-inner"
       >
         <!-- Balance Summary Info -->
         <div
-          class="grid grid-cols-2 gap-4 bg-black/40 border border-white/5 p-3 rounded-xl text-center"
+          class="grid grid-cols-2 gap-3 sm:gap-4 bg-black/40 border border-white/5 p-3 rounded-xl text-center"
         >
           <div>
-            <p class="text-white text-base font-black font-mono text-[#F9C846]">
+            <p
+              class="text-sm sm:text-base font-black font-mono text-[#F9C846] truncate"
+            >
               ${{ totalBalance }}
             </p>
-            <span class="text-[10px] text-gray-400 font-bold uppercase"
+            <span
+              class="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase"
               >Available Balance</span
             >
           </div>
           <div>
             <p
-              class="text-white text-base font-black font-mono text-orange-400"
+              class="text-sm sm:text-base font-black font-mono text-orange-400 truncate"
             >
               ${{ actualWithdrawAmount }}
             </p>
-            <span class="text-[10px] text-gray-400 font-bold uppercase"
+            <span
+              class="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase"
               >Actual Withdrawal</span
             >
           </div>
@@ -944,13 +950,13 @@
             (input)="
               limitToBalance($event); limitDecimals('amouttowithdraw', $event)
             "
-            class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#F3A630] font-mono"
+            class="w-lnull w-full bg-black/60 border border-white/10 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-white outline-none focus:border-[#F3A630] font-mono"
             placeholder="Enter amount"
           />
         </div>
 
         <!-- Account Title & Tag/Number Row -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
           <div>
             <label
               class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block"
@@ -960,7 +966,7 @@
               type="text"
               [(ngModel)]="accountInfo"
               placeholder="Enter account title"
-              class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#F3A630]"
+              class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-white outline-none focus:border-[#F3A630]"
             />
           </div>
           <div>
@@ -972,7 +978,7 @@
               type="text"
               [(ngModel)]="Customertag"
               placeholder="Enter tag or number"
-              class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#F3A630]"
+              class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-white outline-0 sm:outline-none focus:border-[#F3A630]"
             />
           </div>
         </div>
@@ -989,22 +995,22 @@
             [(ngModel)]="tipAmount"
             (input)="limitDecimals('tipAmount', $event)"
             placeholder="Enter tip amount"
-            class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#F3A630] font-mono"
+            class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-white outline-none focus:border-[#F3A630] font-mono"
           />
         </div>
       </div>
 
       <!-- Footer Action Buttons -->
-      <div class="flex items-center gap-4 mt-6">
+      <div class="flex items-center gap-3 sm:gap-4 mt-5 sm:mt-6">
         <button
           (click)="hideWithdrawModal()"
-          class="w-1/3 bg-black/50 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/5 transition cursor-pointer"
+          class="w-1/3 bg-black/50 border border-white/10 text-white font-bold py-3 sm:py-3.5 rounded-xl sm:rounded-2xl text-[11px] sm:text-xs uppercase tracking-wider hover:bg-white/5 transition cursor-pointer"
         >
           Cancel
         </button>
         <button
           (click)="createUpdateWithdrawRequest()"
-          class="w-2/3 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(254,128,6,0.35)] hover:brightness-110 transition cursor-pointer"
+          class="w-2/3 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-black py-3 sm:py-3.5 rounded-xl sm:rounded-2xl text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(254,128,6,0.35)] hover:brightness-110 transition cursor-pointer"
         >
           Withdraw Balance
         </button>
