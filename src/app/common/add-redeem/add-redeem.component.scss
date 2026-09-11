@@ -18,23 +18,30 @@
 }
 
 // ─── Mobile: bottom sheet behaviour ─────────────────────────────────────────
-@media (max-width: 800px) {
+@media (max-width: 640px) {
   .modal-overlay {
-    align-items: flex-end;
-    padding: 0;
+    align-items: flex-end !important;
+    padding: 0 !important;
   }
 
   .modal {
+    width: 100% !important;
     max-width: 100% !important;
-    max-height: 85dvh;
+    max-height: 90dvh !important;
     display: flex;
     flex-direction: column;
-    border-radius: 24px 24px 0 0 !important;
-    position: fixed;
-    right: 0;
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 28px !important;
+    border-top-right-radius: 28px !important;
+    position: relative;
+    margin: 0 !important;
     animation-name: animatetop;
-    animation-duration: 0.4s;
+    animation-duration: 0.3s;
   }
+}
+
+/* Safe area padding for newer mobile devices (notch/home bar) */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
 }

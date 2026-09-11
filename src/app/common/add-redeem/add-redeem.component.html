@@ -1,15 +1,15 @@
 <div
   *ngIf="showModal"
-  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay z-[9999] p-4"
+  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center modal-overlay z-[9999] p-0 sm:p-4"
   (click)="closeModal()"
 >
   <div
-    class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[85vh] flex flex-col z-50 relative overflow-hidden"
+    class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-t-[28px] sm:rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[88dvh] sm:max-h-[85vh] flex flex-col z-50 relative overflow-hidden mx-auto my-0 sm:my-auto"
     (click)="$event.stopPropagation()"
   >
     <!-- Fixed Grain Background Layer -->
     <div
-      class="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-0 opacity-30"
+      class="absolute inset-0 pointer-events-none overflow-hidden rounded-t-[28px] sm:rounded-3xl z-0 opacity-30"
     >
       <div
         class="absolute inset-0 w-full h-full"
@@ -22,14 +22,17 @@
 
     <!-- Sticky Header -->
     <div
-      class="flex items-center justify-between px-6 py-4 border-b border-[#C3B089]/30 relative z-20 bg-[#161819]/95 backdrop-blur-md shrink-0"
+      class="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-[#C3B089]/30 relative z-25 bg-[#161819]/95 backdrop-blur-md shrink-0"
     >
-      <h2 class="text-xl font-extrabold text-white tracking-wide">
+      <h2
+        class="text-base sm:text-xl font-extrabold text-white tracking-wide truncate"
+      >
         Redeem {{ selectedGame }}
       </h2>
       <button
+        type="button"
         (click)="closeModal()"
-        class="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition"
+        class="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition cursor-pointer shrink-0"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,11 +54,11 @@
     <form
       [formGroup]="redeemForm"
       (click)="$event.stopPropagation()"
-      class="p-6 overflow-y-auto space-y-5 relative z-10 flex-1 custom-scrollbar"
+      class="p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-5 relative z-10 flex-1 custom-scrollbar pb-safe"
     >
       <!-- Retry Request ID Banner -->
       <div
-        class="flex items-center gap-3 rounded-xl border border-[#F3A630]/35 bg-[#1a150a]/70 px-4 py-2.5"
+        class="flex items-center gap-3 rounded-xl border border-[#F3A630]/35 bg-[#1a150a]/70 px-3.5 sm:px-4 py-2.5"
         *ngIf="requestId"
       >
         <div class="flex-1 min-w-0 text-xs text-[#D9D9D9] leading-relaxed">
@@ -67,7 +70,7 @@
         <button
           type="button"
           (click)="CopyToClipBoard(requestId)"
-          class="p-2 hover:bg-[#F3A630]/20 rounded-lg transition-colors duration-200 flex-shrink-0"
+          class="p-2 hover:bg-[#F3A630]/20 rounded-lg transition-colors duration-200 flex-shrink-0 cursor-pointer"
           title="Copy Request ID"
         >
           <fa-icon [icon]="copy" class="text-[#F3A630] text-sm"></fa-icon>
@@ -76,7 +79,7 @@
 
       <!-- Score Cards Section -->
       <div *ngIf="selectedGame">
-        <div class="flex items-center gap-2 mb-3">
+        <div class="flex items-center gap-2 mb-2.5 sm:mb-3">
           <div class="w-1.5 h-4 bg-[#F3A630] rounded-full"></div>
           <span
             class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider"
@@ -87,7 +90,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <!-- Current Score Card -->
           <div
-            class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-4 shadow-inner"
+            class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-3.5 sm:p-4 shadow-inner"
           >
             <div class="flex items-center justify-between mb-2">
               <span
@@ -131,7 +134,7 @@
                   >
                 } @else {
                   <p
-                    class="text-white text-2xl font-bold leading-none tracking-tight"
+                    class="text-white text-xl sm:text-2xl font-bold leading-none tracking-tight"
                   >
                     {{ currentScore }}
                   </p>
@@ -142,7 +145,7 @@
 
           <!-- Eligible Score Card -->
           <div
-            class="relative overflow-hidden rounded-2xl border border-[#fe8912]/30 bg-gradient-to-br from-[#1c1208] to-[#0a0602] p-4 shadow-inner"
+            class="relative overflow-hidden rounded-2xl border border-[#fe8912]/30 bg-gradient-to-br from-[#1c1208] to-[#0a0602] p-3.5 sm:p-4 shadow-inner"
           >
             <div
               class="absolute -right-6 -top-6 w-20 h-20 bg-[#fe8912]/20 blur-2xl rounded-full pointer-events-none"
@@ -160,7 +163,7 @@
             </div>
             <div class="relative z-10 min-h-[2rem]">
               <p
-                class="text-[#fe8912] text-2xl font-bold leading-none tracking-tight"
+                class="text-[#fe8912] text-xl sm:text-2xl font-bold leading-none tracking-tight"
               >
                 {{ eligibleScore }}
               </p>
@@ -177,7 +180,7 @@
       <!-- Redeem Rules -->
       <div *ngIf="selectedGame">
         <div
-          class="rounded-xl border-l-4 border-[#fe8912] bg-gradient-to-r from-[#fe8912]/10 to-transparent px-4 py-3 mb-3"
+          class="rounded-xl border-l-4 border-[#fe8912] bg-gradient-to-r from-[#fe8912]/10 to-transparent px-3.5 sm:px-4 py-3 mb-3"
         >
           <p class="text-xs text-[#e5e7eb] leading-relaxed">
             Redeem smartly: up to
@@ -187,7 +190,9 @@
             score gets the best wallet credit.
           </p>
         </div>
-        <div class="rounded-xl border border-white/5 bg-black/40 px-4 py-3">
+        <div
+          class="rounded-xl border border-white/5 bg-black/40 px-3.5 sm:px-4 py-3"
+        >
           <ul class="flex flex-col gap-2">
             <li class="group flex items-start gap-2">
               <span
@@ -225,9 +230,9 @@
         </div>
       </div>
 
-      <!-- Game Dropdown (only shown when no game selected) -->
+      <!-- Game Dropdown -->
       <div *ngIf="!selectedGame || selectedGame == ''">
-        <div class="flex items-center gap-2 mb-3">
+        <div class="flex items-center gap-2 mb-2.5 sm:mb-3">
           <div class="w-1.5 h-4 bg-[#F3A630] rounded-full"></div>
           <span
             class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider"
@@ -236,7 +241,7 @@
         </div>
         <div class="relative">
           <div
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-sm focus:outline-none focus:border-[#F3A630] transition"
+            class="w-full bg-black/60 border border-white/10 rounded-xl text-[#A6B1C2] px-3.5 sm:px-4 py-3 cursor-pointer flex justify-between items-center text-sm focus:outline-none focus:border-[#F3A630] transition"
             (click)="
               isFromRedeem ? (gameDropdownOpen = !gameDropdownOpen) : null
             "
@@ -267,7 +272,7 @@
           </div>
           <ul
             *ngIf="gameDropdownOpen"
-            class="absolute mt-1 w-full bg-[#161819] border border-[#C3B089]/60 shadow-2xl rounded-xl z-20"
+            class="absolute mt-1 w-full bg-[#161819] border border-[#C3B089]/60 shadow-2xl rounded-xl z-30 max-h-48 overflow-y-auto"
           >
             <li
               *ngFor="let game of filteredGameDropdownData"
@@ -282,7 +287,7 @@
 
       <!-- Score Field -->
       <div>
-        <div class="flex items-center gap-2 mb-3">
+        <div class="flex items-center gap-2 mb-2.5 sm:mb-3">
           <div class="w-1.5 h-4 bg-[#F3A630] rounded-full"></div>
           <span
             class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider"
@@ -291,7 +296,7 @@
         </div>
         <input
           type="number"
-          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500 add-score"
+          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-3.5 sm:px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500 add-score"
           formControlName="score"
           [(ngModel)]="currentScore"
           placeholder="Tap refresh above to load score"
@@ -301,9 +306,8 @@
 
       <!-- Withdraw Fields -->
       <div *ngIf="selectedPaymentMethod === 'withdraw'" class="space-y-4">
-        <!-- Account Type -->
         <div>
-          <div class="flex items-center gap-2 mb-3">
+          <div class="flex items-center gap-2 mb-2.5 sm:mb-3">
             <div class="w-1.5 h-4 bg-[#F3A630] rounded-full"></div>
             <span
               class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider"
@@ -312,7 +316,7 @@
           </div>
           <div class="relative">
             <div
-              class="w-full bg-black/60 border border-white/10 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-sm focus:outline-none focus:border-[#F3A630] transition"
+              class="w-full bg-black/60 border border-white/10 rounded-xl text-[#A6B1C2] px-3.5 sm:px-4 py-3 cursor-pointer flex justify-between items-center text-sm focus:outline-none focus:border-[#F3A630] transition"
               (click)="accountTypeDropdownOpen = !accountTypeDropdownOpen"
             >
               <span
@@ -339,7 +343,7 @@
             </div>
             <ul
               *ngIf="accountTypeDropdownOpen"
-              class="absolute mt-1 w-full bg-[#161819] border border-[#C3B089]/60 shadow-2xl rounded-xl z-20"
+              class="absolute mt-1 w-full bg-[#161819] border border-[#C3B089]/60 shadow-2xl rounded-xl z-30 max-h-48 overflow-y-auto"
             >
               <li
                 *ngFor="let game of accountTypeData"
@@ -352,56 +356,56 @@
           </div>
         </div>
 
-        <!-- Account Info -->
         <div *ngIf="isAccountTypeSelected">
           <label
             class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider"
             >Account Info</label
           >
           <input
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500"
+            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-3.5 sm:px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500"
             formControlName="accountInfo"
             [(ngModel)]="accountInfo"
             placeholder="Enter account info"
           />
         </div>
 
-        <!-- Customer Tag (Chime) -->
         <div *ngIf="accountType === 'Chime'">
           <label
             class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider"
             >Customer Tag</label
           >
           <input
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500"
+            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-3.5 sm:px-4 py-3 text-sm focus:outline-none focus:border-[#F3A630] transition placeholder-gray-500"
             formControlName="CustomerTag"
             [(ngModel)]="CustomerTag"
             placeholder="Enter tag"
           />
         </div>
       </div>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-3 pt-2 pb-2">
-        <button
-          type="button"
-          (click)="closeModal()"
-          class="w-1/3 py-3.5 rounded-xl border border-white/20 text-gray-300 text-sm font-semibold hover:bg-white/5 transition"
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          (click)="submitRedeem()"
-          class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black text-sm font-extrabold shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:brightness-110 transition"
-          [ngClass]="{
-            'opacity-50 cursor-not-allowed': redeemForm.invalid,
-            'cursor-pointer': !redeemForm.invalid,
-          }"
-        >
-          Redeem Now
-        </button>
-      </div>
     </form>
+
+    <!-- Sticky Footer Actions (Outside Form for perfect fixed alignment) -->
+    <div
+      class="flex items-center gap-3 px-4 sm:px-6 py-3.5 border-t border-[#C3B089]/30 bg-[#161819]/95 backdrop-blur-md z-20 shrink-0"
+    >
+      <button
+        type="button"
+        (click)="closeModal()"
+        class="w-1/3 py-3.5 rounded-xl border border-white/20 text-gray-300 text-xs sm:text-sm font-semibold hover:bg-white/5 transition cursor-pointer"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        (click)="submitRedeem()"
+        class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black text-xs sm:text-sm font-extrabold shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:brightness-110 transition"
+        [ngClass]="{
+          'opacity-50 cursor-not-allowed': redeemForm.invalid,
+          'cursor-pointer': !redeemForm.invalid,
+        }"
+      >
+        Redeem Now
+      </button>
+    </div>
   </div>
 </div>
