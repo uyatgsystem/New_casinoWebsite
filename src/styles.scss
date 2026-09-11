@@ -83,14 +83,14 @@
 }
 
 #toast-container > .toast-info {
-  background: rgba(12, 24, 38, 0.96) !important;
-  border-color: rgba(59, 130, 246, 0.35) !important;
+  background: rgba(28, 22, 10, 0.96) !important;
+  border-color: rgba(254, 140, 22, 0.35) !important;
 }
 
 #toast-container > .toast-info:before {
   content: "i";
-  background: rgba(59, 130, 246, 0.18);
-  color: #8bd3ff;
+  background: rgba(254, 140, 22, 0.18);
+  color: #ffc76a;
 }
 
 #toast-container .toast-title,
