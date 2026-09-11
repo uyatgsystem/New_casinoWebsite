@@ -12,7 +12,9 @@
     <div *ngIf="addBalance">
       <app-add-wallet [showModal]="addBalance"></app-add-wallet>
     </div>
-    <router-outlet></router-outlet>
+    <div style="overflow-x: hidden; max-width: 100%;">
+      <router-outlet></router-outlet>
+    </div>
 
     <div *ngIf="shouldShowChat()" class="fixed bottom-4 right-4 z-[999]">
       <button

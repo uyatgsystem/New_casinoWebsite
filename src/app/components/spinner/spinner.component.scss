@@ -139,6 +139,13 @@
   animation: pulseHub 0.8s infinite;
 }
 
+// Home page embeds this same wheel much smaller (showHeaderSection=false) —
+// the hub text needs to shrink to match, or it dwarfs the shrunken hub.
+.hub-text--compact {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.5px;
+}
+
 @keyframes pulseHub {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }

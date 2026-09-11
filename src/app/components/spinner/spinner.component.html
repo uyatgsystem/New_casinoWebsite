@@ -143,9 +143,9 @@
             <div class="central-hub" (click)="onCentralHubClick($event)"
               [style.cursor]="isSpinning || showCongratsModal || !isBalanceSufficient || !isSpinAllowed ? 'not-allowed' : 'pointer'">
               <div class="central-hub__disc flex items-center justify-center">
-                <span *ngIf="isSpinning || showCongratsModal" class="hub-text hub-text--spinning">SPINNING</span>
+                <span *ngIf="isSpinning || showCongratsModal" class="hub-text hub-text--spinning" [class.hub-text--compact]="!showHeaderSection">SPINNING</span>
                 <span *ngIf="!isSpinning && !showCongratsModal && isBalanceSufficient && isSpinAllowed"
-                  class="hub-text">SPIN</span>
+                  class="hub-text" [class.hub-text--compact]="!showHeaderSection">SPIN</span>
                 <div *ngIf="!isSpinning && !showCongratsModal && (!isBalanceSufficient || !isSpinAllowed)"
                   class="flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg"

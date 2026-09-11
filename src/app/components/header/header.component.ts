@@ -165,6 +165,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.previousUrl = this.router.url;
     this.detectIpAddress();
+    this.getCustomerLevel();
     this.loaderService
       .getTriggerWalletObservable()
       .pipe(takeUntil(this.destroy$))
@@ -968,31 +969,43 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
 
-  profileLevel: any;
-  getLevelImage(level: number): string {
-    switch (level) {
-      case 1: return '/BrornzeLevel.png';
-      case 2: return '/SilverLevel.png';
-      case 3: return '/GoldLevel.png';
-      case 4: return '/PlatinumLevel.png';
-      case 5: return '/DiamondLevel.png';
-      default: return '/default.png';
-    }
+  // Membership level badge (name + rank, e.g. "GOLD" · "Lv.3")
+  playerLevel: string = '';
+  levelRank: number = 0;
+
+  getLevelImage(levelName: string): string {
+    const name = (levelName || '').toLowerCase();
+    if (name.includes('bronze')) return '/BrornzeLevel.png';
+    if (name.includes('silver')) return '/SilverLevel.png';
+    if (name.includes('gold')) return '/GoldLevel.png';
+    if (name.includes('platinum')) return '/PlatinumLevel.png';
+    if (name.includes('diamond')) return '/DiamondLevel.png';
+    // Fall back to an asset that actually exists — avoids a broken-image icon
+    // in the header if the backend ever sends an unrecognized tier name.
+    return '/BrornzeLevel.png';
   }
 
-  UpdateCustomerLevel() {
-    const customerId = localStorage.getItem('customerId');
-    this.locationService.UpdateCustomerLevel(customerId).subscribe({
-      next: (response) => {
-        if (response && response.responseCode === 200) {
-          this.profileLevel = response.data.level;
-        } else {
-          this._errorHandleService.handleResponseError(response);
-        }
-      },
-      error: (error) => {
-        this._errorHandleService.handleHttpError(error);
-      }
-    });
+  getCustomerLevel() {
+    const customerId = localStorage.getItem('customerId') || '';
+    this.apiCallService
+      .GetCallWithToken(`Customer/GetCustomerLevel?CustomerId=${customerId}`)
+      .subscribe({
+        next: (response) => {
+          if (response && response.responseCode === 200) {
+            const data = response.data;
+            this.playerLevel = data.playerLevel || '';
+            const sortedLevels = (data.levels || [])
+              .slice()
+              .sort((a: any, b: any) => (a.MinDepositRange || 0) - (b.MinDepositRange || 0));
+            const rankIndex = sortedLevels.findIndex(
+              (lvl: any) =>
+                (lvl?.LevelName || '').toLowerCase() ===
+                this.playerLevel.toLowerCase(),
+            );
+            this.levelRank = rankIndex >= 0 ? rankIndex + 1 : 0;
+          }
+        },
+        error: () => {},
+      });
   }
 }

@@ -1,29 +1,29 @@
 <!-- Custom Main Tabs with Luxury Design -->
 <div
   *ngIf="isToken && isDashboardPage"
-  class="flex items-center gap-3 px-4 mb-6"
+  class="flex items-center gap-2 sm:gap-3 px-4 mb-6"
 >
   <button
     (click)="selectedMainTab = 'Games'; onTabChange(displayMainTabs[0])"
-    class="px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer shadow"
+    class="px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl font-black text-[10px] sm:text-xs uppercase tracking-normal sm:tracking-wider transition-all duration-200 cursor-pointer shadow whitespace-nowrap"
     [ngClass]="
       selectedMainTab === 'Games'
         ? 'bg-gradient-to-r from-[#FEC866] via-[#FE9B2A] to-[#FE8006] text-black shadow-[0_0_20px_rgba(254,128,6,0.5)] scale-105'
         : 'bg-black/60 text-white border border-white/10 hover:border-[#FE8912]/60'
     "
   >
-    Games
+    Elite Games
   </button>
   <button
     (click)="selectedMainTab = 'Instant Games'; onTabChange(displayMainTabs[1])"
-    class="px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer shadow"
+    class="px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl font-black text-[10px] sm:text-xs uppercase tracking-normal sm:tracking-wider transition-all duration-200 cursor-pointer shadow whitespace-nowrap"
     [ngClass]="
       selectedMainTab === 'Instant Games'
         ? 'bg-gradient-to-r from-[#FEC866] via-[#FE9B2A] to-[#FE8006] text-black shadow-[0_0_20px_rgba(254,128,6,0.5)] scale-105'
         : 'bg-black/60 text-white border border-white/10 hover:border-[#FE8912]/60'
     "
   >
-    Instant
+    Quick Win Casino
   </button>
 </div>
 
@@ -221,9 +221,9 @@
       class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#2a2d35] to-[#121417] border border-[#C3B089]/40 flex items-center justify-center shadow-lg shrink-0"
     >
       <img
-        src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png"
+        src="https://spinhub-6rb.pages.dev/assets/Spin.png"
         alt="Quick Win Casino"
-        class="w-4 h-4 sm:w-5 sm:h-5 object-contain"
+        class="w-4 h-4 sm:w-5 sm:h-5 object-contain scale-150"
       />
     </div>
     <span
@@ -300,9 +300,9 @@
       class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#2a2d35] to-[#121417] border border-[#C3B089]/40 flex items-center justify-center shadow-lg"
     >
       <img
-        src="https://cmaxv2images2.pages.dev/assets/icons/scratch.png"
+        src="https://spinhub-6rb.pages.dev/assets/scratch.png"
         alt="Scratch Cards"
-        class="w-5 h-5 object-contain"
+        class="w-5 h-5 object-contain scale-150"
       />
     </div>
     <span

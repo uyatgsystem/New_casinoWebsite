@@ -143,6 +143,9 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
     const refQuery = this.route.snapshot.queryParamMap.get('ref');
     if (refQuery?.toLowerCase() === 'active') {
       this.activeTab = 'referrals';
+      // Deep-linked straight to Referrals — scroll the tab into view on mobile
+      // the same way a manual tab click would, so it doesn't look stuck at the top.
+      setTimeout(() => this.scrollActiveTabIntoView(), 0);
     }
 
     //? Fetch wallet history on component load
@@ -199,8 +202,25 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
     }, 150);
   }
 
+  //* Same as scrollTabIntoView, but for deep-linking straight into a tab
+  //* (e.g. via ?ref=active) where there's no click Event to read the button from.
+  scrollActiveTabIntoView(): void {
+    if (window.innerWidth > 768) {
+      return;
+    }
 
+    const activeButton = this.elementRef.nativeElement.querySelector(
+      '.account-nav button.active',
+    ) as HTMLElement | null;
+    if (activeButton) {
+      activeButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
 
+    const mainContent = this.elementRef.nativeElement.querySelector('.account-content');
+    if (mainContent) {
+      mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
 
 

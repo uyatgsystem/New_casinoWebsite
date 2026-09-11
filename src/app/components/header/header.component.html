@@ -10,19 +10,35 @@
     *ngIf="isDashboardRoute()"
     class="text-[var(--text)] header-panel border-b border-[#C3B089]/50 h-full overflow-visible relative"
   >
-    <div class="flex justify-between items-center px-2 h-full">
-      <a
-        routerLink="/dashboard/home"
-        class="flex title-font font-medium items-center shrink-0"
-      >
-        <img
-          src="https://spinhub-6rb.pages.dev/assets/logo.png"
-          alt="Spin Hub"
-          class="h-[68px] w-auto object-contain drop-shadow"
-        />
-      </a>
+    <div class="flex justify-between items-center gap-1 pl-0.5 pr-1.5 h-full flex-nowrap min-w-0">
+      <div class="flex items-center gap-1 shrink-0 min-w-0">
+        <a
+          routerLink="/dashboard/home"
+          class="flex title-font font-medium items-center shrink-0"
+        >
+          <img
+            src="https://spinhub-6rb.pages.dev/assets/logo.png"
+            alt="Spin Hub"
+            class="h-16 w-auto object-contain drop-shadow-lg relative z-10"
+          />
+        </a>
 
-      <div class="flex items-center gap-1.5">
+        <!-- Membership Level Badge -->
+        <div
+          *ngIf="playerLevel"
+          class="flex items-center gap-1 pl-1.5 pr-1.5 py-1 rounded-lg bg-black/70 border border-[#C3B089]/50 shadow-inner shrink-0"
+          [title]="playerLevel + ' · Lv.' + levelRank"
+        >
+          <img
+            [src]="getLevelImage(playerLevel)"
+            [alt]="playerLevel"
+            class="w-5 h-5 object-contain shrink-0"
+          />
+          <span class="text-[#C3B089] font-bold text-[10px] tracking-wide whitespace-nowrap">Lv.{{ levelRank }}</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1 shrink-0">
         <app-notifications
           *ngIf="showNotifications"
           (closeNotification)="showNotifications = false"
@@ -31,21 +47,21 @@
         <!-- Wallet -->
         <button
           type="button"
-          class="wallet-balance-control flex items-center bg-black/90 rounded-xl overflow-hidden border border-[#C3B089]/60 h-8 px-2 shrink-0 shadow-inner"
+          class="wallet-balance-control flex items-center bg-black/90 rounded-xl overflow-hidden border border-[#C3B089]/60 h-8 px-0.5 shrink-0 shadow-inner"
           (click)="openWalletHistory()"
         >
           <img
             src="https://cmaxv2images2.pages.dev/assets/icons/coins.png"
-            class="h-3 w-3 mr-1.5 shrink-0"
+            class="h-3 w-3 mr-0.5 shrink-0"
             alt="coins"
           />
           <div class="flex flex-col text-left">
             <span
-              class="text-[7.5px] text-[#F3A630] font-bold uppercase tracking-wider leading-none"
+              class="text-[7.5px] text-[#F3A630] font-bold uppercase tracking-wider leading-none hidden min-[380px]:block"
               >Wallet</span
             >
             <span
-              class="text-white font-bold text-[11px] font-mono mt-0.5 leading-none"
+              class="text-white font-bold text-[11px] font-mono mt-0.5 leading-none whitespace-nowrap"
               >${{ walletAmount | number: "1.2-2" }}</span
             >
           </div>
@@ -53,18 +69,18 @@
 
         <!-- B-Wallet -->
         <div
-          class="flex items-center bg-black/90 rounded-xl overflow-hidden border border-[#C3B089]/60 h-8 px-2 cursor-pointer shrink-0 shadow-inner"
+          class="flex items-center bg-black/90 rounded-xl overflow-hidden border border-[#C3B089]/60 h-8 px-0.5 cursor-pointer shrink-0 shadow-inner"
           (click)="openBonusWallet()"
           title="Bonus Wallet"
         >
-          <i class="fas fa-gift text-[#F3A630] text-[10px] mr-1.5 shrink-0"></i>
+          <i class="fas fa-gift text-[#F3A630] text-[10px] mr-0.5 shrink-0"></i>
           <div class="flex flex-col text-left">
             <span
-              class="text-[7.5px] text-[#F3A630] font-bold uppercase tracking-wider leading-none"
+              class="text-[7.5px] text-[#F3A630] font-bold uppercase tracking-wider leading-none hidden min-[380px]:block"
               >B-Wallet</span
             >
             <span
-              class="bonus-wallet-label text-[#F3A630] font-bold text-[11px] font-mono mt-0.5 leading-none"
+              class="bonus-wallet-label text-[#F3A630] font-bold text-[11px] font-mono mt-0.5 leading-none whitespace-nowrap"
               >${{ bonusWalletAmount | number: "1.2-2" }}</span
             >
           </div>
@@ -72,7 +88,7 @@
 
         <button
           (click)="toggleNotifications()"
-          class="relative flex items-center justify-center w-8 h-8 bg-black/85 border border-[#C3B089]/60 rounded-xl text-[#F3A630] shrink-0 shadow-inner"
+          class="relative flex items-center justify-center w-7 h-7 bg-black/85 border border-[#C3B089]/60 rounded-xl text-[#F3A630] shrink-0 shadow-inner"
         >
           <i class="fas fa-bell text-xs"></i>
           <span
@@ -84,7 +100,7 @@
         </button>
 
         <div
-          class="flex items-center justify-center w-8 h-8 bg-black/85 border border-[#C3B089]/60 rounded-xl text-[#FEC866] cursor-pointer shrink-0 shadow-inner"
+          class="flex items-center justify-center w-7 h-7 bg-black/85 border border-[#C3B089]/60 rounded-xl text-[#FEC866] cursor-pointer shrink-0 shadow-inner"
           (click)="toggleSidebar($event)"
         >
           <ng-container *ngIf="CrossIcon">
@@ -92,14 +108,15 @@
           </ng-container>
           <ng-container *ngIf="!CrossIcon">
             <svg
-              class="w-4 h-4"
+              class="w-[18px] h-[18px]"
               viewBox="0 0 24 24"
               fill="none"
+              shape-rendering="crispEdges"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect x="3" y="5" width="18" height="2" rx="1" fill="#FEC866" />
-              <rect x="3" y="11" width="18" height="2" rx="1" fill="#FEC866" />
-              <rect x="3" y="17" width="18" height="2" rx="1" fill="#FEC866" />
+              <rect x="3" y="4" width="18" height="2.5" rx="1" fill="#FEC866" />
+              <rect x="3" y="10.75" width="18" height="2.5" rx="1" fill="#FEC866" />
+              <rect x="3" y="17.5" width="18" height="2.5" rx="1" fill="#FEC866" />
             </svg>
           </ng-container>
         </div>
@@ -138,16 +155,34 @@
       class="container mx-auto flex justify-between items-center px-6 h-full max-w-[3000px]"
     >
       <!-- Logo Section -->
-      <a
-        routerLink="/dashboard/home"
-        class="flex items-center gap-3 relative overflow-visible group"
-      >
-        <img
-          src="https://spinhub-6rb.pages.dev/assets/DestopLogo.png"
-          alt="Spin Hub"
-          class="relative h-14 w-auto object-contain drop-shadow-md"
-        />
-      </a>
+      <div class="flex items-center gap-3">
+        <a
+          routerLink="/dashboard/home"
+          class="flex items-center gap-3 relative overflow-visible group"
+        >
+          <img
+            src="https://spinhub-6rb.pages.dev/assets/DestopLogo.png"
+            alt="Spin Hub"
+            class="relative h-14 w-auto object-contain drop-shadow-md"
+          />
+        </a>
+
+        <!-- Membership Level Badge -->
+        <div
+          *ngIf="playerLevel"
+          class="flex items-center gap-2 pl-2 pr-3.5 py-1.5 rounded-2xl bg-black/60 border border-[#C3B089]/50 shadow-inner"
+        >
+          <img
+            [src]="getLevelImage(playerLevel)"
+            [alt]="playerLevel"
+            class="w-8 h-8 object-contain"
+          />
+          <div class="flex flex-col leading-none">
+            <span class="text-white font-black text-[11px] uppercase tracking-wider">{{ playerLevel }}</span>
+            <span class="text-[#C3B089] font-bold text-[10px] tracking-wide">Lv.{{ levelRank }}</span>
+          </div>
+        </div>
+      </div>
 
       <!-- Right Action Controls -->
       <div class="relative flex items-center gap-4 mr-2">
@@ -438,8 +473,8 @@
                 />
 
                 <img
-                  *ngIf="profileLevel"
-                  [src]="getLevelImage(profileLevel)"
+                  *ngIf="playerLevel"
+                  [src]="getLevelImage(playerLevel)"
                   alt="Level Badge"
                   class="absolute -top-2.5 -right-1.5 h-6 w-6 drop-shadow-md"
                 />
