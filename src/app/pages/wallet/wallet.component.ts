@@ -40,7 +40,6 @@ import {
   faSackDollar,
   faArrowLeft,
   faSearch,
-  faFilter,
   faEdit,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
@@ -63,8 +62,6 @@ import { SafeHtml } from '@angular/platform-browser';
   styleUrl: './wallet.component.scss',
 })
 export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('dateFilterWrapper') wrapper!: ElementRef;
-
   infoIcon = faCircleInfo;
   surpriseIcon = faSurprise;
   sackDollarIcon = faSackDollar;
@@ -79,7 +76,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   isSearchOpen = false;
 
   faSearch = faSearch;
-  faFilter = faFilter;
   faEdit = faEdit;
   faTrash = faTrash;
 
@@ -153,11 +149,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   transactionTable!: ElementRef;
 
   currentSearchTerm: string = '';
-
-  openFilter(event: Event) {
-    event.stopPropagation();
-    this.showDateFilter = !this.showDateFilter;
-  }
 
   closeFilter() {
     this.showDateFilter = false;
@@ -526,17 +517,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  onStartDateChange(date: string) {
-    if (this.endDate && new Date(this.endDate) < new Date(date)) {
-      this.endDate = null;
-    }
-  }
-
-  resetDates() {
-    this.startDate = null;
-    this.endDate = null;
-  }
-
   openAddBalanceModal() {
     const isAnyTransactionPending = this.filteredTransactions.some(
       (transaction) =>
@@ -716,20 +696,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
       bg_image:
         'https://cmaxv2images2.pages.dev/assets/icons/payments/cashapp.png',
       isActive: true,
-    },
-    {
-      id: 4,
-      name: 'Card',
-      bg_image:
-        'https://cmaxv2images2.pages.dev/assets/icons/payments/master.png',
-      isActive: false,
-    },
-    {
-      id: 5,
-      name: 'Paypal',
-      bg_image:
-        'https://cmaxv2images2.pages.dev/assets/icons/payments/paypal.svg',
-      isActive: false,
     },
   ];
 

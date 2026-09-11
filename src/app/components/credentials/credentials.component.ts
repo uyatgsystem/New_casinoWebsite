@@ -1119,7 +1119,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   }
 
   PalyerSubmit() {
-    // this.loaderService.show();
+    this.loaderService.show();
     const payload = this.AddScorePayload();
     // payload.addScore = this.updatedGivenScore;
     payload.capatchaCode = this.captchaForm?.value?.captcha?.toString() || '';
