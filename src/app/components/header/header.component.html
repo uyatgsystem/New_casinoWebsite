@@ -12,7 +12,7 @@
   >
     <div class="flex justify-between items-center px-2 h-full w-full max-w-full flex-nowrap">
       
-      <!-- Left: Logo + Tier Badge -->
+      <!-- Left: Logo + Tier Badge Only (Text Removed for Mobile) -->
       <div class="flex items-center gap-1.5 shrink-0 min-w-0">
         <a
           routerLink="/dashboard/home"
@@ -25,18 +25,17 @@
           />
         </a>
 
-        <!-- Tier Level Badge -->
+        <!-- Tier Badge Only (Mobile View) -->
         <div
           *ngIf="playerLevel"
-          class="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-black/90 border border-[#C3B089]/60 shadow-inner shrink-0"
+          class="flex items-center justify-center p-1 rounded-lg bg-black/90 border border-[#C3B089]/60 shadow-inner shrink-0"
           [title]="playerLevel + ' · Lv.' + levelRank"
         >
           <img
             [src]="getLevelImage(playerLevel)"
             [alt]="playerLevel"
-            class="w-4 h-4 object-contain shrink-0 drop-shadow"
+            class="w-5 h-5 object-contain shrink-0 drop-shadow"
           />
-          <span class="text-[#C3B089] font-black text-[10px] tracking-wide whitespace-nowrap">Lv.{{ levelRank }}</span>
         </div>
       </div>
 
@@ -147,7 +146,7 @@
     <div
       class="container mx-auto flex justify-between items-center px-6 h-full max-w-[3000px]"
     >
-      <!-- Logo Section -->
+      <!-- Logo Section with Tier Badge & Level Text (Desktop) -->
       <div class="flex items-center gap-3">
         <a
           routerLink="/dashboard/home"
@@ -160,7 +159,7 @@
           />
         </a>
 
-        <!-- Membership Level Badge -->
+        <!-- Membership Level Badge with Text (Desktop View Untouched) -->
         <div
           *ngIf="playerLevel"
           class="flex items-center gap-2 pl-2 pr-3.5 py-1.5 rounded-2xl bg-black/60 border border-[#C3B089]/50 shadow-inner"

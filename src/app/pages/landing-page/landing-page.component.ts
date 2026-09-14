@@ -73,28 +73,28 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   guideSteps = [
     {
       id: 'Register',
-      number: '01',
+      number: '',
       icon: 'fas fa-user-plus',
       title: 'Register',
       description: 'Sign up now and claim your welcome offer!',
     },
     {
       id: 'Deposit',
-      number: '02',
+      number: '',
       icon: 'fas fa-wallet',
       title: 'Deposit',
       description: 'Deposit now and claim your deposit offer!',
     },
     {
       id: 'Enjoy',
-      number: '03',
+      number: '',
       icon: 'fas fa-gamepad',
       title: 'Enjoy the Game',
       description: 'Start playing now and enjoy the experience!',
     },
     {
       id: 'Withdraw',
-      number: '04',
+      number: '',
       icon: 'fas fa-sack-dollar',
       title: 'Withdraw',
       description: 'Withdraw your winnings easily.',
