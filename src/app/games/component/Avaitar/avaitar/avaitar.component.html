@@ -1,0 +1,228 @@
+<div class="aviator-container md:w-[100%] w-[100%]">
+  <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+
+<header class="header compact-header bg-[#161819]">
+    <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+
+  <div class="header-content compact-header-content px-2 py-1 sm:px-4 sm:py-2">
+        <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-2 sm:gap-4">
+      <div class="flex items-center justify-between w-full md:flex-1">
+        <div class="back-btn-wrapper">
+          <button class="back-btn px-2 py-0.5 text-xs sm:text-sm rounded-md sm:rounded-lg min-w-0 h-6 sm:h-8 flex items-center" (click)="goBack()" aria-label="Go Back">
+            <span class="back-icon text-base sm:text-lg">←</span>
+            <span class="back-text hidden sm:inline">Back</span>
+          </button>
+        </div>
+        <div class="logo-text md:absolute md:left-1/2 md:-translate-x-1/2">
+          <h1 class="game-title compact-title text-base sm:text-lg">AVIATOR</h1>
+        </div>
+        <div class="hidden md:block w-[100px]"></div>
+      </div>
+      <div class="balance-section compact-balance-section flex justify-center md:block">
+        <div class="balance-card compact-balance-card px-2 py-1 sm:px-3 sm:py-2">
+          <div class="balance-info compact-balance-info">
+            <span class="balance-label compact-balance-label text-[10px] sm:text-xs">BALANCE</span>
+            <span class="balance-amount compact-balance-amount text-xs sm:text-base">${{ getRoundedBalance() }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main Game Area -->
+  <main class="main-content">
+
+    <div class="game-layout">
+
+      <!-- Game Canvas Section -->
+      <section class="game-section">
+        <app-history-modal *ngIf="showHistoryModal" [rounds]="allRoundsHistory.slice(11)"
+          (close)="showHistoryModal = false"></app-history-modal>
+        <div class="canvas-container">
+          <div class="game-canvas-wrapper">
+            <canvas #circleCanvas class="game-canvas" width="600" height="400"></canvas>
+            <canvas #HUDCanvas class="game-canvas" width="600" height="400"></canvas>
+            <canvas #planeCanvas class="game-canvas" width="600" height="400"></canvas>
+            <div class="game-overlays">
+              <div class="multiplier-display">
+                <div class="multiplier-value" [ngClass]="getMultiplierClass()">
+                  {{ gameState === 'crashed' ? 'CRASHED!' : (multiplier | number:'1.2-2') + 'x' }}
+                </div>
+                <div *ngIf="gameState === 'flying' && hasActiveBet && !hasCashedOut" class="potential-payout">
+                  Potential Win: ${{ (currentBet * multiplier) | number:'1.2-2' }}
+                </div>
+              </div>
+              <div *ngIf="gameState === 'waiting' && countdown > 0" class="countdown-display">
+                <div class="countdown-circle">
+                  <span class="countdown-number">{{ countdown }}</span>
+                </div>
+                <div class="countdown-text">Starting in...</div>
+              </div>
+              <div class="game-status">
+                <div class="status-dot" [class]="'status-' + gameState"></div>
+                <span class="status-text">
+                  {{ gameState === 'waiting' ? 'Waiting for takeoff' :
+                  gameState === 'flying' ? 'Plane is flying' :
+                  'Round ended' }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Betting Panel -->
+          <div class="betting-panel">
+            <!-- <div class="betting-tabs">
+              <button class="tab active">Manual</button>
+              <button class="tab">Auto</button>
+            </div> -->
+
+            <div class="betting-controls">
+              <div class="bet-section">
+                <label class="section-title">Amount</label>
+                <div class="bet-input-group">
+                  <div class="bet-adjusters">
+                    <button class="adjust-btn decrease" (click)="adjustBet(-10)"
+                      [disabled]="hasActiveBet || gameState === 'flying'">-10</button>
+                    <button class="adjust-btn decrease" (click)="adjustBet(-1)"
+                      [disabled]="hasActiveBet || gameState === 'flying'">-1</button>
+                  </div>
+                  <div class="bet-input-wrapper">
+                    <span class="currency">$</span>
+                    <input type="number" [(ngModel)]="betAmount" [min]="1" [max]="50" step="1" inputmode="numeric" pattern="\d*"
+                      [disabled]="hasActiveBet || gameState === 'flying'" class="bet-input"
+                      (input)="onBetAmountInput($event)"
+                      (keydown)="onBetKeyDown($event)">
+                  </div>
+                  <div class="bet-adjusters">
+                    <button class="adjust-btn increase" (click)="adjustBet(1)"
+                      [disabled]="hasActiveBet || gameState === 'flying'">+1</button>
+                    <button class="adjust-btn increase" (click)="adjustBet(10)"
+                      [disabled]="hasActiveBet || gameState === 'flying'">+10</button>
+                  </div>
+                </div>
+                <div class="quick-bets">
+                  <button *ngFor="let amount of [5, 10, 25, 50]" class="quick-bet-btn" (click)="setBetAmount(amount)"
+                    [disabled]="hasActiveBet || gameState === 'flying' || balance < amount">
+                    ${{ amount }}
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="auto-section">
+                <label class="auto-toggle">
+                  <input type="checkbox" [(ngModel)]="autoMode" class="auto-checkbox">
+                  <span class="toggle-switch"></span>
+                  <span class="toggle-text">AUTO CASHOUT</span>
+                </label>
+                <div *ngIf="autoMode" class="auto-settings">
+                  <div class="auto-setting">
+                    <label class="setting-label">Auto Cashout at:</label>
+                    <div class="setting-input">
+                      <input type="number" [(ngModel)]="autoCashoutAt" [min]="1.01" [step]="0.01" class="auto-input">
+                      <span class="input-suffix">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <div class="action-buttons">
+              <!-- Show BET button only when no active bet -->
+              <button *ngIf="!hasActiveBet" (click)="placeBet()"
+                [disabled]="gameState !== 'waiting' || balance < betAmount || betAmount > 50" class="bet-btn-green btn-small">
+                <span class="btn-icon">🎯</span>
+                <span class="btn-text">BET</span>
+                <span class="btn-amount">${{ betAmount }}</span>
+              </button>
+
+              <!-- Show CASH OUT button only when bet is active and not cashed out -->
+              <button *ngIf="hasActiveBet && !hasCashedOut" (click)="cashOut()" [disabled]="gameState !== 'flying'"
+                class="cashout-btn-black btn-small">
+                <span class="btn-icon">💰</span>
+                <span class="btn-text">CASH OUT</span>
+                <span class="btn-amount">${{ (currentBet * multiplier) | number:'1.2-2' }}</span>
+              </button>
+
+              <!-- Show waiting message when bet is placed but game hasn't started -->
+              <div *ngIf="hasActiveBet && !hasCashedOut && gameState === 'waiting'" class="waiting-message">
+                <span class="waiting-icon">⏳</span>
+                <span class="waiting-text">Waiting for round to start...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sidebar: Tabs for Players & History -->
+      <aside class="playerlist-section">
+        <div class="sidebar-tabs">
+          <button class="sidebar-tab" [class.active]="sidebarTab === 'players'" (click)="sidebarTab = 'players'">
+            Players
+          </button>
+          <button class="sidebar-tab" [class.active]="sidebarTab === 'history'" (click)="sidebarTab = 'history'">
+            My History
+          </button>
+        </div>
+        <ng-container *ngIf="sidebarTab === 'players'">
+          <div class="playerlist-header">
+            <div class="playerlist-title">
+              <span class="playerlist-dot"></span>
+              <span class="playerlist-label">Players</span>
+              <span class="playerlist-total">${{ 16980.97 | number:'1.2-2' }}</span>
+            </div>
+            <div class="playerlist-subtitle">
+              <span class="playerlist-count">838/1728 Players</span>
+            </div>
+          </div>
+          <div class="playerlist-table">
+            <div class="playerlist-table-header">
+              <span>Player</span>
+              <span>Cashout</span>
+              <span>Amount</span>
+            </div>
+            <div class="playerlist-table-body">
+              <div *ngFor="let player of playerList" class="playerlist-row">
+                <span class="playerlist-player">{{ player.name }}</span>
+                <span class="playerlist-cashout" [ngClass]="{'won': player.cashedOutAt}">{{ player.cashedOutAt ?
+                  (player.cashedOutAt + 'x') : '-' }}</span>
+                <span class="playerlist-amount">{{ player.amount }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="sidebarTab === 'history'">
+          <div class="playerlist-header">
+            <div class="playerlist-title">
+              <span class="playerlist-dot"></span>
+              <span class="playerlist-label">My Game History</span>
+            </div>
+          </div>
+          <div class="playerlist-table">
+            <div class="playerlist-table-header">
+              <span>Round</span>
+              <span>Bet</span>
+              <span>Cashout</span>
+              <span>Result</span>
+            </div>
+            <div class="playerlist-table-body">
+              <div *ngFor="let round of gameHistory" class="playerlist-row">
+                <span class="playerlist-player">#{{ round.id.slice(-4) }}</span>
+                <span class="playerlist-amount">${{ round.betAmount }}</span>
+  
+                <span class="playerlist-cashout" [ngClass]="{'won': round.cashedOutAt}">{{ round.cashedOutAt ?
+                  (round.cashedOutAt | number:'1.2-2') + 'x' : '-' }}</span>
+                <span class="playerlist-cashout" [ngClass]="{'won': round.won, 'lost': !round.won}">{{ round.won ? 'WIN'
+                  : 'LOSE' }}</span>
+              </div>
+              <div *ngIf="gameHistory.length === 0" class="empty-history">
+                <div class="empty-title">No history yet</div>
+                <div class="empty-text">Your bets will appear here.</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </aside>
+    </div>
+  </main>
+</div>

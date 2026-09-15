@@ -1,0 +1,310 @@
+<app-loader></app-loader>
+<div class="image-bg min-h-screen bg-cover bg-center bg-no-repeat mx-auto px-4 md:px-6 pt-4 pb-10">
+  <div class="relative mt-6 pb-2">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <!-- <fa-icon class="text-[#F3A630] w-5 h-5 inline md:hidden" [icon]="leftArrow" (click)="goBack()">
+        </fa-icon> -->
+        <img src="https://cmaxv2images2.pages.dev/assets/icons/Lottery.svg" class="w-5 h-5 hidden md:inline"
+          alt="Lottery" />
+        <span class="text-white font-bold">Lotteries</span>
+      </div>
+      <button (click)="showGuide()"
+        class="hidden md:inline-block bg-gradient-to-r from-[#F3A630] to-[#F86E12] text-black font-semibold px-10 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        Guide
+      </button>
+    </div>
+    <div
+      class="h-[2px] w-full absolute bottom-0 left-0 bg-[linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)]">
+    </div>
+  </div>
+
+
+  <!-- Filter or Search with Header / -->
+  <div class="lottery-filter-wrap mb-8 lg:mt-[50px] px-0 sm:px-6 flex">
+
+    <div class="lottery-filter-row flex flex-row justify-between items-center gap-2 w-full">
+
+      <!-- Tabs Section -->
+      <div class="flex items-center  mt-4 sm:mt-0">
+        <div
+          class="flex bg-noise items-center h-[40px] sm:h-[45px] border border-[#6A6260] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] overflow-hidden">
+
+          <!-- ALL -->
+          <button (click)="selectNav('Today'); changeTab('Today')"
+            [ngClass]="selectedNav === 'Today'
+            ? 'px-3 sm:px-4 h-full flex items-center justify-center bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold text-[13px] sm:text-[15px]'
+            : 'px-3 sm:px-4 h-full flex items-center justify-center text-[#625E5E] font-semibold text-[12px] sm:text-[14px]'">
+            All
+          </button>
+
+          <!-- MY LOTTERIES -->
+          <button (click)="selectNav('myLottery'); changeTab('myLottery')"
+            [ngClass]="selectedNav === 'myLottery'
+            ? 'px-3 sm:px-4 h-full flex items-center justify-center bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold text-[13px] sm:text-[15px] border-l border-[#6A6260]'
+            : 'px-3 sm:px-4 h-full flex items-center justify-center text-[#625E5E] font-semibold text-[12px] sm:text-[14px]'">
+            My Lotteries
+          </button>
+
+          <!-- CLAIM -->
+          <button (click)="selectNav('claim'); RedirectToClaim()"
+            [ngClass]="selectedNav === 'claim'
+            ? 'px-3 sm:px-4 h-full flex items-center justify-center bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold text-[13px] sm:text-[15px] border-l border-[#6A6260]'
+            : 'px-3 sm:px-4 h-full flex items-center justify-center text-[#625E5E] font-semibold text-[12px] sm:text-[14px]'">
+            Claim
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Search Section -->
+      <div class="flex items-center mt-4 sm:mt-0 w-[130px] sm:w-[350px]">
+        <div class="relative flex-1 bg-noise">
+          <input #mobileSearchInput type="text" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()"
+            (keyup)="onSearchInputChange($event)" placeholder="Search..."
+            class="w-full bg-noise text-white border border-[#C3B089] text-xs sm:text-sm rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-[#C3B089]" />
+
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#C3B089] absolute left-2 top-1/2 -translate-y-1/2" fill="none"
+            stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Filter or Search with Header Ends  -->
+
+  <div *ngIf="!showWinnersModal" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-6 gap-y-4 gap-x-2">
+
+    <div class="min-h-[40vh] flex items-center justify-center mb-4 sm:mb-0" *ngFor="let card of lotteryList">
+      <div class="relative w-[305px]">
+        <!-- Card -->
+        <div
+          class="min-h-[300px] border-2 border-[#C3B089] bg-[#161819] pt-10 pb-8 px-6 relative rounded-tl-[2px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]">
+          <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+          <ng-container *ngIf="card.Status === 'Open'">
+            <div class="absolute top-0 left-0 border-b-2 border-[#C3B089] pr-8 pl-2 py-2">
+              <span class="absolute -right-[0.60rem] top-0 h-[106%] w-[2px] bg-[#C3B089] rotate-[18deg]"></span>
+
+              <div class="p-[2px] rounded-lg">
+                <div class="flex items-center rounded-lg px-3 py-1 shadow-inner text-white font-bold">
+                  <span class="font-mono text-base">{{ card.time.hh }}</span>
+                  <span class="font-mono text-sm mx-1">:</span>
+                  <span class="font-mono text-base">{{ card.time.mm }}</span>
+                  <span class="font-mono text-sm mx-1">:</span>
+                  <span class="font-mono text-base">{{ card.time.ss }}</span>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="absolute top-3 right-6 text-center">
+            <p class="text-2xl font-semibold text-white leading-none">
+              $ {{ card.TicketPrice }}
+            </p>
+            <p class="text-xs font-semibold text-white">Ticket Price</p>
+          </div>
+
+          <!-- Closed Message -->
+          <div *ngIf="card.Status === 'Close'"
+            class="mb-6 bg-[#111118] border border-[#e6d3a8] rounded-xl p-3 text-center text-sm md:text-base">
+            <span class="text-white font-semibold">Get Ready for the Jackpot!</span>
+          </div>
+
+          <!-- Prize -->
+          <h2 class="text-2xl md:text-3xl font-extrabold text-[#F3A630] tracking-tight text-center mt-12 -mb-2">
+            ${{ card.WinnersAmount }}
+          </h2>
+          <div
+            class="w-36 h-0.5 mx-auto my-3 rounded bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]">
+          </div>
+
+          <!-- Middle content: left text and right image -->
+          <div class="flex items-center justify-between px-4 py-4 gap-4">
+            <div class="flex-1">
+              <h3 class="text-2xl font-extrabold text-white">Lucky Streak</h3>
+            </div>
+            <div class="flex-shrink-0 ml-4">
+              <img src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png" alt="treasure"
+                class="w-24 h-24 object-contain mb-4" style="transform: scale(1.7); transform-origin: center" />
+            </div>
+          </div>
+
+          <!-- Title (kept commented for preservation) -->
+          <!-- <p class="text-center text-white font-semibold -mt-2 mb-4">
+            {{ card.LotteryName }}
+          </p> -->
+
+          <!-- Action Buttons -->
+          <button *ngIf="card.Status === 'Open' && card.IsDisabled === false" (click)="BuyTicket(card)"
+            class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] hover:opacity-95 transition">
+            Buy Now!
+          </button>
+
+          <button *ngIf="card.Status === 'Open' && card.IsDisabled"
+            class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] opacity-70 cursor-not-allowed">
+            Buying time over
+          </button>
+
+          <button *ngIf="card.Status === 'Close'" (click)="AnnounceTicket(card)"
+            class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] shadow-md hover:opacity-95 transition">
+            See Details
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- </ng-container> -->
+  </div>
+  <span *ngIf="showNoDataFlag">
+    <!-- Small screens -->
+    <div class="block lg:hidden">
+      <ng-container *ngTemplateOutlet="noDataSm"></ng-container>
+    </div>
+
+    <!-- Large screens -->
+    <div class="hidden lg:block">
+      <ng-container *ngTemplateOutlet="noDataLg"></ng-container>
+    </div>
+  </span>
+
+
+  <ng-template #noDataLg>
+    <div class="flex flex-col items-center justify-center gap-5">
+      <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
+    </div>
+  </ng-template>
+
+
+  <!-- Small screens template -->
+  <ng-template #noDataSm>
+    <div class="flex flex-col items-center justify-center gap-5">
+      <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
+    </div>
+  </ng-template>
+
+
+  <ng-container *ngIf="showWinnersModal" class="max-h-[120vh] overflow-y-auto">
+    <div class="fixed inset-0 bg-[#2ee4e8]/20 flex items-center justify-center z-50 p-4 modal-overlay">
+      <div
+        class="w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-gradient-to-b from-[#181d2e] via-[#181d2e]/60 to-[#181d2e] rounded-2xl p-6 modal-content animate-slideIn relative shadow-2xl border border-[#2ee4e8]/40">
+        <!-- Top Glow Border -->
+        <div class="h-2 bg-gradient-to-r from-[#2ee4e8] to-[#2ee4e8] rounded-2xl animate-pulse"></div>
+
+        <!-- Header -->
+        <div
+          class="mb-4 relative px-6 py-5 flex items-center justify-between border-b border-[#2ee4e8]/30 backdrop-blur rounded-t-2xl z-10">
+          <div class="flex items-center gap-3">
+            <!-- <div class="w-[2rem] h-[2rem] flex items-center justify-center  animate-bounce">
+            🎉
+          </div> -->
+            <img src="/happy.gif" alt="/happy.gif" class="w-100 h-100 sm:w-12 sm:h-12 animate-bounce" />
+            <div>
+              <h3
+                class="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-[#2ee4e8] via-[#181d2e] to-[#2ee4e8] bg-clip-text text-transparent animate-shimmer">
+                Winners Announced
+              </h3>
+              <p class="text-sm mt-1 animate-fadeIn">
+                Big congratulations to all lucky players!
+              </p>
+            </div>
+          </div>
+
+          <div class="flex justify-end items-center gap-3">
+            <!-- Claim Reward Button -->
+            <button
+              class="px-5 py-2 bg-[#2ee4e8] rounded-xl shadow-md hover:scale-105 transition flex items-center gap-2"
+              (click)="RedirectToClaim()">
+              <span class="text-black font-semibold">Claim</span>
+            </button>
+
+            <!-- Close Modal Button -->
+            <button class="rounded-full p-2 hover:bg-[#2ee4e8] transition-all" (click)="closeWinnersModal()">
+              <svg class="w-6 h-6 text-[#2ee4e8] hover:text-white transition" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6 z-10 relative">
+          <!-- Loading / Spinning -->
+          <div class="space-y-6" *ngIf="announcedTickets.length === 0">
+            <div class="grid grid-cols-3 gap-4 mb-8">
+              <div class="relative flex flex-col items-center" *ngFor="let i of [1, 2, 3]">
+                <div
+                  class="h-[120px] w-full overflow-hidden rounded-xl shadow-[0_0_15px_#2ee4e8] bg-black/50 flex items-center justify-center animate-pulse">
+                  <span
+                    class="text-2xl font-bold bg-gradient-to-r from-[#2ee4e8] to-[#2ee4e8] bg-clip-text text-transparent">
+                    #{{ Math.floor(Math.random() * 100) + 1 }}
+                  </span>
+                </div>
+                <span class="text-[#2ee4e8] font-mono text-sm mt-2 animate-pulse">Spinning...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Winners -->
+          <div class="space-y-6 animate-fadeIn" *ngIf="announcedTickets.length > 0">
+            <!-- Winners Column -->
+            <div class="flex flex-col gap-4 mb-8">
+              <div *ngFor="let winner of announcedTickets; let i = index"
+                class="bg-gradient-to-r from-[#0f172a] to-[#1e293b] border border-[#2ee4e8]/30 rounded-xl p-4 shadow-md flex items-center justify-between hover:scale-[1.01] transition">
+                <!-- Rank -->
+                <div class="flex items-center">
+                  <span class="px-3 py-1 rounded-lg bg-[#2ee4e8]/20 text-[#2ee4e8] font-bold text-sm w-12 text-center">
+                    {{ i + 1
+                    }}<sup *ngIf="i < 3">{{
+                      i === 0 ? "st" : i === 1 ? "nd" : "rd"
+                      }}</sup><span *ngIf="i >= 3">th</span>
+                  </span>
+                </div>
+
+                <!-- Ticket Number -->
+                <div class="flex-1 text-center">
+                  <p class="font-mono text-lg text-gray-100">
+                    #{{ winner.TicketNumber }}
+                  </p>
+                </div>
+
+                <!-- Customer Count -->
+                <div>
+                  <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-mono">
+                    {{ winner.CustomerCount }} users
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scrollable Other Winners (if too many) -->
+            <div *ngIf="announcedTickets.length > 5"
+              class="bg-black/40 border border-[#2ee4e8]/30 rounded-xl max-h-[40vh] overflow-y-auto">
+              <div class="bg-[#2ee4e8]/10 px-4 py-2 border-b border-[#2ee4e8]/20 sticky top-0 z-10">
+                <h4 class="text-[#2ee4e8] font-semibold">Other Winners</h4>
+              </div>
+              <div class="divide-y divide-[#2ee4e8]/20">
+                <div *ngFor="
+                    let winner of announcedTickets.slice(5);
+                    let idx = index
+                  "
+                  class="flex justify-between px-4 py-3 hover:bg-[#2ee4e8]/10 transition-colors items-center text-sm">
+                  <span class="px-2 py-1 rounded-md bg-[#2ee4e8]/20 text-[#2ee4e8] font-bold text-xs">
+                    {{ idx + 6 }}th
+                  </span>
+                  <span class="font-mono text-gray-300 truncate">#{{ winner.TicketNumber }}</span>
+                  <span class="px-2 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-mono">
+                    {{ winner.CustomerCount }} users
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

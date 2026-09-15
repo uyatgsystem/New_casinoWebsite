@@ -1,0 +1,218 @@
+<div class="game-container">
+  <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+<header class="relative z-50 mb-8 mt-2 px-4">
+  <div class="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0a0c10]/80 p-1 shadow-[0_15px_35px_rgba(0,0,0,0.6)] backdrop-blur-xl">
+    
+    <div class="relative flex flex-wrap items-center justify-between gap-4 rounded-[1.3rem] bg-gradient-to-b from-white/[0.03] to-transparent px-4 py-3 sm:px-8">
+      
+      <div class="flex items-center gap-4 sm:gap-8">
+        <button (click)="goBack()" 
+                class="group flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all hover:bg-amber-500 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="h-5 w-5 text-white transition-transform group-hover:-translate-x-1 group-hover:text-black">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        <div class="flex flex-col">
+          <span class="text-[9px] font-black uppercase tracking-[0.4em] text-amber-500/60 leading-none mb-1">Elite Table</span>
+          <h2 class="text-xl sm:text-3xl font-[1000] italic tracking-tight bg-gradient-to-b from-amber-200 via-amber-400 to-amber-700 bg-clip-text text-transparent drop-shadow-sm">
+            BACCARAT
+          </h2>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 sm:gap-6">
+        
+        <div class="relative flex items-center gap-3 rounded-2xl bg-black/40 px-4 py-2 border border-white/5 shadow-inner">
+          <div class="flex flex-col items-end">
+            <span class="text-[8px] font-black uppercase tracking-widest text-slate-500">Capital</span>
+            <span class="font-mono text-lg sm:text-xl font-black text-white">
+              <span class="text-amber-500/50">$</span>{{this.getRoundedBalance()}}
+            </span>
+          </div>
+          <div class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </div>
+        </div>
+
+        <div class="h-8 w-[1px] bg-white/10 hidden sm:block"></div>
+
+        <div class="flex flex-col items-start min-w-[70px]">
+          <span class="text-[8px] font-black uppercase tracking-widest text-amber-500/80 leading-none mb-1">Current Bet</span>
+          <div class="flex items-baseline gap-1">
+            <span class="text-xs font-bold text-white/40">$</span>
+            <span class="text-xl sm:text-2xl font-black text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.3)]">
+              {{currentBetAmount}}
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="absolute left-1/2 top-[-20px] -z-10 h-10 w-1/2 -translate-x-1/2 bg-amber-500/10 blur-[40px]"></div>
+</header>
+  <!-- Main Table -->
+  <div class="baccarat-table">
+    <!-- Card Deck Visual (Top Right) -->
+    <div class="card-deck-container">
+      <div class="card-deck">
+        <img src="DeckCards/CardBg.jpg" alt="Deck" class="deck-card deck-card-1">
+        <img src="DeckCards/CardBg.jpg" alt="Deck" class="deck-card deck-card-2">
+        <img src="DeckCards/CardBg.jpg" alt="Deck" class="deck-card deck-card-3">
+        <img src="DeckCards/CardBg.jpg" alt="Deck" class="deck-card deck-card-4">
+        <img src="DeckCards/CardBg.jpg" alt="Deck" class="deck-card deck-card-5">
+        <div class="deck-count">{{remainingCards}}</div>
+      </div>
+    </div>
+
+    <!-- Card Display Area -->
+    <div class="cards-display-area">
+      <!-- Banker Cards (Top) -->
+      <div class="banker-cards">
+        <div class="hand-label">BANKER</div>
+        <div class="cards-row" id="banker-cards-area">
+          <app-card
+            *ngFor="let card of bankerHand.cards; let i = index; trackBy: trackByCardId"
+            [card]="card"
+            [animate]="true"
+            [isRevealed]="!!card.isRevealed"
+            [dealFromDeck]="true"
+            [dealDelay]="i * 400">
+          </app-card>
+        </div>
+        <div *ngIf="bankerHand.cards.length > 0" class="score-display banker-score">
+          {{bankerHand.score}}
+        </div>
+      </div>
+
+      <!-- Player Cards (Bottom) -->
+      <div class="player-cards">
+        <div class="hand-label">PLAYER</div>
+        <div class="cards-row" id="player-cards-area">
+          <app-card
+            *ngFor="let card of playerHand.cards; let i = index; trackBy: trackByCardId"
+            [card]="card"
+            [animate]="true"
+            [isRevealed]="!!card.isRevealed"
+            [dealFromDeck]="true"
+            [dealDelay]="i * 400">
+          </app-card>
+        </div>
+        <div *ngIf="playerHand.cards.length > 0" class="score-display player-score">
+          {{playerHand.score}}
+        </div>
+      </div>
+    </div>
+
+    <!-- Betting Areas -->
+    <div class="betting-areas curved-bet-areas">
+      <div class="bet-area tie-area curved-bet" [class.has-bet]="betAmounts.tie > 0" (click)="placeBetOnArea('tie')">
+        <div class="bet-label">TIE</div>
+        <div class="bet-payout">8:1</div>
+        <div *ngIf="betAmounts.tie > 0" class="placed-chips">
+          <div class="chip-stack">
+            <div class="chip-visual" [style.background]="getChipColor(selectedChip)">
+              <span class="chip-amount">${{betAmounts.tie}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bet-area banker-area curved-bet" [class.has-bet]="betAmounts.banker > 0"
+        (click)="placeBetOnArea('banker')">
+        <div class="bet-label">BANKER</div>
+        <div class="bet-payout">0.95:1</div>
+        <div *ngIf="betAmounts.banker > 0" class="placed-chips">
+          <div class="chip-stack">
+            <div class="chip-visual" [style.background]="getChipColor(selectedChip)">
+              <span class="chip-amount">${{betAmounts.banker}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bet-area player-area curved-bet" [class.has-bet]="betAmounts.player > 0"
+        (click)="placeBetOnArea('player')">
+        <div class="bet-label">PLAYER</div>
+        <div class="bet-payout">1:1</div>
+        <div *ngIf="betAmounts.player > 0" class="placed-chips">
+          <div class="chip-stack">
+            <div class="chip-visual" [style.background]="getChipColor(selectedChip)">
+              <span class="chip-amount">${{betAmounts.player}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Status Message -->
+    <div class="status-message" *ngIf="gameMessage">
+      {{gameMessage}}
+    </div>
+  </div>
+
+  <!-- Control Panel -->
+  <div class="control-panel">
+    <!-- Left Side: Chips -->
+    <div class="chips-selector">
+      <button class="chip-control-btn minus-btn" (click)="decreaseChip()"
+        [disabled]="isGameInProgress || selectedChip === chipValues[0]" aria-label="Decrease chip">
+        <img src="minus.png" alt="Minus" class="chip-btn-icon" />
+
+      </button>
+
+      <div class="selected-chip-display">
+        <div class="chip-visual-large" [style.background]="getChipColor(selectedChip)">
+          <span class="chip-value-large">{{selectedChip}}</span>
+        </div>
+      </div>
+
+      <button class="chip-control-btn plus-btn" (click)="increaseChip()"
+        [disabled]="isGameInProgress || selectedChip === chipValues[chipValues.length-1]" aria-label="Increase chip">
+        <img src="plus.png" alt="Plus" class="chip-btn-icon" />
+
+      </button>
+    </div>
+
+    <!-- Center: Action Buttons -->
+    <div class="action-buttons">
+      <button class="clear-bet-btn" (click)="clearAllBets()" [disabled]="isGameInProgress || currentBetAmount === 0">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+        CLEAR BET
+      </button>
+
+      <button class="deal-btn" (click)="dealCards()" [disabled]="isGameInProgress || currentBetAmount === 0">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+          <path fill-rule="evenodd"
+            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        DEAL
+      </button>
+
+      <button *ngIf="gameResult" class="new-game-btn" (click)="resetRound()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+          </path>
+        </svg>
+        NEW GAME
+      </button>
+    </div>
+
+    <!-- Right Side: History -->
+    <div class="game-history">
+      <div class="history-label">History</div>
+      <div class="history-grid">
+        <div *ngFor="let result of gameHistory.slice(-20)" class="history-dot" [class.player-win]="result === 'player'"
+          [class.banker-win]="result === 'banker'" [class.tie-win]="result === 'tie'"></div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

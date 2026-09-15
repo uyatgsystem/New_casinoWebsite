@@ -1,0 +1,168 @@
+<div class="bg-black text-white pb-6 flex flex-col items-center">
+  <div *ngIf="datashow" class="w-full px-4 lg:px-0 mb-8">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-base font-semibold mb-2 text-[#fe8912] text-xl">
+        <!-- <span class="">Spin Hub</span>  -->
+        <span class="text-[#fe8912] text-xl font-bold mx-2">Lotteries</span>
+      </p>
+      <!-- Top Row: Heading + Buttons -->
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full">
+        <!-- Heading -->
+        <h1 class="text-3xl lg:text-4xl font-bold text-white leading-tight">
+          Play Daily. Win Cash Rewards!
+        </h1>
+
+        <!-- Buttons -->
+        <div class="mt-4 lg:mt-0 flex items-center space-x-3">
+          <button (click)="activeTab = 'all'" [ngClass]="
+              activeTab === 'all'
+                ? 'px-6 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black shadow-md'
+                : 'px-6 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold border border-[#F3A630] text-[#F3A630] bg-transparent'
+            ">
+            All Lotteries
+          </button>
+        </div>
+      </div>
+
+      <!-- Paragraph: Single straight line under heading + buttons -->
+      <p class="mt-3 text-[12px] lg:text-[16px] text-gray-400">
+        Join our lotteries packed with massive cash rewards and nonstop
+        excitement your luck could change your fortune instantly!
+      </p>
+    </div>
+  </div>
+
+  <!-- Grid Container -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-6 gap-y-6 gap-x-4 mt-0 w-full"
+    [ngClass]="{ 'container mx-auto max-w-7xl': datashow }">
+    <!-- ✅ Skeleton Loader -->
+    <ng-container *ngIf="isLoading && !showNoDataFlag">
+      <div *ngFor="let loader of loaderArray"
+        class="lg:mt-0 min-h-[30vh] lg:min-h-[60vh] flex items-center justify-center">
+        <div class="relative w-[305px]">
+          <div
+            class="border-2 border-[#C3B089] rounded-tl-[2px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 bg-[#161819] animate-pulse space-y-4">
+            <div
+              class="w-full h-12 bg-[#403829] rounded flex items-center justify-center text-white text-sm sm:text-base font-medium">
+              Lottery data loading...
+            </div>
+            <div class="h-4 w-36 mx-auto bg-[#403829] rounded"></div>
+            <div class="h-10 w-full max-w-[280px] mx-auto bg-[#403829] rounded"></div>
+            <div class="h-6 w-32 mx-auto bg-[#403829] rounded"></div>
+            <div class="h-10 w-full bg-[#403829] rounded"></div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- ✅ Lottery Cards -->
+    <ng-container *ngIf="lotteryList.length > 0">
+      <div class="lg:mt-0 flex items-center justify-center" *ngFor="let card of lotteryList; trackBy: trackById">
+        <div class="relative w-[305px]">
+          <!-- Card -->
+          <div
+            class="min-h-[300px] border-2 border-[#C3B089] bg-[#161819] p-6 relative rounded-tl-[2px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]">
+            <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+            <!-- <svg class="absolute -top-[38px] -left-[14px] w-[109%] z-0" height="61" viewBox="0 0 400 61"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 62Q14 38 33 36H75L111 0H295L330 35H365Q386 35 386 61" fill="#13192E" stroke="none" />
+
+              <path d="M17 62Q14 38 33 36H75L111 0H295L330 35H365Q386 35 386 61" fill="none" stroke="#A6B1C2"
+                stroke-width="2" />
+            </svg> -->
+
+            <!-- <div
+              class="absolute -top-[18px] left-1/2 -translate-x-1/2 bg-[#0b1720] border-2 border-cyan-400 px-4 py-1 rounded-full shadow-md z-10">
+              <span class="text-white font-bold"># {{ card.SrNumber }}</span>
+            </div> -->
+
+            <!-- Countdown -->
+            <ng-container *ngIf="card.Status === 'Open'">
+              <div class="absolute top-0 left-0 border-b-2 border-[#C3B089] pr-8 pl-2 py-2">
+                <span class="absolute -right-[0.60rem] top-0 h-[106%] w-[2px] bg-[#C3B089] rotate-[18deg]"></span>
+
+                <div class="p-[2px] rounded-lg">
+                  <div class="flex items-center rounded-lg px-3 py-1 shadow-inner text-white font-bold">
+                    <span class="font-mono text-base">{{ card.time.hh }}</span>
+                    <span class="font-mono text-sm mx-1">:</span>
+                    <span class="font-mono text-base">{{ card.time.mm }}</span>
+                    <span class="font-mono text-sm mx-1">:</span>
+                    <span class="font-mono text-base">{{ card.time.ss }}</span>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="absolute top-3 right-6 text-center">
+              <p class="text-2xl font-semibold text-white leading-none">
+                $ {{ card.TicketPrice }}
+              </p>
+              <p class="text-xs font-semibold text-white">Ticket Price</p>
+            </div>
+
+            <!-- Closed Message -->
+            <div *ngIf="card.Status === 'Close'"
+              class="mb-6 bg-[#111118] border border-[#e6d3a8] rounded-xl p-3 text-center text-sm md:text-base">
+              <span class="text-white font-semibold">Get Ready for the Jackpot!</span>
+            </div>
+
+            <!-- Prize -->
+            <h2 class="text-2xl md:text-3xl font-extrabold text-[#F3A630] tracking-tight text-center mt-12 -mb-2">
+              ${{ card.WinnersAmount }}
+            </h2>
+            <div
+              class="w-36 h-0.5 mx-auto my-3 rounded bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]">
+            </div>
+
+            <!-- Middle content: left text and right image -->
+            <div class="flex items-center justify-between px-4 py-4 gap-4">
+              <div class="flex-1">
+                <h3 class="text-2xl font-extrabold text-white">Lucky Streak</h3>
+              </div>
+              <div class="flex-shrink-0 ml-4">
+                <img src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png" alt="treasure"
+                  class="w-24 h-24 object-contain mb-4" style="transform: scale(1.7); transform-origin: center" />
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <button *ngIf="card.Status === 'Open'" (click)="BuyTicket(card)"
+              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] hover:opacity-95 transition">
+              Buy Now!
+            </button>
+
+            <button *ngIf="card.Status === 'Open' && card.IsDisabled"
+              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] opacity-70 cursor-not-allowed">
+              Buying time over
+            </button>
+
+            <button *ngIf="card.Status === 'Close'"
+              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] shadow-md hover:opacity-95 transition">
+              See Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div *ngIf="cardList.length > showLimit" class="flex justify-center mt-8 mb-6 w-full col-span-full">
+      <button (click)="toggleShowAllLottery()"
+        class="px-6 py-2 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md hover:opacity-90 transition">
+        {{ showAll ? "Show Less" : "Show More" }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && showNoDataFlag" class="flex justify-center items-center">
+    <div class="relative w-full md:w-[405px]">
+      <div
+        class="border-2 border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 bg-[#161819] text-center flex flex-col items-center justify-center space-y-4 shadow-[0_0_20px_rgba(25,228,224,0.2)]">
+        <p class="text-white text-lg font-semibold tracking-wide">
+          Stay tuned for new lotteries
+        </p>
+        <p class="text-gray-400 text-sm max-w-[250px]">
+          Please check back later — new lotteries are added soon.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

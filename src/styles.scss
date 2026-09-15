@@ -1,0 +1,732 @@
+/* Suppress SCSS warnings for Tailwind at-rules - these are processed by PostCSS */
+@use "swiper/css";
+@use "swiper/css/navigation";
+@use "swiper/css/pagination";
+@use "ngx-toastr/toastr";
+@use "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+/* SweetAlert2 default theme */
+@import "sweetalert2/dist/sweetalert2.min.css";
+
+#toast-container {
+  z-index: 99999 !important;
+}
+
+#toast-container > div {
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(17, 19, 24, 0.96) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
+  color: #fff !important;
+  margin: 0 0 12px !important;
+  padding: 14px 16px 14px 52px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  width: min(360px, calc(100vw - 24px)) !important;
+}
+
+#toast-container > div:before {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+#toast-container > .toast-warning,
+#toast-container > .toast-error,
+#toast-container > .toast-success,
+#toast-container > .toast-info {
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
+}
+
+#toast-container > .toast-warning {
+  background: rgba(42, 26, 10, 0.96) !important;
+  border-color: rgba(255, 176, 71, 0.35) !important;
+}
+
+#toast-container > .toast-warning:before {
+  content: "!";
+  background: rgba(255, 176, 71, 0.18);
+  color: #ffc76a;
+}
+
+#toast-container > .toast-error {
+  background: rgba(38, 15, 15, 0.96) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+
+#toast-container > .toast-error:before {
+  content: "×";
+  background: rgba(239, 68, 68, 0.18);
+  color: #ff7e7e;
+}
+
+#toast-container > .toast-success {
+  background: rgba(10, 30, 19, 0.96) !important;
+  border-color: rgba(34, 197, 94, 0.35) !important;
+}
+
+#toast-container > .toast-success:before {
+  content: "✓";
+  background: rgba(34, 197, 94, 0.18);
+  color: #78f4b6;
+}
+
+#toast-container > .toast-info {
+  background: rgba(28, 22, 10, 0.96) !important;
+  border-color: rgba(254, 140, 22, 0.35) !important;
+}
+
+#toast-container > .toast-info:before {
+  content: "i";
+  background: rgba(254, 140, 22, 0.18);
+  color: #ffc76a;
+}
+
+#toast-container .toast-title,
+#toast-container .toast-message {
+  display: block;
+  line-height: 1.5;
+}
+
+#toast-container .toast-title {
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: #fff !important;
+}
+
+#toast-container .toast-message {
+  font-size: 0.78rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#toast-container .toast-close-button {
+  right: 12px !important;
+  top: 10px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 18px !important;
+  opacity: 1 !important;
+}
+
+#toast-container .toast-close-button:hover {
+  color: #fff !important;
+}
+
+/* Animate.css for SweetAlert2 popup animations */
+@import url("https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Global Spin Club wordmark icon animation
+.spin-icon {
+  display: inline-block;
+  animation: spinSlow 6s linear infinite;
+}
+
+// Lightweight fade-in-on-scroll
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.banner-img,
+.main-banner-container {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.image-bg {
+  background-image: url("https://cmaxv2images2.pages.dev/assets/backgrounds/bg-dark.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml;utf8,<svg width='1440' height='1227' viewBox='0 0 1440 1227' fill='none' xmlns='http://www.w3.org/2000/svg'><g filter='url(%23filter0_n_1504_314)'><rect width='1440' height='1227' fill='%23161819'/></g><defs><filter id='filter0_n_1504_314' x='0' y='0' width='1440' height='1227' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'><feFlood flood-opacity='0' result='BackgroundImageFix'/><feBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/><feTurbulence type='fractalNoise' baseFrequency='0.666 0.666' stitchTiles='stitch' numOctaves='3' result='noise' seed='3711'/><feComponentTransfer in='noise' result='coloredNoise1'><feFuncR type='linear' slope='2' intercept='-0.5'/><feFuncG type='linear' slope='2' intercept='-0.5'/><feFuncB type='linear' slope='2' intercept='-0.5'/><feFuncA type='discrete' tableValues='1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/></feComponentTransfer><feComposite operator='in' in2='shape' in='coloredNoise1' result='noise1Clipped'/><feComponentTransfer in='noise1Clipped' result='color1'><feFuncA type='table' tableValues='0 0.15'/></feComponentTransfer><feMerge result='effect1_noise_1504_314'><feMergeNode in='shape'/><feMergeNode in='color1'/></feMerge></filter></defs>");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.nmbr-input::-webkit-outer-spin-button,
+.nmbr-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide scrollbar globally but allow scroll */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================================
+   SILK-SMOOTH FLOATING SWEETALERT2 ANIMATIONS & STYLING
+   ======================================================== */
+.swal2-container {
+  padding: 18px !important;
+  padding-bottom: max(18px, env(safe-area-inset-bottom)) !important;
+  background: rgba(4, 5, 7, 0.78) !important;
+  backdrop-filter: blur(12px) !important;
+  z-index: 9999 !important;
+}
+
+@keyframes silkFloatIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes silkFloatOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+}
+
+.swal2-show.swal2-popup {
+  animation: silkFloatIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+}
+
+.swal2-hide.swal2-popup {
+  animation: silkFloatOut 0.25s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+}
+
+.swal2-popup {
+  width: min(420px, 100%) !important;
+  max-width: 420px !important;
+  min-height: 0 !important;
+  max-height: 85vh !important;
+  max-height: 85dvh !important;
+  padding: 34px 30px 28px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: radial-gradient(circle at 50% -20%, rgba(254, 200, 102, .08), transparent 50%), #0c0d10 !important;
+  border: 1px solid rgba(195, 176, 137, .42) !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 18px !important;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(254, 140, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  color: #fff !important;
+  position: relative !important;
+  text-align: center !important;
+}
+
+.swal2-icon {
+  display: grid !important;
+  place-items: center !important;
+  width: 58px !important;
+  height: 58px !important;
+  margin: 0 auto 18px !important;
+  border: 1px solid rgba(254, 140, 22, .42) !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 16px !important;
+  background: rgba(254, 140, 22, .08) !important;
+  color: #fe8c16 !important;
+  box-shadow: 0 8px 20px rgba(254, 140, 22, 0.15) !important;
+}
+
+.swal2-popup::before,
+.swal2-popup::after,
+.swal2-icon::before,
+.swal2-icon::after {
+  display: none !important;
+  content: none !important;
+}
+
+.swal2-timer-progress-bar,
+.swal2-timer-progress-filled {
+  display: none !important;
+}
+
+.swal2-icon svg {
+  width: 27px !important;
+  height: 27px !important;
+}
+
+.swal2-title {
+  margin: 9px 0 10px !important;
+  color: #fff !important;
+  font-size: clamp(1.25rem, 4vw, 1.55rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -.01em !important;
+}
+
+.swal2-html-container {
+  max-width: 320px !important;
+  margin: 0 auto !important;
+  color: #9299a3 !important;
+  font-size: .82rem !important;
+  line-height: 1.65 !important;
+}
+
+.swal2-actions {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 26px 0 0 !important;
+  gap: 12px !important;
+}
+
+.swal2-styled {
+  flex: 1 !important;
+  min-height: 46px !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  font-size: .82rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  box-shadow: none !important;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease !important;
+}
+
+.swal2-styled:hover {
+  transform: translateY(-2px) !important;
+}
+
+.swal2-styled.swal2-cancel {
+  border: 1px solid rgba(195, 176, 137, .4) !important;
+  background: #15181d !important;
+  color: #c3b089 !important;
+}
+
+.swal2-styled.swal2-cancel:hover {
+  border-color: #fe8c16 !important;
+  color: #fff !important;
+}
+
+.swal2-styled.swal2-confirm {
+  border: 1px solid #fe8c16 !important;
+  background: linear-gradient(135deg, #f3a630, #fe8006) !important;
+  color: #17120a !important;
+}
+
+.swal2-styled.swal2-confirm:hover {
+  box-shadow: 0 8px 24px rgba(254, 140, 22, .3) !important;
+}
+
+.swal2-close {
+  color: #9f9e96 !important;
+  font-size: 1.65rem !important;
+}
+
+.swal2-close:hover {
+  color: #fec866 !important;
+}
+
+@media (max-width: 420px) {
+  .swal2-popup {
+    padding: 28px 18px 20px !important;
+  }
+  .swal2-actions {
+    flex-direction: column !important;
+  }
+  .swal2-styled {
+    width: 100% !important;
+  }
+}
+
+:root {
+  --font-family: "Libre Franklin", "Helvetica Neue";
+  --nav-Background: #000000;
+  --ground: rgba(0, 0, 0, 0.95);
+  --text-primary: #c86b23;
+  --text-black: #1d1c1c;
+  --text-light: #e4e4e4;
+  --background: #000000;
+  --gradient: linear-gradient(180deg, #fec866 0%, #fe8006 100%);
+  --active: linear-gradient(90deg, rgba(116, 21, 163, 1) 0%, rgba(90, 48, 217, 1) 100%);
+  --active-hover: linear-gradient(90deg, rgba(90, 48, 217, 1) 0%, rgba(116, 21, 163, 1) 100%);
+  --button-back: #c86b23;
+  --spinner-back: rgba(21, 22, 51, 0.89);
+  --darkGradient: linear-gradient(180deg, #470e5e 0%, #150b41 100%);
+  --card-back: #232627;
+  --landing-back: #0e0e1a;
+  --landing-card: rgb(23, 32, 41);
+  --main-color2: #7de7e5;
+  --card-back2: #1e8a8a;
+
+  .btn-primary {
+    @apply py-2 px-10 bg-gradient-to-b from-[#F3A630] to-[#F86E12] text-black font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .btn-outline {
+    @apply border border-[#C3B089] text-[#F3A630] py-2 px-10 font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl;
+  }
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fe8912;
+}
+
+.--button {
+  background: linear-gradient(to right, #19e4e0, #0e7e7c);
+  color: var(--text-black) !important;
+  font-weight: 700 !important;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-family);
+  min-height: 100%;
+  position: relative;
+  margin: 0;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #020304 !important;
+}
+
+.content-wrap {
+  flex: 1;
+}
+
+.btn {
+  background: linear-gradient(180deg, #fec866 0%, #fe8006 100%);
+  border-radius: 8px;
+  padding: 7px;
+}
+
+.floating-icon {
+  animation: float 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  height: 10vh;
+  background: none;
+}
+
+.floating-icon:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.fixed-character {
+  position: fixed;
+  bottom: 1px;
+  left: 26px;
+  width: 150px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .fixed-character {
+    display: none;
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 1.5s infinite;
+}
+
+/* ========================================================
+   POLISHED PWA MOBILE APP FLOATING CARD UI
+   ======================================================== */
+.pwa-install-container {
+  animation: slideInLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+}
+
+.pwa-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(22, 24, 27, 0.95) 0%, rgba(12, 13, 16, 0.98) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(195, 176, 137, 0.4);
+  border-radius: 18px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 230px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(243, 166, 48, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: scale(1.04) translateX(4px);
+    border-color: rgba(243, 166, 48, 0.8);
+    box-shadow: 0 15px 35px rgba(243, 166, 48, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .icon-box {
+      transform: scale(1.08) rotate(5deg);
+    }
+  }
+
+  .icon-box {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, #f3a630 0%, #f86e12 100%);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #121417;
+    font-size: 20px;
+    transition: all 0.4s ease;
+    flex-shrink: 0;
+    box-shadow: 0 6px 16px rgba(248, 110, 18, 0.4);
+    z-index: 2;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 16px;
+      border: 1px solid rgba(243, 166, 48, 0.5);
+      animation: pulseRing 2s infinite;
+    }
+  }
+
+  .content-box {
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+
+    .top-text {
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #f3a630;
+      margin-bottom: 3px;
+    }
+
+    .main-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+  }
+
+  .close-x {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+    z-index: 10;
+
+    &:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* Closing animation for PWA floating card */
+@keyframes pwaClose {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  40% { transform: translateY(-6px) scale(.995); }
+  100% { opacity: 0; transform: translateY(10px) scale(.96); }
+}
+.pwa-card.closing {
+  animation: pwaClose 320ms cubic-bezier(.4,0,.2,1) forwards;
+}
+
+/* Make floating card more compact and positioned for mobile */
+@media (max-width: 640px) {
+  .pwa-install-container {
+    top: auto !important;
+    bottom: 14px !important;
+    left: 12px !important;
+    right: auto !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .pwa-card {
+    min-width: 180px !important;
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+    gap: 10px !important;
+  }
+
+  .pwa-card .icon-box { width: 40px; height: 40px; font-size: 18px; }
+  .pwa-card .content-box .main-text { font-size: 13px; }
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-12%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.logout-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(4, 5, 7, .78);
+  backdrop-filter: blur(8px);
+}
+
+.logout-dialog {
+  width: min(420px, 100%);
+  padding: 34px 30px 28px;
+  border: 1px solid rgba(195, 176, 137, .42);
+  border-radius: 18px;
+  background: #0c0d10;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, .58), 0 0 0 1px rgba(254, 140, 22, .08);
+  text-align: center;
+}
+
+.logout-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border: 1px solid rgba(254, 140, 22, .42);
+  border-radius: 16px;
+  background: rgba(254, 140, 22, .08);
+  color: #fe8c16;
+}
+
+.logout-icon svg { width: 27px; height: 27px; }
+.logout-kicker {
+  color: #fe8c16;
+  font-size: .66rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+/* Stronger variant for v2 floating card to ensure visible UI update */
+.pwa-card.v2 {
+  min-width: 240px !important;
+  padding: 12px 16px !important;
+  border-radius: 14px !important;
+  background: linear-gradient(180deg, rgba(18,18,20,0.95), rgba(8,8,10,0.95)) !important;
+  border: 1px solid rgba(254,140,22,0.12) !important;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,255,255,0.02) !important;
+}
+
+.pwa-card.v2 .top-text {
+  display: inline-block;
+  background: rgba(254,140,22,0.08);
+  color: #fec866;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+}
+
+.pwa-card.v2 .main-text {
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  color: #fff !important;
+}

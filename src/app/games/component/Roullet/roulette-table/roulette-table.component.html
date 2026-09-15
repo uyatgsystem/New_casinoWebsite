@@ -1,0 +1,160 @@
+<div class="roulette-table">
+  <!-- Zero section -->
+  <div class="zero-section">
+    <button 
+      class="number-cell zero"
+      [class.has-bet]="hasActiveBet(0)"
+      [class.winning]="isWinningNumber(0)"
+      (click)="betOnZero()"
+      [disabled]="gameService.isSpinning()">
+      <span class="number">0</span>
+      @if (hasActiveBet(0)) {
+        <span class="bet-indicator">{{ getBetAmount(0).toFixed(2) }}</span>
+      }
+    </button>
+  </div>
+
+  <!-- Main number grid -->
+  <div class="numbers-grid">
+    @for (row of rows; track $index) {
+      <div class="number-row">
+        @for (cell of row; track cell.number) {
+          <button 
+            class="number-cell"
+            [class.red]="cell.color === 'red'"
+            [class.black]="cell.color === 'black'"
+            [class.has-bet]="hasActiveBet(cell.number)"
+            [class.winning]="isWinningNumber(cell.number)"
+            (click)="betOnNumber(cell.number)"
+            [disabled]="gameService.isSpinning()">
+            <span class="number">{{ cell.number }}</span>
+            @if (hasActiveBet(cell.number)) {
+              <span class="bet-indicator">{{ getBetAmount(cell.number).toFixed(2) }}</span>
+            }
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Column bets (2 to 1) -->
+  <!-- <div class="column-bets">
+    @for (col of [3, 2, 1]; track col) {
+      <button 
+        class="column-bet"
+        [class.has-bet]="hasOutsideBet('column')"
+        (click)="betOnColumn(col)"
+        [disabled]="gameService.isSpinning()">
+        <span>2 to 1</span>
+        @if (hasOutsideBet('column')) {
+          <span class="bet-indicator">{{ getOutsideBetAmount('column').toFixed(2) }}</span>
+        }
+      </button>
+    }
+  </div> -->
+
+  <!-- Outside bets -->
+  <div class="outside-bets">
+      <button 
+        class="outside-bet"
+        [class.has-bet]="hasOutsideBet('low')"
+        (click)="betOnLow()"
+        [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>1 to 18</span>
+      @if (hasOutsideBet('low')) {
+        <span class="bet-indicator">{{ getOutsideBetAmount('low').toFixed(2) }}</span>
+      }
+    </button>
+
+    <button 
+      class="outside-bet"
+      [class.has-bet]="hasOutsideBet('even')"
+      (click)="betOnEven()"
+      [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>EVEN</span>
+      @if (hasOutsideBet('even')) {
+        <span class="bet-indicator">{{ getOutsideBetAmount('even').toFixed(2) }}</span>
+      }
+    </button>
+
+    <button 
+      class="outside-bet red-bet"
+      [class.has-bet]="hasOutsideBet('red')"
+      (click)="betOnRed()"
+      [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>RED</span>
+      @if (hasOutsideBet('red')) {
+        <span class="bet-indicator">{{ getOutsideBetAmount('red').toFixed(2) }}</span>
+      }
+    </button>
+
+    <button 
+      class="outside-bet black-bet"
+      [class.has-bet]="hasOutsideBet('black')"
+      (click)="betOnBlack()"
+      [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>BLACK</span>
+      @if (hasOutsideBet('black')) {
+        <span class="bet-indicator">{{ getOutsideBetAmount('black').toFixed(2) }}</span>
+      }
+    </button>
+
+    <button 
+      class="outside-bet"
+      [class.has-bet]="hasOutsideBet('odd')"
+      (click)="betOnOdd()"
+      [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>ODD</span>
+      @if (hasOutsideBet('odd')) {
+        <span class="bet-indicator">{{ getOutsideBetAmount('odd').toFixed(2) }}</span>
+      }
+    </button>
+
+    <button 
+      class="outside-bet"
+      [class.has-bet]="hasOutsideBet('high')"
+      (click)="betOnHigh()"
+      [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>19 to 36</span>
+      @if (hasOutsideBet('high')) {
+        <span class="bet-indicator">{{ getOutsideBetAmount('high').toFixed(2) }}</span>
+      }
+    </button>
+  </div>
+
+  <!-- Dozen bets -->
+  <div class="dozen-bets">
+    <button 
+      class="dozen-bet"
+      [class.has-bet]="hasDozenBet(1)"
+      (click)="betOnDozen(1)"
+      [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>1st 12</span>
+      @if (hasDozenBet(1)) {
+        <span class="bet-indicator">{{ getDozenBetAmount(1).toFixed(2) }}</span>
+      }
+    </button>
+
+    <button 
+      class="dozen-bet"
+      [class.has-bet]="hasDozenBet(2)"
+      (click)="betOnDozen(2)"
+      [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>2nd 12</span>
+      @if (hasDozenBet(2)) {
+        <span class="bet-indicator">{{ getDozenBetAmount(2).toFixed(2) }}</span>
+      }
+    </button>
+
+    <button 
+      class="dozen-bet"
+      [class.has-bet]="hasDozenBet(3)"
+      (click)="betOnDozen(3)"
+      [disabled]="gameService.isSpinning() || !gameService.canPlaceBets() || gameService.selectedChip() > gameService.flooredBalance()">
+      <span>3rd 12</span>
+      @if (hasDozenBet(3)) {
+        <span class="bet-indicator">{{ getDozenBetAmount(3).toFixed(2) }}</span>
+      }
+    </button>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="max-w-7xl mx-auto my-4">
+  <!-- Search and Tabs -->
+  <div class="main-container mx-4 md:mx-16 xl:mx-0">
+    <div
+      class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 mx-4 md:mx-0"
+    >
+      <div class="relative w-full md:w-96">
+        <svg
+          class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-300 z-20"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          ></path>
+        </svg>
+        <input
+          type="search"
+          class="w-full p-3 pl-10 text-sm text-white bg-white/10 rounded-full focus:outline-none backdrop-blur-lg border border-white/20 shadow-lg focus:border-purple-500 transition-all duration-300"
+          placeholder="Search"
+          [(ngModel)]="searchText"
+          (input)="getFilteredLotteries()"
+        />
+      </div>
+
+      <div class="flex space-x-2">
+        <button
+          (click)="setActiveTab('ongoing')"
+          [class]="
+            activeTab === 'ongoing'
+              ? 'px-6 theme-bg text-white rounded-full'
+              : 'px-6 bg-transparent text-white border border-purple-600 rounded-full'
+          "
+          class="text-xs py-1 md:text-sm md:py-2"
+        >
+          Ongoing
+        </button>
+        <button
+          (click)="setActiveTab('Upcoming')"
+          [class]="
+            activeTab === 'Upcoming'
+              ? 'px-6 py-2 theme-bg text-white rounded-full'
+              : 'px-6 py-2 bg-transparent text-white border border-purple-600 rounded-full'
+          "
+          class="text-xs py-1 md:text-sm md:py-2"
+        >
+          Upcoming
+        </button>
+        <button
+          (click)="setActiveTab('past')"
+          [class]="
+            activeTab === 'past'
+              ? 'px-6 py-2 theme-bg text-white rounded-full'
+              : 'px-6 py-2 bg-transparent text-white border border-purple-600 rounded-full'
+          "
+          class="text-xs py-1 md:text-sm md:py-2"
+        >
+          Past Winners
+        </button>
+      </div>
+    </div>
+
+    <!-- Lottery Cards Grid -->
+    <app-lottery-card [lotteries]="getFilteredLotteries()"></app-lottery-card>
+  </div>
+</div>

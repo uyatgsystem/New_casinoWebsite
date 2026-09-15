@@ -1,0 +1,24 @@
+<!-- <div class="min-h-[80vh] bg-game-purple"> -->
+<div *ngIf="testimonialsImages.length > 0; else nodata">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let testimonial of testimonialsImages trackBy: trackBySlide; let i = index">
+      <div class="relative image-margin rounded-[3rem] h-[35dvh]">
+        <img [src]="testimonial.ImageBase64" alt="testimonial" [ngClass]="{
+            'w-[85%]': router.url == '/',
+            'w-[100%]': router.url !== '/'
+          }" class="w-[100%] object-fill rounded-[1.5rem]" style="height: inherit" />
+      </div>
+    </ng-template>
+  </owl-carousel-o>
+</div>
+<!-- </div> -->
+
+<ng-template #nodata>
+  <ngx-skeleton-loader count="1" [theme]="{
+      'border-radius': '25px',
+      height: '191px',
+      width: '100%',
+      'background-color': '#111521'
+    }">
+  </ngx-skeleton-loader>
+</ng-template>

@@ -1,0 +1,23 @@
+<!-- filepath: /H:/WordSense Projects/Social-casino_frontend/src/app/splash-screen/splash-screen.component.html -->
+
+<div *ngIf="isVisible" class="splash-screen">
+  <!-- Expanding circles -->
+  <div class="circles">
+    <div *ngFor="let circle of circles" class="circle" [style.width.px]="circle * 100" [style.height.px]="circle * 100">
+    </div>
+  </div>
+
+  <!-- Content container -->
+  <div class="content flex flex-col gap-8 justify-center items-center flex-wrap align-middle">
+    <!-- Logo with the loading ring orbiting around it -->
+    <div class="loader-orbit">
+      <div class="spin-loader-ring"></div>
+      <div class="spin-loader-ring spin-loader-ring--reverse"></div>
+      <div class="logo">
+        <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Spin Hub">
+      </div>
+    </div>
+
+    <p class="progress-text">{{ progress }}% Loaded</p>
+  </div>
+</div>

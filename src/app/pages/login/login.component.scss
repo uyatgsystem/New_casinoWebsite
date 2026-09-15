@@ -1,0 +1,142 @@
+@media (max-width: 768px) {
+  #formContainer {
+    background: rgba(12, 13, 16, 0.95) !important;
+    padding: 1rem !important;
+    max-width: 100% !important;
+  }
+
+  #formContainer input {
+    font-size: 0.85rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+}
+
+.remember-checkbox {
+  appearance: auto !important;
+  -webkit-appearance: checkbox !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  border: 1px solid rgba(195,176,137,0.5) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background-clip: padding-box !important;
+  background-color: #15181d !important;
+  margin-right: 8px !important;
+  cursor: pointer;
+}
+
+.remember-checkbox:checked {
+  accent-color: #F3A630;
+}
+
+:host { display: block; min-height: 100vh; background: #0c0d10; }
+
+.main-bg {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh !important;
+  background-image: linear-gradient(180deg, rgba(10,11,14,0.55) 0%, rgba(10,11,14,0.78) 100%), url("https://spinhub-6rb.pages.dev/assets/auth-background.png") !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto !important;
+}
+
+.main-bg > div { 
+  min-height: 100dvh;
+  width: 100%;
+}
+
+.main-bg > div > div:first-child {
+  width: 52%;
+  flex: none;
+  padding: clamp(32px, 6vw, 92px);
+  clip-path: none !important;
+  background: linear-gradient(135deg, rgba(12,13,16,.62), rgba(12,13,16,.08)) !important;
+}
+
+.main-bg > div > div:first-child img { margin: 0 !important; width: 180px; height: auto; }
+.main-bg .mobile-welcome-text { max-width: 470px; padding: 0; margin: auto 0; }
+.main-bg .mobile-welcome-text h1 { font-size: clamp(2.1rem, 4vw, 3.7rem); letter-spacing: -.05em; }
+.main-bg .mobile-welcome-text p { color: #b9b0a1; max-width: 420px; }
+
+#formContainer {
+  width: min(100%, 470px) !important;
+  max-width: 470px !important;
+  box-sizing: border-box;
+  padding: clamp(16px, 2.5vw, 30px) !important;
+  border: 1px solid rgba(195,176,137,.38) !important;
+  border-radius: 16px !important;
+  background: rgba(12, 13, 16, 0.94) !important;
+  box-shadow: 0 25px 80px rgba(0,0,0,.5);
+  overflow: visible !important;
+}
+
+#formContainer input:not([type="checkbox"]) {
+  min-height: 42px;
+  border: 1px solid rgba(195,176,137,.28) !important;
+  border-radius: 8px;
+  background: #15181d !important;
+  padding: 8px 38px 8px 12px !important;
+}
+
+/* Prevent browser autofill background color change */
+#formContainer input:-webkit-autofill,
+#formContainer input:-webkit-autofill:hover,
+#formContainer input:-webkit-autofill:focus,
+#formContainer input:-webkit-autofill:active {
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0 1000px #15181d inset !important;
+  box-shadow: 0 0 0 1000px #15181d inset !important;
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: #fff;
+}
+
+#formContainer input::placeholder {
+  color: #c5bcae !important;
+  opacity: 1;
+}
+
+#formContainer input:not([type="checkbox"]) { color: #fff !important; font-size: 0.9rem !important; font-weight: 500; }
+#formContainer p,
+#formContainer label { color: #f4f4f4; }
+#formContainer .text-xs { font-size: .82rem !important; }
+#formContainer .text-sm { font-size: .95rem !important; }
+#formContainer .auth-switch { flex-wrap: nowrap; }
+#formContainer .auth-switch > * { white-space: nowrap; }
+#formContainer input:not([type="checkbox"]):focus { border-color: #fe8c16 !important; box-shadow: 0 0 0 3px rgba(254,140,22,.12); }
+#formContainer .bg-custom-gradient { display: none; }
+#formContainer form > div { margin-bottom: 12px !important; }
+#formContainer button[type="submit"] {
+  min-height: 46px;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg,#f3a630,#fe8006) !important;
+}
+#formContainer button:not([type="submit"]) { border-radius: 8px !important; }
+
+@media (max-width: 1023px) {
+  .main-bg {
+    overflow-y: auto !important;
+    display: block !important;
+  }
+  .main-bg > div { min-height: 100dvh; display: flex; flex-direction: column; }
+  
+  .mobile-header-section {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    width: 100%;
+    padding-top: 24px !important;
+    margin-bottom: 8px;
+  }
+
+  #formContainer {
+    width: 94% !important;
+    max-width: 440px !important;
+    margin: 8px auto 28px auto !important;
+    padding: 14px 16px !important;
+  }
+}

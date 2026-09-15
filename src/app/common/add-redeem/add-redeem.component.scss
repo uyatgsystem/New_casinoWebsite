@@ -1,0 +1,45 @@
+// ─── Spin-button hide for score input ───────────────────────────────────────
+.add-score::-webkit-outer-spin-button,
+.add-score::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// ─── Slide-up animation ──────────────────────────────────────────────────────
+@keyframes animatetop {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// ─── Mobile: bottom sheet behaviour ─────────────────────────────────────────
+@media (max-width: 640px) {
+  .modal-overlay {
+    align-items: center !important;
+    padding: 12px !important;
+    padding-bottom: max(24px, env(safe-area-inset-bottom) + 12px) !important;
+  }
+
+  .modal {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: calc(100dvh - 48px) !important;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px !important;
+    position: relative;
+    margin: 0 !important;
+    animation-name: animatetop;
+    animation-duration: 0.3s;
+  }
+}
+
+/* Safe area padding for newer mobile devices (notch/home bar) */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}

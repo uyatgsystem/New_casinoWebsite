@@ -1,0 +1,531 @@
+// Metallic foil texture for the scratch surface — deliberately NOT button-like
+// (no solid fill / shadow), so it reads as a scratchable panel, not a tappable button.
+.scratch-foil-surface {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5) 0px,
+      rgba(255, 255, 255, 0.5) 2px,
+      rgba(210, 210, 214, 0.5) 2px,
+      rgba(210, 210, 214, 0.5) 4px
+    ),
+    linear-gradient(135deg, #d4d4d8 0%, #a1a1aa 50%, #d4d4d8 100%);
+}
+
+@keyframes scratchNowPulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(254, 128, 6, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 48px rgba(254, 128, 6, 0.85);
+  }
+}
+
+.scratch-now-btn {
+  animation: scratchNowPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(234, 179, 8, 0.6),
+      0 0 40px rgba(234, 179, 8, 0.4);
+    transform: scale(1);
+  }
+
+  50% {
+    text-shadow: 0 0 30px rgba(234, 179, 8, 0.8),
+      0 0 60px rgba(234, 179, 8, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  button {
+    background: #8b5cf6;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    color: white;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.heading-card {
+  font-family: Fredoka One;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 100px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 10%;
+}
+
+.card-prize {
+  font-family: Fredoka;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 140px;
+  leading-trim: NONE;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+
+.card-revealed-prize {
+  font-weight: 800;
+  font-style: Bold;
+  leading-trim: NONE;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+
+.card-desc-first {
+  font-family: Fredoka One;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 40px;
+  leading-trim: NONE;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+}
+
+.card-desc {
+  font-family: Fredoka;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 32px;
+  leading-trim: NONE;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.animate-title {
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+.scratching {
+  cursor: grabbing;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.scratch-reveal {
+  animation: reveal 0.5s ease-out forwards;
+}
+
+// Background coin animation
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.coin {
+  position: absolute;
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(252, 211, 77, 0.5);
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(252, 211, 77, 0.8);
+  }
+}
+
+.text-yellow-400 {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+}
+
+.animate-twinkle {
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+.coin-animation > div {
+  transition: all 0.3s ease;
+}
+
+.coin-animation > div:hover {
+  transform: scale(1.2) rotate(45deg);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* --- Realistic Gold Rain Celebration Animation --- */
+.gold-rain-particle {
+  position: absolute;
+  top: -10%;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, #FFE07A, #FE8006);
+  border-radius: 50%;
+  box-shadow: 0 0 12px #F9C846, inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  animation: goldRainFall linear infinite;
+}
+
+@keyframes goldRainFall {
+  0% {
+    transform: translateY(-20vh) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+// Animation keyframes
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes rainbow-text {
+  0% {
+    color: #ff0000;
+  }
+
+  20% {
+    color: #ffd700;
+  }
+
+  40% {
+    color: #00ff00;
+  }
+
+  60% {
+    color: #00ffff;
+  }
+
+  80% {
+    color: #ff00ff;
+  }
+
+  100% {
+    color: #ff0000;
+  }
+}
+
+.animate-rainbow-text {
+  animation: rainbow-text 3s linear infinite;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.prize-glow {
+  text-shadow: 0 0 30px rgba(0, 26, 68, 0.8), 0 0 50px rgba(2, 28, 70, 0.6),
+    0 0 70px rgba(0, 36, 94, 0.4);
+}
+
+.scale-up {
+  animation: scaleUp 0.5s ease-out forwards;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.star {
+  position: absolute;
+  font-size: 24px;
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+.claim-prize-btn {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+  transition: all 0.3s ease;
+}
+
+.claim-prize-btn:hover {
+  box-shadow: 0 0 30px rgba(147, 51, 234, 0.7);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+// Fireworks Animation
+.pyro {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.pyro > .before,
+.pyro > .after,
+.burst-1,
+.burst-2,
+.burst-3 {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 #fff;
+  animation: 1.5s bang ease-out infinite backwards,
+    1.5s gravity ease-in infinite backwards,
+    5s position linear infinite backwards;
+}
+
+.burst-1 {
+  animation-delay: 0.1s;
+  background: radial-gradient(circle, #ff69b4, #ff1493);
+}
+
+.burst-2 {
+  animation-delay: 0.3s;
+  background: radial-gradient(circle, #00ff00, #32cd32);
+}
+
+.burst-3 {
+  animation-delay: 0.5s;
+  background: radial-gradient(circle, #1e90ff, #0000ff);
+}
+
+@keyframes bang {
+  to {
+    box-shadow: -120px -150px #ff3300, 120px -150px #ff3300, 0px -200px #ffcc00,
+      -150px -120px #ff00ff, 150px -120px #00ffcc, -100px -180px #ff3399,
+      100px -180px #33ff00, -80px -220px #ff00ff, 80px -220px #00ffff,
+      0px -250px #ffff00, -130px -160px #ff1493, 130px -160px #00ff7f,
+      -60px -190px #ff4500, 60px -190px #7fff00, -110px -140px #ff69b4,
+      110px -140px #00bfff, -90px -170px #ff8c00, 90px -170px #00fa9a,
+      -70px -210px #ff1493, 70px -210px #00ffff;
+  }
+}
+
+.sparkles {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sparkle-group-1,
+.sparkle-group-2,
+.sparkle-group-3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+}
+
+.sparkle-group-1 {
+  background: radial-gradient(circle at 30% 40%, #fff 0%, transparent 10%),
+    radial-gradient(circle at 70% 60%, #fff 0%, transparent 10%),
+    radial-gradient(circle at 50% 50%, #fff 0%, transparent 10%);
+  animation: sparkle 2s ease-in-out infinite, sparkle-rotate 8s linear infinite;
+}
+
+.sparkle-group-2 {
+  background: radial-gradient(circle at 40% 50%, #ffd700 0%, transparent 10%),
+    radial-gradient(circle at 60% 40%, #ff69b4 0%, transparent 10%),
+    radial-gradient(circle at 50% 60%, #00ffff 0%, transparent 10%);
+  animation: sparkle 2.5s ease-in-out infinite 0.3s,
+    sparkle-rotate 10s linear infinite reverse;
+}
+
+.sparkle-group-3 {
+  background: radial-gradient(circle at 45% 45%, #7fff00 0%, transparent 10%),
+    radial-gradient(circle at 55% 55%, #ff1493 0%, transparent 10%),
+    radial-gradient(circle at 50% 40%, #00bfff 0%, transparent 10%);
+  animation: sparkle 3s ease-in-out infinite 0.6s,
+    sparkle-rotate 12s linear infinite;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(2.5);
+    opacity: 0.6;
+  }
+
+  75% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gravity {
+  to {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+}
+
+@keyframes position {
+  0%,
+  19.9% {
+    margin-top: 5%;
+    margin-left: 40%;
+  }
+
+  20%,
+  39.9% {
+    margin-top: 15%;
+    margin-left: 30%;
+  }
+
+  40%,
+  59.9% {
+    margin-top: 10%;
+    margin-left: 70%;
+  }
+
+  60%,
+  79.9% {
+    margin-top: 20%;
+    margin-left: 20%;
+  }
+
+  80%,
+  99.9% {
+    margin-top: 15%;
+    margin-left: 80%;
+  }
+}
+
+.ribbon-shape {
+  clip-path: polygon(0 0, 98% 0, 100% 100%, 0% 100%);
+  margin-left: -83px;
+}
+
+.card-shape {
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 640px) {
+  .card-shape {
+    clip-path: none;
+    padding: 8 !important;
+  }
+
+  .ribbon-shape {
+    margin-left: 0;
+    text-align: center;
+  }
+}

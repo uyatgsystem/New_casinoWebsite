@@ -1,0 +1,97 @@
+<div class="main-container">
+  <div class="flex justify-end items-center mt-4 -ml-4 header">
+    <button
+      class="relative flex items-center gap-3 px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-cyan-400 text-cyan-300 font-semibold shadow-[0_0_15px_rgba(34,211,238,0.6)] hover:shadow-[0_0_25px_rgba(34,211,238,0.9)] hover:scale-105 transition-all duration-300 overflow-hidden"
+      (click)="showGuide()"
+    >
+      <span
+        class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 opacity-20 blur-xl animate-pulse"
+      ></span>
+      <span class="relative z-10 tracking-wide">Playbook</span>
+    </button>
+  </div>
+  <div class="hero-section">
+    <div class="hero-content">
+      <div class="text-center">
+        <h1 class="hero-title">Spin the Wheel – Unlock Your Rewards!</h1>
+      </div>
+
+      <div class="spinner-wheel-container">
+        <!-- Integrated wheel with fixed segments -->
+        <div
+          class="wheel-with-segments"
+          [class.spinning]="isWheelSpinning"
+          [style.--final-rotation]="wheelRotation + 'deg'"
+        >
+          <!-- Base wheel image -->
+          <img
+            src="https://cmax.pages.dev/assets/Spinner/spinner-circle.png"
+            alt="Spinner Wheel"
+            class="spinner-wheel-image"
+          />
+
+          <!-- Fixed segment overlays that rotate with the wheel -->
+          <div class="segment-overlays">
+            <ng-container *ngFor="let segment of segments; let i = index">
+              <!-- Each segment positioned at the right angle -->
+              <div
+                class="segment-overlay"
+                [style.transform]="'rotate(' + i * segmentAngle + 'deg)'"
+              >
+                <!-- Content positioned along the segment -->
+                <div class="segment-content">
+                  <ng-icon
+                    class="segment-icon"
+                    [name]="segment.icon"
+                    [style.color]="getIconColor(segment.id)"
+                  ></ng-icon>
+                  <div class="segment-prize">{{ segment.prize }}</div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Spinner Pointer (Outside the wheel) -->
+        <div class="spinner-pointer">
+          <div class="map-pin-pointer"></div>
+        </div>
+
+        <!-- Center Controls (Outside the wheel) -->
+        <div class="center-controls">
+          <div class="center-amount-label">Choose amount</div>
+          <div class="center-amount-controls">
+            <button
+              class="center-amount-btn"
+              (click)="decrementSpinAmount()"
+              [disabled]="isWheelSpinning"
+            >
+              -
+            </button>
+            <div class="center-amount-display">${{ spinAmount }}</div>
+            <button
+              class="center-amount-btn"
+              (click)="incrementSpinAmount()"
+              [disabled]="isWheelSpinning"
+            >
+              +
+            </button>
+          </div>
+          <button
+            class="center-spin-button"
+            (click)="freeSpin()"
+            [disabled]="isSpinning || !isBalanceSufficient || !isSpinAllowed"
+            [attr.aria-disabled]="
+              isSpinning || !isBalanceSufficient || !isSpinAllowed ? true : null
+            "
+          >
+            <span class="btn-icon">🎯</span>
+            <span class="btn-text">
+              {{ isBalanceSufficient ? "Spin Now!" : "Insufficient Balance" }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

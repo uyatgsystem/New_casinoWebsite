@@ -1,0 +1,502 @@
+@use 'sass:math';
+
+.roulette-table {
+  display: grid;
+  grid-template-areas:
+    "zero numbers columns"
+    "zero numbers columns"
+    "zero numbers columns"
+    ".    dozens  ."
+    ".    outside .";
+  grid-template-columns: 60px 1fr 50px;
+  grid-template-rows: 48px 48px 48px 40px 40px;
+  gap: 2px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  background-color: #0f381e; // Dark green felt color
+  border-radius: 8px;
+  border: 3px solid #4a3b18; // Wood-like border
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  user-select: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Zero Section
+.zero-section {
+  grid-area: zero;
+  display: flex;
+  
+  .zero {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px 0 0 4px;
+    writing-mode: vertical-rl; // Vertical text for better fit
+    text-orientation: mixed;
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+// Numbers Grid
+.numbers-grid {
+  grid-area: numbers;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .number-row {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(20px, 1fr));
+    gap: 4px;
+  }
+}
+
+// Column Bets
+.column-bets {
+  grid-area: columns;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .column-bet {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 0.9rem;
+    border-radius: 0 4px 4px 0;
+    margin: 0;
+  }
+}
+
+// Dozen Bets
+.dozen-bets {
+  grid-area: dozens;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+// Outside Bets
+.outside-bets {
+  grid-area: outside;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); // 1-18, Even, Red, Black, Odd, 19-36
+  gap: 4px;
+  margin-top: 0; // Already gap in grid
+}
+
+// Common Button Styles
+button {
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0;
+  min-height: 36px;
+  height: 36px;
+  font-family: 'Georgia', serif;
+  box-sizing: border-box;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 4px 12px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(212, 175, 55, 0.3);
+    border-color: rgba(212, 175, 55, 0.5);
+    z-index: 1;
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(0.3);
+  }
+
+  &.has-bet {
+    box-shadow: 
+      inset 0 0 12px rgba(255, 215, 0, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(255, 215, 0, 0.2);
+    border-color: rgba(255, 215, 0, 0.4);
+    background-color: rgba(255, 215, 0, 0.15);
+  }
+
+  &.winning {
+    animation: winning-pulse 1s infinite;
+    z-index: 2;
+    box-shadow: 
+      0 0 25px rgba(255, 215, 0, 0.8),
+      inset 0 0 15px rgba(255, 215, 0, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.6);
+    border-color: #ffd700;
+    border-width: 3px;
+    background-color: rgba(255, 215, 0, 0.4) !important;
+  }
+}
+
+// Specific Cell Colors
+.number-cell {
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+
+  &.red {
+    background: 
+      radial-gradient(ellipse at top left, rgba(255, 100, 100, 0.3), transparent 60%),
+      linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 2px 6px rgba(0, 0, 0, 0.4),
+      0 0 15px rgba(211, 47, 47, 0.3);
+  }
+
+  &.black {
+    background: 
+      radial-gradient(ellipse at top left, rgba(100, 100, 100, 0.2), transparent 60%),
+      linear-gradient(135deg, #212121 0%, #000000 100%);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 2px 6px rgba(0, 0, 0, 0.5),
+      0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  &.zero {
+    background: 
+      radial-gradient(ellipse at top left, rgba(16, 185, 129, 0.3), transparent 60%),
+      linear-gradient(135deg, #059669 0%, #047857 100%);
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 1.1rem;
+    padding: 0;
+    height: 108px;
+    min-height: 108px;
+    max-height: 108px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(5, 150, 105, 0.3);
+  }
+}
+
+.column-bet, .dozen-bet, .outside-bet {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.8rem;
+    height: 36px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.red-bet {
+  background: 
+    radial-gradient(ellipse at center, rgba(255, 100, 100, 0.2), transparent 70%),
+    linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(211, 47, 47, 0.2);
+}
+
+.black-bet {
+  background: 
+    radial-gradient(ellipse at center, rgba(100, 100, 100, 0.15), transparent 70%),
+    linear-gradient(135deg, #212121 0%, #000000 100%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+// Bet Indicator (Chip)
+.bet-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 30% 30%, #ffd700, #b8860b);
+  color: #000;
+  border: 2px dashed #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes winning-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 215, 0, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+// --- RESPONSIVE BREAKPOINTS ---
+
+// Laptop
+@media (max-width: 1200px) {
+  .roulette-table {
+    grid-template-columns: 50px 1fr 40px;
+    grid-template-rows: 40px 40px 40px 32px 32px;
+    gap: 2px;
+  }
+  
+  .numbers-grid .number-row, 
+  .numbers-grid, 
+  .column-bets, 
+  .dozen-bets, 
+  .outside-bets {
+    gap: 3px;
+  }
+
+  button {
+    min-height: 36px;
+    font-size: 0.9rem;
+  }
+}
+
+// Tablet
+@media (max-width: 992px) {
+  .roulette-table {
+    grid-template-columns: 40px 1fr 35px;
+    grid-template-rows: 36px 36px 36px 28px 28px;
+    gap: 1px;
+  }
+
+  .numbers-grid .number-row, 
+  .numbers-grid, 
+  .column-bets, 
+  .dozen-bets, 
+  .outside-bets {
+    gap: 2px;
+  }
+
+  .zero-section .zero {
+    font-size: 1.2rem;
+  }
+
+  button {
+    min-height: 32px;
+    font-size: 0.8rem;
+  }
+  
+  .bet-indicator {
+    width: 20px;
+    height: 20px;
+    font-size: 0.6rem;
+  }
+}
+
+// Mobile Landscape / Large Mobile
+@media (max-width: 768px) {
+  .roulette-table {
+    grid-template-columns: 28px 1fr 24px;
+    grid-template-rows: 32px 32px 32px 24px 24px;
+  }
+
+  .number-cell {
+    font-size: 0.75rem;
+  }
+  
+  .column-bet, .dozen-bet, .outside-bet {
+    font-size: 0.7rem;
+  }
+}
+
+// Small Mobile
+@media (max-width: 576px) {
+  .roulette-table {
+    max-width: 100%;
+    /* Stack the table sections vertically on very small screens to avoid merging */
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "numbers"
+      "zero"
+      "columns"
+      "dozens"
+      "outside";
+    grid-template-rows: auto auto auto auto auto;
+    gap: 6px;
+    padding: 0.5rem;
+  }
+  
+  button {
+    min-height: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+  }
+
+  .number-row {
+    grid-template-columns: repeat(12, minmax(16px, 1fr));
+    gap: 3px;
+  }
+
+  .numbers-grid {
+    gap: 3px;
+  }
+
+  /* Zero section: make it horizontal and smaller on phones */
+  .zero-section {
+    grid-area: zero;
+    margin-top: 4px;
+    
+    .zero {
+      writing-mode: horizontal-tb;
+      text-orientation: mixed;
+      font-size: 1rem;
+      height: 40px;
+      min-height: 40px;
+      padding: 0 8px;
+      border-radius: 6px;
+    }
+  }
+
+  /* Column bets: lay out horizontally on phones */
+  .column-bets {
+    grid-area: columns;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    padding: 0;
+    margin-top: 4px;
+
+    .column-bet {
+      writing-mode: horizontal-tb;
+      text-orientation: mixed;
+      font-size: 0.75rem;
+      border-radius: 6px;
+      padding: 0 6px;
+      height: 40px;
+      min-height: 40px;
+      min-width: 0;
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  /* Dozen bets should be a separate row */
+  .dozen-bets {
+    grid-area: dozens;
+    display: flex;
+    gap: 6px;
+    flex-direction: row;
+    padding: 0;
+    margin-top: 4px;
+
+    .dozen-bet {
+      flex: 1;
+      font-size: 0.75rem;
+      height: 40px;
+      min-height: 40px;
+    }
+  }
+
+  /* Outside bets in separate row below dozens */
+  .outside-bets {
+    grid-area: outside;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    padding: 0;
+    margin-top: 4px;
+    
+    .outside-bet {
+      font-size: 0.65rem;
+      height: 40px;
+      min-height: 40px;
+    }
+  }
+}
+
+/* Aviator-aligned table override */
+.roulette-table {
+  background: linear-gradient(145deg, rgba(14, 18, 28, 0.95), rgba(38, 28, 10, 0.82)) !important;
+  border-color: rgba(254, 200, 102, 0.45) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(254, 200, 102, 0.18) !important;
+}
+
+button {
+  border-color: rgba(254, 200, 102, 0.26) !important;
+}
+
+.number-cell.red,
+.red-bet {
+  background: linear-gradient(135deg, #ce3f3f 0%, #8f2323 100%) !important;
+}
+
+.number-cell.black,
+.black-bet {
+  background: linear-gradient(135deg, #2a2f39 0%, #111318 100%) !important;
+}
+
+.number-cell.zero {
+  background: linear-gradient(135deg, #fec866 0%, #fe8912 100%) !important;
+  color: #161819 !important;
+  text-shadow: none !important;
+}
+
+.column-bet,
+.dozen-bet,
+.outside-bet {
+  background: linear-gradient(135deg, rgba(21, 17, 10, 0.86), rgba(254, 137, 18, 0.12)) !important;
+  color: #ffd98f !important;
+  border-color: rgba(254, 200, 102, 0.28) !important;
+}
+
+.bet-indicator {
+  background: linear-gradient(135deg, #fec866, #fe8912) !important;
+  color: #161819 !important;
+  border-color: rgba(255, 240, 206, 0.9) !important;
+}
+

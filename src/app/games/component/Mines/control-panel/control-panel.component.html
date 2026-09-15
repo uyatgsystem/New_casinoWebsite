@@ -1,0 +1,149 @@
+<div class="control-panel w-full lg:w-[340px] select-none rounded-2xl p-3 sm:p-4">
+
+  <div class="flex items-center justify-between mb-2 sm:hidden">
+    <div class="text-sm font-black text-amber-100">Controls</div>
+    <button (click)="toggleCompactView()" class="compact-toggle px-2 py-1 rounded text-xs font-bold">{{ compactView ?
+      'Expand' : 'Compact' }}</button>
+  </div>
+
+  <div *ngIf="compactView" class="space-y-2">
+    <div class="flex items-center justify-between">
+      <div class="text-[10px] font-black text-amber-200/80 uppercase">Bet</div>
+      <div class="text-sm font-black text-amber-50">${{betAmount | number:'1.0-0'}}</div>
+    </div>
+    <div>
+      <button *ngIf="!gameState.isPlaying" (click)="onStartGame()"
+        class="cta-btn cta-btn--place w-full rounded-xl py-2.5 sm:py-3 font-black">Place Bet</button>
+      <button *ngIf="gameState.isPlaying && !gameState.gameOver" (click)="onCashOut()"
+        [disabled]="gameState.revealedTiles === 0"
+        class="cta-btn cta-btn--cash w-full rounded-xl py-2.5 sm:py-3 font-black">Cash Out</button>
+    </div>
+  </div>
+
+  <div *ngIf="!compactView" class="space-y-3 sm:space-y-5">
+
+    <div>
+      <div class="flex justify-between items-end mb-2 px-1">
+        <h3 class="text-[10px] font-black tracking-[0.15em] text-amber-200/80 uppercase">Number of Mines</h3>
+        <span
+          class="text-xs font-bold text-amber-100 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-300/30">
+          {{numberOfMines}} Mines
+        </span>
+      </div>
+      <div class="option-grid grid grid-cols-5 gap-1 p-1 rounded-xl">
+        <button *ngFor="let option of mineOptions" (click)="onSetMineCount(option)" [disabled]="gameState.isPlaying"
+          class="mine-chip relative py-2.5 text-xs font-bold rounded-lg transition-all duration-200 active:scale-95"
+          [ngClass]="{
+            'mine-chip--active text-white shadow-lg ring-1 ring-white/20': numberOfMines === option,
+            'text-amber-100/75 hover:bg-white/5 hover:text-amber-50': numberOfMines !== option,
+            'opacity-50 cursor-not-allowed': gameState.isPlaying
+          }">
+          {{option}}
+        </button>
+        <!-- <button
+          class="py-2.5 text-[10px] font-bold text-slate-400 hover:bg-white/5 rounded-lg transition-all uppercase"
+          [disabled]="gameState.isPlaying">
+          Cust
+        </button> -->
+      </div>
+    </div>
+
+    <div>
+      <!-- <div class="flex justify-between items-end mb-2 px-1">
+        <h3 class="text-[10px] font-black tracking-[0.15em] text-slate-400 uppercase">Selection Limit</h3>
+        <span class="text-xs font-bold text-slate-300 px-2 py-0.5 rounded-md">{{ gameState.selectionLimit || '—' }}</span>
+      </div> -->
+      <!-- <div class="grid grid-cols-5 gap-1 p-1 rounded-xl bg-slate-950/50 ring-1 ring-white/5">
+        <button *ngFor="let option of mineOptions" (click)="onSetSelectionLimit(option)" [disabled]="gameState.isPlaying" class="relative py-2.5 text-xs font-bold rounded-lg transition-all duration-200 active:scale-95"
+          [ngClass]="{ 'ring-2 ring-emerald-500 bg-emerald-500/5': gameState.selectionLimit === option, 'opacity-50 cursor-not-allowed': gameState.isPlaying }">
+          {{ option }}
+        </button>
+        <button class="py-2.5 text-[10px] font-bold text-slate-400 hover:bg-white/5 rounded-lg transition-all uppercase" [disabled]="gameState.isPlaying">Cust</button>
+      </div> -->
+    </div>
+
+    <div>
+      <h3 class="mb-2 px-1 text-[10px] font-black tracking-[0.15em] text-amber-200/80 uppercase">Grid Size</h3>
+      <div class="grid grid-cols-4 gap-2">
+        <button *ngFor="let size of gridSizes" (click)="onSetGridSize(size)" [disabled]="gameState.isPlaying"
+          class="size-chip group relative overflow-hidden rounded-xl py-3 transition-all hover:ring-1 hover:ring-amber-300/55"
+          [ngClass]="{'size-chip--active ring-2 ring-amber-300 bg-amber-400/10': gridSize === size}">
+          <span class="relative z-10 text-xs font-black"
+            [ngClass]="gridSize === size ? 'text-amber-100' : 'text-amber-100/80'">
+            {{size}}x{{size}}
+          </span>
+          <div *ngIf="gridSize === size" class="absolute inset-0 bg-amber-400/10 animate-pulse"></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="stats-shell relative overflow-hidden rounded-xl p-[1px] ring-1 ring-white/10">
+      <div class="grid grid-cols-2 divide-x divide-white/5 bg-[#07111a] rounded-xl">
+        <div class="p-3">
+          <div class="text-[9px] font-black tracking-widest text-amber-200/60 uppercase">Balance</div>
+          <div class="flex items-center gap-1.5">
+            <div class="h-2 w-2 rounded-full bg-amber-300 shadow-[0_0_8px_rgba(254,200,102,0.72)]"></div>
+            <div class="text-lg font-black text-amber-50">{{getRoundedBalance()}}</div>
+          </div>
+        </div>
+        <div class="p-3 text-right">
+          <div class="text-[9px] font-black tracking-widest text-amber-200/60 uppercase">Potential Win</div>
+          <div class="text-lg font-black transition-all duration-500"
+            [ngClass]="gameState.isPlaying ? 'text-amber-100 scale-105' : 'text-amber-100/35'">
+            {{gameState.potentialPayout > 0 ? '$' + gameState.potentialPayout.toFixed(2) : '—'}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <div class="flex items-center justify-between px-1">
+        <span class="text-[10px] font-black text-amber-200/80 tracking-widest uppercase">Bet Amount</span>
+        <span class="text-sm font-black text-amber-50">${{betAmount.toFixed(2)}}</span>
+      </div>
+
+      <div class="bet-adjuster flex items-center gap-3 p-2 rounded-2xl ring-1 ring-white/10">
+        <button (click)="onAdjustBet(-1)" [disabled]="gameState.isPlaying || betAmount <= 1"
+          class="adjust-btn flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-md transition active:scale-90 disabled:opacity-30">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M20 12H4" />
+          </svg>
+        </button>
+
+        <div class="relative flex-1 h-1.5 rounded-full bg-slate-800 overflow-hidden">
+          <div class="absolute h-full bg-gradient-to-r from-[#fec866] to-[#fe8912] transition-all duration-300"
+            [style.width.%]="(betAmount / balance) * 100"></div>
+        </div>
+
+        <button (click)="onAdjustBet(1)" [disabled]="gameState.isPlaying || betAmount >= balance || betAmount >= 50"
+          class="adjust-btn flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-md transition active:scale-90 disabled:opacity-30">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="pt-2">
+        <button *ngIf="!gameState.isPlaying" (click)="onStartGame()"
+          class="group cta-btn cta-btn--place relative w-full overflow-hidden rounded-xl py-4 transition-all active:scale-[0.98]">
+          <span class="relative z-10 text-base font-black uppercase tracking-widest text-[#07111a]">Place Bet</span>
+        </button>
+
+        <button *ngIf="gameState.isPlaying && !gameState.gameOver" (click)="onCashOut()"
+          [disabled]="gameState.revealedTiles === 0"
+          class="cta-btn cta-btn--cash w-full rounded-xl py-3 transition-all active:scale-[0.98] disabled:opacity-50">
+          <div class="text-[10px] font-black uppercase tracking-tighter text-amber-950/70 leading-none">Cash Out</div>
+          <div class="text-lg font-black text-amber-950">${{(gameState.potentialPayout | number:'1.0-0')}}</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="flex gap-2 pt-2">
+      <button *ngFor="let icon of ['sound', 'music', 'info']"
+        class="mini-action-btn flex-1 flex flex-col items-center justify-center py-2 rounded-xl text-amber-100/65 hover:text-amber-100 transition-all border border-white/5">
+        <div class="text-[8px] font-black uppercase tracking-tighter">{{icon}}</div>
+      </button>
+    </div>
+
+  </div>
+</div>

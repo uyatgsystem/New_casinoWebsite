@@ -1,0 +1,53 @@
+.gamepromo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000408;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-container {
+  width: 100%;
+  padding-top: 4rem;
+}
+
+.slider-track {
+  display: flex;
+  border-top: 1px solid #F3A630;
+  width: max-content;
+}
+
+.logo {
+  flex: 0 0 auto;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .logo {
+    width: 120px;
+  }
+}

@@ -1,0 +1,560 @@
+.main-container {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    background: url("https://cmax-2.pages.dev/assets/spinner-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: blur(1px);
+    z-index: -2;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+  }
+}
+
+.hero-section {
+  padding: 1rem 1rem 2rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // gap: 2rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text, #ffffff);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  // font-family: Libre Franklin;
+}
+
+// Spinner Wheel Styles
+.spinner-wheel-container {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto 2rem;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel-with-segments {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  will-change: transform;
+
+  &.spinning {
+    animation: spin-wheel 5s cubic-bezier(0.17, 0.67, 0.13, 0.99) forwards;
+  }
+}
+
+.spinner-wheel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes spin-wheel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(var(--final-rotation, 1800deg));
+  }
+}
+
+.segment-overlays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-origin: center;
+  z-index: 2;
+}
+
+.segment-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+}
+
+.segment-content {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  /* Keep content fixed relative to the segment */
+  transform-origin: center;
+}
+
+.segment-icon {
+  font-size: 24px;
+  color: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+.segment-prize {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+// Spinner Pointer
+.spinner-pointer {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 10px;
+    background-color: #06b6d4;
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+    border-radius: 5px;
+  }
+}
+
+.map-pin-pointer {
+  width: 40px;
+  height: 40px;
+  background-color: #06b6d4;
+  border-radius: 50% 50% 50% 0;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  z-index: 20;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+} // Center Controls
+.center-controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  border-radius: 50%;
+  padding: 1.5rem 1rem;
+  color: white;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.center-amount-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a4a4a4;
+}
+
+.center-amount-controls {
+  display: flex;
+  align-items: center;
+  background: rgba(19, 25, 46, 0.6);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.center-amount-btn {
+  background: #ffffff14;
+  border: none;
+  color: #a1a1a1;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 4.188rem;
+  margin: 0.5rem 0.5rem;
+  border-radius: 0.313;
+}
+
+.center-amount-btn:hover {
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.center-amount-btn:active {
+  background: rgba(6, 182, 212, 0.2);
+}
+
+.center-amount-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.center-amount-display {
+  flex: 1;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--main-color2);
+  padding: 0.5rem;
+}
+
+.center-spin-button {
+  // width: 60%;
+  width: max-content;
+  padding: 0.5rem;
+  background: var(--main-color2);
+  border: none;
+  border-radius: 0.5rem;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  margin-top: 0.313rem;
+}
+
+.center-spin-button:hover {
+  background: #0891b2;
+  transform: translateY(-1px);
+}
+
+.center-spin-button:active {
+  transform: translateY(1px);
+}
+
+.center-spin-button:disabled {
+  background: #64748b;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 1rem;
+}
+
+.action-buttons-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+  justify-content: center;
+}
+
+// Last Win Display
+.last-win-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  margin-top: 1rem;
+}
+
+.win-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.win-amount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #7de7e5;
+  text-shadow: 0 0 10px rgba(125, 231, 229, 0.5);
+}
+
+// Amount Selector Styles - Updated Design
+.amount-selector-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.amount-selector {
+  display: flex;
+  align-items: center;
+  background: rgba(42, 50, 64, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 350px;
+  width: 100%;
+}
+
+.amount-label-section {
+  padding: 12px 20px;
+  background: transparent;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.amount-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.amount-controls-section {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.amount-control-btn {
+  background: transparent;
+  border: none;
+  color: #7de7e5;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+}
+
+.amount-control-btn:hover {
+  background: rgba(125, 231, 229, 0.1);
+  color: #ffffff;
+}
+
+.amount-control-btn:active {
+  background: rgba(125, 231, 229, 0.2);
+  transform: scale(0.98);
+}
+
+.amount-control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.amount-control-btn:disabled:hover {
+  background: transparent;
+  color: #7de7e5;
+  transform: none;
+}
+
+.amount-display {
+  flex: 1;
+  text-align: center;
+  color: #7de7e5;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px;
+  min-width: 60px;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+.btn-text {
+  font-weight: 600;
+}
+
+.decrement-btn,
+.increment-btn {
+  background: #4b0082;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.decrement-btn:hover,
+.increment-btn:hover {
+  background: #6a42ff;
+}
+
+.decrement-btn:active,
+.increment-btn:active {
+  background: #341f47;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .controls-section {
+    max-width: 100%;
+  }
+
+  .action-buttons-row {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .spinner-wheel-container {
+    width: 500px;
+    height: 500px;
+  }
+
+  .center-controls {
+    width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .spinner-wheel-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .center-controls {
+    width: 150px;
+    padding: 1rem 0.75rem;
+  }
+
+  .center-amount-label {
+    font-size: 0.8rem;
+  }
+
+  .center-amount-btn {
+    font-size: 1.2rem;
+    min-width: 30px;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .center-amount-display {
+    font-size: 1rem;
+  }
+
+  .center-spin-button {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .segment-content {
+    top: 18%;
+    width: 50px;
+  }
+
+  .segment-icon {
+    font-size: 16px;
+  }
+
+  .segment-prize {
+    font-size: 12px;
+  }
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+
+  button {
+    //background: #8b5cf6;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    color: white;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

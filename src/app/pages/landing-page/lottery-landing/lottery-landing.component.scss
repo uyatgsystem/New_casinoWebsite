@@ -1,0 +1,36 @@
+.text-outline-3 {
+  -webkit-text-stroke: 3px #fe8912;
+}
+
+.clip-left-half {
+  -webkit-clip-path: inset(0 44% 0 0);
+  clip-path: inset(0 44% 0 0);
+}
+
+/* Responsive layout for 3 Steps lottery section */
+@media (max-width: 1024px) {
+  section.w-full {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .grid.grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .text-outline-3 {
+    font-size: 8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  section.w-full {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .text-4xl {
+    font-size: 1.8rem;
+  }
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+}

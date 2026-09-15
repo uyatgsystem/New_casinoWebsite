@@ -1,0 +1,100 @@
+<div class="main-bg bg-black/20 min-h-[100vh] flex flex-col items-center justify-center relative">
+  <!-- Centered Content (logo + form) -->
+  <div class="flex flex-col items-center justify-center w-full max-w-md mx-auto z-10">
+    <!-- Logo -->
+    <div class="mx-0 px-0">
+      <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Logo"
+        class="w-24 sm:w-28 md:w-34 lg:w-48 2xl:w-56 h-auto mx-0" />
+    </div>
+    <!-- Verification Box -->
+    <div
+      class="items-center rounded-lg p-4 mb-10 m-2 sm:m-[0.4rem] xs:m-[0.4rem] sm:p-3 md:p-1 lg:p-2 2xl:p-8 lg:mx-0 shadow-2xl lg:overflow-y-auto md:pt-0 md:mt-0 sm:pt-0 sm:mt-0"
+      id="formContainer">
+      <div class="mb-2">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[var(--text-primary)] text-lg lg:text-[28px] font-bold">Email Verification</span>
+        </div>
+        <p class="text-white text-md lg:text-lg mb-2">
+          {{
+          state.status === "error"
+          ? "Verification Failed"
+          : "Verification in Progress"
+          }}
+        </p>
+      </div>
+      <div class="mb-2 lg:mb-4">
+        <img [src]="state.image" [alt]="
+            state.status === 'error'
+              ? 'Verification Failed'
+              : 'Verification in Progress'
+          " class="w-52 h-auto mx-auto" />
+      </div>
+      <p class="text-white/80 mb-6 lg:mb-8 leading-6">
+        {{ state.message }}
+      </p>
+      <div *ngIf="state.status === 'loading'" class="mb-6 lg:mb-8">
+        <div class="w-full h-2 bg-white/20 rounded-full overflow-hidden shadow">
+          <div class="h-full bg-gradient-to-r from-[#7DE7E5] to-[#9333EA] transition-all duration-500 rounded-full"
+            [style.width.%]="state.progress"></div>
+        </div>
+      </div>
+      <a *ngIf="isApiRequestCompleted" [routerLink]="state.status === 'error' ? '/SignUp' : '/login'">
+        <button
+          class="w-full mb-3 bg-[var(--button-back)] text-black px-1 py-1 font-semibold rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-base">
+          {{ state.status === "error" ? "Back to Sign Up" : "Start Playing" }}
+        </button>
+      </a>
+    </div>
+  </div>
+  <!-- Person Image: Fixed Bottom Left, Responsive -->
+  <div class="person-img-bottom-left">
+    <img src="https://cmaxv2images2.pages.dev/assets/avatars/loginCPL.png" alt="Person" class="person-img-size" />
+  </div>
+</div>
+
+<!-- <div class="h-[80dvh] flex items-center justify-center p-4">
+  <div class="max-w-lg w-full text-center text-white">
+    <div class="mb-8">
+      <img
+        [src]="state.image"
+        [alt]="
+          state.status === 'error'
+            ? 'Verification Failed'
+            : 'Verification in Progress'
+        "
+        class="w-52 h-auto mx-auto"
+      />
+    </div>
+
+    <h1 class="text-2xl font-bold mb-4">
+      {{
+        state.status === "error"
+          ? "Verification Failed"
+          : "Verification in Progress"
+      }}
+    </h1>
+
+    <p class="text-white/80 mb-8 leading-6">
+      {{ state.message }}
+    </p>
+
+    <div *ngIf="state.status === 'loading'" class="mb-8">
+      <div class="w-full h-2 bg-white/20 rounded overflow-hidden">
+        <div
+          class="h-full bg-[#9333EA] transition-all duration-500"
+          [style.width.%]="state.progress"
+        ></div>
+      </div>
+    </div>
+    <a
+      *ngIf="isApiRequestCompleted"
+      [routerLink]="state.status === 'error' ? '/SignUp' : '/login'"
+    >
+      <button
+        class="w-full py-3 bg_active text-white border-none rounded-md font-medium cursor-pointer transition-colors duration-200 hover:bg-[#7E22CE]"
+      >
+        {{ state.status === "error" ? "Back to Sign Up" : "Start Playing" }}
+      </button>
+    </a>
+  </div>
+</div> -->

@@ -1,0 +1,213 @@
+@media (max-width: 768px) {
+  #formContainer {
+    background: transparent !important;
+    padding: 0.75rem !important;
+    max-width: 100% !important;
+  }
+
+  #formContainer input:not([type="checkbox"]),
+  #formContainer .form-input {
+    font-size: 0.85rem !important;
+    padding: 0.35rem 0.5rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+}
+
+.main-bg {
+  position: relative;
+  background-image: linear-gradient(#00000099, #00000099), url("https://spinhub-6rb.pages.dev/assets/auth-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  align-content: center;
+}
+
+:host { display: block; min-height: 100vh; background: #0c0d10; }
+
+.main-bg {
+  min-height: 100dvh !important;
+  background-image: linear-gradient(180deg, rgba(12,13,16,.55) 0%, rgba(12,13,16,.78) 100%), url("https://spinhub-6rb.pages.dev/assets/auth-background.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.main-bg > div { min-height: 100dvh; }
+
+.main-bg > div > div:first-child {
+  width: 52%;
+  flex: none;
+  padding: clamp(32px, 6vw, 92px);
+  clip-path: none !important;
+  background: linear-gradient(135deg, rgba(12,13,16,.62), rgba(12,13,16,.08)) !important;
+}
+
+.main-bg > div > div:first-child img { margin: 0 !important; width: 180px; height: auto; }
+.main-bg .mobile-welcome-text { max-width: 470px; padding: 0; margin: auto 0; }
+.main-bg .mobile-welcome-text h1 { font-size: clamp(2.1rem, 4vw, 3.7rem); letter-spacing: -.05em; }
+.main-bg .mobile-welcome-text p { color: #b9b0a1; max-width: 420px; }
+
+#formContainer {
+  width: min(100%, 560px) !important;
+  max-width: 560px !important;
+  box-sizing: border-box;
+  padding: clamp(14px, 2vw, 24px) !important;
+  border: 1px solid rgba(195,176,137,.38) !important;
+  border-radius: 16px !important;
+  background: rgba(12,13,16,.94) !important;
+  box-shadow: 0 25px 80px rgba(0,0,0,.45);
+  overflow: visible !important;
+}
+
+#formContainer input:not([type="checkbox"]),
+#formContainer select,
+#formContainer textarea {
+  color: #fff !important;
+  font-size: 0.9rem !important;
+  font-weight: 500;
+}
+
+#formContainer input:not([type="checkbox"])::placeholder {
+  color: #c5bcae !important;
+  opacity: 1;
+}
+
+#formContainer label,
+#formContainer p,
+#formContainer li {
+  color: #f4f4f4;
+}
+
+#formContainer input:not([type="checkbox"]) {
+  min-height: 38px;
+  border: 1px solid rgba(195,176,137,.28) !important;
+  border-radius: 8px;
+  background: #15181d !important;
+  padding: 6px 36px 6px 10px !important;
+}
+
+/* FIX: Prevent browser autofill from turning input background white */
+#formContainer input:-webkit-autofill,
+#formContainer input:-webkit-autofill:hover,
+#formContainer input:-webkit-autofill:focus,
+#formContainer input:-webkit-autofill:active {
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0 1000px #15181d inset !important;
+  box-shadow: 0 0 0 1000px #15181d inset !important;
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: #fff;
+}
+
+#formContainer input:not([type="checkbox"]):focus { border-color: #fe8c16 !important; box-shadow: 0 0 0 3px rgba(254,140,22,.12); }
+#formContainer .bg-custom-gradient { display: none; }
+#formContainer button[type="submit"] { min-height: 42px; border-radius: 8px !important; background: linear-gradient(135deg,#f3a630,#fe8006) !important; }
+
+/* Mobile Optimizations */
+@media (max-width: 1023px) {
+  .main-bg {
+    overflow: hidden !important;
+    height: 100dvh;
+    background-position: center top !important;
+    background-size: auto 100% !important;
+  }
+  
+  .main-bg > div {
+    min-height: 100dvh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-header-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 14px 16px 6px;
+    background: linear-gradient(180deg, rgba(12, 13, 16, 0.3), rgba(12, 13, 16, 0.08));
+   
+    width: 100%;
+  }
+
+  .mobile-header-section img {
+    width: 75px;
+    height: auto;
+    margin-bottom: 4px;
+  }
+
+  .mobile-header-section h1 {
+    font-size: 1.2rem;
+    line-height: 1.15;
+    margin-bottom: 2px;
+    color: #fff;
+  }
+
+  .mobile-header-section p {
+    font-size: 0.73rem;
+    color: #b9b0a1;
+    padding: 0 8px;
+    margin-bottom: 0;
+  }
+
+  .main-bg > div > div:nth-child(2) {
+    display: flex !important;
+    min-height: 17vh;
+    height: 17vh;
+    padding: 8px 16px 4px;
+    justify-content: center;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .main-bg > div > div:nth-child(2) img {
+    width: 62px;
+    margin-bottom: 2px;
+  }
+
+  .main-bg > div > div:nth-child(2) h1 {
+    font-size: 1.1rem;
+    line-height: 1.05;
+    margin: 2px 0;
+  }
+
+  .main-bg > div > div:nth-child(2) p {
+    font-size: .68rem;
+    line-height: 1.15;
+    margin: 2px 0 0;
+  }
+
+  #formContainer {
+    width: 94% !important;
+    max-width: 480px !important;
+    height: auto;
+    max-height: none;
+    margin: 4px auto 0 !important;
+    padding: 10px 12px !important;
+    overflow: visible !important;
+  }
+
+  #formContainer form .flex.flex-col.lg\:flex-row {
+    flex-direction: row !important;
+    gap: 6px !important;
+  }
+  
+  #formContainer form .flex.flex-col.lg\:flex-row > div {
+    width: 50% !important;
+  }
+
+  #formContainer form > div { margin-bottom: 8px !important; }
+  #formContainer input:not([type="checkbox"]) { min-height: 38px; padding: 6px 32px 6px 9px !important; }
+  #formContainer button[type="submit"] { min-height: 40px; margin-bottom: 8px !important; }
+  #formContainer .my-6 { margin-top: 0 !important; margin-bottom: 8px !important; }
+  #formContainer .lg\:mb-10,
+  #formContainer .xl\:mb-12 { margin-bottom: 8px !important; }
+  #formContainer .mb-5 { margin-bottom: 6px !important; }
+  #formContainer .mt-4 { margin-top: 6px !important; }
+}
+
+.pass-validations {
+  position: absolute;
+  background: white;
+  padding: 5px 10px;
+  z-index: 2;
+  margin-top: 5px;
+}

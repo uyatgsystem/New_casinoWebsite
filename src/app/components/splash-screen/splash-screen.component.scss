@@ -1,0 +1,135 @@
+// filepath: /H:/WordSense Projects/Social-casino_frontend/src/app/splash-screen/splash-screen.component.scss
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400&display=swap');
+
+:host {
+  display: block;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.circles {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(254, 137, 18, 0.12);
+  animation: expandCircle 4s linear infinite;
+}
+
+.loader-orbit {
+  position: relative;
+  width: min(78vw, 300px);
+  height: min(78vw, 300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  position: relative;
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  z-index: 2;
+  animation: scaling 3s linear infinite;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(254, 137, 18, 0.35));
+  }
+}
+
+.progress-text {
+  margin-top: 0.25rem;
+  color: rgba(254, 200, 102, 0.85);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@keyframes expandCircle {
+  0% {
+    transform: scale(8);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes scaling {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+// Spin Hub wheel loader — rings orbit around the logo
+.spin-loader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #fe8912;
+  border-right-color: #fec866;
+  animation: spinLoaderRotate 1.6s linear infinite;
+  z-index: 1;
+}
+
+.spin-loader-ring--reverse {
+  inset: 22px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: #fe8912;
+  border-left-color: #fec866;
+  animation: spinLoaderRotate 2.3s linear infinite reverse;
+  opacity: 0.7;
+}
+
+@keyframes spinLoaderRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

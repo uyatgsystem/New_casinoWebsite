@@ -1,0 +1,31 @@
+.lottery-card-glassmorphic {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  /* White border shadow effect */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1),
+    /* Inner white border */ 0 0 20px rgba(255, 255, 255, 0.1),
+    /* Soft white glow */ 0 0 40px rgba(255, 255, 255, 0.05),
+    /* Wider white glow */ inset 0 0 15px rgba(255, 255, 255, 0.05); /* Inner white glow */
+}
+
+.lottery-card-glassmorphic::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: skewX(-15deg);
+  z-index: -1;
+}
+
+.glassmorphic-timer {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1),
+    /* Inner white border */ 0 0 10px rgba(255, 255, 255, 0.05); /* Soft white glow */
+}
+
+.theme-text {
+  color: var(--background);
+}

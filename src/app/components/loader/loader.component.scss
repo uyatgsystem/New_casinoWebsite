@@ -1,0 +1,34 @@
+/* From Uiverse.io by xXJollyHAKERXx */
+.spinner {
+  // background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
+  background-image: linear-gradient(135deg, #e7e57d 0%, #41320bc9 100%);
+  width: 100px;
+  height: 100px;
+  animation: spinning82341 1.7s linear infinite;
+  text-align: center;
+  border-radius: 50px;
+  filter: blur(1px);
+  box-shadow: 0px -5px 20px 0px #e7e57d, 0px 5px 20px 0px #41320bc9;
+  // box-shadow: 0px -5px 20px 0px rgb(186, 66, 255),
+  //   0px 5px 20px 0px rgb(0, 225, 255);
+  margin-top: -5px;
+}
+
+.loading-text {
+  top: 50% !important;
+}
+
+.spinner1 {
+  background-color: #41320bc9;
+  // background: radial-gradient(circle, rgba(0,0,0,0.6) 40%, #7DE7E5 100%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  filter: blur(10px);
+}
+
+@keyframes spinning82341 {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,19 @@
+<div class="modal-backdrop" (click)="close.emit()"></div>
+<div class="modal-content">
+  <div class="modal-header">
+    <span>History</span>
+    <button class="close-btn" (click)="close.emit()" title="Close">&times;</button>
+  </div>
+  <div class="modal-table">
+    <div class="modal-table-header">
+      <span>Game ID</span>
+      <span>Result</span>
+    </div>
+    <div class="modal-table-body">
+      <div *ngFor="let round of rounds.slice(0, 50)" class="modal-row" [ngClass]="getCrashColor(round.crashPoint)">
+        <span>{{ round.id?.slice(-6) }}</span>
+        <span>{{ round.crashPoint | number:'1.2-2' }}x</span>
+      </div>
+    </div>
+  </div>
+  </div>

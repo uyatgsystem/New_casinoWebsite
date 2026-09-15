@@ -1,0 +1,89 @@
+<div *ngIf="!data.isGoogleLogin">
+  <div
+    class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-[999] p-4"
+  >
+    <div
+      class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-md shadow-2xl relative overflow-hidden"
+    >
+      <!-- Grain Overlay -->
+      <div
+        class="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-0 opacity-30"
+        style="
+          background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%220.4%22/%3E%3C/svg%3E&quot;);
+          background-size: 200px 200px;
+        "
+      ></div>
+
+      <!-- Header -->
+      <div class="px-6 pt-8 pb-6 text-center relative z-10">
+        <!-- Success Icon -->
+        <div
+          class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/15 border border-green-500/30 mb-5"
+        >
+          <i class="fa-solid fa-check text-green-400 text-2xl"></i>
+        </div>
+
+        <h2 class="text-2xl font-extrabold text-white tracking-wide mb-2">
+          Verify OTP
+        </h2>
+        <p class="text-sm text-[#A6B1C2] leading-relaxed">
+          We have sent a 6-digit OTP to<br />
+          <span class="text-[#FE8006] font-semibold">{{ email }}</span>
+        </p>
+      </div>
+
+      <!-- Divider -->
+      <div class="h-px w-full bg-[#C3B089]/20 relative z-10"></div>
+
+      <!-- Body -->
+      <div class="px-6 py-6 space-y-6 relative z-10">
+        <!-- OTP Inputs -->
+        <div class="flex justify-center gap-2.5">
+          <ng-container *ngFor="let item of otpArray; let i = index">
+            <input
+              #otpInput0
+              type="text"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              class="w-11 h-13 text-center text-xl font-bold rounded-xl bg-black/60 text-white border border-white/10 focus:border-[#F3A630] focus:bg-black/80 focus:outline-none transition-all duration-200 placeholder-gray-600 shadow-inner"
+              [(ngModel)]="otp[i]"
+              (input)="onDigitInput($event, i)"
+              (keydown)="onKeyDown($event, i)"
+              (paste)="onPaste($event)"
+              placeholder="-"
+            />
+          </ng-container>
+        </div>
+
+        <!-- Timer -->
+        <p class="text-center text-sm text-[#A6B1C2]" *ngIf="timer > 0"></p>
+        <p class="text-center text-sm text-[#A6B1C2]" *ngIf="timer !== 0">
+          Resend OTP in
+          <span class="text-[#F3A630] font-bold">{{ timer }}</span> sec
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex items-center gap-3">
+          <!-- Resend OTP -->
+          <button
+            *ngIf="timer === 0"
+            (click)="resendEmail()"
+            class="w-1/2 py-3.5 rounded-xl border border-white/20 text-gray-300 text-sm font-semibold hover:bg-white/5 transition cursor-pointer"
+          >
+            Resend OTP
+          </button>
+
+          <!-- Verify -->
+          <button
+            (click)="verifyCustomerOTP()"
+            [ngClass]="timer === 0 ? 'w-1/2' : 'w-full'"
+            class="py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black text-sm font-extrabold shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:brightness-110 transition cursor-pointer"
+          >
+            Verify
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

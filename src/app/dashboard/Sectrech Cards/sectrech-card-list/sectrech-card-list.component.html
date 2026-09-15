@@ -1,0 +1,220 @@
+<!-- Card List Content -->
+<div
+  class="bg-gradient-to-b from-[#0b0c0f] via-[#121418] to-[#07080a] relative overflow-hidden px-4 md:px-8 py-6 rounded-3xl"
+  [ngClass]="isScratchCardPage ? 'pb-28 md:pb-6' : ''">
+
+  <!-- Ambient Backlight Glow -->
+  <div
+    class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#FE8006]/10 to-[#F3A630]/5 blur-[160px] pointer-events-none rounded-full">
+  </div>
+
+  <!-- Card for landing Page  -->
+  @if (isHomePage && !isScratchCardPage) {
+  <div class="card-scroll-section relative z-10" #cardScrollSection>
+    <!-- Sticky Container -->
+    <div class="sticky top-0 overflow-hidden z-10">
+      <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+      <div class="h-full">
+        <div class="grid grid-cols-1 lg:grid-cols-[40%_1fr] gap-12 lg:gap-24 pt-0 lg:pt-12 py-6 relative z-10">
+          <!-- RIGHT SIDE — Titles + Text -->
+          <div
+            class="order-1 lg:order-2 flex flex-col justify-start pr-4 sm:pr-8 lg:pr-16 pt-4 text-center lg:text-left">
+            <span
+              class="scratch-eyebrow inline-flex items-center gap-2 mx-auto lg:mx-0 mb-4 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#FE9B2A] uppercase w-fit">
+              <i class="fas fa-ticket"></i>
+              Scratch Card
+            </span>
+
+            <h1 class="mt-1 text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+              Big Win
+              <span class="bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent">Is
+                One Scratch Away</span>
+            </h1>
+
+            <p
+              class="mt-4 max-w-full sm:max-w-[54rem] mx-auto text-[#A6B1C2] font-medium text-sm sm:text-base leading-relaxed">
+              Discover hidden rewards with our exciting scratch card
+              collection. Every scratch could reveal cash prizes. Try your
+              luck and claim your winnings today!
+            </p>
+          </div>
+
+          <!-- LEFT SIDE — Cards stacked vertically -->
+          <div class="order-2 lg:order-1 pl-4 sm:pl-8 lg:pl-12 relative">
+            <!-- Card Viewport (fixed height = one card) -->
+            <div class="relative h-[300px] sm:h-[320px] overflow-visible">
+              <div *ngFor="
+                    let card of scratchCards | slice: 0 : 3;
+                    let i = index
+                  " class="absolute inset-0 transition-all duration-500 ease-in-out flex items-center justify-center"
+                [class.opacity-0]="i !== activeIndex" [class.pointer-events-none]="i !== activeIndex"
+                [class.translate-y-10]="i > activeIndex" [class.-translate-y-10]="i < activeIndex"
+                [style.z-index]="i === activeIndex ? 10 : 1">
+                <div
+                  class="scratch-card-shell relative w-full max-w-[88%] h-[270px] sm:h-[290px] translate-x-0 sm:translate-x-6 p-4 bg-gradient-to-br from-[#16181b]/95 via-[#0e1013]/95 to-[#08090a]/95 rounded-[24px] border border-[#C3B089]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mx-auto overflow-hidden backdrop-blur-xl">
+
+                  <!-- Ambient internal glow -->
+                  <div
+                    class="absolute -right-10 -top-10 w-40 h-40 bg-[#FE8912]/10 blur-[50px] rounded-full pointer-events-none">
+                  </div>
+
+                  <!-- Inner card container -->
+                  <div class="relative w-full h-full flex flex-col justify-between z-10">
+
+                    <!-- Top Bar: Price Tag & Win Badge -->
+                    <div class="flex items-center justify-between border-b border-[#C3B089]/20 pb-3">
+                      <div class="flex items-center gap-2">
+                        <img [src]="card.icon" alt="Game Icon" class="w-6 h-6 object-contain" />
+                        <h2
+                          class="scratch-title-text text-base lg:text-lg font-black text-white tracking-wide truncate max-w-[130px]">
+                          {{ card.title }}
+                        </h2>
+                      </div>
+
+                      <!-- Ticket Price Pill -->
+                      <div
+                        class="bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-black text-xs px-3.5 py-1 rounded-full shadow-[0_0_12px_rgba(254,128,6,0.4)] font-mono">
+                        ${{ card.ticketprice }}
+                      </div>
+                    </div>
+
+                    <!-- Middle Section: Winning Prize & Treasure Accent -->
+                    <div class="flex items-center justify-between my-auto py-2">
+                      <div>
+                        <span
+                          class="text-[10px] text-[#A6B1C2] font-extrabold uppercase tracking-widest block mb-0.5">Top
+                          Prize</span>
+                        <p
+                          class="text-2xl lg:text-3xl font-black font-mono bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(254,155,42,0.3)]">
+                          {{ card.winning }}
+                        </p>
+                        <span class="text-[9px] text-[#C3B089] font-medium tracking-wide">Uncover Royal
+                          Treasures!</span>
+                      </div>
+
+                      <div class="relative">
+                        <div class="absolute inset-0 bg-[#FE8912]/20 blur-xl rounded-full"></div>
+                        <img src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png" alt="Treasure"
+                          class="w-[85px] lg:w-[105px] h-auto relative z-10 drop-shadow-[0_8px_16px_rgba(0,0,0,0.8)] hover:scale-105 transition duration-300" />
+                      </div>
+                    </div>
+
+                    <!-- Bottom Action Area: Scratch Foil & Buy Button -->
+                    <div class="space-y-3 pt-2">
+                      <div
+                        class="scratch-area rounded-xl py-2 px-3.5 flex items-center justify-center border border-[#C3B089]/50 shadow-inner">
+                        <span class="text-xs font-black text-black/95 tracking-wider uppercase font-mono">
+                          {{ card.scratchText }}
+                        </span>
+                      </div>
+
+                      <button (click)="goToBuyNow(card)"
+                        class="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#FEC866] via-[#FE9B2A] to-[#FE8006] text-black font-black text-xs uppercase tracking-wider shadow-[0_4px_20px_rgba(254,128,6,0.4)] hover:brightness-110 active:scale-[0.98] transition cursor-pointer">
+                        Buy Now!
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  } @else {
+  <!-- Cards for Homepage And Scratch Card Component  -->
+
+  <!-- Top Bar only for Scratch Cards list component  -->
+  <div *ngIf="!isLandingPage && !isDashboardPage" class="relative z-10 mb-4">
+    <div class="relative pb-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <fa-icon class="text-[#F3A630] w-5 h-5 inline md:hidden cursor-pointer" [icon]="leftArrow" (click)="goBack()">
+          </fa-icon>
+          <img src="https://cmaxv2images2.pages.dev/assets/icons/scratch-card-icon.svg" class="w-5 h-5 hidden md:inline"
+            alt="spin" />
+          <span class="text-white font-black uppercase tracking-wider text-sm">Scratch Card</span>
+        </div>
+        <button (click)="showGuide()"
+          class="hidden md:inline-block bg-gradient-to-r from-[#FEC866] via-[#FE9B2A] to-[#FE8006] text-black font-black px-6 py-2 rounded-xl shadow-[0_0_15px_rgba(254,128,6,0.4)] hover:brightness-110 transition text-xs uppercase tracking-wider cursor-pointer">
+          Guide
+        </button>
+      </div>
+      <div
+        class="h-[2px] w-full absolute bottom-0 left-0 bg-[linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)]">
+      </div>
+    </div>
+  </div>
+
+  <!-- Main card grid start here  -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 px-2 gap-6 pt-2 pb-6 relative z-10"
+    [ngClass]="{
+        'container mx-auto': isLandingPage,
+      }">
+    <div *ngFor="let card of scratchCards"
+      class="scratch-card-shell relative w-full h-[290px] lg:h-[300px] p-4 bg-gradient-to-br from-[#16181b]/95 via-[#0e1013]/95 to-[#08090a]/95 rounded-[24px] border border-[#C3B089]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mx-auto overflow-hidden backdrop-blur-xl group hover:border-[#FE8006]/70 transition-all duration-300">
+
+      <!-- Ambient card glow -->
+      <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#FE8912]/10 blur-[50px] rounded-full pointer-events-none">
+      </div>
+
+      <!-- Inner card container -->
+      <div class="relative w-full h-full flex flex-col justify-between z-10">
+
+        <!-- Top Bar: Icon + Title & Price Chip -->
+        <div class="flex items-center justify-between border-b border-[#C3B089]/20 pb-3">
+          <div class="flex items-center gap-2.5">
+            <img [src]="card.icon" alt="Game Icon" class="w-7 h-7 object-contain" />
+            <h2 class="scratch-title-text text-lg lg:text-xl font-black text-white tracking-wide">
+              {{ card.title }}
+            </h2>
+          </div>
+
+          <!-- Ticket Price Pill -->
+          <div
+            class="bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-black text-xs px-4 py-1 rounded-full shadow-[0_0_12px_rgba(254,128,6,0.4)] font-mono">
+            ${{ card.ticketprice }}
+          </div>
+        </div>
+
+        <!-- Middle Section: Prize & Treasure -->
+        <div class="flex items-center justify-between my-auto py-2">
+          <div>
+            <span class="text-[10px] text-[#A6B1C2] font-extrabold uppercase tracking-widest block mb-0.5">Top
+              Prize</span>
+            <p
+              class="text-3xl font-black font-mono bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(254,155,42,0.3)]">
+              {{ card.winning }}
+            </p>
+            <span class="text-[9px] text-[#C3B089] font-medium tracking-wide">Uncover Royal Treasures!</span>
+          </div>
+
+          <div class="relative">
+            <div class="absolute inset-0 bg-[#FE8912]/20 blur-xl rounded-full"></div>
+            <img src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png" alt="Treasure"
+              class="w-[100px] lg:w-[120px] h-auto relative z-10 drop-shadow-[0_8px_16px_rgba(0,0,0,0.8)] group-hover:scale-105 transition duration-300" />
+          </div>
+        </div>
+
+        <!-- Bottom Action Area: Scratch Area & Button -->
+        <div class="space-y-3 pt-2">
+          <div
+            class="scratch-area rounded-xl py-2 px-3.5 flex items-center justify-center border border-[#C3B089]/50 shadow-inner">
+            <span class="text-xs font-black text-black/95 tracking-wider uppercase font-mono">
+              {{ card.scratchText }}
+            </span>
+          </div>
+
+          <button (click)="goToBuyNow(card)"
+            class="w-full py-3 rounded-xl bg-gradient-to-r from-[#FEC866] via-[#FE9B2A] to-[#FE8006] text-black font-black text-xs uppercase tracking-wider shadow-[0_4px_20px_rgba(254,128,6,0.4)] hover:brightness-110 active:scale-[0.98] transition cursor-pointer">
+            Buy Now!
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  }
+</div>

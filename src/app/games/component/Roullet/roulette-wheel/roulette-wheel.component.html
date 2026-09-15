@@ -1,0 +1,46 @@
+<div class="wheel-container">
+  <div class="wheel-frame">
+    <!-- Spinning wheel plate -->
+    <div class="wheel-plate" [class.spinning]="isSpinning" [style.transform]="'rotate(' + rotation + 'deg)'" [style.transition]="wheelTransitionStyle">
+      <!-- Outer rim -->
+      <div class="wheel-rim"></div>
+      
+      <!-- Number pockets -->
+      <ul class="wheel-inner">
+        @for (num of wheelNumbers; track num; let i = $index) {
+          <li class="number-pocket" 
+              [class.red]="getNumberColor(num) === 'red'"
+              [class.black]="getNumberColor(num) === 'black'"
+              [class.green]="getNumberColor(num) === 'green'"
+              [style.transform]="'rotate(' + getNumberAngle(i) + 'deg)'">
+            <span class="pocket-number">{{ num }}</span>
+          </li>
+        }
+      </ul>
+      
+      <!-- Center hub -->
+      <div class="wheel-center">
+        <div class="center-logo">R</div>
+      </div>
+    </div>
+
+    <!-- Ball indicator (rotates in a continuous circle during spin) -->
+    <div class="ball-track" [class.spinning]="isSpinning" [style.transform]="'rotate(' + ballRotation + 'deg)'" [style.transition]="ballTransitionStyle">
+      <div class="ball"></div>
+    </div>
+
+    <!-- Result display -->
+    <div class="result-display" [class.show]="!isSpinning && winningNumber !== null">
+      <div class="result-inner">
+        <div class="result-mask">Place Your Bets</div>
+        <div class="result-reveal" 
+             [class.red]="winningNumber !== null && getNumberColor(winningNumber) === 'red'"
+             [class.black]="winningNumber !== null && getNumberColor(winningNumber) === 'black'"
+             [class.green]="winningNumber !== null && getNumberColor(winningNumber) === 'green'">
+          <div class="result-number">{{ winningNumber }}</div>
+          <div class="result-color">{{ winningNumber !== null ? getNumberColor(winningNumber) : '' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

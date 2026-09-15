@@ -1,0 +1,239 @@
+.footer-link {
+  color: #9ca3af;
+  font-size: inherit;
+  cursor: pointer;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: #d4af37;
+  }
+}
+
+.active-tab {
+  color: #fe9e2e !important;
+}
+
+.active-tab svg {
+  stroke: #fe9e2e !important;
+}
+
+
+
+.footer-item {
+  @apply relative flex flex-col items-center justify-center text-gray-400 text-[10px] w-full h-full transition-all duration-300;
+}
+
+.footer-item .icon {
+  @apply w-5 h-5 mb-[2px] transition-all duration-300;
+}
+
+/* Active State (Pill + Lift) */
+.active-tab {
+  @apply text-[#FFD700];
+}
+
+.active-tab::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.25) 0%, transparent 70%);
+  border-radius: 9999px;
+  z-index: -1;
+}
+
+/* Icon Lift */
+.active-tab .icon {
+  transform: translateY(-3px) scale(1.15);
+}
+
+.mobile-deposit-action {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 68px;
+  height: 48px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  margin-top: -24px;
+  color: #241706;
+  font-size: 9px;
+  font-weight: 800;
+  background: linear-gradient(180deg, #fec866 0%, #fe8006 100%);
+  border: 2px solid #161819;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(254, 128, 6, 0.4);
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.mobile-deposit-action:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.deposit-plus {
+  font-size: 16px;
+  line-height: 12px;
+  font-weight: 900;
+}
+
+/* Smooth Hover */
+.footer-item:hover .icon {
+  transform: translateY(-2px);
+}
+
+/* Unified account-shell footer treatment. */
+#footer {
+  margin-top: 0;
+  background: #0f0f12;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+#footer.dashboard-footer {
+  width: calc(100% - 250px);
+  margin-left: 250px;
+}
+
+#footer > div {
+  background: #0b0b0f !important;
+}
+
+#footer .grain-Backdrop {
+  opacity: .14;
+}
+
+#footer .max-w-7xl {
+  padding-top: clamp(42px, 6vw, 72px);
+  padding-bottom: 24px;
+}
+
+#footer .grid {
+  gap: clamp(30px, 5vw, 72px);
+}
+
+#footer h4 {
+  margin-bottom: 16px;
+  color: #f5f5f7;
+  font-size: .68rem;
+  letter-spacing: .16em;
+}
+
+#footer h4::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin-top: 9px;
+  background: #d4af37;
+}
+
+#footer .footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #9ca3af;
+  transition: color .2s ease, transform .2s ease;
+}
+
+#footer .footer-link::before {
+  content: "›";
+  color: #d4af37;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+#footer .footer-link:hover {
+  color: #d4af37;
+  transform: translateX(3px);
+}
+
+#footer .footer-link:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#footer .fa-dharmachakra {
+  color: #d4af37 !important;
+}
+
+#footer .mt-5.inline-flex {
+  border-color: rgba(212, 175, 55, .25);
+  background: rgba(212, 175, 55, .06);
+  color: #9ca3af;
+}
+
+#footer .mt-12 {
+  margin-top: 46px;
+  padding-top: 18px;
+  border-color: rgba(212, 175, 55, .15);
+  color: #6f7680;
+}
+
+.footer-item {
+  color: #8c939d;
+}
+
+.footer-item:hover {
+  color: #f3a630;
+}
+
+.footer-item .icon {
+  width: 19px;
+  height: 19px;
+}
+
+.active-tab {
+  color: #fe8c16 !important;
+}
+
+.active-tab::before {
+  background: rgba(254, 140, 22, .16);
+  box-shadow: 0 0 20px rgba(254, 140, 22, .2);
+}
+
+@media (max-width: 800px) {
+  #footer.dashboard-footer {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  nav.fixed.bottom-1 {
+    bottom: 12px;
+    width: calc(100% - 24px);
+    height: 64px;
+    padding: 4px;
+    border: 1px solid rgba(195, 176, 137, .35);
+    border-radius: 16px;
+    background: rgba(12, 13, 16, .96) !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .48);
+  }
+
+  nav.fixed.bottom-1 > div {
+    display: none;
+  }
+
+  nav.fixed.bottom-1 .footer-item {
+    border-radius: 12px;
+  }
+
+  nav.fixed.bottom-1 .footer-item:hover,
+  nav.fixed.bottom-1 .footer-item.active-tab {
+    background: rgba(254, 140, 22, .1);
+  }
+
+  nav.fixed.bottom-1 .footer-item span {
+    margin-top: 3px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+
+  nav.fixed.bottom-1 .mobile-deposit-action {
+    flex: 0 0 76px;
+  }
+}

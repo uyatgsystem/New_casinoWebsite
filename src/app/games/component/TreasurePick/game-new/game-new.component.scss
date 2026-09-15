@@ -1,0 +1,1416 @@
+.game-background {
+  min-height: 100vh;
+  width: 100vw;
+  background: url("https://treasure-box.pages.dev/houseOfLuck/bgnew.jpeg") center center / cover no-repeat;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.5s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    filter: blur(1px);
+    z-index: 0;
+  }
+
+  // Remove the blur class - we'll control this from TypeScript
+  &.game-blurred {
+    // filter: blur(8px);
+
+    // .game-content,
+    // .wallet-container,
+    // .bet-container {
+    //   filter: blur(4px);
+    //   pointer-events: none;
+    // }
+  }
+}
+
+// Selected chest overlay (center screen) - Now positioned outside and above everything
+.selected-chest-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000; // Increased z-index to ensure it's above everything
+  pointer-events: none;
+  // Remove any filters to ensure it's never blurred
+
+  &.chest-removing {
+    animation: selectedChestFadeOut 0.8s ease-out forwards;
+  }
+}
+
+.selected-chest-container {
+  width: clamp(300px, 40vw, 500px);
+  height: clamp(300px, 40vh, 500px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+  // Ensure no blur is applied
+  backdrop-filter: none;
+
+  &.chest-anim-shake {
+    animation: selectedChestShake 1.2s ease-in-out;
+  }
+
+  &.chest-anim-open {
+    animation: selectedChestOpen 1s ease-out;
+  }
+}
+
+.selected-chest-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  // Ensure crisp rendering
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.selected-reward-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected-open-chest-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  // Ensure crisp rendering
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.selected-reward-display {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: selectedRewardReveal 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards;
+  opacity: 0;
+}
+
+.selected-reward-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(5px, 1vh, 10px);
+  max-width: 100%;
+}
+
+.selected-reward-text {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000,
+    -3px 3px 0 #000, 5px 5px 15px rgba(0, 0, 0, 0.8);
+  color: #ffc107;
+  line-height: 0.9;
+  margin-bottom: clamp(5px, 1vh, 10px);
+  white-space: nowrap;
+
+  &.multiplier {
+    color: #28a745;
+    font-size: clamp(3rem, 9vw, 6rem);
+  }
+
+  &.empty {
+    color: #ff6b6b;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    white-space: normal;
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000,
+      -2px 2px 0 #000, 3px 3px 10px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.selected-reward-icon {
+  width: clamp(80px, 15vw, 150px);
+  height: clamp(80px, 15vw, 150px);
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
+  flex-shrink: 0;
+  // Ensure crisp rendering
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+// Wallet container positioned absolutely
+.wallet-container {
+  position: fixed;
+  top: clamp(20px, 4vh, 50px);
+  right: clamp(20px, 4vw, 50px);
+  z-index: 100;
+  transition: filter 0.5s ease;
+}
+
+.wallet-bar {
+  position: relative;
+  height: clamp(85px, 9vh, 150px);
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallet-icon {
+  width: clamp(140px, 48vw, 300px);
+  height: clamp(140px, 48vw, 300px);
+  object-fit: contain;
+  filter: drop-shadow(0 6px 24px rgba(255, 215, 0, 0.35));
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  &:hover {
+    transform: scale(1.08) rotate(-2deg);
+    filter: drop-shadow(0 12px 36px rgba(255, 215, 0, 0.5));
+  }
+}
+
+.wallet-amount-abs {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+  font-weight: bold;
+  z-index: 2;
+  pointer-events: none;
+  text-shadow: 2px 2px 8px #000;
+  white-space: nowrap;
+}
+
+.wallet-sparkle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(50px, 10vw, 75px);
+  height: clamp(50px, 10vw, 75px);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+      #fffbe7 0%,
+      #ffd700 60%,
+      transparent 100%);
+  opacity: 0.8;
+  z-index: 10;
+  animation: walletSparkleAnim 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+// Main game content wrapper
+.game-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: filter 0.5s ease;
+}
+
+// Game host positioning
+.game-host-container {
+  position: absolute;
+  left: clamp(-5vw, -60px, -40px);
+  bottom: clamp(5%, 50px, 100px);
+  z-index: 10;
+}
+
+.game-host {
+  width: 19dvw;
+  position: relative;
+  height: 84dvh;
+  left: 50%;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
+  animation: hostFloat 3s ease-in-out infinite;
+}
+
+// Shelf frame
+.shelf-frame {
+  position: relative;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.4));
+  z-index: 2;
+  width: 52dvw;
+  height: 75dvh;
+}
+
+.shelf-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.shelf-image.shelf-bounce-in {
+  animation: shelfBounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  will-change: transform, opacity;
+}
+
+// Game overlay
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(30px, 6vh, 60px);
+}
+
+// Chests grid
+.chests-grid {
+  // width: clamp(350px, 80%, 700px);
+  // height: clamp(350px, 60%, 550px);
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: end;
+  width: 38dvw;
+  height: 37dvh;
+  gap: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: opacity;
+}
+
+.chests-grid.chests-visible {
+  opacity: 1;
+}
+
+// Individual chest slots
+.chest-slot {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  max-width: 8dvw;
+  max-height: 15dvh;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+
+  &:hover:not(.chest-opened) {
+    transform: scale(1.05) translateY(-2px);
+    filter: drop-shadow(0 8px 16px rgba(255, 193, 7, 0.5));
+  }
+
+  &.chest-opened {
+    animation: chestOpen 0.8s ease-out;
+    align-items: center;
+  }
+
+  &.chest-drop-in {
+    animation: chestDrop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    will-change: transform, opacity;
+  }
+
+  &.chest-reveal {
+    animation: chestReveal 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+}
+
+// Chest image styling
+.chest-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.4));
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+
+// Reward display in opened chests
+.reward-box-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.open-chest-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  object-position: center center;
+}
+
+.reward-display {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rewardReveal 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.reward-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(1px, 0.3vh, 3px);
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.reward-text {
+  font-size: clamp(0.55rem, 2vw, 2.5rem);
+  font-weight: 800;
+  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000,
+    -2px 2px 0 #000, 3px 3px 6px rgba(0, 0, 0, 0.7);
+  color: #ffc107;
+  line-height: 0.9;
+  margin-bottom: clamp(0px, 0.2vh, 2px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.multiplier {
+    color: #28a745;
+    font-size: clamp(0.65rem, 2.2vw, 2.5rem);
+  }
+
+  &.empty {
+    color: #ff6b6b;
+    font-size: clamp(0.45rem, 1.6vw, 0.9rem);
+    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+      -1px 1px 0 #000, 2px 2px 4px rgba(0, 0, 0, 0.5);
+    white-space: normal;
+  }
+}
+
+.reward-icon {
+  width: clamp(32px, 8vw, 60px);
+  height: clamp(32px, 8vw, 60px);
+  margin-bottom: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  flex-shrink: 0;
+}
+
+// Game footer with buttons
+.game-footer {
+  position: absolute;
+  bottom: clamp(15px, 6vh, 40px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+}
+
+.choose-button,
+.play-again-button {
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+  font-weight: 800;
+  border: none;
+  border-radius: 25px;
+  padding: clamp(10px, 2.5vh, 15px) clamp(25px, 6vw, 40px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-family: "Arial Black", Arial, sans-serif;
+}
+
+.choose-button {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: buttonPulse 2s ease-in-out infinite;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(220, 53, 69, 0.4);
+  }
+}
+
+.play-again-button {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffc107;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Flying reward animation
+.flying-reward {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  animation: fly-to-wallet 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+ width: 60px !important;
+  height: 60px !important;
+  max-width: 12vw;
+  max-height: 12vw;
+}
+
+.flying-reward-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+// Bet container positioned at bottom center
+.bet-container {
+  position: fixed;
+  bottom: 0.1px;
+  left: 48%;
+  transform: translateX(-50%);
+  z-index: 100;
+  transition: filter 0.5s ease;
+}
+
+.bet-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 20px);
+}
+
+.bet-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+
+  &:hover:not(:disabled) {
+    transform: scale(1.12);
+    filter: drop-shadow(0 8px 16px rgba(255, 193, 7, 0.5));
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+}
+
+
+.bet-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bet-bar-image {
+  width: 20dvw;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(139, 69, 19, 0.4));
+}
+
+.bet-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 20px);
+  z-index: 2;
+}
+
+.bet-coin-icon {
+  width: clamp(32px, 6vw, 48px);
+  height: clamp(32px, 6vw, 48px);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.bet-amount-text {
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  line-height: 1;
+}
+
+
+
+
+// Chest animations
+.chest-anim-move-out {
+  z-index: 20;
+  animation: chestMoveOut 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.chest-anim-shake-open {
+  z-index: 21;
+  animation: chestShakeOpen 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes selectedRewardReveal {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(-90deg);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes selectedChestShake {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  20% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  40% {
+    transform: scale(1.1) rotate(2deg);
+  }
+
+  60% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  80% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes selectedChestOpen {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shelfBounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(120px) scale(0.95);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-18px) scale(1.05);
+  }
+
+  80% {
+    transform: translateY(8px) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chestDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.8);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(8px) scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chestOpen {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rewardReveal {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(-90deg);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes buttonPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 4px 20px rgba(220, 53, 69, 0.5);
+  }
+}
+
+@keyframes hostFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes fly-to-wallet {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0.85;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  75% {
+    opacity: 0.1;
+  }
+
+  100% {
+    transform: translate(var(--end-x), var(--end-y)) scale(0.7);
+    opacity: 0;
+  }
+}
+
+@keyframes walletSparkleAnim {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.5);
+    filter: blur(0px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+    filter: blur(2px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.8);
+    filter: blur(6px);
+  }
+}
+
+@keyframes selectedChestFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes chestReveal {
+  0% {
+    transform: scale(0.8) rotateY(-20deg);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.1) rotateY(10deg);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+// Bet container positioned at bottom center
+.bet-container {
+  position: fixed;
+  bottom: 0.1px;
+  left: 48%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.bet-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 20px); // Reduced gap for more compact controls
+}
+
+.bet-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+
+  &:hover:not(:disabled) {
+    transform: scale(1.12);
+    filter: drop-shadow(0 8px 16px rgba(255, 193, 7, 0.5));
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+}
+
+.bet-btn-icon {
+  width: 10dvw;
+  height: 9dvh;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.bet-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.bet-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 20px);
+  z-index: 2;
+}
+
+.bet-coin-icon {
+  width: clamp(32px, 6vw, 48px);
+  height: clamp(32px, 6vw, 48px);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.bet-amount-text {
+  color: #fff;
+  font-size: clamp(1rem, 3vw, 4.5rem); // Large font for bet amount
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  line-height: 1;
+}
+
+
+
+
+
+// Chest animations
+.chest-anim-move-out {
+  z-index: 20;
+  animation: chestMoveOut 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.chest-anim-shake-open {
+  z-index: 21;
+  animation: chestShakeOpen 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes selectedRewardReveal {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(-90deg);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes selectedChestShake {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  20% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  40% {
+    transform: scale(1.1) rotate(2deg);
+  }
+
+  60% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  80% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes shelfBounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(120px) scale(0.95);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-18px) scale(1.05);
+  }
+
+  80% {
+    transform: translateY(8px) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chestDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.8);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(8px) scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rewardReveal {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(-90deg);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes buttonPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 4px 20px rgba(220, 53, 69, 0.5);
+  }
+}
+
+@keyframes hostFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes fly-to-wallet {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0.85;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  75% {
+    opacity: 0.1;
+  }
+
+  100% {
+    transform: translate(var(--end-x), var(--end-y)) scale(0.7);
+    opacity: 0;
+  }
+}
+
+@keyframes walletSparkleAnim {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.5);
+    filter: blur(0px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+    filter: blur(2px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.8);
+    filter: blur(6px);
+  }
+}
+
+@keyframes selectedChestFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes chestReveal {
+  0% {
+    transform: scale(0.8) rotateY(-20deg);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.1) rotateY(10deg);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+// Responsive breakpoints
+@media (max-width: 1440px) {
+  .shelf-frame {
+    width: clamp(380px, 85vw, 900px);
+    height: clamp(480px, 70vh, 700px);
+  }
+
+  .chests-grid {
+    width: 37dvw;
+    height: 37dvh;
+    gap: 1.5rem;
+  }
+
+  .chest-slot {
+    max-height: 14dvh;
+  }
+
+  .reward-display {
+    top: 40%;
+    width: 75%;
+  }
+
+  .game-host-container {
+    left: clamp(-4vw, -50px, -35px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .chests-grid {
+    width: 46dvw;
+    height: 34dvh;
+    gap: 1.2rem;
+  }
+
+  .chest-slot {
+    max-height: 14dvh;
+    max-width: 12dvw;
+  }
+
+  .game-host-container {
+    left: clamp(-3vw, -40px, -25px);
+  }
+
+  .game-host {
+    width: 23dvw;
+    left: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-background {
+    padding: 10px;
+  }
+
+  .wallet-container {
+    top: 15px;
+    right: 15px;
+  }
+
+  .wallet-bar {
+    height: clamp(80px, 12vh, 100px); // Increased from clamp(60px, 10vh, 80px)
+  }
+
+  .wallet-amount-abs {
+    font-size: clamp(1rem, 3vw, 2rem);
+  }
+
+  .wallet-sparkle {
+    width: clamp(40px, 8vw, 60px);
+    height: clamp(40px, 8vw, 60px);
+  }
+
+  .chests-grid {
+    width: 61dvw;
+    height: 34dvh;
+    gap: 1.5rem;
+  }
+
+  .chest-slot {
+    width: 13dvw;
+    height: 16dvh;
+  }
+
+  .game-host-container {
+    display: none;
+  }
+
+  .bet-bar-image {
+    width: 30dvw;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .shelf-frame {
+    width: 96dvw;
+    height: 47dvh;
+  }
+
+  .chests-grid {
+    width: 54dvw;
+    height: 23dvh;
+    gap: 0px;
+  }
+
+  .chest-slot {
+
+    max-width: 13dvw;
+    max-height: 10dvh;
+  }
+
+
+  .para {
+    padding: 0 4rem;
+    font-size: 11px;
+  }
+
+  .wallet-bar {
+    height: clamp(70px, 10vh, 90px); // Increased from clamp(50px, 8vh, 70px)
+  }
+
+  .wallet-amount-abs {
+    font-size: clamp(0.9rem, 2.8vw, 1.8rem);
+  }
+
+  .wallet-sparkle {
+    width: clamp(35px, 7vw, 50px);
+    height: clamp(35px, 7vw, 50px);
+  }
+}
+
+@media (max-width: 375px) {
+  .chests-grid {
+
+    width: 50dvw;
+    height: 22dvh;
+    gap: 0px;
+  }
+  .game-overlay{
+    width: 96%;
+  }
+
+  .chest-slot {
+
+    max-width: 10dvw;
+    max-height: 9dvh;
+  }
+
+
+
+
+  .wallet-bar {
+    height: clamp(60px,
+        9vh,
+        80px); // Added specific styling for very small screens
+  }
+
+  .wallet-amount-abs {
+    font-size: clamp(0.8rem, 2.5vw, 1.5rem);
+  }
+
+  .wallet-sparkle {
+    width: clamp(30px, 6vw, 45px);
+    height: clamp(30px, 6vw, 45px);
+  }
+}
+
+// Add fade out animation for selected chest removal
+.selected-chest-overlay {
+  // ...existing code...
+
+  &.chest-removing {
+    animation: selectedChestFadeOut 0.8s ease-out forwards;
+  }
+}
+
+// Add staggered reveal animation for remaining chests
+.chest-slot {
+  // ...existing code...
+
+  &.chest-reveal {
+    animation: chestReveal 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+}
+
+// New animations
+@keyframes selectedChestFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes chestReveal {
+  0% {
+    transform: scale(0.8) rotateY(-20deg);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.1) rotateY(10deg);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+// ...existing code...
+.info-btn-container {
+  position: fixed;
+    top: 15px;
+    left: 9rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.info-btn {
+  background: rgba(44, 32, 0, 0.7);
+  border: 2px solid #ffd700;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px #0003;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    transform: scale(1.08) rotate(-6deg);
+    box-shadow: 0 4px 16px #ffd70055;
+    background: rgba(44, 32, 0, 0.92);
+  }
+
+  img {
+    width: 5dvw;
+    height: auto;
+    display: block;
+  }
+}
+@media (max-width:768px) {
+  .bet-controls{
+    padding-bottom: 40px;
+  }
+}
+/* Mobile: stack back button and info button in two rows to avoid overlap */
+@media (max-width: 480px) {
+  .back-btn-custom {
+    top: 8px !important;
+    left: 8px !important;
+    padding: 6px 10px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .info-btn-container {
+    top: 56px !important; /* place below the back button */
+    left: 8px !important;
+    right: auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 200;
+  }
+
+  .info-btn {
+    padding: 6px !important;
+    border-radius: 8px !important;
+    img { width: 28px !important; height: auto !important; }
+  }
+}
+
+.game-background.game-blurred {
+  filter: blur(8px) brightness(0.8);
+  pointer-events: none;
+  user-select: none;
+}

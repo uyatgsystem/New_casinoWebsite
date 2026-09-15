@@ -1,0 +1,25 @@
+<div class="bg-game-purple">
+  <div class="z-10 absolute md:flex bottom-[3rem] left-20 group hidden">
+    <img
+      src="
+      https://cmax.pages.dev/assets/Spinner/spinner-home.png"
+      alt="Spin Now"
+      class="floating-icon"
+    />
+    <button
+      class="spin-button hidden download-btn group-hover:block"
+      (click)="RedirectToSpinner()"
+    >
+      Spin Now
+    </button>
+  </div>
+
+  <app-casino-landing></app-casino-landing>
+  <!-- Game Categories -->
+  <div class="mx-auto mt-0 md:mb-40 lg:mb-8 lg:px-4">
+    <!-- <app-featured-cards></app-featured-cards> -->
+    <app-games-landing></app-games-landing>
+    <!-- <app-sectrech-card-list></app-sectrech-card-list> -->
+    <!-- <app-lottery-cards [lottery]=" -->
+  </div>
+</div>

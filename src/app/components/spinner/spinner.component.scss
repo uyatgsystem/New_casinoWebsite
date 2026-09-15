@@ -1,0 +1,178 @@
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.wheel-container {
+  width: 27rem;
+  height: 27rem;
+  position: relative;
+  border-radius: 50%;
+  /* ✅ Ultra-Rich Conic Slices shifted by -18deg for 10 items */
+  background: conic-gradient(
+    from -18deg,
+    #22262d 0deg 36deg,
+    #141619 36deg 72deg,
+    #252932 72deg 108deg,
+    #141619 108deg 144deg,  
+    #22262d 144deg 180deg,
+    #141619 180deg 216deg,
+    #252932 216deg 252deg,
+    #141619 252deg 288deg,
+    #22262d 288deg 324deg,
+    #141619 324deg 360deg
+  );
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(243, 166, 48, 0.3);
+  overflow: hidden;
+  border: 7px solid #C3B089;
+}
+
+/* ✅ Inner wheel handles rotation instantly without delay */
+.wheel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.05s linear;
+  transform-origin: center center;
+}
+
+.segment {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.segment-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+  transform-origin: center center;
+}
+
+.prize-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transform-origin: center center;
+
+  .prize-icon-img {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9));
+  }
+
+  .prize-text {
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.6px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95), 0 0 10px rgba(243, 166, 48, 0.5);
+    white-space: nowrap;
+  }
+}
+
+.prize-group.prize-win {
+  animation: pulseWin 0.9s infinite alternate;
+
+  .prize-text {
+    color: #FFE07A;
+    font-size: 1.2rem;
+    text-shadow: 0 0 15px #FE8006, 0 2px 5px rgba(0, 0, 0, 0.95);
+  }
+}
+
+@keyframes pulseWin {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.18); }
+}
+
+.central-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6rem;
+  height: 6rem;
+  background: linear-gradient(135deg, #FEC866 0%, #FE8006 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(254, 128, 6, 0.8), inset 0 3px 10px rgba(255, 255, 255, 0.9);
+  z-index: 50;
+  border: 5px solid #121415;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    filter: brightness(1.15);
+  }
+}
+
+.hub-text {
+  color: #000;
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6);
+}
+
+.hub-text--spinning {
+  font-size: 0.7rem !important;
+  animation: pulseHub 0.8s infinite;
+}
+
+// Home page embeds this same wheel much smaller (showHeaderSection=false) —
+// the hub text needs to shrink to match, or it dwarfs the shrunken hub.
+.hub-text--compact {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.5px;
+}
+
+@keyframes pulseHub {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.clip-triangle {
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+}
+
+@media (max-width: 768px) {
+  .wheel-container {
+    width: min(16rem, calc(100vw - 7rem));
+    height: min(16rem, calc(100vw - 7rem));
+    max-width: 100%;
+  }
+  .central-hub {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+  .segment-content {
+    padding-top: 28px;
+  }
+  .prize-group .prize-icon-img {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  .prize-group .prize-text {
+    font-size: 0.75rem;
+  }
+}

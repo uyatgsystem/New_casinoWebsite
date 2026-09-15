@@ -1,0 +1,12 @@
+<!-- <div class="rules-backdrop" (click)="close()"></div> -->
+<div class="rules-popup">
+  <img src="https://treasure-box.pages.dev/houseOfLuck/rulesbg.png" alt="Rules Background" class="rules-bg-img" />
+  <button class="rules-close-btn" (click)="close()" aria-label="Close">&times;</button>
+  <div class="rules-content">
+    <h2>Game Rules</h2>
+    <p class="para">
+      Choose a chest to reveal your reward! Some chests contain coins, gems, or multipliers. Try your luck and win big!
+    </p>
+    <ng-content></ng-content>
+  </div>
+</div>

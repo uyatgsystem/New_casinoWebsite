@@ -1,0 +1,110 @@
+<!-- Wrapper -->
+<div class="flex justify-center pt-6 items-center min-h-[40dvh] md:min-h-[60vh] bg-[#0A0E1F] px-4 sm:px-6">
+  <!-- Desktop Version -->
+  <div class="relative w-full max-w-[1415px] h-[430px] hidden md:block">
+    <!-- Background Shape (Desktop) -->
+    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1415 430" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Outer Glow Filter -->
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="12" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <!-- Soft colored glow tone -->
+        <filter id="outerGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="18" result="coloredBlur" />
+          <feFlood flood-color="#19E4E0" flood-opacity="0.6" result="glowColor" />
+          <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow" />
+          <feMerge>
+            <feMergeNode in="softGlow" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <g filter="url(#outerGlow)">
+        <path
+          d="M109 91.5L168.692 43.1366C174.39 38.5195 181.502 36 188.837 36H1072C1089.67 36 1104 50.3269 1104 68V354C1104 371.673 1089.67 386 1072 386H72C54.3269 386 40 371.673 40 354V164.405C40 154.956 44.1762 145.99 51.4095 139.909L109 91.5Z"
+          fill="#13192E" stroke="#19E4E0" stroke-width="2" />
+      </g>
+
+      <g filter="url(#glow)">
+        <path
+          d="M208.691 48.5H1045C1062.4 48.5 1076.5 62.603 1076.5 80V342C1076.5 359.397 1062.4 373.5 1045 373.5H99C81.603 373.5 67.5 359.397 67.5 342V168.804C67.5001 159.399 71.7021 150.487 78.957 144.503L132.81 100.086L189.089 55.3428C194.662 50.9121 201.572 48.5001 208.691 48.5Z"
+          stroke="#19E4E0" stroke-width="2" />
+      </g>
+    </svg>
+
+    <!-- Desktop Content -->
+    <div class="relative z-10 flex flex-col h-full md:w-[60%] px-6 md:px-12 lg:px-[8rem] py-[8rem] text-white">
+      <h2 class="text-[22px] md:text-[26px] font-bold leading-snug mb-4">
+        Unlock Your Potential & Discover the Thrill of Winning!
+      </h2>
+
+      <p class="hidden md:block text-[#A6B1C2] text-sm md:text-[16px] leading-relaxed mb-6">
+        Step into the excitement of Spin Hub! Pick your lucky numbers, join
+        thrilling lotteries, and feel the rush as you chase life-changing wins.
+        Your next big jackpot could be just one spin away.
+      </p>
+
+      <!-- Button -->
+      <div class="inline-flex">
+        <div class="border-2 border-[#19E4E0] rounded-full p-[2px]">
+          <button class="bg-[#19E4E0] text-black px-6 md:px-8 py-2 rounded-full font-bold shadow-md transition">
+            Play Game
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Floating Image -->
+    <div class="absolute top-[10%] right-[2%] w-[60%] md:w-[50%] h-auto z-0">
+      <svg class="w-full h-full" viewBox="0 0 950 600" fill="none" xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="gameImage" patternUnits="objectBoundingBox" width="1" height="1">
+            <image href="https://cmax.pages.dev/assets//landing-page/highlight-card.png" width="950" height="600"
+              preserveAspectRatio="xMidYMid slice" />
+          </pattern>
+        </defs>
+        <path
+          d="M109 91.5L168.692 43.1366C174.39 38.5195 181.502 36 188.837 36H1072C1089.67 36 1104 50.3269 1104 68V520C1104 537.673 1089.67 552 1072 552H72C54.3269 552 40 537.673 40 520V164.405C40 154.956 44.1762 145.99 51.4095 139.909L109 91.5Z"
+          fill="url(#gameImage)" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Mobile Version -->
+  <div class="md:hidden flex justify-center items-center w-full px-2 sm:px-4 py-6 bg-[#0A0E1F]">
+    <div class="relative w-full h-auto">
+      <!-- Content -->
+      <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between w-full h-full p-4 sm:p-5">
+        <!-- Left Text + Button -->
+        <div class="flex flex-col justify-center w-full text-white mb-4 sm:mb-0">
+          <h2 class="text-[18px] sm:text-[22px] font-bold leading-tight mb-2 text-center sm:text-left">
+            Unlock Your Potential & Discover the Thrill of Winning!
+          </h2>
+          <div class="inline-flex justify-center sm:justify-start w-full">
+            <div class="border border-[#19E4E0] rounded-[10px] p-[1px]">
+              <button
+                class="bg-[#19E4E0] text-black text-[10px] font-semibold px-4 py-1 rounded-[8px] whitespace-nowrap"
+                (click)="redirectToLogin()">
+                Play Game
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Image -->
+        <div class="w-full sm:w-[200px] h-[250px] rounded-lg overflow-hidden">
+          <img src="https://cmax.pages.dev/assets//landing-page/highlight-card.png" alt="Game" width="950" height="600"
+            class="w-full h-full object-cover rounded-lg" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

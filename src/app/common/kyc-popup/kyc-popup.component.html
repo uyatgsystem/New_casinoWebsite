@@ -1,0 +1,61 @@
+<div class="kyc-popup-backdrop">
+  <div
+    class="kyc-popup-card"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="title"
+  >
+    <div class="kyc-popup-topline"></div>
+
+    <button
+      type="button"
+      (click)="onClose()"
+      aria-label="Close"
+      class="kyc-popup-close"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        ></path>
+      </svg>
+    </button>
+
+    <div class="kyc-popup-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6 text-yellow-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 9v2m0 4h.01M12 3a9 9 0 110 18 9 9 0 010-18z"
+        />
+      </svg>
+    </div>
+
+    <span class="kyc-popup-kicker">Account verification</span>
+    <h2>{{ title }}</h2>
+    <p>{{ message }}</p>
+
+    <button
+      type="button"
+      (click)="onAction()"
+      [disabled]="isProcessing"
+      class="kyc-popup-action"
+    >
+      {{ buttonText }}
+    </button>
+  </div>
+</div>

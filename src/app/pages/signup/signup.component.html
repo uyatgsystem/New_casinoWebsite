@@ -1,0 +1,435 @@
+<app-loader></app-loader>
+<div
+  class="main-bg relative w-full min-h-[100vh] bg-cover bg-center overflow-y-auto"
+>
+  <!-- Main Container with Left and Right Divs -->
+  <div class="flex flex-col lg:flex-row lg:absolute lg:inset-0 min-h-screen">
+    <!-- LeftDiv: Logo, Welcome Text, Person Image (Desktop View) -->
+    <div
+      class="hidden lg:flex flex-1 flex-col justify-between bg-[#00040880]"
+      style="clip-path: ellipse(85% 100% at 0% 50%)"
+    >
+      <!-- Logo -->
+      <div
+        class="hidden md:hidden lg:flex justify-start lg:mb-0 pt-4 lg:p-[1rem]"
+      >
+        <img
+          src="https://spinhub-6rb.pages.dev/assets/logo.png"
+          alt="Logo"
+          class="w-[200px] h-[150px]"
+          style="
+            transform: scale(1.1);
+            transform-origin: center;
+            margin-left: 4rem;
+          "
+        />
+      </div>
+      <!-- Welcome Text -->
+      <div
+        class="mobile-welcome-text flex flex-col items-start text-left text-white max-w-xl mx-auto lg:mx-0 pl-[3rem] lg:flex"
+      >
+        <h1
+          class="text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] xl:text-[42px] 2xl:text-[42px] font-bold mb-4 leading-tight"
+        >
+          Unlock Your <span class="text-[#F3A630]">Winning Journey</span>
+        </h1>
+
+        <p
+          class="text-white-300 text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] leading-relaxed"
+        >
+          Your next big win starts here. Join Spin Hub for premium games,
+          exciting rewards, and unforgettable moments made for players who play
+          to win.
+        </p>
+      </div>
+    </div>
+
+    <!-- Mobile Header -->
+    <div class="lg:hidden mobile-header-section">
+      <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Logo" />
+      <h1>Start Your <span class="text-[#F3A630]">Winning Journey</span></h1>
+      <p>
+        Create your account and step into a world of premium games and instant
+        rewards.
+      </p>
+    </div>
+
+    <!-- RightDiv: Form Section -->
+    <div
+      class="flex-1 flex items-center lg:items-center justify-center p-2 sm:p-3 lg:p-8 lg:pr-16 pb-12 lg:pb-8"
+    >
+      <div
+        class="rounded-[1.5rem] backdrop-blur-md border border-[#FE8912] p-3 sm:p-4 md:p-5 lg:p-8 2xl:p-[3rem] w-full max-w-sm sm:max-w-sm md:max-w-md 2xl:max-w-[30rem] mx-auto lg:mx-0"
+        id="formContainer"
+      >
+        <!-- Header -->
+        <div class="mt-0 mb-3 lg:mb-4">
+          <div
+            class="auth-switch flex items-center justify-center md:justify-start gap-2 mt-1 md:mb-2 lg:mb-2"
+          >
+            <span
+              class="text-white hover:text-[#F3A630] text-sm lg:text-[24px] font-semibold cursor-pointer"
+              routerLink="/login"
+              >Sign In</span
+            >
+            <span class="text-white text-sm lg:text-[24px]">/</span>
+            <a class="text-[#F3A630] text-sm lg:text-[24px] transition-colors"
+              >Create Account</a
+            >
+          </div>
+          <p
+            class="text-white text-xs lg:text-[1rem] mb-3 lg:mb-8 text-center md:text-left"
+          >
+            Create your account and unlock your winning journey.
+          </p>
+        </div>
+
+        <!-- Form -->
+        <form
+          [formGroup]="signupForm"
+          autocomplete="off"
+          (ngSubmit)="createUser()"
+        >
+          <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+
+          <!-- First & Last Name -->
+          <div class="flex flex-col lg:flex-row gap-2.5 mb-2.5">
+            <div class="w-full lg:w-1/2">
+              <input
+                id="firstName"
+                type="text"
+                formControlName="firstName"
+                placeholder="First name"
+                class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+              />
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+              <div
+                *ngIf="
+                  signupForm.get('firstName')?.invalid &&
+                  signupForm.get('firstName')?.touched
+                "
+                class="text-red-400 text-xs mt-0.5"
+              >
+                First name is required.
+              </div>
+            </div>
+
+            <div class="w-full lg:w-1/2">
+              <input
+                id="lastName"
+                type="text"
+                formControlName="lastName"
+                placeholder="Last name"
+                class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+              />
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+              <div
+                *ngIf="
+                  signupForm.get('lastName')?.invalid &&
+                  signupForm.get('lastName')?.touched
+                "
+                class="text-red-400 text-xs mt-0.5"
+              >
+                Last name is required.
+              </div>
+            </div>
+          </div>
+
+          <!-- Username & Referral Code -->
+          <div class="flex flex-col lg:flex-row gap-2.5 mb-2.5">
+            <div class="w-full lg:w-1/2">
+              <input
+                id="username"
+                type="text"
+                formControlName="username"
+                placeholder="Choose a username"
+                class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                (input)="restrictWhiteSpaces()"
+              />
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+              <div
+                *ngIf="
+                  signupForm.get('username')?.invalid &&
+                  signupForm.get('username')?.touched
+                "
+                class="text-red-400 text-xs mt-0.5"
+              >
+                Username is required.
+              </div>
+            </div>
+
+            <div class="w-full lg:w-1/2">
+              <input
+                id="referralCode"
+                type="text"
+                formControlName="referralCode"
+                placeholder="Referral code (optional)"
+                class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                (input)="restrictWhiteSpaces()"
+              />
+              <div class="h-[1px] w-full bg-custom-gradient"></div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-2.5">
+            <div class="relative">
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="Enter your email"
+                class="w-full text-white placeholder-white py-2 pr-8 focus:outline-none bg-inherit text-xs sm:text-sm"
+              />
+              <i
+                class="fas fa-envelope text-gray-300 absolute right-3 top-1/2 -translate-y-1/2 text-xs"
+              ></i>
+            </div>
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+            <div
+              *ngIf="
+                signupForm.get('email')?.invalid &&
+                signupForm.get('email')?.touched
+              "
+              class="text-red-400 text-xs mt-0.5"
+            >
+              <div *ngIf="signupForm.get('email')?.errors?.['required']">
+                Email is required.
+              </div>
+              <div *ngIf="signupForm.get('email')?.errors?.['email']">
+                Invalid email format.
+              </div>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-2.5 relative">
+            <input
+              id="password"
+              [type]="showpassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Create a strong password"
+              class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+              (input)="checkPasswordStrength()"
+              (focus)="isPasswordFocused = true"
+              (blur)="isPasswordFocused = false"
+            />
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <fa-icon
+                class="cursor-pointer text-white hover:text-[#F3A630] transition-colors text-xs"
+                (click)="togglePassword()"
+                [icon]="showpassword ? hideicon : showicon"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <!-- Password Requirements -->
+          <div
+            *ngIf="
+              signupForm.get('password')?.dirty &&
+              isPasswordFocused &&
+              !allRequirementsMet()
+            "
+            class="mb-2.5 p-2 bg-black/40 rounded text-xs"
+          >
+            <ul class="space-y-1">
+              <li
+                [class.text-green-400]="passwordChecks.length"
+                [class.text-red-400]="!passwordChecks.length"
+              >
+                Must be at least 8 characters
+              </li>
+              <li
+                [class.text-green-400]="passwordChecks.numbers"
+                [class.text-red-400]="!passwordChecks.numbers"
+              >
+                Must contain at least 2 numbers
+              </li>
+              <li
+                [class.text-green-400]="passwordChecks.uppercase"
+                [class.text-red-400]="!passwordChecks.uppercase"
+              >
+                Must contain at least 1 uppercase letter
+              </li>
+              <li
+                [class.text-green-400]="passwordChecks.lowercase"
+                [class.text-red-400]="!passwordChecks.lowercase"
+              >
+                Must contain at least 1 lowercase letter
+              </li>
+              <li
+                [class.text-green-400]="passwordChecks.special"
+                [class.text-red-400]="!passwordChecks.special"
+              >
+                Must contain at least 1 special character
+              </li>
+            </ul>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="mb-2 relative">
+            <input
+              id="confirmPassword"
+              [type]="Confirmshowpassword ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              placeholder="Confirm your password"
+              class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+            />
+            <div class="h-[1px] w-full bg-custom-gradient"></div>
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <fa-icon
+                class="cursor-pointer text-white hover:text-[#F3A630] transition-colors text-xs"
+                (click)="toggleConfirmPassword()"
+                [icon]="Confirmshowpassword ? hideicon : showicon"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div
+            *ngIf="
+              signupForm.errors?.['passwordMismatch'] &&
+              signupForm.get('confirmPassword')?.dirty
+            "
+            class="text-red-400 text-xs mt-0.5 mb-2"
+          >
+            Passwords do not match.
+          </div>
+
+          <!-- Terms & Conditions Checkbox -->
+          <div class="flex items-start gap-2.5 mt-2.5">
+            <input
+              type="checkbox"
+              formControlName="acceptTerms"
+              class="mt-0.5 accent-[#F3A630] cursor-pointer w-4 h-4 flex-shrink-0"
+            />
+            <label class="text-xs text-white leading-snug cursor-pointer">
+              I confirm that I’m 18+ and agree to the
+              <span
+                class="text-[#F3A630] underline font-medium"
+                (click)="openTermsModal()"
+              >
+                Terms & Conditions
+              </span>
+            </label>
+          </div>
+
+          <!-- Bonus Checkbox -->
+          <div class="flex items-start gap-2.5 mt-2.5 mb-3">
+            <input
+              type="checkbox"
+              formControlName="acceptOffers"
+              class="mt-0.5 accent-[#F3A630] cursor-pointer w-4 h-4 flex-shrink-0"
+            />
+            <label class="text-xs text-white leading-snug cursor-pointer">
+              I agree to receive personal bonuses and offers
+            </label>
+          </div>
+
+          <!-- Validation Message -->
+          <div
+            *ngIf="
+              signupForm.get('acceptTerms')?.invalid &&
+              signupForm.get('acceptTerms')?.touched
+            "
+            class="text-red-400 text-xs mb-2"
+          >
+            You must accept Terms & Conditions.
+          </div>
+
+          <!-- Sign Up Button -->
+          <button
+            type="submit"
+            [disabled]="signupForm.invalid || !signupForm.value.acceptTerms"
+            class="w-full mb-2.5 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black py-2.5 font-semibold rounded-tl-[12px] rounded-tr-[3px] rounded-br-[12px] rounded-bl-[3px] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
+          >
+            Create My Account
+          </button>
+
+          <!-- Google Sign Up Button -->
+          <button
+            type="button"
+            (click)="continueWithGoogle()"
+            class="w-full mb-2.5 flex items-center justify-center gap-2 border border-[#C3B089] bg-transparent px-2 py-2 rounded-tl-[12px] rounded-tr-[3px] rounded-br-[12px] rounded-bl-[3px] shadow-sm transition-all duration-300"
+          >
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google"
+              class="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0"
+            />
+            <span
+              class="text-xs sm:text-sm font-semibold bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] bg-clip-text text-transparent"
+            >
+              Sign up with Google
+            </span>
+          </button>
+
+          <!-- Login Link -->
+          <p class="text-center text-xs text-gray-300">
+            Already a member?
+            <a
+              routerLink="/login"
+              class="text-[#F3A630] hover:text-white transition-colors ml-1 underline"
+            >
+              Log in
+            </a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Backdrop -->
+  <!-- Modal Backdrop -->
+  <div
+    *ngIf="showTermsModal"
+    class="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/80"
+  >
+    <div
+      class="bg-[#121418] w-[95%] md:w-[70%] lg:w-[60%] max-h-[85vh] flex flex-col p-5 md:p-6 rounded-[1.5rem] border border-[#FE8912] shadow-2xl"
+    >
+      <h2
+        class="text-[#F3A630] text-lg md:text-xl font-semibold mb-3 flex-shrink-0"
+      >
+        Terms & Conditions
+      </h2>
+
+      <div
+        class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-2 overflow-y-auto pr-2 custom-scrollbar"
+      >
+        <p>
+          <strong>1.</strong> By registering, you confirm that you are at least
+          18 years old.
+        </p>
+        <p>
+          <strong>2.</strong> Users are responsible for maintaining account
+          security.
+        </p>
+        <p>
+          <strong>3.</strong> Platform reserves rights to suspend fraudulent
+          accounts.
+        </p>
+        <p>
+          <strong>4.</strong> All games are for entertainment; outcomes are
+          random.
+        </p>
+        <p>
+          <strong>5.</strong> Valid payment methods must be used for
+          transactions.
+        </p>
+      </div>
+
+      <div
+        class="flex justify-end mt-5 pt-3 border-t border-white/10 flex-shrink-0"
+      >
+        <button
+          type="button"
+          (click)="closeTermsModal()"
+          class="px-5 py-2 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black font-semibold rounded-tl-[10px] rounded-tr-[3px] rounded-br-[10px] rounded-bl-[3px] text-xs md:text-sm transition-transform active:scale-95"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

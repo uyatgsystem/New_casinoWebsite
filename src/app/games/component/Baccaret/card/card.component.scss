@@ -1,0 +1,442 @@
+.card-wrapper {
+  perspective: 1500px;
+  display: inline-block;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 90px;
+  height: 126px;
+  transform-origin: center center;
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-wrapper:hover .card-inner.flipped {
+  transform: rotateY(180deg) translateY(-12px) rotateX(-5deg) scale(1.08);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  background: white;
+}
+
+.card-back {
+  background: 
+    linear-gradient(145deg, #8b0000, #5a0000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 215, 0, 0.05) 10px,
+      rgba(255, 215, 0, 0.05) 20px
+    );
+    z-index: 1;
+  }
+}
+
+.card-image,
+.card-image-bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.card-image {
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-image-bg {
+  border: 3px solid rgba(139, 0, 0, 0.8);
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 -2px 4px rgba(255, 215, 0, 0.2);
+}
+
+// Enhanced 3D dealing animation from deck
+.card-deal-animation {
+  animation: dealFromDeck3D 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+}
+
+@keyframes dealFromDeck3D {
+  0% {
+    opacity: 0;
+    transform: 
+      translateX(calc(100vw - 200px))
+      translateY(calc(-50vh + 100px))
+      translateZ(300px)
+      rotateY(-15deg)
+      rotateX(45deg)
+      rotateZ(25deg)
+      scale(0.5);
+    filter: blur(2px);
+  }
+  
+  15% {
+    opacity: 1;
+    filter: blur(1px);
+  }
+  
+  30% {
+    transform: 
+      translateX(calc(65vw - 180px))
+      translateY(calc(-30vh + 70px))
+      translateZ(250px)
+      rotateY(-20deg)
+      rotateX(35deg)
+      rotateZ(18deg)
+      scale(0.6);
+  }
+  
+  50% {
+    transform: 
+      translateX(calc(40vw - 120px))
+      translateY(calc(-15vh + 40px))
+      translateZ(150px)
+      rotateY(-30deg)
+      rotateX(25deg)
+      rotateZ(12deg)
+      scale(0.75);
+  }
+  
+  70% {
+    transform: 
+      translateX(calc(15vw - 60px))
+      translateY(calc(-5vh + 20px))
+      translateZ(80px)
+      rotateY(-15deg)
+      rotateX(15deg)
+      rotateZ(6deg)
+      scale(0.88);
+    filter: blur(0.5px);
+  }
+  
+  85% {
+    transform: 
+      translateX(15px)
+      translateY(8px)
+      translateZ(30px)
+      rotateY(-8deg)
+      rotateX(8deg)
+      rotateZ(3deg)
+      scale(0.96);
+  }
+  
+  95% {
+    transform: 
+      translateX(0)
+      translateY(0)
+      translateZ(10px)
+      rotateY(-2deg)
+      rotateX(2deg)
+      rotateZ(1deg)
+      scale(1.02);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: 
+      translateX(0) 
+      translateY(0) 
+      translateZ(0)
+      rotateY(0deg)
+      rotateX(0deg)
+      rotateZ(0deg)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+// Realistic card flip animation
+.card-inner.flipped {
+  animation: flipCard3DRealistic 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes flipCard3DRealistic {
+  0% {
+    transform: rotateY(0deg) translateZ(0) scale(1);
+  }
+  
+  25% {
+    transform: rotateY(45deg) translateZ(40px) translateY(-10px) scale(1.05);
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 15px 30px rgba(0, 0, 0, 0.4);
+  }
+  
+  50% {
+    transform: rotateY(90deg) translateZ(50px) translateY(-15px) scale(1.08);
+    box-shadow: 
+      0 30px 60px rgba(0, 0, 0, 0.6),
+      0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  75% {
+    transform: rotateY(135deg) translateZ(40px) translateY(-10px) scale(1.05);
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 15px 30px rgba(0, 0, 0, 0.4);
+  }
+  
+  100% {
+    transform: rotateY(180deg) translateZ(0) scale(1);
+  }
+}
+
+// Card landing bounce effect
+@keyframes cardLanding {
+  0%, 100% {
+    transform: translateY(0) rotateX(0);
+  }
+  50% {
+    transform: translateY(-8px) rotateX(-3deg);
+  }
+}
+
+.card-wrapper:hover {
+  .card-inner {
+    filter: 
+      drop-shadow(0 25px 50px rgba(0, 0, 0, 0.6))
+      drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+  }
+}
+
+// Light reflection sweep effect
+.card-face {
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 60%
+    );
+    transform: translateX(-200%) translateY(-200%) rotate(45deg);
+    pointer-events: none;
+    z-index: 3;
+  }
+}
+
+.card-wrapper.active .card-face::before {
+  animation: lightSweep 1.2s ease-out;
+}
+
+@keyframes lightSweep {
+  0% {
+    transform: translateX(-200%) translateY(-200%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(200%) translateY(200%) rotate(45deg);
+  }
+}
+
+// Card glow when active/revealed
+.card-wrapper.active {
+  .card-inner {
+    animation: cardGlow 1s ease-in-out;
+  }
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    filter: 
+      drop-shadow(0 0 20px rgba(251, 191, 36, 0.8))
+      drop-shadow(0 0 40px rgba(251, 191, 36, 0.6))
+      drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  }
+}
+
+// Subtle card wobble on hover
+.card-wrapper:hover .card-inner:not(.flipped) {
+  animation: cardWobble 0.6s ease-in-out;
+}
+
+@keyframes cardWobble {
+  0%, 100% {
+    transform: rotateZ(0deg) rotateX(0deg);
+  }
+  25% {
+    transform: rotateZ(-2deg) rotateX(3deg);
+  }
+  75% {
+    transform: rotateZ(2deg) rotateX(-3deg);
+  }
+}
+
+// Responsive sizing
+@media (min-width: 1280px) {
+  .card-inner {
+    width: 100px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .card-inner {
+    width: 80px;
+    height: 112px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-inner {
+    width: 70px;
+    height: 98px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-inner {
+    width: 60px;
+    height: 84px;
+  }
+}
+
+@media (max-width: 375px) {
+  .card-inner {
+    width: 52px;
+    height: 73px;
+  }
+  
+  .card-face {
+    border-radius: 8px;
+  }
+}
+
+// Stacking effect with proper depth
+.cards-row {
+  app-card {
+    position: relative;
+    
+    &:nth-child(1) { 
+      z-index: 10;
+      transform: translateZ(20px);
+    }
+    &:nth-child(2) { 
+      z-index: 9;
+      margin-left: -12px;
+      transform: translateZ(15px);
+    }
+    &:nth-child(3) { 
+      z-index: 8;
+      margin-left: -12px;
+      transform: translateZ(10px);
+    }
+  }
+}
+
+// Enhanced depth layers for realism
+.card-face {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  
+  &::after {
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-back {
+  &::after {
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1), transparent 50%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  }
+}
+
+// Card shadow that follows rotation
+.card-wrapper {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 20px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.4), transparent);
+    filter: blur(8px);
+    opacity: 0.6;
+    transform: translateZ(-50px);
+    transition: all 0.3s ease;
+  }
+  
+  &:hover::after {
+    opacity: 0.8;
+    transform: translateZ(-50px) scale(1.2);
+  }
+}
+.card-image-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fff, #fafafa);
+  border: 3px solid rgba(255,255,255,0.95);
+  box-shadow: 
+    inset 0 2px 4px rgba(255,255,255,0.4),
+    inset 0 -2px 4px rgba(0,0,0,0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}

@@ -1,0 +1,237 @@
+<app-loader></app-loader>
+<div class="z-8 sticky top-[19rem] text-end right-5 group">
+  <button class="download-btn floating-icon relative" (click)="openReservedTicketsModal()">
+    <span
+      class="absolute -top-2 right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+      {{reservedTickets || 0}}
+    </span>
+    <span class="bg-[#453e53e6]/90 border-gray-600/30 p-4 mb-0 mr-4 rounded-lg">
+      <i class="fa-solid fa-ticket text-2xl text-[#FFCC24] hover:text-yellow-500"></i>
+    </span>
+  </button>
+</div>
+<!-- Ticket Information Bar -->
+<div class="flex flex-col gap-3 justify-between items-center text-white mb-4 p-4">
+  <div class="flex flex-col md:flex-row justify-between items-center w-full gap-4">
+    <div class="header">
+      <h1 class="text-xl md:text-2xl lg:text-3xl text-[#FF4C3B]">{{lotteryName.toLocaleUpperCase()}}</h1>
+      <h1 class="text-lg md:text-xl lg:text-2xl">What your Lucky number?</h1>
+    </div>
+    <!-- Search Bar -->
+    <div class="relative w-full md:w-[300px]">
+      <input type="text" placeholder="Search" [(ngModel)]="searchTerm"
+        class="w-full bg-gray-800/50 text-white rounded-full py-2 px-4 pl-10" />
+      <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none"
+        stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full gap-4">
+    <p class="text-white text-sm md:text-base">Choose your ticket from the ticket number below:</p>
+    <div class="flex flex-wrap gap-4 md:gap-8">
+      <div class="flex items-center gap-2">
+        <span class="text-purple-400">•</span>
+        <span class="text-sm md:text-base">Total tickets: <b class="text-purple-400">{{totalTickets}}</b></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-white">•</span>
+        <span class="text-sm md:text-base">Remaining tickets: <b class="text-white">{{remainingTickets}}</b></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-red-500">•</span>
+        <span class="text-sm md:text-base">Close tickets: <b class="text-red-500">{{closedTickets}}</b></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tickets Grid -->
+<div
+  class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4 max-h-[calc(100vh-220px)] overflow-y-auto p-2 md:p-4 mr-1">
+  <!-- Update the ticket card div styling -->
+  <div *ngFor="let ticket of filteredTickets" [class.opacity-50]="!ticket.isAvailable"
+    [class.cursor-not-allowed]="!ticket.isAvailable" [class.cursor-pointer]="ticket.isAvailable"
+    class="ticket-card bg-[#2A1E43] rounded-lg p-3 md:p-4 hover:bg-[#372952] transition-all" [ngClass]="{
+      'bg-yellow-600': !ticket.isAvailable,
+      'hover:bg-yellow-700': !ticket.isAvailable
+    }">
+    <div class="flex items-center gap-2 md:gap-3" (click)="reserveTicket(ticket)">
+      <!-- Game Icon -->
+      <div class="relative w-12 h-12 flex-shrink-0">
+        <div class="absolute inset-0 bg-red-600 rounded-lg transform rotate-45"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-yellow-400 font-bold text-xs">
+          {{ ticketPrefix }}
+        </div>
+      </div>
+
+      <!-- Ticket Number -->
+      <div class="text-white">
+        <h3 class="text-lg md:text-xl font-bold">{{ticket?.ticketNumber}}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Purchased Tickets Modal -->
+<div *ngIf="showPurchasedModal" (click)="openReservedTicketsModal()"
+  class="fixed z-10 inset-0 bg-black/30 modal-overlay flex items-center justify-center p-4 z-50">
+  <div class="bg-[#453e53e6]/90 backdrop-blur-sm rounded-2xl w-full max-w-xl modal slide-up"
+    (click)="$event.stopPropagation()">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center p-4 border-b border-gray-600/20">
+      <h2 class="text-xl text-white font-bold">Your Ticket</h2>
+      <button (click)="showPurchasedModal = false" class="text-gray-400 hover:text-white">✕</button>
+    </div>
+
+    <!-- Table Headers -->
+    <div class="px-4 py-3 grid grid-cols-5 text-gray-300 border-b border-gray-600/20">
+      <div class="flex items-start gap-2">
+        <input type="checkbox" [checked]="isAllSelected" (change)="toggleSelectAll()"
+          class="w-4 h-4 accent-[#00A389] cursor-pointer">
+      </div>
+      <div>Tickets</div>
+      <div>Prices</div>
+      <div>Time Left</div>
+      <div class="text-right mr-4">Status</div>
+    </div>
+
+    <!-- Tickets List -->
+    <div class="px-4 py-2 space-y-2 max-h-[300px] overflow-y-auto">
+      <div *ngFor="let ticket of purchasedTicketsList" class="grid grid-cols-5 items-center py-2">
+        <!-- Checkbox -->
+        <div class="flex items-center">
+          <input type="checkbox" [(ngModel)]="ticket.isSelected" (change)="updateSelectedTickets(ticket)"
+            [disabled]="ticket.Status !== 'Pending'" class="w-4 h-4 accent-[#00A389] cursor-pointer">
+        </div>
+
+        <!-- Ticket Number -->
+        <div class="flex items-center gap-2">
+          <div class="bg-[#FFCC24] rounded-lg px-4 py-2">
+            <span class="text-black font-bold">{{ticket.TicketNumber}}</span>
+          </div>
+        </div>
+
+        <!-- Rest of the content remains the same -->
+        <div class="text-white font-medium">
+          {{getLotteryDetails?.TIP}}$
+        </div>
+
+        <div class="text-start">
+          <ng-container *ngIf="ticket.Status === 'Pending'">
+            <span *ngIf="getTimeLeft(ticket.AddedDate) > 0" class="text-red-500 font-bold">
+              {{formatTime(getTimeLeft(ticket.AddedDate))}}
+            </span>
+            <span *ngIf="getTimeLeft(ticket.AddedDate) <= 0" class="text-gray-400">
+              Expired
+            </span>
+          </ng-container>
+          <span *ngIf="ticket.Status !== 'Pending'" class="text-gray-400">
+            --:--
+          </span>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="flex gap-2 justify-end">
+          <ng-container *ngIf="ticket.Status === 'Pending'">
+            <button (click)="showConfirmation(ticket, 'Buy',true)" [disabled]="getTimeLeft(ticket.AddedDate) <= 0"
+              [class.opacity-50]="getTimeLeft(ticket.AddedDate) <= 0"
+              [class.cursor-not-allowed]="getTimeLeft(ticket.AddedDate) <= 0"
+              class="bg-[#00A389] hover:bg-[#008975] text-white px-4 py-1 rounded text-sm">
+              Buy
+            </button>
+            <button (click)="showConfirmation(ticket, 'Cancel',true)" [disabled]="getTimeLeft(ticket.AddedDate) <= 0"
+              [class.opacity-50]="getTimeLeft(ticket.AddedDate) <= 0"
+              [class.cursor-not-allowed]="getTimeLeft(ticket.AddedDate) <= 0"
+              class="bg-[#FF4C3B] hover:bg-red-700 text-white px-4 py-1 rounded text-sm">
+              Cancel
+            </button>
+          </ng-container>
+          <span *ngIf="ticket.Status !== 'Pending'" [ngClass]="{
+              'text-[#00A389]': ticket.Status === 'Complete',
+              'text-yellow-500': ticket.Status === 'Winner',
+              'text-gray-400': ticket.Status === 'Expired'
+            }" class="font-medium">
+            {{ticket.Status === 'Complete' ? 'Purchased' : ticket.Status}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selected Tickets Actions -->
+    <div *ngIf="selectedTicketIds.length > 0"
+      class="px-6 py-3 border-t border-gray-600/20 flex justify-between items-center">
+      <span class="text-white">Selected: {{selectedTicketIds.length}} tickets</span>
+      <div class="flex gap-2">
+        <button (click)="showConfirmation(selectedTicketIds, 'Buy',false)"
+          class="bg-[#00A389] hover:bg-[#008975] text-white px-4 py-1 rounded text-sm">
+          Buy Selected
+        </button>
+        <!-- <button (click)="showConfirmation(selectedTicketIds, 'Cancel')"
+          class="bg-[#FF4C3B] hover:bg-red-700 text-white px-4 py-1 rounded text-sm">
+          Cancel Selected
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Confirmation Dialog -->
+<div *ngIf=" showConfirmationModal"
+  class="fixed z-50 inset-0 overflow-hidden flex items-center justify-center animate-fadeIn">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+  <!-- Modal Container -->
+  <div
+    class="relative bg-gradient-to-br from-[#2A1E43] to-[#372952] rounded-2xl w-[90%] max-w-md transform transition-all duration-300 scale-100 shadow-[0_0_40px_rgba(0,0,0,0.3)]">
+    <!-- Header Strip -->
+    <div [ngClass]="{
+      'bg-[#00A389]/10': actionType === 'Buy',
+      'bg-[#FF4C3B]/10': actionType === 'Cancel'
+    }" class="p-6 rounded-t-2xl">
+      <div class="flex items-center gap-4">
+        <div [ngClass]="{
+          'bg-[#00A389]/20': actionType === 'Buy',
+          'bg-[#FF4C3B]/20': actionType === 'Cancel'
+        }" class="p-3 rounded-full">
+          <i [class]="actionType === 'Buy' ? 'fa-solid fa-shopping-cart text-[#00A389]' : 'fa-solid fa-times-circle text-[#FF4C3B]'"
+            class="text-2xl"></i>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-white">Confirm {{actionType}}</h3>
+          <p class="text-gray-400 text-sm mt-1">Please confirm your action</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6">
+      <div class="flex flex-col gap-4">
+        <p class="text-gray-300">Selected ticket number:</p>
+        <div class="bg-[#372952]/50 p-4 rounded-xl border border-gray-600/20 flex items-center justify-between">
+          <span class="text-[#FFCC24] font-bold text-xl">{{selectedTicket?.TicketNumber ||
+            selectedTicketsNumbers}}</span>
+          <span class="text-gray-400">{{selectedTicketIds && selectedTicketIds.length > 0 ? selectedTicketIds.length * 5
+            :getLotteryDetails?.TIP }}$</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="p-6 pt-2 flex gap-3">
+      <button (click)="cancelConfirmation()"
+        class="flex-1 px-6 py-3 bg-gray-700/50 hover:bg-gray-700 text-gray-300 rounded-xl transition-all duration-200">
+        Close
+      </button>
+      <button (click)="confirmAction()" [ngClass]="{
+          'bg-[#00A389] hover:bg-[#008975]': actionType === 'Buy',
+          'bg-[#FF4C3B] hover:bg-red-700': actionType === 'Cancel'
+        }" class="flex-1 px-6 py-3 text-white rounded-xl transition-all duration-200 font-medium">
+        Confirm {{actionType}}
+      </button>
+    </div>
+  </div>
+</div>

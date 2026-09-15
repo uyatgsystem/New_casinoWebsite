@@ -1,0 +1,137 @@
+<!-- Selected chest overlay (center screen) -->
+<div *ngIf="selectedChestId !== null" class="selected-chest-overlay">
+  <div class="selected-chest-container" [ngClass]="{
+      'chest-anim-shake': selectedChestAnimation === 'shake',
+      'chest-anim-open': selectedChestAnimation === 'opened'
+    }">
+    <ng-container *ngIf="selectedChest?.opened; else selectedClosedChest">
+      <div class="selected-reward-box">
+        <img src="https://treasure-box.pages.dev/houseOfLuck/closetreasure.png" alt="Open Treasure Box"
+          class="selected-open-chest-image" />
+        <div class="selected-reward-display" [ngSwitch]="selectedChest?.reward?.type || ''">
+          <div *ngSwitchCase="'coins'" class="selected-reward-content">
+            <span class="selected-reward-text">{{
+              selectedChest?.reward?.amount ?? ""
+              }}</span>
+            <img [src]="goldCoins" alt="Gold Coins" class="selected-reward-icon" />
+          </div>
+          <div *ngSwitchDefault class="selected-reward-content">
+            <span class="selected-reward-text empty">Try Again</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #selectedClosedChest>
+      <img [src]="treasureChest" alt="Treasure Chest" class="selected-chest-image" />
+    </ng-template>
+  </div>
+</div>
+
+<div class="game-background" [ngClass]="{ 'game-blurred': showRules }">
+  <!-- Back Button -->
+<button
+  class="absolute top-6 left-6 z-50 bg-[#EABD44] text-white px-4 py-2 rounded-lg shadow hover:bg-[#263143] transition back-btn-custom"
+  (click)="goBack()">
+  ← Back
+</button>
+  <div class="info-btn-container">
+    <button class="info-btn" (click)="onInfoClick()" aria-label="Info">
+      <img src="https://treasure-box.pages.dev/houseOfLuck/infobtn.png" alt="Info" />
+    </button>
+  </div>
+  <!-- Flying reward animation -->
+  <div *ngIf="flyingReward" class="flying-reward" [style.left.px]="flyingReward.start.x"
+    [style.top.px]="flyingReward.start.y" [style.width.px]="flyingReward.start.width"
+    [style.height.px]="flyingReward.start.height" [ngStyle]="{
+      '--end-x': flyingReward.end.x + 'px',
+      '--end-y': flyingReward.end.y + 'px'
+    }">
+    <img [src]="flyingReward.icon" class="flying-reward-icon" />
+  </div>
+
+  <!-- Wallet bar -->
+  <div class="wallet-container">
+    <div class="wallet-bar">
+      <img src="https://treasure-box.pages.dev/houseOfLuck/wallet1.png" alt="Wallet" class="wallet-icon" />
+      <span class="wallet-amount-abs">{{ getRoundedBalance() }}</span>
+      <div *ngIf="walletSparkle" class="wallet-sparkle"></div>
+    </div>
+  </div>
+
+  <!-- Bet bar (show only when game is NOT finished) -->
+  <div class="bet-container" *ngIf="gamePhase !== 'finished'">
+    <div class="bet-controls">
+      <button class="bet-btn minus-btn" (click)="decrementBetAmount()" [disabled]="betAmount <= 5">
+        <img src="https://treasure-box.pages.dev/houseOfLuck/minusbtn.png" alt="Decrease Bet" class="bet-btn-icon" />
+      </button>
+      <div class="bet-bar">
+        <img src="https://treasure-box.pages.dev/houseOfLuck/betbar.png" alt="Bet Bar" class="bet-bar-image" />
+        <div class="bet-display">
+          <img [src]="goldCoins" alt="Coins" class="bet-coin-icon" />
+          <span class="bet-amount-text">{{ betAmount }}</span>
+        </div>
+      </div>
+      <button class="bet-btn plus-btn" (click)="incrementBetAmount()"
+        [disabled]="betAmount >= 50 || betAmount >= currency">
+        <img src="https://treasure-box.pages.dev/houseOfLuck/addbtn.png" alt="Increase Bet" class="bet-btn-icon" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Retry Button (Play Again) - show only when game is finished -->
+  <div class="game-footer" *ngIf="gamePhase === 'finished'">
+    <button (click)="retryGame()" [disabled]="currency < betAmount"
+      class="play-again-button flex items-center gap-2 justify-center"
+      style="min-width: 180px; font-size: 1.2rem; padding: 0.75rem 2.5rem;">
+      <span>Play Again</span>
+    </button>
+  </div>
+
+  <!-- Main game content -->
+  <div class="game-content">
+    <!-- Game host character -->
+    <div class="game-host-container">
+      <img [src]="gameHost" alt="Game Host" class="game-host" />
+    </div>
+
+    <!-- Shelf and chests -->
+    <div class="shelf-frame">
+      <img src="https://treasure-box.pages.dev/houseOfLuck/shelf.png" alt="Shelf" class="shelf-image"
+        [ngClass]="{ 'shelf-bounce-in': shelfBounceIn }" />
+
+      <div class="game-overlay">
+        <div class="chests-grid" *ngIf="showChests"
+          [ngClass]="{ 'chests-visible': showChests, 'chest-disabled': isChestOpening }">
+
+          <ng-container *ngFor="let chest of chests; let i = index">
+            <div class="chest-slot" *ngIf="chestDropStates[i]" [ngClass]="{
+                'chest-opened': chest.opened,
+                'chest-drop-in': chestDropStates[i] && !chest.opened
+              }" (click)="handleChestClick(chest.id)" [attr.data-chest-id]="chest.id">
+              <ng-container *ngIf="chest.opened; else closedChest">
+                <div class="reward-box-container">
+                  <img src="https://treasure-box.pages.dev/houseOfLuck/closetreasure.png" alt="Open Treasure Box"
+                    class="open-chest-image" />
+                  <div class="reward-display" [ngSwitch]="chest.reward.type">
+                    <div *ngSwitchCase="'coins'" class="reward-content">
+                      <span class="reward-text">{{ chest.reward.amount }}</span>
+                      <img [src]="goldCoins" alt="Gold Coins" class="reward-icon" />
+                    </div>
+                    <div *ngSwitchDefault class="reward-content">
+                      <span class="reward-text empty">Try Again</span>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #closedChest>
+                <img [src]="treasureChest" alt="Treasure Chest" class="chest-image" />
+              </ng-template>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Show rules popup -->
+<app-rules *ngIf="showRules" (closed)="onRulesClosed()"></app-rules>

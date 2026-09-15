@@ -1,0 +1,47 @@
+<div class="w-full my-3 sm:my-6 md:my-8 px-3 sm:px-6">
+  <div class="casino-premium-strip relative overflow-hidden rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 px-4 sm:px-8 py-3.5 sm:py-5">
+
+    <!-- Premium Top Golden Accent Line & Ambient Glow -->
+    <div class="top-gold-bar"></div>
+    <div class="absolute -right-10 -top-10 w-40 h-40 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute left-1/4 -bottom-10 w-40 h-40 bg-orange-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="flex items-center gap-3 sm:gap-5 z-10 w-full sm:w-auto">
+      <!-- Luxury Gold Icon Frame -->
+      <div class="casino-icon-frame flex-shrink-0 relative">
+        <div class="absolute inset-0 bg-amber-400/30 rounded-full blur-md animate-pulse"></div>
+        <div class="casino-icon relative z-10">🎁</div>
+      </div>
+
+      <div class="leading-tight">
+        <div class="flex items-center gap-2 flex-wrap">
+          <h3 class="text-white font-black text-xs sm:text-base md:text-lg tracking-wider uppercase drop-shadow-md">
+            UNLOCK REWARDS
+          </h3>
+          <span class="text-[9px] sm:text-xs bg-gradient-to-r from-amber-400 to-amber-600 text-black px-2 py-0.5 rounded-full font-black tracking-wide shadow-[0_0_10px_rgba(251,191,36,0.5)] border border-amber-300/40">
+            VIP BONUS
+          </span>
+        </div>
+
+        <!-- Refined Descriptive Text -->
+        <div class="mt-1">
+          <p class="text-slate-300 text-[11px] sm:text-sm tracking-wide font-medium">
+            Share your invite link & grab <span class="orange-text-accent font-extrabold">{{refPercentage}}% cash bonus</span> on your friends' <span class="orange-text-accent font-extrabold">first {{refCount}} deposits!</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sleek Modern Arcade CTA Button -->
+    <button class="casino-gold-btn z-10 w-full sm:w-auto group relative overflow-hidden flex items-center justify-center cursor-pointer" (click)="openrefral()">
+      <span class="absolute inset-0 w-full h-full bg-white/25 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+      <span class="relative z-10 flex items-center gap-2">
+        <span class="tracking-widest">CLAIM REWARD</span>
+        <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </span>
+    </button>
+
+  </div>
+</div>

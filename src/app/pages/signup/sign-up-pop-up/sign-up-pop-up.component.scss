@@ -1,0 +1,16 @@
+// OTP digit inputs – match project input style, hide number spinners
+.digit-input {
+  height: 3.25rem; // h-13
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  // Firefox
+  &[type='number'] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+}

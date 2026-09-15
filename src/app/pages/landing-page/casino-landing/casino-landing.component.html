@@ -1,0 +1,64 @@
+<div class="bg-game-purple">
+  <div *ngIf="heroGames && heroGames.length > 0">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let game of heroGames; let i = index">
+
+        <div
+          class="hero-promo-slide relative mx-1 my-2 h-[22vh] min-h-[140px] max-h-[170px] sm:h-[34vh] sm:min-h-0 sm:max-h-none md:h-[40vh] overflow-hidden cursor-pointer rounded-2xl"
+          (click)="playHeroGame(game.redirectLink || game.downloadLink)"
+        >
+          <!-- Gradient border frame -->
+          <div class="hero-promo-border"></div>
+
+          <!-- Ambient glow accents -->
+          <div class="hero-promo-glow hero-promo-glow--one"></div>
+          <div class="hero-promo-glow hero-promo-glow--two"></div>
+          <div class="hero-promo-pattern"></div>
+          <div class="hero-promo-shine"></div>
+
+          <!-- Floating sparkles -->
+          <span class="hero-promo-particle" style="top: 18%; left: 12%; animation-delay: 0s"></span>
+          <span class="hero-promo-particle" style="top: 70%; left: 22%; animation-delay: 1.2s"></span>
+          <span class="hero-promo-particle" style="top: 30%; left: 85%; animation-delay: 0.6s"></span>
+          <span class="hero-promo-particle" style="top: 75%; left: 70%; animation-delay: 1.8s"></span>
+
+          <!-- Large faded watermark icon with fallback error handler -->
+          <img [src]="game.image" [alt]="''" class="hero-promo-watermark object-contain" (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'" />
+
+          <div class="relative z-10 h-full w-full flex items-center px-3 sm:px-12 md:px-20 gap-2.5 sm:gap-10">
+            <!-- Game icon with fallback error handler -->
+            <div class="hero-promo-icon-wrap flex-shrink-0">
+              <div class="hero-promo-icon-ring"></div>
+              <div class="hero-promo-icon">
+                <img [src]="game.image" [alt]="game.name" class="hero-promo-icon-img" [class.hero-promo-icon-img--zoom]="game.iconZoom" (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'" />
+              </div>
+            </div>
+
+            <!-- Text & Branding -->
+            <div class="flex flex-col items-start">
+              <span class="hero-promo-eyebrow">
+                <i class="fas fa-crown"></i> Elite Gaming Lobby
+              </span>
+              <h2 class="hero-promo-title">{{ game.name }}</h2>
+              <p class="hero-promo-tagline">
+                Play now and chase massive jackpots & rewards at Spin Hub.
+              </p>
+              <div class="flex items-center gap-4 flex-wrap">
+                <button class="hero-promo-btn" (click)="$event.stopPropagation(); playHeroGame(game.redirectLink || game.downloadLink)">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                  Play Now
+                </button>
+                <span class="hero-promo-trust">
+                  <i class="fas fa-users"></i> 15k+ Active Players
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+  
+  <app-referal-cta></app-referal-cta>
+</div>

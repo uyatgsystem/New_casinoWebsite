@@ -1,0 +1,118 @@
+
+    // .app-container {
+    //   height: 100vh;
+    //   width: 100vw;
+    //   margin: 0;
+    //   padding: 0;
+    //   overflow: hidden;
+    //   // background: #000;
+    // }
+/////responsiveness code for laptops screen
+@media (max-width: 1440px) {
+  .chests-grid{
+         width: 60%;
+        max-width: 1000px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr 1fr;
+        row-gap: 0px;
+        justify-items: center;
+        align-items: end;
+        margin-top: -5%;
+        column-gap: 0px;
+        margin-bottom: 0;
+        padding: 5rem;
+        z-index: 2;
+}
+.chest-slot {
+    max-height: 120px;
+
+  }
+  .game-host{
+           left: clamp(-190px, -1vw, -12px);
+    bottom: clamp(15px, 3vh, 25px);
+    width: clamp(180px, 32vw, 242px);
+    }
+}
+@media (max-width: 1024px) {
+.game-host {
+        left: clamp(-41px, -12vw, -90px);
+        width: clamp(100px, 23vw, 360px);
+}
+}
+///////////////////////for tablet//////////////////////////////////
+@media (max-width: 786px) {
+  .chests-grid {
+    width: 80%;
+    padding: 6rem;
+            margin-top: -7.5rem;
+  }
+  .chest-slot {
+    max-height: 100px;
+  }
+      .game-host{
+        left: clamp(-50px, -8vw, -70px);
+        width: clamp(180px, 12vw, 100px);
+    }
+}
+///////////////////////for mobile//////////////////////////////////
+@media (max-width: 480px) {
+  .chests-grid {
+          width: 94%;
+        padding: 5rem 2rem;
+        margin-top: -6rem;
+  }
+  .chest-slot {
+    max-height: 70px;
+  }
+  .wallet-bar{
+      height: 12rem;
+    display: inline-flex
+  }
+  .shelf-frame{
+      left: 2rem;
+}
+    .game-host {
+             left: clamp(-81px, -6vw, -83px);
+        width: clamp(150px, 10vw, 80px);
+    }
+}
+
+  @media (max-width: 395px) {
+  .chests-grid {
+        width: 94%;
+        padding: 2rem 2rem;
+        margin-top: -2rem;
+  }
+  .chest-slot {
+    max-height: 60px;
+  }
+  .wallet-bar{
+      height: 12rem;
+    display: inline-flex
+  }}
+
+    @media (max-width: 380px) {
+  .chests-grid {
+        width: 94%;
+        padding: 1rem 2rem;
+        margin-top: -1rem;
+  }
+  .chest-slot {
+    max-height: 55px;
+  }
+  .wallet-bar{
+      height: 12rem;
+    display: inline-flex
+  }
+.shelf-frame{
+      left: 2rem;
+}
+    .game-host {
+        left: clamp(-87px, -6vw, -83px);
+        width: clamp(128px, 10vw, 80px);
+    }
+}
+  
+
+  

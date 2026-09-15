@@ -1,0 +1,237 @@
+<section class="chat-container" [class.chat-input-focused]="isInputFocused">
+  <div class="chat-window" [class.chat-input-focused]="isInputFocused">
+    <div class="backdrop-image" [innerHTML]="backdropImage"></div>
+
+    <header class="chat-header">
+      <div class="support-identity">
+        <div class="support-avatar" aria-hidden="true">
+          <span>CM</span>
+          <i></i>
+        </div>
+        <div>
+          <p class="eyebrow">SPIN HUB SUPPORT</p>
+          <h1>Customer support</h1>
+          <p class="availability">
+            <span></span> We usually reply in a few minutes
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="secure-label">Secure chat</span>
+        <button
+          type="button"
+          class="icon-button"
+          aria-label="Minimize chat"
+          (click)="showHideChat()"
+        >
+          <fa-icon [icon]="Minimize"></fa-icon>
+        </button>
+        <button
+          type="button"
+          class="icon-button close-button"
+          aria-label="Close chat"
+          (click)="showHideChat()"
+        >
+          <fa-icon [icon]="Close"></fa-icon>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat-intro">
+      <div class="intro-icon"><fa-icon [icon]="PaperPlane"></fa-icon></div>
+      <div>
+        <strong>How can we help?</strong>
+        <span>Ask us anything about your account, games or payments.</span>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="loader" role="status">
+      <div class="spinner"></div>
+      <span>Loading conversation...</span>
+    </div>
+
+    <div
+      #chatBody
+      class="chat-messages chat-body"
+      (scroll)="onScroll($event)"
+      [ngClass]="{
+        'overflow-y-auto': messages && messages.length > 0,
+        'overflow-hidden': !messages || messages.length === 0,
+      }"
+    >
+      <div *ngIf="!messages || messages.length === 0" class="welcome-screen">
+        <div class="welcome-art">
+          <span></span><span></span><span></span>
+          <fa-icon [icon]="PaperPlane"></fa-icon>
+        </div>
+        <h2>We are here for you</h2>
+        <p>
+          Start a conversation with our support team. Your messages are private
+          and secure.
+        </p>
+      </div>
+
+      <div
+        *ngFor="let message of messages"
+        class="message-row"
+        [ngClass]="{
+          'message-outgoing':
+            message?.MessageFrom == 'Customer' ||
+            message?.SenderId == getUserId(),
+          'message-incoming':
+            message?.MessageFrom != 'Customer' &&
+            message?.SenderId != getUserId(),
+        }"
+      >
+        <div
+          *ngIf="
+            message?.MessageType != 'UnEngaged' &&
+            (message?.MessageFrom == 'Customer' ||
+              message?.SenderId == getUserId())
+          "
+          class="message-group"
+        >
+          <div class="message-meta">
+            <span>You</span><time>{{ message.Time | date: "hh:mm a" }}</time>
+          </div>
+          <div class="message-bubble outgoing-bubble">
+            <div *ngIf="message.ImageUrl" class="image-container">
+              <img
+                [src]="message.ImageUrl"
+                alt="Shared image"
+                (click)="openImageModal(message.ImageUrl)"
+              />
+            </div>
+            <p>{{ message?.Message }}</p>
+            <span class="message-status" aria-label="Message status">
+              <fa-icon
+                *ngIf="message.IsDelivered && message.IsSeen"
+                [icon]="CheckDouble"
+                class="seen"
+              ></fa-icon>
+              <fa-icon
+                *ngIf="message.IsDelivered && !message.IsSeen"
+                [icon]="CheckDouble"
+              ></fa-icon>
+              <fa-icon *ngIf="!message.IsDelivered" [icon]="Check"></fa-icon>
+            </span>
+          </div>
+        </div>
+
+        <div
+          *ngIf="
+            message?.MessageType != 'UnEngaged' &&
+            message?.MessageFrom != 'Customer' &&
+            message?.SenderId != getUserId()
+          "
+          class="message-group"
+        >
+          <div class="message-meta">
+            <span>Support team</span
+            ><time>{{ message.Time | date: "hh:mm a" }}</time>
+          </div>
+          <div class="message-bubble incoming-bubble">
+            <div *ngIf="message.ImageUrl" class="image-container">
+              <img
+                [src]="message.ImageUrl"
+                alt="Shared image"
+                (click)="openImageModal(message.ImageUrl)"
+              />
+            </div>
+            <p>{{ message?.Message }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="message.MessageType == 'UnEngaged'" class="session-ended">
+          <span></span>
+          <p>This chat session has ended</p>
+          <span></span>
+        </div>
+      </div>
+
+      <div *ngIf="imageURL" class="selected-image-preview">
+        <img [src]="imageURL" alt="Selected image preview" />
+        <button
+          type="button"
+          (click)="clearSelection()"
+          aria-label="Remove selected image"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div #imageModal class="modal" (click)="closeImageModal()">
+        <button
+          type="button"
+          class="modal-close"
+          aria-label="Close image preview"
+          (click)="closeImageModal()"
+        >
+          &times;
+        </button>
+        <img
+          class="modal-content"
+          [src]="selectedImageUrl"
+          alt="Image preview"
+        />
+        <a
+          *ngIf="selectedImageUrl"
+          [href]="selectedImageUrl"
+          download="image.jpg"
+          class="download-button"
+          aria-label="Download image"
+        >
+          <fa-icon [icon]="Download"></fa-icon>
+        </a>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <div *ngIf="showOptionsMenu" class="options-menu">
+        <button type="button" (click)="triggerFileInput(fileInput)">
+          <span class="option-icon"><fa-icon [icon]="Plus"></fa-icon></span>
+          <span><strong>Photo</strong><small>Share an image</small></span>
+        </button>
+      </div>
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+      <div class="composer">
+        <button
+          type="button"
+          class="attach-button"
+          (click)="toggleOptionsMenu()"
+          aria-label="Add attachment"
+        >
+          <fa-icon [icon]="Plus"></fa-icon>
+        </button>
+        <textarea
+          [(ngModel)]="newMessage"
+          (focus)="onInputFocus()"
+          (blur)="onInputBlur()"
+          (paste)="onPaste($event)"
+          (keydown)="onTextareaKeydown($event)"
+          (input)="adjustHeight($event)"
+          placeholder="Type your message..."
+          rows="1"
+          aria-label="Message"
+        ></textarea>
+        <button
+          type="button"
+          class="send-button"
+          (click)="sendMessage($event)"
+          aria-label="Send message"
+        >
+          <fa-icon [icon]="PaperPlane"></fa-icon><span>Send</span>
+        </button>
+      </div>
+      <p class="composer-hint">
+        Press <b>Enter</b> to send <span>•</span> Shift + Enter for a new line
+      </p>
+    </div>
+  </div>
+</section>

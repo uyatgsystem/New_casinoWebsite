@@ -1,0 +1,128 @@
+<div class="h-[75vh] flex items-center justify-center p-4">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-700 mx-auto mb-4"></div>
+    <p class="text-white">Verifying payment...</p>
+  </div>
+
+  <!-- Success State -->
+  <div *ngIf="loading == false && status === 'success'" 
+       class="bg-[var(--card-back)] rounded-2xl shadow-lg p-8 w-full max-w-md text-center">
+    <!-- Success Icon -->
+    <div class="mb-6">
+      <img [src]="'/Images/https://cmax-2.pages.dev/assets/icons/checked.png'"
+           alt="Success" 
+           class="w-32 h-32 mx-auto">
+    </div>
+
+    <!-- Success Message -->
+    <h1 class="text-2xl font-semibold mb-2">
+      Payment Successful!
+    </h1>
+    <p class="text-white mb-1">
+      The payment has been done successfully.
+    </p>
+    <p class="text-white mb-6">
+      Thanks for being there with us.
+    </p>
+
+    <!-- Payment Details -->
+     <!-- <div class="flex flex-col">
+      <p *ngIf="paymentStatus?.source" class="text-sm text-gray-500 mb-6">
+          Source: {{paymentStatus?.source}},
+         </p>
+        <p *ngIf="paymentStatus?.type" class="text-sm text-gray-500 mb-6"> 
+         Type: {{paymentStatus?.type}}
+        </p>
+     </div> -->
+
+    <!-- Done Button -->
+    <button
+            class="w-full bg-emerald-700 text-white py-3 rounded-md font-semibold
+                   hover:bg-emerald-800 transition-colors duration-200">
+      DONE
+    </button>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="loading == false && this.status === 'error'" 
+       class="bg-[var(--card-back)] rounded-2xl shadow-lg p-8 w-full max-w-md text-center">
+    <!-- Error Icon -->
+    <div class="mb-6">
+      <img [src]="'/Images/https://cmax-2.pages.dev/assets/icons/close.png'"
+           alt="Error" 
+           class="w-32 h-32 mx-auto">
+    </div>
+
+    <!-- Error Message -->
+    <h1 class="text-2xl font-semibold mb-2">
+      Payment Failed!
+    </h1>
+    <p class="text-white mb-1">
+      Hey, seems like there was some trouble.
+    </p>
+    <p class="text-white mb-6">
+      We are there with you. Just hold back.
+    </p>
+
+    <!-- Payment Details -->
+    <!-- Payment Details -->
+    <!-- <div class="flex flex-col">
+      <p class="text-sm text-gray-500 mb-3">
+          Source: {{paymentStatus?.source}},
+         </p>
+        <p class="text-sm text-gray-500 mb-3"> 
+         Type: {{paymentStatus?.type }}
+        </p>
+     </div> -->
+
+    <!-- Try Again Button -->
+    <button 
+            class="w-full bg-emerald-700 text-white py-3 rounded-md font-semibold
+                   hover:bg-emerald-800 transition-colors duration-200">
+      TRY AGAIN
+    </button>
+  </div>  <!-- Sent State -->
+  <div *ngIf="loading ==false && status === 'sent'" 
+       class="bg-[var(--card-back)] rounded-2xl shadow-lg p-8 w-full max-w-md text-center">
+    <!-- Sent Icon -->
+    <div class="mb-6">
+      <img [src]="'/Images/repeat.png'" 
+           alt="Sent" 
+           class="w-32 h-32 mx-auto">
+    </div>
+
+    <!-- Amount -->
+    <h2 class="text-3xl font-semibold mb-4">
+      USD {{amount | number:'1.2-2'}}
+    </h2>
+
+    <!-- Sent Message -->
+    <h1 class="text-2xl font-semibold mb-2">
+      Payment Already Sent!
+    </h1>
+    <p class="text-white mb-1">
+      The payment has already been sent.
+    </p>
+    <p class="text-white mb-6">
+      Thanks for being there with us.
+    </p>
+
+    <!-- Payment Details -->
+    <!-- <div class="flex flex-col">
+      <p *ngIf="paymentStatus?.source" class="text-sm text-gray-500 mb-6">
+        Source: {{paymentStatus?.source}}
+      </p>
+      <p *ngIf="paymentStatus?.type" class="text-sm text-gray-500 mb-6"> 
+        Type: {{paymentStatus?.type}}
+      </p>
+    </div> -->
+
+    <!-- Done Button -->
+    <button 
+            class="w-full bg-emerald-700 text-white py-3 rounded-md font-semibold
+                   hover:bg-emerald-800 transition-colors duration-200">
+      DONE
+    </button>
+  </div>
+</div>

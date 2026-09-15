@@ -1,0 +1,142 @@
+<div class="main-container relative overflow-hidden min-h-screen"
+  style="background: linear-gradient(135deg, #0b0c0f 0%, #15181c 50%, #08090b 100%);">
+
+  <!-- Ambient Glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#FE8006]/10 to-[#F3A630]/5 blur-[160px] pointer-events-none rounded-full"></div>
+
+  <div class="hero-section relative z-10">
+    <div class="hero-content">
+
+      <!-- ===== SPINNER WHEEL ===== -->
+      <div class="spinner-wheel-container">
+        <div class="wheel-with-segments" [style.transform]="'rotate(' + rotation + 'deg)'">
+          <img src="https://cmax.pages.dev/assets/Spinner/spinner-circle.png" alt="Spinner Wheel"
+            class="spinner-wheel-image" />
+
+          <div class="segment-overlays">
+            <ng-container *ngFor="let segment of segments; let i = index">
+              <div class="segment-overlay" [style.transform]="'rotate(' + i * segmentAngle + 'deg)'">
+                <div class="segment-content">
+                  <ng-icon class="segment-icon" [name]="segment.icon"
+                    [style.color]="getIconColor(segment.id)"></ng-icon>
+                  <div class="segment-prize">{{ segment.prize }}</div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- Winning Highlight -->
+          <div class="winning-highlight-container" [class.show]="highlightedIndex !== null">
+            <div *ngIf="highlightedIndex !== null" class="winning-highlight"
+              [style.transform]="'rotate(' + highlightedIndex * segmentAngle + 'deg)'">
+              <div class="winning-overlay-image"></div>
+              <div class="winning-content">
+                <div class="congratulations">Congratulations</div>
+                <div class="won-amount" *ngIf="lastWin">
+                  You Won <span class="won-amount-value">{{ lastWin }}</span>
+                </div>
+                <div class="won-amount">
+                  Now You Can Easily Deposit Your Winning Amount in Any Game
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pointer -->
+        <div class="spinner-pointer">
+          <div class="map-pin-pointer">
+            <svg class="needle-svg" viewBox="0 0 40 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M23.7943 73.2531C22.4527 76.7587 18.6659 76.7587 17.3244 73.2531L7.00012 35.0002C5.78008 31.8121 8.92759 28.0002 11.6302 28.0002L29.4885 28.0002C32.1911 28.0002 34.2201 31.8121 33 35.0002L23.7943 73.2531Z"
+                fill="#F3A630" />
+              <circle cx="20" cy="19.9999" r="19.8781" transform="rotate(89.6477 20 19.9999)" fill="#F3A630" />
+              <circle cx="19.814" cy="20.2322" r="11.1293" transform="rotate(89.6477 19.814 20.2322)" fill="#FFD27A" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Center Controls -->
+        <div class="center-controls">
+          <div class="center-amount-label">Choose amount</div>
+          <div class="center-amount-controls">
+            <button class="center-amount-btn" (click)="decrementSpinAmount()">-</button>
+            <div class="center-amount-display">${{ spinAmount }}</div>
+            <button class="center-amount-btn" (click)="incrementSpinAmount()">+</button>
+          </div>
+          <button class="center-spin-button" (click)="openLoginModal()">
+            <span class="btn-text">Spin Now!</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ===== SPIN HISTORY SECTION ===== -->
+      <div class="spin-history-section">
+        <div class="spin-history-card">
+          <!-- Grain overlay -->
+          <div class="history-grain-overlay"></div>
+
+          <!-- Header -->
+          <div class="history-header">
+            <div class="history-accent-bar"></div>
+            <h3 class="history-title">Spin History</h3>
+          </div>
+
+          <!-- Column labels -->
+          <div class="history-col-labels">
+            <span>No</span>
+            <span class="text-center">Prize</span>
+            <span class="text-right">Date</span>
+          </div>
+
+          <!-- Teaser rows (blurred, login-locked) -->
+          <div class="history-rows-container">
+            <!-- Blurred placeholder rows -->
+            <div class="history-row blurred" *ngFor="let n of [1,2,3,4,5]">
+              <span class="row-num">{{ n }}</span>
+              <span class="row-prize">${{ n * 5 }}$</span>
+              <span class="row-date">
+                <span>09/10/26</span>
+                <span>8:{{ n }}0 PM</span>
+              </span>
+            </div>
+
+            <!-- Lock overlay -->
+            <div class="history-lock-overlay">
+              <div class="lock-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" class="lock-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <p class="lock-label">Login to view your spin history</p>
+              <button class="lock-login-btn" (click)="openLoginModal()">Login Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div *ngIf="showLoginModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-[999]"
+    (click)="closeLoginModal()">
+    <div class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-sm mx-4 shadow-2xl relative overflow-hidden"
+      (click)="$event.stopPropagation()">
+      <button (click)="closeLoginModal()"
+        class="absolute top-4 right-4 w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition z-20">✕</button>
+      <div class="px-8 pt-10 pb-8 text-center relative z-10">
+        <h2 class="text-2xl font-extrabold mb-2 bg-gradient-to-r from-[#F3A630] to-[#FE8912] bg-clip-text text-transparent tracking-wide">
+          🎰 Spin to Win!
+        </h2>
+        <div class="h-px w-16 bg-gradient-to-r from-[#F3A630] to-[#FE8912] rounded-full mx-auto mb-4"></div>
+        <p class="text-[#A6B1C2] text-sm mb-6 leading-relaxed">Login to place real bets and win real prizes on the Spin Hub wheel!</p>
+        <button (click)="openLoginModal()"
+          class="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-extrabold text-sm shadow-[0_0_25px_rgba(245,158,11,0.45)] hover:brightness-110 transition-all">
+          Login & Spin
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

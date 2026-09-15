@@ -1,0 +1,139 @@
+<div
+  class="w-full xl:max-h-[800px] text-white font-sans pt-12 pb-20 px-4 md:px-8 lg:px-20 relative overflow-hidden"
+>
+  <div class="text-center mb-10 max-w-2xl mx-auto">
+    <span
+      class="inline-block text-[#FE8912] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-3"
+    >
+      Player Voices
+    </span>
+    <h2 class="text-white font-bold text-[24px] sm:text-[32px] md:text-[36px] leading-tight">
+      What Our Players Say
+    </h2>
+  </div>
+
+  <!-- Feedback Cards -->
+  <div
+    class="relative z-10 w-full overflow-hidden"
+    (mouseenter)="stopAutoplay()"
+    (mouseleave)="startAutoplay()"
+  >
+    <div
+      class="flex transition-transform duration-500"
+      [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
+    >
+      <div
+        *ngFor="let item of feedbacks"
+        class="flex-shrink-0 w-full flex justify-center"
+      >
+        <!-- Card Content -->
+        <div
+          class="max-w-[610px] relative z-10 flex flex-col justify-center h-[calc(100%_-_10px)] border border-[#FE8912] text-white px-4 py-6 sm:px-5 sm:py-7 md:px-6 md:py-8 lg:px-8 lg:py-10"
+        >
+          <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+          <!-- User Info -->
+          <div class="flex items-center justify-start space-x-3 sm:space-x-3">
+            <div
+              class="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 overflow-hidden rounded-lg flex items-center justify-center"
+            >
+              <img
+                *ngIf="item.img"
+                [src]="item.img"
+                alt="avatar"
+                class="w-full h-full object-cover rounded-lg"
+              />
+              <span *ngIf="!item.img" class="text-xs sm:text-sm">👤</span>
+            </div>
+            <div class="text-start">
+              <h5
+                class="font-semibold text-white text-[10px] xs:text-[12px] sm:text-[15px] md:text-[20px]"
+              >
+                {{ item.name }}
+              </h5>
+              <p
+                class="text-[#FE8912] text-[8px] xs:text-[10px] sm:text-[13px] md:text-[14px]"
+              >
+                {{ item.role }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Feedback Text (Centered) -->
+          <div class="flex items-center justify-center lg:pt-2">
+            <p
+              class="text-[#A6B1C2] text-[10px] sm:text-[8px] md:text-[14px] leading-normal text-justify break-words overflow-hidden line-clamp-6 sm:line-clamp-none"
+            >
+              {{ item.text }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slider Navigation (hidden on mobile) -->
+  <div
+    class="slider-nav relative flex justify-around items-center mt-4 px-4 md:px-0"
+  >
+    <!-- LEFT ARROW -->
+    <button
+      (click)="previousSlide()"
+      class="relative z-20 w-8 h-8 sm:w-9 sm:h-9 md:w-12 md:h-12 rounded-full border-2 border-[#FE8912] flex items-center justify-center text-[#FE8912] bg-[#000408] transition-all duration-300"
+    >
+      <svg
+        class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 12H5m0 0l6-6m-6 6l6 6"
+        />
+      </svg>
+    </button>
+
+    <!-- RESPONSIVE LINE BETWEEN ARROWS -->
+    <div
+      class="absolute inset-y-0 left-[4.5rem] right-[4.5rem] sm:left-[5.5rem] sm:right-[5.5rem] md:left-[11rem] md:right-[11rem] flex items-center pointer-events-none z-0"
+    >
+      <div class="flex-1 h-[1px] md:h-[2px] bg-[#FE8912] opacity-50"></div>
+    </div>
+
+    <!-- DOTS -->
+    <div class="flex items-center space-x-2 sm:space-x-3 md:space-x-6 z-20">
+      <button
+        *ngFor="let dot of getDots(); let i = index"
+        (click)="goToSlide(i)"
+        class="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 rounded-full border-2 border-[#FE8912] flex items-center justify-center bg-[#000408] transition-all duration-300"
+      >
+        <span
+          *ngIf="i === currentSlide"
+          class="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full bg-[#FE8912]"
+        ></span>
+      </button>
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <button
+      (click)="nextSlide()"
+      class="relative z-20 w-8 h-8 sm:w-9 sm:h-9 md:w-12 md:h-12 rounded-full border-2 border-[#FE8912] flex items-center justify-center text-[#FE8912] bg-[#000408] transition-all duration-300"
+    >
+      <svg
+        class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 12h14m0 0l-6 6m6-6l-6-6"
+        />
+      </svg>
+    </button>
+  </div>
+</div>

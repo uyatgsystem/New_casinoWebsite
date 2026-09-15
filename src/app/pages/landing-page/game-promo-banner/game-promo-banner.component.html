@@ -1,0 +1,15 @@
+<div class="gamepromo-container">
+  <div class="slider-container overflow-hidden relative">
+    <div class="slider-track flex animate-scroll">
+      <div class="logo" *ngFor="let logo of logos; trackBy: trackByFn">
+        <img [src]="logo.src" [alt]="logo.alt"  (click)="redirectToSignUp()" />
+      </div>
+
+      <!-- For a seamless loop -->
+
+      <div class="logo" *ngFor="let logo of logos; trackBy: trackByFn">
+        <img [src]="logo.src" [alt]="logo.alt" (click)="redirectToSignUp()" />
+      </div>
+    </div>
+  </div>
+</div>

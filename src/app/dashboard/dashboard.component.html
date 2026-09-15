@@ -1,0 +1,148 @@
+<!-- <div
+  class="flex"
+  [ngClass]="router.url !== '/dashboard/GuideLines' ? 'mb-[5rem]' : 'mb-[0rem]'"
+> -->
+<div
+  class="flex"
+  [ngClass]="
+    router.url !== '/dashboard/GuideLines' &&
+    router.url !== '/dashboard/wallet' &&
+    router.url !== '/dashboard/account' &&
+    router.url !== '/dashboard/credentials' &&
+    router.url !== '/dashboard/redeem' &&
+    router.url !== '/dashboard/TreasurePick' &&
+    router.url !== '/dashboard/Baccaret' &&
+    router.url !== '/dashboard/spinner' &&
+    router.url !== '/dashboard/lottery' &&
+    router.url !== '/dashboard/changePass' &&
+    router.url !== '/dashboard/SectrechCards' &&
+    !isTreasurePickRoute() &&
+    !router.url.startsWith('/dashboard/buy-now')
+      ? ''
+      : '-mb-[1rem]'
+  "
+>
+  <!-- &&
+    router.url !== '/dashboard/SectrechCards' &&
+    router.url.startsWith('dashboard/buy-now') -->
+  <!-- md:w-[15%]  -->
+  <div
+    *ngIf="!isTreasurePickRoute()"
+    class="flex max-w-[250px] lg:w-[250px] flex-shrink-0"
+    [class.hidden]="!isSidebarOpen"
+  >
+    <app-side-bar></app-side-bar>
+  </div>
+  <div
+    [ngClass]="[
+      router.url === '/dashboard/Avaitar' ||
+      router.url === '/dashboard/TreasurePick' ||
+      router.url === '/dashboard/Roulette' ||
+      router.url === '/dashboard/Mines' ||
+      router.url === '/dashboard/Plinko' ||
+      router.url === '/dashboard/StackBuilder' ||
+      router.url === '/dashboard/Baccaret' ||
+      router.url === '/dashboard/Double' ||
+      router.url === '/dashboard/Keno' ||
+      router.url === '/dashboard/coin' ||
+      router.url === '/dashboard/rpc'
+        ? 'md:w-[100%] w-[100%]'
+        : 'lg:max-w-[77%] xl:max-w-[80%] 2xl:max-w-[83%] w-[100%] flex-1',
+      isSpinnerModule() ? 'mb-[0px] lg:mb-0' : '',
+    ]"
+  >
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!-- Free Spin Popup Modal -->
+<div
+  *ngIf="showFreeSpinModal"
+  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-[9999] p-4"
+  (click)="closeFreeSpinModal()"
+>
+  <div
+    class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-lg shadow-2xl relative overflow-hidden"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Grain Overlay -->
+    <div
+      class="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-0 opacity-30"
+      style="
+        background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%220.4%22/%3E%3C/svg%3E&quot;);
+        background-size: 200px 200px;
+      "
+    ></div>
+
+    <!-- Glow accent top-right -->
+    <div
+      class="absolute -right-10 -top-10 w-40 h-40 bg-[#F3A630]/10 blur-3xl rounded-full pointer-events-none z-0"
+    ></div>
+
+    <!-- Close Button -->
+    <button
+      (click)="closeFreeSpinModal()"
+      class="absolute top-4 right-4 w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition z-20"
+    >
+      <svg
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+
+    <!-- Content -->
+    <div class="relative z-10 px-8 pt-10 pb-8 text-center">
+      <!-- Title -->
+      <h2
+        class="text-2xl md:text-3xl font-extrabold mb-2 bg-gradient-to-r from-[#F3A630] to-[#FE8912] bg-clip-text text-transparent tracking-wide"
+      >
+        🎉 Free Spin Available!
+      </h2>
+      <div
+        class="h-px w-16 bg-gradient-to-r from-[#F3A630] to-[#FE8912] rounded-full mx-auto mb-6"
+      ></div>
+
+      <!-- Spinner Image -->
+      <div class="flex justify-center items-center mb-6">
+        <img
+          src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png"
+          alt="Spinner Wheel"
+          class="w-64 h-64 md:w-72 md:h-72 object-contain drop-shadow-[0_0_30px_rgba(243,166,48,0.3)]"
+        />
+      </div>
+
+      <!-- Description -->
+      <p class="text-[#A6B1C2] text-sm md:text-base mb-8 leading-relaxed px-2">
+        You have a
+        <span class="text-[#F3A630] font-bold">free spin</span>
+        waiting for you. Spin the wheel now to win exciting prizes!
+      </p>
+
+      <!-- CTA Button -->
+      <button
+        (click)="navigateToSpinner()"
+        class="w-full py-4 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-extrabold text-base shadow-[0_0_25px_rgba(245,158,11,0.45)] hover:brightness-110 hover:scale-[1.02] transition-all duration-200"
+      >
+        Spin Now
+      </button>
+
+      <p class="text-[#4B5563] text-xs mt-4">
+        This is your welcome gift. Don't miss out!
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- <div>
+  <app-footer></app-footer>
+</div> -->
