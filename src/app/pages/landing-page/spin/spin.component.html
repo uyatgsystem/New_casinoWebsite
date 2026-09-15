@@ -175,10 +175,11 @@
           </div>
 
           <div class="space-y-2 max-h-[200px] lg:max-h-[320px] overflow-y-auto custom-scrollbar flex-1">
-            <div class="bg-black/40 border border-white/5 p-2 rounded-xl flex items-center text-xs font-medium">
-              <span class="w-8 text-gray-400 font-mono">1</span>
-              <span class="flex-1 text-center text-[#F9C846] font-black font-mono">0$</span>
-              <span class="w-24 text-right text-gray-400 font-mono text-[9px]">09/09/26, 4:25 PM</span>
+            <div *ngFor="let entry of spinHistory"
+              class="bg-black/40 border border-white/5 p-2 rounded-xl flex items-center text-xs font-medium">
+              <span class="w-8 text-gray-400 font-mono">{{ entry.no }}</span>
+              <span class="flex-1 text-center text-[#F9C846] font-black font-mono">{{ entry.prize }}</span>
+              <span class="w-24 text-right text-gray-400 font-mono text-[9px]">{{ entry.date | date:'MM/dd/yy, h:mm a' }}</span>
             </div>
           </div>
         </div>

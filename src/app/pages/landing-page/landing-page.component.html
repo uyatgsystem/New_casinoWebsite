@@ -1,5 +1,5 @@
 <header
-  class="top-0 w-full h-[70px] bg-black backdrop-blur-xl border-b border-[#C3B089]/40 flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50 header-bordered"
+  class="top-0 w-full h-[70px] bg-black backdrop-blur-xl border-b border-[#D4AF37]/40 flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50 header-bordered"
   [class.fixed]="isSticky"
   [class.absolute]="!isSticky"
   [class.sticky-shadow]="isSticky"
@@ -27,27 +27,27 @@
   <nav class="hidden lg:flex items-center gap-8 mx-auto">
     <a
       (click)="scrollTo('gameScrollSection')"
-      class="nav-link text-white hover:text-[#FE9B2A] cursor-pointer"
+      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
       >Games</a
     >
     <a
       (click)="scrollTo('instantGameScrollSection')"
-      class="nav-link text-white hover:text-[#FE9B2A] cursor-pointer"
+      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
       >Instant Games</a
     >
     <a
       (click)="scrollTo('featuresScrollSection')"
-      class="nav-link text-white hover:text-[#FE9B2A] cursor-pointer"
+      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
       >Features</a
     >
     <a
       (click)="scrollTo('contactScrollSection')"
-      class="nav-link text-white hover:text-[#FE9B2A] cursor-pointer"
+      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
       >Contact us</a
     >
     <a
       (click)="scrollTo('aboutScrollSection')"
-      class="nav-link text-white hover:text-[#FE9B2A] cursor-pointer"
+      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
       >About us</a
     >
   </nav>
@@ -56,7 +56,7 @@
   <div class="hidden lg:flex items-center gap-3 shrink-0 ml-auto">
     <button
       (click)="RedirectToLogin()"
-      class="px-5 py-2 rounded-full bg-black text-white text-sm font-medium border border-[#8A7960]/50 hover:border-[#FE8912] hover:text-[#FE9B2A] transition-all duration-300 cursor-pointer"
+      class="px-5 py-2 rounded-full bg-black text-white text-sm font-medium border border-[#D4AF37]/50 hover:border-[#D4AF37] hover:text-[#C5A059] transition-all duration-300 cursor-pointer"
     >
       Login
     </button>
@@ -90,37 +90,37 @@
   <!-- Mobile Menu -->
   <div
     *ngIf="isMobileMenuOpen"
-    class="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-[#8A7960]/30 px-4 py-6 z-50 shadow-2xl"
+    class="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-[#D4AF37]/30 px-4 py-6 z-50 shadow-2xl"
     style="background: #000000 !important;"
   >
     <div class="grid grid-cols-2 gap-4 text-center text-white">
       <button
         (click)="handleMobileNav('gameScrollSection')"
-        class="mobile-nav-btn hover:text-[#C3B089] cursor-pointer"
+        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer"
       >
         Games
       </button>
       <button
         (click)="handleMobileNav('instantGameScrollSection')"
-        class="mobile-nav-btn hover:text-[#C3B089] cursor-pointer"
+        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer"
       >
         Instant Games
       </button>
       <button
         (click)="handleMobileNav('featuresScrollSection')"
-        class="mobile-nav-btn hover:text-[#C3B089] cursor-pointer"
+        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer"
       >
         Features
       </button>
       <button
         (click)="handleMobileNav('aboutScrollSection')"
-        class="mobile-nav-btn hover:text-[#C3B089] cursor-pointer"
+        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer"
       >
         About Us
       </button>
       <button
         (click)="handleMobileNav('contactScrollSection')"
-        class="mobile-nav-btn hover:text-[#C3B089] cursor-pointer col-span-2"
+        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer col-span-2"
       >
         Contact Us
       </button>
@@ -129,7 +129,7 @@
     <div class="flex items-center gap-3 mt-5">
       <button
         (click)="RedirectToLogin()"
-        class="flex-1 px-4 py-2 rounded-full bg-black text-white text-sm font-medium border border-[#8A7960]/50 hover:border-[#FE8912] hover:text-[#FE9B2A] transition-all duration-300 cursor-pointer"
+        class="flex-1 px-4 py-2 rounded-full bg-black text-white text-sm font-medium border border-[#D4AF37]/50 hover:border-[#D4AF37] hover:text-[#C5A059] transition-all duration-300 cursor-pointer"
       >
         Login
       </button>
@@ -179,7 +179,7 @@
       <!-- Left Side: Expanded Casino Graphic Banner -->
       <div class="lg:col-span-7 flex justify-center items-center relative">
         <div
-          class="absolute w-[400px] h-[400px] bg-[#FE8912]/20 rounded-full blur-[120px] pointer-events-none"
+          class="absolute w-[400px] h-[400px] bg-[#D4AF37]/20 rounded-full blur-[120px] pointer-events-none"
         ></div>
         <img
           src="https://spinhub-6rb.pages.dev/assets/bglandingbanner.png"
@@ -194,9 +194,9 @@
       >
         <!-- Eyebrow Badge -->
         <div
-          class="hero-badge inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#FFD27A] uppercase"
+          class="hero-badge inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#E5C07B] uppercase"
         >
-          <i class="fas fa-dharmachakra text-[#FE8912] spin-icon"></i>
+          <i class="fas fa-dharmachakra text-[#D4AF37] spin-icon"></i>
           Welcome to Spin Hub
         </div>
 
@@ -206,12 +206,12 @@
         >
           Spin The Wheel. <br />
           <span
-            class="bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
+            class="bg-gradient-to-r from-[#E5C07B] via-[#C5A059] to-[#d4af37] bg-clip-text text-transparent"
           >
             Win The World.
           </span>
           <br />
-          <span class="text-[#A6B1C2] font-normal text-xl sm:text-2xl"
+          <span class="text-[#9CA3AF] font-normal text-xl sm:text-2xl"
             >Only at
           </span>
           <span class="text-white">Spin Hub</span>
@@ -219,7 +219,7 @@
 
         <!-- Hero Description -->
         <p
-          class="text-[#A6B1C2] my-3 text-sm sm:text-base leading-relaxed max-w-xl"
+          class="text-[#9CA3AF] my-3 text-sm sm:text-base leading-relaxed max-w-xl"
         >
           Discover a premium gaming experience crafted for champions. Spin
           wheels, unlock rewards, and embrace the thrill of limitless
@@ -296,7 +296,7 @@
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-10 lg:mb-12">
       <span
-        class="inline-block text-[#FE8912] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2"
+        class="inline-block text-[#D4AF37] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2"
       >
         Why Spin Hub
       </span>
@@ -305,7 +305,7 @@
       >
         Everything You Need for a
         <span
-          class="bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
+          class="bg-gradient-to-r from-[#E5C07B] via-[#C5A059] to-[#d4af37] bg-clip-text text-transparent"
         >
           Premium
         </span>
@@ -331,7 +331,7 @@
 >
   <div class="flex items-center gap-2 justify-center">
     <span
-      class="inline-block font-bold text-[16px] sm:text-[24px] md:text-[28px] leading-[100%] text-[#fe8912]"
+      class="inline-block font-bold text-[16px] sm:text-[24px] md:text-[28px] leading-[100%] text-[#d4af37]"
     >
       Get Ready
     </span>
@@ -378,15 +378,15 @@
         [ngClass]="selectedGuideCard === 'HowToPlay' ? 'is-active' : ''"
         (click)="selectGuideCard('HowToPlay')"
       >
-        <span class="block text-[#A6B1C2] text-lg font-medium leading-none"
+        <span class="block text-[#9CA3AF] text-lg font-medium leading-none"
           >How to</span
         >
         <span
-          class="block font-extrabold text-[46px] lg:text-[54px] leading-[0.95] bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent"
+          class="block font-extrabold text-[46px] lg:text-[54px] leading-[0.95] bg-gradient-to-b from-[#E5C07B] via-[#C5A059] to-[#D4AF37] bg-clip-text text-transparent"
         >
           Play
         </span>
-        <p class="hidden lg:block text-[#A6B1C2] text-sm mt-4 max-w-[14rem]">
+        <p class="hidden lg:block text-[#9CA3AF] text-sm mt-4 max-w-[14rem]">
           Follow these simple steps to start winning at Spin Hub.
         </p>
       </div>
@@ -395,7 +395,7 @@
       <div class="relative">
         <!-- Connecting line (desktop only) -->
         <div
-          class="hidden lg:block absolute top-[3.25rem] left-[9%] right-[9%] h-[2px] bg-gradient-to-r from-transparent via-[#FE8912]/30 to-transparent"
+          class="hidden lg:block absolute top-[3.25rem] left-[9%] right-[9%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"
         ></div>
 
         <div
@@ -429,7 +429,7 @@
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-10 lg:mb-12">
       <span
-        class="inline-block text-[#FE8912] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2"
+        class="inline-block text-[#D4AF37] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2"
       >
         Rewards & Promotions
       </span>
@@ -438,13 +438,13 @@
       >
         More Ways to
         <span
-          class="bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
+          class="bg-gradient-to-r from-[#E5C07B] via-[#C5A059] to-[#d4af37] bg-clip-text text-transparent"
         >
           Win
         </span>
         Every Day
       </h2>
-      <p class="text-[#A6B1C2] mt-3 max-w-xl mx-auto text-sm sm:text-base">
+      <p class="text-[#9CA3AF] mt-3 max-w-xl mx-auto text-sm sm:text-base">
         From your first sign-up to every day after, Spin Hub keeps the rewards
         coming.
       </p>
@@ -474,35 +474,35 @@
   <div
     *ngIf="showPopup"
     (click)="RedirectToSignUp()"
-    class="popup pointer-events-auto absolute flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#161819]/95 backdrop-blur-md border border-[#FE8912]/50 text-white shadow-xl cursor-pointer overflow-visible hover:scale-105 hover:border-[#FE8912] transition-all duration-300"
+    class="popup pointer-events-auto absolute flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#161819]/95 backdrop-blur-md border border-[#D4AF37]/50 text-white shadow-xl cursor-pointer overflow-visible hover:scale-105 hover:border-[#D4AF37] transition-all duration-300"
     style="
       box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.45),
-        0 0 25px rgba(254, 137, 18, 0.25);
+        0 0 25px rgba(212, 175, 55, 0.25);
     "
   >
     <!-- Close Button -->
     <div
-      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-black border border-[#FE8912]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
+      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-black border border-[#D4AF37]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
       (click)="$event.stopPropagation(); closePopup()"
     >
       ✕
     </div>
 
     <div
-      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912]"
+      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-b from-[#E5C07B] via-[#C5A059] to-[#D4AF37]"
     >
       <i class="fas fa-gift text-black text-lg"></i>
     </div>
 
     <div class="relative z-10 leading-tight pr-6">
       <div
-        class="text-sm font-bold bg-gradient-to-r from-[#FFD27A] via-[#FE9B2A] to-[#fe8912] bg-clip-text text-transparent"
+        class="text-sm font-bold bg-gradient-to-r from-[#E5C07B] via-[#C5A059] to-[#d4af37] bg-clip-text text-transparent"
       >
         150% BONUS
       </div>
 
-      <div class="text-[11px] text-[#A6B1C2]">After signup</div>
+      <div class="text-[11px] text-[#9CA3AF]">After signup</div>
 
       <!-- Badge -->
       <span

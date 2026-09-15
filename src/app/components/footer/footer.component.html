@@ -1,5 +1,5 @@
 <footer
-  class="bg-[#0A0E1F] text-white relative mt-4"
+  class="bg-[#0B0B0F] text-[#F5F5F7] relative mt-4"
   [class.dashboard-footer]="isDashboardRoute() && !isScreenWidthLessThan800()"
   *ngIf="
     (!isDashboardRoute() || !isScreenWidthLessThan800()) &&
@@ -7,10 +7,10 @@
   "
   id="footer"
 >
-  <div class="relative bg-[#161819] w-full">
+  <div class="relative bg-[#0F0F12] w-full">
     <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
     <div
-      class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-[#2A1C1B] to-[#8A7960]"
+      class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent"
     ></div>
 
     <div class="relative max-w-7xl mx-auto px-6 md:px-10 py-6">
@@ -20,21 +20,21 @@
           <div class="flex flex-col leading-none mb-2.5">
             <span class="flex items-center gap-1.5">
               <i
-                class="fas fa-dharmachakra text-[#FE8912] text-lg spin-icon"
+                class="fas fa-dharmachakra text-[#D4AF37] text-lg spin-icon"
               ></i>
               <span
-                class="font-extrabold tracking-wide text-lg bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] bg-clip-text text-transparent"
+                class="font-extrabold tracking-wide text-lg bg-gradient-to-b from-[#E5C07B] via-[#C5A059] to-[#D4AF37] bg-clip-text text-transparent"
               >
                 SPIN HUB
               </span>
             </span>
             <span
-              class="text-[7px] tracking-[0.35em] text-[#C3B089] mt-0.5 ml-[24px]"
+              class="text-[7px] tracking-[0.35em] text-[#D4AF37]/70 mt-0.5 ml-[24px]"
             >
               PREMIUM GAMING
             </span>
           </div>
-          <p class="text-[#9196A5] text-xs leading-relaxed max-w-xs">
+          <p class="text-[#9CA3AF] text-xs leading-relaxed max-w-xs">
             A premium online gaming platform built for safe, fair, and rewarding
             play spin, win, and enjoy nonstop entertainment.
           </p>
@@ -42,14 +42,14 @@
             <a
               href="https://www.facebook.com/profile.php?id=61585037884179&_rdc=1&_rdr#"
               target="_blank"
-              class="w-8 h-8 rounded-full border border-[#8A7960]/40 flex items-center justify-center text-[#9196A5] hover:border-[#FE8912] hover:text-[#FE9B2A] transition"
+              class="w-8 h-8 rounded-full border border-[#D4AF37]/20 flex items-center justify-center text-[#9CA3AF] hover:border-[#D4AF37] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition"
             >
               <i class="fab fa-facebook-f text-xs"></i>
             </a>
             <a
               href="https://www.instagram.com/casinomaxs/"
               target="_blank"
-              class="w-8 h-8 rounded-full border border-[#8A7960]/40 flex items-center justify-center text-[#9196A5] hover:border-[#FE8912] hover:text-[#FE9B2A] transition"
+              class="w-8 h-8 rounded-full border border-[#D4AF37]/20 flex items-center justify-center text-[#9CA3AF] hover:border-[#D4AF37] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition"
             >
               <i class="fab fa-instagram text-xs"></i>
             </a>
@@ -134,16 +134,16 @@
             </li>
           </ul>
           <div
-            class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-[#8A7960]/40 text-[#9196A5] text-[10px]"
+            class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-[#D4AF37]/20 text-[#9CA3AF] text-[10px]"
           >
-            <i class="fas fa-hand-holding-heart text-[#FE8912]"></i>
+            <i class="fas fa-hand-holding-heart text-[#D4AF37]"></i>
             18+ Please Play Responsibly
           </div>
         </div>
       </div>
 
       <div
-        class="mt-6 pt-4 border-t border-[#8A7960]/20 text-center text-xs text-[#9196A5] font-medium"
+        class="mt-6 pt-4 border-t border-[#D4AF37]/15 text-center text-xs text-[#9CA3AF] font-medium"
       >
         &copy; {{ currentYear }} Spin Hub. All rights reserved.
       </div>

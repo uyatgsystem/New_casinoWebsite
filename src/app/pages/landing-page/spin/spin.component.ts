@@ -54,6 +54,21 @@ export class SpinComponent implements OnInit {
     return this.prizeImages[index % this.prizeImages.length];
   }
 
+  spinHistory: { no: number; prize: string; date: Date }[] = [];
+
+  private buildSpinHistory(): void {
+    const now = Date.now();
+    const minutesAgo = (m: number) => new Date(now - m * 60 * 1000);
+    const prizePool = ['$8', '$10', '$13', '$15'];
+    const count = 4 + Math.round(Math.random());
+
+    this.spinHistory = Array.from({ length: count }, (_, i) => ({
+      no: i + 1,
+      prize: prizePool[Math.floor(Math.random() * prizePool.length)],
+      date: minutesAgo(i * 45),
+    }));
+  }
+
   spinAmount: string = '5';
   allowedSpinAmounts = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30];
   public readonly segmentAngle = 360 / this.segments.length;
@@ -66,7 +81,9 @@ export class SpinComponent implements OnInit {
     this.grainBackdrop = this._utils.getGrainBackdrop();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.buildSpinHistory();
+  }
 
   isMobile(): boolean {
     if (isPlatformBrowser(this.platformId)) {

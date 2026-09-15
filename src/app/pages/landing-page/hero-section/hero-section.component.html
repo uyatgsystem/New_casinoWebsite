@@ -1,4 +1,7 @@
-<div class="relative bg-[#000408] text-center px-6 overflow-hidden">
+<div class="relative bg-[#0B0B0F] text-center px-6 overflow-hidden">
+
+  <!-- Ambient luxury gold glow -->
+  <div class="absolute inset-0 pointer-events-none z-0" style="background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.12) 0%, transparent 60%);"></div>
 
   <!-- RIGHT SIDE BACKGROUND IMAGE -->
   <img src="https://cmaxnewimages.pages.dev/assets/extra/shape.png" alt="casino" class="absolute
@@ -9,22 +12,23 @@
 
   <!-- CONTENT (PERFECT CENTER) -->
   <div class="relative z-10 flex flex-col items-center justify-center min-h-[35vh] lg:min-h-[50vh]">
-    <h2 class="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
-      Ready to <span class="text-[#FE8912]">Spin?</span>
+    <h2 class="text-[#F5F5F7] text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight">
+      Ready to <span class="text-[#D4AF37]">Spin?</span>
     </h2>
-    <p class="text-[#A6B1C2] text-sm md:text-base max-w-md mb-8">
+    <p class="text-[#9CA3AF] text-sm md:text-base max-w-md mb-8">
       Join Spin Hub and discover an exciting gaming experience.
     </p>
 
     <div class="flex flex-col sm:flex-row items-center gap-4">
-      <button (click)="RedirectToLogin()" type="button" class="text-black font-semibold px-14 py-[0.65rem] shadow-md
+      <button (click)="RedirectToLogin()" type="button" class="text-[#0B0B0F] font-semibold px-14 py-[0.65rem] shadow-md
         rounded-full
-        bg-gradient-to-b from-[#FEC866] to-[#FE8006] transition hover:scale-105 hover:shadow-lg">
+        bg-gradient-to-b from-[#E5C07B] to-[#B8860B] transition hover:scale-105"
+        style="box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);">
         Play Now
       </button>
-      <button (click)="RedirectToSignUp()" type="button" class="text-white font-semibold px-10 py-[0.6rem]
-        rounded-full bg-black
-        border border-[#8A7960]/50 transition hover:scale-105 hover:border-[#FE8912] hover:text-[#FE9B2A]">
+      <button (click)="RedirectToSignUp()" type="button" class="text-[#F5F5F7] font-semibold px-10 py-[0.6rem]
+        rounded-full bg-white/5
+        border border-[#D4AF37]/30 transition hover:scale-105 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]">
         Join Now
       </button>
     </div>

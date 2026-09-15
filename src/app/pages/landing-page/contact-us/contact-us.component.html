@@ -14,7 +14,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-start">
       <div class="contact-text max-w-[650px]">
         <span
-          class="contact-eyebrow inline-flex items-center px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#FE9B2A] uppercase mb-4"
+          class="contact-eyebrow inline-flex items-center px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#D4AF37] uppercase mb-4"
         >
           Contact Us
         </span>
@@ -24,10 +24,10 @@
           class="text-white font-extrabold text-[40px] sm:text-[48px] lg:text-[56px] leading-[1.1] mt-0 mb-6"
         >
           Reach Out
-          <span class="text-[#A6B1C2]"> Anytime</span>
+          <span class="text-[#9CA3AF]"> Anytime</span>
         </h2>
 
-        <p class="text-[#A6B1C2] font-medium text-base leading-6">
+        <p class="text-[#9CA3AF] font-medium text-base leading-6">
           If you have questions, need support, or want to share feedback, our
           team is always ready to assist. Reach out to us anytime we’re here to
           make your gaming experience smoother.
@@ -41,7 +41,7 @@
             </span>
             <div>
               <p class="text-white text-sm font-semibold">Email Us</p>
-              <p class="text-[#A6B1C2] text-xs">support&#64;spinclub.com</p>
+              <p class="text-[#9CA3AF] text-xs">support&#64;spinclub.com</p>
             </div>
           </div>
 
@@ -51,7 +51,7 @@
             </span>
             <div>
               <p class="text-white text-sm font-semibold">Live Chat Support</p>
-              <p class="text-[#A6B1C2] text-xs">
+              <p class="text-[#9CA3AF] text-xs">
                 Available directly from your dashboard
               </p>
             </div>
@@ -63,7 +63,7 @@
             </span>
             <div>
               <p class="text-white text-sm font-semibold">Response Time</p>
-              <p class="text-[#A6B1C2] text-xs">
+              <p class="text-[#9CA3AF] text-xs">
                 Our team typically replies within 24 hours
               </p>
             </div>
@@ -80,13 +80,13 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- First Name -->
             <div>
-              <label class="block text-white mb-2 text-sm font-medium"
+              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
                 >First Name</label
               >
               <input
                 type="text"
                 formControlName="firstName"
-                class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
+                class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#D4AF37] transition-colors"
               />
               <div
                 *ngIf="
@@ -101,13 +101,13 @@
 
             <!-- Last Name -->
             <div>
-              <label class="block text-white mb-2 text-sm font-medium"
+              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
                 >Last Name</label
               >
               <input
                 type="text"
                 formControlName="lastName"
-                class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
+                class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#D4AF37] transition-colors"
               />
               <div
                 *ngIf="
@@ -125,13 +125,13 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Email -->
             <div>
-              <label class="block text-white mb-2 text-sm font-medium"
+              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
                 >Email</label
               >
               <input
                 type="email"
                 formControlName="email"
-                class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
+                class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#D4AF37] transition-colors"
               />
               <div
                 *ngIf="
@@ -146,7 +146,7 @@
 
             <!-- Phone -->
             <div>
-              <label class="block text-white mb-2 text-sm font-medium"
+              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
                 >Phone</label
               >
               <input
@@ -155,7 +155,7 @@
                 maxlength="15"
                 formControlName="phone"
                 (input)="onPhoneInput($event)"
-                class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
+                class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#D4AF37] transition-colors"
               />
               <div
                 *ngIf="contactForm.get('phone')?.touched"
@@ -173,13 +173,13 @@
 
           <!-- Message -->
           <div>
-            <label class="block text-white mb-2 text-sm font-medium"
+            <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
               >Message</label
             >
             <textarea
               formControlName="message"
               rows="5"
-              class="contact-input w-full px-4 py-3 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#0e1013] border border-[#8A7960]/50 text-white focus:outline-none focus:border-[#FE8912] focus:ring-1 focus:ring-[#FE8912] transition-colors"
+              class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#D4AF37] transition-colors"
             ></textarea>
             <div
               *ngIf="
@@ -201,7 +201,7 @@
                 ? 'opacity-50 cursor-not-allowed'
                 : 'cursor-pointer hover:scale-[1.02] hover:shadow-xl'
             "
-            class="contact-submit-glow w-full text-black font-semibold px-10 py-3 bg-gradient-to-b from-[#FFD27A] via-[#FE9B2A] to-[#FE8912] transition-all duration-300 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]"
+            class="contact-submit-glow w-full bg-gradient-to-r from-[#E5C07B] to-[#B8860B] text-black font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider transition duration-300"
           >
             Send Message
           </button>
@@ -222,7 +222,7 @@
     <div class="text-center max-w-4xl mx-auto mt-12">
       <div class="flex justify-center mb-4">
         <span
-          class="inline-block text-[#FE8912] font-bold text-[24px] leading-[22px] px-3 py-1"
+          class="inline-block text-[#D4AF37] font-bold text-[24px] leading-[22px] px-3 py-1"
           >FAQs</span
         >
       </div>
@@ -234,7 +234,7 @@
         Frequently Asked Questions
       </h2>
 
-      <p class="text-[#A6B1C2] font-medium text-base mx-auto">
+      <p class="text-[#9CA3AF] font-medium text-base mx-auto">
         Have a question? Our FAQ section covers the most frequently asked topics
         about accounts, payments, games, and more so you get instant clarity.
       </p>
@@ -243,7 +243,7 @@
     <div class="space-y-6 mt-10 max-w-7xl mx-auto">
       <div
         *ngFor="let faq of faqs"
-        class="border-b-2 [border-image-source:linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)] [border-image-slice:1] pb-4"
+        class="border-b-2 [border-image-source:linear-gradient(90deg,#27272A_0.96%,#D4AF37_49.52%,#27272A_100%)] [border-image-slice:1] pb-4"
       >
         <button
           (click)="toggle(faq.index)"
@@ -266,13 +266,13 @@
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M20.8588 25.1465L11.3537 28.2267L12.1389 33.5298L33.047 30.4559L30.837 9.40995L25.5056 9.97128L24.8917 19.9442L20.8588 25.1465Z"
-                  fill="#FE8912"
+                  fill="#D4AF37"
                 />
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M5.25513 17.3405L13.4432 6.77826L23.8197 19.1129L19.7868 24.3152L5.25513 17.3405Z"
-                  fill="#FE8912"
+                  fill="#D4AF37"
                 />
               </svg>
             </ng-container>
@@ -290,13 +290,13 @@
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M17.397 18.7467L11.8994 27.0901L15.8256 30.7403L30.2309 15.278L15.3571 0.225319L11.5449 3.99439L17.296 12.165L17.397 18.7467Z"
-                  fill="#FE8912"
+                  fill="#D4AF37"
                 />
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M0.336746 22.3974L0.131604 9.03461L15.9398 12.1833L16.0408 18.765L0.336746 22.3974Z"
-                  fill="#FE8912"
+                  fill="#D4AF37"
                 />
               </svg>
             </ng-template>
@@ -311,7 +311,7 @@
               : 'grid-rows-[0fr] opacity-0'
           "
         >
-          <p class="text-[#A6B1C2] text-sm leading-relaxed overflow-hidden">
+          <p class="text-[#9CA3AF] text-sm leading-relaxed overflow-hidden">
             {{ faq.answer }}
           </p>
         </div>
