@@ -1,38 +1,41 @@
-<!-- Component Start -->
+<!-- ================= FUTURISTIC CYBER-DOCK SIDEBAR ================= -->
 <div
   *ngIf="!isTreasurePickRoute()"
-  class="flex-col items-center flex-shrink-0 w-[250px] h-[calc(100vh-70px)] overflow-y-auto text-gray-400 transition-all duration-300 ease-in-out fixed z-[996] top-[70px] flex shadow-2xl custom-scrollbar bg-[#121417] border-r border-white/10"
+  class="flex-col items-center flex-shrink-0 w-[240px] h-[calc(100vh-70px)] overflow-y-auto text-gray-300 transition-all duration-300 ease-in-out fixed z-[996] top-[70px] flex shadow-[20px_0_60px_rgba(0,0,0,0.95)] custom-scrollbar bg-[#010204]/95 backdrop-blur-3xl border-r border-[#00F5D4]/40"
   [class.hidden]="!isSidebarOpen"
   [ngClass]="{ mobile: isMobile }"
 >
-  <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+  <div
+    class="absolute inset-0 pointer-events-none opacity-10"
+    [innerHTML]="grainBackdrop"
+  ></div>
 
-  <div class="w-full flex flex-col pt-6 pb-6 px-3 mobile-overlay">
-    <!-- Profile (mobile only) -->
-    <div class="block lg:hidden mb-4 px-1">
+  <div class="w-full flex flex-col pt-8 pb-6 px-4 relative z-10 space-y-6">
+    <!-- Mobile User Hologram Badge -->
+    <div class="block lg:hidden w-full">
       <div
-        class="flex items-center gap-3 w-full p-2 rounded-2xl bg-black/40 border border-white/10"
+        class="flex items-center gap-3 p-3 rounded-2xl bg-black/90 border border-[#00F5D4]/50 shadow-[0_0_15px_rgba(0,245,212,0.2)]"
       >
-        <div class="relative inline-block flex-shrink-0">
+        <div class="relative flex-shrink-0">
           <img
             [src]="profileImage"
             alt="Profile"
-            class="h-10 w-10 rounded-full border-2 border-white/20 object-cover shadow-md"
-          />
-          <img
-            *ngIf="profileLevel"
-            [src]="getLevelImage(profileLevel)"
-            alt="Level Badge"
-            class="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 h-5 w-5"
+            class="h-10 w-10 rounded-xl border border-[#00F5D4] object-cover"
           />
         </div>
         <div class="flex items-center w-full overflow-hidden">
-          <span class="text-xs font-bold text-white truncate">
-            {{ userName | slice: 0 : 8 }}{{ userName?.length > 8 ? "..." : "" }}
-          </span>
+          <div class="flex flex-col truncate">
+            <span class="text-xs font-black text-white truncate">{{
+              userName || "Operative"
+            }}</span>
+            <span
+              class="text-[9px] text-[#00F5D4] font-mono tracking-wider uppercase font-bold"
+              >VIP Status</span
+            >
+          </div>
           <button
             (click)="showComletePorfile()"
-            class="ml-auto text-[#FF9F1C] hover:scale-110 transition p-1"
+            class="ml-auto text-[#00F5D4] p-1.5 rounded-xl bg-[#00F5D4]/15 border border-[#00F5D4]/40 cursor-pointer shadow-[0_0_10px_rgba(0,245,212,0.2)]"
           >
             <fa-icon [icon]="faUserEdit"></fa-icon>
           </button>
@@ -40,226 +43,220 @@
       </div>
     </div>
 
-    <!-- Switcher: Games First (Left), Instant Second (Right) -->
+    <!-- 1. Cybernetic Quick Switcher Pod -->
     <div
-      class="hidden lg:flex items-center justify-between w-full max-w-[220px] mx-auto mb-4 p-1 bg-black/70 backdrop-blur-md border border-white/10 rounded-2xl shadow-inner relative"
+      class="hidden lg:flex flex-col w-full bg-black/90 p-1.5 rounded-2xl border border-[#00F5D4]/40 shadow-inner gap-1"
     >
-      <!-- Games Tab (Left) -->
-      <div
+      <button
+        type="button"
         (click)="selectQuickTab('games', '/dashboard/home', 'games-scroll-id')"
-        class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl cursor-pointer transition-all duration-300 group"
-        [ngClass]="{
-          'bg-gradient-to-r from-[#00F5D4]/25 to-[#06B6D4]/25 border border-[#00F5D4]/60 shadow-sm':
-            activeQuickTab === 'games',
-          'border border-transparent hover:bg-white/5':
-            activeQuickTab !== 'games',
-        }"
+        class="w-full py-2.5 px-3 rounded-xl text-xs font-black tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer border"
+        [ngClass]="
+          activeQuickTab === 'games'
+            ? 'bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#10B981] text-[#050811] shadow-[0_0_15px_rgba(0,245,212,0.4)] border-[#00F5D4]/85'
+            : 'text-gray-300 hover:text-white bg-black/60 border-[rgba(0,245,212,0.3)] hover:border-[rgba(0,245,212,0.6)] hover:bg-[#00F5D4]/10'
+        "
       >
-        <span
-          class="text-xs font-semibold tracking-wide"
-          [ngClass]="
-            activeQuickTab === 'games'
-              ? 'text-[#00F5D4] font-extrabold'
-              : 'text-gray-400 group-hover:text-white'
-          "
-        >
-          🎮 Games
-        </span>
-      </div>
-
-      <!-- Instant Tab (Right) -->
-      <div
+        <span>🎮</span> GAMES MATRIX
+      </button>
+      <button
+        type="button"
         (click)="
           selectQuickTab('instant', '/dashboard/home', 'quick-scrolling-id')
         "
-        class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl cursor-pointer transition-all duration-300 group"
-        [ngClass]="{
-          'bg-gradient-to-r from-[#FF9F1C]/25 to-[#FFB800]/25 border border-[#FF9F1C]/60 shadow-sm':
-            activeQuickTab === 'instant',
-          'border border-transparent hover:bg-white/5':
-            activeQuickTab !== 'instant',
-        }"
+        class="w-full py-2.5 px-3 rounded-xl text-xs font-black tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer border"
+        [ngClass]="
+          activeQuickTab === 'instant'
+            ? 'bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#10B981] text-[#050811] shadow-[0_0_15px_rgba(0,245,212,0.4)] border-[#00F5D4]/85'
+            : 'text-gray-300 hover:text-white bg-black/60 border-[rgba(0,245,212,0.3)] hover:border-[rgba(0,245,212,0.6)] hover:bg-[#00F5D4]/10'
+        "
       >
+        <span>⚡</span> INSTANT ARENA
+      </button>
+    </div>
+
+    <!-- 2. Neon Referral Command Card -->
+    <div
+      class="relative w-full bg-gradient-to-b from-black/90 to-neutral-950 p-3.5 rounded-2xl border border-[rgba(0,245,212,0.35)] shadow-[0_4px_20px_rgba(0,0,0,0.8)] group hover:border-[#00F5D4] transition"
+    >
+      <div class="flex items-center justify-between mb-1.5">
         <span
-          class="text-xs font-extrabold tracking-wide"
-          [ngClass]="
-            activeQuickTab === 'instant'
-              ? 'text-[#FF9F1C]'
-              : 'text-gray-400 group-hover:text-white'
-          "
+          class="text-[9px] text-[#00F5D4] font-mono tracking-widest font-black uppercase"
+          >SECURE REF-NODE</span
         >
-          ⚡ Instant
-        </span>
+        <span class="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse"></span>
+      </div>
+      <div class="flex items-center justify-between gap-2">
+        <span
+          class="text-white text-xs font-mono font-black truncate bg-black/80 px-2 py-1 rounded-lg border border-[rgba(0,245,212,0.2)] flex-1"
+          >{{ referralCode }}</span
+        >
+        <div class="relative">
+          <div
+            *ngIf="showCopiedTooltip"
+            class="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#00F5D4] text-black text-[8px] font-black px-2 py-0.5 rounded shadow z-20 animate-bounce"
+          >
+            COPIED!
+          </div>
+          <button
+            (click)="copyReferralCode()"
+            class="w-8 h-8 rounded-xl bg-[#00F5D4]/25 border border-[#00F5D4] flex items-center justify-center text-[#00F5D4] hover:bg-[#00F5D4] hover:text-black hover:shadow-[0_0_15px_rgba(0,245,212,0.5)] transition cursor-pointer"
+          >
+            <svg
+              class="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              viewBox="0 0 24 24"
+            >
+              <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+              <path
+                d="M5 14H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"
+              ></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Referral Card Component -->
-    <div
-      class="flex items-center justify-between gap-2 w-full max-w-[220px] mx-auto mb-4 px-3 py-2 bg-black/60 backdrop-blur-md border border-[#00F5D4]/30 rounded-2xl shadow-lg relative"
-    >
-      <div class="flex items-center gap-2 overflow-hidden">
-        <div
-          class="w-7 h-7 rounded-xl bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4] flex-shrink-0"
-        >
-          <svg
-            class="w-3.5 h-3.5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
-            />
-          </svg>
+    <!-- 3. Navigation HUD Grid -->
+    <div class="flex flex-col space-y-2 w-full">
+      <span
+        class="text-[9px] text-gray-500 font-mono font-bold uppercase tracking-widest px-1"
+        >NAVIGATION HUD</span
+      >
+
+      <a
+        routerLink="/dashboard/home"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeSidebarMobile()"
+        class="cyber-nav-node"
+      >
+        <div class="node-icon"><img src="/home.png" alt="" /></div>
+        <div class="node-text">
+          <span class="title">Home Hub</span>
+          <span class="sub">Dashboard Portal</span>
         </div>
-        <div class="flex flex-col overflow-hidden">
-          <span
-            class="text-[8px] text-gray-400 uppercase tracking-wider font-bold"
-            >Referral Code</span
-          >
-          <span class="text-white text-xs font-mono font-bold truncate">{{
-            referralCode
-          }}</span>
-        </div>
-      </div>
+      </a>
 
-      <div class="relative">
-        <div
-          *ngIf="showCopiedTooltip"
-          class="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#00F5D4] text-black text-[9px] font-bold px-2 py-[2px] rounded-md whitespace-nowrap shadow-xl z-20 animate-bounce"
-        >
-          Copied ✓
-        </div>
-        <button
-          (click)="copyReferralCode()"
-          class="flex items-center justify-center w-7 h-7 rounded-xl bg-gradient-to-br from-[#00F5D4]/25 to-[#FF9F1C]/10 border border-[#00F5D4]/40 hover:border-[#FF9F1C] hover:scale-105 active:scale-95 transition-all"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="w-3 h-3 text-[#00F5D4]"
-          >
-            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
-            <path
-              d="M5 14H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"
-            ></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Menu Items Section -->
-    <div
-      class="relative flex flex-col items-center w-full max-w-[220px] bg-[#0c0d10]/90 backdrop-blur-xl mx-auto border border-white/10 rounded-3xl p-1.5 mb-4 shadow-2xl overflow-hidden"
-    >
-      <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-
-      <div class="relative z-10 w-full gap-1.5 flex flex-col">
-        <a
-          class="sidebar-item"
-          routerLink="/dashboard/home"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          (click)="closeSidebarMobile()"
-        >
-          <img src="/home.png" alt="icon" />
-          <span class="text-xs font-medium">Home</span>
-        </a>
-
-        <a
-          class="sidebar-item"
-          routerLink="/dashboard/wallet"
-          routerLinkActive="active"
-          (click)="closeSidebarMobile()"
-        >
+      <a
+        routerLink="/dashboard/wallet"
+        routerLinkActive="active"
+        (click)="closeSidebarMobile()"
+        class="cyber-nav-node"
+      >
+        <div class="node-icon">
           <img
             src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Wallet.png"
-            alt="icon"
+            alt=""
           />
-          <span class="text-xs font-medium">Wallet</span>
-        </a>
+        </div>
+        <div class="node-text">
+          <span class="title">Vault & Wallet</span>
+          <span class="sub">Assets & Funds</span>
+        </div>
+      </a>
 
-        <a
-          class="sidebar-item"
-          routerLink="/dashboard/account"
-          routerLinkActive="active"
-          (click)="closeSidebarMobile()"
-        >
+      <a
+        routerLink="/dashboard/account"
+        routerLinkActive="active"
+        (click)="closeSidebarMobile()"
+        class="cyber-nav-node"
+      >
+        <div class="node-icon">
           <img
             src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/GameAccount.png"
-            alt="icon"
+            alt=""
           />
-          <span class="text-xs font-medium">Game Account</span>
-        </a>
+        </div>
+        <div class="node-text">
+          <span class="title">Game Account</span>
+          <span class="sub">Profile Records</span>
+        </div>
+      </a>
 
-        <a
-          class="sidebar-item"
-          routerLink="/dashboard/spinner"
-          routerLinkActive="active"
-          (click)="closeSidebarMobile()"
-        >
+      <a
+        routerLink="/dashboard/spinner"
+        routerLinkActive="active"
+        (click)="closeSidebarMobile()"
+        class="cyber-nav-node"
+      >
+        <div class="node-icon">
           <img
             src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/spin.png"
-            alt="icon"
+            alt=""
           />
-          <span class="text-xs font-medium">Spin</span>
-        </a>
+        </div>
+        <div class="node-text">
+          <span class="title">Lucky Spin</span>
+          <span class="sub">Daily Rewards</span>
+        </div>
+      </a>
 
-        <a
-          class="sidebar-item"
-          routerLink="/dashboard/guides"
-          routerLinkActive="active"
-          (click)="closeSidebarMobile()"
-        >
+      <a
+        routerLink="/dashboard/guides"
+        routerLinkActive="active"
+        (click)="closeSidebarMobile()"
+        class="cyber-nav-node"
+      >
+        <div class="node-icon">
           <img
             src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Redeem.png"
-            alt="icon"
+            alt=""
           />
-          <span class="text-xs font-medium">Guide</span>
-        </a>
+        </div>
+        <div class="node-text">
+          <span class="title">User Guide</span>
+          <span class="sub">Rules & Help</span>
+        </div>
+      </a>
 
-        <a
-          *ngIf="isMobile == true"
-          (click)="redirecttoTermsConditions()"
-          class="sidebar-item hello"
-        >
+      <a
+        *ngIf="isMobile == true"
+        (click)="redirecttoTermsConditions()"
+        class="cyber-nav-node"
+      >
+        <div class="node-icon">
           <img
             src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Lotteries.png"
             class="h-4 object-contain"
-            alt="icon"
+            alt=""
           />
-          <span class="text-xs font-medium">Terms & Condition</span>
-        </a>
+        </div>
+        <div class="node-text">
+          <span class="title">Terms & Conditions</span>
+          <span class="sub">Policies</span>
+        </div>
+      </a>
 
-        <a
-          *ngIf="isMobile == true"
-          (click)="showLogoutModal()"
-          class="sidebar-item hello text-red-400 hover:text-red-300"
+      <a
+        *ngIf="isMobile == true"
+        (click)="showLogoutModal()"
+        class="cyber-nav-node text-red-400 hover:text-red-300"
+      >
+        <div
+          class="node-icon bg-red-500/15 border-red-500/40 shadow-[0_0_10px_rgba(239,68,68,0.2)]"
         >
           <img
             src="https://cmax.pages.dev/assets/icons/sidebar-icons/logout.png"
             class="h-4 object-contain"
-            alt="icon"
+            alt=""
           />
-          <span class="text-xs font-medium">Logout</span>
-        </a>
-      </div>
+        </div>
+        <div class="node-text">
+          <span class="title text-red-400">Disconnect</span>
+          <span class="sub text-red-500/60">Terminate Session</span>
+        </div>
+      </a>
     </div>
 
-    <!-- Optional Bottom Characters Image -->
-    <div class="mt-auto px-2 flex justify-center pb-4">
+    <!-- Bottom Mascot / Visual Graphic -->
+    <div class="mt-auto pt-4 flex justify-center">
       <img
         src="https://cmaxv2images2.pages.dev/assets/banners/sidebar-characters.png"
         alt="Characters"
-        class="w-full max-w-[160px] object-contain opacity-90 drop-shadow-lg"
+        class="w-full max-w-[140px] object-contain opacity-80 drop-shadow-[0_0_15px_rgba(0,245,212,0.3)]"
         onerror="this.style.display = 'none'"
       />
     </div>

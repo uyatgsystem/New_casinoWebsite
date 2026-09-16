@@ -30,7 +30,6 @@ import { ApiCallService } from '../../Services/api-call-service.service';
 import { LoaderService } from '../../Services/loader-service.service';
 import { Subject, filter, takeUntil } from 'rxjs';
 import { UtilsService } from '../../Services/utils.service';
-import { LoaderComponent } from '../loader/loader.component';
 import { MusicService } from '../../Services/music.service';
 import { ErrorhandlingService } from '../../Services/error-handling.service';
 import { NotificationService } from '../../Services/notification.service';
@@ -54,7 +53,6 @@ import { LocationService } from '../../Services/ip-check.service';
     LogoutmodelComponent,
     NotificationsComponent,
     deleteaccountmodelComponent,
-    LoaderComponent,
     TranslateModule,
   ],
   templateUrl: './header.component.html',
@@ -929,7 +927,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.dropdownStyle = {
         position: 'fixed',
         top: rect.bottom + 'px',
-        left: rect.right - 160 + 'px'
+        left: rect.right - 180 + 'px'
       };
     }
   }
@@ -969,7 +967,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Membership level badge (name + rank, e.g. "GOLD" · "Lv.3")
   playerLevel: string = '';
   levelRank: number = 0;
 
@@ -980,8 +977,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (name.includes('gold')) return '/GoldLevel.png';
     if (name.includes('platinum')) return '/PlatinumLevel.png';
     if (name.includes('diamond')) return '/DiamondLevel.png';
-    // Fall back to an asset that actually exists — avoids a broken-image icon
-    // in the header if the backend ever sends an unrecognized tier name.
     return '/BrornzeLevel.png';
   }
 

@@ -75,64 +75,80 @@
   </div>
 </div>
 
-<!-- Panel Games Section with Dynamic Border Colors -->
+<!-- ================= BRAND NEW CRYSTAL PRISM CARDS SECTION ================= -->
 <div
   id="games-scroll-id"
   *ngIf="isToken && isDashboardPage && AsianLocalBlock"
-  class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 sm:gap-6 mx-3 sm:mx-4 text-center px-3 sm:px-4 py-4 rounded-3xl bg-[#0c101d]/60 border border-[#00F5D4]/30 shadow-xl backdrop-blur-sm"
+  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 sm:gap-7 mx-3 sm:mx-4 px-4 py-8 rounded-[32px] bg-[#050810]/90 border border-[#00F5D4]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
   [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''"
 >
   <ng-container *ngFor="let game of displayedGames">
     <div
       (click)="isMobile() ? OnPlayNow(game) : null"
-      class="dash-game-card group"
-      [ngStyle]="{
-        'border-color': game.bgclr || '#00F5D4',
-        '--card-glow': game.bgclr || '#00F5D4',
-      }"
+      class="crystal-prism-card group"
+      [ngStyle]="{ '--prism-glow': game.bgclr || '#00F5D4' }"
     >
-      <!-- Cover Image -->
-      <img [src]="game.image" [alt]="game.name" class="game-image" />
+      <!-- Crystal Backdrop Illumination Orb -->
+      <div class="prism-orb"></div>
 
-      <!-- Fixed Responsive Top Badges Area -->
+      <!-- Floating Badges Layer -->
       <div
-        class="absolute top-2 inset-x-2 z-30 flex items-center justify-between pointer-events-none gap-1"
+        class="absolute top-3 inset-x-3 z-30 flex items-center justify-between pointer-events-none gap-1"
       >
         <span
           *ngIf="game?.bonus"
-          class="bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] text-slate-950 font-extrabold text-[6px] sm:text-[8px] px-1.5 py-0.5 rounded shadow-sm uppercase tracking-tighter flex items-center gap-0.5 border border-white/40 shrink-0"
+          class="bg-[#00F5D4] text-slate-950 font-black text-[8px] sm:text-[10px] px-2 py-0.5 rounded-full shadow-[0_0_12px_#00F5D4] uppercase tracking-tighter"
         >
-          <span>🔥</span> {{ game?.bonus }}%
+          🔥 {{ game?.bonus }}%
         </span>
         <span *ngIf="!game?.bonus"></span>
         <span
           *ngIf="game.isHot"
-          class="bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 text-white font-extrabold text-[6px] sm:text-[8px] px-1.5 py-0.5 rounded shadow-sm uppercase tracking-tighter flex items-center gap-0.5 border border-white/40 shrink-0 ml-auto"
+          class="bg-orange-500 text-white font-black text-[8px] sm:text-[10px] px-2 py-0.5 rounded-full shadow-[0_0_12px_rgba(249,115,22,0.8)] uppercase tracking-tighter ml-auto animate-pulse"
         >
-          <span>⚡</span> HOT
+          ⚡ HOT
         </span>
       </div>
 
-      <!-- Hover Play Overlay -->
-      <div class="play-overlay" *ngIf="!isMobile() && game.buttonText != ''">
-        <button class="play-btn" (click)="OnPlayNow(game)">
-          {{ isToken ? game.buttonText : "Play Now" }}
+      <!-- Artwork Display Container -->
+      <div class="prism-media-wrap">
+        <img [src]="game.image" [alt]="game.name" class="prism-game-artwork" />
+      </div>
+
+      <!-- Hover Action Hub -->
+      <div
+        class="prism-hover-curtain"
+        *ngIf="!isMobile() && game.buttonText != ''"
+      >
+        <button class="prism-launch-pill" (click)="OnPlayNow(game)">
+          <span>{{ isToken ? game.buttonText : "PLAY NOW" }}</span>
+          <i class="fas fa-chevron-right text-[8px]"></i>
         </button>
       </div>
 
-      <!-- Floating Glass Footer Pill -->
-      <div class="card-footer-pill">
-        <span class="game-title" [ngStyle]="{ color: game.bgclr || '#00F5D4' }">
-          {{ game.name }}
-        </span>
+      <!-- Bottom Crystal Info Tag -->
+      <div class="prism-footer-tray">
+        <div class="flex items-center gap-2 overflow-hidden">
+          <div
+            class="prism-status-gem"
+            [ngStyle]="{ background: game.bgclr || '#00F5D4' }"
+          ></div>
+          <span
+            class="prism-game-title"
+            [ngStyle]="{ color: game.bgclr || '#00F5D4' }"
+          >
+            {{ game.name }}
+          </span>
+        </div>
         <a
           [ngStyle]="{ color: game.bgclr || '#00F5D4' }"
           [href]="game.downloadLink"
           target="_blank"
           (click)="$event.stopPropagation()"
-          class="download-icon-btn"
+          class="prism-dl-action"
+          title="Download File"
         >
-          <i class="fas fa-download text-[8px] sm:text-[10px]"></i>
+          <i class="fas fa-download text-[10px]"></i>
         </a>
       </div>
     </div>
@@ -235,44 +251,51 @@
 
   <div
     *ngIf="isToken && isDashboardPage"
-    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 sm:gap-6 mx-auto text-center px-3 sm:px-4 py-4 rounded-3xl bg-[#0c101d]/60 border border-[#00F5D4]/30 shadow-xl backdrop-blur-sm"
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 sm:gap-7 mx-auto px-4 py-8 rounded-[32px] bg-[#050810]/90 border border-[#00F5D4]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
     [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''"
   >
     <ng-container *ngFor="let game of quickGames">
       <div
         (click)="redirectTo(game.redirectLink)"
-        class="dash-game-card group"
-        [ngStyle]="{
-          'border-color': game.bgColor || '#00F5D4',
-          '--card-glow': game.bgColor || '#00F5D4',
-        }"
+        class="crystal-prism-card group"
+        [ngStyle]="{ '--prism-glow': game.bgColor || '#00F5D4' }"
       >
-        <img
-          [src]="game.image"
-          [alt]="game.name"
-          class="game-image"
-          [class.game-image--boost]="game.name !== 'Spin'"
-        />
+        <div class="prism-orb"></div>
 
-        <div class="play-overlay" *ngIf="!isMobile()">
-          <span class="play-btn">Play Now</span>
+        <div class="prism-media-wrap">
+          <img
+            [src]="game.image"
+            [alt]="game.name"
+            class="prism-game-artwork"
+            [class.prism-game-artwork--boost]="game.name !== 'Spin'"
+          />
         </div>
 
-        <div class="card-footer-pill">
-          <span
-            class="game-title"
-            [ngStyle]="{ color: game.bgColor || '#00F5D4' }"
-          >
-            {{ game.name }}
-          </span>
+        <div class="prism-hover-curtain" *ngIf="!isMobile()">
+          <span class="prism-launch-pill">PLAY NOW</span>
+        </div>
+
+        <div class="prism-footer-tray">
+          <div class="flex items-center gap-2 overflow-hidden">
+            <div
+              class="prism-status-gem"
+              [ngStyle]="{ background: game.bgColor || '#00F5D4' }"
+            ></div>
+            <span
+              class="prism-game-title"
+              [ngStyle]="{ color: game.bgColor || '#00F5D4' }"
+            >
+              {{ game.name }}
+            </span>
+          </div>
           <a
             [ngStyle]="{ color: game.bgColor || '#00F5D4' }"
             [routerLink]="game.downloadLink"
             target="_blank"
             (click)="$event.stopPropagation()"
-            class="download-icon-btn"
+            class="prism-dl-action"
           >
-            <i class="fas fa-download text-[8px] sm:text-[10px]"></i>
+            <i class="fas fa-download text-[10px]"></i>
           </a>
         </div>
       </div>
