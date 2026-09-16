@@ -1,36 +1,36 @@
-<div *ngIf="show" class="fixed inset-0 z-50 flex items-center justify-center">
+<div
+  *ngIf="show"
+  class="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+>
   <div
-    class="absolute inset-0 bg-black/60"
+    class="absolute inset-0 bg-black/80 backdrop-blur-sm"
     (click)="closeModal()"
     aria-hidden="true"
   ></div>
   <div
-    class="relative bg-[#2d2036] border border-gray-500 rounded-2xl p-6 w-[90vw] max-w-md shadow-2xl text-center"
+    class="relative bg-[#0C101D] border border-[#00F5D4]/40 rounded-2xl p-6 sm:p-8 w-full max-w-md shadow-[0_0_30px_rgba(0,245,212,0.25)] text-center z-10"
   >
     <!-- close -->
     <button
-      class="absolute -right-1 top-3 text-white w-12 flex items-center justify-center text-2xl"
+      class="absolute right-3 top-3 text-slate-400 hover:text-[#00F5D4] w-8 h-8 flex items-center justify-center text-2xl transition-colors"
       (click)="closeModal()"
       aria-label="Close"
     >
       &times;
     </button>
 
-    <!-- icon -->
-    <!-- <div class="mx-auto mb-3 h-12 w-12 rounded-full flex items-center justify-center" [ngStyle]="{'background-color': iconColor+'33',
-                 'box-shadow': '0 0 10px '+iconColor+'99',
-                 'border': '1px solid '+iconColor}">
-      <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
-        <path [attr.d]="iconSvg"></path>
-      </svg>
-    </div> -->
+    <h3 class="text-[#FF9F1C] text-xl font-extrabold mb-2 drop-shadow">
+      {{ title }}
+    </h3>
+    <p class="text-slate-300 text-sm sm:text-base mb-6 font-medium">
+      {{ message }}
+    </p>
 
-    <h3 class="text-yellow-400 text-xl font-extrabold mb-1">{{ title }}</h3>
-    <p class="text-purple-200 text-md mb-5 mt-5">{{ message }}</p>
-
-    <!-- <button class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold shadow"
-      (click)="closeModal()">
-      Close
-    </button> -->
+    <button
+      class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] text-[#050811] font-extrabold text-xs uppercase tracking-wider shadow-lg hover:brightness-110 transition-all"
+      (click)="closeModal()"
+    >
+      Got It
+    </button>
   </div>
 </div>

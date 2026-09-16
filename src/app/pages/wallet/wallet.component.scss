@@ -45,8 +45,8 @@ $notch-bend: 40px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  color: #bfa97a;
-  filter: invert(82%) sepia(10%) saturate(1047%) hue-rotate(17deg) brightness(95%) contrast(92%);
+  color: #00F5D4;
+  filter: invert(45%) sepia(80%) saturate(1500%) hue-rotate(240deg);
 }
 
 .filter-date-field {
@@ -56,7 +56,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .filter-date-label {
-  color: #bfa97a;
+  color: #00F5D4;
   font-size: 0.75rem;
   line-height: 1;
   letter-spacing: 0.02em;
@@ -68,12 +68,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .filter-date-input {
   width: 100%;
-  color: #bfa97a;
+  color: #00F5D4;
   color-scheme: dark;
 }
 
 .filter-date-input::-webkit-datetime-edit {
-  color: #bfa97a;
+  color: #00F5D4;
 }
 
 .filter-date-input::-webkit-calendar-picker-indicator {
@@ -95,7 +95,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #fff;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(191, 169, 122, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.3);
   white-space: pre-line;
   text-align: center;
   font-size: 12px;

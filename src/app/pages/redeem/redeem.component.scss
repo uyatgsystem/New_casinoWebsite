@@ -89,7 +89,7 @@
     outline: none;
 
     &:focus {
-      border-color: #C3B089 !important;
+      border-color: #a855f7 !important;
       // box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.4);
     }
   }
@@ -103,7 +103,7 @@
     transition: all 0.3s;
 
     &:hover {
-      color: #C3B089;
+      color: #a855f7;
     }
   }
 }
@@ -579,7 +579,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .filter-date-label {
-  color: #c3b089;
+  color: #a855f7;
   font-size: 0.75rem;
   line-height: 1;
   letter-spacing: 0.02em;
@@ -594,19 +594,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #c3b089;
+  color: #a855f7;
   pointer-events: none;
 }
 
 .filter-date-input {
   width: 100%;
   padding-right: 2.4rem;
-  color: #c3b089;
+  color: #a855f7;
   color-scheme: dark;
 }
 
 .filter-date-input::-webkit-datetime-edit {
-  color: #c3b089;
+  color: #a855f7;
 }
 
 .filter-date-input::-webkit-calendar-picker-indicator {

@@ -1,30 +1,29 @@
-/* --- Casino Maxs Premium Theme Variables --- */
-$bg-dark-panel: #16181d;       
-$bg-dark-inner: #0f1013;       
-$casino-orange-base: #ff8800;  
-$casino-gold-light: #ffd700;   
-$casino-gold-dark: #b8860b;
+/* --- Spin Hub Hyper Teal & Solar Amber Theme Variables --- */
+$bg-dark-panel: #0C101D;       
+$bg-dark-inner: #050811;       
+$casino-teal-base: #00F5D4;  
+$casino-amber-light: #FF9F1C;   
 
 /* --- Typography & Highlights --- */
 .orange-text-accent {
-  color: #ffb733; 
-  text-shadow: 0 0 12px rgba(255, 183, 51, 0.4);
+  color: #00F5D4; 
+  text-shadow: 0 0 12px rgba(0, 245, 212, 0.4);
 }
 
 /* --- Main Layout Banner --- */
 .casino-premium-strip {
-  background: linear-gradient(135deg, #181b22 0%, #111318 60%, #0a0b0e 100%);
-  border: 1px solid rgba(255, 215, 0, 0.3); 
+  background: linear-gradient(135deg, #0C101D 0%, #050811 100%);
+  border: 1px solid rgba(0, 245, 212, 0.3); 
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.85),
-    0 0 25px rgba(255, 140, 0, 0.12),
-    inset 0 1px 2px rgba(255, 255, 255, 0.12);
+    0 0 25px rgba(0, 245, 212, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
   position: relative;
   width: 100%;
   box-sizing: border-box;
 }
 
-// Top glowing gold elegant line
+// Top glowing hyper teal line
 .top-gold-bar {
   position: absolute;
   top: 0;
@@ -33,20 +32,20 @@ $casino-gold-dark: #b8860b;
   height: 3px;
   background: linear-gradient(90deg, 
     transparent 0%, 
-    #ffaa33 20%, 
-    #ffd700 50%, 
-    #ffaa33 80%, 
+    #06B6D4 20%, 
+    #00F5D4 50%, 
+    #06B6D4 80%, 
     transparent 100%
   );
-  box-shadow: 0 0 12px #ffd700;
+  box-shadow: 0 0 12px #00F5D4;
 }
 
-/* --- Golden Decorative Icon Frame --- */
+/* --- Decorative Icon Frame --- */
 .casino-icon-frame {
-  background: linear-gradient(180deg, #5c471c 0%, #1a150b 100%);
-  border: 1.5px solid rgba(255, 215, 0, 0.6);
+  background: linear-gradient(180deg, rgba(0, 245, 212, 0.3) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1.5px solid rgba(0, 245, 212, 0.6);
   padding: 3px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7), inset 0 1px 3px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7), inset 0 1px 3px rgba(255, 255, 255, 0.2);
   border-radius: 50%;
 }
 
@@ -57,36 +56,36 @@ $casino-gold-dark: #b8860b;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: radial-gradient(circle, #282112 0%, #0f1013 100%);
+  background: radial-gradient(circle, #0C101D 0%, #050811 100%);
   font-size: 22px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
 /* --- Sleek Modern Casino CTA Button --- */
 .casino-gold-btn {
-  background: linear-gradient(180deg, #ffcc44 0%, #ff8800 100%);
-  color: #050608; 
+  background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 50%, #FF9F1C 100%);
+  color: #050811; 
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 13px 28px;
   border-radius: 12px;
   font-size: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-bottom: 3.5px solid #a85500;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 3.5px solid #FF9F1C;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 22px rgba(255, 136, 0, 0.45);
+  box-shadow: 0 8px 22px rgba(0, 245, 212, 0.35);
 
   &:hover {
     filter: brightness(1.15);
-    box-shadow: 0 10px 28px rgba(255, 136, 0, 0.65);
+    box-shadow: 0 10px 28px rgba(0, 245, 212, 0.55);
     transform: translateY(-2px);
   }
 
   &:active {
     transform: translateY(1px);
     border-bottom-width: 1px;
-    box-shadow: 0 3px 10px rgba(255, 136, 0, 0.4);
+    box-shadow: 0 3px 10px rgba(0, 245, 212, 0.3);
   }
 }
 
@@ -100,7 +99,7 @@ $casino-gold-dark: #b8860b;
   .casino-gold-btn {
     font-size: 10px;
     padding: 9px 16px;
-    border-radius: 9px;
+    border-radius: 99px;
   }
 
   .casino-icon {

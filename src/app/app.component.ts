@@ -172,6 +172,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       .subscribe((event: NavigationEnd) => {
         this.handleRouteChange(event.urlAfterRedirects);
         this.trackPageView(event.urlAfterRedirects);
+        if (this.isBrowser) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
 
     if (this.isBrowser) {
@@ -347,11 +350,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     return showChat;
   }
   get token(): string | null {
-    // if (this.isBrowser) {
-    const token = localStorage.getItem('token');
-    return token;
-    // }
-    // return '';
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('token');
+    }
+    return null;
   }
 
   ngOnChanges() {
@@ -566,6 +568,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
     private listenToOtherTabsLogout() {
+    if (!isPlatformBrowser(this.platformId)) return;
     window.addEventListener('storage', (event) => {
       if (event.key === 'user_logged_out' && event.newValue === 'true') {
         

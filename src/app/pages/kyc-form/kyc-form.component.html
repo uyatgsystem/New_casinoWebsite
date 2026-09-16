@@ -9,6 +9,7 @@
       >
         <svg
           class="w-6 h-6 relative z-10 text-[#F3A630]"
+          class="w-6 h-6 relative z-10 text-[#00F5D4]"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
@@ -26,11 +27,13 @@
     </div>
     <div
       class="h-[2px] w-full absolute bottom-0 left-0 bg-custom-gradient"
+      class="h-[2px] w-full absolute bottom-0 left-0 bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C]"
     ></div>
   </div>
   <!-- Form Container -->
   <div
     class="max-w-8xl mx-auto backdrop-blur-xl rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] border border-[#C3B089] p-8 shadow-2xl"
+    class="max-w-8xl mx-auto backdrop-blur-xl rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] border border-[#00F5D4]/40 p-8 shadow-[0_0_30px_rgba(0,245,212,0.15)] bg-[#0C101D]"
   >
     <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
     <!-- Header -->
@@ -39,10 +42,13 @@
       <div class="text-center">
         <h1
           class="text-4xl font-bold bg-gradient-to-r from-[#FE8912] to-[#e07f0f] bg-clip-text text-transparent mb-2"
+          class="text-4xl font-extrabold bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] bg-clip-text text-transparent mb-2 drop-shadow"
         >
           KYC Verification Form
         </h1>
-        <p class="text-white">
+        <p class="text-white"></p>
+        <p class="text-white"></p>
+        <p class="text-slate-300 font-medium">
           Complete your identity verification to unlock full access
         </p>
       </div>
@@ -54,6 +60,7 @@
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-8 w-8 text-yellow-400"
+          class="h-8 w-8 text-[#FF9F1C]"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -66,7 +73,7 @@
           />
         </svg>
 
-        <span class="text-xs font-medium text-yellow-200"
+        <span class="text-xs font-medium text-[#FF9F1C]"
           >Verification in Progress</span
         >
       </button>
@@ -79,7 +86,7 @@
           class="text-xl font-semibold text-white mb-6 flex items-center gap-2"
         >
           <span
-            class="w-8 h-8 flex items-center justify-center bg-transparent border border-[#C3B089] rounded-full text-sm"
+            class="w-8 h-8 flex items-center justify-center bg-transparent border border-[#00F5D4] rounded-full text-sm text-[#00F5D4] font-bold"
             >1</span
           >
           Personal Information

@@ -31,11 +31,15 @@
         <h1
           class="text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] xl:text-[42px] 2xl:text-[42px] font-bold mb-4 leading-tight"
         >
-          Unlock Your <span class="text-[#F3A630]">Winning Journey</span>
+          Unlock Your
+          <span
+            class="text-[#00F5D4] drop-shadow-[0_0_10px_rgba(0,245,212,0.4)]"
+            >Winning Journey</span
+          >
         </h1>
 
         <p
-          class="text-white-300 text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] leading-relaxed"
+          class="text-gray-300 text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] leading-relaxed"
         >
           Your next big win starts here. Join Spin Hub for premium games,
           exciting rewards, and unforgettable moments made for players who play
@@ -47,7 +51,7 @@
     <!-- Mobile Header -->
     <div class="lg:hidden mobile-header-section">
       <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Logo" />
-      <h1>Start Your <span class="text-[#F3A630]">Winning Journey</span></h1>
+      <h1>Start Your <span class="text-[#00F5D4]">Winning Journey</span></h1>
       <p>
         Create your account and step into a world of premium games and instant
         rewards.
@@ -59,7 +63,7 @@
       class="flex-1 flex items-center lg:items-center justify-center p-2 sm:p-3 lg:p-8 lg:pr-16 pb-12 lg:pb-8"
     >
       <div
-        class="rounded-[1.5rem] backdrop-blur-md border border-[#FE8912] p-3 sm:p-4 md:p-5 lg:p-8 2xl:p-[3rem] w-full max-w-sm sm:max-w-sm md:max-w-md 2xl:max-w-[30rem] mx-auto lg:mx-0"
+        class="rounded-[1.5rem] bg-[#0C101D]/90 backdrop-blur-md border border-[#00F5D4]/40 shadow-[0_0_25px_rgba(0,245,212,0.15)] p-3 sm:p-4 md:p-5 lg:p-8 2xl:p-[3rem] w-full max-w-sm sm:max-w-sm md:max-w-md 2xl:max-w-[30rem] mx-auto lg:mx-0"
         id="formContainer"
       >
         <!-- Header -->
@@ -68,17 +72,18 @@
             class="auth-switch flex items-center justify-center md:justify-start gap-2 mt-1 md:mb-2 lg:mb-2"
           >
             <span
-              class="text-white hover:text-[#F3A630] text-sm lg:text-[24px] font-semibold cursor-pointer"
+              class="text-gray-300 hover:text-[#FF9F1C] text-sm lg:text-[24px] font-semibold cursor-pointer"
               routerLink="/login"
               >Sign In</span
             >
-            <span class="text-white text-sm lg:text-[24px]">/</span>
-            <a class="text-[#F3A630] text-sm lg:text-[24px] transition-colors"
+            <span class="text-white/40 text-sm lg:text-[24px]">/</span>
+            <a
+              class="text-[#00F5D4] text-sm lg:text-[24px] font-semibold transition-colors drop-shadow-[0_0_8px_rgba(0,245,212,0.5)]"
               >Create Account</a
             >
           </div>
           <p
-            class="text-white text-xs lg:text-[1rem] mb-3 lg:mb-8 text-center md:text-left"
+            class="text-gray-300 text-xs lg:text-[1rem] mb-3 lg:mb-8 text-center md:text-left"
           >
             Create your account and unlock your winning journey.
           </p>
@@ -100,7 +105,7 @@
                 type="text"
                 formControlName="firstName"
                 placeholder="First name"
-                class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
               />
               <div class="h-[1px] w-full bg-custom-gradient"></div>
               <div
@@ -120,7 +125,7 @@
                 type="text"
                 formControlName="lastName"
                 placeholder="Last name"
-                class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
               />
               <div class="h-[1px] w-full bg-custom-gradient"></div>
               <div
@@ -143,7 +148,7 @@
                 type="text"
                 formControlName="username"
                 placeholder="Choose a username"
-                class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
                 (input)="restrictWhiteSpaces()"
               />
               <div class="h-[1px] w-full bg-custom-gradient"></div>
@@ -164,7 +169,7 @@
                 type="text"
                 formControlName="referralCode"
                 placeholder="Referral code (optional)"
-                class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
                 (input)="restrictWhiteSpaces()"
               />
               <div class="h-[1px] w-full bg-custom-gradient"></div>
@@ -179,10 +184,10 @@
                 type="email"
                 formControlName="email"
                 placeholder="Enter your email"
-                class="w-full text-white placeholder-white py-2 pr-8 focus:outline-none bg-inherit text-xs sm:text-sm"
+                class="w-full text-white placeholder-gray-400 py-2 pr-8 focus:outline-none bg-inherit text-xs sm:text-sm"
               />
               <i
-                class="fas fa-envelope text-gray-300 absolute right-3 top-1/2 -translate-y-1/2 text-xs"
+                class="fas fa-envelope text-cyan-400/70 absolute right-3 top-1/2 -translate-y-1/2 text-xs"
               ></i>
             </div>
             <div class="h-[1px] w-full bg-custom-gradient"></div>
@@ -209,7 +214,7 @@
               [type]="showpassword ? 'text' : 'password'"
               formControlName="password"
               placeholder="Create a strong password"
-              class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+              class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
               (input)="checkPasswordStrength()"
               (focus)="isPasswordFocused = true"
               (blur)="isPasswordFocused = false"
@@ -217,7 +222,7 @@
             <div class="h-[1px] w-full bg-custom-gradient"></div>
             <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
               <fa-icon
-                class="cursor-pointer text-white hover:text-[#F3A630] transition-colors text-xs"
+                class="cursor-pointer text-gray-400 hover:text-[#00F5D4] transition-colors text-xs"
                 (click)="togglePassword()"
                 [icon]="showpassword ? hideicon : showicon"
               ></fa-icon>
@@ -231,35 +236,35 @@
               isPasswordFocused &&
               !allRequirementsMet()
             "
-            class="mb-2.5 p-2 bg-black/40 rounded text-xs"
+            class="mb-2.5 p-2 bg-black/60 border border-[#00F5D4]/30 rounded text-xs"
           >
             <ul class="space-y-1">
               <li
-                [class.text-green-400]="passwordChecks.length"
+                [class.text-emerald-400]="passwordChecks.length"
                 [class.text-red-400]="!passwordChecks.length"
               >
                 Must be at least 8 characters
               </li>
               <li
-                [class.text-green-400]="passwordChecks.numbers"
+                [class.text-emerald-400]="passwordChecks.numbers"
                 [class.text-red-400]="!passwordChecks.numbers"
               >
                 Must contain at least 2 numbers
               </li>
               <li
-                [class.text-green-400]="passwordChecks.uppercase"
+                [class.text-emerald-400]="passwordChecks.uppercase"
                 [class.text-red-400]="!passwordChecks.uppercase"
               >
                 Must contain at least 1 uppercase letter
               </li>
               <li
-                [class.text-green-400]="passwordChecks.lowercase"
+                [class.text-emerald-400]="passwordChecks.lowercase"
                 [class.text-red-400]="!passwordChecks.lowercase"
               >
                 Must contain at least 1 lowercase letter
               </li>
               <li
-                [class.text-green-400]="passwordChecks.special"
+                [class.text-emerald-400]="passwordChecks.special"
                 [class.text-red-400]="!passwordChecks.special"
               >
                 Must contain at least 1 special character
@@ -274,12 +279,12 @@
               [type]="Confirmshowpassword ? 'text' : 'password'"
               formControlName="confirmPassword"
               placeholder="Confirm your password"
-              class="w-full text-white placeholder-white py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+              class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
             />
             <div class="h-[1px] w-full bg-custom-gradient"></div>
             <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
               <fa-icon
-                class="cursor-pointer text-white hover:text-[#F3A630] transition-colors text-xs"
+                class="cursor-pointer text-gray-400 hover:text-[#00F5D4] transition-colors text-xs"
                 (click)="toggleConfirmPassword()"
                 [icon]="Confirmshowpassword ? hideicon : showicon"
               ></fa-icon>
@@ -301,12 +306,12 @@
             <input
               type="checkbox"
               formControlName="acceptTerms"
-              class="mt-0.5 accent-[#F3A630] cursor-pointer w-4 h-4 flex-shrink-0"
+              class="mt-0.5 accent-[#00F5D4] cursor-pointer w-4 h-4 flex-shrink-0"
             />
-            <label class="text-xs text-white leading-snug cursor-pointer">
+            <label class="text-xs text-gray-300 leading-snug cursor-pointer">
               I confirm that I’m 18+ and agree to the
               <span
-                class="text-[#F3A630] underline font-medium"
+                class="text-[#00F5D4] underline font-medium hover:text-[#FF9F1C]"
                 (click)="openTermsModal()"
               >
                 Terms & Conditions
@@ -319,9 +324,9 @@
             <input
               type="checkbox"
               formControlName="acceptOffers"
-              class="mt-0.5 accent-[#F3A630] cursor-pointer w-4 h-4 flex-shrink-0"
+              class="mt-0.5 accent-[#00F5D4] cursor-pointer w-4 h-4 flex-shrink-0"
             />
-            <label class="text-xs text-white leading-snug cursor-pointer">
+            <label class="text-xs text-gray-300 leading-snug cursor-pointer">
               I agree to receive personal bonuses and offers
             </label>
           </div>
@@ -341,7 +346,7 @@
           <button
             type="submit"
             [disabled]="signupForm.invalid || !signupForm.value.acceptTerms"
-            class="w-full mb-2.5 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black py-2.5 font-semibold rounded-tl-[12px] rounded-tr-[3px] rounded-br-[12px] rounded-bl-[3px] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
+            class="w-full mb-2.5 bg-[linear-gradient(135deg,#00F5D4_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-bold py-2.5 rounded-tl-[12px] rounded-tr-[3px] rounded-br-[12px] rounded-bl-[3px] transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(0,245,212,0.4)] disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
           >
             Create My Account
           </button>
@@ -350,7 +355,7 @@
           <button
             type="button"
             (click)="continueWithGoogle()"
-            class="w-full mb-2.5 flex items-center justify-center gap-2 border border-[#C3B089] bg-transparent px-2 py-2 rounded-tl-[12px] rounded-tr-[3px] rounded-br-[12px] rounded-bl-[3px] shadow-sm transition-all duration-300"
+            class="w-full mb-2.5 flex items-center justify-center gap-2 border border-[#00F5D4]/30 bg-black/40 hover:bg-[#00F5D4]/10 px-2 py-2 rounded-tl-[12px] rounded-tr-[3px] rounded-br-[12px] rounded-bl-[3px] shadow-sm transition-all duration-300"
           >
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
@@ -358,7 +363,7 @@
               class="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0"
             />
             <span
-              class="text-xs sm:text-sm font-semibold bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] bg-clip-text text-transparent"
+              class="text-xs sm:text-sm font-semibold bg-[linear-gradient(135deg,#00F5D4_0%,#FF9F1C_100%)] bg-clip-text text-transparent"
             >
               Sign up with Google
             </span>
@@ -369,7 +374,7 @@
             Already a member?
             <a
               routerLink="/login"
-              class="text-[#F3A630] hover:text-white transition-colors ml-1 underline"
+              class="text-[#FF9F1C] hover:text-[#00F5D4] transition-colors ml-1 underline"
             >
               Log in
             </a>
@@ -380,16 +385,15 @@
   </div>
 
   <!-- Modal Backdrop -->
-  <!-- Modal Backdrop -->
   <div
     *ngIf="showTermsModal"
     class="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/80"
   >
     <div
-      class="bg-[#121418] w-[95%] md:w-[70%] lg:w-[60%] max-h-[85vh] flex flex-col p-5 md:p-6 rounded-[1.5rem] border border-[#FE8912] shadow-2xl"
+      class="bg-[#0c101d] w-[95%] md:w-[70%] lg:w-[60%] max-h-[85vh] flex flex-col p-5 md:p-6 rounded-[1.5rem] border border-[#00F5D4]/40 shadow-[0_0_40px_rgba(0,245,212,0.2)]"
     >
       <h2
-        class="text-[#F3A630] text-lg md:text-xl font-semibold mb-3 flex-shrink-0"
+        class="text-[#00F5D4] text-lg md:text-xl font-semibold mb-3 flex-shrink-0"
       >
         Terms & Conditions
       </h2>
@@ -425,7 +429,7 @@
         <button
           type="button"
           (click)="closeTermsModal()"
-          class="px-5 py-2 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] text-black font-semibold rounded-tl-[10px] rounded-tr-[3px] rounded-br-[10px] rounded-bl-[3px] text-xs md:text-sm transition-transform active:scale-95"
+          class="px-5 py-2 bg-[linear-gradient(135deg,#00F5D4_0%,#FF9F1C_100%)] text-slate-950 font-bold rounded-tl-[10px] rounded-tr-[3px] rounded-br-[10px] rounded-bl-[3px] text-xs md:text-sm transition-transform active:scale-95"
         >
           Close
         </button>

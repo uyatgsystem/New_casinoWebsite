@@ -252,12 +252,12 @@
   padding: 34px 30px 28px !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
-  background: radial-gradient(circle at 50% -20%, rgba(254, 200, 102, .08), transparent 50%), #0c0d10 !important;
-  border: 1px solid rgba(195, 176, 137, .42) !important;
+  background: radial-gradient(circle at 50% -20%, rgba(0, 245, 212, .12), transparent 50%), #070a12 !important;
+  border: 1px solid rgba(0, 245, 212, .35) !important;
   border-left: none !important;
   border-right: none !important;
   border-radius: 18px !important;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(254, 140, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 245, 212, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
   color: #fff !important;
   position: relative !important;
   text-align: center !important;
@@ -269,13 +269,13 @@
   width: 58px !important;
   height: 58px !important;
   margin: 0 auto 18px !important;
-  border: 1px solid rgba(254, 140, 22, .42) !important;
+  border: 1px solid rgba(0, 245, 212, .42) !important;
   border-left: none !important;
   border-right: none !important;
   border-radius: 16px !important;
-  background: rgba(254, 140, 22, .08) !important;
-  color: #fe8c16 !important;
-  box-shadow: 0 8px 20px rgba(254, 140, 22, 0.15) !important;
+  background: rgba(0, 245, 212, .08) !important;
+  color: #00F5D4 !important;
+  box-shadow: 0 8px 20px rgba(0, 245, 212, 0.15) !important;
 }
 
 .swal2-popup::before,
@@ -339,20 +339,20 @@
 }
 
 .swal2-styled.swal2-cancel {
-  border: 1px solid rgba(195, 176, 137, .4) !important;
-  background: #15181d !important;
-  color: #c3b089 !important;
+  border: 1px solid rgba(0, 245, 212, .3) !important;
+  background: #101522 !important;
+  color: #00F5D4 !important;
 }
 
 .swal2-styled.swal2-cancel:hover {
-  border-color: #fe8c16 !important;
+  border-color: #00F5D4 !important;
   color: #fff !important;
 }
 
 .swal2-styled.swal2-confirm {
-  border: 1px solid #fe8c16 !important;
-  background: linear-gradient(135deg, #f3a630, #fe8006) !important;
-  color: #17120a !important;
+  border: 1px solid #00F5D4 !important;
+  background: linear-gradient(135deg, #00F5D4, #FF9F1C) !important;
+  color: #050811 !important;
 }
 
 .swal2-styled.swal2-confirm:hover {
@@ -382,41 +382,41 @@
 
 :root {
   --font-family: "Libre Franklin", "Helvetica Neue";
-  --nav-Background: #000000;
-  --ground: rgba(0, 0, 0, 0.95);
-  --text-primary: #c86b23;
-  --text-black: #1d1c1c;
+  --nav-Background: #050811;
+  --ground: rgba(5, 8, 17, 0.95);
+  --text-primary: #00F5D4;
+  --text-black: #050811;
   --text-light: #e4e4e4;
-  --background: #000000;
-  --gradient: linear-gradient(180deg, #fec866 0%, #fe8006 100%);
-  --active: linear-gradient(90deg, rgba(116, 21, 163, 1) 0%, rgba(90, 48, 217, 1) 100%);
-  --active-hover: linear-gradient(90deg, rgba(90, 48, 217, 1) 0%, rgba(116, 21, 163, 1) 100%);
-  --button-back: #c86b23;
-  --spinner-back: rgba(21, 22, 51, 0.89);
-  --darkGradient: linear-gradient(180deg, #470e5e 0%, #150b41 100%);
-  --card-back: #232627;
-  --landing-back: #0e0e1a;
-  --landing-card: rgb(23, 32, 41);
-  --main-color2: #7de7e5;
-  --card-back2: #1e8a8a;
+  --background: #050811;
+  --gradient: linear-gradient(135deg, #00F5D4 0%, #FF9F1C 100%);
+  --active: linear-gradient(90deg, rgba(0, 245, 212, 1) 0%, rgba(6, 182, 212, 1) 100%);
+  --active-hover: linear-gradient(90deg, rgba(6, 182, 212, 1) 0%, rgba(0, 245, 212, 1) 100%);
+  --button-back: #00F5D4;
+  --spinner-back: rgba(12, 16, 27, 0.92);
+  --darkGradient: linear-gradient(180deg, #0a1120 0%, #050811 100%);
+  --card-back: #0c101d;
+  --landing-back: #050811;
+  --landing-card: rgb(12, 16, 27);
+  --main-color2: #00F5D4;
+  --card-back2: #06b6d4;
 
   .btn-primary {
-    @apply py-2 px-10 bg-gradient-to-b from-[#F3A630] to-[#F86E12] text-black font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl;
+    @apply py-2 px-10 bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] text-[#050811] font-extrabold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(0,245,212,0.4)];
   }
 
   .btn-outline {
-    @apply border border-[#C3B089] text-[#F3A630] py-2 px-10 font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl;
+    @apply border border-[#00F5D4]/60 text-[#00F5D4] py-2 px-10 font-bold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-all duration-300 hover:scale-105 hover:bg-[#00F5D4]/10;
   }
 }
 
 .text-outline {
   color: transparent;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #fe8912;
+  -webkit-text-stroke-color: #00F5D4;
 }
 
 .--button {
-  background: linear-gradient(to right, #19e4e0, #0e7e7c);
+  background: linear-gradient(to right, #00F5D4, #06B6D4);
   color: var(--text-black) !important;
   font-weight: 700 !important;
 }

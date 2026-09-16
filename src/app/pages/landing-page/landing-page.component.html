@@ -19,17 +19,26 @@
   </div>
 
   <!-- Center Nav Links (Desktop) -->
-  <nav class="hidden lg:flex items-center gap-1 mx-auto px-2 py-1.5 rounded-full bg-black/30 border border-white/5">
+  <nav
+    class="hidden lg:flex items-center gap-1 mx-auto px-3 py-1.5 rounded-full bg-[#0C101D]/80 border border-[#00F5D4]/20 shadow-lg"
+  >
     <a (click)="scrollTo('gameScrollSection')" class="nav-link">Games</a>
-    <a (click)="scrollTo('instantGameScrollSection')" class="nav-link">Instant Games</a>
+    <a (click)="scrollTo('instantGameScrollSection')" class="nav-link"
+      >Instant Games</a
+    >
     <a (click)="scrollTo('featuresScrollSection')" class="nav-link">Features</a>
-    <a (click)="scrollTo('contactScrollSection')" class="nav-link">Contact us</a>
+    <a (click)="scrollTo('contactScrollSection')" class="nav-link"
+      >Contact us</a
+    >
     <a (click)="scrollTo('aboutScrollSection')" class="nav-link">About us</a>
   </nav>
 
   <!-- Right: Login + Join Now (Desktop) -->
   <div class="hidden lg:flex items-center gap-3 shrink-0 ml-auto">
-    <button (click)="RedirectToLogin()" class="pill-btn-outline !px-6 !py-2 !rounded-full text-sm cursor-pointer">
+    <button
+      (click)="RedirectToLogin()"
+      class="pill-btn-outline !px-6 !py-2 !rounded-full text-sm cursor-pointer"
+    >
       Login
     </button>
     <button (click)="RedirectToSignUp()" class="login-btn cursor-pointer">
@@ -40,9 +49,17 @@
   <!-- Hamburger Icon (Mobile/Tablet) -->
   <button
     (click)="toggleMobileMenu()"
-    class="lg:hidden text-white focus:outline-none absolute right-4 top-1/2 -translate-y-1/2 z-10 cursor-pointer w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"
+    class="lg:hidden text-[#00F5D4] focus:outline-none absolute right-4 top-1/2 -translate-y-1/2 z-10 cursor-pointer w-10 h-10 rounded-full bg-[#0C101D] border border-[#00F5D4]/30 flex items-center justify-center shadow-lg"
   >
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+    <svg
+      class="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
       <path *ngIf="!isMobileMenuOpen" d="M4 6h16M4 12h16M4 18h16" />
       <path *ngIf="isMobileMenuOpen" d="M6 18L18 6M6 6l12 12" />
     </svg>
@@ -51,103 +68,212 @@
   <!-- Mobile Menu -->
   <div
     *ngIf="isMobileMenuOpen"
-    class="lg:hidden absolute top-full left-0 w-full backdrop-blur-2xl border-t border-[#22C55E]/15 px-4 py-6 z-50 shadow-2xl"
-    style="background: rgba(7,10,9,0.97);"
+    class="lg:hidden absolute top-full left-0 w-full backdrop-blur-2xl border-t border-[#00F5D4]/30 px-4 py-6 z-50 shadow-2xl bg-[#050811]/95"
   >
     <div class="grid grid-cols-2 gap-3 text-center text-white">
-      <button (click)="handleMobileNav('gameScrollSection')" class="mobile-nav-btn py-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#22C55E]/40 transition cursor-pointer">Games</button>
-      <button (click)="handleMobileNav('instantGameScrollSection')" class="mobile-nav-btn py-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#22C55E]/40 transition cursor-pointer">Instant Games</button>
-      <button (click)="handleMobileNav('featuresScrollSection')" class="mobile-nav-btn py-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#22C55E]/40 transition cursor-pointer">Features</button>
-      <button (click)="handleMobileNav('aboutScrollSection')" class="mobile-nav-btn py-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#22C55E]/40 transition cursor-pointer">About Us</button>
-      <button (click)="handleMobileNav('contactScrollSection')" class="mobile-nav-btn py-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#22C55E]/40 transition cursor-pointer col-span-2">Contact Us</button>
+      <button
+        (click)="handleMobileNav('gameScrollSection')"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#00F5D4]/20 hover:border-[#00F5D4]/60 transition cursor-pointer text-sm font-semibold"
+      >
+        Games
+      </button>
+      <button
+        (click)="handleMobileNav('instantGameScrollSection')"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#00F5D4]/20 hover:border-[#00F5D4]/60 transition cursor-pointer text-sm font-semibold"
+      >
+        Instant Games
+      </button>
+      <button
+        (click)="handleMobileNav('featuresScrollSection')"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#00F5D4]/20 hover:border-[#00F5D4]/60 transition cursor-pointer text-sm font-semibold"
+      >
+        Features
+      </button>
+      <button
+        (click)="handleMobileNav('aboutScrollSection')"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#00F5D4]/20 hover:border-[#00F5D4]/60 transition cursor-pointer text-sm font-semibold"
+      >
+        About Us
+      </button>
+      <button
+        (click)="handleMobileNav('contactScrollSection')"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#00F5D4]/20 hover:border-[#00F5D4]/60 transition cursor-pointer text-sm font-semibold col-span-2"
+      >
+        Contact Us
+      </button>
     </div>
 
     <div class="flex items-center gap-3 mt-5">
-      <button (click)="RedirectToLogin()" class="pill-btn-outline !w-full flex-1 !py-2.5 !rounded-2xl cursor-pointer">Login</button>
-      <button (click)="RedirectToSignUp()" class="login-btn !w-full flex-1 !rounded-2xl cursor-pointer">Join Now</button>
+      <button
+        (click)="RedirectToLogin()"
+        class="pill-btn-outline !w-full flex-1 !py-2.5 !rounded-2xl cursor-pointer"
+      >
+        Login
+      </button>
+      <button
+        (click)="RedirectToSignUp()"
+        class="login-btn !w-full flex-1 !rounded-2xl cursor-pointer"
+      >
+        Join Now
+      </button>
     </div>
   </div>
 </header>
 
 <!-- ============================= HERO ============================= -->
-<main class="relative pt-[76px] flex items-center overflow-hidden main-banner-container">
+<main
+  class="relative pt-[76px] flex items-center overflow-hidden main-banner-container bg-[#050811]"
+>
   <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
-    <div class="hero-glow hero-glow-orange"></div>
-    <div class="hero-glow hero-glow-gold"></div>
-    <span class="hero-particle" style="top: 18%; left: 12%; animation-delay: 0s"></span>
-    <span class="hero-particle" style="top: 65%; left: 22%; animation-delay: 1.2s"></span>
-    <span class="hero-particle" style="top: 30%; left: 85%; animation-delay: 0.6s"></span>
-    <span class="hero-particle" style="top: 75%; left: 70%; animation-delay: 1.8s"></span>
-    <span class="hero-particle" style="top: 45%; left: 55%; animation-delay: 2.4s"></span>
+    <div class="hero-glow hero-glow-teal"></div>
+    <div class="hero-glow hero-glow-amber"></div>
+    <span
+      class="hero-particle"
+      style="top: 18%; left: 12%; animation-delay: 0s"
+    ></span>
+    <span
+      class="hero-particle"
+      style="top: 65%; left: 22%; animation-delay: 1.2s"
+    ></span>
+    <span
+      class="hero-particle"
+      style="top: 30%; left: 85%; animation-delay: 0.6s"
+    ></span>
+    <span
+      class="hero-particle"
+      style="top: 75%; left: 70%; animation-delay: 1.8s"
+    ></span>
+    <span
+      class="hero-particle"
+      style="top: 45%; left: 55%; animation-delay: 2.4s"
+    ></span>
   </div>
 
   <div class="relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16 lg:py-0">
-    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-10 lg:gap-14">
+    <div
+      class="max-w-[1320px] mx-auto flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-10 lg:gap-14"
+    >
       <!-- Left: Typography & CTA -->
-      <div class="w-full lg:w-[50%] lg:max-w-[560px] order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+      <div
+        class="w-full lg:w-[50%] lg:max-w-[560px] order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left"
+      >
         <div class="hero-live-pill mb-5">
           <span class="hero-live-dot"></span>
-          <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#34F5B0]">Live Table &amp; Slots</span>
+          <span
+            class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#00F5D4]"
+            >Live Table &amp; Slots</span
+          >
         </div>
 
-        <span class="hero-eyebrow-line text-[#4ADE80] font-bold tracking-[0.25em] text-[10px] sm:text-xs uppercase mb-4">
+        <span
+          class="hero-eyebrow-line text-[#FF9F1C] font-extrabold tracking-[0.25em] text-[10px] sm:text-xs uppercase mb-4"
+        >
           Welcome to Spin Hub
         </span>
 
-        <h1 class="text-white font-extrabold leading-[1.02] tracking-tight text-[38px] sm:text-[52px] xl:text-[64px]">
+        <h1
+          class="text-white font-black leading-[1.02] tracking-tight text-[38px] sm:text-[52px] xl:text-[64px] drop-shadow"
+        >
           Spin The Wheel.
-          <span class="block bg-gradient-to-r from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">
+          <span
+            class="block bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] bg-clip-text text-transparent"
+          >
             Win The World.
           </span>
         </h1>
 
-        <p class="text-[#93A69C] mt-5 text-sm sm:text-base leading-relaxed max-w-xl">
+        <p
+          class="text-slate-300 mt-5 text-sm sm:text-base leading-relaxed max-w-xl font-medium"
+        >
           Discover a premium gaming experience crafted for champions. Spin
           wheels, unlock rewards, and embrace the thrill of limitless
           opportunities — where every spin brings you closer to greatness.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center gap-4 mt-8 w-full sm:w-auto">
-          <button (click)="RedirectToLogin()" class="pill-btn-primary w-full sm:w-auto font-bold uppercase tracking-wider text-sm cursor-pointer">
+        <div
+          class="flex flex-col sm:flex-row items-center gap-4 mt-8 w-full sm:w-auto"
+        >
+          <button
+            (click)="RedirectToLogin()"
+            class="pill-btn-primary w-full sm:w-auto font-black uppercase tracking-wider text-sm cursor-pointer shadow-[0_0_20px_rgba(0,245,212,0.4)]"
+          >
             <i class="fas fa-play text-xs"></i> Play Now
           </button>
-          <button (click)="RedirectToSignUp()" class="pill-btn-outline w-full sm:w-auto font-bold uppercase tracking-wider text-sm cursor-pointer">
+          <button
+            (click)="RedirectToSignUp()"
+            class="pill-btn-outline w-full sm:w-auto font-black uppercase tracking-wider text-sm cursor-pointer"
+          >
             Join Spin Hub
           </button>
         </div>
 
         <!-- Avatars / trust strip -->
-        <div class="flex items-center gap-3 mt-10 pt-6 border-t border-white/5 w-full sm:w-auto justify-center sm:justify-start">
+        <div
+          class="flex items-center gap-3 mt-10 pt-6 border-t border-[#00F5D4]/20 w-full sm:w-auto justify-center sm:justify-start"
+        >
           <div class="flex -space-x-3">
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20472.png" class="w-9 h-9 rounded-full object-cover border-2 border-[#070A09]" alt="User 1" />
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20473.png" class="w-9 h-9 rounded-full object-cover border-2 border-[#070A09]" alt="User 2" />
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20474.png" class="w-9 h-9 rounded-full object-cover border-2 border-[#070A09]" alt="User 3" />
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20475.png" class="w-9 h-9 rounded-full object-cover border-2 border-[#070A09]" alt="User 4" />
-            <img src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20476.png" class="w-9 h-9 rounded-full object-cover border-2 border-[#070A09]" alt="User 5" />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20472.png"
+              class="w-9 h-9 rounded-full object-cover border-2 border-[#00F5D4]"
+              alt="User 1"
+            />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20473.png"
+              class="w-9 h-9 rounded-full object-cover border-2 border-[#00F5D4]"
+              alt="User 2"
+            />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20474.png"
+              class="w-9 h-9 rounded-full object-cover border-2 border-[#00F5D4]"
+              alt="User 3"
+            />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20475.png"
+              class="w-9 h-9 rounded-full object-cover border-2 border-[#00F5D4]"
+              alt="User 4"
+            />
+            <img
+              src="https://cmaxv2images2.pages.dev/assets/avatars/Ellipse%20476.png"
+              class="w-9 h-9 rounded-full object-cover border-2 border-[#00F5D4]"
+              alt="User 5"
+            />
           </div>
           <div class="text-left">
-            <span class="text-white font-black text-base block font-mono">12k+</span>
-            <span class="text-gray-500 text-[11px] font-medium">Total Active Players</span>
+            <span class="text-[#00F5D4] font-black text-base block font-mono"
+              >12k+</span
+            >
+            <span class="text-slate-400 text-[11px] font-medium"
+              >Total Active Players</span
+            >
           </div>
         </div>
 
         <!-- Trust badges -->
         <div class="hero-trust-row">
-          <span class="hero-trust-badge"><i class="fas fa-shield-halved"></i> Secure &amp; Licensed</span>
-          <span class="hero-trust-badge"><i class="fas fa-bolt"></i> Instant Payouts</span>
-          <span class="hero-trust-badge"><i class="fas fa-headset"></i> 24/7 Support</span>
+          <span class="hero-trust-badge"
+            ><i class="fas fa-shield-halved text-[#00F5D4]"></i> Secure &amp;
+            Licensed</span
+          >
+          <span class="hero-trust-badge"
+            ><i class="fas fa-bolt text-[#FF9F1C]"></i> Instant Payouts</span
+          >
+          <span class="hero-trust-badge"
+            ><i class="fas fa-headset text-[#00F5D4]"></i> 24/7 Support</span
+          >
         </div>
       </div>
 
       <!-- Right: Framed banner art -->
-      <div class="w-full lg:w-[46%] order-1 lg:order-2 flex justify-center items-center relative py-6 lg:py-0">
+      <div
+        class="w-full lg:w-[46%] order-1 lg:order-2 flex justify-center items-center relative py-6 lg:py-0"
+      >
         <div class="hero-frame relative w-full max-w-[560px]">
           <div class="hero-frame-ring"></div>
           <span class="hero-frame-corner hero-frame-corner--tl"></span>
           <span class="hero-frame-corner hero-frame-corner--br"></span>
           <img
             src="https://spinhub-6rb.pages.dev/assets/bglandingbanner.png"
-            class="w-full h-auto object-contain relative z-10 rounded-3xl drop-shadow-[0_30px_60px_rgba(0,0,0,0.85)]"
+            class="w-full h-auto object-contain relative z-10 rounded-3xl drop-shadow-[0_30px_60px_rgba(0,245,212,0.25)] border border-[#00F5D4]/30"
             alt="Spin Hub Banner"
           />
         </div>
@@ -157,19 +283,30 @@
 </main>
 
 <!-- ========================= PREMIUM FEATURES (BENTO) ========================= -->
-<section id="featuresScrollSection" class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#070A09] overflow-hidden">
+<section
+  id="featuresScrollSection"
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#050811] overflow-hidden"
+>
   <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-12">
+    <div
+      class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-12"
+    >
       <div>
         <span class="section-eyebrow mb-3">Why Spin Hub</span>
-        <h2 class="text-white font-bold text-[26px] sm:text-[34px] md:text-[42px] leading-tight max-w-xl">
+        <h2
+          class="text-white font-extrabold text-[26px] sm:text-[34px] md:text-[42px] leading-tight max-w-xl"
+        >
           Everything you need for a
-          <span class="bg-gradient-to-r from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">premium</span>
+          <span
+            class="bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] bg-clip-text text-transparent"
+            >premium</span
+          >
           experience
         </h2>
       </div>
-      <p class="text-[#93A69C] text-sm max-w-sm">
-        Built for players who expect more — speed, security, and rewards, without compromise.
+      <p class="text-slate-300 text-sm max-w-sm font-medium">
+        Built for players who expect more — speed, security, and rewards,
+        without compromise.
       </p>
     </div>
 
@@ -190,8 +327,10 @@
 </section>
 
 <!-- ========================= GAME SHOWCASE MARQUEE ========================= -->
-<section class="relative z-10 py-10 overflow-hidden bg-[#070A09]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 mb-6 flex items-center justify-between">
+<section class="relative z-10 py-10 overflow-hidden bg-[#050811]">
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 mb-6 flex items-center justify-between"
+  >
     <span class="section-eyebrow">Game Showcase</span>
   </div>
   <div class="game-marquee-viewport">
@@ -199,20 +338,27 @@
       <img
         *ngFor="let img of marqueeImages; let i = index; trackBy: trackByImage"
         [src]="img"
-        class="game-strip-img h-[150px] sm:h-[190px] lg:h-[230px] w-auto rounded-2xl object-cover flex-shrink-0"
+        class="game-strip-img h-[150px] sm:h-[190px] lg:h-[230px] w-auto rounded-2xl object-cover flex-shrink-0 border border-[#00F5D4]/30"
       />
     </div>
   </div>
 </section>
 
 <!-- ========================= HOW TO PLAY (TIMELINE) ========================= -->
-<section class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#070A09] overflow-hidden">
+<section
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#050811] overflow-hidden"
+>
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14">
       <span class="section-eyebrow justify-center mb-3">Get Started</span>
-      <h2 class="text-center font-bold text-[26px] sm:text-[38px] md:text-[44px] text-white max-w-3xl mx-auto leading-tight">
+      <h2
+        class="text-center font-extrabold text-[26px] sm:text-[38px] md:text-[44px] text-white max-w-3xl mx-auto leading-tight"
+      >
         Start playing in
-        <span class="bg-gradient-to-r from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">4 easy steps</span>
+        <span
+          class="bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] bg-clip-text text-transparent"
+          >4 easy steps</span
+        >
       </h2>
     </div>
 
@@ -238,17 +384,29 @@
 </section>
 
 <!-- ========================= PROMOTIONS (BENTO) ========================= -->
-<section class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#070A09] overflow-hidden">
+<section
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#050811] overflow-hidden"
+>
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-12">
-      <span class="section-eyebrow justify-center mb-3">Rewards &amp; Promotions</span>
-      <h2 class="text-white font-bold text-[26px] sm:text-[34px] md:text-[42px] leading-tight max-w-2xl mx-auto">
+      <span class="section-eyebrow justify-center mb-3"
+        >Rewards &amp; Promotions</span
+      >
+      <h2
+        class="text-white font-extrabold text-[26px] sm:text-[34px] md:text-[42px] leading-tight max-w-2xl mx-auto"
+      >
         More ways to
-        <span class="bg-gradient-to-r from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">win</span>
+        <span
+          class="bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] bg-clip-text text-transparent"
+          >win</span
+        >
         every day
       </h2>
-      <p class="text-[#93A69C] mt-3 max-w-xl mx-auto text-sm sm:text-base">
-        From your first sign-up to every day after, Spin Hub keeps the rewards coming.
+      <p
+        class="text-slate-300 mt-3 max-w-xl mx-auto text-sm sm:text-base font-medium"
+      >
+        From your first sign-up to every day after, Spin Hub keeps the rewards
+        coming.
       </p>
     </div>
 
@@ -277,26 +435,31 @@
   <div
     *ngIf="showPopup"
     (click)="RedirectToSignUp()"
-    class="popup pointer-events-auto absolute flex items-center gap-3 pl-3 pr-5 py-2.5 rounded-2xl bg-[#0B120F]/95 backdrop-blur-md border border-[#22C55E]/40 text-white shadow-xl cursor-pointer overflow-visible hover:scale-105 hover:border-[#22C55E] transition-all duration-300"
-    style="box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55), 0 0 25px rgba(34, 197, 94, 0.2);"
+    class="popup pointer-events-auto absolute flex items-center gap-3 pl-3 pr-5 py-2.5 rounded-2xl bg-[#0C101D]/95 backdrop-blur-md border border-[#00F5D4]/50 text-white shadow-[0_0_25px_rgba(0,245,212,0.3)] cursor-pointer overflow-visible hover:scale-105 hover:border-[#FF9F1C] transition-all duration-300"
   >
     <div
-      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-black border border-[#22C55E]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
+      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-[#050811] border border-[#00F5D4]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
       (click)="$event.stopPropagation(); closePopup()"
     >
       ✕
     </div>
 
-    <div class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black border border-[#22C55E]/50">
-      <i class="fas fa-gift text-[#34F5B0] text-lg"></i>
+    <div
+      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-[#050811] border border-[#00F5D4]/50"
+    >
+      <i class="fas fa-gift text-[#00F5D4] text-lg"></i>
     </div>
 
     <div class="relative z-10 leading-tight pr-6">
-      <div class="text-sm font-bold bg-gradient-to-r from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">
+      <div
+        class="text-sm font-extrabold bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] bg-clip-text text-transparent"
+      >
         150% BONUS
       </div>
-      <div class="text-[11px] text-[#93A69C]">After signup</div>
-      <span class="absolute -top-2 right-0 text-[9px] bg-red-500 px-2 py-[2px] rounded-full shadow whitespace-nowrap">
+      <div class="text-[11px] text-slate-300">After signup</div>
+      <span
+        class="absolute -top-2 right-0 text-[9px] bg-[#FF9F1C] text-black font-extrabold px-2 py-[2px] rounded-full shadow whitespace-nowrap"
+      >
         Limited
       </span>
     </div>

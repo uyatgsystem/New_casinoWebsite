@@ -1,31 +1,165 @@
-<div class="relative w-full max-w-6xl mx-auto h-[600px] overflow-hidden bg-gradient-to-r from-purple-900 to-indigo-800">
-   <div class="h-full relative">
-      <div *ngFor="let item of items; let i = index"
-         class="carousel-item w-full h-full absolute top-0 left-0 flex items-center justify-center px-4"
-         [class.active]="currentIndex === i" [class.inactive]="currentIndex !== i">
-         <div class="text-center">
-            <img *ngIf="item.img" [src]="item.img" [alt]="item.alt || ''" class="mx-auto mb-4 max-w-full h-auto">
-            <h2 *ngIf="item.heading" class="text-3xl font-bold text-white mb-2">{{item.heading}}</h2>
-            <p *ngIf="item.content" class="text-white">{{item.content}}</p>
-         </div>
+<div
+  class="relative w-full max-w-6xl mx-auto h-[600px] overflow-hidden bg-gradient-to-r from-purple-900 to-indigo-800"
+>
+  <div class="h-full relative">
+    <div
+      *ngFor="let item of items; let i = index"
+      class="carousel-item w-full h-full absolute top-0 left-0 flex items-center justify-center px-4"
+      [class.active]="currentIndex === i"
+      [class.inactive]="currentIndex !== i"
+    >
+      <div class="text-center">
+        <img
+          *ngIf="item.img"
+          [src]="item.img"
+          [alt]="item.alt || ''"
+          class="mx-auto mb-4 max-w-full h-auto"
+        />
+        <h2 *ngIf="item.heading" class="text-3xl font-bold text-white mb-2">
+          {{ item.heading }}
+        </h2>
+        <p *ngIf="item.content" class="text-white">{{ item.content }}</p>
       </div>
-   </div>
+      <div
+        class="relative w-full max-w-6xl mx-auto h-[600px] overflow-hidden bg-[#050811] border border-[#00F5D4]/30 rounded-2xl shadow-[0_0_25px_rgba(0,245,212,0.15)]"
+      >
+        <div class="h-full relative">
+          <div
+            *ngFor="let item of items; let i = index"
+            class="carousel-item w-full h-full absolute top-0 left-0 flex items-center justify-center px-4"
+            [class.active]="currentIndex === i"
+            [class.inactive]="currentIndex !== i"
+          >
+            <div class="text-center">
+              <img
+                *ngIf="item.img"
+                [src]="item.img"
+                [alt]="item.alt || ''"
+                class="mx-auto mb-4 max-w-full h-auto"
+              />
+              <h2
+                *ngIf="item.heading"
+                class="text-3xl font-extrabold text-[#00F5D4] mb-2 drop-shadow"
+              >
+                {{ item.heading }}
+              </h2>
+              <p *ngIf="item.content" class="text-slate-300 font-medium">
+                {{ item.content }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-   <button *ngIf="showArrows" (click)="goToPrevious()"
-      class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 rounded-full p-2 text-white transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
-   </button>
-   <button *ngIf="showArrows" (click)="goToNext()"
-      class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 rounded-full p-2 text-white transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-   </button>
+      <button
+        *ngIf="showArrows"
+        (click)="goToPrevious()"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 rounded-full p-2 text-white transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <button
+        *ngIf="showArrows"
+        (click)="goToNext()"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 rounded-full p-2 text-white transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+      <button
+        *ngIf="showArrows"
+        (click)="goToPrevious()"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-[#0C101D] border border-[#00F5D4]/40 hover:bg-[#00F5D4]/20 rounded-full p-2.5 text-[#00F5D4] transition-all shadow-lg"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <button
+        *ngIf="showArrows"
+        (click)="goToNext()"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-[#0C101D] border border-[#00F5D4]/40 hover:bg-[#00F5D4]/20 rounded-full p-2.5 text-[#00F5D4] transition-all shadow-lg"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
 
-   <div *ngIf="showDots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-      <button *ngFor="let item of items; let i = index" (click)="goToSlide(i)"
-         [class]="'w-3 h-3 rounded-full transition-colors ' + (currentIndex === i ? 'bg-white' : 'bg-white/50')"></button>
-   </div>
+      <div
+        *ngIf="showDots"
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2"
+      >
+        <button
+          *ngFor="let item of items; let i = index"
+          (click)="goToSlide(i)"
+          [class]="
+            'w-3 h-3 rounded-full transition-colors ' +
+            (currentIndex === i ? 'bg-white' : 'bg-white/50')
+          "
+        ></button>
+      </div>
+      <div
+        *ngIf="showDots"
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2"
+      >
+        <button
+          *ngFor="let item of items; let i = index"
+          (click)="goToSlide(i)"
+          [class]="
+            'w-3 h-3 rounded-full transition-all ' +
+            (currentIndex === i
+              ? 'bg-[#00F5D4] shadow-[0_0_8px_#00F5D4] scale-125'
+              : 'bg-slate-700')
+          "
+        ></button>
+      </div>
+    </div>
+  </div>
 </div>

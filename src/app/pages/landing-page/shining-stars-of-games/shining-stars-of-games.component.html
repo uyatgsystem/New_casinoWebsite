@@ -1,55 +1,78 @@
-<div class="shining-stars-container bg-[#03090f] text-white py-[60px]">
-  <div class="easy-steps-header max-w-3xl mx-auto text-center px-4 pt-10 lg:pt-0">
-    <span class="text-[#7de7e5] text-sm font-semibold tracking-widest uppercase block pt-10">Top Players</span>
+<div class="shining-stars-container bg-[#050811] text-white py-[60px]">
+  <div
+    class="easy-steps-header max-w-3xl mx-auto text-center px-4 pt-10 lg:pt-0"
+  >
+    <span
+      class="text-[#00F5D4] text-sm font-bold tracking-widest uppercase block pt-10"
+      >Top Players</span
+    >
 
-    <h2 class="text-white text-2xl md:text-3xl font-bold mb-4">
+    <h2 class="text-white text-2xl md:text-3xl font-black mb-4">
       Shining Stars of the Week
     </h2>
 
-    <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-10">
+    <p
+      class="text-slate-400 text-base md:text-lg leading-relaxed mb-10 font-medium"
+    >
       Meet the Legends! These Players Have Shown Incredible Luck, smart picks,
-      and big wins.These skilled players outshined everyone in their favorite
+      and big wins. These skilled players outshined everyone in their favorite
       games.
     </p>
   </div>
 
   <!-- Game Tabs -->
-  <div class="flex flex-wrap gap-6 justify-center mt-6">
-    <button *ngFor="let tab of gameTabs"
-      class="px-5 py-3 rounded-full text-sm font-semibold border transition-all duration-200" [ngClass]="{
-    'text-white border-[#4ac8c6] bg-gradient-to-r from-[#7de7e5] to-[#4ac8c6]': tab.active,
-    'bg-transparent text-[#4ac8c6] border-[#4ac8c6] hover:bg-gradient-to-r hover:from-[#7de7e5] hover:to-[#4ac8c6] hover:text-black': !tab.active
-  }" (click)="selectTab(tab.id)">
+  <div class="flex flex-wrap gap-4 justify-center mt-6">
+    <button
+      *ngFor="let tab of gameTabs"
+      class="px-6 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider border transition-all duration-200"
+      [ngClass]="{
+        'text-[#050811] border-transparent bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] shadow-[0_0_15px_rgba(0,245,212,0.4)]':
+          tab.active,
+        'bg-transparent text-slate-300 border-white/20 hover:border-[#00F5D4] hover:text-[#00F5D4]':
+          !tab.active,
+      }"
+      (click)="selectTab(tab.id)"
+    >
       {{ tab.name }}
     </button>
-
-
   </div>
 
-  <hr class="my-6 border-t border-white/30 w-[60%] mx-auto" />
+  <hr class="my-8 border-t border-[#00F5D4]/20 w-[60%] mx-auto" />
 
   <!-- Star Cards -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-8 gap-4 lg:px-[100px] mt-16 justify-center">
-    <div *ngFor="let star of selectedStars"
-      class="relative w-full lg:max-w-[330px] h-[290px] bg-gradient-to-br from-[#0c0f20] to-[#0c0f20] border border-purple-500/20 p-6 text-center overflow-hidden transition-all shadow-[0_4px_15px_#1d2227,0_8px_30px_#1d2227] rounded-xl">
-      <div class="relative z-10 flex flex-col items-center">
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-8 gap-6 lg:px-[100px] mt-10 justify-center"
+  >
+    <div
+      *ngFor="let star of selectedStars"
+      class="relative w-full lg:max-w-[330px] h-[290px] bg-gradient-to-br from-[#0C101D] to-[#050811] border border-[#00F5D4]/30 p-6 text-center overflow-hidden transition-all shadow-[0_4px_25px_rgba(0,245,212,0.15)] hover:border-[#00F5D4] rounded-2xl"
+    >
+      <div class="relative z-10 flex flex-col items-center h-full">
         <div class="flex items-center gap-4 mb-6 text-left w-full">
-          <img [src]="star.avatar" [alt]="star.name"
-            class="w-[5rem] h-[5rem] rounded-full object-cover border-4 border-gray-700 flex-shrink-0" />
+          <img
+            [src]="star.avatar"
+            [alt]="star.name"
+            class="w-[4.5rem] h-[4.5rem] rounded-full object-cover border-2 border-[#00F5D4] shadow-md flex-shrink-0"
+          />
 
           <div>
-            <h3 class="text-xl font-bold text-white truncate">
+            <h3 class="text-lg font-extrabold text-white truncate">
               {{ star.name }}
             </h3>
-            <p class="text-sm md:text-sm text-white truncate">
+            <p class="text-xs text-slate-400 truncate">
               {{ star.location }}
             </p>
           </div>
         </div>
 
         <div class="mt-auto">
-          <span class="block text-md text-white mt-6">🏆 Won:</span>
-          <div class="text-[50px] font-bold text-[#7de7e5] drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
+          <span
+            class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"
+            >🏆 Won:</span
+          >
+          <div
+            class="text-[40px] font-black text-[#00F5D4] drop-shadow-[0_2px_10px_rgba(0,245,212,0.4)]"
+          >
             $ {{ star.score }}
           </div>
         </div>
