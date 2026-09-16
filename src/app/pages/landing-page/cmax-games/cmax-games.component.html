@@ -1,25 +1,23 @@
-<div class="bg-noise text-white min-h-screen flex flex-col items-center space-y-3 pt-12 lg:pt-24 pb-6">
+<div class="bg-noise text-white min-h-screen flex flex-col items-center space-y-3 pt-12 lg:pt-24 pb-6 relative overflow-hidden">
+  <div class="games-glow games-glow--one"></div>
+  <div class="games-glow games-glow--two"></div>
+
   <!-- Heading block: follows Figma layout (left headings, right description) -->
-  <div class="w-full max-w-[1447px] mx-auto">
+  <div class="w-full max-w-[1447px] mx-auto relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 md:gap-6 items-start px-4 md:px-0">
       <!-- Left: small label + big heading -->
       <div class="lg:col-span-6 text-center lg:text-left">
-        <div class="flex items-center !text-center justify-center lg:justify-normal lg:text-left gap-4">
-          <span class="inline-flex items-center justify-center text-[#fe8912] font-bold text-[20px] leading-[22px]">
-            Spin Hub
-          </span>
-          <span class="text-white font-bold text-[20px] leading-[22px]">Games</span>
-        </div>
+        <span class="section-eyebrow !justify-center lg:!justify-start mb-3">Spin Hub Games</span>
 
         <h1 class="text-[28px] sm:text-[36px] md:text-[42px] leading-[51px] font-bold text-white">
           Play Win and Enjoy <br />
-          <span class="text-[#A6B1C2]">Our Best Games </span>
+          <span class="bg-gradient-to-r from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">Our Best Games</span>
         </h1>
       </div>
 
       <!-- Right: description -->
       <div class="lg:col-span-6 text-left">
-        <p class="mt-2 text-[12px] md:text-[16px] text-[#A6B1C2] max-w-[900px]">
+        <p class="mt-2 text-[12px] md:text-[16px] text-[#93A69C] max-w-[900px]">
           Explore our exciting collection of games. Play your favorites,
           discover new adventures, and enjoy fast, smooth gameplay with
           rewarding wins all on one powerful platform built for nonstop fun and
@@ -30,11 +28,10 @@
   </div>
 
   <!-- All Games Section -->
-  <div class="w-full max-w-[1444px] mx-auto mt-8">
+  <div class="w-full max-w-[1444px] mx-auto mt-8 relative z-10">
     <div class="flex items-center justify-between">
-      <h3 class="text-[#FE8912] font-bold text-[30px]">Elite Games</h3>
-      <button *ngIf="hasMoreAllGames" (click)="toggleAllGamesView()"
-        class="mt-0 bg-gradient-to-b from-[#FEC866] to-[#FE8006] text-black font-semibold text-sm sm:text-base py-2 px-4 sm:px-12 rounded-full transition">
+      <h3 class="games-section-title">Elite Games</h3>
+      <button *ngIf="hasMoreAllGames" (click)="toggleAllGamesView()" class="games-view-all-btn">
         {{ showAllGamesExpanded ? "View Less Games" : "View All Games" }}
       </button>
     </div>
@@ -44,10 +41,6 @@
         <div
           (click)="onPlayGame(game)"
           class="dash-game-card group"
-          [ngStyle]="{
-            'border-color': getGameImage(game.name)?.bgclr || '#FE8912',
-            '--card-glow': getGameImage(game.name)?.bgclr || '#FE8912'
-          }"
         >
           <img [src]="getGameImage(game.name)?.image || getGameImage(game.name)?.coverImage" [alt]="game.name" class="game-image" />
 
@@ -56,10 +49,7 @@
           </div>
 
           <div class="card-footer-pill">
-            <span
-              class="game-title"
-              [ngStyle]="{ color: getGameImage(game.name)?.bgclr || '#FFD700' }"
-            >{{ game.name }}</span>
+            <span class="game-title">{{ game.name }}</span>
           </div>
         </div>
       </ng-container>
@@ -67,14 +57,14 @@
   </div>
 
   <!-- Separator -->
-  <div class="w-full max-w-[1550px]" id="instantGameScrollSection">
-    <div class="mt-2 mb-8 h-[2px] bg-[#FE8912] to-transparent opacity-60 rounded"></div>
+  <div class="w-full max-w-[1550px] relative z-10" id="instantGameScrollSection">
+    <div class="mt-2 mb-8 h-px bg-gradient-to-r from-transparent via-[#22C55E]/50 to-transparent"></div>
   </div>
 
   <!-- Instant Games  -->
-  <div class="w-full max-w-[1444px] mx-auto mt-8 mb-12">
+  <div class="w-full max-w-[1444px] mx-auto mt-8 mb-12 relative z-10">
     <div class="flex items-center justify-between">
-      <h3 class="text-[#FE8912] font-bold text-[30px]">Quick Win Casino</h3>
+      <h3 class="games-section-title">Quick Win Casino</h3>
     </div>
 
     <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-6 py-2">
@@ -82,10 +72,6 @@
         <div
           (click)="onPlayGame(game)"
           class="dash-game-card group"
-          [ngStyle]="{
-            'border-color': game.bgColor || '#FE8912',
-            '--card-glow': game.bgColor || '#FE8912'
-          }"
         >
           <img
             [src]="game.image || game.coverImage"
@@ -99,10 +85,7 @@
           </div>
 
           <div class="card-footer-pill">
-            <span
-              class="game-title"
-              [ngStyle]="{ color: game.bgColor || '#FFD700' }"
-            >{{ game.name }}</span>
+            <span class="game-title">{{ game.name }}</span>
           </div>
         </div>
       </ng-container>

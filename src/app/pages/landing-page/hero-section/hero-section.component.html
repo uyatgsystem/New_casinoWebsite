@@ -1,36 +1,38 @@
-<div class="relative bg-[#0B0B0F] text-center px-6 overflow-hidden">
+<section class="cta-band relative overflow-hidden">
+  <!-- Ambient cyber emerald glow -->
+  <div class="cta-glow cta-glow--one"></div>
+  <div class="cta-glow cta-glow--two"></div>
+  <div class="cta-grid-overlay"></div>
 
-  <!-- Ambient luxury gold glow -->
-  <div class="absolute inset-0 pointer-events-none z-0" style="background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.12) 0%, transparent 60%);"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 py-20 lg:py-28">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-12">
+      <div class="text-center lg:text-left">
+        <span class="cta-eyebrow">Your Table Is Waiting</span>
+        <h2 class="text-[#F5F5F7] text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight leading-[1.05]">
+          Ready to <span class="text-[#22C55E]">Spin?</span>
+        </h2>
+        <p class="text-[#93A69C] text-sm md:text-base max-w-md mx-auto lg:mx-0 mb-8">
+          Join Spin Hub and discover an exciting gaming experience built for
+          players who expect more.
+        </p>
 
-  <!-- RIGHT SIDE BACKGROUND IMAGE -->
-  <img src="https://cmaxnewimages.pages.dev/assets/extra/shape.png" alt="casino" class="absolute
-         left-1/2  -translate-x-1/2 -translate-y-1/2
-         lg:left-auto lg:right-6 lg:translate-x-0    max-h-[180px] sm:max-h-[220px] lg:max-h-[350px]
-         opacity-50 sm:opacity-30 lg:opacity-100
-         pointer-events-none z-0 animate-float" />
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <button (click)="RedirectToLogin()" type="button" class="cta-btn-primary">
+            <i class="fas fa-play text-xs"></i> Play Now
+          </button>
+          <button (click)="RedirectToSignUp()" type="button" class="cta-btn-outline">
+            Join Now
+          </button>
+        </div>
+      </div>
 
-  <!-- CONTENT (PERFECT CENTER) -->
-  <div class="relative z-10 flex flex-col items-center justify-center min-h-[35vh] lg:min-h-[50vh]">
-    <h2 class="text-[#F5F5F7] text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight">
-      Ready to <span class="text-[#D4AF37]">Spin?</span>
-    </h2>
-    <p class="text-[#9CA3AF] text-sm md:text-base max-w-md mb-8">
-      Join Spin Hub and discover an exciting gaming experience.
-    </p>
-
-    <div class="flex flex-col sm:flex-row items-center gap-4">
-      <button (click)="RedirectToLogin()" type="button" class="text-[#0B0B0F] font-semibold px-14 py-[0.65rem] shadow-md
-        rounded-full
-        bg-gradient-to-b from-[#E5C07B] to-[#B8860B] transition hover:scale-105"
-        style="box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);">
-        Play Now
-      </button>
-      <button (click)="RedirectToSignUp()" type="button" class="text-[#F5F5F7] font-semibold px-10 py-[0.6rem]
-        rounded-full bg-white/5
-        border border-[#D4AF37]/30 transition hover:scale-105 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]">
-        Join Now
-      </button>
+      <div class="cta-orb hidden lg:flex">
+        <img
+          src="https://cmaxnewimages.pages.dev/assets/extra/shape.png"
+          alt="casino"
+          class="w-full h-full object-contain animate-float"
+        />
+      </div>
     </div>
   </div>
-</div>
+</section>
