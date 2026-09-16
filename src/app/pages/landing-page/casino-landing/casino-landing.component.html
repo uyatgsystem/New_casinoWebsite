@@ -1,59 +1,91 @@
-<div class="bg-game-purple">
+<div class="bg-[#020403] text-white py-3 px-2 sm:px-6">
   <div *ngIf="heroGames && heroGames.length > 0">
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let game of heroGames; let i = index">
 
         <div
-          class="hero-promo-slide relative mx-1 my-2 h-[22vh] min-h-[140px] max-h-[170px] sm:h-[34vh] sm:min-h-0 sm:max-h-none md:h-[40vh] overflow-hidden cursor-pointer rounded-2xl"
+          class="arena-hero-card relative mx-1 my-2 overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl"
           (click)="playHeroGame(game.redirectLink || game.downloadLink)"
         >
-          <!-- Gradient border frame -->
-          <div class="hero-promo-border"></div>
+          <!-- Atmospheric Glows (Tight & Controlled) -->
+          <div class="arena-glow-left"></div>
+          <div class="arena-glow-right"></div>
+          <div class="arena-mesh-grid"></div>
 
-          <!-- Ambient glow accents -->
-          <div class="hero-promo-glow hero-promo-glow--one"></div>
-          <div class="hero-promo-glow hero-promo-glow--two"></div>
-          <div class="hero-promo-pattern"></div>
-          <div class="hero-promo-shine"></div>
-
-          <!-- Floating sparkles -->
-          <span class="hero-promo-particle" style="top: 18%; left: 12%; animation-delay: 0s"></span>
-          <span class="hero-promo-particle" style="top: 70%; left: 22%; animation-delay: 1.2s"></span>
-          <span class="hero-promo-particle" style="top: 30%; left: 85%; animation-delay: 0.6s"></span>
-          <span class="hero-promo-particle" style="top: 75%; left: 70%; animation-delay: 1.8s"></span>
-
-          <!-- Large faded watermark icon with fallback error handler -->
-          <img [src]="game.image" [alt]="''" class="hero-promo-watermark object-contain" (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'" />
-
-          <div class="relative z-10 h-full w-full flex items-center px-3 sm:px-12 md:px-20 gap-2.5 sm:gap-10">
-            <!-- Game icon with fallback error handler -->
-            <div class="hero-promo-icon-wrap flex-shrink-0">
-              <div class="hero-promo-icon-ring"></div>
-              <div class="hero-promo-icon">
-                <img [src]="game.image" [alt]="game.name" class="hero-promo-icon-img" [class.hero-promo-icon-img--zoom]="game.iconZoom" (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'" />
+          <!-- Main Layout -->
+          <div class="relative z-10 w-full min-h-[190px] sm:min-h-[260px] md:min-h-[290px] px-5 sm:px-10 py-5 sm:py-7 flex items-center justify-between gap-4">
+            
+            <!-- Left Side: Esports / HUD Cluster -->
+            <div class="flex flex-col justify-center items-start max-w-[64%] sm:max-w-[58%] z-20">
+              
+              <!-- Cyber Telemetry Ribbon -->
+              <div class="hud-telemetry-ribbon mb-2 sm:mb-3">
+                <div class="telemetry-item live-pulse">
+                  <span class="pulse-beacon"></span>
+                  <span>ONLINE LOBBY</span>
+                </div>
+                <span class="telemetry-sep">/</span>
+                <div class="telemetry-item max-win">
+                  <span class="text-[#00e676]">5,000x</span>
+                  <span class="text-gray-400">CAP</span>
+                </div>
               </div>
-            </div>
 
-            <!-- Text & Branding -->
-            <div class="flex flex-col items-start">
-              <span class="hero-promo-eyebrow">
-                <i class="fas fa-crown"></i> Elite Gaming Lobby
-              </span>
-              <h2 class="hero-promo-title">{{ game.name }}</h2>
-              <p class="hero-promo-tagline">
-                Play now and chase massive jackpots & rewards at Spin Hub.
+              <!-- Title Cluster with Dynamic Index -->
+              <div class="hud-title-wrapper">
+                <span class="hud-title-index">ARENA-{{ i + 1 < 10 ? '0' + (i + 1) : (i + 1) }}</span>
+                <h1 class="hud-glitch-title">
+                  {{ game.name }}
+                </h1>
+              </div>
+
+              <!-- Subtitle with Custom Accent Border -->
+              <p class="hud-clean-desc">
+                High-frequency multiplier engine. Certified provably fair with instant liquidity settlement.
               </p>
-              <div class="flex items-center gap-4 flex-wrap">
-                <button class="hero-promo-btn" (click)="$event.stopPropagation(); playHeroGame(game.redirectLink || game.downloadLink)">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                  Play Now
+
+              <!-- Unified Cyber Dock Controller -->
+              <div class="hud-unified-dock mt-3 sm:mt-5">
+                <button
+                  class="dock-play-trigger"
+                  (click)="$event.stopPropagation(); playHeroGame(game.redirectLink || game.downloadLink)"
+                >
+                  <span class="dock-play-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                  </span>
+                  <span class="dock-play-label">START RUN</span>
                 </button>
-                <span class="hero-promo-trust">
-                  <i class="fas fa-users"></i> 15k+ Active Players
-                </span>
+
+                <div class="dock-telemetry hidden sm:flex">
+                  <div class="live-dot-ping"></div>
+                  <span class="dock-count">15.4K</span>
+                  <span class="dock-status">IN GAME</span>
+                </div>
               </div>
+
             </div>
+
+            <!-- Right Side: 3D Visual Spotlight Stage -->
+            <div class="arena-visual-stage flex-1 flex items-center justify-center relative">
+              
+              <!-- Neon Spotlight Disk behind Game -->
+              <div class="arena-spotlight"></div>
+              <div class="arena-radial-ring"></div>
+
+              <!-- Main Game Logo with Depth Shadow -->
+              <img
+                [src]="game.image"
+                [alt]="game.name"
+                class="arena-game-art"
+                [class.arena-game-art--zoom]="game.iconZoom"
+                (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'"
+              />
+            </div>
+
           </div>
+
+          <!-- Subtle Top Border Accent -->
+          <div class="arena-top-line"></div>
         </div>
 
       </ng-template>
