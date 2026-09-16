@@ -141,7 +141,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 82vh;
+  min-height: 76vh;
   width: 100%;
   background-color: #070A09;
   background-image:
@@ -445,7 +445,7 @@
 
 @keyframes marqueeScroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-25%); }
+  to { transform: translateX(-50%); }
 }
 
 .game-strip-img {
