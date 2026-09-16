@@ -5,7 +5,7 @@
   transition: color 0.25s ease;
 
   &:hover {
-    color: #d4af37;
+    color: #00e0a0;
   }
 }
 
@@ -89,8 +89,8 @@
 /* Unified account-shell footer treatment. */
 #footer {
   margin-top: 0;
-  background: #0f0f12;
-  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  background: #060f0c;
+  border-top: 1px solid rgba(0, 224, 160, 0.15);
 }
 
 #footer.dashboard-footer {
@@ -99,7 +99,7 @@
 }
 
 #footer > div {
-  background: #0b0b0f !important;
+  background: #050a08 !important;
 }
 
 #footer .grain-Backdrop {
@@ -128,7 +128,7 @@
   width: 22px;
   height: 2px;
   margin-top: 9px;
-  background: #d4af37;
+  background: #00e0a0;
 }
 
 #footer .footer-link {
@@ -141,14 +141,14 @@
 
 #footer .footer-link::before {
   content: "›";
-  color: #d4af37;
+  color: #00e0a0;
   opacity: 0;
   transform: translateX(-5px);
   transition: opacity .2s ease, transform .2s ease;
 }
 
 #footer .footer-link:hover {
-  color: #d4af37;
+  color: #00e0a0;
   transform: translateX(3px);
 }
 
@@ -158,19 +158,19 @@
 }
 
 #footer .fa-dharmachakra {
-  color: #d4af37 !important;
+  color: #00e0a0 !important;
 }
 
 #footer .mt-5.inline-flex {
-  border-color: rgba(212, 175, 55, .25);
-  background: rgba(212, 175, 55, .06);
+  border-color: rgba(0, 224, 160, .25);
+  background: rgba(0, 224, 160, .06);
   color: #9ca3af;
 }
 
 #footer .mt-12 {
   margin-top: 46px;
   padding-top: 18px;
-  border-color: rgba(212, 175, 55, .15);
+  border-color: rgba(0, 224, 160, .15);
   color: #6f7680;
 }
 

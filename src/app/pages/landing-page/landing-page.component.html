@@ -1,9 +1,8 @@
 <header
-  class="top-0 w-full h-[70px] bg-black backdrop-blur-xl border-b border-[#D4AF37]/40 flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50 header-bordered"
+  class="top-0 w-full h-[70px] cyber-emerald-bg backdrop-blur-xl border-b border-[#00e0a0]/40 flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50 header-bordered"
   [class.fixed]="isSticky"
   [class.absolute]="!isSticky"
   [class.sticky-shadow]="isSticky"
-  style="background: #000000 !important; background-color: #000000 !important;"
 >
   <!-- Grain backdrop remove kar diya gaya hai taake dots khatam ho jayein -->
 
@@ -27,27 +26,27 @@
   <nav class="hidden lg:flex items-center gap-8 mx-auto">
     <a
       (click)="scrollTo('gameScrollSection')"
-      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
+      class="nav-link text-white hover:text-[#22e8a8] cursor-pointer"
       >Games</a
     >
     <a
       (click)="scrollTo('instantGameScrollSection')"
-      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
+      class="nav-link text-white hover:text-[#22e8a8] cursor-pointer"
       >Instant Games</a
     >
     <a
       (click)="scrollTo('featuresScrollSection')"
-      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
+      class="nav-link text-white hover:text-[#22e8a8] cursor-pointer"
       >Features</a
     >
     <a
       (click)="scrollTo('contactScrollSection')"
-      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
+      class="nav-link text-white hover:text-[#22e8a8] cursor-pointer"
       >Contact us</a
     >
     <a
       (click)="scrollTo('aboutScrollSection')"
-      class="nav-link text-white hover:text-[#C5A059] cursor-pointer"
+      class="nav-link text-white hover:text-[#22e8a8] cursor-pointer"
       >About us</a
     >
   </nav>
@@ -56,7 +55,7 @@
   <div class="hidden lg:flex items-center gap-3 shrink-0 ml-auto">
     <button
       (click)="RedirectToLogin()"
-      class="px-5 py-2 rounded-full bg-black text-white text-sm font-medium border border-[#D4AF37]/50 hover:border-[#D4AF37] hover:text-[#C5A059] transition-all duration-300 cursor-pointer"
+      class="px-5 py-2 rounded-xl bg-black text-white text-sm font-medium border border-[#00e0a0]/50 hover:border-[#00e0a0] hover:text-[#22e8a8] transition-all duration-300 cursor-pointer"
     >
       Login
     </button>
@@ -90,37 +89,37 @@
   <!-- Mobile Menu -->
   <div
     *ngIf="isMobileMenuOpen"
-    class="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-[#D4AF37]/30 px-4 py-6 z-50 shadow-2xl"
+    class="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-[#00e0a0]/30 px-4 py-6 z-50 shadow-2xl"
     style="background: #000000 !important;"
   >
     <div class="grid grid-cols-2 gap-4 text-center text-white">
       <button
         (click)="handleMobileNav('gameScrollSection')"
-        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer"
+        class="mobile-nav-btn hover:text-[#00e0a0] cursor-pointer"
       >
         Games
       </button>
       <button
         (click)="handleMobileNav('instantGameScrollSection')"
-        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer"
+        class="mobile-nav-btn hover:text-[#00e0a0] cursor-pointer"
       >
         Instant Games
       </button>
       <button
         (click)="handleMobileNav('featuresScrollSection')"
-        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer"
+        class="mobile-nav-btn hover:text-[#00e0a0] cursor-pointer"
       >
         Features
       </button>
       <button
         (click)="handleMobileNav('aboutScrollSection')"
-        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer"
+        class="mobile-nav-btn hover:text-[#00e0a0] cursor-pointer"
       >
         About Us
       </button>
       <button
         (click)="handleMobileNav('contactScrollSection')"
-        class="mobile-nav-btn hover:text-[#D4AF37] cursor-pointer col-span-2"
+        class="mobile-nav-btn hover:text-[#00e0a0] cursor-pointer col-span-2"
       >
         Contact Us
       </button>
@@ -129,7 +128,7 @@
     <div class="flex items-center gap-3 mt-5">
       <button
         (click)="RedirectToLogin()"
-        class="flex-1 px-4 py-2 rounded-full bg-black text-white text-sm font-medium border border-[#D4AF37]/50 hover:border-[#D4AF37] hover:text-[#C5A059] transition-all duration-300 cursor-pointer"
+        class="flex-1 px-4 py-2 rounded-xl bg-black text-white text-sm font-medium border border-[#00e0a0]/50 hover:border-[#00e0a0] hover:text-[#22e8a8] transition-all duration-300 cursor-pointer"
       >
         Login
       </button>
@@ -145,7 +144,7 @@
 
 <!-- Ultra-Compact Hero Section (Zero Bottom Spacing) -->
 <main
-  class="relative pt-[70px] pb-0 bg-black flex items-center overflow-hidden main-banner-container"
+  class="relative pt-[70px] pb-0 cyber-emerald-bg flex items-center overflow-hidden main-banner-container"
 >
   <!-- Ambient Glow / Particle Layer -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -179,7 +178,7 @@
       <!-- Left Side: Expanded Casino Graphic Banner -->
       <div class="lg:col-span-7 flex justify-center items-center relative">
         <div
-          class="absolute w-[400px] h-[400px] bg-[#D4AF37]/20 rounded-full blur-[120px] pointer-events-none"
+          class="absolute w-[400px] h-[400px] bg-[#00e0a0]/20 rounded-full blur-[120px] pointer-events-none"
         ></div>
         <img
           src="https://spinhub-6rb.pages.dev/assets/bglandingbanner.png"
@@ -194,9 +193,9 @@
       >
         <!-- Eyebrow Badge -->
         <div
-          class="hero-badge inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#E5C07B] uppercase"
+          class="hero-badge inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#6ffcd0] uppercase"
         >
-          <i class="fas fa-dharmachakra text-[#D4AF37] spin-icon"></i>
+          <i class="fas fa-dharmachakra text-[#00e0a0] spin-icon"></i>
           Welcome to Spin Hub
         </div>
 
@@ -206,7 +205,7 @@
         >
           Spin The Wheel. <br />
           <span
-            class="bg-gradient-to-r from-[#E5C07B] via-[#C5A059] to-[#d4af37] bg-clip-text text-transparent"
+            class="bg-gradient-to-r from-[#6ffcd0] via-[#22e8a8] to-[#00e0a0] bg-clip-text text-transparent"
           >
             Win The World.
           </span>
@@ -291,12 +290,12 @@
 <!-- Premium Features Section -->
 <section
   id="featuresScrollSection"
-  class="relative z-10 py-12 lg:py-16 px-4 sm:px-8 lg:px-16 bg-black overflow-hidden"
+  class="relative z-10 py-12 lg:py-16 px-4 sm:px-8 lg:px-16 cyber-emerald-bg overflow-hidden"
 >
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-10 lg:mb-12">
       <span
-        class="inline-block text-[#D4AF37] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2"
+        class="inline-block text-[#00e0a0] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2"
       >
         Why Spin Hub
       </span>
@@ -305,7 +304,7 @@
       >
         Everything You Need for a
         <span
-          class="bg-gradient-to-r from-[#E5C07B] via-[#C5A059] to-[#d4af37] bg-clip-text text-transparent"
+          class="bg-gradient-to-r from-[#6ffcd0] via-[#22e8a8] to-[#00e0a0] bg-clip-text text-transparent"
         >
           Premium
         </span>
@@ -327,11 +326,11 @@
 
 <!-- Spin Hub - How to Get Started Heading -->
 <section
-  class="relative z-10 pt-12 pb-4 flex flex-col items-center justify-center gap-2"
+  class="relative z-10 pt-12 pb-4 flex flex-col items-center justify-center gap-2 cyber-emerald-bg"
 >
   <div class="flex items-center gap-2 justify-center">
     <span
-      class="inline-block font-bold text-[16px] sm:text-[24px] md:text-[28px] leading-[100%] text-[#d4af37]"
+      class="inline-block font-bold text-[16px] sm:text-[24px] md:text-[28px] leading-[100%] text-[#00e0a0]"
     >
       Get Ready
     </span>
@@ -366,7 +365,7 @@
 
 <!-- Spin Hub Guide Section -->
 <section
-  class="relative w-full py-12 lg:py-16 px-4 sm:px-8 lg:px-16 bg-black overflow-hidden"
+  class="relative w-full py-12 lg:py-16 px-4 sm:px-8 lg:px-16 cyber-emerald-bg overflow-hidden"
 >
   <div class="max-w-7xl mx-auto">
     <div
@@ -382,7 +381,7 @@
           >How to</span
         >
         <span
-          class="block font-extrabold text-[46px] lg:text-[54px] leading-[0.95] bg-gradient-to-b from-[#E5C07B] via-[#C5A059] to-[#D4AF37] bg-clip-text text-transparent"
+          class="block font-extrabold text-[46px] lg:text-[54px] leading-[0.95] bg-gradient-to-b from-[#6ffcd0] via-[#22e8a8] to-[#00e0a0] bg-clip-text text-transparent"
         >
           Play
         </span>
@@ -395,7 +394,7 @@
       <div class="relative">
         <!-- Connecting line (desktop only) -->
         <div
-          class="hidden lg:block absolute top-[3.25rem] left-[9%] right-[9%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"
+          class="hidden lg:block absolute top-[3.25rem] left-[9%] right-[9%] h-[2px] bg-gradient-to-r from-transparent via-[#00e0a0]/30 to-transparent"
         ></div>
 
         <div
@@ -424,12 +423,12 @@
 
 <!-- Promotions & Rewards Section -->
 <section
-  class="relative z-10 py-12 lg:py-16 px-4 sm:px-8 lg:px-16 bg-black overflow-hidden"
+  class="relative z-10 py-12 lg:py-16 px-4 sm:px-8 lg:px-16 cyber-emerald-bg overflow-hidden"
 >
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-10 lg:mb-12">
       <span
-        class="inline-block text-[#D4AF37] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2"
+        class="inline-block text-[#00e0a0] font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2"
       >
         Rewards & Promotions
       </span>
@@ -438,7 +437,7 @@
       >
         More Ways to
         <span
-          class="bg-gradient-to-r from-[#E5C07B] via-[#C5A059] to-[#d4af37] bg-clip-text text-transparent"
+          class="bg-gradient-to-r from-[#6ffcd0] via-[#22e8a8] to-[#00e0a0] bg-clip-text text-transparent"
         >
           Win
         </span>
@@ -474,7 +473,7 @@
   <div
     *ngIf="showPopup"
     (click)="RedirectToSignUp()"
-    class="popup pointer-events-auto absolute flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#161819]/95 backdrop-blur-md border border-[#D4AF37]/50 text-white shadow-xl cursor-pointer overflow-visible hover:scale-105 hover:border-[#D4AF37] transition-all duration-300"
+    class="popup pointer-events-auto absolute flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#161819]/95 backdrop-blur-md border border-[#00e0a0]/50 text-white shadow-xl cursor-pointer overflow-visible hover:scale-105 hover:border-[#00e0a0] transition-all duration-300"
     style="
       box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.45),
@@ -483,21 +482,21 @@
   >
     <!-- Close Button -->
     <div
-      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-black border border-[#D4AF37]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
+      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-black border border-[#00e0a0]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
       (click)="$event.stopPropagation(); closePopup()"
     >
       ✕
     </div>
 
     <div
-      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-b from-[#E5C07B] via-[#C5A059] to-[#D4AF37]"
+      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-b from-[#6ffcd0] via-[#22e8a8] to-[#00e0a0]"
     >
       <i class="fas fa-gift text-black text-lg"></i>
     </div>
 
     <div class="relative z-10 leading-tight pr-6">
       <div
-        class="text-sm font-bold bg-gradient-to-r from-[#E5C07B] via-[#C5A059] to-[#d4af37] bg-clip-text text-transparent"
+        class="text-sm font-bold bg-gradient-to-r from-[#6ffcd0] via-[#22e8a8] to-[#00e0a0] bg-clip-text text-transparent"
       >
         150% BONUS
       </div>

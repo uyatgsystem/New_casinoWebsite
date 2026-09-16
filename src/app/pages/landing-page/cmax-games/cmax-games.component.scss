@@ -13,11 +13,11 @@
   width: 100%;
   height: 145px;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(22, 27, 38, 0.96) 0%, rgba(10, 13, 19, 0.99) 100%);
-  border: 1.8px solid var(--card-glow, #FE8912);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px var(--card-glow, #FE8912);
+  background: linear-gradient(135deg, rgba(8, 26, 20, 0.96) 0%, rgba(3, 10, 8, 0.99) 100%);
+  border: 1.5px solid var(--card-glow, #00e0a0);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 10px rgba(0, 0, 0, 0.5), 0 0 8px var(--card-glow, #00e0a0);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   @media (min-width: 640px) {
@@ -31,7 +31,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 25%, var(--card-glow, #FE8912) 0%, transparent 75%);
+    background: radial-gradient(circle at 50% 25%, var(--card-glow, #00e0a0) 0%, transparent 75%);
     opacity: 0.45;
     transition: opacity 0.4s ease;
     pointer-events: none;
@@ -51,12 +51,12 @@
 
   &:hover {
     transform: translateY(-4px) scale(1.02);
-    border-color: var(--card-glow, #FE8912);
+    border-color: var(--card-glow, #00e0a0);
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.95),
-      0 0 35px var(--card-glow, #FE8912),
+      0 0 35px var(--card-glow, #00e0a0),
       0 0 12px rgba(255, 255, 255, 0.3),
-      inset 0 0 12px var(--card-glow, #FE8912);
+      inset 0 0 12px var(--card-glow, #00e0a0);
 
     &::before {
       opacity: 0.95;
@@ -74,7 +74,7 @@
 
     .card-footer-pill {
       border-color: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9), 0 0 12px var(--card-glow, #FE8912);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9), 0 0 12px var(--card-glow, #00e0a0);
     }
   }
 }
@@ -124,62 +124,77 @@
   z-index: 30;
 
   .play-btn {
-    background: linear-gradient(135deg, #FEC866 0%, #FE9B2A 50%, #FE8006 100%);
-    color: #000;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #6ffcd0 0%, #00e0a0 50%, #067a5c 100%);
+    color: #0b0b0f;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 9px;
     letter-spacing: 0.8px;
-    padding: 6px 14px;
-    border-radius: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
     border: 1.5px solid rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 15px rgba(254, 128, 6, 0.8), inset 0 1px 3px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(0, 224, 160, 0.8), inset 0 1px 3px rgba(255, 255, 255, 0.6);
     cursor: pointer;
     transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s ease;
+    }
+
     @media (min-width: 640px) {
       font-size: 11px;
-      padding: 8px 18px;
-      border-radius: 10px;
+      padding: 8px 20px;
     }
 
     &:hover {
       transform: scale(1.08);
-      filter: brightness(1.15);
-      box-shadow: 0 0 25px rgba(254, 128, 6, 1), inset 0 2px 5px rgba(255, 255, 255, 0.9);
+      filter: brightness(1.1);
+      box-shadow: 0 0 25px rgba(0, 224, 160, 1), inset 0 2px 5px rgba(255, 255, 255, 0.9);
+
+      &::before {
+        left: 125%;
+      }
     }
   }
 }
 
 .card-footer-pill {
   position: absolute;
-  bottom: 6px;
-  left: 6px;
-  right: 6px;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 20;
-  background: rgba(12, 15, 22, 0.9);
+  max-width: calc(100% - 16px);
+  background: rgba(8, 12, 10, 0.85);
   backdrop-filter: blur(14px);
-  border: 1px solid var(--card-glow, #FE8912);
-  padding: 4px 8px;
-  border-radius: 8px;
+  border: 1px solid var(--card-glow, #00e0a0);
+  padding: 4px 12px;
+  border-radius: 9999px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
   transition: all 0.3s ease;
 
   @media (min-width: 640px) {
-    bottom: 8px;
-    left: 8px;
-    right: 8px;
-    padding: 6px 10px;
-    border-radius: 10px;
+    bottom: 10px;
+    padding: 6px 16px;
   }
 
   .game-title {
     font-size: 9px;
     font-weight: 900;
-    color: #FFD700;
+    color: #00ffb2;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -190,6 +205,10 @@
       font-size: 12px;
     }
   }
+}
+
+.dash-game-card:hover .card-footer-pill {
+  transform: translateX(-50%) translateY(-2px);
 }
 
 .bg-noise {
