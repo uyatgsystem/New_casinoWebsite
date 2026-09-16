@@ -132,12 +132,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
       description:
         'Regular tournaments, leaderboards, and limited-time offers to boost your wins.',
     },
-    {
-      icon: 'fas fa-mobile-screen-button',
-      title: 'Mobile Friendly',
-      description:
-        'Play anywhere, anytime with a fully responsive experience on any device.',
-    },
   ];
 
   promoOffers = [
@@ -365,30 +359,17 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     },
   ];
 
-  desktopImages = [
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/card.png',
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/game-room.png',
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/fire-kirin.png',
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/e-game.png',
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/dragon.png', // center
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/ace.png',
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/dragon-2.png',
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/cash-machine.png',
-    'https://cmaxv2images.pages.dev/assets/games/carousel-game/dragn-game.png',
-  ];
-
   trackByImage(index: number, img: string) {
     return img + '-' + index;
   }
 
-  // Repeated 4x so the track is always wider than the viewport — otherwise
-  // the seamless loop point exposes empty background on wide screens.
+  // Real game artwork (same catalog as the Elite Games grid), repeated so
+  // the track is always wider than the viewport — otherwise the seamless
+  // loop point exposes empty background on wide screens.
   get marqueeImages() {
-    return [
-      ...this.desktopImages,
-      ...this.desktopImages,
-      ...this.desktopImages,
-      ...this.desktopImages,
-    ];
+    const images = this.Games.map((game: any) => game.image).filter(
+      (image: any) => !!image,
+    );
+    return [...images, ...images];
   }
 }

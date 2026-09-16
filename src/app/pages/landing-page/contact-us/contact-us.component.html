@@ -1,119 +1,80 @@
 <section
   id="contact"
   aria-labelledby="contact-heading"
-  class="contact-form order-1 mb-10 md:mb-0 relative bg-no-repeat"
+  class="contact-section relative bg-no-repeat"
   role="region"
-  style="
-    background-image: url(&quot;https://spinhub-6rb.pages.dev/assets/contact_bg.png&quot;);
-    background-size: cover;
-    background-position: center 25%;
-  "
 >
-  <div class="absolute inset-0 bg-black/75" aria-hidden="true"></div>
-  <div class="relative z-10 py-16 lg:py-24 px-6 md:px-12 lg:px-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-start">
-      <div class="contact-text max-w-[650px]">
-        <span
-          class="contact-eyebrow inline-flex items-center px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#00e0a0] uppercase mb-4"
-        >
-          Contact Us
-        </span>
+  <div class="contact-glow contact-glow--one"></div>
+  <div class="contact-glow contact-glow--two"></div>
 
-        <h2
-          id="contact-heading"
-          class="text-white font-extrabold text-[40px] sm:text-[48px] lg:text-[56px] leading-[1.1] mt-0 mb-6"
-        >
-          Reach Out
-          <span class="text-[#9CA3AF]"> Anytime</span>
-        </h2>
+  <div class="relative z-10 py-16 lg:py-24 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="section-eyebrow justify-center mb-4">Get In Touch</span>
+      <h2 id="contact-heading" class="text-white font-extrabold text-[32px] sm:text-[42px] lg:text-[48px] leading-[1.1] mb-4">
+        We're here to
+        <span class="bg-gradient-to-r from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">help</span>
+      </h2>
+      <p class="text-[#93A69C] font-medium text-sm sm:text-base">
+        Questions, feedback, or support — our team responds fast, every day of the week.
+      </p>
+    </div>
 
-        <p class="text-[#9CA3AF] font-medium text-base leading-6">
-          If you have questions, need support, or want to share feedback, our
-          team is always ready to assist. Reach out to us anytime we’re here to
-          make your gaming experience smoother.
-        </p>
-
-        <!-- Quick contact info -->
-        <div class="mt-8 space-y-3">
-          <div class="contact-info-chip flex items-center gap-3">
-            <span class="contact-info-icon">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <div>
-              <p class="text-white text-sm font-semibold">Email Us</p>
-              <p class="text-[#9CA3AF] text-xs">support&#64;spinclub.com</p>
-            </div>
+    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,340px)_1fr] gap-8 lg:gap-14 items-start">
+      <!-- Contact channel list -->
+      <div class="contact-channels">
+        <div class="contact-channel">
+          <span class="contact-channel-node"><i class="fas fa-envelope"></i></span>
+          <div>
+            <p class="contact-channel-title">Email Us</p>
+            <p class="contact-channel-desc">support&#64;spinclub.com</p>
           </div>
+        </div>
 
-          <div class="contact-info-chip flex items-center gap-3">
-            <span class="contact-info-icon">
-              <i class="fas fa-headset"></i>
-            </span>
-            <div>
-              <p class="text-white text-sm font-semibold">Live Chat Support</p>
-              <p class="text-[#9CA3AF] text-xs">
-                Available directly from your dashboard
-              </p>
-            </div>
+        <div class="contact-channel">
+          <span class="contact-channel-node"><i class="fas fa-headset"></i></span>
+          <div>
+            <p class="contact-channel-title">Live Chat Support</p>
+            <p class="contact-channel-desc">Available directly from your dashboard</p>
           </div>
+        </div>
 
-          <div class="contact-info-chip flex items-center gap-3">
-            <span class="contact-info-icon">
-              <i class="fas fa-clock"></i>
-            </span>
-            <div>
-              <p class="text-white text-sm font-semibold">Response Time</p>
-              <p class="text-[#9CA3AF] text-xs">
-                Our team typically replies within 24 hours
-              </p>
-            </div>
+        <div class="contact-channel">
+          <span class="contact-channel-node"><i class="fas fa-clock"></i></span>
+          <div>
+            <p class="contact-channel-title">Response Time</p>
+            <p class="contact-channel-desc">Our team typically replies within 24 hours</p>
           </div>
         </div>
       </div>
 
-      <div class="contact-form-wrapper contact-form-card rounded-2xl p-6 sm:p-8">
-        <form
-          [formGroup]="contactForm"
-          (ngSubmit)="onSubmit()"
-          class="space-y-5"
-        >
+      <!-- Contact form -->
+      <div class="contact-form-panel">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-5">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- First Name -->
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
-                >First Name</label
-              >
+              <label class="contact-label">First Name</label>
               <input
                 type="text"
                 formControlName="firstName"
-                class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00e0a0] transition-colors"
+                class="contact-input"
               />
               <div
-                *ngIf="
-                  contactForm.get('firstName')?.touched &&
-                  contactForm.get('firstName')?.invalid
-                "
+                *ngIf="contactForm.get('firstName')?.touched && contactForm.get('firstName')?.invalid"
                 class="text-red-500 text-xs mt-1"
               >
                 First name is required.
               </div>
             </div>
 
-            <!-- Last Name -->
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
-                >Last Name</label
-              >
+              <label class="contact-label">Last Name</label>
               <input
                 type="text"
                 formControlName="lastName"
-                class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00e0a0] transition-colors"
+                class="contact-input"
               />
               <div
-                *ngIf="
-                  contactForm.get('lastName')?.touched &&
-                  contactForm.get('lastName')?.invalid
-                "
+                *ngIf="contactForm.get('lastName')?.touched && contactForm.get('lastName')?.invalid"
                 class="text-red-500 text-xs mt-1"
               >
                 Last name is required.
@@ -121,46 +82,33 @@
             </div>
           </div>
 
-          <!-- Email & Phone in one row -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Email -->
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
-                >Email</label
-              >
+              <label class="contact-label">Email</label>
               <input
                 type="email"
                 formControlName="email"
-                class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00e0a0] transition-colors"
+                class="contact-input"
               />
               <div
-                *ngIf="
-                  contactForm.get('email')?.touched &&
-                  contactForm.get('email')?.invalid
-                "
+                *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid"
                 class="text-red-500 text-xs mt-1"
               >
                 Please enter a valid email.
               </div>
             </div>
 
-            <!-- Phone -->
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
-                >Phone</label
-              >
+              <label class="contact-label">Phone</label>
               <input
                 type="tel"
                 inputmode="numeric"
                 maxlength="15"
                 formControlName="phone"
                 (input)="onPhoneInput($event)"
-                class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00e0a0] transition-colors"
+                class="contact-input"
               />
-              <div
-                *ngIf="contactForm.get('phone')?.touched"
-                class="text-red-500 text-xs mt-1"
-              >
+              <div *ngIf="contactForm.get('phone')?.touched" class="text-red-500 text-xs mt-1">
                 <div *ngIf="contactForm.get('phone')?.errors?.['required']">
                   Phone number is required.
                 </div>
@@ -171,39 +119,24 @@
             </div>
           </div>
 
-          <!-- Message -->
           <div>
-            <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5"
-              >Message</label
-            >
-            <textarea
-              formControlName="message"
-              rows="5"
-              class="contact-input w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00e0a0] transition-colors"
-            ></textarea>
+            <label class="contact-label">Message</label>
+            <textarea formControlName="message" rows="5" class="contact-input"></textarea>
             <div
-              *ngIf="
-                contactForm.get('message')?.touched &&
-                contactForm.get('message')?.invalid
-              "
+              *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid"
               class="text-red-500 text-xs mt-1"
             >
               Message is required.
             </div>
           </div>
 
-          <!-- Submit Button -->
           <button
             type="submit"
             [disabled]="contactForm.invalid"
-            [ngClass]="
-              contactForm.invalid
-                ? 'opacity-50 cursor-not-allowed'
-                : 'cursor-pointer hover:scale-[1.02] hover:shadow-xl'
-            "
-            class="contact-submit-glow w-full bg-gradient-to-r from-[#6ffcd0] to-[#067a5c] text-black font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider transition duration-300"
+            [ngClass]="contactForm.invalid ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'"
+            class="contact-submit-btn w-full"
           >
-            Send Message
+            Send Message <i class="fas fa-arrow-right text-xs"></i>
           </button>
         </form>
       </div>
@@ -211,93 +144,36 @@
   </div>
 </section>
 
-<!--FAQ -->
-<section
-  id="faq"
-  aria-labelledby="faq-heading"
-  class="faq-section order-2 my-12 md:mt-0 cyber-emerald-bg py-10"
-  role="region"
->
-  <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-    <div class="text-center max-w-4xl mx-auto mt-12">
-      <div class="flex justify-center mb-4">
-        <span
-          class="inline-block text-[#00e0a0] font-bold text-[24px] leading-[22px] px-3 py-1"
-          >FAQs</span
-        >
-      </div>
-
-      <h2
-        id="faq-heading"
-        class="text-white font-extrabold text-[42px] leading-[51px] mb-4"
-      >
+<!-- FAQ -->
+<section id="faq" aria-labelledby="faq-heading" class="faq-section relative" role="region">
+  <div class="max-w-4xl mx-auto px-6 md:px-12 lg:px-20 py-16 lg:py-20">
+    <div class="text-center mb-12">
+      <span class="section-eyebrow justify-center mb-4">FAQs</span>
+      <h2 id="faq-heading" class="text-white font-extrabold text-[28px] sm:text-[38px] leading-tight mb-4">
         Frequently Asked Questions
       </h2>
-
-      <p class="text-[#9CA3AF] font-medium text-base mx-auto">
-        Have a question? Our FAQ section covers the most frequently asked topics
-        about accounts, payments, games, and more so you get instant clarity.
+      <p class="text-[#93A69C] font-medium text-sm sm:text-base">
+        Everything you need to know about accounts, payments, and games.
       </p>
     </div>
 
-    <div class="space-y-6 mt-10 max-w-7xl mx-auto">
-      <div
-        *ngFor="let faq of faqs"
-        class="border-b-2 [border-image-source:linear-gradient(90deg,#27272A_0.96%,#00e0a0_49.52%,#27272A_100%)] [border-image-slice:1] pb-4"
-      >
+    <div class="space-y-3">
+      <div *ngFor="let faq of faqs" class="faq-item" [class.faq-item--open]="openIndex === faq.index">
         <button
           (click)="toggle(faq.index)"
-          class="flex justify-between items-center w-full text-left font-medium text-white focus:outline-none"
+          class="flex items-center gap-4 w-full text-left focus:outline-none cursor-pointer"
         >
-          <span>{{ faq.question }}</span>
-
-          <span class="flex items-center">
+          <span class="faq-index">{{ faq.index }}</span>
+          <span class="flex-1 font-semibold text-white text-sm sm:text-base">{{ faq.question }}</span>
+          <span class="faq-toggle">
             <ng-container *ngIf="openIndex === faq.index; else plusIcon">
-              <!-- Minus SVG -->
-              <svg
-                width="43"
-                height="43"
-                viewBox="0 0 43 43"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M20.8588 25.1465L11.3537 28.2267L12.1389 33.5298L33.047 30.4559L30.837 9.40995L25.5056 9.97128L24.8917 19.9442L20.8588 25.1465Z"
-                  fill="#00e0a0"
-                />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M5.25513 17.3405L13.4432 6.77826L23.8197 19.1129L19.7868 24.3152L5.25513 17.3405Z"
-                  fill="#00e0a0"
-                />
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
               </svg>
             </ng-container>
             <ng-template #plusIcon>
-              <!-- Plus SVG -->
-              <svg
-                width="31"
-                height="31"
-                viewBox="0 0 31 31"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M17.397 18.7467L11.8994 27.0901L15.8256 30.7403L30.2309 15.278L15.3571 0.225319L11.5449 3.99439L17.296 12.165L17.397 18.7467Z"
-                  fill="#00e0a0"
-                />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M0.336746 22.3974L0.131604 9.03461L15.9398 12.1833L16.0408 18.765L0.336746 22.3974Z"
-                  fill="#00e0a0"
-                />
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
               </svg>
             </ng-template>
           </span>
@@ -305,13 +181,9 @@
 
         <div
           class="grid transition-all duration-300 ease-in-out"
-          [ngClass]="
-            openIndex === faq.index
-              ? 'grid-rows-[1fr] opacity-100 mt-2'
-              : 'grid-rows-[0fr] opacity-0'
-          "
+          [ngClass]="openIndex === faq.index ? 'grid-rows-[1fr] opacity-100 mt-3' : 'grid-rows-[0fr] opacity-0'"
         >
-          <p class="text-[#9CA3AF] text-sm leading-relaxed overflow-hidden">
+          <p class="text-[#93A69C] text-sm leading-relaxed overflow-hidden pl-[calc(2rem+1rem)]">
             {{ faq.answer }}
           </p>
         </div>

@@ -179,20 +179,6 @@
   width: 100%;
 }
 
-// Cyber Emerald ambient background: black base + soft faceted shards along the
-// left edge + a gentle emerald glow, non-repeating so no tile seams show.
-.cyber-emerald-bg {
-  position: relative;
-  background-color: #000000;
-  background-image:
-    radial-gradient(ellipse 900px 480px at 20% -10%, rgba(0, 224, 160, 0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 650px 480px at 100% 25%, rgba(0, 255, 178, 0.05) 0%, transparent 70%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='520' height='900' viewBox='0 0 520 900' preserveAspectRatio='none'><polygon points='0,0 260,0 60,180' fill='%230f3a2a' fill-opacity='0.22'/><polygon points='0,180 60,180 0,420' fill='%23113f2d' fill-opacity='0.16'/><polygon points='60,180 260,0 340,260 120,420' fill='%230b2f22' fill-opacity='0.18'/><polygon points='0,420 120,420 0,700' fill='%23145038' fill-opacity='0.13'/><polygon points='120,420 340,260 380,560 160,700' fill='%2308251b' fill-opacity='0.16'/><polygon points='0,700 160,700 0,900' fill='%230f3a2a' fill-opacity='0.11'/></svg>");
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: 0 0, 100% 0, left top;
-  background-size: auto, auto, 380px 100%;
-}
-
 .bg-noise {
   background-image: url("data:image/svg+xml;utf8,<svg width='1440' height='1227' viewBox='0 0 1440 1227' fill='none' xmlns='http://www.w3.org/2000/svg'><g filter='url(%23filter0_n_1504_314)'><rect width='1440' height='1227' fill='%23161819'/></g><defs><filter id='filter0_n_1504_314' x='0' y='0' width='1440' height='1227' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'><feFlood flood-opacity='0' result='BackgroundImageFix'/><feBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/><feTurbulence type='fractalNoise' baseFrequency='0.666 0.666' stitchTiles='stitch' numOctaves='3' result='noise' seed='3711'/><feComponentTransfer in='noise' result='coloredNoise1'><feFuncR type='linear' slope='2' intercept='-0.5'/><feFuncG type='linear' slope='2' intercept='-0.5'/><feFuncB type='linear' slope='2' intercept='-0.5'/><feFuncA type='discrete' tableValues='1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/></feComponentTransfer><feComposite operator='in' in2='shape' in='coloredNoise1' result='noise1Clipped'/><feComponentTransfer in='noise1Clipped' result='color1'><feFuncA type='table' tableValues='0 0.15'/></feComponentTransfer><feMerge result='effect1_noise_1504_314'><feMergeNode in='shape'/><feMergeNode in='color1'/></feMerge></filter></defs>");
   background-size: cover;

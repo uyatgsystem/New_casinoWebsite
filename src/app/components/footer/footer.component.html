@@ -1,5 +1,5 @@
 <footer
-  class="bg-[#0B0B0F] text-[#F5F5F7] relative mt-4"
+  class="site-footer text-[#F5F5F7] relative mt-4"
   [class.dashboard-footer]="isDashboardRoute() && !isScreenWidthLessThan800()"
   *ngIf="
     (!isDashboardRoute() || !isScreenWidthLessThan800()) &&
@@ -7,49 +7,54 @@
   "
   id="footer"
 >
-  <div class="relative bg-[#0F0F12] w-full">
+  <div class="relative footer-surface w-full">
     <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
-    <div
-      class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00e0a0]/40 to-transparent"
-    ></div>
+    <div class="footer-top-line"></div>
 
-    <div class="relative max-w-7xl mx-auto px-6 md:px-10 py-6">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+    <!-- CTA banner (landing page only) -->
+    <div *ngIf="!isDashboardRoute()" class="footer-cta">
+      <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-center sm:text-left">
+          <span class="footer-cta-eyebrow">Join the table</span>
+          <h3 class="text-white font-extrabold text-xl sm:text-2xl">Ready to spin and win?</h3>
+        </div>
+        <button (click)="RedirectSignup()" class="footer-cta-btn shrink-0 cursor-pointer">
+          Create Free Account <i class="fas fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 md:px-10 py-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8 lg:gap-6 items-start">
         <!-- Brand -->
-        <div class="lg:col-span-1">
-          <div class="flex flex-col leading-none mb-2.5">
-            <span class="flex items-center gap-1.5">
-              <i
-                class="fas fa-dharmachakra text-[#00e0a0] text-lg spin-icon"
-              ></i>
-              <span
-                class="font-extrabold tracking-wide text-lg bg-gradient-to-b from-[#6ffcd0] via-[#22e8a8] to-[#00e0a0] bg-clip-text text-transparent"
-              >
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <span class="footer-logo-badge">
+              <i class="fas fa-dharmachakra spin-icon"></i>
+            </span>
+            <div class="flex flex-col leading-none">
+              <span class="font-extrabold tracking-wide text-lg bg-gradient-to-b from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">
                 SPIN HUB
               </span>
-            </span>
-            <span
-              class="text-[7px] tracking-[0.35em] text-[#00e0a0]/70 mt-0.5 ml-[24px]"
-            >
-              PREMIUM GAMING
-            </span>
+              <span class="text-[7px] tracking-[0.35em] text-[#22C55E]/70">PREMIUM GAMING</span>
+            </div>
           </div>
-          <p class="text-[#9CA3AF] text-xs leading-relaxed max-w-xs">
+          <p class="text-[#93A69C] text-xs leading-relaxed max-w-xs mb-4">
             A premium online gaming platform built for safe, fair, and rewarding
-            play spin, win, and enjoy nonstop entertainment.
+            play — spin, win, and enjoy nonstop entertainment.
           </p>
-          <div class="flex items-center gap-2.5 mt-3.5">
+          <div class="flex items-center gap-2.5">
             <a
               href="https://www.facebook.com/profile.php?id=61585037884179&_rdc=1&_rdr#"
               target="_blank"
-              class="w-8 h-8 rounded-full border border-[#00e0a0]/20 flex items-center justify-center text-[#9CA3AF] hover:border-[#00e0a0] hover:text-[#00e0a0] hover:bg-[#00e0a0]/10 transition"
+              class="footer-social-btn"
             >
               <i class="fab fa-facebook-f text-xs"></i>
             </a>
             <a
               href="https://www.instagram.com/casinomaxs/"
               target="_blank"
-              class="w-8 h-8 rounded-full border border-[#00e0a0]/20 flex items-center justify-center text-[#9CA3AF] hover:border-[#00e0a0] hover:text-[#00e0a0] hover:bg-[#00e0a0]/10 transition"
+              class="footer-social-btn"
             >
               <i class="fab fa-instagram text-xs"></i>
             </a>
@@ -58,93 +63,43 @@
 
         <!-- Landing-page links are only shown on the public landing page. -->
         <div *ngIf="!isDashboardRoute()">
-          <h4
-            class="text-white font-semibold text-xs uppercase tracking-wider mb-2.5"
-          >
-            Quick Links
-          </h4>
-          <ul class="space-y-1.5 text-xs">
-            <li>
-              <a (click)="goToSection('gameScrollSection')" class="footer-link"
-                >Games</a
-              >
-            </li>
-            <li>
-              <a
-                (click)="goToSection('instantGameScrollSection')"
-                class="footer-link"
-                >Instant Games</a
-              >
-            </li>
-            <li>
-              <a
-                (click)="goToSection('featuresScrollSection')"
-                class="footer-link"
-                >Features</a
-              >
-            </li>
-            <li>
-              <a (click)="goToSection('aboutScrollSection')" class="footer-link"
-                >About Us</a
-              >
-            </li>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a (click)="goToSection('gameScrollSection')" class="footer-link">Games</a></li>
+            <li><a (click)="goToSection('instantGameScrollSection')" class="footer-link">Instant Games</a></li>
+            <li><a (click)="goToSection('featuresScrollSection')" class="footer-link">Features</a></li>
+            <li><a (click)="goToSection('aboutScrollSection')" class="footer-link">About Us</a></li>
           </ul>
         </div>
 
         <!-- Support -->
         <div>
-          <h4
-            class="text-white font-semibold text-xs uppercase tracking-wider mb-2.5"
-          >
-            Support
-          </h4>
-          <ul class="space-y-1.5 text-xs">
+          <h4 class="footer-col-title">Support</h4>
+          <ul class="space-y-2 text-xs">
             <li *ngIf="!isDashboardRoute()">
-              <a
-                (click)="goToSection('contactScrollSection')"
-                class="footer-link"
-                >Contact Us</a
-              >
+              <a (click)="goToSection('contactScrollSection')" class="footer-link">Contact Us</a>
             </li>
             <li *ngIf="!isDashboardRoute()">
-              <a
-                (click)="goToSection('contactScrollSection')"
-                class="footer-link"
-                >FAQs</a
-              >
+              <a (click)="goToSection('contactScrollSection')" class="footer-link">FAQs</a>
             </li>
-            <li>
-              <a routerLink="/Help" class="footer-link">Help &amp; Support</a>
-            </li>
+            <li><a routerLink="/Help" class="footer-link">Help &amp; Support</a></li>
           </ul>
         </div>
 
         <!-- Legal -->
         <div>
-          <h4
-            class="text-white font-semibold text-xs uppercase tracking-wider mb-2.5"
-          >
-            Legal
-          </h4>
-          <ul class="space-y-1.5 text-xs">
-            <li>
-              <a routerLink="/Terms&Condition" class="footer-link"
-                >Terms &amp; Conditions</a
-              >
-            </li>
+          <h4 class="footer-col-title">Legal</h4>
+          <ul class="space-y-2 text-xs mb-4">
+            <li><a routerLink="/Terms&Condition" class="footer-link">Terms &amp; Conditions</a></li>
           </ul>
-          <div
-            class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-[#00e0a0]/20 text-[#9CA3AF] text-[10px]"
-          >
-            <i class="fas fa-hand-holding-heart text-[#00e0a0]"></i>
+          <div class="footer-badge">
+            <i class="fas fa-hand-holding-heart"></i>
             18+ Please Play Responsibly
           </div>
         </div>
       </div>
 
-      <div
-        class="mt-6 pt-4 border-t border-[#00e0a0]/15 text-center text-xs text-[#9CA3AF] font-medium"
-      >
+      <div class="footer-bottom-bar">
         &copy; {{ currentYear }} Spin Hub. All rights reserved.
       </div>
     </div>

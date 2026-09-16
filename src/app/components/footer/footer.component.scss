@@ -1,35 +1,228 @@
-.footer-link {
-  color: #9ca3af;
-  font-size: inherit;
-  cursor: pointer;
-  transition: color 0.25s ease;
+// =====================================================================
+// Public site footer (Premium Vault redesign) — black + cyber-emerald
+// =====================================================================
+
+#footer {
+  margin-top: 0;
+  background: #0b120f;
+  border-top: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+#footer.dashboard-footer {
+  width: calc(100% - 250px);
+  margin-left: 250px;
+}
+
+.footer-surface {
+  position: relative;
+  background: #070a09;
+  overflow: hidden;
+}
+
+.footer-top-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.4), transparent);
+}
+
+#footer .grain-Backdrop {
+  opacity: 0.14;
+}
+
+// ---------------------------------------------------------------------
+// CTA banner
+// ---------------------------------------------------------------------
+.footer-cta {
+  position: relative;
+  padding: 2rem 0;
+  background:
+    radial-gradient(600px 200px at 15% 0%, rgba(34, 197, 94, 0.12), transparent 70%),
+    rgba(34, 197, 94, 0.04);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.12);
+}
+
+.footer-cta-eyebrow {
+  display: block;
+  color: #4ade80;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 10px;
+  margin-bottom: 0.3rem;
+}
+
+.footer-cta-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 14px;
+  background: linear-gradient(160deg, #0d1512 0%, #070a09 100%);
+  border: 1.5px solid rgba(34, 197, 94, 0.55);
+  color: #34f5b0;
+  font-weight: 800;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
   &:hover {
-    color: #00e0a0;
+    border-color: #22c55e;
+    color: #4ade80;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5), 0 0 22px rgba(34, 197, 94, 0.35);
+    transform: translateY(-2px);
   }
 }
 
+// ---------------------------------------------------------------------
+// Columns
+// ---------------------------------------------------------------------
+#footer .max-w-7xl {
+  padding-top: clamp(32px, 5vw, 56px);
+  padding-bottom: 24px;
+}
+
+#footer .grid {
+  gap: clamp(30px, 5vw, 60px);
+}
+
+.footer-logo-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, rgba(34, 197, 94, 0.18), rgba(34, 197, 94, 0.03));
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #22c55e;
+  font-size: 0.9rem;
+}
+
+.footer-social-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #93a69c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    color: #22c55e;
+    border-color: rgba(34, 197, 94, 0.4);
+    background: rgba(34, 197, 94, 0.08);
+  }
+}
+
+#footer h4 {
+  margin-bottom: 16px;
+  color: #f5f5f7;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+#footer h4::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin-top: 9px;
+  background: #22c55e;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #93a69c;
+  font-size: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+
+  &::before {
+    content: "›";
+    color: #22c55e;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  &:hover {
+    color: #22c55e;
+    transform: translateX(3px);
+
+    &::before {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  background: rgba(34, 197, 94, 0.06);
+  color: #93a69c;
+  font-size: 10px;
+
+  i {
+    color: #22c55e;
+  }
+}
+
+.footer-bottom-bar {
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(34, 197, 94, 0.15);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6f7680;
+}
+
+// ---------------------------------------------------------------------
+// Dashboard bottom mobile nav (unchanged behaviour — visual only)
+// ---------------------------------------------------------------------
 .active-tab {
-  color: #fe9e2e !important;
+  color: #fe8c16 !important;
 }
 
 .active-tab svg {
-  stroke: #fe9e2e !important;
+  stroke: #fe8c16 !important;
 }
 
-
-
 .footer-item {
-  @apply relative flex flex-col items-center justify-center text-gray-400 text-[10px] w-full h-full transition-all duration-300;
+  @apply relative flex flex-col items-center justify-center text-[#8c939d] text-[10px] w-full h-full transition-all duration-300;
 }
 
 .footer-item .icon {
-  @apply w-5 h-5 mb-[2px] transition-all duration-300;
+  width: 19px;
+  height: 19px;
+  margin-bottom: 2px;
+  transition: all 0.3s ease;
 }
 
-/* Active State (Pill + Lift) */
-.active-tab {
-  @apply text-[#FFD700];
+.footer-item:hover {
+  color: #fe8c16;
+}
+
+.footer-item:hover .icon {
+  transform: translateY(-2px);
 }
 
 .active-tab::before {
@@ -38,12 +231,12 @@
   top: 4px;
   width: 28px;
   height: 28px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(254, 140, 22, 0.16) 0%, transparent 70%);
+  box-shadow: 0 0 20px rgba(254, 140, 22, 0.2);
   border-radius: 9999px;
   z-index: -1;
 }
 
-/* Icon Lift */
 .active-tab .icon {
   transform: translateY(-3px) scale(1.15);
 }
@@ -67,7 +260,7 @@
   border-radius: 14px;
   box-shadow: 0 4px 15px rgba(254, 128, 6, 0.4);
   cursor: pointer;
-  transition: transform .2s ease, filter .2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .mobile-deposit-action:hover {
@@ -81,121 +274,6 @@
   font-weight: 900;
 }
 
-/* Smooth Hover */
-.footer-item:hover .icon {
-  transform: translateY(-2px);
-}
-
-/* Unified account-shell footer treatment. */
-#footer {
-  margin-top: 0;
-  background: #060f0c;
-  border-top: 1px solid rgba(0, 224, 160, 0.15);
-}
-
-#footer.dashboard-footer {
-  width: calc(100% - 250px);
-  margin-left: 250px;
-}
-
-#footer > div {
-  background: #050a08 !important;
-}
-
-#footer .grain-Backdrop {
-  opacity: .14;
-}
-
-#footer .max-w-7xl {
-  padding-top: clamp(42px, 6vw, 72px);
-  padding-bottom: 24px;
-}
-
-#footer .grid {
-  gap: clamp(30px, 5vw, 72px);
-}
-
-#footer h4 {
-  margin-bottom: 16px;
-  color: #f5f5f7;
-  font-size: .68rem;
-  letter-spacing: .16em;
-}
-
-#footer h4::after {
-  content: "";
-  display: block;
-  width: 22px;
-  height: 2px;
-  margin-top: 9px;
-  background: #00e0a0;
-}
-
-#footer .footer-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: #9ca3af;
-  transition: color .2s ease, transform .2s ease;
-}
-
-#footer .footer-link::before {
-  content: "›";
-  color: #00e0a0;
-  opacity: 0;
-  transform: translateX(-5px);
-  transition: opacity .2s ease, transform .2s ease;
-}
-
-#footer .footer-link:hover {
-  color: #00e0a0;
-  transform: translateX(3px);
-}
-
-#footer .footer-link:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-#footer .fa-dharmachakra {
-  color: #00e0a0 !important;
-}
-
-#footer .mt-5.inline-flex {
-  border-color: rgba(0, 224, 160, .25);
-  background: rgba(0, 224, 160, .06);
-  color: #9ca3af;
-}
-
-#footer .mt-12 {
-  margin-top: 46px;
-  padding-top: 18px;
-  border-color: rgba(0, 224, 160, .15);
-  color: #6f7680;
-}
-
-.footer-item {
-  color: #8c939d;
-}
-
-.footer-item:hover {
-  color: #f3a630;
-}
-
-.footer-item .icon {
-  width: 19px;
-  height: 19px;
-}
-
-.active-tab {
-  color: #fe8c16 !important;
-}
-
-.active-tab::before {
-  background: rgba(254, 140, 22, .16);
-  box-shadow: 0 0 20px rgba(254, 140, 22, .2);
-}
-
 @media (max-width: 800px) {
   #footer.dashboard-footer {
     width: 100%;
@@ -207,10 +285,10 @@
     width: calc(100% - 24px);
     height: 64px;
     padding: 4px;
-    border: 1px solid rgba(195, 176, 137, .35);
+    border: 1px solid rgba(195, 176, 137, 0.35);
     border-radius: 16px;
-    background: rgba(12, 13, 16, .96) !important;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, .48);
+    background: rgba(12, 13, 16, 0.96) !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.48);
   }
 
   nav.fixed.bottom-1 > div {
@@ -223,14 +301,14 @@
 
   nav.fixed.bottom-1 .footer-item:hover,
   nav.fixed.bottom-1 .footer-item.active-tab {
-    background: rgba(254, 140, 22, .1);
+    background: rgba(254, 140, 22, 0.1);
   }
 
   nav.fixed.bottom-1 .footer-item span {
     margin-top: 3px;
     font-size: 9px;
     font-weight: 700;
-    letter-spacing: .02em;
+    letter-spacing: 0.02em;
   }
 
   nav.fixed.bottom-1 .mobile-deposit-action {
