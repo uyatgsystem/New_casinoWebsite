@@ -20,10 +20,10 @@ export class MessageModalComponent {
   // internal computed values
   get iconColor(): string {
     switch (this.type) {
-      case 'success': return '#22c55e'; // green
-      case 'warning': return '#f59e0b'; // yellow
+      case 'success': return '#00F5D4'; // hyper teal
+      case 'warning': return '#FF9F1C'; // solar amber
       case 'error': return '#ef4444';   // red
-      default: return '#22c55e';
+      default: return '#00F5D4';
     }
   }
 

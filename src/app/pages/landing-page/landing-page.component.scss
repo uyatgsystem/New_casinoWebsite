@@ -1,36 +1,26 @@
-// =====================================================================
-// Spin Hub — Landing Page (Premium Vault redesign)
-// Palette: black + cyber-emerald (#22C55E / #4ADE80 / #34F5B0 / #059669),
-// warm-dark surfaces. CTAs are dark-premium (charcoal fill + emerald
-// border/glow) rather than a solid bright fill.
-// =====================================================================
-
 :root {
-  background-color: #070A09;
+  background-color: #050811;
 }
 
-// ---------------------------------------------------------------------
-// Header
-// ---------------------------------------------------------------------
 .header-bordered {
-  background: rgba(7, 10, 9, 0.88);
+  background: rgba(5, 8, 17, 0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(34, 197, 94, 0.16);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 245, 212, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .sticky-shadow {
-  background: rgba(6, 5, 4, 0.92) !important;
-  border-bottom-color: rgba(34, 197, 94, 0.28) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6) !important;
+  background: rgba(12, 16, 29, 0.95) !important;
+  border-bottom-color: rgba(0, 245, 212, 0.35) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7) !important;
 }
 
 .nav-link {
   position: relative;
-  color: #d8d3ca;
-  font-weight: 600;
+  color: #cbd5e1;
+  font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.02em;
   padding: 0.5rem 1rem;
@@ -38,19 +28,12 @@
   transition: color 0.3s ease, background 0.3s ease;
   cursor: pointer;
 
-  &::after {
-    display: none;
-  }
-
   &:hover {
-    color: #ffe3b0;
-    background: rgba(34, 197, 94, 0.1);
+    color: #00F5D4;
+    background: rgba(0, 245, 212, 0.1);
   }
 }
 
-// ---------------------------------------------------------------------
-// Shared premium button system — dark charcoal base, gold border/glow.
-// ---------------------------------------------------------------------
 @mixin premium-btn-base {
   position: relative;
   display: inline-flex;
@@ -59,7 +42,7 @@
   gap: 0.5rem;
   overflow: hidden;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
   border-radius: 14px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
@@ -67,7 +50,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(115deg, transparent 35%, rgba(52, 245, 176, 0.28) 50%, transparent 65%);
+    background: linear-gradient(115deg, transparent 35%, rgba(0, 245, 212, 0.3) 50%, transparent 65%);
     transform: translateX(-130%);
     transition: transform 0.7s ease;
     pointer-events: none;
@@ -85,34 +68,33 @@
 .pill-btn-primary {
   @include premium-btn-base;
   padding: 0.85rem 2.5rem;
-  background: linear-gradient(160deg, #0D1512 0%, #070A09 100%);
-  border: 1.5px solid rgba(34, 197, 94, 0.55);
-  color: #34f5b0;
+  background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 50%, #FF9F1C 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: #050811;
   box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(34, 197, 94, 0.08) inset;
+    0 10px 26px rgba(0, 245, 212, 0.35),
+    0 0 0 1px rgba(0, 245, 212, 0.15) inset;
 
   &:hover {
-    border-color: #4ade80;
-    color: #ffe3b0;
+    filter: brightness(1.15);
+    color: #050811;
     box-shadow:
-      0 12px 30px rgba(0, 0, 0, 0.55),
-      0 0 26px rgba(34, 197, 94, 0.4),
-      0 0 0 1px rgba(34, 197, 94, 0.15) inset;
+      0 12px 30px rgba(0, 245, 212, 0.5),
+      0 0 26px rgba(0, 245, 212, 0.5);
   }
 }
 
 .pill-btn-outline {
   @include premium-btn-base;
   padding: 0.85rem 2.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #f1ede5;
+  background: rgba(12, 16, 29, 0.6);
+  border: 1px solid rgba(0, 245, 212, 0.35);
+  color: #00F5D4;
 
   &:hover {
-    border-color: rgba(34, 197, 94, 0.5);
-    background: rgba(34, 197, 94, 0.06);
-    color: #34f5b0;
+    border-color: #00F5D4;
+    background: rgba(0, 245, 212, 0.12);
+    color: #fff;
   }
 }
 
@@ -121,21 +103,18 @@
   width: 122px;
   height: 42px;
   border-radius: 999px;
-  background: linear-gradient(160deg, #0D1512 0%, #070A09 100%);
-  border: 1.5px solid rgba(34, 197, 94, 0.55);
-  color: #34f5b0;
+  background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 50%, #FF9F1C 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #050811;
   font-size: 0.85rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 245, 212, 0.35);
 
   &:hover {
-    border-color: #4ade80;
-    box-shadow: 0 0 22px rgba(34, 197, 94, 0.4);
+    filter: brightness(1.15);
+    box-shadow: 0 0 22px rgba(0, 245, 212, 0.5);
   }
 }
 
-// ---------------------------------------------------------------------
-// Hero
-// ---------------------------------------------------------------------
 .main-banner-container {
   position: relative;
   background-position: center center;
@@ -143,11 +122,11 @@
   background-size: cover;
   min-height: 76vh;
   width: 100%;
-  background-color: #070A09;
+  background-color: #050811;
   background-image:
-    radial-gradient(1000px 560px at 8% -8%, rgba(34, 197, 94, 0.16), transparent 60%),
-    radial-gradient(760px 460px at 100% 10%, rgba(52, 245, 176, 0.08), transparent 55%),
-    linear-gradient(180deg, #070A09 0%, #070A09 100%);
+    radial-gradient(1000px 560px at 8% -8%, rgba(0, 245, 212, 0.15), transparent 60%),
+    radial-gradient(760px 460px at 100% 10%, rgba(255, 159, 28, 0.1), transparent 55%),
+    linear-gradient(180deg, #050811 0%, #050811 100%);
 }
 
 .main-banner-container::before {
@@ -172,7 +151,7 @@
     content: "";
     width: 28px;
     height: 2px;
-    background: linear-gradient(90deg, #22c55e, transparent);
+    background: linear-gradient(90deg, #00F5D4, transparent);
     display: inline-block;
   }
 }
@@ -185,26 +164,26 @@
   animation: heroGlowPulse 8s ease-in-out infinite;
 }
 
-.hero-glow-orange {
+.hero-glow-teal {
   top: -10%;
   right: 5%;
   width: 380px;
   height: 380px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.5) 0%, rgba(34, 197, 94, 0) 70%);
+  background: radial-gradient(circle, rgba(0, 245, 212, 0.4) 0%, rgba(0, 245, 212, 0) 70%);
 }
 
-.hero-glow-gold {
+.hero-glow-amber {
   bottom: -15%;
   left: 10%;
   width: 320px;
   height: 320px;
-  background: radial-gradient(circle, rgba(52, 245, 176, 0.35) 0%, rgba(52, 245, 176, 0) 70%);
+  background: radial-gradient(circle, rgba(255, 159, 28, 0.3) 0%, rgba(255, 159, 28, 0) 70%);
   animation-delay: 2s;
 }
 
 @keyframes heroGlowPulse {
-  0%, 100% { opacity: 0.22; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.15); }
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.15); }
 }
 
 .hero-particle {
@@ -212,8 +191,8 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #34f5b0;
-  box-shadow: 0 0 8px 2px rgba(52, 245, 176, 0.7);
+  background: #00F5D4;
+  box-shadow: 0 0 8px 2px rgba(0, 245, 212, 0.7);
   animation: particleFloat 6s ease-in-out infinite;
 }
 
@@ -222,7 +201,6 @@
   50% { transform: translateY(-24px) scale(1.4); opacity: 1; }
 }
 
-// Faceted "museum frame" corner brackets around the hero banner art.
 .hero-frame {
   position: relative;
 
@@ -230,7 +208,7 @@
     position: absolute;
     width: 34px;
     height: 34px;
-    border: 2px solid rgba(52, 245, 176, 0.65);
+    border: 2px solid rgba(0, 245, 212, 0.65);
     pointer-events: none;
     z-index: 20;
 
@@ -242,7 +220,7 @@
     position: absolute;
     inset: -22px;
     border-radius: 50%;
-    border: 1px dashed rgba(34, 197, 94, 0.25);
+    border: 1px dashed rgba(0, 245, 212, 0.3);
     animation: spinSlow 40s linear infinite;
     pointer-events: none;
   }
@@ -254,16 +232,16 @@
   gap: 0.4rem;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(34, 197, 94, 0.35);
+  background: rgba(12, 16, 29, 0.8);
+  border: 1px solid rgba(0, 245, 212, 0.35);
   backdrop-filter: blur(6px);
 
   .hero-live-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 8px 2px rgba(34, 197, 94, 0.7);
+    background: #00F5D4;
+    box-shadow: 0 0 8px 2px rgba(0, 245, 212, 0.7);
     animation: heroLiveBlink 1.6s ease-in-out infinite;
   }
 }
@@ -286,16 +264,11 @@
   gap: 0.4rem;
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(34, 197, 94, 0.16);
-  color: #93a69c;
+  background: rgba(12, 16, 29, 0.6);
+  border: 1px solid rgba(0, 245, 212, 0.2);
+  color: #cbd5e1;
   font-size: 11px;
   font-weight: 600;
-
-  i {
-    color: #22c55e;
-    font-size: 10px;
-  }
 }
 
 @keyframes heroLiveBlink {
@@ -303,15 +276,12 @@
   50% { opacity: 0.35; }
 }
 
-// ---------------------------------------------------------------------
-// Section chrome (eyebrow tags / headings shared across sections)
-// ---------------------------------------------------------------------
 .section-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #4ade80;
-  font-weight: 700;
+  color: #00F5D4;
+  font-weight: 800;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   font-size: 11px;
@@ -319,21 +289,18 @@
   &::before {
     content: "";
     width: 18px;
-    height: 1px;
-    background: #4ade80;
+    height: 2px;
+    background: #00F5D4;
     display: inline-block;
   }
 }
 
-// ---------------------------------------------------------------------
-// Premium feature cards (bento layout)
-// ---------------------------------------------------------------------
 .feature-card {
   position: relative;
   background:
-    radial-gradient(circle at 100% 0%, rgba(34, 197, 94, 0.08), transparent 55%),
-    linear-gradient(160deg, rgba(13, 24, 20, 0.94) 0%, rgba(6, 10, 9, 0.98) 100%);
-  border: 1px solid rgba(34, 197, 94, 0.14);
+    radial-gradient(circle at 100% 0%, rgba(0, 245, 212, 0.08), transparent 55%),
+    linear-gradient(160deg, rgba(12, 16, 29, 0.94) 0%, rgba(5, 8, 17, 0.98) 100%);
+  border: 1px solid rgba(0, 245, 212, 0.2);
   border-radius: 22px;
   padding: 2rem 1.75rem;
   text-align: left;
@@ -347,7 +314,7 @@
     left: 1.5rem;
     right: 1.5rem;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #4ade80, transparent);
+    background: linear-gradient(90deg, transparent, #00F5D4, transparent);
     opacity: 0;
     transition: opacity 0.4s ease;
   }
@@ -361,22 +328,21 @@
   }
 
   p {
-    color: #93a69c;
+    color: #cbd5e1;
     font-size: 0.85rem;
     line-height: 1.65;
   }
 
   &:hover {
     transform: translateY(-8px);
-    border-color: rgba(34, 197, 94, 0.4);
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.12);
+    border-color: rgba(0, 245, 212, 0.5);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 245, 212, 0.15);
 
     &::before {
       opacity: 1;
     }
   }
 
-  // First tile reads as the "hero" tile of the bento grid on desktop.
   &--lead {
     @media (min-width: 1024px) {
       grid-column: span 2;
@@ -404,10 +370,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, rgba(34, 197, 94, 0.16), rgba(34, 197, 94, 0.03));
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: linear-gradient(160deg, rgba(0, 245, 212, 0.16), rgba(0, 245, 212, 0.03));
+  border: 1px solid rgba(0, 245, 212, 0.3);
   font-size: 1.35rem;
-  color: #4ade80;
+  color: #00F5D4;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -419,14 +385,12 @@
 
 .feature-card:hover .feature-icon-wrap {
   transform: scale(1.08) rotate(-4deg);
-  box-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 25px rgba(0, 245, 212, 0.4);
 }
 
-// ---------------------------------------------------------------------
-// Popular games marquee
-// ---------------------------------------------------------------------
 .game-marquee-viewport {
   overflow: hidden;
+  padding: 18px 0 24px;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
 }
@@ -449,41 +413,26 @@
 }
 
 .game-strip-img {
-  border: 1px solid rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(0, 245, 212, 0.2);
   padding: 6px;
-  background: rgba(13, 24, 20, 0.6);
+  background: rgba(12, 16, 29, 0.6);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 
   &:hover {
     transform: translateY(-6px) scale(1.03);
-    border-color: rgba(34, 197, 94, 0.55);
-    box-shadow: 0 18px 40px rgba(34, 197, 94, 0.2);
-  }
-}
-
-// ---------------------------------------------------------------------
-// How-to-play — horizontal timeline
-// ---------------------------------------------------------------------
-.how-to-play-heading {
-  transition: transform 0.3s ease, filter 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-
-  &.is-active {
-    filter: drop-shadow(0 0 14px rgba(34, 197, 94, 0.35));
+    border-color: rgba(0, 245, 212, 0.55);
+    box-shadow: 0 18px 40px rgba(0, 245, 212, 0.2);
   }
 }
 
 .guide-timeline-line {
   position: absolute;
-  top: 34px;
+  top: 42px;
   left: 8%;
   right: 8%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.35) 15%, rgba(34, 197, 94, 0.35) 85%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 212, 0.35) 15%, rgba(0, 245, 212, 0.35) 85%, transparent);
 }
 
 .guide-step-card {
@@ -503,21 +452,21 @@
 
 .guide-step-node {
   position: relative;
-  width: 68px;
-  height: 68px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, rgba(13, 24, 20, 0.95), rgba(6, 10, 9, 0.98));
-  border: 1.5px solid rgba(34, 197, 94, 0.3);
-  margin-bottom: 1.1rem;
+  background: linear-gradient(160deg, rgba(12, 16, 29, 0.95), rgba(5, 8, 17, 0.98));
+  border: 1.5px solid rgba(0, 245, 212, 0.3);
+  margin-bottom: 1.25rem;
   z-index: 2;
   transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 
   .guide-step-icon {
-    color: #4ade80;
-    font-size: 1.15rem;
+    color: #00F5D4;
+    font-size: 1.45rem;
     transition: color 0.35s ease;
   }
 }
@@ -526,56 +475,53 @@
   position: absolute;
   top: -6px;
   right: -6px;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #070A09;
-  border: 1px solid rgba(34, 197, 94, 0.4);
-  color: #34f5b0;
-  font-size: 0.65rem;
+  background: #050811;
+  border: 1px solid rgba(0, 245, 212, 0.4);
+  color: #00F5D4;
+  font-size: 0.72rem;
   font-weight: 800;
 }
 
 .guide-step-title {
   color: #fff;
   font-weight: 700;
-  font-size: 0.95rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
 }
 
 .guide-step-desc {
-  color: #93a69c;
-  font-size: 0.78rem;
-  line-height: 1.5;
-  max-width: 15rem;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  max-width: 16.5rem;
 }
 
 .guide-step-card:hover .guide-step-node,
 .guide-step-card.is-active .guide-step-node {
-  border-color: #22c55e;
-  box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12), 0 0 24px rgba(34, 197, 94, 0.35);
+  border-color: #00F5D4;
+  box-shadow: 0 0 0 5px rgba(0, 245, 212, 0.12), 0 0 24px rgba(0, 245, 212, 0.35);
 }
 
 .guide-step-card.is-active .guide-step-node {
-  background: linear-gradient(160deg, rgba(34, 197, 94, 0.22), rgba(34, 197, 94, 0.05));
+  background: linear-gradient(160deg, rgba(0, 245, 212, 0.22), rgba(0, 245, 212, 0.05));
 
   .guide-step-icon {
-    color: #34f5b0;
+    color: #00F5D4;
   }
 }
 
 .guide-step-card.is-active .guide-step-title {
-  color: #34f5b0;
+  color: #00F5D4;
 }
 
-// ---------------------------------------------------------------------
-// Promotions — featured + grid bento
-// ---------------------------------------------------------------------
 .promo-card {
-  --promo-accent: #22c55e;
+  --promo-accent: #00F5D4;
 
   position: relative;
   display: flex;
@@ -584,9 +530,9 @@
   padding: 1.75rem;
   border-radius: 20px;
   background:
-    radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.06), transparent 60%),
-    linear-gradient(160deg, rgba(13, 24, 20, 0.94) 0%, rgba(6, 10, 9, 0.98) 100%);
-  border: 1px solid rgba(34, 197, 94, 0.14);
+    radial-gradient(circle at 100% 100%, rgba(0, 245, 212, 0.06), transparent 60%),
+    linear-gradient(160deg, rgba(12, 16, 29, 0.94) 0%, rgba(5, 8, 17, 0.98) 100%);
+  border: 1px solid rgba(0, 245, 212, 0.2);
   overflow: hidden;
   transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 
@@ -596,32 +542,10 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
   }
 
-  &--gold { --promo-accent: #34f5b0; }
-  &--orange { --promo-accent: #22c55e; }
-  &--amber { --promo-accent: #4ade80; }
-  &--deep { --promo-accent: #059669; }
-
-  &:first-child {
-    @media (min-width: 900px) {
-      grid-column: 1 / -1;
-      align-items: center;
-      padding: 2.25rem 2.5rem;
-
-      .promo-icon {
-        width: 68px;
-        height: 68px;
-        font-size: 1.6rem;
-      }
-
-      .promo-body h3 {
-        font-size: 1.4rem;
-      }
-
-      .promo-body p {
-        max-width: 34rem;
-      }
-    }
-  }
+  &--gold { --promo-accent: #00F5D4; }
+  &--orange { --promo-accent: #FF9F1C; }
+  &--amber { --promo-accent: #06B6D4; }
+  &--deep { --promo-accent: #00F5D4; }
 }
 
 .promo-ribbon {
@@ -629,10 +553,10 @@
   top: 14px;
   right: -34px;
   transform: rotate(45deg);
-  background: linear-gradient(90deg, #4ade80, #059669);
-  color: #070A09;
+  background: linear-gradient(90deg, #00F5D4, #FF9F1C);
+  color: #050811;
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 3px 38px;
@@ -649,7 +573,7 @@
   justify-content: center;
   font-size: 1.25rem;
   color: var(--promo-accent);
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(5, 8, 17, 0.6);
   border: 1px solid var(--promo-accent);
 }
 
@@ -674,24 +598,12 @@
   }
 
   p {
-    color: #93a69c;
+    color: #cbd5e1;
     font-size: 0.85rem;
     line-height: 1.6;
   }
 }
 
-.feature-card.reveal,
-.promo-card.reveal {
-  @for $i from 1 through 6 {
-    &:nth-child(#{$i}) {
-      transition-delay: #{($i - 1) * 0.08}s;
-    }
-  }
-}
-
-// ---------------------------------------------------------------------
-// Sign-up popup — slim floating toast
-// ---------------------------------------------------------------------
 .popup {
   position: fixed;
   z-index: 50;
@@ -722,178 +634,4 @@
 
 .popup:hover {
   animation-play-state: paused;
-}
-
-// ---------------------------------------------------------------------
-// Misc / legacy hooks kept for other templates referencing this file
-// ---------------------------------------------------------------------
-.download-btn {
-  background: var(--gradient);
-  color: white;
-  padding: 6px 13px;
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  border: none;
-  cursor: pointer;
-
-  .tooltip {
-    position: absolute;
-    top: -30px;
-    left: 20%;
-    transform: translateX(-50%);
-    background-color: #6b46c1;
-    color: white;
-    padding: 5px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-    white-space: nowrap;
-  }
-
-  &:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-.close-btn {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: red;
-  color: white;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.spin-icon {
-  display: inline-block;
-  animation: spinSlow 6s linear infinite;
-}
-
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.floating-icon {
-  animation: float 2s ease-in-out infinite;
-  transition: transform 0.3s ease;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-.logo-image {
-  height: 40px;
-  width: 53px;
-}
-
-.header-container {
-  background: #13192e33;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 50;
-}
-
-.login-button {
-  height: 40px;
-  width: 120px;
-  background: #7de7e5;
-  color: black;
-  border-radius: 8px;
-  font-size: 14px;
-  border: none !important;
-}
-
-.banner-text-conatiner {
-  background: rgba(255, 255, 255, 0.1);
-  height: 220px;
-  width: 842px;
-  border-radius: 32px;
-}
-
-.play-button {
-  height: 40px;
-  width: 251px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.casino-btn {
-  width: 234px;
-  height: 40px;
-  background-color: #22c55e;
-  color: #070A09;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  opacity: 1;
-  transition: 0.3s ease-in-out;
-  border-radius: 12px;
-}
-
-.casino-btn:hover {
-  background-color: #059669;
-}
-
-.bottom-rounded-circle {
-  box-shadow: 0 0 40px #19e4e0 !important;
-}
-
-.banner-img {
-  background-image: url("https://cmax.pages.dev/assets/landing-page/bannerbg.pngg");
-}
-
-.guide-card {
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0) 0%, rgba(34, 197, 94, 0.12) 100%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-
-  &:hover {
-    transform: translateY(-8px) scale(1.06);
-    border-color: #22c55e !important;
-
-    &::before {
-      opacity: 1;
-    }
-
-    i {
-      color: #22c55e !important;
-    }
-  }
-
-  i {
-    transition: all 0.4s ease;
-  }
 }

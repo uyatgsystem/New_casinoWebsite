@@ -49,7 +49,7 @@
       </div>
     </div>
     <div
-      class="h-[1px] w-full bottom-0 left-0 bg-[linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)]"
+      class="h-[1px] w-full bottom-0 left-0 bg-[linear-gradient(90deg,rgba(0,245,212,0)_0%,#00F5D4_49.52%,rgba(0,245,212,0)_100%)]"
     ></div>
 
     <div class="mb-8 lg:mt-[10px] px-6 flex flex-col">
@@ -64,14 +64,14 @@
             <div class="flex w-full">
               <button
                 type="button"
-                class="bg-transparent border border-[#C3B089] text-white text-sm px-3 py-2 rounded-tl-[16px] rounded-bl-[3px]"
+                class="bg-transparent border border-[#00F5D4]/30 text-white text-sm px-3 py-2 rounded-tl-[16px] rounded-bl-[3px]"
                 (click)="dropdownOpen = !dropdownOpen"
               >
                 ▼
               </button>
               <button
                 type="button"
-                class="bg-transparent text-white text-left border border-[#C3B089] text-sm px-4 py-2 w-full rounded-tr-[3px] rounded-br-[16px]"
+                class="bg-transparent text-white text-left border border-[#00F5D4]/30 text-sm px-4 py-2 w-full rounded-tr-[3px] rounded-br-[16px]"
                 (click)="dropdownOpen = !dropdownOpen"
               >
                 {{ activeTab }}
@@ -80,12 +80,12 @@
 
             <ul
               *ngIf="dropdownOpen"
-              class="absolute mt-1 bg-[#161819] text-white border border-[#C3B089] shadow-lg rounded-md w-full z-10"
+              class="absolute mt-1 bg-[#0C101D] text-white border border-[#00F5D4]/30 shadow-lg rounded-md w-full z-10"
             >
               <li *ngFor="let tab of tabs">
                 <a
                   href="#"
-                  class="block px-4 py-2 hover:bg-[#2e2a2a] cursor-pointer capitalize"
+                  class="block px-4 py-2 hover:bg-[#121827] cursor-pointer capitalize"
                   (click)="selectFilter(tab, $event)"
                 >
                   {{ tab }}
@@ -97,16 +97,12 @@
 
         <!-- Right side (Search) -->
         <div class="flex sm:flex-row items-center gap-2 w-full lg:w-[30rem]">
-          <!-- <span class="view-toggle-btn hidden md:block mr-4 mt-2 cursor-pointer" (click)="toggleView()"
-          title="Toggle View">
-        </span> -->
           <span
-            class="cursor-pointer px-4 py-1 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] border border-[#C3B089]"
+            class="cursor-pointer px-4 py-1 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] border border-[#00F5D4]/30"
             (click)="toggleView()"
           >
-            <!-- <img src="https://cmax.pages.dev/assets/icons/date.png" alt="Calendar-icon" /> -->
             <fa-icon
-              class="text-2xl text-[#C3B089]"
+              class="text-2xl text-[#00F5D4]"
               [icon]="viewMode === 'grid' ? tableViewIcon : listViewIcon"
             ></fa-icon>
           </span>
@@ -115,7 +111,7 @@
               type="text"
               placeholder="Search..."
               [(ngModel)]="searchTerm"
-              class="w-full bg-transparent text-white border border-[#C3B089] text-sm rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-4 pl-10 focus:outline-none focus:ring-[#C3B089]"
+              class="w-full bg-transparent text-white border border-[#00F5D4]/30 text-sm rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-4 pl-10 focus:outline-none focus:ring-[#00F5D4]"
             />
             <svg
               class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
@@ -136,14 +132,14 @@
             <!-- Filter Button -->
             <button
               (click)="showDateFilter = !showDateFilter"
-              class="text-white px-4 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold border border-[#C3B089]"
+              class="text-white px-4 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold border border-[#00F5D4]/30"
             >
               Filter
             </button>
 
             <!-- DROPDOWN BOX -->
             <div
-              class="absolute right-0 mt-2 p-3 bg-[#161819] border border-[#C3B089] rounded-tl-[16px] rounded-br-[16px] shadow-lg w-60 z-50"
+              class="absolute right-0 mt-2 p-3 bg-[#0C101D] border border-[#00F5D4]/30 rounded-tl-[16px] rounded-br-[16px] shadow-lg w-60 z-50"
               [class.hidden]="!showDateFilter"
             >
               <div class="flex flex-col gap-2">
@@ -156,7 +152,7 @@
                       [(ngModel)]="startDate"
                       (ngModelChange)="onStartDateChange($event)"
                       aria-label="Start Date"
-                      class="filter-date-input text-[#C3B089] bg-transparent border border-[#C3B089] px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                      class="filter-date-input text-[#00F5D4] bg-transparent border border-[#00F5D4]/30 px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
                     />
                     <svg
                       class="filter-date-icon"
@@ -206,7 +202,7 @@
                       [(ngModel)]="endDate"
                       [min]="startDate || null"
                       aria-label="End Date"
-                      class="filter-date-input text-[#C3B089] bg-transparent border border-[#C3B089] px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                      class="filter-date-input text-[#00F5D4] bg-transparent border border-[#00F5D4]/30 px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
                     />
                     <svg
                       class="filter-date-icon"
@@ -253,14 +249,14 @@
                 >
                   <button
                     (click)="resetDates()"
-                    class="text-[#C3B089] border border-[#C3B089] px-3 py-1 rounded-tl-md rounded-br-md"
+                    class="text-[#00F5D4] border border-[#00F5D4]/30 px-3 py-1 rounded-tl-md rounded-br-md"
                   >
                     Reset
                   </button>
 
                   <button
                     (click)="GetAllGames(true); showDateFilter = false"
-                    class="text-[#C3B089] border border-[#C3B089] px-3 py-1 rounded-tl-md rounded-br-md"
+                    class="text-[#00F5D4] border border-[#00F5D4]/30 px-3 py-1 rounded-tl-md rounded-br-md"
                   >
                     Search
                   </button>
@@ -290,12 +286,12 @@
     (click)="closeRulesModal()"
   >
     <div
-      class="bg-[#000408] border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-full max-w-md shadow-lg modal slide-up z-999 max-h-[90vh] flex flex-col"
+      class="bg-[#050811] border border-[#00F5D4]/30 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-full max-w-md shadow-lg modal slide-up z-999 max-h-[90vh] flex flex-col"
       (click)="$event.stopPropagation()"
     >
       <!-- Header -->
       <div
-        class="bg-[#161819] border-b border-[#C3B089] rounded-tl-[16px] flex items-center justify-between px-6 py-3"
+        class="bg-[#0C101D] border-b border-[#00F5D4]/30 rounded-tl-[16px] flex items-center justify-between px-6 py-3"
       >
         <h2 class="text-lg font-semibold text-white">Redeem Rules</h2>
         <button
@@ -326,7 +322,7 @@
             class="flex gap-3"
           >
             <div
-              class="flex-shrink-0 w-6 h-6 rounded-full bg-[#ffb24a] flex items-center justify-center text-white text-sm font-semibold"
+              class="flex-shrink-0 w-6 h-6 rounded-full bg-[#00F5D4] flex items-center justify-center text-[#050811] text-sm font-bold"
             >
               {{ i + 1 }}
             </div>
@@ -360,7 +356,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-5 h-5 text-yellow-400"
+          class="w-5 h-5 text-cyan-400"
         >
           <path
             stroke-linecap="round"
@@ -375,7 +371,7 @@
       <!-- Right Section: Button -->
       <button
         (click)="$event.stopPropagation(); openModal()"
-        class="flex items-center gap-1 bg-[linear-gradient(180deg,#FEC866_0%,#FE8006_100%)] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-black px-3 py-1.5 text-xs font-semibold"
+        class="flex items-center gap-1 btn-primary rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] text-white px-3 py-1.5 text-xs font-semibold"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -395,7 +391,7 @@
       </button>
     </div>
     <div
-      class="h-[1px] w-full bottom-0 left-0 bg-[linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)]"
+      class="h-[1px] w-full bottom-0 left-0 bg-[linear-gradient(90deg,rgba(139,92,246,0)_0%,#8B5CF6_49.52%,rgba(139,92,246,0)_100%)]"
     ></div>
 
     <!-- Combined Filter, Search, and Date Filter Row -->
@@ -405,14 +401,14 @@
         <div class="flex w-full">
           <button
             type="button"
-            class="bg-transparent border border-[#C3B089] text-[#C3B089] text-sm px-3 py-2 rounded-tl-[16px] rounded-bl-[3px]"
+            class="bg-transparent border border-purple-500/30 text-[#A855F7] text-sm px-3 py-2 rounded-tl-[16px] rounded-bl-[3px]"
             (click)="dropdownOpen = !dropdownOpen"
           >
             ▼
           </button>
           <button
             type="button"
-            class="bg-transparent text-white text-left border border-[#C3B089] text-sm px-4 py-2 whitespace-nowrap rounded-tr-[3px] rounded-br-[16px]"
+            class="bg-transparent text-white text-left border border-purple-500/30 text-sm px-4 py-2 whitespace-nowrap rounded-tr-[3px] rounded-br-[16px]"
             (click)="dropdownOpen = !dropdownOpen"
           >
             {{ activeTab }}
@@ -421,7 +417,7 @@
 
         <ul
           *ngIf="dropdownOpen"
-          class="absolute mt-1 bg-[#161819] text-white border border-[#C3B089] shadow-lg rounded-md w-[120%] z-10"
+          class="absolute mt-1 bg-[#161819] text-white border border-purple-500/30 shadow-lg rounded-md w-[120%] z-10"
         >
           <li *ngFor="let tab of tabs">
             <a
@@ -459,7 +455,7 @@
             [(ngModel)]="searchTerm"
             [placeholder]="isSearchOpen ? 'Search...' : ''"
             [ngClass]="isSearchOpen ? 'w-[180px] pl-8' : 'w-[45px]'"
-            class="bg-transparent text-white border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#C3B089] transition-all duration-300 ease-in-out"
+            class="bg-transparent text-white border border-purple-500/30 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] transition-all duration-300 ease-in-out"
           />
         </div>
 
@@ -467,7 +463,7 @@
         <div class="relative">
           <button
             (click)="showMobileDateFilter = !showMobileDateFilter"
-            class="text-white px-3 py-3 border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold flex-shrink-0"
+            class="text-white px-3 py-3 border border-purple-500/30 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold flex-shrink-0"
           >
             <svg
               width="15"
@@ -489,7 +485,7 @@
           <div
             *ngIf="showMobileDateFilter"
             (click)="$event.stopPropagation()"
-            class="absolute right-0 mt-2 p-3 bg-[#161819] border border-[#C3B089] rounded-tl-[16px] rounded-br-[16px] shadow-lg w-60 z-50 transition-all duration-300"
+            class="absolute right-0 mt-2 p-3 bg-[#161819] border border-purple-500/30 rounded-tl-[16px] rounded-br-[16px] shadow-lg w-60 z-50 transition-all duration-300"
           >
             <div class="flex flex-col gap-2">
               <div class="filter-date-field">
@@ -500,7 +496,7 @@
                     [(ngModel)]="startDate"
                     (ngModelChange)="onStartDateChange($event)"
                     aria-label="Start Date"
-                    class="filter-date-input text-[#C3B089] bg-transparent border border-[#C3B089] px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                    class="filter-date-input text-[#A855F7] bg-transparent border border-purple-500/30 px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
                   />
                   <svg
                     class="filter-date-icon"
@@ -549,7 +545,7 @@
                     [(ngModel)]="endDate"
                     [min]="startDate || null"
                     aria-label="End Date"
-                    class="filter-date-input text-[#C3B089] bg-transparent border border-[#C3B089] px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                    class="filter-date-input text-[#A855F7] bg-transparent border border-purple-500/30 px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
                   />
                   <svg
                     class="filter-date-icon"
@@ -593,14 +589,14 @@
               <div class="flex items-center gap-2 mt-2 justify-center">
                 <button
                   (click)="resetDates()"
-                  class="text-[#C3B089] border border-[#C3B089] px-3 py-1 rounded-tl-md rounded-br-md"
+                  class="text-[#A855F7] border border-purple-500/30 px-3 py-1 rounded-tl-md rounded-br-md"
                 >
                   Reset
                 </button>
 
                 <button
                   (click)="GetAllGames(true); showMobileDateFilter = false"
-                  class="text-[#C3B089] border border-[#C3B089] px-3 py-1 rounded-tl-md rounded-br-md"
+                  class="text-[#A855F7] border border-purple-500/30 px-3 py-1 rounded-tl-md rounded-br-md"
                 >
                   Search
                 </button>
@@ -611,20 +607,6 @@
       </div>
     </div>
 
-    <!-- <div class="rounded-xl p-4 md:block hidden -mt-[5rem] header-box"> -->
-    <!-- Header box -->
-    <!-- <div class="flex justify-center -mb-[14px]">
-    <div class="relative inline-block">
-      <img src="Edge.png" alt="History Background" class="w-full max-w-md mx-auto h-auto rounded-t-xl" />
-      <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">
-        History
-      </div>
-    </div>
-  </div> -->
-
-    <!-- <div class="flex flex-col w-full mt-2">
-    </div> -->
-    <!-- </div> -->
     <div *ngIf="viewMode == 'grid'">
       <!-- Wrapper Grid -->
       <div
@@ -634,15 +616,14 @@
         *ngIf="filteredGames.length > 0; else noRecord"
       >
         <!-- Card -->
-        <!-- Card -->
         <div
           *ngFor="let game of filteredGames"
-          class="relative bg-[#161819] border border-[#C3B089] text-white rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-lg w-[100%] mx-auto p-2 pt-2"
+          class="relative bg-[#161819] border border-purple-500/30 text-white rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-lg w-[100%] mx-auto p-2 pt-2"
         >
           <!-- Image + Name + Payment Method (inside card) -->
           <div class="flex items-center">
             <div
-              class="w-16 h-16 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] overflow-hidden shadow-md border-2 border-[#C3B089]"
+              class="w-16 h-16 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] overflow-hidden shadow-md border-2 border-purple-500/30"
             >
               <img
                 [src]="getGameImage(game.Name)"
@@ -657,7 +638,7 @@
 
           <!-- Amount (Top Right Corner) -->
           <p
-            class="absolute top-4 right-6 bg-[#161819] font-bold text-lg text-center rounded-lg border-b border-solid [border-image-source:linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)] [border-image-slice:1]"
+            class="absolute top-4 right-6 bg-[#161819] font-bold text-lg text-center rounded-lg border-b border-purple-500/30"
             [ngClass]="{
               'text-green-400': game.StatusDescription === 'Approved',
               'text-yellow-400': game.StatusDescription === 'Pending',
@@ -672,7 +653,7 @@
           </p>
 
           <div
-            class="absolute w-[349px] h-0 top-[85px] left-[13px] border-t border-solid [border-image-source:linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)] [border-image-slice:1]"
+            class="absolute w-[349px] h-0 top-[85px] left-[13px] border-t border-purple-500/30"
           ></div>
 
           <!-- Card Body -->
@@ -734,7 +715,7 @@
     </div>
 
     <div
-      class="min-w-full mb-12 border p-6 border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] bg-[#161819]"
+      class="min-w-full mb-12 border p-6 border-purple-500/30 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] bg-[#161819]"
       *ngIf="viewMode == 'table'"
     >
       <!-- Centered heading above the table -->
@@ -745,12 +726,12 @@
           History
         </h2>
         <div
-          class="w-[20rem] h-0.5 mx-auto my-3 rounded flex bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]"
+          class="w-[20rem] h-0.5 mx-auto my-3 rounded flex bg-[linear-gradient(90deg,rgba(139,92,246,0)_0%,#8B5CF6_49.52%,rgba(139,92,246,0)_100%)]"
         ></div>
       </div>
 
       <div
-        class="grid grid-cols-10 text-gray-400 text-sm mb-4 max-w-[98%] ml-4 border-b-2 border-[#A6B1C2] pb-2"
+        class="grid grid-cols-10 text-gray-400 text-sm mb-4 max-w-[98%] ml-4 border-b-2 border-purple-500/30 pb-2"
       >
         <div>Sr No.</div>
         <div>Req No:</div>
@@ -772,7 +753,7 @@
       >
         <div
           *ngFor="let game of filteredGames; let i = index"
-          class="grid grid-cols-10 items-center px-4 py-3 bg-[#161819] border-b [border-image-source:linear-gradient(90deg,#4D4434_0.96%,#FE8912_49.52%,#4D4434_100%)] [border-image-slice:1] mr-1"
+          class="grid grid-cols-10 items-center px-4 py-3 bg-[#161819] border-b border-purple-500/30 mr-1"
         >
           <div class="text-gray-300">{{ i + 1 }}</div>
           <div class="text-gray-300">{{ game.Id }}</div>
@@ -803,12 +784,15 @@
         </div>
       </div>
     </div>
-    
+
     <ng-template #noRecord>
-        <div class="flex flex-col items-center justify-center gap-5">
-          <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
-          <!-- <p class="text-gray-400 text-sm tracking-wide">No records found</p> -->
-        </div>
-      </ng-template>
+      <div class="flex flex-col items-center justify-center gap-5">
+        <img
+          src="/norecord.png"
+          alt="No records found"
+          class="w-80 h-80 object-contain opacity-60"
+        />
+      </div>
+    </ng-template>
   </div>
 </div>

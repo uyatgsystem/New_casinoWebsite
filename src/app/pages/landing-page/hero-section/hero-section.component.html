@@ -1,5 +1,5 @@
-<section class="cta-band relative overflow-hidden">
-  <!-- Ambient cyber emerald glow -->
+<section class="cta-band relative overflow-hidden bg-[#050811]">
+  <!-- Ambient cyber teal glow -->
   <div class="cta-glow cta-glow--one"></div>
   <div class="cta-glow cta-glow--two"></div>
   <div class="cta-grid-overlay"></div>
@@ -7,20 +7,41 @@
   <div class="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 py-20 lg:py-28">
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-12">
       <div class="text-center lg:text-left">
-        <span class="cta-eyebrow">Your Table Is Waiting</span>
-        <h2 class="text-[#F5F5F7] text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight leading-[1.05]">
-          Ready to <span class="text-[#22C55E]">Spin?</span>
+        <span
+          class="cta-eyebrow text-[#00F5D4] font-extrabold uppercase tracking-widest text-xs mb-2 block"
+          >Your Table Is Waiting</span
+        >
+        <h2
+          class="text-white text-3xl sm:text-4xl lg:text-5xl font-black mb-4 tracking-tight leading-[1.05] drop-shadow"
+        >
+          Ready to
+          <span
+            class="bg-gradient-to-r from-[#00F5D4] to-[#FF9F1C] bg-clip-text text-transparent"
+            >Spin?</span
+          >
         </h2>
-        <p class="text-[#93A69C] text-sm md:text-base max-w-md mx-auto lg:mx-0 mb-8">
+        <p
+          class="text-slate-300 text-sm md:text-base max-w-md mx-auto lg:mx-0 mb-8 font-medium"
+        >
           Join Spin Hub and discover an exciting gaming experience built for
           players who expect more.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-          <button (click)="RedirectToLogin()" type="button" class="cta-btn-primary">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+        >
+          <button
+            (click)="RedirectToLogin()"
+            type="button"
+            class="cta-btn-primary bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] text-[#050811] font-black uppercase px-8 py-3.5 rounded-xl shadow-[0_0_20px_rgba(0,245,212,0.4)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+          >
             <i class="fas fa-play text-xs"></i> Play Now
           </button>
-          <button (click)="RedirectToSignUp()" type="button" class="cta-btn-outline">
+          <button
+            (click)="RedirectToSignUp()"
+            type="button"
+            class="cta-btn-outline bg-[#0C101D] text-[#00F5D4] border border-[#00F5D4]/40 font-black uppercase px-8 py-3.5 rounded-xl hover:bg-[#00F5D4]/10 transition cursor-pointer"
+          >
             Join Now
           </button>
         </div>

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SafeHtml } from '@angular/platform-browser';
 import { UtilsService } from '../../../Services/utils.service';
 
@@ -11,8 +12,8 @@ import { UtilsService } from '../../../Services/utils.service';
 })
 export class AboutUsComponent {
   stats = [
-    { value: '1.6k+', label: 'Our Daily Users' },
-    { value: '25+', label: 'Games' },
+    { value: '12k+', label: 'Total players' },
+    { value: '300+', label: 'Total games' },
   ];
 
   whyChooseUs = [
@@ -24,7 +25,14 @@ export class AboutUsComponent {
     { icon: 'fas fa-dice', text: 'Exciting game selection' },
   ];
   grainBackdrop: SafeHtml = '';
-  constructor(private utils: UtilsService) {
+  constructor(
+    private utils: UtilsService,
+    private router: Router,
+  ) {
     this.grainBackdrop = this.utils.getGrainBackdrop();
+  }
+
+  RedirectToSignUp(): void {
+    this.router.navigate(['/SignUp']);
   }
 }

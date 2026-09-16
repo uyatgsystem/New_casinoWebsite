@@ -121,18 +121,18 @@
   <!-- Login Modal -->
   <div *ngIf="showLoginModal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-[999]"
     (click)="closeLoginModal()">
-    <div class="backdrop-blur-xl border border-[#C3B089]/60 bg-[#161819] rounded-3xl w-full max-w-sm mx-4 shadow-2xl relative overflow-hidden"
+    <div class="backdrop-blur-xl border border-[#A855F7]/60 bg-[#0b0c10] rounded-3xl w-full max-w-sm mx-4 shadow-2xl relative overflow-hidden"
       (click)="$event.stopPropagation()">
       <button (click)="closeLoginModal()"
         class="absolute top-4 right-4 w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition z-20">✕</button>
       <div class="px-8 pt-10 pb-8 text-center relative z-10">
-        <h2 class="text-2xl font-extrabold mb-2 bg-gradient-to-r from-[#F3A630] to-[#FE8912] bg-clip-text text-transparent tracking-wide">
+        <h2 class="text-2xl font-extrabold mb-2 bg-gradient-to-r from-[#8B5CF6] via-[#A855F7] to-[#06B6D4] bg-clip-text text-transparent tracking-wide">
           🎰 Spin to Win!
         </h2>
-        <div class="h-px w-16 bg-gradient-to-r from-[#F3A630] to-[#FE8912] rounded-full mx-auto mb-4"></div>
+        <div class="h-px w-16 bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4] rounded-full mx-auto mb-4"></div>
         <p class="text-[#A6B1C2] text-sm mb-6 leading-relaxed">Login to place real bets and win real prizes on the Spin Hub wheel!</p>
         <button (click)="openLoginModal()"
-          class="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 text-black font-extrabold text-sm shadow-[0_0_25px_rgba(245,158,11,0.45)] hover:brightness-110 transition-all">
+          class="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#8B5CF6] via-[#A855F7] to-[#06B6D4] text-white font-extrabold text-sm shadow-[0_0_25px_rgba(168,85,247,0.45)] hover:brightness-110 transition-all">
           Login & Spin
         </button>
       </div>

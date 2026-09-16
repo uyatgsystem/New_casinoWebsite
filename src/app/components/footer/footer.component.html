@@ -13,19 +13,28 @@
 
     <!-- CTA banner (landing page only) -->
     <div *ngIf="!isDashboardRoute()" class="footer-cta">
-      <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4"
+      >
         <div class="text-center sm:text-left">
           <span class="footer-cta-eyebrow">Join the table</span>
-          <h3 class="text-white font-extrabold text-xl sm:text-2xl">Ready to spin and win?</h3>
+          <h3 class="text-white font-extrabold text-xl sm:text-2xl">
+            Ready to spin and win?
+          </h3>
         </div>
-        <button (click)="RedirectSignup()" class="footer-cta-btn shrink-0 cursor-pointer">
+        <button
+          (click)="RedirectSignup()"
+          class="footer-cta-btn shrink-0 cursor-pointer"
+        >
           Create Free Account <i class="fas fa-arrow-right text-xs"></i>
         </button>
       </div>
     </div>
 
     <div class="relative max-w-7xl mx-auto px-6 md:px-10 py-10">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8 lg:gap-6 items-start">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8 lg:gap-6 items-start"
+      >
         <!-- Brand -->
         <div>
           <div class="flex items-center gap-2.5 mb-3">
@@ -33,10 +42,14 @@
               <i class="fas fa-dharmachakra spin-icon"></i>
             </span>
             <div class="flex flex-col leading-none">
-              <span class="font-extrabold tracking-wide text-lg bg-gradient-to-b from-[#34F5B0] via-[#4ADE80] to-[#22C55E] bg-clip-text text-transparent">
+              <span
+                class="font-extrabold tracking-wide text-lg bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] bg-clip-text text-transparent"
+              >
                 SPIN HUB
               </span>
-              <span class="text-[7px] tracking-[0.35em] text-[#22C55E]/70">PREMIUM GAMING</span>
+              <span class="text-[7px] tracking-[0.35em] text-[#00F5D4]/70"
+                >PREMIUM GAMING</span
+              >
             </div>
           </div>
           <p class="text-[#93A69C] text-xs leading-relaxed max-w-xs mb-4">
@@ -65,10 +78,30 @@
         <div *ngIf="!isDashboardRoute()">
           <h4 class="footer-col-title">Quick Links</h4>
           <ul class="space-y-2 text-xs">
-            <li><a (click)="goToSection('gameScrollSection')" class="footer-link">Games</a></li>
-            <li><a (click)="goToSection('instantGameScrollSection')" class="footer-link">Instant Games</a></li>
-            <li><a (click)="goToSection('featuresScrollSection')" class="footer-link">Features</a></li>
-            <li><a (click)="goToSection('aboutScrollSection')" class="footer-link">About Us</a></li>
+            <li>
+              <a (click)="goToSection('gameScrollSection')" class="footer-link"
+                >Games</a
+              >
+            </li>
+            <li>
+              <a
+                (click)="goToSection('instantGameScrollSection')"
+                class="footer-link"
+                >Instant Games</a
+              >
+            </li>
+            <li>
+              <a
+                (click)="goToSection('featuresScrollSection')"
+                class="footer-link"
+                >Features</a
+              >
+            </li>
+            <li>
+              <a (click)="goToSection('aboutScrollSection')" class="footer-link"
+                >About Us</a
+              >
+            </li>
           </ul>
         </div>
 
@@ -77,12 +110,22 @@
           <h4 class="footer-col-title">Support</h4>
           <ul class="space-y-2 text-xs">
             <li *ngIf="!isDashboardRoute()">
-              <a (click)="goToSection('contactScrollSection')" class="footer-link">Contact Us</a>
+              <a
+                (click)="goToSection('contactScrollSection')"
+                class="footer-link"
+                >Contact Us</a
+              >
             </li>
             <li *ngIf="!isDashboardRoute()">
-              <a (click)="goToSection('contactScrollSection')" class="footer-link">FAQs</a>
+              <a
+                (click)="goToSection('contactScrollSection')"
+                class="footer-link"
+                >FAQs</a
+              >
             </li>
-            <li><a routerLink="/Help" class="footer-link">Help &amp; Support</a></li>
+            <li>
+              <a routerLink="/Help" class="footer-link">Help &amp; Support</a>
+            </li>
           </ul>
         </div>
 
@@ -90,7 +133,11 @@
         <div>
           <h4 class="footer-col-title">Legal</h4>
           <ul class="space-y-2 text-xs mb-4">
-            <li><a routerLink="/Terms&Condition" class="footer-link">Terms &amp; Conditions</a></li>
+            <li>
+              <a routerLink="/Terms&Condition" class="footer-link"
+                >Terms &amp; Conditions</a
+              >
+            </li>
           </ul>
           <div class="footer-badge">
             <i class="fas fa-hand-holding-heart"></i>
@@ -106,19 +153,18 @@
   </div>
 </footer>
 
-<!-- navbar on  small screens  -->
 <!-- Mobile Footer -->
 <nav
   *ngIf="
     isDashboardRoute() && isScreenWidthLessThan800() && !isTreasurePickRoute()
   "
-  class="fixed bottom-1 left-1/2 -translate-x-1/2 w-[97%] max-w-md h-[60px] bg-[#161819]/95 backdrop-blur-xl border border-transparent rounded-2xl flex items-center justify-between px-2 z-[999] shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
+  class="fixed bottom-1 left-1/2 -translate-x-1/2 w-[97%] max-w-md h-[60px] bg-[#0C101D]/95 backdrop-blur-xl border border-transparent rounded-2xl flex items-center justify-between px-2 z-[999] shadow-[0_8px_30px_rgba(0,0,0,0.8)]"
 >
   <!-- Gradient Border Layer -->
   <div
-    class="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-[#8A7960]/40 via-[#FFD700]/20 to-[#8A7960]/40 pointer-events-none"
+    class="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-[#00F5D4]/40 via-[#06B6D4]/30 to-[#FF9F1C]/40 pointer-events-none"
   >
-    <div class="w-full h-full bg-[#161819]/95 rounded-2xl"></div>
+    <div class="w-full h-full bg-[#0C101D]/95 rounded-2xl"></div>
   </div>
 
   <!-- Home -->
@@ -154,7 +200,7 @@
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="2"
-        d="M3 7a2 2 0 012-2h11a2 2 0 012 2v2h1a2 2 0 012 2v2a2 2 0 01-2 2h-1v2a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm16 4h-4a1 1 0 000 2h4v-2z"
+        d="M3 7a2 2 0 012-2h11a2 2 0 012 2v2h1a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm16 4h-4a1 1 0 000 2h4v-2z"
       />
     </svg>
     <span>Wallet</span>
@@ -196,7 +242,7 @@
     <!-- Notification -->
     <div
       *ngIf="unreadCounts > 0"
-      class="absolute top-[2px] right-[18px] w-4 h-4 text-[9px] flex items-center justify-center rounded-full bg-[#FE911A] text-black animate-pulse shadow-md"
+      class="absolute top-[2px] right-[18px] w-4 h-4 text-[9px] flex items-center justify-center rounded-full bg-[#00F5D4] text-[#050811] font-bold animate-pulse shadow-md"
     >
       {{ unreadCounts > 99 ? "99+" : unreadCounts }}
     </div>

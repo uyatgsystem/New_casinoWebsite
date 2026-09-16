@@ -64,8 +64,8 @@
 
   &:hover {
     color: #ffffff;
-    background: linear-gradient(135deg, rgba(243, 166, 48, 0.08), rgba(254, 128, 6, 0.03));
-    border: 1px solid rgba(243, 166, 48, 0.3);
+    background: linear-gradient(135deg, rgba(0, 245, 212, 0.15), rgba(6, 182, 212, 0.08));
+    border: 1px solid rgba(0, 245, 212, 0.4);
     transform: translateX(2px);
 
     img {
@@ -89,7 +89,7 @@
   transition: filter 0.2s ease, opacity 0.2s ease;
 }
 
-/* Glowing Orange Left Indicator for Hover & Active */
+/* Glowing Neon Left Indicator for Hover & Active */
 .sidebar-item.active,
 .sidebar-item:hover {
   &::before {
@@ -100,9 +100,9 @@
     transform: translateY(-50%);
     width: 3.5px;
     height: 55%;
-    background: linear-gradient(180deg, #fec866, #fe8006);
+    background: linear-gradient(180deg, #00F5D4, #FF9F1C);
     border-radius: 0 4px 4px 0;
-    box-shadow: 0 0 10px #fe8006;
+    box-shadow: 0 0 10px #00F5D4;
   }
 }
 
@@ -110,9 +110,9 @@
 .sidebar-item.active {
   color: #ffffff;
   font-weight: 700;
-  background: linear-gradient(135deg, rgba(243, 166, 48, 0.18), rgba(254, 128, 6, 0.06));
-  border: 1px solid rgba(243, 166, 48, 0.6);
-  box-shadow: 0 4px 20px rgba(243, 166, 48, 0.15);
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.22), rgba(255, 159, 28, 0.1));
+  border: 1px solid rgba(0, 245, 212, 0.7);
+  box-shadow: 0 4px 20px rgba(0, 245, 212, 0.25);
 
   img {
     filter: brightness(0) invert(1) contrast(1000%);

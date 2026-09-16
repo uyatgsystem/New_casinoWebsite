@@ -2,6 +2,14 @@
   position: relative;
 }
 
+.grain-Backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+}
+
 .about-glow {
   position: absolute;
   border-radius: 50%;
@@ -64,19 +72,90 @@
   }
 }
 
+// Slow-spinning dashed ring behind the frame — echoes the hero's frame ring.
+.about-frame-ring {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  border: 1px dashed rgba(34, 197, 94, 0.25);
+  animation: aboutRingSpin 46s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes aboutRingSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .about-us-image-frame {
+  position: relative;
+  z-index: 10;
   aspect-ratio: 4 / 5;
   border-radius: 24px;
   border: 1px solid rgba(34, 197, 94, 0.2);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
 }
 
+.about-us-image {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-us-image-frame.group:hover .about-us-image {
+  transform: scale(1.06);
+}
+
+.about-verified-badge {
+  z-index: 20;
+  border-radius: 999px;
+  background: rgba(7, 10, 9, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 16px rgba(34, 197, 94, 0.15);
+}
+
 .about-us-badge {
+  z-index: 20;
   border-radius: 18px;
   background: rgba(7, 10, 9, 0.92);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(34, 197, 94, 0.3);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.15);
+}
+
+// ---------------------------------------------------------------------
+// Trust row
+// ---------------------------------------------------------------------
+.about-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.about-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(34, 197, 94, 0.16);
+  color: #93a69c;
+  font-size: 11px;
+  font-weight: 600;
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+
+  i {
+    color: #22c55e;
+    font-size: 10px;
+  }
+
+  &:hover {
+    border-color: rgba(34, 197, 94, 0.4);
+    background: rgba(34, 197, 94, 0.06);
+    color: #d8ded9;
+  }
 }
 
 // ---------------------------------------------------------------------
@@ -93,21 +172,27 @@
     border-color: rgba(34, 197, 94, 0.45);
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(34, 197, 94, 0.12);
+
+    .why-choose-icon {
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.35);
+    }
   }
 }
 
 .why-choose-icon {
   flex-shrink: 0;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(34, 197, 94, 0.1);
+  background: linear-gradient(160deg, rgba(34, 197, 94, 0.16), rgba(34, 197, 94, 0.03));
   border: 1px solid rgba(34, 197, 94, 0.35);
-  color: #22c55e;
-  font-size: 0.8rem;
+  color: #4ade80;
+  font-size: 0.85rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 // ---------------------------------------------------------------------
