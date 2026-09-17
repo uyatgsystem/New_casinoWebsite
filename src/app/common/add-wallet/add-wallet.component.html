@@ -7,20 +7,20 @@
   (click)="hideWalletModal()"
 >
   <div
-    class="bg-[#0C101D] border border-[#00F5D4]/40 rounded-[24px] sm:rounded-[32px] w-full max-w-2xl p-4 sm:p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white max-h-[88dvh] sm:max-h-[85vh] overflow-y-auto my-auto modal slide-up custom-scroll"
+    class="bg-[#0C101D] border border-[#2CD97D]/40 rounded-[24px] sm:rounded-[32px] w-full max-w-2xl p-4 sm:p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white max-h-[88dvh] sm:max-h-[85vh] overflow-y-auto my-auto modal slide-up custom-scroll"
     (click)="$event.stopPropagation()"
   >
     <!-- Header Title & Close Button -->
     <div class="flex items-center justify-between mb-4 sm:mb-6">
       <div class="flex items-center gap-2.5">
-        <span class="w-2 h-5 bg-[#00F5D4] rounded-full shadow-[0_0_10px_#00F5D4]"></span>
+        <span class="w-2 h-5 bg-[#2CD97D] rounded-full shadow-[0_0_10px_#2CD97D]"></span>
         <h2 class="text-base sm:text-xl font-black text-white tracking-wide">
           Deposit Funds
         </h2>
       </div>
       <button
         (click)="hideWalletModal()"
-        class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#00F5D4]/40 transition active:scale-95 cursor-pointer"
+        class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2CD97D]/40 transition active:scale-95 cursor-pointer"
       >
         ✕
       </button>
@@ -38,13 +38,13 @@
         </div>
 
         <span
-          class="text-[11px] sm:text-xs font-semibold bg-[#00F5D4]/10 border border-[#00F5D4]/30 px-3 py-1 rounded-xl flex flex-wrap items-center gap-1.5"
+          class="text-[11px] sm:text-xs font-semibold bg-[#2CD97D]/10 border border-[#2CD97D]/30 px-3 py-1 rounded-xl flex flex-wrap items-center gap-1.5"
         >
           <span class="text-[#ABB7BD]">Deposit Limits:</span>
           <span class="text-[#9CA3AF]">Min</span>
-          <span class="text-[#00F5D4] font-bold">{{ minAmount }}</span>
+          <span class="text-[#2CD97D] font-bold">{{ minAmount }}</span>
           <span class="text-[#9CA3AF]">| Max</span>
-          <span class="text-[#00F5D4] font-bold">{{ maxAmount }}</span>
+          <span class="text-[#2CD97D] font-bold">{{ maxAmount }}</span>
         </span>
       </div>
 
@@ -63,7 +63,7 @@
             "
             class="relative flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border transition-all cursor-pointer overflow-hidden group active:scale-95"
             [ngClass]="{
-              'bg-[#00F5D4]/10 border-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.3)]':
+              'bg-[#2CD97D]/10 border-[#2CD97D] shadow-[0_0_15px_rgba(44,217,125,0.3)]':
                 selectedAccountType === account.name,
               'bg-black/40 border-white/10 hover:border-white/30 hover:bg-white/5':
                 selectedAccountType !== account.name,
@@ -87,7 +87,7 @@
               />
             </div>
             <div class="flex flex-col overflow-hidden">
-              <span class="text-[11px] sm:text-xs font-bold text-white truncate group-hover:text-[#00F5D4] transition">
+              <span class="text-[11px] sm:text-xs font-bold text-white truncate group-hover:text-[#2CD97D] transition">
                 {{ nameMap[account.name] || account.name }}
               </span>
             </div>
@@ -109,7 +109,7 @@
             formControlName="cardNumber"
             placeholder="Enter card number (13-16 digits)"
             (input)="onCardNumberInput($event)"
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500 font-mono"
+            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           />
           <div
             *ngIf="
@@ -132,7 +132,7 @@
               formControlName="month"
               placeholder="MM"
               (input)="onMonthInput($event)"
-              class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500 font-mono text-center"
+              class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono text-center"
             />
           </div>
           <div>
@@ -144,7 +144,7 @@
               formControlName="year"
               placeholder="YYYY"
               (input)="onYearInput($event)"
-              class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500 font-mono text-center"
+              class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono text-center"
             />
           </div>
         </div>
@@ -155,7 +155,7 @@
             type="number"
             formControlName="cvv"
             placeholder="CVV"
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500 font-mono"
+            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           />
         </div>
 
@@ -167,7 +167,7 @@
             formControlName="amount"
             placeholder="Enter deposit amount"
             (input)="onAmountInput($event, 'payment')"
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500 font-mono"
+            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           />
         </div>
 
@@ -183,7 +183,7 @@
             type="submit"
             [disabled]="isWithdrawPending"
             [class.opacity-50]="isWithdrawPending"
-            class="w-2/3 bg-[#00F5D4] text-[#050811] font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(0,245,212,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+            class="w-2/3 bg-[#2CD97D] text-[#050811] font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
           >
             <span>Add Balance</span>
           </button>
@@ -208,7 +208,7 @@
             formControlName="amount"
             placeholder="Enter amount"
             (input)="onAmountInput($event, 'cashapp')"
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500 font-mono"
+            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           />
         </div>
 
@@ -224,7 +224,7 @@
             type="submit"
             [disabled]="isWithdrawPending"
             [class.opacity-50]="isWithdrawPending"
-            class="w-2/3 bg-[#00F5D4] text-[#050811] font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(0,245,212,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+            class="w-2/3 bg-[#2CD97D] text-[#050811] font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
           >
             <span>Pay ${{ cashappForm.get("amount")?.value || "..." }} Now</span>
           </button>
@@ -257,7 +257,7 @@
           [(ngModel)]="manualAmount"
           [ngModelOptions]="{ standalone: true }"
           (input)="onAmountInput($event, 'manual')"
-          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500 font-mono"
+          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           placeholder="Enter deposit amount"
         />
       </div>
@@ -280,7 +280,7 @@
           [(ngModel)]="googleApplePayAmount"
           [ngModelOptions]="{ standalone: true }"
           (input)="onAmountInput($event, 'googlepay')"
-          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500 font-mono"
+          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           placeholder="Enter deposit amount"
         />
       </div>
@@ -300,7 +300,7 @@
             >Account Title</label
           >
           <div
-            class="w-full bg-black/60 border border-white/10 hover:border-[#00F5D4]/40 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-xs sm:text-sm transition"
+            class="w-full bg-black/60 border border-white/10 hover:border-[#2CD97D]/40 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-xs sm:text-sm transition"
             (click)="accountTitleDropdownOpen = !accountTitleDropdownOpen"
           >
             <span
@@ -313,7 +313,7 @@
               {{ selectedAccounttitle || "Choose Account Title" }}
             </span>
             <svg
-              class="h-4 w-4 text-[#00F5D4] shrink-0"
+              class="h-4 w-4 text-[#2CD97D] shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -329,10 +329,10 @@
 
           <ul
             *ngIf="accountTitleDropdownOpen"
-            class="absolute mt-1 w-full max-h-48 overflow-y-auto bg-[#0C101D] border border-[#00F5D4]/60 shadow-2xl rounded-xl z-20 custom-scroll"
+            class="absolute mt-1 w-full max-h-48 overflow-y-auto bg-[#0C101D] border border-[#2CD97D]/60 shadow-2xl rounded-xl z-20 custom-scroll"
           >
             <li
-              class="sticky top-0 bg-[#0C101D] border-b border-[#00F5D4]/30 p-2 z-10"
+              class="sticky top-0 bg-[#0C101D] border-b border-[#2CD97D]/30 p-2 z-10"
             >
               <input
                 type="text"
@@ -340,12 +340,12 @@
                 [ngModelOptions]="{ standalone: true }"
                 (click)="onAccountSearchClick($event)"
                 placeholder="Search titles..."
-                class="w-full bg-black/80 text-white px-3 py-1.5 text-xs border border-white/10 rounded-lg outline-none focus:border-[#00F5D4]"
+                class="w-full bg-black/80 text-white px-3 py-1.5 text-xs border border-white/10 rounded-lg outline-none focus:border-[#2CD97D]"
               />
             </li>
             <li
               *ngFor="let accounts of filteredAccountTitles"
-              class="px-3 py-2.5 font-medium text-xs text-gray-200 border-b border-white/5 cursor-pointer hover:bg-[#00F5D4]/15 hover:text-[#00F5D4] transition"
+              class="px-3 py-2.5 font-medium text-xs text-gray-200 border-b border-white/5 cursor-pointer hover:bg-[#2CD97D]/15 hover:text-[#2CD97D] transition"
               (click)="
                 accounts.accountDetail !== 'No data found'
                   ? selectAccountTitle(accounts)
@@ -372,7 +372,7 @@
             />
             <i
               (click)="CopyToClipBoard(CustomerTag)"
-              class="fa-regular fa-copy absolute right-3 text-gray-300 hover:text-[#00F5D4] cursor-pointer transition text-base"
+              class="fa-regular fa-copy absolute right-3 text-gray-300 hover:text-[#2CD97D] cursor-pointer transition text-base"
               title="Copy Tag"
             ></i>
           </div>
@@ -389,7 +389,7 @@
           id="email"
           type="text"
           [(ngModel)]="email"
-          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition placeholder-gray-500"
+          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500"
           placeholder="Add Email Address"
         />
       </div>
@@ -410,7 +410,7 @@
           />
           <label
             for="receipt"
-            class="cursor-pointer inline-flex items-center gap-2 bg-[#00F5D4]/10 hover:bg-[#00F5D4]/20 text-[#00F5D4] border border-[#00F5D4]/40 rounded-xl px-4 py-2.5 transition text-xs font-bold shadow-sm"
+            class="cursor-pointer inline-flex items-center gap-2 bg-[#2CD97D]/10 hover:bg-[#2CD97D]/20 text-[#2CD97D] border border-[#2CD97D]/40 rounded-xl px-4 py-2.5 transition text-xs font-bold shadow-sm"
           >
             <span>📁 Choose Receipt File</span>
           </label>
@@ -418,7 +418,7 @@
             <img
               [src]="uploadProfileImage"
               alt="Selected Image"
-              class="w-full max-h-24 rounded-xl border border-[#00F5D4]/40 object-cover shadow-md"
+              class="w-full max-h-24 rounded-xl border border-[#2CD97D]/40 object-cover shadow-md"
             />
             <button
               (click)="clearSelection()"
@@ -439,7 +439,7 @@
           <img
             [src]="qrCodeImage"
             alt="QR Code"
-            class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl border border-[#00F5D4]/30 object-contain bg-black/50 p-1.5 cursor-pointer hover:border-[#00F5D4] hover:scale-105 transition shadow-md"
+            class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl border border-[#2CD97D]/30 object-contain bg-black/50 p-1.5 cursor-pointer hover:border-[#2CD97D] hover:scale-105 transition shadow-md"
             (click)="openQrPopup()"
           />
         </div>
@@ -457,7 +457,7 @@
         <button
           (click)="addBalance()"
           type="button"
-          class="w-2/3 bg-[#00F5D4] text-[#050811] font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(0,245,212,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+          class="w-2/3 bg-[#2CD97D] text-[#050811] font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
         >
           Add Balance
         </button>
@@ -479,7 +479,7 @@
           <select
             id="amount"
             [(ngModel)]="newBalance"
-            class="w-full bg-black/80 border border-white/10 text-white rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition"
+            class="w-full bg-black/80 border border-white/10 text-white rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
           >
             <option value="" disabled selected>Choose Cash App Amount</option>
             @for (amt of cashAppAmounts; track amt) {
@@ -502,7 +502,7 @@
           <select
             id="amount"
             [(ngModel)]="newBalance"
-            class="w-full bg-black/80 border border-white/10 text-white rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition"
+            class="w-full bg-black/80 border border-white/10 text-white rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
           >
             <option value="" disabled selected>Choose Amount</option>
             @for (amt of googleApplePayAmounts; track amt) {
@@ -524,7 +524,7 @@
         <button
           (click)="AddTapTapCashApp()"
           type="button"
-          class="w-2/3 bg-[#00F5D4] text-[#050811] font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(0,245,212,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+          class="w-2/3 bg-[#2CD97D] text-[#050811] font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
         >
           Add Balance
         </button>
@@ -535,9 +535,9 @@
 
 @if (isCopied()) {
   <div
-    class="fixed bottom-[15%] left-1/2 transform -translate-x-1/2 bg-[#0C101D] text-white px-5 py-3 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.8)] z-[999] flex items-center gap-3 border border-[#00F5D4]/50 backdrop-blur-xl animate-fadeIn"
+    class="fixed bottom-[15%] left-1/2 transform -translate-x-1/2 bg-[#0C101D] text-white px-5 py-3 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.8)] z-[999] flex items-center gap-3 border border-[#2CD97D]/50 backdrop-blur-xl animate-fadeIn"
   >
-    <fa-icon [icon]="faCheck" class="text-[#00F5D4] text-base"></fa-icon>
+    <fa-icon [icon]="faCheck" class="text-[#2CD97D] text-base"></fa-icon>
     <span class="text-xs font-bold tracking-wide">Copied to clipboard</span>
   </div>
 }

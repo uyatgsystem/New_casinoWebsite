@@ -49,7 +49,7 @@
       </div>
     </div>
     <div
-      class="h-[1px] w-full bottom-0 left-0 bg-[linear-gradient(90deg,rgba(0,245,212,0)_0%,#00F5D4_49.52%,rgba(0,245,212,0)_100%)]"
+      class="h-[1px] w-full bottom-0 left-0 bg-[linear-gradient(90deg,rgba(44,217,125,0)_0%,#2CD97D_49.52%,rgba(44,217,125,0)_100%)]"
     ></div>
 
     <div class="mb-8 lg:mt-[10px] px-6 flex flex-col">
@@ -64,14 +64,14 @@
             <div class="flex w-full">
               <button
                 type="button"
-                class="bg-transparent border border-[#00F5D4]/30 text-white text-sm px-3 py-2 rounded-tl-[16px] rounded-bl-[3px]"
+                class="bg-transparent border border-[#2CD97D]/30 text-white text-sm px-3 py-2 rounded-tl-[16px] rounded-bl-[3px]"
                 (click)="dropdownOpen = !dropdownOpen"
               >
                 ▼
               </button>
               <button
                 type="button"
-                class="bg-transparent text-white text-left border border-[#00F5D4]/30 text-sm px-4 py-2 w-full rounded-tr-[3px] rounded-br-[16px]"
+                class="bg-transparent text-white text-left border border-[#2CD97D]/30 text-sm px-4 py-2 w-full rounded-tr-[3px] rounded-br-[16px]"
                 (click)="dropdownOpen = !dropdownOpen"
               >
                 {{ activeTab }}
@@ -80,7 +80,7 @@
 
             <ul
               *ngIf="dropdownOpen"
-              class="absolute mt-1 bg-[#0C101D] text-white border border-[#00F5D4]/30 shadow-lg rounded-md w-full z-10"
+              class="absolute mt-1 bg-[#0C101D] text-white border border-[#2CD97D]/30 shadow-lg rounded-md w-full z-10"
             >
               <li *ngFor="let tab of tabs">
                 <a
@@ -98,11 +98,11 @@
         <!-- Right side (Search) -->
         <div class="flex sm:flex-row items-center gap-2 w-full lg:w-[30rem]">
           <span
-            class="cursor-pointer px-4 py-1 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] border border-[#00F5D4]/30"
+            class="cursor-pointer px-4 py-1 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] border border-[#2CD97D]/30"
             (click)="toggleView()"
           >
             <fa-icon
-              class="text-2xl text-[#00F5D4]"
+              class="text-2xl text-[#2CD97D]"
               [icon]="viewMode === 'grid' ? tableViewIcon : listViewIcon"
             ></fa-icon>
           </span>
@@ -111,7 +111,7 @@
               type="text"
               placeholder="Search..."
               [(ngModel)]="searchTerm"
-              class="w-full bg-transparent text-white border border-[#00F5D4]/30 text-sm rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-4 pl-10 focus:outline-none focus:ring-[#00F5D4]"
+              class="w-full bg-transparent text-white border border-[#2CD97D]/30 text-sm rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] py-2 px-4 pl-10 focus:outline-none focus:ring-[#2CD97D]"
             />
             <svg
               class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
@@ -132,14 +132,14 @@
             <!-- Filter Button -->
             <button
               (click)="showDateFilter = !showDateFilter"
-              class="text-white px-4 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold border border-[#00F5D4]/30"
+              class="text-white px-4 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold border border-[#2CD97D]/30"
             >
               Filter
             </button>
 
             <!-- DROPDOWN BOX -->
             <div
-              class="absolute right-0 mt-2 p-3 bg-[#0C101D] border border-[#00F5D4]/30 rounded-tl-[16px] rounded-br-[16px] shadow-lg w-60 z-50"
+              class="absolute right-0 mt-2 p-3 bg-[#0C101D] border border-[#2CD97D]/30 rounded-tl-[16px] rounded-br-[16px] shadow-lg w-60 z-50"
               [class.hidden]="!showDateFilter"
             >
               <div class="flex flex-col gap-2">
@@ -152,7 +152,7 @@
                       [(ngModel)]="startDate"
                       (ngModelChange)="onStartDateChange($event)"
                       aria-label="Start Date"
-                      class="filter-date-input text-[#00F5D4] bg-transparent border border-[#00F5D4]/30 px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                      class="filter-date-input text-[#2CD97D] bg-transparent border border-[#2CD97D]/30 px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
                     />
                     <svg
                       class="filter-date-icon"
@@ -202,7 +202,7 @@
                       [(ngModel)]="endDate"
                       [min]="startDate || null"
                       aria-label="End Date"
-                      class="filter-date-input text-[#00F5D4] bg-transparent border border-[#00F5D4]/30 px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
+                      class="filter-date-input text-[#2CD97D] bg-transparent border border-[#2CD97D]/30 px-3 py-2 rounded-tl-md rounded-br-md date-icon-color"
                     />
                     <svg
                       class="filter-date-icon"
@@ -249,14 +249,14 @@
                 >
                   <button
                     (click)="resetDates()"
-                    class="text-[#00F5D4] border border-[#00F5D4]/30 px-3 py-1 rounded-tl-md rounded-br-md"
+                    class="text-[#2CD97D] border border-[#2CD97D]/30 px-3 py-1 rounded-tl-md rounded-br-md"
                   >
                     Reset
                   </button>
 
                   <button
                     (click)="GetAllGames(true); showDateFilter = false"
-                    class="text-[#00F5D4] border border-[#00F5D4]/30 px-3 py-1 rounded-tl-md rounded-br-md"
+                    class="text-[#2CD97D] border border-[#2CD97D]/30 px-3 py-1 rounded-tl-md rounded-br-md"
                   >
                     Search
                   </button>
@@ -286,12 +286,12 @@
     (click)="closeRulesModal()"
   >
     <div
-      class="bg-[#050811] border border-[#00F5D4]/30 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-full max-w-md shadow-lg modal slide-up z-999 max-h-[90vh] flex flex-col"
+      class="bg-[#050811] border border-[#2CD97D]/30 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] w-full max-w-md shadow-lg modal slide-up z-999 max-h-[90vh] flex flex-col"
       (click)="$event.stopPropagation()"
     >
       <!-- Header -->
       <div
-        class="bg-[#0C101D] border-b border-[#00F5D4]/30 rounded-tl-[16px] flex items-center justify-between px-6 py-3"
+        class="bg-[#0C101D] border-b border-[#2CD97D]/30 rounded-tl-[16px] flex items-center justify-between px-6 py-3"
       >
         <h2 class="text-lg font-semibold text-white">Redeem Rules</h2>
         <button
@@ -322,7 +322,7 @@
             class="flex gap-3"
           >
             <div
-              class="flex-shrink-0 w-6 h-6 rounded-full bg-[#00F5D4] flex items-center justify-center text-[#050811] text-sm font-bold"
+              class="flex-shrink-0 w-6 h-6 rounded-full bg-[#2CD97D] flex items-center justify-center text-[#050811] text-sm font-bold"
             >
               {{ i + 1 }}
             </div>

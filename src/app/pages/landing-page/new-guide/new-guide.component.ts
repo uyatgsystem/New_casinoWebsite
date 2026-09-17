@@ -22,4 +22,8 @@ export class NewGuideComponent {
       this.router.navigate(['/']); // home page
     }
   }
+
+  navigateTo(path: string) {
+    this.router.navigate([path]);
+  }
 }

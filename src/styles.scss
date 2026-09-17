@@ -252,12 +252,12 @@
   padding: 34px 30px 28px !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
-  background: radial-gradient(circle at 50% -20%, rgba(0, 245, 212, .12), transparent 50%), #070a12 !important;
-  border: 1px solid rgba(0, 245, 212, .35) !important;
+  background: radial-gradient(circle at 50% -20%, rgba(44, 217, 125, .12), transparent 50%), #070a12 !important;
+  border: 1px solid rgba(44, 217, 125, .35) !important;
   border-left: none !important;
   border-right: none !important;
   border-radius: 18px !important;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 245, 212, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(44, 217, 125, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
   color: #fff !important;
   position: relative !important;
   text-align: center !important;
@@ -269,13 +269,13 @@
   width: 58px !important;
   height: 58px !important;
   margin: 0 auto 18px !important;
-  border: 1px solid rgba(0, 245, 212, .42) !important;
+  border: 1px solid rgba(44, 217, 125, .42) !important;
   border-left: none !important;
   border-right: none !important;
   border-radius: 16px !important;
-  background: rgba(0, 245, 212, .08) !important;
-  color: #00F5D4 !important;
-  box-shadow: 0 8px 20px rgba(0, 245, 212, 0.15) !important;
+  background: rgba(44, 217, 125, .08) !important;
+  color: #2CD97D !important;
+  box-shadow: 0 8px 20px rgba(44, 217, 125, 0.15) !important;
 }
 
 .swal2-popup::before,
@@ -339,28 +339,28 @@
 }
 
 .swal2-styled.swal2-cancel {
-  border: 1px solid rgba(0, 245, 212, .3) !important;
+  border: 1px solid rgba(44, 217, 125, .3) !important;
   background: #101522 !important;
-  color: #00F5D4 !important;
+  color: #2CD97D !important;
 }
 
 .swal2-styled.swal2-cancel:hover {
-  border-color: #00F5D4 !important;
+  border-color: #2CD97D !important;
   color: #fff !important;
 }
 
 .swal2-styled.swal2-confirm {
-  border: 1.5px solid rgb(0, 245, 212) !important;
-  background: rgb(0, 245, 212) !important;
+  border: 1.5px solid rgb(44, 217, 125) !important;
+  background: rgb(44, 217, 125) !important;
   color: #050811 !important;
   font-weight: 800 !important;
-  box-shadow: 0 4px 20px rgba(0, 245, 212, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(44, 217, 125, 0.35) !important;
 }
 
 .swal2-styled.swal2-confirm:hover {
-  background: #00d6b9 !important;
-  border-color: #00d6b9 !important;
-  box-shadow: 0 0 25px rgba(0, 245, 212, 0.6) !important;
+  background: #28c772 !important;
+  border-color: #28c772 !important;
+  box-shadow: 0 0 25px rgba(44, 217, 125, 0.6) !important;
   color: #050811 !important;
 }
 
@@ -389,54 +389,54 @@
   --font-family: "Libre Franklin", "Helvetica Neue";
   --nav-Background: #050811;
   --ground: rgba(5, 8, 17, 0.95);
-  --text-primary: #00F5D4;
+  --text-primary: #2CD97D;
   --text-black: #050811;
   --text-light: #e4e4e4;
   --background: #050811;
-  --gradient: linear-gradient(135deg, #00F5D4 0%, #FF9F1C 100%);
-  --active: linear-gradient(90deg, rgba(0, 245, 212, 1) 0%, rgba(6, 182, 212, 1) 100%);
-  --active-hover: linear-gradient(90deg, rgba(6, 182, 212, 1) 0%, rgba(0, 245, 212, 1) 100%);
+  --gradient: linear-gradient(135deg, #2CD97D 0%, #FF9F1C 100%);
+  --active: linear-gradient(90deg, rgba(44, 217, 125, 1) 0%, rgba(6, 182, 212, 1) 100%);
+  --active-hover: linear-gradient(90deg, rgba(6, 182, 212, 1) 0%, rgba(44, 217, 125, 1) 100%);
   --button-back: #0c101d;
   --spinner-back: rgba(12, 16, 27, 0.92);
   --darkGradient: linear-gradient(180deg, #0a1120 0%, #050811 100%);
   --card-back: #0c101d;
   --landing-back: #050811;
   --landing-card: rgb(12, 16, 27);
-  --main-color2: #00F5D4;
+  --main-color2: #2CD97D;
   --card-back2: #06b6d4;
 
   .btn-primary {
     @apply py-2 px-10 font-extrabold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all duration-300 hover:scale-105;
-    background: rgb(0, 245, 212) !important;
-    border: 1.5px solid rgb(0, 245, 212) !important;
+    background: rgb(44, 217, 125) !important;
+    border: 1.5px solid rgb(44, 217, 125) !important;
     color: #050811 !important;
-    box-shadow: 0 4px 20px rgba(0, 245, 212, 0.35), 0 0 15px rgba(0, 245, 212, 0.25) !important;
+    box-shadow: 0 4px 20px rgba(44, 217, 125, 0.35), 0 0 15px rgba(44, 217, 125, 0.25) !important;
 
     &:hover {
-      background: #00d6b9 !important;
-      border-color: #00d6b9 !important;
+      background: #28c772 !important;
+      border-color: #28c772 !important;
       color: #050811 !important;
-      box-shadow: 0 0 25px rgba(0, 245, 212, 0.6) !important;
+      box-shadow: 0 0 25px rgba(44, 217, 125, 0.6) !important;
     }
   }
 
   .btn-outline {
-    @apply border border-[#00F5D4]/60 text-[#00F5D4] py-2 px-10 font-bold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-all duration-300 hover:scale-105 hover:bg-[#00F5D4]/10;
+    @apply border border-[#2CD97D]/60 text-[#2CD97D] py-2 px-10 font-bold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md transition-all duration-300 hover:scale-105 hover:bg-[#2CD97D]/10;
   }
 }
 
 .text-outline {
   color: transparent;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #00F5D4;
+  -webkit-text-stroke-color: #2CD97D;
 }
 
 .--button {
-  background: rgb(0, 245, 212) !important;
-  border: 1.5px solid rgb(0, 245, 212) !important;
+  background: rgb(44, 217, 125) !important;
+  border: 1.5px solid rgb(44, 217, 125) !important;
   color: #050811 !important;
   font-weight: 800 !important;
-  box-shadow: 0 4px 20px rgba(0, 245, 212, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(44, 217, 125, 0.35) !important;
 }
 
 body {
@@ -464,20 +464,20 @@ body {
 }
 
 .btn {
-  background: rgb(0, 245, 212) !important;
-  border: 1.5px solid rgb(0, 245, 212) !important;
+  background: rgb(44, 217, 125) !important;
+  border: 1.5px solid rgb(44, 217, 125) !important;
   color: #050811 !important;
   border-radius: 8px;
   padding: 7px;
   font-weight: 800;
-  box-shadow: 0 4px 20px rgba(0, 245, 212, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(44, 217, 125, 0.35) !important;
   transition: all 0.25s ease;
 
   &:hover {
-    background: #00d6b9 !important;
-    border-color: #00d6b9 !important;
+    background: #28c772 !important;
+    border-color: #28c772 !important;
     color: #050811 !important;
-    box-shadow: 0 0 25px rgba(0, 245, 212, 0.6) !important;
+    box-shadow: 0 0 25px rgba(44, 217, 125, 0.6) !important;
   }
 }
 
@@ -762,7 +762,7 @@ body {
 }
 
 /* ==========================================================================
-   UNIFIED PRIMARY BUTTONS & ACTIVE TABS: rgb(0, 245, 212)
+   UNIFIED PRIMARY BUTTONS & ACTIVE TABS: rgb(44, 217, 125)
    ========================================================================== */
 
 /* Universal Action Buttons */
@@ -785,14 +785,14 @@ button.btn,
 button.--button,
 button.deposit-control,
 button.logout-confirm,
-button[class*="from-[#00F5D4]"],
+button[class*="from-[#2CD97D]"],
 button[class*="from-[#FEC866]"],
 button[class*="bg-custom-gradient"] {
-  background: rgb(0, 245, 212) !important;
-  border: 1.5px solid rgb(0, 245, 212) !important;
+  background: rgb(44, 217, 125) !important;
+  border: 1.5px solid rgb(44, 217, 125) !important;
   color: #050811 !important;
   font-weight: 800 !important;
-  box-shadow: 0 4px 18px rgba(0, 245, 212, 0.35), 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 4px 18px rgba(44, 217, 125, 0.35), 0 2px 8px rgba(0, 0, 0, 0.5) !important;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
 
   span, b, strong, p, i, fa-icon {
@@ -804,10 +804,10 @@ button[class*="bg-custom-gradient"] {
   }
 
   &:hover {
-    background: #00d6b9 !important;
-    border-color: #00d6b9 !important;
+    background: #28c772 !important;
+    border-color: #28c772 !important;
     color: #050811 !important;
-    box-shadow: 0 0 26px rgba(0, 245, 212, 0.65), 0 6px 20px rgba(0, 0, 0, 0.7) !important;
+    box-shadow: 0 0 26px rgba(44, 217, 125, 0.65), 0 6px 20px rgba(0, 0, 0, 0.7) !important;
     transform: translateY(-2px);
     filter: brightness(1.05);
 
@@ -826,11 +826,11 @@ button[class*="bg-custom-gradient"] {
 .sidebar-tab.active,
 .account-nav button.active,
 button.active:not(.side-btn) {
-  background: rgb(0, 245, 212) !important;
-  border: 1.5px solid rgb(0, 245, 212) !important;
+  background: rgb(44, 217, 125) !important;
+  border: 1.5px solid rgb(44, 217, 125) !important;
   color: #050811 !important;
   font-weight: 800 !important;
-  box-shadow: 0 0 16px rgba(0, 245, 212, 0.45) !important;
+  box-shadow: 0 0 16px rgba(44, 217, 125, 0.45) !important;
 
   * {
     color: #050811 !important;

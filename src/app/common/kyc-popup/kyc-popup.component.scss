@@ -14,7 +14,7 @@
   position: relative;
   width: min(100%, 470px);
   overflow: hidden;
-  border: 1px solid rgba(0, 245, 212, 0.4);
+  border: 1px solid rgba(44, 217, 125, 0.4);
   border-radius: 18px;
   background: linear-gradient(145deg, #0C101D, #050811 72%);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8);
@@ -29,7 +29,7 @@
   right: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #00F5D4, #06B6D4, #FF9F1C);
+  background: linear-gradient(90deg, #2CD97D, #06B6D4, #FF9F1C);
 }
 
 .kyc-popup-close {
@@ -57,19 +57,19 @@
   width: 64px;
   height: 64px;
   margin: 2px auto 20px;
-  border: 1px solid rgba(0, 245, 212, .4);
+  border: 1px solid rgba(44, 217, 125, .4);
   border-radius: 50%;
-  background: rgba(0, 245, 212, .14);
-  color: #00F5D4;
-  box-shadow: 0 0 28px rgba(0, 245, 212, .2);
+  background: rgba(44, 217, 125, .14);
+  color: #2CD97D;
+  box-shadow: 0 0 28px rgba(44, 217, 125, .2);
 }
 
-.kyc-popup-icon svg { color: #00F5D4 !important; }
+.kyc-popup-icon svg { color: #2CD97D !important; }
 
 .kyc-popup-kicker {
   display: block;
   margin-bottom: 8px;
-  color: #00F5D4;
+  color: #2CD97D;
   font-size: .68rem;
   font-weight: 800;
   letter-spacing: .14em;
@@ -96,7 +96,7 @@
   min-height: 48px;
   border: none;
   border-radius: 12px;
-  background: rgb(0, 245, 212);
+  background: rgb(44, 217, 125);
   color: #050811;
   cursor: pointer;
   font-size: .9rem;
@@ -105,9 +105,9 @@
 }
 
 .kyc-popup-action:hover:not(:disabled) {
-  background: #00d6b9;
+  background: #28c772;
   filter: brightness(1.05);
-  box-shadow: 0 8px 24px rgba(0, 245, 212, .4);
+  box-shadow: 0 8px 24px rgba(44, 217, 125, .4);
   transform: translateY(-2px);
 }
 

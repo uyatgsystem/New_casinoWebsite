@@ -13,16 +13,16 @@
 
   <!-- Modal Card -->
   <div
-    class="relative w-full md:w-[90vw] max-w-5xl h-[75vh] md:h-[80vh] max-h-[850px] bg-[#0C101D] md:rounded-tl-[24px] md:rounded-tr-[8px] md:rounded-br-[24px] md:rounded-bl-[8px] rounded-t-[24px] shadow-[0_0_40px_rgba(0,0,0,0.8)] flex flex-col border border-[#00F5D4]/30 modal slide-up overflow-hidden"
+    class="relative w-full md:w-[90vw] max-w-5xl h-[75vh] md:h-[80vh] max-h-[850px] bg-[#0C101D] md:rounded-tl-[24px] md:rounded-tr-[8px] md:rounded-br-[24px] md:rounded-bl-[8px] rounded-t-[24px] shadow-[0_0_40px_rgba(0,0,0,0.8)] flex flex-col border border-[#2CD97D]/30 modal slide-up overflow-hidden"
     (click)="$event.stopPropagation()"
   >
     <!-- Header -->
     <div
-      class="relative px-5 md:px-6 py-4 flex items-center justify-between bg-[#050811] border-b border-[#00F5D4]/30 z-10"
+      class="relative px-5 md:px-6 py-4 flex items-center justify-between bg-[#050811] border-b border-[#2CD97D]/30 z-10"
     >
       <div class="flex items-center gap-4">
         <div
-          class="h-12 w-12 hidden md:flex rounded-tl-[12px] rounded-tr-[4px] rounded-br-[12px] rounded-bl-[4px] bg-gradient-to-br from-[#0C101D] to-[#121827] border border-[#00F5D4]/40 items-center justify-center text-[#00F5D4] shadow-inner"
+          class="h-12 w-12 hidden md:flex rounded-tl-[12px] rounded-tr-[4px] rounded-br-[12px] rounded-bl-[4px] bg-gradient-to-br from-[#0C101D] to-[#121827] border border-[#2CD97D]/40 items-center justify-center text-[#2CD97D] shadow-inner"
         >
           <svg
             viewBox="0 0 24 24"
@@ -45,7 +45,7 @@
           >
             {{ options.title }}
           </h2>
-          <div class="text-xs md:text-sm font-medium text-[#00F5D4]/80 mt-0.5">
+          <div class="text-xs md:text-sm font-medium text-[#2CD97D]/80 mt-0.5">
             Step
             <span class="text-white px-1">{{ currentIndex() + 1 }}</span> of
             {{ steps().length }}
@@ -56,7 +56,7 @@
       <button
         *ngIf="options.closable"
         (click)="close()"
-        class="group rounded-full p-2.5 bg-[#121827] border border-transparent hover:border-[#00F5D4]/50 hover:bg-[#1a2235] transition-all text-gray-400 hover:text-white"
+        class="group rounded-full p-2.5 bg-[#121827] border border-transparent hover:border-[#2CD97D]/50 hover:bg-[#1a2235] transition-all text-gray-400 hover:text-white"
         aria-label="Close"
       >
         <svg
@@ -80,7 +80,7 @@
         class="h-1.5 flex-1 rounded-full transition-all duration-500 ease-in-out"
         [ngClass]="
           i <= currentIndex()
-            ? 'bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] shadow-[0_0_8px_rgba(0,245,212,0.6)]'
+            ? 'bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] shadow-[0_0_8px_rgba(44,217,125,0.6)]'
             : 'bg-[#121827]'
         "
       ></div>
@@ -114,7 +114,7 @@
         <button
           (click)="prev()"
           [disabled]="currentIndex() === 0"
-          class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 hidden md:flex h-12 w-12 rounded-full bg-[#0C101D] border border-[#00F5D4]/30 text-[#00F5D4] hover:bg-gradient-to-r hover:from-[#00F5D4] hover:to-[#FF9F1C] hover:border-transparent hover:text-[#050811] hover:scale-110 shadow-lg items-center justify-center disabled:opacity-0 disabled:scale-100 transition-all duration-300 z-30"
+          class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 hidden md:flex h-12 w-12 rounded-full bg-[#0C101D] border border-[#2CD97D]/30 text-[#2CD97D] hover:bg-gradient-to-r hover:from-[#2CD97D] hover:to-[#FF9F1C] hover:border-transparent hover:text-[#050811] hover:scale-110 shadow-lg items-center justify-center disabled:opacity-0 disabled:scale-100 transition-all duration-300 z-30"
         >
           <svg viewBox="0 0 24 24" class="h-6 w-6 ml-[-2px]">
             <path
@@ -176,7 +176,7 @@
             class="absolute inset-0 flex items-center justify-center"
           >
             <div
-              class="h-10 w-10 md:h-12 md:w-12 rounded-full border-4 border-[#121827] border-t-[#00F5D4] animate-spin shadow-[0_0_15px_rgba(0,245,212,0.3)]"
+              class="h-10 w-10 md:h-12 md:w-12 rounded-full border-4 border-[#121827] border-t-[#2CD97D] animate-spin shadow-[0_0_15px_rgba(44,217,125,0.3)]"
             ></div>
           </div>
         </div>
@@ -185,7 +185,7 @@
         <button
           (click)="next()"
           [disabled]="currentIndex() === steps().length - 1"
-          class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 hidden md:flex h-12 w-12 rounded-full bg-[#0C101D] border border-[#00F5D4]/30 text-[#00F5D4] hover:bg-gradient-to-r hover:from-[#00F5D4] hover:to-[#FF9F1C] hover:border-transparent hover:text-[#050811] hover:scale-110 shadow-lg items-center justify-center disabled:opacity-0 disabled:scale-100 transition-all duration-300 z-30"
+          class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 hidden md:flex h-12 w-12 rounded-full bg-[#0C101D] border border-[#2CD97D]/30 text-[#2CD97D] hover:bg-gradient-to-r hover:from-[#2CD97D] hover:to-[#FF9F1C] hover:border-transparent hover:text-[#050811] hover:scale-110 shadow-lg items-center justify-center disabled:opacity-0 disabled:scale-100 transition-all duration-300 z-30"
         >
           <svg viewBox="0 0 24 24" class="h-6 w-6 mr-[-2px]">
             <path
@@ -203,7 +203,7 @@
 
     <!-- Footer Navigation -->
     <div
-      class="px-5 md:px-6 py-4 bg-[#050811] border-t border-[#00F5D4]/30 flex items-center justify-between z-30 relative shrink-0"
+      class="px-5 md:px-6 py-4 bg-[#050811] border-t border-[#2CD97D]/30 flex items-center justify-between z-30 relative shrink-0"
     >
       <!-- Keyboard navigation hints (Desktop only) -->
       <div
@@ -211,7 +211,7 @@
       >
         <div class="flex items-center gap-1">
           <kbd
-            class="px-2 py-1 bg-[#121827] rounded border border-[#00F5D4]/30 text-[#00F5D4] shadow-sm"
+            class="px-2 py-1 bg-[#121827] rounded border border-[#2CD97D]/30 text-[#2CD97D] shadow-sm"
             >← / →</kbd
           >
           <span class="tracking-wide ml-1">NAVIGATE</span>
@@ -233,21 +233,21 @@
         <button
           (click)="prev()"
           [disabled]="currentIndex() === 0"
-          class="flex-1 md:flex-none px-6 md:px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] border border-[#00F5D4]/50 text-white hover:bg-[#00F5D4]/10 hover:text-[#00F5D4] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-white transition-all font-semibold text-sm"
+          class="flex-1 md:flex-none px-6 md:px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] border border-[#2CD97D]/50 text-white hover:bg-[#2CD97D]/10 hover:text-[#2CD97D] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-white transition-all font-semibold text-sm"
         >
           Back
         </button>
         <button
           *ngIf="currentIndex() < steps().length - 1"
           (click)="next()"
-          class="flex-1 md:flex-none px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#00F5D4] text-[#050811] font-bold text-sm hover:bg-[#00d6b9] hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all"
+          class="flex-1 md:flex-none px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#2CD97D] text-[#050811] font-bold text-sm hover:bg-[#28c772] hover:shadow-[0_0_15px_rgba(44,217,125,0.4)] transition-all"
         >
           Next
         </button>
         <button
           *ngIf="currentIndex() === steps().length - 1"
           (click)="close()"
-          class="flex-1 md:flex-none px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#00F5D4] text-[#050811] font-bold text-sm hover:bg-[#00d6b9] hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all"
+          class="flex-1 md:flex-none px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#2CD97D] text-[#050811] font-bold text-sm hover:bg-[#28c772] hover:shadow-[0_0_15px_rgba(44,217,125,0.4)] transition-all"
         >
           Finish
         </button>

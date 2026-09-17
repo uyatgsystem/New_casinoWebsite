@@ -5,7 +5,7 @@
 #footer {
   margin-top: 0;
   background: #050811;
-  border-top: 1px solid rgba(0, 245, 212, 0.2);
+  border-top: 1px solid rgba(44, 217, 125, 0.2);
 }
 
 #footer.dashboard-footer {
@@ -25,7 +25,7 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 245, 212, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(44, 217, 125, 0.4), transparent);
 }
 
 #footer .grain-Backdrop {
@@ -39,14 +39,14 @@
   position: relative;
   padding: 2rem 0;
   background:
-    radial-gradient(600px 200px at 15% 0%, rgba(0, 245, 212, 0.12), transparent 70%),
-    rgba(0, 245, 212, 0.04);
-  border-bottom: 1px solid rgba(0, 245, 212, 0.12);
+    radial-gradient(600px 200px at 15% 0%, rgba(44, 217, 125, 0.12), transparent 70%),
+    rgba(44, 217, 125, 0.04);
+  border-bottom: 1px solid rgba(44, 217, 125, 0.12);
 }
 
 .footer-cta-eyebrow {
   display: block;
-  color: #00F5D4;
+  color: #2CD97D;
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -57,7 +57,7 @@
 .footer-banner-cta {
   padding: 0.85rem 1.75rem;
   border-radius: 14px;
-  background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 50%, #FF9F1C 100%);
+  background: linear-gradient(135deg, #2CD97D 0%, #06B6D4 50%, #FF9F1C 100%);
   border: none;
   color: #050811;
   font-weight: 800;
@@ -67,7 +67,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5), 0 0 22px rgba(0, 245, 212, 0.4);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5), 0 0 22px rgba(44, 217, 125, 0.4);
     transform: translateY(-2px);
   }
 }
@@ -91,9 +91,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, rgba(0, 245, 212, 0.18), rgba(0, 245, 212, 0.03));
-  border: 1px solid rgba(0, 245, 212, 0.35);
-  color: #00F5D4;
+  background: linear-gradient(160deg, rgba(44, 217, 125, 0.18), rgba(44, 217, 125, 0.03));
+  border: 1px solid rgba(44, 217, 125, 0.35);
+  color: #2CD97D;
   font-size: 0.9rem;
 }
 
@@ -110,9 +110,9 @@
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    color: #00F5D4;
-    border-color: rgba(0, 245, 212, 0.4);
-    background: rgba(0, 245, 212, 0.08);
+    color: #2CD97D;
+    border-color: rgba(44, 217, 125, 0.4);
+    background: rgba(44, 217, 125, 0.08);
   }
 }
 
@@ -131,7 +131,7 @@
   width: 22px;
   height: 2px;
   margin-top: 9px;
-  background: #00F5D4;
+  background: #2CD97D;
 }
 
 .footer-link {
@@ -145,14 +145,14 @@
 
   &::before {
     content: "›";
-    color: #00F5D4;
+    color: #2CD97D;
     opacity: 0;
     transform: translateX(-5px);
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
   &:hover {
-    color: #00F5D4;
+    color: #2CD97D;
     transform: translateX(3px);
 
     &::before {
@@ -168,20 +168,20 @@
   gap: 0.4rem;
   padding: 0.4rem 0.75rem;
   border-radius: 999px;
-  border: 1px solid rgba(0, 245, 212, 0.25);
-  background: rgba(0, 245, 212, 0.06);
+  border: 1px solid rgba(44, 217, 125, 0.25);
+  background: rgba(44, 217, 125, 0.06);
   color: #93a69c;
   font-size: 10px;
 
   i {
-    color: #00F5D4;
+    color: #2CD97D;
   }
 }
 
 .footer-bottom-bar {
   margin-top: 40px;
   padding-top: 18px;
-  border-top: 1px solid rgba(0, 245, 212, 0.15);
+  border-top: 1px solid rgba(44, 217, 125, 0.15);
   text-align: center;
   font-size: 12px;
   font-weight: 500;
@@ -192,11 +192,11 @@
 // Dashboard bottom mobile nav (unchanged behaviour — visual only)
 // ---------------------------------------------------------------------
 .active-tab {
-  color: #00F5D4 !important;
+  color: #2CD97D !important;
 }
 
 .active-tab svg {
-  stroke: #00F5D4 !important;
+  stroke: #2CD97D !important;
 }
 
 .footer-item {
@@ -211,7 +211,7 @@
 }
 
 .footer-item:hover {
-  color: #00F5D4;
+  color: #2CD97D;
 }
 
 .footer-item:hover .icon {
@@ -224,8 +224,8 @@
   top: 4px;
   width: 28px;
   height: 28px;
-  background: radial-gradient(circle, rgba(0, 245, 212, 0.2) 0%, transparent 70%);
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.25);
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.2) 0%, transparent 70%);
+  box-shadow: 0 0 20px rgba(44, 217, 125, 0.25);
   border-radius: 9999px;
   z-index: -1;
 }
@@ -248,17 +248,17 @@
   color: #050811;
   font-size: 9px;
   font-weight: 800;
-  background: rgb(0, 245, 212);
+  background: rgb(44, 217, 125);
   border: 2px solid #050811;
   border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(0, 245, 212, 0.4);
+  box-shadow: 0 4px 15px rgba(44, 217, 125, 0.4);
   cursor: pointer;
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .mobile-deposit-action:hover {
   transform: translateY(-2px);
-  background: #00d6b9;
+  background: #28c772;
   filter: brightness(1.05);
 }
 
@@ -279,7 +279,7 @@
     width: calc(100% - 24px);
     height: 64px;
     padding: 4px;
-    border: 1px solid rgba(0, 245, 212, 0.35);
+    border: 1px solid rgba(44, 217, 125, 0.35);
     border-radius: 16px;
     background: rgba(12, 16, 29, 0.96) !important;
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
@@ -295,7 +295,7 @@
 
   nav.fixed.bottom-1 .footer-item:hover,
   nav.fixed.bottom-1 .footer-item.active-tab {
-    background: rgba(0, 245, 212, 0.1);
+    background: rgba(44, 217, 125, 0.1);
   }
 
   nav.fixed.bottom-1 .footer-item span {

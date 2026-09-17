@@ -1,14 +1,15 @@
 <app-loader></app-loader>
 <div
-  class="bg-[var(--background)] p-4 sm:p-6 lg:p-8 w-full flex flex-col min-h-screen text-white"
+  class="bg-[var(--background)] p-3 sm:p-6 lg:p-8 w-full flex flex-col min-h-screen text-white"
 >
   <!-- Header & Search Toolbar -->
   <div
-    class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 px-2"
+    class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 px-1 sm:px-2"
   >
+    <!-- Left Title & Counter -->
     <div class="flex items-center gap-3">
       <div
-        class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#00F5D4]/20 to-[#06B6D4]/10 border border-[#00F5D4]/40 flex items-center justify-center text-[#00F5D4] shadow-lg"
+        class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#2CD97D]/25 to-[#06B6D4]/10 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] shadow-[0_0_20px_rgba(44,217,125,0.25)] flex-shrink-0"
       >
         <svg
           width="22"
@@ -23,98 +24,163 @@
           />
         </svg>
       </div>
-      <h1
-        class="text-white font-black text-2xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-[#00F5D4]"
-      >
-        Game Accounts
-      </h1>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-4 bg-[#2CD97D] rounded-full shadow-[0_0_8px_#2CD97D]"></span>
+          <h1
+            class="text-white font-black text-xl sm:text-2xl tracking-wide uppercase font-sans"
+          >
+            Game Accounts
+          </h1>
+        </div>
+        <p class="text-[11px] text-gray-400 font-semibold tracking-wider uppercase ml-3.5">
+          <span class="text-[#2CD97D] font-bold">{{ gameAccounts.length }}</span> Active Game Hubs
+        </p>
+      </div>
     </div>
 
-    <!-- Search Bar -->
-    <div class="relative w-full sm:w-80">
-      <input
-        type="text"
-        placeholder="Search games..."
-        [(ngModel)]="searchTerm"
-        (keyup.enter)="onEnterSearch()"
-        class="w-full bg-[#0c101d]/90 backdrop-blur-xl text-white text-sm border border-[#00F5D4]/30 rounded-2xl py-3 pl-11 pr-4 focus:outline-none focus:border-[#00F5D4] transition shadow-xl"
-      />
-      <svg
-        class="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+    <!-- Right Controls: Search Bar & View Mode Toggle -->
+    <div class="flex items-center gap-3 w-full md:w-auto">
+      <!-- Search Bar -->
+      <div class="relative flex-1 sm:w-80">
+        <input
+          type="text"
+          placeholder="Search accounts or games..."
+          [(ngModel)]="searchTerm"
+          (keyup.enter)="onEnterSearch()"
+          class="w-full bg-[#0B101E]/95 backdrop-blur-xl text-white text-xs sm:text-sm border border-[#2CD97D]/35 rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.3)] transition shadow-xl"
         />
-      </svg>
+        <svg
+          class="w-4 h-4 text-[#2CD97D] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+        <button
+          *ngIf="searchTerm"
+          (click)="searchTerm = ''; getGameAccount()"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full bg-white/10"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- View Switcher (Grid / Table) -->
+      <div
+        class="flex items-center bg-[#0B101E]/95 border border-[#2CD97D]/30 p-1 rounded-2xl shadow-lg shrink-0"
+      >
+        <button
+          type="button"
+          (click)="viewMode = 'grid'"
+          title="Grid View"
+          class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all cursor-pointer"
+          [ngClass]="
+            viewMode === 'grid'
+              ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_12px_rgba(44,217,125,0.45)]'
+              : 'text-gray-400 hover:text-white hover:bg-white/5'
+          "
+        >
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
+            <path
+              d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"
+            />
+          </svg>
+        </button>
+        <button
+          type="button"
+          (click)="viewMode = 'table'"
+          title="Table View"
+          class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all cursor-pointer"
+          [ngClass]="
+            viewMode === 'table'
+              ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_12px_rgba(44,217,125,0.45)]'
+              : 'text-gray-400 hover:text-white hover:bg-white/5'
+          "
+        >
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
+            <path
+              d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Gradient Divider -->
+  <!-- Ambient Glow Line -->
   <div
-    class="w-full h-[2px] mb-6 rounded-full"
+    class="w-full h-[1px] mb-6 rounded-full"
     style="
       background: linear-gradient(
         90deg,
-        rgba(0, 245, 212, 0) 0%,
-        #00f5d4 50%,
-        rgba(0, 245, 212, 0) 100%
+        rgba(44, 217, 125, 0) 0%,
+        rgba(44, 217, 125, 0.7) 50%,
+        rgba(44, 217, 125, 0) 100%
       );
     "
   ></div>
 
-  <!-- Grid View -->
-  <div *ngIf="viewMode == 'grid'">
+  <!-- ================= GRID VIEW ================= -->
+  <div *ngIf="viewMode === 'grid'">
     <div
       #accountGrid
       (scroll)="onGridViewScroll()"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-2 pb-6 max-h-[72dvh] overflow-y-auto custom-scrollbar"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-1 sm:px-2 pb-8 max-h-[75dvh] overflow-y-auto custom-scrollbar"
       *ngIf="filteredAccounts().length > 0; else noRecord"
     >
       <div
         *ngFor="let account of filteredAccounts()"
-        class="game-card bg-gradient-to-br from-[#0c101d] via-[#080b15] to-[#050811] border border-[#00F5D4]/30 rounded-3xl p-5 shadow-2xl hover:shadow-[0_0_30px_rgba(0,245,212,0.25)] hover:border-[#00F5D4] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
+        class="game-card bg-gradient-to-b from-[#0B101E] via-[#080D18] to-[#04060C] border border-[#2CD97D]/25 rounded-3xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.7)] hover:border-[#2CD97D] hover:shadow-[0_0_30px_rgba(44,217,125,0.25)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
       >
-        <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
+        <!-- Subtle Neon Glow Corner Accent -->
+        <div
+          class="absolute top-0 right-0 w-36 h-36 bg-[radial-gradient(circle_at_top_right,rgba(44,217,125,0.12),transparent_70%)] pointer-events-none"
+        ></div>
 
-        <!-- Top Section: Icon and Game Name -->
-        <div class="flex items-center gap-4 mb-4 relative z-10">
+        <!-- Top Section: Game Avatar, Title & Status -->
+        <div class="flex items-center gap-3.5 mb-4 relative z-10">
           <div
-            class="w-14 h-14 rounded-2xl bg-black/80 border border-[#00F5D4]/30 flex items-center justify-center overflow-hidden shadow-inner flex-shrink-0 group-hover:scale-110 transition duration-300"
+            class="w-14 h-14 rounded-2xl bg-black/80 border border-[#2CD97D]/40 p-1 flex items-center justify-center overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.6)] flex-shrink-0 group-hover:scale-105 group-hover:border-[#2CD97D] transition-transform duration-300"
           >
             <img
               [src]="getGameImage(account.GameName)"
               alt="{{ account.GameName }}"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover rounded-xl"
             />
           </div>
-          <div class="flex flex-col overflow-hidden">
-            <span
-              class="text-[10px] text-[#00F5D4] font-bold uppercase tracking-wider"
-              >Casino Slot</span
-            >
+          <div class="flex flex-col overflow-hidden min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#2CD97D] shadow-[0_0_6px_#2CD97D] animate-pulse"></span>
+              <span
+                class="text-[10px] text-[#2CD97D] font-extrabold uppercase tracking-wider truncate font-mono"
+              >
+                VERIFIED ACCOUNT
+              </span>
+            </div>
             <h2
-              class="text-white text-base font-extrabold tracking-wide truncate group-hover:text-[#00F5D4] transition"
+              class="text-white text-base font-black tracking-wide truncate group-hover:text-[#2CD97D] transition-colors mt-0.5"
             >
               {{ account.GameName }}
             </h2>
           </div>
         </div>
 
-        <!-- Credentials Section -->
+        <!-- Credentials Vault Block -->
         <div
-          class="bg-black/60 border border-white/10 rounded-2xl p-4 space-y-3 mb-5 relative z-10 shadow-inner backdrop-blur-md"
+          class="bg-black/55 border border-white/[0.08] rounded-2xl p-3.5 space-y-2.5 my-3 relative z-10 shadow-inner backdrop-blur-md group-hover:border-[#2CD97D]/35 transition-colors"
         >
           <!-- Username Row -->
-          <div class="flex items-center justify-between text-xs">
-            <div class="flex items-center gap-2.5 overflow-hidden">
+          <div class="flex items-center justify-between text-xs gap-2">
+            <div class="flex items-center gap-2.5 overflow-hidden flex-1 min-w-0">
               <div
-                class="w-6 h-6 rounded-lg bg-white/5 flex items-center justify-center text-[#00F5D4] flex-shrink-0"
+                class="w-7 h-7 rounded-lg bg-[#2CD97D]/15 border border-[#2CD97D]/30 flex items-center justify-center text-[#2CD97D] flex-shrink-0"
               >
                 <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 9 14">
                   <path
@@ -125,21 +191,22 @@
                   />
                 </svg>
               </div>
-              <span
-                class="text-gray-100 font-mono font-bold truncate tracking-wide"
-              >
-                {{ account.PlayerName }}
-              </span>
+              <div class="flex flex-col overflow-hidden min-w-0">
+                <span class="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Username</span>
+                <span class="text-white font-mono font-bold truncate text-xs">
+                  {{ account.PlayerName }}
+                </span>
+              </div>
             </div>
             <button
               (click)="CopyToClipBoard(account.PlayerName)"
-              class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-[#00F5D4] transition"
+              class="w-7 h-7 rounded-lg bg-white/5 hover:bg-[#2CD97D] hover:text-[#050811] text-gray-300 transition-all flex items-center justify-center flex-shrink-0 cursor-pointer active:scale-90"
               title="Copy Username"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="13"
-                height="13"
+                width="12"
+                height="12"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -155,10 +222,10 @@
           </div>
 
           <!-- Password Row -->
-          <div class="flex items-center justify-between text-xs">
-            <div class="flex items-center gap-2.5 overflow-hidden">
+          <div class="flex items-center justify-between text-xs gap-2 pt-1 border-t border-white/5">
+            <div class="flex items-center gap-2.5 overflow-hidden flex-1 min-w-0">
               <div
-                class="w-6 h-6 rounded-lg bg-white/5 flex items-center justify-center text-[#00F5D4] flex-shrink-0"
+                class="w-7 h-7 rounded-lg bg-[#2CD97D]/15 border border-[#2CD97D]/30 flex items-center justify-center text-[#2CD97D] flex-shrink-0"
               >
                 <svg
                   class="w-3.5 h-3.5"
@@ -170,27 +237,29 @@
                   />
                 </svg>
               </div>
-              <span
-                class="text-gray-200 font-mono font-bold truncate tracking-wide"
-              >
-                {{
-                  account.isPasswordVisible
-                    ? account.PlayerPassword
-                    : "••••••••••"
-                }}
-              </span>
+              <div class="flex flex-col overflow-hidden min-w-0">
+                <span class="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Password</span>
+                <span class="text-gray-200 font-mono font-bold truncate tracking-wider text-xs">
+                  {{
+                    account.isPasswordVisible
+                      ? account.PlayerPassword
+                      : "••••••••••"
+                  }}
+                </span>
+              </div>
             </div>
 
-            <div class="flex items-center gap-1.5">
+            <div class="flex items-center gap-1 shrink-0">
+              <!-- Toggle Eye -->
               <button
                 (click)="togglePasswordVisibility(account)"
-                class="p-1.5 rounded-lg bg-[#00F5D4]/10 hover:bg-[#00F5D4]/20 text-[#00F5D4] transition"
+                class="w-7 h-7 rounded-lg bg-[#2CD97D]/15 hover:bg-[#2CD97D] hover:text-[#050811] text-[#2CD97D] transition-all flex items-center justify-center cursor-pointer active:scale-90"
                 title="Toggle Visibility"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
+                  width="13"
+                  height="13"
                   viewBox="0 0 20 16"
                   fill="none"
                 >
@@ -218,15 +287,16 @@
                 </svg>
               </button>
 
+              <!-- Copy Password -->
               <button
                 (click)="CopyToClipBoard(account.PlayerPassword)"
-                class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-[#00F5D4] transition"
+                class="w-7 h-7 rounded-lg bg-white/5 hover:bg-[#2CD97D] hover:text-[#050811] text-gray-300 transition-all flex items-center justify-center cursor-pointer active:scale-90"
                 title="Copy Password"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="13"
-                  height="13"
+                  width="12"
+                  height="12"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -243,48 +313,47 @@
           </div>
         </div>
 
-        <!-- Play Button -->
+        <!-- Action Button: Open Credentials / Play Now -->
         <button
           (click)="openCredentialsForGame(account.GameName)"
-          class="w-full py-3 rounded-2xl bg-[linear-gradient(135deg,#00F5D4_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-black text-xs uppercase tracking-widest shadow-[0_4px_20px_rgba(0,245,212,0.4)] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 relative z-10"
+          class="w-full py-3 px-4 rounded-2xl bg-[#2CD97D] text-[#050811] font-black text-xs uppercase tracking-widest shadow-[0_4px_18px_rgba(44,217,125,0.35)] hover:bg-[#28c772] hover:shadow-[0_0_25px_rgba(44,217,125,0.6)] active:scale-95 transition-all flex items-center justify-center gap-2 relative z-10 cursor-pointer"
         >
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
-          PLAY NOW
+          <span>Launch {{ account.GameName }}</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Table View -->
-  <div class="min-w-full flex flex-col h-[80vh]" *ngIf="viewMode == 'table'">
+  <!-- ================= TABLE VIEW ================= -->
+  <div class="min-w-full flex flex-col h-[75vh]" *ngIf="viewMode === 'table'">
     <div
-      class="flex text-gray-300 font-semibold text-sm mb-4 pb-3 border-b border-[#00F5D4]/30 px-2 uppercase tracking-wider"
+      class="flex text-[#2CD97D] font-extrabold text-xs mb-3 pb-3 border-b border-[#2CD97D]/30 px-3 uppercase tracking-wider"
     >
-      <div class="w-12 flex-none">Sr No</div>
+      <div class="w-12 flex-none">#</div>
       <div class="flex-1">Game</div>
-      <div class="flex-1">Name</div>
-      <div class="flex-1">User Name</div>
+      <div class="flex-1">Username</div>
       <div class="flex-1">Password</div>
       <div class="flex-1 text-center">Actions</div>
     </div>
 
     <div
-      class="flex-1 overflow-y-auto space-y-3 min-h-[60vh] custom-scrollbar pr-1"
+      class="flex-1 overflow-y-auto space-y-2.5 min-h-[60vh] custom-scrollbar pr-1"
       #accountTable
       (scroll)="onTableViewScroll()"
       *ngIf="filteredAccounts().length > 0; else noRecord"
     >
       <div
         *ngFor="let account of filteredAccounts(); let i = index"
-        class="flex items-center py-3 px-3 bg-[#0c101d]/80 border border-white/5 hover:border-[#00F5D4]/40 rounded-2xl transition"
+        class="flex items-center py-3 px-4 bg-[#0B101E]/80 border border-white/5 hover:border-[#2CD97D]/45 hover:bg-[#0B101E] rounded-2xl transition shadow-lg"
       >
-        <div class="text-gray-400 font-mono w-12 flex-none">{{ i + 1 }}</div>
+        <div class="text-[#2CD97D] font-mono font-bold w-12 flex-none text-xs">{{ i + 1 }}</div>
 
-        <div class="flex items-center gap-2 flex-1">
+        <div class="flex items-center gap-3 flex-1 overflow-hidden">
           <div
-            class="w-12 h-12 rounded-xl p-1 border border-[#00F5D4]/30 bg-black overflow-hidden shadow-sm"
+            class="w-10 h-10 rounded-xl p-0.5 border border-[#2CD97D]/30 bg-black overflow-hidden shadow-sm shrink-0"
           >
             <img
               [src]="getGameImage(account.GameName)"
@@ -292,94 +361,104 @@
               class="w-full h-full object-cover rounded-lg"
             />
           </div>
+          <span class="text-white font-black text-sm truncate">{{ account.GameName }}</span>
         </div>
 
-        <div class="text-white font-semibold flex-1">
-          {{ account.GameName }}
-        </div>
-        <div class="text-gray-200 font-mono text-xs flex-1">
+        <div class="text-gray-100 font-mono text-xs font-bold flex-1 truncate">
           {{ account.PlayerName }}
         </div>
-        <div class="text-gray-400 font-mono text-xs flex-1">
+
+        <div class="text-gray-300 font-mono text-xs font-bold flex-1 truncate">
           {{
             account.isPasswordVisible ? account.PlayerPassword : "••••••••••"
           }}
         </div>
 
         <div
-          class="text-gray-300 flex items-center justify-center gap-4 flex-1"
+          class="flex items-center justify-center gap-3 flex-1"
         >
-          <fa-icon
-            class="cursor-pointer text-[#00F5D4] hover:scale-110 transition"
+          <button
             (click)="togglePasswordVisibility(account)"
-            [icon]="account.isPasswordVisible ? eyeSlash : eye"
+            class="p-2 rounded-lg bg-[#2CD97D]/10 hover:bg-[#2CD97D]/25 text-[#2CD97D] transition cursor-pointer"
+            title="Toggle Password"
           >
-          </fa-icon>
-          <fa-icon
-            class="cursor-pointer text-gray-400 hover:text-white transition"
+            <fa-icon [icon]="account.isPasswordVisible ? eyeSlash : eye"></fa-icon>
+          </button>
+          <button
             (click)="copyCredentials(account)"
-            [icon]="copy"
+            class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition cursor-pointer"
+            title="Copy Credentials"
           >
-          </fa-icon>
+            <fa-icon [icon]="copy"></fa-icon>
+          </button>
+          <button
+            (click)="openCredentialsForGame(account.GameName)"
+            class="px-3 py-1.5 rounded-xl bg-[#2CD97D] text-[#050811] font-extrabold text-xs hover:bg-[#28c772] transition cursor-pointer shadow-md"
+          >
+            Play
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- No Record Template -->
+  <!-- Empty State -->
   <ng-template #noRecord>
     <div class="flex flex-col items-center justify-center py-20 gap-4">
       <div
-        class="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center border border-white/10 shadow-inner"
+        class="w-20 h-20 rounded-3xl bg-[#2CD97D]/10 flex items-center justify-center border border-[#2CD97D]/30 shadow-[0_0_25px_rgba(44,217,125,0.2)]"
       >
         <img
           src="/norecord.png"
           alt="No records found"
-          class="w-10 h-10 object-contain opacity-40"
+          class="w-10 h-10 object-contain opacity-60"
         />
       </div>
-      <p class="text-gray-400 text-sm font-semibold tracking-wide">
+      <p class="text-gray-300 text-sm font-bold tracking-wide">
         No game accounts found
       </p>
     </div>
   </ng-template>
 </div>
 
-<!-- Modals -->
+<!-- Add Score Modal -->
 <div
   *ngIf="showAddScoreModal"
-  class="modal-overlay bg-black/85 backdrop-blur-md"
-  style="z-index: 999"
+  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay p-4 z-[9999]"
   (click)="closeAddScoreModal()"
 >
   <div
-    class="border border-[#00F5D4]/30 rounded-2xl w-[32rem] modal slide-up bg-[#0c101d] shadow-2xl overflow-hidden"
+    class="border border-[#2CD97D]/40 rounded-3xl w-full max-w-md modal slide-up bg-[#0B101E] shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden text-white"
     (click)="$event.stopPropagation()"
   >
     <div
-      class="bg-black/60 flex justify-between items-center px-6 py-4 border-b border-[#00F5D4]/30"
+      class="bg-black/60 flex justify-between items-center px-6 py-4 border-b border-[#2CD97D]/30"
     >
-      <h2 class="text-lg font-bold text-[#00F5D4]">Add Score</h2>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-4 bg-[#2CD97D] rounded-full"></span>
+        <h2 class="text-base font-black text-white uppercase tracking-wider">Add Score</h2>
+      </div>
       <button
         (click)="closeAddScoreModal()"
-        class="text-white hover:text-gray-400"
+        class="w-8 h-8 rounded-full bg-white/5 text-gray-400 hover:text-white flex items-center justify-center transition"
       >
-        <fa-icon [icon]="cross"></fa-icon>
+        ✕
       </button>
     </div>
     <form
       [formGroup]="scoreForm"
       (ngSubmit)="onScoreSubmit()"
-      class="flex flex-col gap-4 p-6 justify-center items-center"
+      class="flex flex-col gap-4 p-6"
     >
-      <div class="mt-2 w-full">
+      <div>
+        <label class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-2 block">Score Amount</label>
         <input
           type="number"
           formControlName="score"
           [placeholder]="getPlaceholder()"
-          class="w-full border border-[#00F5D4]/30 rounded-xl bg-black/50 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#00F5D4] transition"
+          class="w-full border border-[#2CD97D]/30 rounded-xl bg-black/60 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition font-mono"
         />
-        <div class="h-5 text-red-400 text-xs mt-1">
+        <div class="h-5 text-red-400 text-xs mt-1 font-semibold">
           <ng-container
             *ngIf="
               scoreForm.get('score')?.hasError('required') &&
@@ -411,9 +490,9 @@
         [disabled]="scoreForm.invalid"
         [ngClass]="{
           'opacity-50 cursor-not-allowed': scoreForm.invalid,
-          'cursor-pointer hover:brightness-110': !scoreForm.invalid,
+          'cursor-pointer hover:bg-[#28c772]': !scoreForm.invalid,
         }"
-        class="w-full py-3 rounded-xl bg-[linear-gradient(135deg,#00F5D4_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-extrabold text-sm shadow-lg transition"
+        class="w-full py-3.5 rounded-2xl bg-[#2CD97D] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(44,217,125,0.4)] transition"
         (click)="IsScoreValid()"
       >
         Add Score
@@ -425,61 +504,64 @@
 <!-- Confirm Payment Modal -->
 <div
   *ngIf="showPaymentModal"
-  class="fixed modal-overlay inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
+  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay p-4 z-[9999]"
   (click)="closePaymentModal()"
 >
   <div
-    class="border border-[#00F5D4]/30 rounded-2xl w-[40rem] modal slide-up bg-[#0c101d] shadow-2xl overflow-hidden"
+    class="border border-[#2CD97D]/40 rounded-3xl w-full max-w-lg modal slide-up bg-[#0B101E] shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden text-white"
     (click)="$event.stopPropagation()"
   >
     <div
-      class="bg-black/60 px-6 py-4 border-b border-[#00F5D4]/30 flex justify-between items-center mb-4"
+      class="bg-black/60 px-6 py-4 border-b border-[#2CD97D]/30 flex justify-between items-center"
     >
-      <h2 class="text-lg font-bold text-white">Add Score</h2>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-4 bg-[#2CD97D] rounded-full"></span>
+        <h2 class="text-base font-black text-white uppercase tracking-wider">Confirm Purchase</h2>
+      </div>
       <button
         (click)="closePaymentModal()"
-        class="text-white hover:text-gray-400"
+        class="w-8 h-8 rounded-full bg-white/5 text-gray-400 hover:text-white flex items-center justify-center transition"
       >
         ✕
       </button>
     </div>
     <form [formGroup]="paymentForm" class="flex flex-col gap-4 p-6">
-      <div class="grid grid-cols-2 gap-4 mb-2">
+      <div class="grid grid-cols-2 gap-4">
         <div>
-          <label class="text-gray-400 text-xs font-semibold">Purchase</label>
+          <label class="text-gray-400 text-xs font-bold uppercase tracking-wider">Purchase</label>
           <input
             type="text"
             formControlName="purchase"
             [(ngModel)]="addedScore"
             readonly
-            class="w-full border border-white/10 rounded-xl bg-black/50 text-white px-4 py-3 text-sm mt-1"
+            class="w-full border border-white/10 rounded-xl bg-black/60 text-white px-4 py-3 text-sm mt-1 font-mono"
           />
         </div>
         <div>
-          <label class="text-gray-400 text-xs font-semibold">Score</label>
+          <label class="text-gray-400 text-xs font-bold uppercase tracking-wider">Score</label>
           <input
             type="text"
             formControlName="confirmScore"
             [(ngModel)]="roundedUpdatedGivenScore"
             readonly
-            class="w-full border border-white/10 rounded-xl bg-black/50 text-white px-4 py-3 text-sm mt-1"
+            class="w-full border border-white/10 rounded-xl bg-black/60 text-white px-4 py-3 text-sm mt-1 font-mono"
           />
         </div>
       </div>
       <p
-        class="text-gray-300 text-xs bg-white/5 p-3 rounded-xl border border-white/5"
+        class="text-gray-300 text-xs bg-white/5 p-3 rounded-xl border border-white/10"
         *ngIf="offerOnGame > 0"
       >
         With the current offer, your score will be increased by
-        {{ offerOnGame }}% for a purchase of ${{ addedScore }}, resulting in a
-        total score of {{ updatedGivenScore }}.
+        <span class="text-[#2CD97D] font-bold">{{ offerOnGame }}%</span> for a purchase of ${{ addedScore }}, resulting in a
+        total score of <span class="text-[#2CD97D] font-bold">{{ updatedGivenScore }}</span>.
       </p>
       <button
         type="submit"
         (click)="onPaymentSubmit()"
-        class="w-full py-3 rounded-xl bg-[linear-gradient(135deg,#00F5D4_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-extrabold text-sm shadow-lg hover:brightness-110 transition"
+        class="w-full py-3.5 rounded-2xl bg-[#2CD97D] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(44,217,125,0.4)] hover:bg-[#28c772] transition cursor-pointer"
       >
-        Confirm
+        Confirm Score Request
       </button>
     </form>
   </div>
@@ -488,18 +570,21 @@
 <!-- Captcha Modal -->
 <div
   *ngIf="showCaptchaModal"
-  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay p-4"
+  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay p-4 z-[9999]"
   (click)="closeCaptchaModal()"
 >
   <div
-    class="bg-[#0c101d] border border-[#00F5D4]/30 rounded-2xl p-6 w-96 modal slide-up shadow-2xl"
+    class="bg-[#0B101E] border border-[#2CD97D]/40 rounded-3xl p-6 w-full max-w-sm modal slide-up shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white"
     (click)="$event.stopPropagation()"
   >
     <div class="flex justify-between items-center mb-4">
-      <h2 class="text-base font-bold text-white">CAPTCHA Security Check</h2>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-4 bg-[#2CD97D] rounded-full"></span>
+        <h2 class="text-sm font-black text-white uppercase tracking-wider">Security Check</h2>
+      </div>
       <button
         (click)="closeCaptchaModal()"
-        class="text-gray-400 hover:text-white"
+        class="w-8 h-8 rounded-full bg-white/5 text-gray-400 hover:text-white flex items-center justify-center transition"
       >
         ✕
       </button>
@@ -513,25 +598,26 @@
         <img
           [src]="captchaImage"
           alt="CAPTCHA"
-          class="w-full mb-3 rounded-xl border border-white/10"
+          class="w-full mb-3 rounded-xl border border-white/10 shadow-md"
         />
         <input
           type="text"
           formControlName="captcha"
           placeholder="Enter CAPTCHA text"
-          class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00F5D4]"
+          class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#2CD97D] font-mono"
         />
       </div>
       <button
         type="submit"
-        class="w-full py-2.5 rounded-xl bg-[linear-gradient(135deg,#00F5D4_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-bold text-sm shadow-lg hover:brightness-110 transition"
+        class="w-full py-3 rounded-2xl bg-[#2CD97D] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(44,217,125,0.4)] hover:bg-[#28c772] transition cursor-pointer"
       >
-        Submit
+        Submit Verification
       </button>
     </form>
   </div>
 </div>
 
+<!-- Redeem Modal -->
 <div *ngIf="showRedeemModal" (click)="closeRedeemModal()">
   <app-add-redeem
     [isFromRedeem]="false"
@@ -542,11 +628,12 @@
   ></app-add-redeem>
 </div>
 
+<!-- Floating Copy Notification -->
 @if (isCopied()) {
   <div
-    class="fixed bottom-[15%] left-1/2 transform -translate-x-1/2 bg-[#0c101d] text-white px-5 py-3 rounded-2xl shadow-2xl z-50 flex items-center gap-3 border border-[#00F5D4]/40 backdrop-blur-xl"
+    class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-[#0B101E] text-white px-5 py-3 rounded-2xl shadow-[0_0_30px_rgba(44,217,125,0.35)] z-50 flex items-center gap-3 border border-[#2CD97D]/50 backdrop-blur-xl"
   >
-    <fa-icon [icon]="faCheck" class="text-[#00F5D4] text-base"></fa-icon>
+    <fa-icon [icon]="faCheck" class="text-[#2CD97D] text-base"></fa-icon>
     <span class="text-xs font-bold tracking-wide">Copied to clipboard</span>
   </div>
 }

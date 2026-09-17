@@ -98,6 +98,10 @@ export class CasinoLandingComponent implements OnInit {
     }
   }
 
+  quickLaunch(path: string): void {
+    this.navigateAndScroll(path);
+  }
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

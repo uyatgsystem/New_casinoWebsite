@@ -69,7 +69,7 @@
   z-index: 30;
 
   .clean-launch-btn {
-    background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 100%);
+    background: linear-gradient(135deg, #2CD97D 0%, #06B6D4 100%);
     color: #030712;
     font-weight: 900;
     text-transform: uppercase;
@@ -82,7 +82,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    box-shadow: 0 0 15px rgba(0, 245, 212, 0.4);
+    box-shadow: 0 0 15px rgba(44, 217, 125, 0.4);
     transition: transform 0.2s ease, filter 0.2s ease;
 
     &:hover {

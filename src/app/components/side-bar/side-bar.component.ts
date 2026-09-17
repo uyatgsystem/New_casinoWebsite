@@ -10,6 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocationService } from '../../Services/ip-check.service';
 import { ErrorhandlingService } from '../../Services/error-handling.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-side-bar',
   imports: [
@@ -40,7 +42,8 @@ export class SideBarComponent implements OnInit, AfterViewInit {
     private router: Router,
     private utilsService: UtilsService,
     private locationService: LocationService,
-    private _errorHandleService: ErrorhandlingService
+    private _errorHandleService: ErrorhandlingService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -118,8 +121,13 @@ export class SideBarComponent implements OnInit, AfterViewInit {
     this.isLogoutModalOpen = false;
   }
   logout() {
+    this.closeLogoutModal();
     this.utilsService.stopTokenExpiryWatcher();
-    this.utilsService.triggerLogoutFunction();
+    localStorage.clear();
+    sessionStorage.clear();
+    localStorage.setItem('user_logged_out', 'true');
+    this.router.navigate(['/login']);
+    this.toastr.success('Logged out successfully', 'Success');
   }
   redirecttoTermsConditions() {
     this.router.navigate(['dashboard/Terms&Conditions']);

@@ -295,7 +295,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     localStorage.setItem('user_logged_out', 'true');
     sessionStorage.clear();
     localStorage.clear();
-    this.router.navigate(['/']);
+    this.toastr.success('You have been securely signed out.', 'Signed Out');
+    this.router.navigate(['/login']);
   }
 
   showLogoutModal() {

@@ -137,35 +137,64 @@
 
 
 ////////////////// New scratch card scss
-.clipped-top {
-  clip-path: polygon(36% 0, 66% 0, 71% 13%, 100% 13%, 100% 100%, 0 100%, 0 13%, 29% 13%);
+/* ==========================================================================
+   CYBER HOLOGRAPHIC SCRATCH VOUCHER STYLES (#2CD97D)
+   ========================================================================== */
+
+$neon-primary: #2CD97D;
+
+.cyber-voucher-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+
+  &:hover {
+    border-color: rgba(44, 217, 125, 0.75);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(44, 217, 125, 0.25);
+    transform: translateY(-3px);
+  }
 }
 
-.cash-blaze-card {
-  background: #113c42;
-  border: 2px solid #00c6a7;
-  box-shadow: 0 4px 15px rgba(0, 198, 167, 0.4);
+.voucher-bg-glow {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.18) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
 }
 
-.scratch-area {
-  background: linear-gradient(120deg,
-      #8a7960 0%,
-      #d9bd85 22%,
-      #fec866 40%,
-      #f3d9a1 50%,
-      #fec866 60%,
-      #d9bd85 78%,
-      #8a7960 100%);
-  background-size: 220% 100%;
-  animation: scratchShimmer 3.5s ease-in-out infinite;
-  box-shadow:
-    inset 0 2px 3px rgba(255, 255, 255, 0.35),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.35);
+.voucher-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.25) 51%
+  );
+  background-size: 100% 4px;
+  opacity: 0.15;
+  pointer-events: none;
 }
 
-@keyframes scratchShimmer {
-  0%,
-  100% {
+/* Holographic Metallic Foil Scratch Preview */
+.holographic-foil-preview {
+  background: linear-gradient(
+    125deg,
+    #00F5D4 0%,
+    #2CD97D 25%,
+    #70e1f5 50%,
+    #FFD166 75%,
+    #00F5D4 100%
+  );
+  background-size: 260% 260%;
+  animation: foilShimmer 4s ease-in-out infinite;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes foilShimmer {
+  0%, 100% {
     background-position: 0% 50%;
   }
   50% {
@@ -173,31 +202,36 @@
   }
 }
 
-// Landing-page scratch card heading badge
+.foil-glimmer-beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: beamPass 3.5s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes beamPass {
+  0% {
+    left: -60px;
+  }
+  40%, 100% {
+    left: calc(100% + 60px);
+  }
+}
+
 .scratch-eyebrow {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(44, 217, 125, 0.08);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(254, 137, 18, 0.35);
-  box-shadow: 0 0 20px rgba(254, 137, 18, 0.15);
-}
-
-.price-chip {
-  position: relative;
-  background: #252525;
-  border: 1px solid #00c6a7;
-  border-radius: 9999px;
-  padding: 2px 20px;
-  font-weight: bold;
-  color: white;
-  z-index: 10;
-}
-
-
-.scrach-heading-price {
-  height: 30px;
-  width: 82px;
-  text-align: center;
-  padding: 2px 24px 4px 24px !important;
+  border: 1px solid rgba(44, 217, 125, 0.35);
+  box-shadow: 0 0 20px rgba(44, 217, 125, 0.15);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -205,16 +239,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media (max-width: 359px) {
-  .scratch-winning-badge {
-    right: 0.25rem;
-  }
-
   .scratch-title-text {
-    font-size: 1rem;
-    line-height: 1.75rem;
+    font-size: 0.95rem;
   }
-
-  .scratch-card-shell {
-    padding: 0.25rem;
+  .cyber-voucher-card {
+    padding: 0.85rem;
   }
 }

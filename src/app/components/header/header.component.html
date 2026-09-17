@@ -1,6 +1,6 @@
 <header
   *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()"
-  class="sticky z-[997] w-full top-0 h-[64px] bg-[#010306]/95 backdrop-blur-2xl border-b border-[#00F5D4]/50 shadow-[0_4px_25px_rgba(0,0,0,0.9)] px-3 flex items-center justify-between"
+  class="sticky z-[997] w-full top-0 h-[64px] bg-[#010306]/95 backdrop-blur-2xl border-b border-[#2CD97D]/50 shadow-[0_4px_25px_rgba(0,0,0,0.9)] px-3 flex items-center justify-between"
 >
   <div
     class="absolute inset-0 pointer-events-none opacity-10"
@@ -13,12 +13,12 @@
       <img
         src="https://spinhub-6rb.pages.dev/assets/logo.png"
         alt="Spin Hub"
-        class="h-[40px] w-auto object-contain drop-shadow-[0_0_12px_rgba(0,245,212,0.6)]"
+        class="h-[40px] w-auto object-contain drop-shadow-[0_0_12px_rgba(44,217,125,0.6)]"
       />
     </a>
     <div
       *ngIf="playerLevel"
-      class="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-black/95 border border-[#00F5D4]/60 text-[9px] font-mono font-black text-[#00F5D4]"
+      class="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-black/95 border border-[#2CD97D]/60 text-[9px] font-mono font-black text-[#2CD97D]"
       [title]="playerLevel + ' · Lv.' + levelRank"
     >
       <img
@@ -40,7 +40,7 @@
     <!-- Wallet -->
     <button
       type="button"
-      class="flex items-center bg-[#010306] border border-[#00F5D4]/60 rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(0,245,212,0.15)] hover:border-[#00F5D4] hover:bg-[#00F5D4]/10 transition"
+      class="flex items-center bg-[#010306] border border-[#2CD97D]/60 rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(44,217,125,0.15)] hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition"
       (click)="openWalletHistory()"
     >
       <span class="text-white font-mono font-bold text-[10px]"
@@ -62,12 +62,12 @@
     <!-- Bell -->
     <button
       (click)="toggleNotifications()"
-      class="relative flex items-center justify-center w-7 h-7 bg-black/95 border border-[#00F5D4]/65 hover:border-[#00F5D4] rounded-lg text-[#00F5D4] cursor-pointer transition shadow-[0_0_8px_rgba(0,245,212,0.2)]"
+      class="relative flex items-center justify-center w-7 h-7 bg-black/95 border border-[#2CD97D]/65 hover:border-[#2CD97D] rounded-lg text-[#2CD97D] cursor-pointer transition shadow-[0_0_8px_rgba(44,217,125,0.2)]"
     >
       <i class="fas fa-bell text-[10px]"></i>
       <span
         *ngIf="notifications.length > 0"
-        class="absolute -top-1 -right-1 flex justify-center items-center w-3.5 h-3.5 rounded-full bg-[#00F5D4] text-black text-[7px] font-black"
+        class="absolute -top-1 -right-1 flex justify-center items-center w-3.5 h-3.5 rounded-full bg-[#2CD97D] text-black text-[7px] font-black"
       >
         {{ notifications.length >= 10 ? "9+" : notifications.length }}
       </span>
@@ -76,7 +76,7 @@
     <!-- Menu Toggle -->
     <button
       type="button"
-      class="flex items-center justify-center w-7 h-7 bg-black/95 border border-[#00F5D4]/65 hover:border-[#00F5D4] rounded-lg text-[#00F5D4] cursor-pointer transition shadow-[0_0_8px_rgba(0,245,212,0.2)]"
+      class="flex items-center justify-center w-7 h-7 bg-black/95 border border-[#2CD97D]/65 hover:border-[#2CD97D] rounded-lg text-[#2CD97D] cursor-pointer transition shadow-[0_0_8px_rgba(44,217,125,0.2)]"
       (click)="toggleSidebar($event)"
     >
       <ng-container *ngIf="CrossIcon">
@@ -89,25 +89,12 @@
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <rect x="3" y="5" width="18" height="2" rx="1" fill="#00F5D4" />
-          <rect x="3" y="11" width="18" height="2" rx="1" fill="#00F5D4" />
-          <rect x="3" y="17" width="18" height="2" rx="1" fill="#00F5D4" />
+          <rect x="3" y="5" width="18" height="2" rx="1" fill="#2CD97D" />
+          <rect x="3" y="11" width="18" height="2" rx="1" fill="#2CD97D" />
+          <rect x="3" y="17" width="18" height="2" rx="1" fill="#2CD97D" />
         </svg>
       </ng-container>
     </button>
-
-    <app-logoutmodel
-      [isOpen]="isLogoutModalOpen"
-      [profileImage]="profileImage"
-      (onCancel)="closeLogoutModal()"
-      (onConfirm)="logout()"
-    ></app-logoutmodel>
-    <app-deleteaccountmodel
-      [isOpen]="isdeleteaccountmodelopen"
-      [profileImage]="profileImage"
-      (onCancel)="closedeleteaccountmodal()"
-      (onConfirm)="deleteaccount($event)"
-    ></app-deleteaccountmodel>
   </div>
 </header>
 
@@ -122,7 +109,7 @@
   >
     <!-- Main Floating Capsule HUD -->
     <div
-      class="relative w-full h-[72px] bg-[#010306]/95 backdrop-blur-3xl border border-[#00F5D4]/60 rounded-[24px] shadow-[0_12px_45px_rgba(0,0,0,0.95)] px-6 flex items-center justify-between overflow-visible"
+      class="relative w-full h-[72px] bg-[#010306]/95 backdrop-blur-3xl border border-[#2CD97D]/60 rounded-[24px] shadow-[0_12px_45px_rgba(0,0,0,0.95)] px-6 flex items-center justify-between overflow-visible"
     >
       <div
         class="absolute inset-0 pointer-events-none opacity-15 rounded-[24px]"
@@ -131,7 +118,7 @@
 
       <!-- Top Glowing Border Line -->
       <div
-        class="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-transparent via-[#00F5D4] to-transparent shadow-[0_0_15px_#00F5D4]"
+        class="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent shadow-[0_0_15px_#2CD97D]"
       ></div>
 
       <!-- Left Side: Brand Logo + Hologram Rank Module -->
@@ -140,14 +127,14 @@
           <img
             src="https://spinhub-6rb.pages.dev/assets/DestopLogo.png"
             alt="Spin Hub"
-            class="h-11 w-auto object-contain drop-shadow-[0_0_15px_rgba(0,245,212,0.6)] group-hover:scale-105 transition duration-300"
+            class="h-11 w-auto object-contain drop-shadow-[0_0_15px_rgba(44,217,125,0.6)] group-hover:scale-105 transition duration-300"
           />
         </a>
 
         <!-- Cyber Rank Badge -->
         <div
           *ngIf="playerLevel"
-          class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-black/95 border border-[#00F5D4]/60 shadow-[0_0_15px_rgba(0,245,212,0.2)]"
+          class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-black/95 border border-[#2CD97D]/60 shadow-[0_0_15px_rgba(44,217,125,0.2)]"
         >
           <img
             [src]="getLevelImage(playerLevel)"
@@ -160,7 +147,7 @@
               >{{ playerLevel }}</span
             >
             <span
-              class="text-[#00F5D4] font-mono font-bold text-[9px] tracking-widest mt-0.5"
+              class="text-[#2CD97D] font-mono font-bold text-[9px] tracking-widest mt-0.5"
               >LVL.{{ levelRank }}</span
             >
           </div>
@@ -171,17 +158,17 @@
       <div class="flex items-center gap-3 relative z-30">
         <!-- Dual Wallet Pod -->
         <div
-          class="flex items-center bg-[#010306] p-1 rounded-2xl border border-[#00F5D4]/50 shadow-[inset_0_2px_10px_rgba(0,0,0,0.9)] gap-1.5"
+          class="flex items-center bg-[#010306] p-1 rounded-2xl border border-[#2CD97D]/50 shadow-[inset_0_2px_10px_rgba(0,0,0,0.9)] gap-1.5"
         >
           <!-- Main Wallet -->
           <button
             type="button"
             (click)="openWalletHistory()"
-            class="wallet-balance-control relative flex items-center bg-[#010306] rounded-xl overflow-hidden border border-[#00F5D4]/60 h-10 px-4 shadow-[0_0_10px_rgba(0,245,212,0.15)] hover:border-[#00F5D4] hover:bg-[#00F5D4]/10 transition cursor-pointer group"
+            class="wallet-balance-control relative flex items-center bg-[#010306] rounded-xl overflow-hidden border border-[#2CD97D]/60 h-10 px-4 shadow-[0_0_10px_rgba(44,217,125,0.15)] hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer group"
           >
             <div class="flex items-center gap-2.5 relative z-10">
               <div
-                class="w-6 h-6 rounded-lg bg-[#00F5D4]/15 border border-[#00F5D4]/40 flex items-center justify-center group-hover:scale-110 transition"
+                class="w-6 h-6 rounded-lg bg-[#2CD97D]/15 border border-[#2CD97D]/40 flex items-center justify-center group-hover:scale-110 transition"
               >
                 <img
                   src="https://cmaxv2images2.pages.dev/assets/icons/coins.png"
@@ -191,7 +178,7 @@
               </div>
               <div class="flex flex-col text-left">
                 <span
-                  class="text-[8px] text-[#00F5D4] font-mono font-bold uppercase tracking-wider leading-none"
+                  class="text-[8px] text-[#2CD97D] font-mono font-bold uppercase tracking-wider leading-none"
                   >Main Wallet</span
                 >
                 <span
@@ -235,7 +222,7 @@
           <button
             type="button"
             (click)="RedirectToWallet()"
-            class="deposit-control relative z-10 bg-[#00F5D4] border border-[#00F5D4] text-[#050811] px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(0,245,212,0.4)] hover:bg-[#00d6b9] hover:shadow-[0_0_25px_rgba(0,245,212,0.7)] hover:scale-[1.02] transition-all flex items-center gap-1.5 cursor-pointer"
+            class="deposit-control relative z-10 bg-[#2CD97D] border border-[#2CD97D] text-[#050811] px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(44,217,125,0.4)] hover:bg-[#28c772] hover:shadow-[0_0_25px_rgba(44,217,125,0.7)] hover:scale-[1.02] transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <span class="text-sm font-black leading-none text-[#050811]">+</span>
             <span class="text-[#050811]">{{ Deposit | translate }}</span>
@@ -245,7 +232,7 @@
           <button
             type="button"
             (click)="openWithdrawBalanceModal()"
-            class="relative z-10 bg-[#010306] border border-white/20 text-gray-300 hover:text-white px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_10px_rgba(0,0,0,0.8)] hover:border-[#00F5D4]/60 hover:bg-[#00F5D4]/10 transition-all cursor-pointer flex items-center"
+            class="relative z-10 bg-[#010306] border border-white/20 text-gray-300 hover:text-white px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_10px_rgba(0,0,0,0.8)] hover:border-[#2CD97D]/60 hover:bg-[#2CD97D]/10 transition-all cursor-pointer flex items-center"
           >
             {{ Withdraw | translate }}
           </button>
@@ -253,7 +240,7 @@
 
         <!-- Utilities Pod (Language, Notification, Profile) -->
         <div
-          class="flex items-center gap-2.5 pl-2.5 border-l border-[#00F5D4]/30 relative"
+          class="flex items-center gap-2.5 pl-2.5 border-l border-[#2CD97D]/30 relative"
         >
           <!-- Language Widget -->
           <div id="lang-widget" class="notranslate relative">
@@ -263,10 +250,10 @@
               class="p-0 border-0 bg-transparent cursor-pointer group"
             >
               <div
-                class="relative flex justify-center items-center w-10 h-10 bg-black/95 border border-[#00F5D4]/60 rounded-xl shadow-[0_0_10px_rgba(0,245,212,0.2)] group-hover:border-[#00F5D4] group-hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition"
+                class="relative flex justify-center items-center w-10 h-10 bg-black/95 border border-[#2CD97D]/60 rounded-xl shadow-[0_0_10px_rgba(44,217,125,0.2)] group-hover:border-[#2CD97D] group-hover:shadow-[0_0_15px_rgba(44,217,125,0.4)] transition"
               >
                 <svg
-                  class="relative z-10 w-4 h-4 text-[#00F5D4] group-hover:scale-110 transition"
+                  class="relative z-10 w-4 h-4 text-[#2CD97D] group-hover:scale-110 transition"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -279,7 +266,7 @@
                   />
                 </svg>
                 <span
-                  class="absolute -top-1.5 -right-1 flex justify-center items-center min-w-[18px] h-4 px-1 rounded-full text-[8px] bg-[#00F5D4] text-black font-black shadow"
+                  class="absolute -top-1.5 -right-1 flex justify-center items-center min-w-[18px] h-4 px-1 rounded-full text-[8px] bg-[#2CD97D] text-black font-black shadow"
                 >
                   {{ currentLanguage.toUpperCase() }}
                 </span>
@@ -290,29 +277,29 @@
             <div
               *ngIf="isLangOpen"
               [ngStyle]="dropdownStyle"
-              class="absolute z-[99999] w-48 max-h-64 overflow-y-auto bg-[#010306] backdrop-blur-3xl rounded-2xl shadow-2xl border border-[#00F5D4]/60 top-14 custom-scrollbar p-1.5"
+              class="absolute z-[99999] w-48 max-h-64 overflow-y-auto bg-[#010306] backdrop-blur-3xl rounded-2xl shadow-2xl border border-[#2CD97D]/60 top-14 custom-scrollbar p-1.5"
             >
               <div
-                class="p-2 border-b border-[#00F5D4]/30 sticky top-0 bg-[#010306]/95 backdrop-blur-md"
+                class="p-2 border-b border-[#2CD97D]/30 sticky top-0 bg-[#010306]/95 backdrop-blur-md"
               >
                 <input
                   type="text"
                   [(ngModel)]="searchText"
                   placeholder="Search language..."
-                  class="w-full px-3 py-1.5 text-xs bg-black/90 border border-white/20 rounded-xl outline-none text-white placeholder-gray-400 focus:border-[#00F5D4]"
+                  class="w-full px-3 py-1.5 text-xs bg-black/90 border border-white/20 rounded-xl outline-none text-white placeholder-gray-400 focus:border-[#2CD97D]"
                 />
               </div>
               <div class="py-1 space-y-0.5">
                 <div
                   *ngFor="let lang of filteredLanguages()"
                   (click)="selectLanguage(lang.code)"
-                  class="px-3 py-2 text-xs font-medium text-gray-200 hover:text-white hover:bg-[#00F5D4]/20 rounded-xl cursor-pointer flex items-center justify-between transition"
+                  class="px-3 py-2 text-xs font-medium text-gray-200 hover:text-white hover:bg-[#2CD97D]/20 rounded-xl cursor-pointer flex items-center justify-between transition"
                 >
                   <span>{{ lang.name }}</span>
                   <svg
                     *ngIf="currentLanguage === lang.code"
                     xmlns="http://www.w3.org/2000/svg"
-                    class="w-3.5 h-3.5 text-[#00F5D4]"
+                    class="w-3.5 h-3.5 text-[#2CD97D]"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -336,7 +323,7 @@
               class="p-0 border-0 bg-transparent cursor-pointer group"
             >
               <div
-                class="relative flex justify-center items-center w-10 h-10 bg-black/95 border border-[#00F5D4]/60 rounded-xl shadow-[0_0_10px_rgba(0,245,212,0.2)] group-hover:border-[#00F5D4] group-hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition"
+                class="relative flex justify-center items-center w-10 h-10 bg-black/95 border border-[#2CD97D]/60 rounded-xl shadow-[0_0_10px_rgba(44,217,125,0.2)] group-hover:border-[#2CD97D] group-hover:shadow-[0_0_15px_rgba(44,217,125,0.4)] transition"
               >
                 <svg
                   width="16"
@@ -348,12 +335,12 @@
                 >
                   <path
                     d="M21.7936 12.6755L20.3234 10.6913C19.9981 10.2586 19.7118 9.4248 19.7118 8.91821V6.94459C19.7118 3.11346 15.8735 0 11.1634 0C6.4403 0.0105541 2.60197 3.11346 2.60197 6.94459V8.90765C2.60197 9.41425 2.31572 10.248 2.00345 10.6807L0.533168 12.6649C-0.0263179 13.4354 -0.156431 14.3113 0.194874 15.0712C0.54618 15.8417 1.33987 16.4538 2.38077 16.7282C3.786 17.1082 5.20423 17.3826 6.64848 17.5831C6.79161 17.6042 6.93473 17.6148 7.07786 17.6359C7.26001 17.657 7.45518 17.6781 7.65035 17.6992C7.98865 17.7414 8.32694 17.7731 8.67825 17.7942C9.49796 17.8575 10.3307 17.8892 11.1634 17.8892C11.9831 17.8892 12.8028 17.8575 13.6095 17.7942C13.9088 17.7731 14.2081 17.752 14.4943 17.7203C14.7285 17.6992 14.9627 17.6781 15.1969 17.6464C15.34 17.6359 15.4832 17.6148 15.6263 17.5937C17.0835 17.4037 18.5278 17.1082 19.933 16.7282C20.9349 16.4538 21.7026 15.8417 22.0669 15.0607C22.4312 14.2691 22.3271 13.4037 21.7936 12.6755ZM12.1132 8.3905C12.1132 8.83377 11.6708 9.19261 11.1244 9.19261C10.5779 9.19261 10.1355 8.83377 10.1355 8.3905V5.11873C10.1355 4.67546 10.5779 4.31662 11.1244 4.31662C11.6708 4.31662 12.1132 4.67546 12.1132 5.11873V8.3905Z"
-                    fill="#00F5D4"
+                    fill="#2CD97D"
                   />
                 </svg>
                 <span
                   *ngIf="notificationCount > 0"
-                  class="absolute -top-1.5 -right-1.5 flex justify-center items-center w-4 h-4 rounded-full bg-[#00F5D4] text-black text-[9px] font-black shadow-lg animate-pulse"
+                  class="absolute -top-1.5 -right-1.5 flex justify-center items-center w-4 h-4 rounded-full bg-[#2CD97D] text-black text-[9px] font-black shadow-lg animate-pulse"
                 >
                   {{ notificationCount >= 10 ? "9+" : notificationCount }}
                 </span>
@@ -363,14 +350,14 @@
             <!-- Notification Dropdown -->
             <div
               *ngIf="showNotifications"
-              class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#010306]/95 border border-[#00F5D4]/60 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.95)] overflow-hidden z-[99999] backdrop-blur-3xl"
+              class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#010306]/95 border border-[#2CD97D]/60 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.95)] overflow-hidden z-[99999] backdrop-blur-3xl"
             >
               <div
                 class="absolute inset-0 pointer-events-none opacity-20"
                 [innerHTML]="grainBackdrop"
               ></div>
               <div
-                class="flex items-center justify-between px-5 py-4 border-b border-[#00F5D4]/40 relative z-20 bg-black/60"
+                class="flex items-center justify-between px-5 py-4 border-b border-[#2CD97D]/40 relative z-20 bg-black/60"
               >
                 <h3
                   class="text-xs font-black text-white tracking-widest uppercase"
@@ -394,10 +381,10 @@
                   let i = $index
                 ) {
                   <div
-                    class="relative flex items-start gap-3.5 bg-black/85 hover:bg-black border border-[#00F5D4]/30 p-4 rounded-2xl transition duration-300 group shadow-md"
+                    class="relative flex items-start gap-3.5 bg-black/85 hover:bg-black border border-[#2CD97D]/30 p-4 rounded-2xl transition duration-300 group shadow-md"
                   >
                     <div
-                      class="w-10 h-10 rounded-xl bg-[#00F5D4]/15 border border-[#00F5D4]/40 flex items-center justify-center shrink-0 text-[#00F5D4]"
+                      class="w-10 h-10 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 flex items-center justify-center shrink-0 text-[#2CD97D]"
                     >
                       <i class="fas fa-bell text-sm"></i>
                     </div>
@@ -454,7 +441,7 @@
                   <img
                     [src]="profileImage"
                     alt="Profile"
-                    class="h-10 w-10 border-2 border-[#00F5D4]/60 group-hover:border-[#00F5D4] rounded-xl object-cover transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.6)] group-hover:scale-105"
+                    class="h-10 w-10 border-2 border-[#2CD97D]/60 group-hover:border-[#2CD97D] rounded-xl object-cover transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.6)] group-hover:scale-105"
                   />
                   <img
                     *ngIf="playerLevel"
@@ -468,7 +455,7 @@
 
             <div
               *ngIf="isDropdownOpen"
-              class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#010306] backdrop-blur-3xl border border-[#00F5D4]/60 shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden z-[99999] animate-in fade-in slide-in-from-top-2 duration-200"
+              class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#010306] backdrop-blur-3xl border border-[#2CD97D]/60 shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden z-[99999] animate-in fade-in slide-in-from-top-2 duration-200"
             >
               <div
                 class="absolute inset-0 pointer-events-none opacity-20"
@@ -476,11 +463,11 @@
               ></div>
 
               <div
-                class="p-4 bg-black/85 border-b border-[#00F5D4]/40 flex items-center gap-3.5 relative z-10"
+                class="p-4 bg-black/85 border-b border-[#2CD97D]/40 flex items-center gap-3.5 relative z-10"
               >
                 <div class="relative">
                   <div
-                    class="w-11 h-11 rounded-xl overflow-hidden border-2 border-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.4)]"
+                    class="w-11 h-11 rounded-xl overflow-hidden border-2 border-[#2CD97D] shadow-[0_0_15px_rgba(44,217,125,0.4)]"
                   >
                     <img
                       [src]="profileImage"
@@ -489,7 +476,7 @@
                     />
                   </div>
                   <div
-                    class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#00F5D4] border-2 border-black rounded-full shadow-[0_0_8px_#00F5D4]"
+                    class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#2CD97D] border-2 border-black rounded-full shadow-[0_0_8px_#2CD97D]"
                   ></div>
                 </div>
                 <div class="overflow-hidden">
@@ -504,7 +491,7 @@
                     </h4>
                   </div>
                   <p
-                    class="text-[10px] text-[#00F5D4] uppercase tracking-widest mt-1 font-extrabold"
+                    class="text-[10px] text-[#2CD97D] uppercase tracking-widest mt-1 font-extrabold"
                   >
                     VIP Tier 1 Member
                   </p>
@@ -515,11 +502,11 @@
                 <a
                   type="button"
                   (click)="showComletePorfile()"
-                  class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-200 hover:text-white hover:bg-[#00F5D4]/15 transition group cursor-pointer"
+                  class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-200 hover:text-white hover:bg-[#2CD97D]/15 transition group cursor-pointer"
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="w-8 h-8 rounded-xl bg-black/80 border border-[#00F5D4]/40 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition shadow-inner"
+                      class="w-8 h-8 rounded-xl bg-black/80 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:scale-110 transition shadow-inner"
                     >
                       👤
                     </div>
@@ -528,7 +515,7 @@
                     >
                   </div>
                   <svg
-                    class="w-4 h-4 text-slate-400 group-hover:text-[#00F5D4] group-hover:translate-x-0.5 transition"
+                    class="w-4 h-4 text-slate-400 group-hover:text-[#2CD97D] group-hover:translate-x-0.5 transition"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -545,11 +532,11 @@
                 <a
                   type="button"
                   (click)="redirecttoTermsConditions()"
-                  class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-200 hover:text-white hover:bg-[#00F5D4]/15 transition group cursor-pointer"
+                  class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-200 hover:text-white hover:bg-[#2CD97D]/15 transition group cursor-pointer"
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="w-8 h-8 rounded-xl bg-black/80 border border-[#00F5D4]/40 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition shadow-inner"
+                      class="w-8 h-8 rounded-xl bg-black/80 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:scale-110 transition shadow-inner"
                     >
                       📄
                     </div>
@@ -558,7 +545,7 @@
                     >
                   </div>
                   <svg
-                    class="w-4 h-4 text-slate-400 group-hover:text-[#00F5D4] group-hover:translate-x-0.5 transition"
+                    class="w-4 h-4 text-slate-400 group-hover:text-[#2CD97D] group-hover:translate-x-0.5 transition"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -573,7 +560,7 @@
                 </a>
 
                 <a
-                  class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-200 hover:text-white hover:bg-[#00F5D4]/15 transition group cursor-pointer"
+                  class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-200 hover:text-white hover:bg-[#2CD97D]/15 transition group cursor-pointer"
                   [class.cursor-not-allowed]="kycVerfication === 'completed'"
                   [class.opacity-60]="kycVerfication === 'completed'"
                   (click)="
@@ -582,7 +569,7 @@
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="w-8 h-8 rounded-xl bg-black/80 border border-[#00F5D4]/40 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition shadow-inner"
+                      class="w-8 h-8 rounded-xl bg-black/80 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:scale-110 transition shadow-inner"
                     >
                       🛡️
                     </div>
@@ -596,7 +583,7 @@
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 text-[#00F5D4]"
+                        class="h-4 w-4 text-[#2CD97D]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -612,7 +599,7 @@
                     <ng-template #notVerified>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 text-[#00F5D4]"
+                        class="h-4 w-4 text-[#2CD97D]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -630,7 +617,7 @@
               </div>
 
               <div
-                class="h-px bg-gradient-to-r from-transparent via-[#00F5D4]/50 to-transparent mx-3 my-1 relative z-10"
+                class="h-px bg-gradient-to-r from-transparent via-[#2CD97D]/50 to-transparent mx-3 my-1 relative z-10"
               ></div>
 
               <div class="p-2.5 relative z-10">
@@ -653,17 +640,17 @@
       </div>
     </div>
   </div>
-
-  <app-logoutmodel
-    [isOpen]="isLogoutModalOpen"
-    [profileImage]="profileImage"
-    (onCancel)="closeLogoutModal()"
-    (onConfirm)="logout()"
-  ></app-logoutmodel>
-  <app-deleteaccountmodel
-    [isOpen]="isdeleteaccountmodelopen"
-    [profileImage]="profileImage"
-    (onCancel)="closedeleteaccountmodal()"
-    (onConfirm)="deleteaccount($event)"
-  ></app-deleteaccountmodel>
 </header>
+
+<app-logoutmodel
+  [isOpen]="isLogoutModalOpen"
+  [profileImage]="profileImage"
+  (onCancel)="closeLogoutModal()"
+  (onConfirm)="logout()"
+></app-logoutmodel>
+<app-deleteaccountmodel
+  [isOpen]="isdeleteaccountmodelopen"
+  [profileImage]="profileImage"
+  (onCancel)="closedeleteaccountmodal()"
+  (onConfirm)="deleteaccount($event)"
+></app-deleteaccountmodel>

@@ -14,15 +14,37 @@
 
 @keyframes scratchNowPulse {
   0%, 100% {
-    box-shadow: 0 0 30px rgba(254, 128, 6, 0.5);
+    box-shadow: 0 0 25px rgba(44, 217, 125, 0.5);
   }
   50% {
-    box-shadow: 0 0 48px rgba(254, 128, 6, 0.85);
+    box-shadow: 0 0 45px rgba(44, 217, 125, 0.85);
   }
 }
 
 .scratch-now-btn {
   animation: scratchNowPulse 1.8s ease-in-out infinite;
+}
+
+.gold-rain-particle {
+  position: absolute;
+  top: -20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2CD97D 0%, #4EFAAA 100%);
+  box-shadow: 0 0 10px #2CD97D;
+  animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 @keyframes titleGlow {
