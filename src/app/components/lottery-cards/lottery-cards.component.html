@@ -6,7 +6,9 @@
         <span class="text-[#fe8912] text-xl font-bold mx-2">Lotteries</span>
       </p>
       <!-- Top Row: Heading + Buttons -->
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full">
+      <div
+        class="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full"
+      >
         <!-- Heading -->
         <h1 class="text-3xl lg:text-4xl font-bold text-white leading-tight">
           Play Daily. Win Cash Rewards!
@@ -14,11 +16,14 @@
 
         <!-- Buttons -->
         <div class="mt-4 lg:mt-0 flex items-center space-x-3">
-          <button (click)="activeTab = 'all'" [ngClass]="
+          <button
+            (click)="activeTab = 'all'"
+            [ngClass]="
               activeTab === 'all'
-                ? 'px-6 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black shadow-md'
-                : 'px-6 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold border border-[#F3A630] text-[#F3A630] bg-transparent'
-            ">
+                ? 'px-6 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold bg-gradient-to-b from-[#0c101d] to-[#050811] text-[#00F5D4] border border-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.35)]'
+                : 'px-6 py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold border border-[#00F5D4]/40 text-gray-300 bg-black/60 hover:border-[#00F5D4]'
+            "
+          >
             All Lotteries
           </button>
         </div>
@@ -33,21 +38,29 @@
   </div>
 
   <!-- Grid Container -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-6 gap-y-6 gap-x-4 mt-0 w-full"
-    [ngClass]="{ 'container mx-auto max-w-7xl': datashow }">
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-6 gap-y-6 gap-x-4 mt-0 w-full"
+    [ngClass]="{ 'container mx-auto max-w-7xl': datashow }"
+  >
     <!-- ✅ Skeleton Loader -->
     <ng-container *ngIf="isLoading && !showNoDataFlag">
-      <div *ngFor="let loader of loaderArray"
-        class="lg:mt-0 min-h-[30vh] lg:min-h-[60vh] flex items-center justify-center">
+      <div
+        *ngFor="let loader of loaderArray"
+        class="lg:mt-0 min-h-[30vh] lg:min-h-[60vh] flex items-center justify-center"
+      >
         <div class="relative w-[305px]">
           <div
-            class="border-2 border-[#C3B089] rounded-tl-[2px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 bg-[#161819] animate-pulse space-y-4">
+            class="border-2 border-[#C3B089] rounded-tl-[2px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 bg-[#161819] animate-pulse space-y-4"
+          >
             <div
-              class="w-full h-12 bg-[#403829] rounded flex items-center justify-center text-white text-sm sm:text-base font-medium">
+              class="w-full h-12 bg-[#403829] rounded flex items-center justify-center text-white text-sm sm:text-base font-medium"
+            >
               Lottery data loading...
             </div>
             <div class="h-4 w-36 mx-auto bg-[#403829] rounded"></div>
-            <div class="h-10 w-full max-w-[280px] mx-auto bg-[#403829] rounded"></div>
+            <div
+              class="h-10 w-full max-w-[280px] mx-auto bg-[#403829] rounded"
+            ></div>
             <div class="h-6 w-32 mx-auto bg-[#403829] rounded"></div>
             <div class="h-10 w-full bg-[#403829] rounded"></div>
           </div>
@@ -57,11 +70,15 @@
 
     <!-- ✅ Lottery Cards -->
     <ng-container *ngIf="lotteryList.length > 0">
-      <div class="lg:mt-0 flex items-center justify-center" *ngFor="let card of lotteryList; trackBy: trackById">
+      <div
+        class="lg:mt-0 flex items-center justify-center"
+        *ngFor="let card of lotteryList; trackBy: trackById"
+      >
         <div class="relative w-[305px]">
           <!-- Card -->
           <div
-            class="min-h-[300px] border-2 border-[#C3B089] bg-[#161819] p-6 relative rounded-tl-[2px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]">
+            class="min-h-[300px] border-2 border-[#C3B089] bg-[#161819] p-6 relative rounded-tl-[2px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px]"
+          >
             <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
             <!-- <svg class="absolute -top-[38px] -left-[14px] w-[109%] z-0" height="61" viewBox="0 0 400 61"
               xmlns="http://www.w3.org/2000/svg">
@@ -78,11 +95,17 @@
 
             <!-- Countdown -->
             <ng-container *ngIf="card.Status === 'Open'">
-              <div class="absolute top-0 left-0 border-b-2 border-[#C3B089] pr-8 pl-2 py-2">
-                <span class="absolute -right-[0.60rem] top-0 h-[106%] w-[2px] bg-[#C3B089] rotate-[18deg]"></span>
+              <div
+                class="absolute top-0 left-0 border-b-2 border-[#C3B089] pr-8 pl-2 py-2"
+              >
+                <span
+                  class="absolute -right-[0.60rem] top-0 h-[106%] w-[2px] bg-[#C3B089] rotate-[18deg]"
+                ></span>
 
                 <div class="p-[2px] rounded-lg">
-                  <div class="flex items-center rounded-lg px-3 py-1 shadow-inner text-white font-bold">
+                  <div
+                    class="flex items-center rounded-lg px-3 py-1 shadow-inner text-white font-bold"
+                  >
                     <span class="font-mono text-base">{{ card.time.hh }}</span>
                     <span class="font-mono text-sm mx-1">:</span>
                     <span class="font-mono text-base">{{ card.time.mm }}</span>
@@ -100,18 +123,24 @@
             </div>
 
             <!-- Closed Message -->
-            <div *ngIf="card.Status === 'Close'"
-              class="mb-6 bg-[#111118] border border-[#e6d3a8] rounded-xl p-3 text-center text-sm md:text-base">
-              <span class="text-white font-semibold">Get Ready for the Jackpot!</span>
+            <div
+              *ngIf="card.Status === 'Close'"
+              class="mb-6 bg-[#111118] border border-[#e6d3a8] rounded-xl p-3 text-center text-sm md:text-base"
+            >
+              <span class="text-white font-semibold"
+                >Get Ready for the Jackpot!</span
+              >
             </div>
 
             <!-- Prize -->
-            <h2 class="text-2xl md:text-3xl font-extrabold text-[#F3A630] tracking-tight text-center mt-12 -mb-2">
+            <h2
+              class="text-2xl md:text-3xl font-extrabold text-[#F3A630] tracking-tight text-center mt-12 -mb-2"
+            >
               ${{ card.WinnersAmount }}
             </h2>
             <div
-              class="w-36 h-0.5 mx-auto my-3 rounded bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]">
-            </div>
+              class="w-36 h-0.5 mx-auto my-3 rounded bg-[linear-gradient(90deg,_#4D4434_0.96%,_#FE8912_49.52%,_#4D4434_100%)]"
+            ></div>
 
             <!-- Middle content: left text and right image -->
             <div class="flex items-center justify-between px-4 py-4 gap-4">
@@ -119,24 +148,35 @@
                 <h3 class="text-2xl font-extrabold text-white">Lucky Streak</h3>
               </div>
               <div class="flex-shrink-0 ml-4">
-                <img src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png" alt="treasure"
-                  class="w-24 h-24 object-contain mb-4" style="transform: scale(1.7); transform-origin: center" />
+                <img
+                  src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png"
+                  alt="treasure"
+                  class="w-24 h-24 object-contain mb-4"
+                  style="transform: scale(1.7); transform-origin: center"
+                />
               </div>
             </div>
 
             <!-- Action Buttons -->
-            <button *ngIf="card.Status === 'Open'" (click)="BuyTicket(card)"
-              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] hover:opacity-95 transition">
+            <button
+              *ngIf="card.Status === 'Open'"
+              (click)="BuyTicket(card)"
+              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] hover:opacity-95 transition"
+            >
               Buy Now!
             </button>
 
-            <button *ngIf="card.Status === 'Open' && card.IsDisabled"
-              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] opacity-70 cursor-not-allowed">
+            <button
+              *ngIf="card.Status === 'Open' && card.IsDisabled"
+              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] opacity-70 cursor-not-allowed"
+            >
               Buying time over
             </button>
 
-            <button *ngIf="card.Status === 'Close'"
-              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] shadow-md hover:opacity-95 transition">
+            <button
+              *ngIf="card.Status === 'Close'"
+              class="block w-full py-2 rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] font-semibold text-black bg-gradient-to-r from-[#FEC866] to-[#FE8006] shadow-md hover:opacity-95 transition"
+            >
               See Details
             </button>
           </div>
@@ -144,18 +184,27 @@
       </div>
     </ng-container>
 
-    <div *ngIf="cardList.length > showLimit" class="flex justify-center mt-8 mb-6 w-full col-span-full">
-      <button (click)="toggleShowAllLottery()"
-        class="px-6 py-2 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md hover:opacity-90 transition">
+    <div
+      *ngIf="cardList.length > showLimit"
+      class="flex justify-center mt-8 mb-6 w-full col-span-full"
+    >
+      <button
+        (click)="toggleShowAllLottery()"
+        class="px-6 py-2 bg-gradient-to-r from-[#FEC866] to-[#FE8006] text-black font-semibold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] shadow-md hover:opacity-90 transition"
+      >
         {{ showAll ? "Show Less" : "Show More" }}
       </button>
     </div>
   </div>
 
-  <div *ngIf="!isLoading && showNoDataFlag" class="flex justify-center items-center">
+  <div
+    *ngIf="!isLoading && showNoDataFlag"
+    class="flex justify-center items-center"
+  >
     <div class="relative w-full md:w-[405px]">
       <div
-        class="border-2 border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 bg-[#161819] text-center flex flex-col items-center justify-center space-y-4 shadow-[0_0_20px_rgba(25,228,224,0.2)]">
+        class="border-2 border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 bg-[#161819] text-center flex flex-col items-center justify-center space-y-4 shadow-[0_0_20px_rgba(25,228,224,0.2)]"
+      >
         <p class="text-white text-lg font-semibold tracking-wide">
           Stay tuned for new lotteries
         </p>

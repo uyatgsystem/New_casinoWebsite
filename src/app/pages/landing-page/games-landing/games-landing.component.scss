@@ -1,65 +1,53 @@
-/* ================= BRAND NEW CRYSTAL PRISM CARDS STYLING ================= */
+/* ================= NEW NEO-BRUTALIST ARCADE CARDS STYLING ================= */
 
-.crystal-prism-card {
+.arcade-card {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5; /* Clean spacious proportion, zero overlapping */
+  aspect-ratio: 4 / 5;
   cursor: pointer;
-  background: linear-gradient(155deg, rgba(16, 22, 38, 0.95) 0%, rgba(4, 6, 12, 0.98) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 22px;
+  background: #090d18;
+  
+  /* Bold distinct border and hard brutalist shadow */
+  border: 3px solid var(--arcade-tint, #00F5D4);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* Backlit Crystal Orb Effect */
-  .prism-orb {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90px;
-    height: 90px;
-    background: radial-gradient(circle, var(--prism-glow, #00F5D4) 0%, transparent 70%);
-    opacity: 0.18;
-    filter: blur(15px);
-    transition: all 0.4s ease;
-    pointer-events: none;
-  }
+  box-shadow: 
+    5px 5px 0px var(--arcade-tint, #00F5D4),
+    0 10px 25px rgba(0, 0, 0, 0.8);
+  transition: all 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
 
   &:hover {
-    transform: translateY(-8px) scale(1.03);
-    border-color: var(--prism-glow, #00F5D4);
+    transform: translate(-3px, -3px);
     box-shadow: 
-      0 22px 50px rgba(0, 0, 0, 0.95), 
-      0 0 30px var(--prism-glow, #00F5D4),
-      inset 0 0 15px rgba(255, 255, 255, 0.15);
+      8px 8px 0px var(--arcade-tint, #00F5D4),
+      0 15px 35px rgba(0, 0, 0, 0.9);
     z-index: 50;
 
-    .prism-orb {
-      opacity: 0.5;
-      transform: translate(-50%, -50%) scale(1.3);
+    .arcade-game-artwork {
+      transform: scale(1.15) translateY(-4px);
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.95)) brightness(1.15);
     }
 
-    .prism-game-artwork {
-      transform: scale(1.15) translateY(-6px);
-      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.95)) brightness(1.15);
-    }
-
-    .prism-hover-curtain {
+    .arcade-hover-curtain {
       opacity: 1;
       visibility: visible;
     }
 
-    .prism-footer-tray {
-      background: rgba(8, 13, 22, 0.98);
-      border-color: var(--prism-glow, #00F5D4);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.9), 0 0 12px var(--prism-glow, #00F5D4);
+    .arcade-footer-tray {
+      background: #04060b;
+      border-color: var(--arcade-tint, #00F5D4);
     }
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 
+      2px 2px 0px var(--arcade-tint, #00F5D4),
+      0 5px 15px rgba(0, 0, 0, 0.8);
   }
 }
 
-.prism-media-wrap {
+.arcade-media-wrap {
   position: absolute;
   inset: 0;
   display: flex;
@@ -69,80 +57,84 @@
   z-index: 10;
 }
 
-.prism-game-artwork {
+.arcade-game-artwork {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.9));
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.9));
 }
 
-.prism-game-artwork--boost {
+.arcade-game-artwork--boost {
   transform: scale(1.18);
 }
 
-.crystal-prism-card:hover .prism-game-artwork--boost {
-  transform: scale(1.32) translateY(-6px);
+.arcade-card:hover .arcade-game-artwork--boost {
+  transform: scale(1.3) translateY(-4px);
 }
 
-.prism-hover-curtain {
+.arcade-hover-curtain {
   position: absolute;
   inset: 0;
-  background: rgba(3, 5, 9, 0.84);
-  backdrop-filter: blur(10px);
+  background: rgba(4, 7, 14, 0.88);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   z-index: 30;
 
-  .prism-launch-pill {
-    background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 50%, #FF9F1C 100%);
+  .arcade-launch-btn {
+    background: var(--arcade-tint, #00F5D4);
     color: #030712;
     font-weight: 900;
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 1.2px;
-    padding: 9px 20px;
-    border-radius: 12px;
-    border: none;
-    box-shadow: 0 0 22px rgba(0, 245, 212, 0.8);
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: 2px solid #030712;
+    box-shadow: 3px 3px 0px #030712;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 6px;
-    transition: transform 0.2s ease, filter 0.2s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 
     @media (min-width: 640px) {
       font-size: 12px;
       padding: 11px 24px;
-      border-radius: 14px;
     }
 
     &:hover {
-      transform: scale(1.08);
-      filter: brightness(1.15);
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px #030712;
+    }
+
+    &:active {
+      transform: translate(1px, 1px);
+      box-shadow: 2px 2px 0px #030712;
     }
   }
 }
 
-.prism-footer-tray {
+.arcade-footer-tray {
   position: absolute;
   bottom: 10px;
   left: 10px;
   right: 10px;
   height: 38px;
-  background: rgba(10, 16, 28, 0.88);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
+  background: #0d1322;
+  border: 2px solid var(--arcade-tint, #00F5D4);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
   z-index: 20;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
 
   @media (min-width: 640px) {
@@ -151,18 +143,17 @@
     right: 12px;
     height: 42px;
     padding: 0 12px;
-    border-radius: 16px;
   }
 
-  .prism-status-gem {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
+  .arcade-status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
     box-shadow: 0 0 8px currentColor;
     flex-shrink: 0;
   }
 
-  .prism-game-title {
+  .arcade-game-title {
     font-size: 10px;
     font-weight: 900;
     white-space: nowrap;
@@ -175,12 +166,12 @@
     }
   }
 
-  .prism-dl-action {
-    width: 24px;
-    height: 24px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 7px;
+  .arcade-dl-action {
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid var(--arcade-tint, #00F5D4);
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -188,17 +179,15 @@
     flex-shrink: 0;
 
     &:hover {
-      background: var(--prism-glow, #00F5D4);
-      border-color: var(--prism-glow, #00F5D4);
+      background: var(--arcade-tint, #00F5D4);
       color: #030712;
-      transform: scale(1.12);
-      box-shadow: 0 0 12px var(--prism-glow, #00F5D4);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px var(--arcade-tint, #00F5D4);
     }
 
     @media (min-width: 640px) {
       width: 28px;
       height: 28px;
-      border-radius: 9px;
     }
   }
 }

@@ -75,7 +75,7 @@
   </div>
 </div>
 
-<!-- ================= BRAND NEW CRYSTAL PRISM CARDS SECTION ================= -->
+<!-- ================= NEW NEO-BRUTALIST ARCADE CARDS SECTION ================= -->
 <div
   id="games-scroll-id"
   *ngIf="isToken && isDashboardPage && AsianLocalBlock"
@@ -85,56 +85,53 @@
   <ng-container *ngFor="let game of displayedGames">
     <div
       (click)="isMobile() ? OnPlayNow(game) : null"
-      class="crystal-prism-card group"
-      [ngStyle]="{ '--prism-glow': game.bgclr || '#00F5D4' }"
+      class="arcade-card group"
+      [ngStyle]="{ '--arcade-tint': game.bgclr || '#00F5D4' }"
     >
-      <!-- Crystal Backdrop Illumination Orb -->
-      <div class="prism-orb"></div>
-
       <!-- Floating Badges Layer -->
       <div
         class="absolute top-3 inset-x-3 z-30 flex items-center justify-between pointer-events-none gap-1"
       >
         <span
           *ngIf="game?.bonus"
-          class="bg-[#00F5D4] text-slate-950 font-black text-[8px] sm:text-[10px] px-2 py-0.5 rounded-full shadow-[0_0_12px_#00F5D4] uppercase tracking-tighter"
+          class="bg-[#00F5D4] text-slate-950 font-black text-[8px] sm:text-[10px] px-2.5 py-0.5 rounded shadow-[2px_2px_0px_#030712] uppercase tracking-tighter border border-slate-950"
         >
           🔥 {{ game?.bonus }}%
         </span>
         <span *ngIf="!game?.bonus"></span>
         <span
           *ngIf="game.isHot"
-          class="bg-orange-500 text-white font-black text-[8px] sm:text-[10px] px-2 py-0.5 rounded-full shadow-[0_0_12px_rgba(249,115,22,0.8)] uppercase tracking-tighter ml-auto animate-pulse"
+          class="bg-orange-500 text-white font-black text-[8px] sm:text-[10px] px-2.5 py-0.5 rounded shadow-[2px_2px_0px_#030712] uppercase tracking-tighter ml-auto animate-pulse border border-slate-950"
         >
           ⚡ HOT
         </span>
       </div>
 
       <!-- Artwork Display Container -->
-      <div class="prism-media-wrap">
-        <img [src]="game.image" [alt]="game.name" class="prism-game-artwork" />
+      <div class="arcade-media-wrap">
+        <img [src]="game.image" [alt]="game.name" class="arcade-game-artwork" />
       </div>
 
       <!-- Hover Action Hub -->
       <div
-        class="prism-hover-curtain"
+        class="arcade-hover-curtain"
         *ngIf="!isMobile() && game.buttonText != ''"
       >
-        <button class="prism-launch-pill" (click)="OnPlayNow(game)">
+        <button class="arcade-launch-btn" (click)="OnPlayNow(game)">
           <span>{{ isToken ? game.buttonText : "PLAY NOW" }}</span>
-          <i class="fas fa-chevron-right text-[8px]"></i>
+          <i class="fas fa-play text-[8px]"></i>
         </button>
       </div>
 
-      <!-- Bottom Crystal Info Tag -->
-      <div class="prism-footer-tray">
+      <!-- Bottom Arcade Info Tray -->
+      <div class="arcade-footer-tray">
         <div class="flex items-center gap-2 overflow-hidden">
           <div
-            class="prism-status-gem"
+            class="arcade-status-indicator"
             [ngStyle]="{ background: game.bgclr || '#00F5D4' }"
           ></div>
           <span
-            class="prism-game-title"
+            class="arcade-game-title"
             [ngStyle]="{ color: game.bgclr || '#00F5D4' }"
           >
             {{ game.name }}
@@ -145,7 +142,7 @@
           [href]="game.downloadLink"
           target="_blank"
           (click)="$event.stopPropagation()"
-          class="prism-dl-action"
+          class="arcade-dl-action"
           title="Download File"
         >
           <i class="fas fa-download text-[10px]"></i>
@@ -155,7 +152,7 @@
   </ng-container>
 </div>
 
-<!-- ================= PERFECTED LUXURY CASINO POPUP ================= -->
+<!-- ================= POPUP ================= -->
 <div
   *ngIf="AddPlayerModal"
   class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center modal-overlay Add_Bal z-[999] px-4"
@@ -257,32 +254,30 @@
     <ng-container *ngFor="let game of quickGames">
       <div
         (click)="redirectTo(game.redirectLink)"
-        class="crystal-prism-card group"
-        [ngStyle]="{ '--prism-glow': game.bgColor || '#00F5D4' }"
+        class="arcade-card group"
+        [ngStyle]="{ '--arcade-tint': game.bgColor || '#00F5D4' }"
       >
-        <div class="prism-orb"></div>
-
-        <div class="prism-media-wrap">
+        <div class="arcade-media-wrap">
           <img
             [src]="game.image"
             [alt]="game.name"
-            class="prism-game-artwork"
-            [class.prism-game-artwork--boost]="game.name !== 'Spin'"
+            class="arcade-game-artwork"
+            [class.arcade-game-artwork--boost]="game.name !== 'Spin'"
           />
         </div>
 
-        <div class="prism-hover-curtain" *ngIf="!isMobile()">
-          <span class="prism-launch-pill">PLAY NOW</span>
+        <div class="arcade-hover-curtain" *ngIf="!isMobile()">
+          <span class="arcade-launch-btn">PLAY NOW</span>
         </div>
 
-        <div class="prism-footer-tray">
+        <div class="arcade-footer-tray">
           <div class="flex items-center gap-2 overflow-hidden">
             <div
-              class="prism-status-gem"
+              class="arcade-status-indicator"
               [ngStyle]="{ background: game.bgColor || '#00F5D4' }"
             ></div>
             <span
-              class="prism-game-title"
+              class="arcade-game-title"
               [ngStyle]="{ color: game.bgColor || '#00F5D4' }"
             >
               {{ game.name }}
@@ -293,7 +288,7 @@
             [routerLink]="game.downloadLink"
             target="_blank"
             (click)="$event.stopPropagation()"
-            class="prism-dl-action"
+            class="arcade-dl-action"
           >
             <i class="fas fa-download text-[10px]"></i>
           </a>

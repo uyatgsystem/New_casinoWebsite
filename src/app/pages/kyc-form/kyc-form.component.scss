@@ -379,17 +379,17 @@
 }
 
 .kyc-container .btn-primary {
-  border: 1px solid #fe8c16;
-  background: #fe8c16;
-  color: #080808;
-  border: 1px solid #00F5D4;
-  background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 100%);
-  color: #050811;
+  border: 1.5px solid #00F5D4;
+  background: linear-gradient(160deg, #0c101d 0%, #050811 100%);
+  color: #00F5D4;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 245, 212, 0.25);
 }
 
 .kyc-container .btn-primary:hover:not(:disabled) {
-  background: #f3a630;
-  filter: brightness(1.1);
+  background: linear-gradient(160deg, #131c31 0%, #090e1c 100%);
+  border-color: #00F5D4;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.45);
   transform: translateY(-2px);
 }
 

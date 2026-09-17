@@ -3,5 +3,8 @@
 }
 
 .theme-bg {
-  background: var(--gradient);
+  background: linear-gradient(160deg, #0c101d 0%, #050811 100%);
+  border: 1.5px solid #00F5D4;
+  color: #00F5D4 !important;
+  box-shadow: 0 0 15px rgba(0, 245, 212, 0.35);
 }
