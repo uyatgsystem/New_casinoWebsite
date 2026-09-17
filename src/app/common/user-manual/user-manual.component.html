@@ -240,14 +240,14 @@
         <button
           *ngIf="currentIndex() < steps().length - 1"
           (click)="next()"
-          class="flex-1 md:flex-none px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] text-[#050811] font-bold text-sm hover:brightness-110 hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all"
+          class="flex-1 md:flex-none px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#00F5D4] text-[#050811] font-bold text-sm hover:bg-[#00d6b9] hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all"
         >
           Next
         </button>
         <button
           *ngIf="currentIndex() === steps().length - 1"
           (click)="close()"
-          class="flex-1 md:flex-none px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#FF9F1C] text-[#050811] font-bold text-sm hover:brightness-110 hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all"
+          class="flex-1 md:flex-none px-8 py-2.5 rounded-tl-[14px] rounded-tr-[4px] rounded-br-[14px] rounded-bl-[4px] bg-[#00F5D4] text-[#050811] font-bold text-sm hover:bg-[#00d6b9] hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all"
         >
           Finish
         </button>

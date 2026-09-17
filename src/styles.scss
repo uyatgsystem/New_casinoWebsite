@@ -350,17 +350,18 @@
 }
 
 .swal2-styled.swal2-confirm {
-  border: 1.5px solid #00F5D4 !important;
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%) !important;
-  color: #00F5D4 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 245, 212, 0.25) !important;
+  border: 1.5px solid rgb(0, 245, 212) !important;
+  background: rgb(0, 245, 212) !important;
+  color: #050811 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 20px rgba(0, 245, 212, 0.35) !important;
 }
 
 .swal2-styled.swal2-confirm:hover {
-  background: linear-gradient(160deg, #131c31 0%, #090e1c 100%) !important;
-  border-color: #00F5D4 !important;
-  box-shadow: 0 0 25px rgba(0, 245, 212, 0.5) !important;
-  color: #fff !important;
+  background: #00d6b9 !important;
+  border-color: #00d6b9 !important;
+  box-shadow: 0 0 25px rgba(0, 245, 212, 0.6) !important;
+  color: #050811 !important;
 }
 
 .swal2-close {
@@ -406,16 +407,16 @@
 
   .btn-primary {
     @apply py-2 px-10 font-extrabold rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] transition-all duration-300 hover:scale-105;
-    background: linear-gradient(160deg, #0c101d 0%, #050811 100%) !important;
-    border: 1.5px solid #00F5D4 !important;
-    color: #00F5D4 !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 245, 212, 0.25) !important;
+    background: rgb(0, 245, 212) !important;
+    border: 1.5px solid rgb(0, 245, 212) !important;
+    color: #050811 !important;
+    box-shadow: 0 4px 20px rgba(0, 245, 212, 0.35), 0 0 15px rgba(0, 245, 212, 0.25) !important;
 
     &:hover {
-      background: linear-gradient(160deg, #131c31 0%, #090e1c 100%) !important;
-      border-color: #00F5D4 !important;
-      color: #ffffff !important;
-      box-shadow: 0 0 25px rgba(0, 245, 212, 0.5) !important;
+      background: #00d6b9 !important;
+      border-color: #00d6b9 !important;
+      color: #050811 !important;
+      box-shadow: 0 0 25px rgba(0, 245, 212, 0.6) !important;
     }
   }
 
@@ -431,11 +432,11 @@
 }
 
 .--button {
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%) !important;
-  border: 1.5px solid #00F5D4 !important;
-  color: #00F5D4 !important;
-  font-weight: 700 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 245, 212, 0.25) !important;
+  background: rgb(0, 245, 212) !important;
+  border: 1.5px solid rgb(0, 245, 212) !important;
+  color: #050811 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 20px rgba(0, 245, 212, 0.35) !important;
 }
 
 body {
@@ -463,20 +464,20 @@ body {
 }
 
 .btn {
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%) !important;
-  border: 1.5px solid #00F5D4 !important;
-  color: #00F5D4 !important;
+  background: rgb(0, 245, 212) !important;
+  border: 1.5px solid rgb(0, 245, 212) !important;
+  color: #050811 !important;
   border-radius: 8px;
   padding: 7px;
-  font-weight: 700;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 245, 212, 0.25) !important;
+  font-weight: 800;
+  box-shadow: 0 4px 20px rgba(0, 245, 212, 0.35) !important;
   transition: all 0.25s ease;
 
   &:hover {
-    background: linear-gradient(160deg, #131c31 0%, #090e1c 100%) !important;
-    border-color: #00F5D4 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 25px rgba(0, 245, 212, 0.5) !important;
+    background: #00d6b9 !important;
+    border-color: #00d6b9 !important;
+    color: #050811 !important;
+    box-shadow: 0 0 25px rgba(0, 245, 212, 0.6) !important;
   }
 }
 
@@ -761,10 +762,10 @@ body {
 }
 
 /* ==========================================================================
-   UNIFIED DARK THEME: ALL BUTTONS & ACTIVE TABS ACROSS PROJECT
+   UNIFIED PRIMARY BUTTONS & ACTIVE TABS: rgb(0, 245, 212)
    ========================================================================== */
 
-/* Universal Dark Action Buttons */
+/* Universal Action Buttons */
 .btn-primary,
 .btn-gradient,
 .cred-btn-primary,
@@ -772,22 +773,47 @@ body {
 .cta-btn-primary,
 .prism-launch-pill,
 .download-btn,
+.login-btn,
+.casino-gold-btn,
+.kyc-popup-action,
+.mobile-deposit-action,
+.deposit-control,
+.games-view-all-btn,
+.play-btn,
+.theme-bg,
 button.btn,
-button[class*="from-[#00F5D4]"][class*="to-[#FF9F1C]"],
-button[class*="from-[#00F5D4]"][class*="to-[#10B981]"],
-button[class*="from-[#FEC866]"][class*="to-[#FE8006]"] {
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%) !important;
-  border: 1.5px solid #00F5D4 !important;
-  color: #00F5D4 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 245, 212, 0.25) !important;
+button.--button,
+button.deposit-control,
+button.logout-confirm,
+button[class*="from-[#00F5D4]"],
+button[class*="from-[#FEC866]"],
+button[class*="bg-custom-gradient"] {
+  background: rgb(0, 245, 212) !important;
+  border: 1.5px solid rgb(0, 245, 212) !important;
+  color: #050811 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 18px rgba(0, 245, 212, 0.35), 0 2px 8px rgba(0, 0, 0, 0.5) !important;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
 
+  span, b, strong, p, i, fa-icon {
+    color: #050811 !important;
+  }
+
+  svg {
+    stroke: #050811;
+  }
+
   &:hover {
-    background: linear-gradient(160deg, #131c31 0%, #090e1c 100%) !important;
-    border-color: #00F5D4 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 25px rgba(0, 245, 212, 0.5), 0 8px 25px rgba(0, 0, 0, 0.9) !important;
+    background: #00d6b9 !important;
+    border-color: #00d6b9 !important;
+    color: #050811 !important;
+    box-shadow: 0 0 26px rgba(0, 245, 212, 0.65), 0 6px 20px rgba(0, 0, 0, 0.7) !important;
     transform: translateY(-2px);
+    filter: brightness(1.05);
+
+    span, b, strong, p, i, fa-icon {
+      color: #050811 !important;
+    }
   }
 
   &:active {
@@ -795,14 +821,22 @@ button[class*="from-[#FEC866]"][class*="to-[#FE8006]"] {
   }
 }
 
-/* Universal Dark Active Tabs */
+/* Universal Active Tabs */
 .tab-button.active,
 .sidebar-tab.active,
 .account-nav button.active,
 button.active:not(.side-btn) {
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%) !important;
-  border: 1.5px solid #00F5D4 !important;
-  color: #00F5D4 !important;
-  box-shadow: 0 0 16px rgba(0, 245, 212, 0.35) !important;
+  background: rgb(0, 245, 212) !important;
+  border: 1.5px solid rgb(0, 245, 212) !important;
+  color: #050811 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 16px rgba(0, 245, 212, 0.45) !important;
+
+  * {
+    color: #050811 !important;
+  }
+  i {
+    color: #050811 !important;
+  }
 }
 

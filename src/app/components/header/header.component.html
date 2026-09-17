@@ -231,14 +231,14 @@
 
         <!-- Action Pod -->
         <div class="flex items-center gap-2">
-          <!-- Deposit (Dark theme with glowing neon accent) -->
+          <!-- Deposit -->
           <button
             type="button"
             (click)="RedirectToWallet()"
-            class="deposit-control relative z-10 bg-[#010306] border border-[#00F5D4] text-[#00F5D4] px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(0,245,212,0.25)] hover:bg-[#00F5D4] hover:text-black hover:shadow-[0_0_25px_rgba(0,245,212,0.6)] hover:scale-[1.02] transition-all flex items-center gap-1.5 cursor-pointer"
+            class="deposit-control relative z-10 bg-[#00F5D4] border border-[#00F5D4] text-[#050811] px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(0,245,212,0.4)] hover:bg-[#00d6b9] hover:shadow-[0_0_25px_rgba(0,245,212,0.7)] hover:scale-[1.02] transition-all flex items-center gap-1.5 cursor-pointer"
           >
-            <span class="text-sm font-bold leading-none">+</span>
-            {{ Deposit | translate }}
+            <span class="text-sm font-black leading-none text-[#050811]">+</span>
+            <span class="text-[#050811]">{{ Deposit | translate }}</span>
           </button>
 
           <!-- Withdraw -->

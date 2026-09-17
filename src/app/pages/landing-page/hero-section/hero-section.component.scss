@@ -130,15 +130,16 @@
 }
 
 .cta-btn-primary {
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%);
-  border: 1.5px solid rgba(0, 245, 212, 0.55);
-  color: #00f5d4;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 245, 212, 0.08) inset;
+  background: rgb(0, 245, 212);
+  border: 1.5px solid rgb(0, 245, 212);
+  color: #050811;
+  box-shadow: 0 10px 26px rgba(0, 245, 212, 0.35);
 
   &:hover {
-    border-color: #00f5d4;
-    color: #06b6d4;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55), 0 0 26px rgba(0, 245, 212, 0.4);
+    background: #00d6b9;
+    border-color: #00d6b9;
+    color: #050811;
+    box-shadow: 0 12px 30px rgba(0, 245, 212, 0.55);
   }
 }
 

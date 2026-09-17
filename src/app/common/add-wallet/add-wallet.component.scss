@@ -219,63 +219,60 @@
   gap: 13px;
 }
 
+/* Custom Scrollbars */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 245, 212, 0.4) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 245, 212, 0.35);
+    border-radius: 9999px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgba(0, 245, 212, 0.7);
+    }
+  }
+}
+
 @-webkit-keyframes animatetop {
   from {
-    transform: translateY(100px);
-    /* Start from below */
+    transform: translateY(30px) scale(0.98);
     opacity: 0;
   }
 
   to {
-    transform: translateY(0);
-    /* Move to final position */
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
 
 @keyframes animatetop {
   from {
-    transform: translateY(100px);
-    /* Start from below */
+    transform: translateY(30px) scale(0.98);
     opacity: 0;
   }
 
   to {
-    transform: translateY(0);
-    /* Move to final position */
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
 
-// @media (max-width: 800px) {
-//   .modal-overlay {
-//     // align-items: baseline; /* Aligns modal to the bottom */
-//     padding: 0px;
-//     transition: opacity 0.3s ease;
-//     z-index: 1;
-//     // opacity: 0;
-//   }
-
-//   .modal {
-//     max-width: 100% !important;
-//     position: fixed;
-//     // top: 240px; // Starting position
-//     bottom: 0px;
-//     min-height: 30dvh;
-//     transition: transform 0.5s ease-in-out, opacity 0.3s ease;
-//     -webkit-animation-name: animatetop;
-//     -webkit-animation-duration: 0.4s;
-//     animation-name: animatetop;
-//     animation-duration: 0.4s;
-
-//     // opacity: 0;
-
-//     // &.slide-up {
-//     //   // transform: translateY(0);
-//     //   // opacity: 1;
-//     // }
-//   }
-// }
+.modal {
+  -webkit-animation: animatetop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: animatetop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
 @media (max-width: 576px) {
   .Tb {
@@ -287,19 +284,17 @@
     gap: 13px;
   }
 
-  // The bottom nav is hidden while this modal is open (see app.component.html),
-  // so just keep the modal centered, scrollable, and clear of the notch/home bar.
   .modal {
-    max-height: 94vh !important;
-    max-height: 94dvh !important;
+    max-height: 90vh !important;
+    max-height: 90dvh !important;
     overflow-y: auto !important;
-    border-radius: 16px;
+    border-radius: 20px !important;
   }
 
   .modal-overlay {
     align-items: center !important;
-    padding-top: 6px !important;
-    padding-bottom: max(6px, env(safe-area-inset-bottom)) !important;
+    padding: 8px !important;
+    padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
   }
 }
 

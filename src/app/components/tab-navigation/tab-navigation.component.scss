@@ -44,13 +44,13 @@
 
 /* Active Tab BTN */
 .tab-button.active {
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%);
-  border: 1.5px solid #00F5D4;
-  color: #00F5D4;
+  background: rgb(0, 245, 212);
+  border: 1.5px solid rgb(0, 245, 212);
+  color: #050811;
   font-weight: 800;
   padding: 5px 15px;
   border-radius: 10px 0px 10px 0px;
-  box-shadow: 0 0 15px rgba(0, 245, 212, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 245, 212, 0.45);
 }
 
 /* First active tab (smooth left curve) */

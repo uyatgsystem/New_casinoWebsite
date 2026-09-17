@@ -379,17 +379,17 @@
 }
 
 .kyc-container .btn-primary {
-  border: 1.5px solid #00F5D4;
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%);
-  color: #00F5D4;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 245, 212, 0.25);
+  border: 1.5px solid rgb(0, 245, 212);
+  background: rgb(0, 245, 212);
+  color: #050811;
+  box-shadow: 0 4px 15px rgba(0, 245, 212, 0.35);
 }
 
 .kyc-container .btn-primary:hover:not(:disabled) {
-  background: linear-gradient(160deg, #131c31 0%, #090e1c 100%);
-  border-color: #00F5D4;
-  color: #ffffff;
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.45);
+  background: #00d6b9;
+  border-color: #00d6b9;
+  color: #050811;
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
   transform: translateY(-2px);
 }
 

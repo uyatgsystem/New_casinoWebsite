@@ -5,37 +5,65 @@
   margin: 0;
 }
 
+// ─── Custom Scrollbar ────────────────────────────────────────────────────────
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 245, 212, 0.4) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 245, 212, 0.35);
+    border-radius: 9999px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgba(0, 245, 212, 0.7);
+    }
+  }
+}
+
 // ─── Slide-up animation ──────────────────────────────────────────────────────
 @keyframes animatetop {
   from {
-    transform: translateY(100px);
+    transform: translateY(30px) scale(0.98);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
+}
+
+.modal {
+  animation: animatetop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 // ─── Mobile: bottom sheet behaviour ─────────────────────────────────────────
 @media (max-width: 640px) {
   .modal-overlay {
     align-items: center !important;
-    padding: 12px !important;
-    padding-bottom: max(24px, env(safe-area-inset-bottom) + 12px) !important;
+    padding: 10px !important;
+    padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
   }
 
   .modal {
     width: 100% !important;
     max-width: 100% !important;
-    max-height: calc(100dvh - 48px) !important;
+    max-height: calc(100dvh - 32px) !important;
     display: flex;
     flex-direction: column;
-    border-radius: 20px !important;
+    border-radius: 24px !important;
     position: relative;
     margin: 0 !important;
-    animation-name: animatetop;
-    animation-duration: 0.3s;
   }
 }
 

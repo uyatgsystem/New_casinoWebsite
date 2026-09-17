@@ -1,152 +1,57 @@
-<!-- Custom Main Tabs with Luxury Design -->
-<div
-  *ngIf="isToken && isDashboardPage"
-  class="flex items-center gap-2 sm:gap-3 px-4 mb-6"
->
-  <button
-    (click)="selectedMainTab = 'Games'; onTabChange(displayMainTabs[0])"
-    class="px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl font-black text-[10px] sm:text-xs uppercase tracking-normal sm:tracking-wider transition-all duration-200 cursor-pointer shadow whitespace-nowrap"
-    [ngClass]="
-      selectedMainTab === 'Games'
-        ? 'bg-[linear-gradient(135deg,#00F5D4_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-bold shadow-[0_0_20px_rgba(0,245,212,0.4)] scale-105'
-        : 'bg-black/60 text-white border border-white/10 hover:border-[#00F5D4]/60'
-    "
-  >
-    Elite Games
-  </button>
-  <button
-    (click)="selectedMainTab = 'Instant Games'; onTabChange(displayMainTabs[1])"
-    class="px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl font-black text-[10px] sm:text-xs uppercase tracking-normal sm:tracking-wider transition-all duration-200 cursor-pointer shadow whitespace-nowrap"
-    [ngClass]="
-      selectedMainTab === 'Instant Games'
-        ? 'bg-[linear-gradient(135deg,#00F5D4_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-bold shadow-[0_0_20px_rgba(0,245,212,0.4)] scale-105'
-        : 'bg-black/60 text-white border border-white/10 hover:border-[#00F5D4]/60'
-    "
-  >
-    Quick Win Casino
-  </button>
-</div>
-
-<!-- Elite Games Title & Search Box in One Single Row -->
-<div
-  *ngIf="isToken && isDashboardPage && AsianLocalBlock"
-  class="flex flex-row items-center justify-between gap-2 w-full px-4 mb-4"
->
-  <div class="flex items-center gap-2 shrink-0">
-    <div
-      class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#0c101d] to-[#050811] border border-[#00F5D4]/40 flex items-center justify-center shadow-lg shrink-0"
-    >
-      <img
-        src="https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png"
-        alt="Elite Games"
-        class="w-4 h-4 sm:w-5 sm:h-5 object-contain"
-      />
-    </div>
-    <span
-      class="text-white font-black text-xs sm:text-base md:text-lg tracking-wider uppercase bg-gradient-to-r from-white via-cyan-200 to-[#00F5D4] bg-clip-text text-transparent drop-shadow-md whitespace-nowrap"
-    >
-      Elite Games
-    </span>
-  </div>
-
-  <div class="flex items-center w-[150px] sm:w-[220px] md:max-w-xs shrink-0">
-    <div class="relative w-full">
-      <input
-        type="text"
-        placeholder="Search games..."
-        [(ngModel)]="searchTerm"
-        (input)="onSearch()"
-        class="w-full bg-[#0c101d]/90 backdrop-blur-md text-white border border-[#00F5D4]/40 text-xs sm:text-sm rounded-2xl py-2 px-3 pl-8 focus:outline-none focus:border-[#00F5D4] focus:ring-2 focus:ring-[#00F5D4]/30 transition shadow-inner placeholder-gray-400"
-      />
-      <svg
-        class="w-3.5 h-3.5 text-[#00F5D4] absolute left-2.5 top-1/2 transform -translate-y-1/2"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2.2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
-    </div>
-  </div>
-</div>
-
-<!-- ================= NEW NEO-BRUTALIST ARCADE CARDS SECTION ================= -->
+<!-- ================= EXACT IMAGE STYLE CARDS SECTION ================= -->
 <div
   id="games-scroll-id"
   *ngIf="isToken && isDashboardPage && AsianLocalBlock"
-  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 sm:gap-7 mx-3 sm:mx-4 px-4 py-8 rounded-[32px] bg-[#050810]/90 border border-[#00F5D4]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mx-3 sm:mx-4 px-4 py-8 rounded-[32px] bg-[#050810]/90 border border-[#00F5D4]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
   [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''"
 >
   <ng-container *ngFor="let game of displayedGames">
     <div
       (click)="isMobile() ? OnPlayNow(game) : null"
-      class="arcade-card group"
-      [ngStyle]="{ '--arcade-tint': game.bgclr || '#00F5D4' }"
+      class="clean-game-card group"
+      [ngStyle]="{ backgroundColor: game.bgclr || '#10b981' }"
     >
-      <!-- Floating Badges Layer -->
+      <!-- Top Badges Layer (Bonus & HOT Tags) -->
       <div
         class="absolute top-3 inset-x-3 z-30 flex items-center justify-between pointer-events-none gap-1"
       >
-        <span
-          *ngIf="game?.bonus"
-          class="bg-[#00F5D4] text-slate-950 font-black text-[8px] sm:text-[10px] px-2.5 py-0.5 rounded shadow-[2px_2px_0px_#030712] uppercase tracking-tighter border border-slate-950"
-        >
-          🔥 {{ game?.bonus }}%
-        </span>
-        <span *ngIf="!game?.bonus"></span>
-        <span
-          *ngIf="game.isHot"
-          class="bg-orange-500 text-white font-black text-[8px] sm:text-[10px] px-2.5 py-0.5 rounded shadow-[2px_2px_0px_#030712] uppercase tracking-tighter ml-auto animate-pulse border border-slate-950"
-        >
-          ⚡ HOT
-        </span>
+        <div class="flex items-center gap-1">
+          <span
+            *ngIf="game?.bonus"
+            class="bg-black/70 text-amber-300 font-black text-[9px] px-2 py-0.5 rounded shadow uppercase tracking-tighter border border-amber-400/30"
+          >
+            🔥 {{ game?.bonus }}%
+          </span>
+          <span
+            *ngIf="game.isHot"
+            class="bg-orange-500 text-white font-black text-[9px] px-2 py-0.5 rounded shadow uppercase tracking-tighter animate-pulse"
+          >
+            ⚡ HOT
+          </span>
+        </div>
       </div>
 
       <!-- Artwork Display Container -->
-      <div class="arcade-media-wrap">
-        <img [src]="game.image" [alt]="game.name" class="arcade-game-artwork" />
+      <div class="clean-media-wrap">
+        <img [src]="game.image" [alt]="game.name" class="clean-game-artwork" />
       </div>
 
-      <!-- Hover Action Hub -->
+      <!-- Hover Action Curtain -->
       <div
-        class="arcade-hover-curtain"
+        class="clean-hover-curtain"
         *ngIf="!isMobile() && game.buttonText != ''"
       >
-        <button class="arcade-launch-btn" (click)="OnPlayNow(game)">
+        <button class="clean-launch-btn" (click)="OnPlayNow(game)">
           <span>{{ isToken ? game.buttonText : "PLAY NOW" }}</span>
           <i class="fas fa-play text-[8px]"></i>
         </button>
       </div>
 
-      <!-- Bottom Arcade Info Tray -->
-      <div class="arcade-footer-tray">
-        <div class="flex items-center gap-2 overflow-hidden">
-          <div
-            class="arcade-status-indicator"
-            [ngStyle]="{ background: game.bgclr || '#00F5D4' }"
-          ></div>
-          <span
-            class="arcade-game-title"
-            [ngStyle]="{ color: game.bgclr || '#00F5D4' }"
-          >
-            {{ game.name }}
-          </span>
-        </div>
-        <a
-          [ngStyle]="{ color: game.bgclr || '#00F5D4' }"
-          [href]="game.downloadLink"
-          target="_blank"
-          (click)="$event.stopPropagation()"
-          class="arcade-dl-action"
-          title="Download File"
-        >
-          <i class="fas fa-download text-[10px]"></i>
-        </a>
+      <!-- Bottom Centered Game Title (No Download Icon) -->
+      <div class="clean-footer-info">
+        <h3 class="clean-game-title">
+          {{ game.name }}
+        </h3>
       </div>
     </div>
   </ng-container>
@@ -248,50 +153,31 @@
 
   <div
     *ngIf="isToken && isDashboardPage"
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 sm:gap-7 mx-auto px-4 py-8 rounded-[32px] bg-[#050810]/90 border border-[#00F5D4]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mx-auto px-4 py-8 rounded-[32px] bg-[#050810]/90 border border-[#00F5D4]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
     [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''"
   >
     <ng-container *ngFor="let game of quickGames">
       <div
         (click)="redirectTo(game.redirectLink)"
-        class="arcade-card group"
-        [ngStyle]="{ '--arcade-tint': game.bgColor || '#00F5D4' }"
+        class="clean-game-card group"
+        [ngStyle]="{ backgroundColor: game.bgColor || '#10b981' }"
       >
-        <div class="arcade-media-wrap">
+        <div class="clean-media-wrap">
           <img
             [src]="game.image"
             [alt]="game.name"
-            class="arcade-game-artwork"
-            [class.arcade-game-artwork--boost]="game.name !== 'Spin'"
+            class="clean-game-artwork"
           />
         </div>
 
-        <div class="arcade-hover-curtain" *ngIf="!isMobile()">
-          <span class="arcade-launch-btn">PLAY NOW</span>
+        <div class="clean-hover-curtain" *ngIf="!isMobile()">
+          <span class="clean-launch-btn">PLAY NOW</span>
         </div>
 
-        <div class="arcade-footer-tray">
-          <div class="flex items-center gap-2 overflow-hidden">
-            <div
-              class="arcade-status-indicator"
-              [ngStyle]="{ background: game.bgColor || '#00F5D4' }"
-            ></div>
-            <span
-              class="arcade-game-title"
-              [ngStyle]="{ color: game.bgColor || '#00F5D4' }"
-            >
-              {{ game.name }}
-            </span>
-          </div>
-          <a
-            [ngStyle]="{ color: game.bgColor || '#00F5D4' }"
-            [routerLink]="game.downloadLink"
-            target="_blank"
-            (click)="$event.stopPropagation()"
-            class="arcade-dl-action"
-          >
-            <i class="fas fa-download text-[10px]"></i>
-          </a>
+        <div class="clean-footer-info">
+          <h3 class="clean-game-title">
+            {{ game.name }}
+          </h3>
         </div>
       </div>
     </ng-container>

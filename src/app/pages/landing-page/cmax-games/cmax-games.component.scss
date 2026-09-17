@@ -81,18 +81,19 @@
   overflow: hidden;
   padding: 0.6rem 1.5rem;
   border-radius: 999px;
-  background: linear-gradient(160deg, #0c101d 0%, #050811 100%);
-  border: 1.5px solid rgba(0, 245, 212, 0.5);
-  color: #00f5d4;
-  font-weight: 700;
+  background: rgb(0, 245, 212);
+  border: 1.5px solid rgb(0, 245, 212);
+  color: #050811;
+  font-weight: 800;
   font-size: 0.85rem;
   cursor: pointer;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    border-color: #00f5d4;
-    color: #06b6d4;
-    box-shadow: 0 0 20px rgba(0, 245, 212, 0.35);
+    background: #00d6b9;
+    border-color: #00d6b9;
+    color: #050811;
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
     transform: translateY(-1px);
   }
 }
@@ -219,16 +220,16 @@
   .play-btn {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(160deg, #0c101d 0%, #050811 100%);
-    color: #00f5d4;
+    background: rgb(0, 245, 212);
+    color: #050811;
     font-weight: 800;
     text-transform: uppercase;
     font-size: 9px;
     letter-spacing: 0.8px;
     padding: 6px 14px;
     border-radius: 999px;
-    border: 1.5px solid rgba(0, 245, 212, 0.6);
-    box-shadow: 0 0 15px rgba(0, 245, 212, 0.35);
+    border: 1.5px solid rgb(0, 245, 212);
+    box-shadow: 0 0 15px rgba(0, 245, 212, 0.4);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 
@@ -239,8 +240,10 @@
 
     &:hover {
       transform: scale(1.08);
-      color: #06b6d4;
-      box-shadow: 0 0 22px rgba(0, 245, 212, 0.55);
+      background: #00d6b9;
+      border-color: #00d6b9;
+      color: #050811;
+      box-shadow: 0 0 22px rgba(0, 245, 212, 0.65);
     }
   }
 }
