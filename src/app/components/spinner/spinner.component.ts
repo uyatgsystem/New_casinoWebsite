@@ -37,7 +37,7 @@ import { SafeHtml } from '@angular/platform-browser';
   standalone: true,
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.scss'],
-  imports: [CommonModule, FontAwesomeModule, NgIcon],
+  imports: [CommonModule, FontAwesomeModule],
   viewProviders: [
     provideIcons({
       heroUsers,

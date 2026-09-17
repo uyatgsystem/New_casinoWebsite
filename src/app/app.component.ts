@@ -91,9 +91,8 @@ const META_PIXEL_CONFIG = {
     // ForgotPasswordComponent,
     // NewPasswordComponent,
     FooterComponent,
-    UserManualComponent,
-    FaIconComponent,
-  ],
+    UserManualComponent
+],
 
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

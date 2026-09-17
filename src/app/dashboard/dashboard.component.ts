@@ -12,7 +12,7 @@ import { SidebarService } from '../Services/sidebar-service.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SideBarComponent, CommonModule, RouterModule, FooterComponent],
+  imports: [SideBarComponent, CommonModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

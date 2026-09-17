@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { GameNewComponent } from './game-new/game-new.component';
 @Component({
   selector: 'app-treasurepick',
-  imports: [CommonModule, TreasureGameStatingComponent, GameNewComponent],
+  imports: [CommonModule, GameNewComponent],
   templateUrl: './treasurepick.component.html',
   standalone: true,
   styleUrls: ['./treasurepick.component.scss']

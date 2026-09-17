@@ -35,11 +35,9 @@ interface GameRound {
   imports: [
     CommonModule,
     FormsModule,
-    HistoryBarComponent,
     HistoryModalComponent,
-    LoadingPageComponent,
-    ToastrModule,
-  ],
+    ToastrModule
+],
   templateUrl: './avaitar.component.html',
   styleUrl: './avaitar.component.scss',
 })

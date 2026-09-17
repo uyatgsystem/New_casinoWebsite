@@ -1,4 +1,3 @@
-<! ================= MOBILE HEADER (< 800px) ================= -->
 <header
   *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()"
   class="sticky z-[997] w-full top-0 h-[64px] bg-[#010306]/95 backdrop-blur-2xl border-b border-[#00F5D4]/50 shadow-[0_4px_25px_rgba(0,0,0,0.9)] px-3 flex items-center justify-between"
@@ -41,7 +40,7 @@
     <!-- Wallet -->
     <button
       type="button"
-      class="flex items-center bg-[#00F5D4]/15 border border-[#00F5D4] rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(0,245,212,0.25)] hover:bg-[#00F5D4]/25 transition"
+      class="flex items-center bg-[#010306] border border-[#00F5D4]/60 rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(0,245,212,0.15)] hover:border-[#00F5D4] hover:bg-[#00F5D4]/10 transition"
       (click)="openWalletHistory()"
     >
       <span class="text-white font-mono font-bold text-[10px]"
@@ -49,10 +48,10 @@
       >
     </button>
 
-    <!-- Bonus Wallet (Emerald Green Touch) -->
+    <!-- Bonus Wallet -->
     <button
       type="button"
-      class="flex items-center bg-[#10B981]/15 border border-[#10B981] rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(16,185,129,0.25)] hover:bg-[#10B981]/25 transition"
+      class="flex items-center bg-[#010306] border border-[#10B981]/60 rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:border-[#10B981] hover:bg-[#10B981]/10 transition"
       (click)="openBonusWallet()"
     >
       <span class="text-[#10B981] font-mono font-bold text-[10px]"
@@ -172,17 +171,17 @@
       <div class="flex items-center gap-3 relative z-30">
         <!-- Dual Wallet Pod -->
         <div
-          class="flex items-center bg-black/95 p-1 rounded-2xl border border-[#00F5D4]/50 shadow-[inset_0_2px_10px_rgba(0,0,0,0.9)] gap-1.5"
+          class="flex items-center bg-[#010306] p-1 rounded-2xl border border-[#00F5D4]/50 shadow-[inset_0_2px_10px_rgba(0,0,0,0.9)] gap-1.5"
         >
           <!-- Main Wallet -->
           <button
             type="button"
             (click)="openWalletHistory()"
-            class="wallet-balance-control relative flex items-center bg-gradient-to-r from-[#00F5D4]/15 to-black rounded-xl overflow-hidden border border-[#00F5D4] h-10 px-4 shadow-[0_0_15px_rgba(0,245,212,0.3)] hover:shadow-[0_0_25px_rgba(0,245,212,0.5)] transition cursor-pointer group"
+            class="wallet-balance-control relative flex items-center bg-[#010306] rounded-xl overflow-hidden border border-[#00F5D4]/60 h-10 px-4 shadow-[0_0_10px_rgba(0,245,212,0.15)] hover:border-[#00F5D4] hover:bg-[#00F5D4]/10 transition cursor-pointer group"
           >
             <div class="flex items-center gap-2.5 relative z-10">
               <div
-                class="w-6 h-6 rounded-lg bg-[#00F5D4]/25 border border-[#00F5D4]/60 flex items-center justify-center group-hover:scale-110 transition"
+                class="w-6 h-6 rounded-lg bg-[#00F5D4]/15 border border-[#00F5D4]/40 flex items-center justify-center group-hover:scale-110 transition"
               >
                 <img
                   src="https://cmaxv2images2.pages.dev/assets/icons/coins.png"
@@ -204,15 +203,15 @@
             </div>
           </button>
 
-          <!-- Bonus Wallet (Dark Emerald Green Accent) -->
+          <!-- Bonus Wallet -->
           <button
             type="button"
-            class="relative flex items-center bg-gradient-to-r from-[#10B981]/15 to-black rounded-xl overflow-hidden border border-[#10B981] h-10 px-4 gap-2.5 shadow-[0_0_15px_rgba(16,185,129,0.3)] cursor-pointer hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] transition group"
+            class="relative flex items-center bg-[#010306] rounded-xl overflow-hidden border border-[#10B981]/60 h-10 px-4 gap-2.5 shadow-[0_0_10px_rgba(16,185,129,0.15)] cursor-pointer hover:border-[#10B981] hover:bg-[#10B981]/10 transition group"
             (click)="openBonusWallet()"
             title="Bonus Wallet"
           >
             <div
-              class="w-6 h-6 rounded-lg bg-[#10B981]/25 border border-[#10B981]/60 flex items-center justify-center group-hover:scale-110 transition"
+              class="w-6 h-6 rounded-lg bg-[#10B981]/15 border border-[#10B981]/40 flex items-center justify-center group-hover:scale-110 transition"
             >
               <i class="fas fa-gift text-[#10B981] text-[10px] shrink-0"></i>
             </div>
@@ -232,20 +231,21 @@
 
         <!-- Action Pod -->
         <div class="flex items-center gap-2">
-          <!-- Deposit -->
+          <!-- Deposit (Dark theme with glowing neon accent) -->
           <button
             type="button"
             (click)="RedirectToWallet()"
-            class="deposit-control relative z-10 bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#10B981] text-black px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(0,245,212,0.45)] hover:shadow-[0_0_30px_rgba(0,245,212,0.7)] hover:scale-[1.02] transition-all flex items-center gap-1 cursor-pointer"
+            class="deposit-control relative z-10 bg-[#010306] border border-[#00F5D4] text-[#00F5D4] px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(0,245,212,0.25)] hover:bg-[#00F5D4] hover:text-black hover:shadow-[0_0_25px_rgba(0,245,212,0.6)] hover:scale-[1.02] transition-all flex items-center gap-1.5 cursor-pointer"
           >
-            <span>+</span> {{ Deposit | translate }}
+            <span class="text-sm font-bold leading-none">+</span>
+            {{ Deposit | translate }}
           </button>
 
           <!-- Withdraw -->
           <button
             type="button"
             (click)="openWithdrawBalanceModal()"
-            class="relative z-10 bg-gradient-to-r from-black via-neutral-900 to-black border border-[#00F5D4] text-white hover:text-[#00F5D4] px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(0,245,212,0.2)] hover:border-[#00F5D4] hover:bg-[#00F5D4]/20 transition-all cursor-pointer flex items-center"
+            class="relative z-10 bg-[#010306] border border-white/20 text-gray-300 hover:text-white px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_10px_rgba(0,0,0,0.8)] hover:border-[#00F5D4]/60 hover:bg-[#00F5D4]/10 transition-all cursor-pointer flex items-center"
           >
             {{ Withdraw | translate }}
           </button>
@@ -667,166 +667,3 @@
     (onConfirm)="deleteaccount($event)"
   ></app-deleteaccountmodel>
 </header>
-
-<!-- ================= WITHDRAW MODAL POPUP ================= -->
-<div
-  *ngIf="showwithdrawModal"
-  class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-xl p-4 overflow-y-auto"
->
-  <div
-    class="bg-[#010306] border border-[#00F5D4]/60 rounded-[32px] w-full max-w-2xl p-6 md:p-8 relative shadow-[0_30px_80px_rgba(0,0,0,0.95)] text-white my-8 backdrop-blur-2xl"
-  >
-    <div
-      class="absolute inset-0 pointer-events-none opacity-10 rounded-[32px]"
-      [innerHTML]="grainBackdrop"
-    ></div>
-
-    <div class="flex items-center justify-between mb-6 relative z-10">
-      <div class="flex items-center gap-3">
-        <div
-          class="w-10 h-10 rounded-xl bg-[#00F5D4]/15 border border-[#00F5D4]/60 flex items-center justify-center text-[#00F5D4] font-bold"
-        >
-          💸
-        </div>
-        <h2 class="text-xl font-black text-white tracking-wide">
-          Withdraw Balance
-        </h2>
-      </div>
-      <button
-        (click)="hideWithdrawModal()"
-        class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition cursor-pointer"
-      >
-        ✕
-      </button>
-    </div>
-
-    <div class="mb-6 relative z-10">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-1.5 h-3.5 bg-[#00F5D4] rounded-full"></span>
-        <span
-          class="text-xs font-extrabold text-gray-300 uppercase tracking-widest"
-          >Select Payment Method</span
-        >
-      </div>
-
-      <div
-        class="grid grid-cols-2 min-[480px]:grid-cols-3 sm:grid-cols-4 gap-3"
-      >
-        <div
-          *ngFor="let method of withdrawPaymentMethods"
-          (click)="method.isActive && (selectedAccountType = method.name)"
-          class="relative flex items-center gap-3 p-3.5 rounded-2xl border transition cursor-pointer overflow-hidden group min-w-0"
-          [ngClass]="{
-            'bg-[#00F5D4]/20 border-[#00F5D4] shadow-[0_0_20px_rgba(0,245,212,0.35)]':
-              selectedAccountType === method.name,
-            'bg-black/60 border-white/15 hover:border-[#00F5D4]/60':
-              selectedAccountType !== method.name && method.isActive,
-            'opacity-50 cursor-not-allowed bg-white/[0.02] border-white/5':
-              !method.isActive,
-          }"
-        >
-          <div
-            class="w-8 h-8 rounded-lg bg-black/80 border border-white/10 flex items-center justify-center p-1.5 shrink-0"
-          >
-            <img
-              [src]="method.bg_image"
-              alt=""
-              class="w-full h-full object-contain"
-            />
-          </div>
-          <div class="flex flex-col overflow-hidden">
-            <span class="text-xs font-black text-white truncate">{{
-              method.name
-            }}</span>
-          </div>
-
-          <div
-            *ngIf="!method.isActive"
-            class="absolute inset-0 bg-black/75 backdrop-blur-[2px] flex items-center justify-center"
-          >
-            <span
-              class="text-[9px] font-black uppercase tracking-widest text-gray-300 border border-white/20 px-2 py-0.5 rounded-full whitespace-nowrap bg-black/60"
-            >
-              Coming Soon
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="bg-black/80 border border-[#00F5D4]/40 rounded-2xl p-5 space-y-4 shadow-inner relative z-10 backdrop-blur-md"
-    >
-      <div>
-        <label
-          class="text-[11px] font-extrabold text-[#00F5D4] uppercase tracking-widest mb-1.5 block"
-          >Withdraw Amount</label
-        >
-        <input
-          type="text"
-          [(ngModel)]="amouttowithdraw"
-          (keypress)="blockInvalidInput($event)"
-          (input)="limitToBalance($event)"
-          placeholder="Enter amount"
-          class="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00F5D4] font-mono transition shadow-inner"
-        />
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label
-            class="text-[11px] font-extrabold text-[#00F5D4] uppercase tracking-widest mb-1.5 block"
-            >Account Title</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="accountInfo"
-            placeholder="Enter account title"
-            class="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00F5D4] transition shadow-inner"
-          />
-        </div>
-        <div>
-          <label
-            class="text-[11px] font-extrabold text-[#00F5D4] uppercase tracking-widest mb-1.5 block"
-            >Account Number / Tag</label
-          >
-          <input
-            type="text"
-            [(ngModel)]="Customertag"
-            placeholder="Enter tag or number"
-            class="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00F5D4] transition shadow-inner"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label
-          class="text-[11px] font-extrabold text-[#00F5D4] uppercase tracking-widest mb-1.5 block"
-          >Tip Amount (Optional)</label
-        >
-        <input
-          type="text"
-          [(ngModel)]="tipAmount"
-          (keypress)="blockInvalidInput($event)"
-          placeholder="Enter tip amount"
-          class="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-[#00F5D4] font-mono transition shadow-inner"
-        />
-      </div>
-    </div>
-
-    <div class="flex items-center gap-4 mt-6 relative z-10">
-      <button
-        (click)="hideWithdrawModal()"
-        class="w-1/3 bg-black/80 border border-white/20 text-white font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-widest hover:bg-white/10 transition cursor-pointer shadow-md"
-      >
-        Cancel
-      </button>
-      <button
-        (click)="createWithdrawRequest()"
-        class="w-2/3 bg-gradient-to-r from-[#00F5D4] via-[#06B6D4] to-[#10B981] text-black font-black py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-[0_0_25px_rgba(0,245,212,0.45)] hover:shadow-[0_0_35px_rgba(0,245,212,0.7)] hover:brightness-110 transition cursor-pointer"
-      >
-        Confirm Withdraw
-      </button>
-    </div>
-  </div>
-</div>

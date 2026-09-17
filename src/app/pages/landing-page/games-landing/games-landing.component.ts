@@ -60,11 +60,10 @@ import { LocationService } from '../../../Services/ip-check.service';
     RouterModule,
     SectrechCardListComponent,
     CmaxGamesComponent,
-    OnBoardingStepsComponent,
     SpinComponent,
     AboutUsComponent,
-    SpinnerComponent,
-  ],
+    SpinnerComponent
+],
   templateUrl: './games-landing.component.html',
   styleUrl: './games-landing.component.scss',
 })

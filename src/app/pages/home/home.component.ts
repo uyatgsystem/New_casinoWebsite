@@ -39,11 +39,9 @@ import { SectrechCardListComponent } from "../../dashboard/Sectrech Cards/sectre
     FontAwesomeModule,
     FormsModule,
     NgxSkeletonLoaderModule,
-    FeaturedCardsComponent,
     GamesLandingComponent,
-    CasinoLandingComponent,
-    // SectrechCardListComponent
-  ],
+    CasinoLandingComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

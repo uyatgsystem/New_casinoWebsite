@@ -28,12 +28,11 @@ import { SafeHtml } from '@angular/platform-browser';
   imports: [
     CommonModule,
     FormsModule,
-    RouterLink,
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    FontAwesomeModule,
-  ],
+    FontAwesomeModule
+],
   templateUrl: './lottery-history.component.html',
   styleUrls: ['./lottery-history.component.scss'],
 })
