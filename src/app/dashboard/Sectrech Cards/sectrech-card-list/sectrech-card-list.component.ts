@@ -291,9 +291,31 @@ export class SectrechCardListComponent implements OnInit {
     iconImage: '/scratchcard/scratch1.png',
   };
 
+  activeCategory: string = 'all';
+
+  setCategory(category: string): void {
+    this.activeCategory = category;
+  }
+
+  get displayedCards(): any[] {
+    if (this.activeCategory === 'starter') {
+      return this.scratchCards.filter(c => c.ticketprice <= 10);
+    }
+    if (this.activeCategory === 'high') {
+      return this.scratchCards.filter(c => c.ticketprice > 10 && c.ticketprice <= 20);
+    }
+    if (this.activeCategory === 'mega') {
+      return this.scratchCards.filter(c => c.ticketprice >= 25);
+    }
+    return this.scratchCards;
+  }
+
   scratchCards = [
     {
       ticketprice: 5,
+      tier: 'STARTER VAULT',
+      code: 'VCHR-0199',
+      odds: '1 in 2.8',
       title: 'Diamond Rush',
       icon: 'https://cmaxv2images2.pages.dev/assets/icons/daimond.png',
       bgImage: 'https://cmax.pages.dev/assets/scratchcard/scratch-card.png',
@@ -304,6 +326,9 @@ export class SectrechCardListComponent implements OnInit {
     },
     {
       ticketprice: 10,
+      tier: 'GOLD MATRIX',
+      code: 'VCHR-0284',
+      odds: '1 in 3.1',
       title: 'Gold Mania',
       icon: 'https://cmaxv2images2.pages.dev/assets/icons/fire.png',
       bgImage: 'https://cmax.pages.dev/assets/scratchcard/scratch-card.png',
@@ -314,6 +339,9 @@ export class SectrechCardListComponent implements OnInit {
     },
     {
       ticketprice: 15,
+      tier: 'ROYAL BOUNTY',
+      code: 'VCHR-0371',
+      odds: '1 in 3.4',
       title: 'Treasure Hunt',
       icon: 'https://cmaxv2images2.pages.dev/assets/icons/crown.png',
       bgImage: 'https://cmax.pages.dev/assets/scratchcard/scratch-card.png',
@@ -324,6 +352,9 @@ export class SectrechCardListComponent implements OnInit {
     },
     {
       ticketprice: 20,
+      tier: 'CYBER DIAMOND',
+      code: 'VCHR-0465',
+      odds: '1 in 3.6',
       title: 'Diamond Rush',
       icon: 'https://cmaxv2images2.pages.dev/assets/icons/daimond.png',
       bgImage: 'https://cmax.pages.dev/assets/scratchcard/scratch-card.png',
@@ -334,6 +365,9 @@ export class SectrechCardListComponent implements OnInit {
     },
     {
       ticketprice: 25,
+      tier: 'FIRE STORM',
+      code: 'VCHR-0518',
+      odds: '1 in 3.8',
       title: 'Gold Mania',
       icon: 'https://cmaxv2images2.pages.dev/assets/icons/fire.png',
       bgImage: 'https://cmax.pages.dev/assets/scratchcard/scratch-card.png',
@@ -344,6 +378,9 @@ export class SectrechCardListComponent implements OnInit {
     },
     {
       ticketprice: 30,
+      tier: 'OMEGA JACKPOT',
+      code: 'VCHR-0601',
+      odds: '1 in 4.0',
       title: 'Treasure Hunt',
       icon: 'https://cmaxv2images2.pages.dev/assets/icons/crown.png',
       bgImage: 'https://cmax.pages.dev/assets/scratchcard/scratch-card.png',

@@ -95,19 +95,6 @@
         </svg>
       </ng-container>
     </button>
-
-    <app-logoutmodel
-      [isOpen]="isLogoutModalOpen"
-      [profileImage]="profileImage"
-      (onCancel)="closeLogoutModal()"
-      (onConfirm)="logout()"
-    ></app-logoutmodel>
-    <app-deleteaccountmodel
-      [isOpen]="isdeleteaccountmodelopen"
-      [profileImage]="profileImage"
-      (onCancel)="closedeleteaccountmodal()"
-      (onConfirm)="deleteaccount($event)"
-    ></app-deleteaccountmodel>
   </div>
 </header>
 
@@ -653,17 +640,17 @@
       </div>
     </div>
   </div>
-
-  <app-logoutmodel
-    [isOpen]="isLogoutModalOpen"
-    [profileImage]="profileImage"
-    (onCancel)="closeLogoutModal()"
-    (onConfirm)="logout()"
-  ></app-logoutmodel>
-  <app-deleteaccountmodel
-    [isOpen]="isdeleteaccountmodelopen"
-    [profileImage]="profileImage"
-    (onCancel)="closedeleteaccountmodal()"
-    (onConfirm)="deleteaccount($event)"
-  ></app-deleteaccountmodel>
 </header>
+
+<app-logoutmodel
+  [isOpen]="isLogoutModalOpen"
+  [profileImage]="profileImage"
+  (onCancel)="closeLogoutModal()"
+  (onConfirm)="logout()"
+></app-logoutmodel>
+<app-deleteaccountmodel
+  [isOpen]="isdeleteaccountmodelopen"
+  [profileImage]="profileImage"
+  (onCancel)="closedeleteaccountmodal()"
+  (onConfirm)="deleteaccount($event)"
+></app-deleteaccountmodel>
