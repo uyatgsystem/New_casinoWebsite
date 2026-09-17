@@ -252,7 +252,7 @@
   padding: 34px 30px 28px !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
-  background: radial-gradient(circle at 50% -20%, rgba(44, 217, 125, .12), transparent 50%), #070a12 !important;
+  background: radial-gradient(circle at 50% -20%, rgba(44, 217, 125, .12), transparent 50%), #292d2e !important;
   border: 1px solid rgba(44, 217, 125, .35) !important;
   border-left: none !important;
   border-right: none !important;
@@ -387,21 +387,21 @@
 
 :root {
   --font-family: "Libre Franklin", "Helvetica Neue";
-  --nav-Background: #050811;
-  --ground: rgba(5, 8, 17, 0.95);
+  --nav-Background: #292d2e;
+  --ground: rgba(41, 45, 46, 0.95);
   --text-primary: #2CD97D;
   --text-black: #050811;
   --text-light: #e4e4e4;
-  --background: #050811;
+  --background: #232626;
   --gradient: linear-gradient(135deg, #2CD97D 0%, #FF9F1C 100%);
   --active: linear-gradient(90deg, rgba(44, 217, 125, 1) 0%, rgba(6, 182, 212, 1) 100%);
   --active-hover: linear-gradient(90deg, rgba(6, 182, 212, 1) 0%, rgba(44, 217, 125, 1) 100%);
-  --button-back: #0c101d;
-  --spinner-back: rgba(12, 16, 27, 0.92);
-  --darkGradient: linear-gradient(180deg, #0a1120 0%, #050811 100%);
-  --card-back: #0c101d;
-  --landing-back: #050811;
-  --landing-card: rgb(12, 16, 27);
+  --button-back: #292d2e;
+  --spinner-back: rgba(41, 45, 46, 0.95);
+  --darkGradient: linear-gradient(180deg, #292d2e 0%, #232626 100%);
+  --card-back: #292d2e;
+  --landing-back: #232626;
+  --landing-card: #292d2e;
   --main-color2: #2CD97D;
   --card-back2: #06b6d4;
 
@@ -456,7 +456,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #020304 !important;
+  background-color: #232626 !important;
 }
 
 .content-wrap {
@@ -839,4 +839,18 @@ button.active:not(.side-btn) {
     color: #050811 !important;
   }
 }
+
+/* Suppress default ngx-spinner library animations so only custom loader chassis shows */
+.ngx-spinner-overlay .la-ball-clip-rotate-multiple,
+.ngx-spinner-overlay .la-ball-clip-rotate,
+.ngx-spinner-overlay .la-ball-scale-multiple,
+.ngx-spinner-overlay .la-3x,
+.ngx-spinner-overlay .la-2x,
+.ngx-spinner-overlay .la-1x,
+.ngx-spinner-overlay > div:not(.custom-loader-chassis) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 

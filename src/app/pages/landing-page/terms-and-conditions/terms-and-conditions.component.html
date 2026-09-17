@@ -1,143 +1,190 @@
-<div class="terms-container">
-  <div class="wrapper">
-    <!-- Header -->
-    <div class="terms-topbar">
-      <div class="terms-header">
+﻿<div class="terms-page min-h-screen bg-[#232626] text-white px-3 sm:px-6 lg:px-8 py-6 pb-28 md:pb-16">
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Top Command Strip -->
+    <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#2CD97D]/25">
+      <div class="flex items-center gap-3">
         <button
           type="button"
           (click)="goBack()"
-          class="terms-back"
+          class="w-10 h-10 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/35 flex items-center justify-center text-[#2CD97D] hover:bg-[#2CD97D] hover:text-[#232626] transition shadow-md cursor-pointer active:scale-95"
           aria-label="Go back"
         >
-          <svg
-            class="w-6 h-6 relative z-10"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15 19l-7-7 7-7"
-            ></path>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
           </svg>
-          <span>Back</span>
         </button>
-        <div class="terms-header-meta">
-          <span class="terms-eyebrow">Spin Hub / Legal</span>
-          <span class="terms-status"><i></i> Public document</span>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#2CD97D] animate-ping"></span>
+            <span class="text-[10px] font-mono font-bold text-[#2CD97D] tracking-widest uppercase">
+              LEGAL & GOVERNANCE COMPLIANCE
+            </span>
+          </div>
+          <h1 class="text-xl sm:text-3xl font-black uppercase tracking-wide text-white mt-0.5">
+            Terms & Conditions
+          </h1>
         </div>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <button
+          type="button"
+          (click)="printTerms()"
+          class="px-4 py-2 rounded-xl bg-[#292d2e] border border-[#2CD97D]/30 text-gray-300 hover:text-white hover:border-[#2CD97D] text-xs font-mono flex items-center gap-2 transition cursor-pointer"
+        >
+          <span>🖨️ Print Document</span>
+        </button>
+        <span class="px-3.5 py-1.5 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 text-[#2CD97D] text-xs font-mono font-bold">
+          v2.4 AUDITED
+        </span>
       </div>
     </div>
 
-    <!-- Terms Content -->
-    <div class="terms-content">
-      <div class="terms-title-block">
-        <span class="terms-kicker">Please read carefully</span>
-        <h1>Terms &amp; Conditions</h1>
-        <p>
-          These terms explain how Spin Hub accounts, games, payments and rewards
-          work.
-        </p>
-        <div class="terms-meta-row">
-          <span>Last updated: 08 Sep 2026</span><span>•</span
-          ><span>Estimated reading time: 4 min</span>
-        </div>
-      </div>
+    <!-- Hero Card with Legal Overview & Search -->
+    <div class="relative rounded-[28px] bg-[#292d2e] border border-[#2CD97D]/40 p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.85)] overflow-hidden">
+      <div class="absolute -right-16 -top-16 w-64 h-64 bg-[#2CD97D]/12 blur-[70px] rounded-full pointer-events-none"></div>
 
-      <div class="space-y-6 leading-relaxed">
-        <!-- Intro -->
-        <div>
-          <p>
-            Welcome to <strong>Spin Hub</strong>! By accessing or using our
-            website and services, you agree to comply with the following Terms &
-            Conditions. Please review them carefully before proceeding.
+      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2CD97D]/15 border border-[#2CD97D]/35 text-[#2CD97D] text-[10px] font-mono font-bold tracking-wider uppercase">
+            OPERATIVE SERVICE AGREEMENT
+          </span>
+          <h2 class="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
+            Fair Play, Transparent Financials & Security Policy
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium">
+            These terms define the legal framework governing player accounts, certified gaming RNG standards, cryptocurrency settlement rails, bonus wagering rules, and privacy commitments across the Spin Hub ecosystem.
           </p>
+          <div class="flex items-center gap-4 text-[10px] font-mono text-gray-400 pt-1">
+            <span>Last Updated: <strong class="text-white">September 2026</strong></span>
+            <span>•</span>
+            <span>Reading Time: <strong class="text-[#2CD97D]">~4 mins</strong></span>
+          </div>
         </div>
 
-        <!-- Eligibility -->
-        <div>
-          <h3 class="text-xl font-semibold mb-2">Eligibility</h3>
-
-          <p>
-            You must be at least <strong>18 years old</strong> (or the legal age
-            in your jurisdiction) to use this platform. By registering, you
-            confirm that the information you provide is accurate, complete, and
-            truthful.
-          </p>
-        </div>
-
-        <!-- Account Registration -->
-        <div>
-          <h3 class="text-xl font-semibold mb-2">Account Registration</h3>
-
-          <p>
-            To play games or manage deposits and withdrawals, you are required
-            to create an account. You are solely responsible for maintaining the
-            confidentiality of your account details and password.
-          </p>
-        </div>
-
-        <!-- Deposits -->
-        <div>
-          <h3 class="text-xl font-semibold mb-2">Deposits & Payments</h3>
-
-          <p>
-            Deposits can be made using the payment methods provided. All
-            deposits are final and non-refundable, except in cases of verified
-            technical errors.
-          </p>
-        </div>
-
-        <!-- Gameplay -->
-        <div>
-          <h3 class="text-xl font-semibold mb-2">Gameplay & Fair Use</h3>
-
-          <p>
-            All gameplay is undertaken at your own risk. Game outcomes are
-            determined by secure automated systems and are final.
-          </p>
-        </div>
-
-        <!-- Withdraw -->
-        <div>
-          <h3 class="text-xl font-semibold mb-2">Redeeming Winnings</h3>
-
-          <p>
-            Winnings can be withdrawn using the available payout methods.
-            Processing times may vary depending on the method selected.
-          </p>
-        </div>
-
-        <!-- Privacy -->
-        <div>
-          <h3 class="text-xl font-semibold mb-2">Privacy Policy</h3>
-
-          <p>
-            Your personal data is handled in accordance with our Privacy Policy.
-            Spin Hub does not share your data with third parties without your
-            consent.
-          </p>
-        </div>
-
-        <!-- Contact -->
-        <div>
-          <h3 class="text-xl font-semibold mb-2">Contact Us</h3>
-
-          <p>
-            For assistance, please email us at
-            <a
-              href="mailto:support@spinclub.com"
-              class="text-[#2CD97D] underline font-bold"
+        <!-- Interactive Search Input -->
+        <div class="w-full md:w-80 shrink-0">
+          <label class="text-[10px] font-mono text-gray-400 uppercase tracking-wider block mb-1.5 font-bold">
+            SEARCH CLAUSES
+          </label>
+          <div class="relative">
+            <input
+              type="text"
+              [(ngModel)]="searchQuery"
+              placeholder="Search terms (e.g. deposit, kyc, withdrawal)..."
+              class="w-full px-4 py-3 pl-10 rounded-2xl bg-[#232626] border border-[#2CD97D]/40 text-xs font-mono text-white placeholder-gray-500 focus:outline-none focus:border-[#2CD97D] focus:ring-1 focus:ring-[#2CD97D] transition shadow-inner"
+            />
+            <svg class="w-4 h-4 text-[#2CD97D] absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <button
+              *ngIf="searchQuery"
+              type="button"
+              (click)="searchQuery = ''"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-xs cursor-pointer"
             >
-              support&#64;spinclub.com
-            </a>
-            or use the Contact Form on our website.
-          </p>
+              ✕
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Quick Navigation Chips -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+      <button
+        type="button"
+        (click)="setSection('all')"
+        [ngClass]="activeSection === 'all' ? 'bg-[#2CD97D] text-[#232626] shadow-[0_0_12px_rgba(44,217,125,0.4)]' : 'bg-[#292d2e] text-gray-300 border border-[#2CD97D]/30 hover:border-[#2CD97D]'"
+        class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider font-mono transition cursor-pointer shrink-0"
+      >
+        All Articles ({{ sections.length }})
+      </button>
+      <button
+        *ngFor="let s of sections"
+        type="button"
+        (click)="setSection(s.id)"
+        [ngClass]="activeSection === s.id ? 'bg-[#2CD97D] text-[#232626] shadow-[0_0_12px_rgba(44,217,125,0.4)]' : 'bg-[#292d2e] text-gray-300 border border-[#2CD97D]/30 hover:border-[#2CD97D]'"
+        class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider font-mono transition cursor-pointer shrink-0 flex items-center gap-1.5"
+      >
+        <span>{{ s.icon }}</span>
+        <span>{{ s.title.split('.')[1] || s.title }}</span>
+      </button>
+    </div>
+
+    <!-- Terms Clauses Grid -->
+    <div class="space-y-4">
+      <div
+        *ngFor="let sec of filteredSections; let idx = index"
+        class="rounded-[24px] bg-[#292d2e] border border-[#2CD97D]/30 hover:border-[#2CD97D] p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-all duration-300 group"
+      >
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">{{ sec.icon }}</span>
+            <h3 class="text-base sm:text-lg font-black text-white uppercase tracking-wide group-hover:text-[#2CD97D] transition">
+              {{ sec.title }}
+            </h3>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-[#232626] border border-[#2CD97D]/40 text-[#2CD97D] text-[10px] font-mono font-bold uppercase w-fit">
+            {{ sec.badge }}
+          </span>
+        </div>
+
+        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium mt-4">
+          {{ sec.content }}
+        </p>
+
+        <!-- Bullet Highlights -->
+        <div *ngIf="sec.bullets && sec.bullets.length > 0" class="mt-4 pt-3 border-t border-white/5 space-y-2">
+          <div *ngFor="let b of sec.bullets" class="flex items-start gap-2.5 text-xs text-gray-400">
+            <span class="text-[#2CD97D] text-xs font-bold mt-0.5">✓</span>
+            <span class="leading-relaxed">{{ b }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty Search Fallback -->
+      <div
+        *ngIf="filteredSections.length === 0"
+        class="rounded-[24px] bg-[#292d2e] border border-white/10 p-12 text-center space-y-3"
+      >
+        <span class="text-4xl">🔍</span>
+        <h3 class="text-lg font-black text-white uppercase">No Clauses Found</h3>
+        <p class="text-xs text-gray-400">
+          No terms matching "{{ searchQuery }}". Clear your search to view all sections.
+        </p>
+        <button
+          type="button"
+          (click)="searchQuery = ''; activeSection = 'all'"
+          class="px-5 py-2.5 rounded-xl bg-[#2CD97D] text-[#232626] font-black text-xs uppercase tracking-wider shadow cursor-pointer hover:bg-[#39e68b] transition"
+        >
+          Reset Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Contact & Assistance Bottom Card -->
+    <div class="rounded-[24px] bg-gradient-to-r from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+      <div class="space-y-1 text-center sm:text-left">
+        <span class="text-[10px] font-mono font-bold text-[#2CD97D] uppercase tracking-widest">
+          LEGAL QUESTIONS OR DISPUTES?
+        </span>
+        <h4 class="text-base sm:text-lg font-black text-white uppercase">
+          Our 24/7 Compliance Desk Is Ready
+        </h4>
+        <p class="text-xs text-gray-400">
+          Reach out anytime at <a href="mailto:support@spinclub.com" class="text-[#2CD97D] underline font-mono font-bold">support&#64;spinclub.com</a> or speak with live chat operatives.
+        </p>
+      </div>
+
+      <a
+        href="mailto:support@spinclub.com"
+        class="px-6 py-3 rounded-xl bg-[#2CD97D] text-[#232626] font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(44,217,125,0.4)] hover:bg-[#39e68b] transition shrink-0 cursor-pointer"
+      >
+        Contact Legal Desk
+      </a>
+    </div>
+
   </div>
 </div>

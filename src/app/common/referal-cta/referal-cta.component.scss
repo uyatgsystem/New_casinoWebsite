@@ -1,5 +1,5 @@
 /* --- Spin Hub Hyper Teal & Solar Amber Theme Variables --- */
-$bg-dark-panel: #0C101D;       
+$bg-dark-panel: #292d2e;       
 $bg-dark-inner: #050811;       
 $casino-teal-base: #2CD97D;  
 $casino-amber-light: #FF9F1C;   
@@ -12,7 +12,7 @@ $casino-amber-light: #FF9F1C;
 
 /* --- Main Layout Banner --- */
 .casino-premium-strip {
-  background: linear-gradient(135deg, #0C101D 0%, #050811 100%);
+  background: linear-gradient(135deg, #292d2e 0%, #050811 100%);
   border: 1px solid rgba(44, 217, 125, 0.3); 
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.85),
@@ -56,7 +56,7 @@ $casino-amber-light: #FF9F1C;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: radial-gradient(circle, #0C101D 0%, #050811 100%);
+  background: radial-gradient(circle, #292d2e 0%, #050811 100%);
   font-size: 22px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9);
 }

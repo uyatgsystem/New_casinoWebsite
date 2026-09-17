@@ -1,4 +1,4 @@
-<app-loader></app-loader>
+﻿<app-loader></app-loader>
 
 <div class="image-bg min-h-screen bg-cover bg-center bg-no-repeat mx-auto px-2 md:px-12 py-4">
   <!-- Back Button & Title -->
@@ -103,7 +103,7 @@
                 purchasedNumbers.includes(number),
               'bg-[#FEC866] text-black font-bold shadow-md':
                 isSelected(number) && !purchasedNumbers.includes(number),
-              'bg-[#000408] text-white border border-[#C3B089] hover:bg-[#2a364a]':
+              'bg-[#232626] text-white border border-[#C3B089] hover:bg-[#2a364a]':
                 !isSelected(number) && !purchasedNumbers.includes(number),
             }"
             class="w-10 h-10 rounded-tl-[4px] rounded-tr-[1px] rounded-br-[4px] rounded-bl-[1px] text-sm transition duration-200 flex items-center justify-center">
@@ -210,7 +210,7 @@
     <div *ngIf="showSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center">
       <div class="absolute inset-0 bg-black/60" (click)="closeSuccessModal()" aria-hidden="true"></div>
       <div
-        class="relative bg-[#000408] border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 w-[90vw] max-w-md shadow-2xl text-center">
+        class="relative bg-[#232626] border border-[#C3B089] rounded-tl-[16px] rounded-tr-[3px] rounded-br-[16px] rounded-bl-[3px] p-6 w-[90vw] max-w-md shadow-2xl text-center">
         <button class="absolute -right-1 top-3 text-[#C3B089] w-12 text-2xl" (click)="closeSuccessModal()"
           aria-label="Close">
           &times;

@@ -7,40 +7,50 @@
   (click)="hideWalletModal()"
 >
   <div
-    class="bg-[#0C101D] border border-[#2CD97D]/40 rounded-[24px] sm:rounded-[32px] w-full max-w-2xl p-4 sm:p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white max-h-[88dvh] sm:max-h-[85vh] overflow-y-auto my-auto modal slide-up custom-scroll"
+    class="bg-[#292d2e] border border-[#2CD97D]/45 rounded-[28px] sm:rounded-[36px] w-full max-w-2xl p-4 sm:p-6 md:p-8 relative shadow-[0_30px_80px_rgba(0,0,0,0.95)] text-white max-h-[88dvh] sm:max-h-[86vh] overflow-y-auto my-auto modal slide-up custom-scroll"
     (click)="$event.stopPropagation()"
   >
+    <!-- Ambient Radial Glow Accent -->
+    <div
+      class="absolute -right-16 -top-16 w-60 h-60 bg-[#2CD97D]/12 blur-[80px] rounded-full pointer-events-none"
+    ></div>
+
     <!-- Header Title & Close Button -->
-    <div class="flex items-center justify-between mb-4 sm:mb-6">
-      <div class="flex items-center gap-2.5">
-        <span class="w-2 h-5 bg-[#2CD97D] rounded-full shadow-[0_0_10px_#2CD97D]"></span>
-        <h2 class="text-base sm:text-xl font-black text-white tracking-wide">
-          Deposit Funds
-        </h2>
+    <div class="flex items-center justify-between mb-4 sm:mb-6 relative z-10 border-b border-white/10 pb-3 sm:pb-4">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-6 bg-[#2CD97D] rounded-full shadow-[0_0_12px_#2CD97D]"></span>
+        <div>
+          <h2 class="text-base sm:text-xl font-black text-white tracking-wide uppercase">
+            Deposit Funds
+          </h2>
+          <span class="text-[10px] font-mono text-[#2CD97D] font-bold tracking-widest block">
+            SECURE RECHARGE TERMINAL
+          </span>
+        </div>
       </div>
       <button
+        type="button"
         (click)="hideWalletModal()"
-        class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2CD97D]/40 transition active:scale-95 cursor-pointer"
+        class="w-9 h-9 rounded-full bg-[#232626] border border-white/15 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2CD97D]/50 hover:bg-[#2CD97D]/10 transition active:scale-95 cursor-pointer"
+        aria-label="Close"
       >
         ✕
       </button>
     </div>
 
     <!-- Payment Methods Selection -->
-    <div class="mb-5 sm:mb-6">
+    <div class="mb-5 sm:mb-6 relative z-10">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div class="flex items-center gap-2">
-          <span
-            class="text-xs font-bold text-gray-300 uppercase tracking-wider"
-          >
-            Select Payment Method
+          <span class="text-xs font-black text-gray-300 uppercase tracking-wider font-mono">
+            1. Select Method
           </span>
         </div>
 
         <span
-          class="text-[11px] sm:text-xs font-semibold bg-[#2CD97D]/10 border border-[#2CD97D]/30 px-3 py-1 rounded-xl flex flex-wrap items-center gap-1.5"
+          class="text-[11px] sm:text-xs font-semibold bg-[#232626] border border-[#2CD97D]/30 px-3 py-1 rounded-xl flex flex-wrap items-center gap-1.5 shadow-inner"
         >
-          <span class="text-[#ABB7BD]">Deposit Limits:</span>
+          <span class="text-[#ABB7BD]">Limits:</span>
           <span class="text-[#9CA3AF]">Min</span>
           <span class="text-[#2CD97D] font-bold">{{ minAmount }}</span>
           <span class="text-[#9CA3AF]">| Max</span>
@@ -61,29 +71,29 @@
                 account
               )
             "
-            class="relative flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border transition-all cursor-pointer overflow-hidden group active:scale-95"
+            class="relative flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-2xl border transition-all cursor-pointer overflow-hidden group active:scale-95"
             [ngClass]="{
-              'bg-[#2CD97D]/10 border-[#2CD97D] shadow-[0_0_15px_rgba(44,217,125,0.3)]':
+              'bg-[#2CD97D]/15 border-[#2CD97D] shadow-[0_0_20px_rgba(44,217,125,0.3)]':
                 selectedAccountType === account.name,
-              'bg-black/40 border-white/10 hover:border-white/30 hover:bg-white/5':
+              'bg-[#232626] border-white/10 hover:border-white/30 hover:bg-[#232626]/80':
                 selectedAccountType !== account.name,
             }"
           >
             @if (account.Bonus != 0 && account.Bonus != 0.0) {
               <div
-                class="absolute top-1 right-1 bg-gradient-to-r from-[#FF9F1C] to-[#FFB800] text-[#050811] text-[8px] font-black px-1.5 py-0.5 rounded-full shadow whitespace-nowrap leading-none z-10"
+                class="absolute top-1 right-1 bg-gradient-to-r from-[#2CD97D] to-[#06B6D4] text-[#050811] text-[8px] font-black px-1.5 py-0.5 rounded-full shadow whitespace-nowrap leading-none z-10 font-mono"
               >
-                {{ account.Bonus }}% Extra
+                +{{ account.Bonus }}%
               </div>
             }
 
             <div
-              class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/5 flex items-center justify-center p-1.5 shrink-0"
+              class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1.5 shrink-0 group-hover:scale-105 transition"
             >
               <img
                 [src]="account.bg_image"
                 [alt]="account.name"
-                class="w-full h-full object-contain"
+                class="w-full h-full object-contain drop-shadow"
               />
             </div>
             <div class="flex flex-col overflow-hidden">
@@ -96,10 +106,34 @@
       </div>
     </div>
 
+    <!-- Quick Deposit Preset Amounts -->
+    <div class="mb-5 relative z-10">
+      <span class="text-xs font-black text-gray-300 uppercase tracking-wider font-mono block mb-2">
+        2. Quick Select Amount
+      </span>
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+        @for (amt of quickDepositAmounts; track amt) {
+          <button
+            type="button"
+            (click)="selectQuickAmount(amt)"
+            [ngClass]="{
+              'bg-[#2CD97D] text-[#050811] font-black border-[#2CD97D] shadow-[0_0_12px_rgba(44,217,125,0.4)]':
+                newBalance === amt,
+              'bg-[#232626] border-white/15 text-gray-300 hover:border-[#2CD97D]/50 hover:text-white':
+                newBalance !== amt
+            }"
+            class="px-4 py-1.5 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer shrink-0 active:scale-95"
+          >
+            ${{ amt }}
+          </button>
+        }
+      </div>
+    </div>
+
     <!-- Card Form -->
-    <form [formGroup]="paymentForm" (ngSubmit)="payCard()" *ngIf="showcard">
+    <form [formGroup]="paymentForm" (ngSubmit)="payCard()" *ngIf="showcard" class="relative z-10">
       <div
-        class="space-y-4 max-w-md mx-auto bg-[#050811]/90 p-4 sm:p-5 rounded-2xl border border-white/10 shadow-inner"
+        class="space-y-4 max-w-md mx-auto bg-[#232626] p-4 sm:p-6 rounded-2xl border border-white/10 shadow-inner"
       >
         <div>
           <label class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Card Number</label>
@@ -109,7 +143,7 @@
             formControlName="cardNumber"
             placeholder="Enter card number (13-16 digits)"
             (input)="onCardNumberInput($event)"
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
+            class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           />
           <div
             *ngIf="
@@ -132,7 +166,7 @@
               formControlName="month"
               placeholder="MM"
               (input)="onMonthInput($event)"
-              class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono text-center"
+              class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono text-center"
             />
           </div>
           <div>
@@ -144,7 +178,7 @@
               formControlName="year"
               placeholder="YYYY"
               (input)="onYearInput($event)"
-              class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono text-center"
+              class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono text-center"
             />
           </div>
         </div>
@@ -155,7 +189,7 @@
             type="number"
             formControlName="cvv"
             placeholder="CVV"
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
+            class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           />
         </div>
 
@@ -167,7 +201,7 @@
             formControlName="amount"
             placeholder="Enter deposit amount"
             (input)="onAmountInput($event, 'payment')"
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
+            class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           />
         </div>
 
@@ -175,7 +209,7 @@
           <button
             (click)="hideWalletModal()"
             type="button"
-            class="w-1/3 bg-white/5 border border-white/10 text-gray-300 font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
+            class="w-1/3 bg-[#292d2e] border border-white/15 text-gray-300 font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
           >
             Cancel
           </button>
@@ -196,9 +230,10 @@
       [formGroup]="cashappForm"
       (ngSubmit)="paycashApp()"
       *ngIf="showcashApp"
+      class="relative z-10"
     >
       <div
-        class="space-y-4 max-w-md mx-auto bg-[#050811]/90 p-4 sm:p-5 rounded-2xl border border-white/10 shadow-inner"
+        class="space-y-4 max-w-md mx-auto bg-[#232626] p-4 sm:p-6 rounded-2xl border border-white/10 shadow-inner"
       >
         <div>
           <label class="text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5 block">Amount</label>
@@ -208,7 +243,7 @@
             formControlName="amount"
             placeholder="Enter amount"
             (input)="onAmountInput($event, 'cashapp')"
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
+            class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           />
         </div>
 
@@ -216,7 +251,7 @@
           <button
             type="button"
             (click)="hideWalletModal()"
-            class="w-1/3 bg-white/5 border border-white/10 text-gray-300 font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
+            class="w-1/3 bg-[#292d2e] border border-white/15 text-gray-300 font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
           >
             Cancel
           </button>
@@ -235,7 +270,7 @@
     <!-- Manual / Chime / Zelle / ApplePay / GooglePay / Paypal Section -->
     <div
       *ngIf="showChimeZelle"
-      class="space-y-4 bg-[#050811]/90 p-4 sm:p-5 rounded-2xl border border-white/10 shadow-inner"
+      class="space-y-4 bg-[#232626] p-4 sm:p-6 rounded-2xl border border-white/10 shadow-inner relative z-10"
     >
       <div
         *ngIf="
@@ -257,7 +292,7 @@
           [(ngModel)]="manualAmount"
           [ngModelOptions]="{ standalone: true }"
           (input)="onAmountInput($event, 'manual')"
-          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
+          class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           placeholder="Enter deposit amount"
         />
       </div>
@@ -280,7 +315,7 @@
           [(ngModel)]="googleApplePayAmount"
           [ngModelOptions]="{ standalone: true }"
           (input)="onAmountInput($event, 'googlepay')"
-          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
+          class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
           placeholder="Enter deposit amount"
         />
       </div>
@@ -300,7 +335,7 @@
             >Account Title</label
           >
           <div
-            class="w-full bg-black/60 border border-white/10 hover:border-[#2CD97D]/40 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-xs sm:text-sm transition"
+            class="w-full bg-[#1c1e1e] border border-white/15 hover:border-[#2CD97D]/50 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-xs sm:text-sm transition"
             (click)="accountTitleDropdownOpen = !accountTitleDropdownOpen"
           >
             <span
@@ -329,10 +364,10 @@
 
           <ul
             *ngIf="accountTitleDropdownOpen"
-            class="absolute mt-1 w-full max-h-48 overflow-y-auto bg-[#0C101D] border border-[#2CD97D]/60 shadow-2xl rounded-xl z-20 custom-scroll"
+            class="absolute mt-1 w-full max-h-48 overflow-y-auto bg-[#292d2e] border border-[#2CD97D]/60 shadow-2xl rounded-xl z-20 custom-scroll"
           >
             <li
-              class="sticky top-0 bg-[#0C101D] border-b border-[#2CD97D]/30 p-2 z-10"
+              class="sticky top-0 bg-[#292d2e] border-b border-[#2CD97D]/30 p-2 z-10"
             >
               <input
                 type="text"
@@ -340,12 +375,12 @@
                 [ngModelOptions]="{ standalone: true }"
                 (click)="onAccountSearchClick($event)"
                 placeholder="Search titles..."
-                class="w-full bg-black/80 text-white px-3 py-1.5 text-xs border border-white/10 rounded-lg outline-none focus:border-[#2CD97D]"
+                class="w-full bg-[#1c1e1e] text-white px-3 py-1.5 text-xs border border-white/15 rounded-lg outline-none focus:border-[#2CD97D]"
               />
             </li>
             <li
               *ngFor="let accounts of filteredAccountTitles"
-              class="px-3 py-2.5 font-medium text-xs text-gray-200 border-b border-white/5 cursor-pointer hover:bg-[#2CD97D]/15 hover:text-[#2CD97D] transition"
+              class="px-3 py-2.5 font-medium text-xs text-gray-200 border-b border-white/5 cursor-pointer hover:bg-[#2CD97D]/20 hover:text-[#2CD97D] transition"
               (click)="
                 accounts.accountDetail !== 'No data found'
                   ? selectAccountTitle(accounts)
@@ -368,7 +403,7 @@
               placeholder="Enter Tag"
               [value]="CustomerTag"
               [disabled]="true"
-              class="w-full bg-black/40 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm pr-10 font-mono"
+              class="w-full bg-[#1c1e1e]/60 border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm pr-10 font-mono"
             />
             <i
               (click)="CopyToClipBoard(CustomerTag)"
@@ -389,7 +424,7 @@
           id="email"
           type="text"
           [(ngModel)]="email"
-          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500"
+          class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500"
           placeholder="Add Email Address"
         />
       </div>
@@ -410,7 +445,7 @@
           />
           <label
             for="receipt"
-            class="cursor-pointer inline-flex items-center gap-2 bg-[#2CD97D]/10 hover:bg-[#2CD97D]/20 text-[#2CD97D] border border-[#2CD97D]/40 rounded-xl px-4 py-2.5 transition text-xs font-bold shadow-sm"
+            class="cursor-pointer inline-flex items-center gap-2 bg-[#2CD97D]/15 hover:bg-[#2CD97D]/25 text-[#2CD97D] border border-[#2CD97D]/50 rounded-xl px-4 py-2.5 transition text-xs font-bold shadow-sm active:scale-95"
           >
             <span>📁 Choose Receipt File</span>
           </label>
@@ -418,7 +453,7 @@
             <img
               [src]="uploadProfileImage"
               alt="Selected Image"
-              class="w-full max-h-24 rounded-xl border border-[#2CD97D]/40 object-cover shadow-md"
+              class="w-full max-h-24 rounded-xl border border-[#2CD97D]/50 object-cover shadow-md"
             />
             <button
               (click)="clearSelection()"
@@ -439,7 +474,7 @@
           <img
             [src]="qrCodeImage"
             alt="QR Code"
-            class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl border border-[#2CD97D]/30 object-contain bg-black/50 p-1.5 cursor-pointer hover:border-[#2CD97D] hover:scale-105 transition shadow-md"
+            class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border border-[#2CD97D]/40 object-contain bg-[#1c1e1e] p-2 cursor-pointer hover:border-[#2CD97D] hover:scale-105 transition shadow-md"
             (click)="openQrPopup()"
           />
         </div>
@@ -450,7 +485,7 @@
         <button
           (click)="hideWalletModal()"
           type="button"
-          class="w-1/3 bg-white/5 border border-white/10 text-gray-300 font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
+          class="w-1/3 bg-[#292d2e] border border-white/15 text-gray-300 font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
         >
           Cancel
         </button>
@@ -467,7 +502,7 @@
     <!-- Cash App Tap Tap Section -->
     <div
       *ngIf="showCashAppTapTap"
-      class="space-y-4 max-w-md mx-auto bg-[#050811]/90 p-4 sm:p-5 rounded-2xl border border-white/10 shadow-inner"
+      class="space-y-4 max-w-md mx-auto bg-[#232626] p-4 sm:p-6 rounded-2xl border border-white/10 shadow-inner relative z-10"
     >
       @if (selectedAccountType === "CashApp2") {
         <div>
@@ -479,7 +514,7 @@
           <select
             id="amount"
             [(ngModel)]="newBalance"
-            class="w-full bg-black/80 border border-white/10 text-white rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
+            class="w-full bg-[#1c1e1e] border border-white/15 text-white rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
           >
             <option value="" disabled selected>Choose Cash App Amount</option>
             @for (amt of cashAppAmounts; track amt) {
@@ -502,7 +537,7 @@
           <select
             id="amount"
             [(ngModel)]="newBalance"
-            class="w-full bg-black/80 border border-white/10 text-white rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
+            class="w-full bg-[#1c1e1e] border border-white/15 text-white rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
           >
             <option value="" disabled selected>Choose Amount</option>
             @for (amt of googleApplePayAmounts; track amt) {
@@ -516,7 +551,7 @@
         <button
           (click)="hideWalletModal()"
           type="button"
-          class="w-1/3 bg-white/5 border border-white/10 text-gray-300 font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
+          class="w-1/3 bg-[#292d2e] border border-white/15 text-gray-300 font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
         >
           Cancel
         </button>
@@ -535,7 +570,7 @@
 
 @if (isCopied()) {
   <div
-    class="fixed bottom-[15%] left-1/2 transform -translate-x-1/2 bg-[#0C101D] text-white px-5 py-3 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.8)] z-[999] flex items-center gap-3 border border-[#2CD97D]/50 backdrop-blur-xl animate-fadeIn"
+    class="fixed bottom-[15%] left-1/2 transform -translate-x-1/2 bg-[#292d2e] text-white px-5 py-3 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.8)] z-[999] flex items-center gap-3 border border-[#2CD97D]/50 backdrop-blur-xl animate-fadeIn"
   >
     <fa-icon [icon]="faCheck" class="text-[#2CD97D] text-base"></fa-icon>
     <span class="text-xs font-bold tracking-wide">Copied to clipboard</span>

@@ -4,46 +4,44 @@
   (click)="closeModal()"
 >
   <div
-    class="backdrop-blur-xl border border-[#2CD97D]/30 bg-[#0C101D] rounded-t-[28px] sm:rounded-3xl w-full max-w-2xl shadow-2xl modal slide-up max-h-[88dvh] sm:max-h-[85vh] flex flex-col z-50 relative overflow-hidden mx-auto my-0 sm:my-auto"
+    class="backdrop-blur-2xl border border-[#2CD97D]/45 bg-[#292d2e] rounded-t-[28px] sm:rounded-[36px] w-full max-w-2xl shadow-[0_30px_90px_rgba(0,0,0,0.95)] modal slide-up max-h-[88dvh] sm:max-h-[86vh] flex flex-col z-50 relative overflow-hidden mx-auto my-0 sm:my-auto"
     (click)="$event.stopPropagation()"
   >
-    <!-- Fixed Grain Background Layer -->
+    <!-- Ambient Radial Glow Accent -->
     <div
-      class="absolute inset-0 pointer-events-none overflow-hidden rounded-t-[28px] sm:rounded-3xl z-0 opacity-30"
-    >
-      <div
-        class="absolute inset-0 w-full h-full"
-        style="
-          background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%220.4%22/%3E%3C/svg%3E&quot;);
-          background-size: 200px 200px;
-        "
-      ></div>
-    </div>
+      class="absolute -right-16 -top-16 w-60 h-60 bg-[#2CD97D]/12 blur-[80px] rounded-full pointer-events-none z-0"
+    ></div>
 
     <!-- Sticky Header -->
     <div
-      class="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-white/10 relative z-25 bg-[#050811]/95 backdrop-blur-md shrink-0"
+      class="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-white/10 relative z-25 bg-[#292d2e] shrink-0"
     >
-      <div class="flex items-center gap-2.5 min-w-0">
-        <span class="w-2 h-5 bg-[#2CD97D] rounded-full shadow-[0_0_10px_#2CD97D] shrink-0"></span>
-        <h2
-          class="text-base sm:text-xl font-black text-white tracking-wide truncate"
-        >
-          Redeem {{ selectedGame }}
-        </h2>
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="w-2.5 h-6 bg-[#2CD97D] rounded-full shadow-[0_0_12px_#2CD97D] shrink-0"></span>
+        <div>
+          <h2
+            class="text-base sm:text-xl font-black text-white tracking-wide uppercase truncate"
+          >
+            Redeem {{ selectedGame }}
+          </h2>
+          <span class="text-[10px] font-mono text-[#2CD97D] font-bold tracking-widest block">
+            VERIFIED CASHOUT DISPATCH
+          </span>
+        </div>
       </div>
       <button
         type="button"
         (click)="closeModal()"
-        class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2CD97D]/40 transition active:scale-95 cursor-pointer shrink-0"
+        class="w-9 h-9 rounded-full bg-[#232626] border border-white/15 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2CD97D]/50 hover:bg-[#2CD97D]/10 transition active:scale-95 cursor-pointer shrink-0"
+        aria-label="Close"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 sm:h-5 sm:w-5"
+          class="h-4 w-4"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
+          stroke-width="2.5"
           stroke-linecap="round"
           stroke-linejoin="round"
         >
@@ -61,19 +59,19 @@
     >
       <!-- Retry Request ID Banner -->
       <div
-        class="flex items-center gap-3 rounded-xl border border-[#2CD97D]/35 bg-[#121827]/70 px-3.5 sm:px-4 py-2.5"
+        class="flex items-center gap-3 rounded-2xl border border-[#2CD97D]/35 bg-[#232626] px-4 py-3 shadow-inner"
         *ngIf="requestId"
       >
         <div class="flex-1 min-w-0 text-xs text-[#D9D9D9] leading-relaxed">
           Retry Request ID:
-          <span class="text-[#2CD97D] font-mono font-semibold break-all">{{
+          <span class="text-[#2CD97D] font-mono font-bold break-all">{{
             requestId
           }}</span>
         </div>
         <button
           type="button"
           (click)="CopyToClipBoard(requestId)"
-          class="p-2 hover:bg-[#2CD97D]/20 rounded-lg transition-colors duration-200 flex-shrink-0 cursor-pointer"
+          class="p-2 hover:bg-[#2CD97D]/20 rounded-xl transition-colors duration-200 flex-shrink-0 cursor-pointer"
           title="Copy Request ID"
         >
           <fa-icon [icon]="copy" class="text-[#2CD97D] text-sm"></fa-icon>
@@ -83,21 +81,20 @@
       <!-- Score Cards Section -->
       <div *ngIf="selectedGame">
         <div class="flex items-center gap-2 mb-2.5 sm:mb-3">
-          <div class="w-1.5 h-4 bg-[#2CD97D] rounded-full"></div>
           <span
-            class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider"
-            >Score Overview</span
+            class="text-xs font-black text-gray-300 uppercase tracking-wider font-mono"
+            >1. Score Overview</span
           >
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <!-- Current Score Card -->
           <div
-            class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-3.5 sm:p-4 shadow-inner"
+            class="relative overflow-hidden rounded-2xl border border-white/10 bg-[#232626] p-4 shadow-inner"
           >
             <div class="flex items-center justify-between mb-2">
               <span
-                class="text-xs uppercase tracking-wider text-[#A6B1C2] font-semibold"
+                class="text-[11px] uppercase tracking-wider text-[#A6B1C2] font-bold font-mono"
                 >Current Score</span
               >
               <fa-icon
@@ -106,7 +103,7 @@
                 class="text-[#2CD97D] cursor-pointer hover:opacity-80 hover:rotate-180 transition-all duration-300 text-sm"
               ></fa-icon>
             </div>
-            <div class="min-h-[2rem] flex items-center">
+            <div class="min-h-[2.2rem] flex items-center">
               @if (isScoreLoading) {
                 <div class="flex items-center gap-2 text-xs text-[#A6B1C2]">
                   <span>Loading</span>
@@ -132,12 +129,13 @@
                   currentScore === undefined
                 ) {
                   <span
-                    class="text-xs text-[#A6B1C2] italic border-b border-dashed border-[#A6B1C2]/50 pb-0.5"
+                    class="text-xs text-[#A6B1C2] italic border-b border-dashed border-[#A6B1C2]/50 pb-0.5 cursor-pointer"
+                    (click)="getScoreforAddding()"
                     >Tap refresh to load</span
                   >
                 } @else {
                   <p
-                    class="text-white text-xl sm:text-2xl font-bold leading-none tracking-tight"
+                    class="text-white text-2xl sm:text-3xl font-black font-mono leading-none tracking-tight"
                   >
                     {{ currentScore }}
                   </p>
@@ -148,32 +146,32 @@
 
           <!-- Eligible Score Card -->
           <div
-            class="relative overflow-hidden rounded-2xl border border-[#2CD97D]/30 bg-gradient-to-br from-[#0C101D] to-[#121827] p-3.5 sm:p-4 shadow-inner"
+            class="relative overflow-hidden rounded-2xl border border-[#2CD97D]/40 bg-gradient-to-br from-[#232626] to-[#292d2e] p-4 shadow-inner"
           >
             <div
               class="absolute -right-6 -top-6 w-20 h-20 bg-[#2CD97D]/20 blur-2xl rounded-full pointer-events-none"
             ></div>
             <div class="flex items-center justify-between mb-2 relative z-10">
               <span
-                class="text-xs uppercase tracking-wider text-[#2CD97D] font-semibold"
+                class="text-[11px] uppercase tracking-wider text-[#2CD97D] font-bold font-mono"
                 >Eligible Score</span
               >
               <span
-                class="text-[10px] px-2 py-0.5 rounded-full border border-[#2CD97D] text-[#2CD97D] bg-[#2CD97D]/10 font-bold tracking-wider"
+                class="text-[10px] px-2.5 py-0.5 rounded-full border border-[#2CD97D] text-[#050811] bg-[#2CD97D] font-black tracking-wider font-mono shadow-[0_0_10px_rgba(44,217,125,0.4)]"
               >
-                {{ redeemMultiplier }}x
+                {{ redeemMultiplier }}x Multiplier
               </span>
             </div>
-            <div class="relative z-10 min-h-[2rem]">
+            <div class="relative z-10 min-h-[2.2rem]">
               <p
-                class="text-[#2CD97D] text-xl sm:text-2xl font-bold leading-none tracking-tight"
+                class="text-[#2CD97D] text-2xl sm:text-3xl font-black font-mono leading-none tracking-tight drop-shadow-[0_0_12px_rgba(44,217,125,0.4)]"
               >
                 {{ eligibleScore }}
               </p>
               <p
-                class="text-[10px] text-[#A6B1C2] mt-1.5 opacity-90 font-medium"
+                class="text-[10px] text-[#A6B1C2] mt-1.5 opacity-90 font-mono"
               >
-                Based on deposit multiplier
+                Calculated on deposit multiplier
               </p>
             </div>
           </div>
@@ -183,50 +181,50 @@
       <!-- Redeem Rules -->
       <div *ngIf="selectedGame">
         <div
-          class="rounded-xl border-l-4 border-[#2CD97D] bg-gradient-to-r from-[#2CD97D]/10 to-transparent px-3.5 sm:px-4 py-3 mb-3"
+          class="rounded-2xl border-l-4 border-[#2CD97D] bg-[#2CD97D]/10 px-4 py-3 mb-3 border border-white/5"
         >
           <p class="text-xs text-[#e5e7eb] leading-relaxed">
             Redeem smartly: up to
-            <span class="text-[#2CD97D] font-bold text-sm mx-1">{{
+            <span class="text-[#2CD97D] font-bold font-mono text-sm mx-1">{{
               eligibleScore
             }}</span>
-            score gets the best wallet credit.
+            score gets the maximum 1:1 wallet credit.
           </p>
         </div>
         <div
-          class="rounded-xl border border-white/5 bg-black/40 px-3.5 sm:px-4 py-3"
+          class="rounded-2xl border border-white/10 bg-[#232626] px-4 py-3.5 shadow-inner"
         >
-          <ul class="flex flex-col gap-2">
-            <li class="group flex items-start gap-2">
+          <ul class="flex flex-col gap-2.5">
+            <li class="group flex items-start gap-2.5">
               <span
-                class="flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[#2CD97D]/20 text-[#2CD97D] text-[10px] font-bold border border-[#2CD97D]/30"
+                class="flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[#2CD97D] text-[#050811] text-[10px] font-black"
                 >1</span
               >
               <p class="text-xs text-[#A6B1C2] leading-snug flex-1">
                 Free Play score is
-                <span class="text-white font-semibold">10% redeemable</span>.
+                <span class="text-white font-bold">10% redeemable</span>.
               </p>
             </li>
-            <li class="group flex items-start gap-2">
+            <li class="group flex items-start gap-2.5">
               <span
-                class="flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[#2CD97D]/20 text-[#2CD97D] text-[10px] font-bold border border-[#2CD97D]/30"
+                class="flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[#2CD97D] text-[#050811] text-[10px] font-black"
                 >2</span
               >
               <p class="text-xs text-[#A6B1C2] leading-snug flex-1">
-                Redeem up to eligible score for full amount in wallet.
+                Redeem up to eligible score for full credit in wallet.
               </p>
             </li>
-            <li class="group flex items-start gap-2">
+            <li class="group flex items-start gap-2.5">
               <span
-                class="flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[#2CD97D]/20 text-[#2CD97D] text-[10px] font-bold border border-[#2CD97D]/30"
+                class="flex-shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[#2CD97D] text-[#050811] text-[10px] font-black"
                 >3</span
               >
               <p class="text-xs text-[#A6B1C2] leading-snug flex-1">
                 Redeeming
-                <span class="text-[#2CD97D] font-semibold"
+                <span class="text-[#2CD97D] font-bold"
                   >below eligible score</span
                 >
-                can adjust bonus before credit.
+                adjusts bonus before credit.
               </p>
             </li>
           </ul>
@@ -235,16 +233,15 @@
 
       <!-- Game Dropdown -->
       <div *ngIf="!selectedGame || selectedGame == ''">
-        <div class="flex items-center gap-2 mb-2.5 sm:mb-3">
-          <div class="w-1.5 h-4 bg-[#2CD97D] rounded-full"></div>
+        <div class="flex items-center gap-2 mb-2">
           <span
-            class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider"
+            class="text-xs font-black text-gray-300 uppercase tracking-wider font-mono"
             >Select Game</span
           >
         </div>
         <div class="relative">
           <div
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-[#A6B1C2] px-3.5 sm:px-4 py-3 cursor-pointer flex justify-between items-center text-sm focus:outline-none focus:border-[#2CD97D] transition"
+            class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-sm focus:border-[#2CD97D] transition"
             (click)="
               isFromRedeem ? (gameDropdownOpen = !gameDropdownOpen) : null
             "
@@ -275,11 +272,11 @@
           </div>
           <ul
             *ngIf="gameDropdownOpen"
-            class="absolute mt-1 w-full bg-[#0C101D] border border-[#2CD97D]/60 shadow-2xl rounded-xl z-30 max-h-48 overflow-y-auto"
+            class="absolute mt-1 w-full bg-[#292d2e] border border-[#2CD97D]/60 shadow-2xl rounded-xl z-30 max-h-48 overflow-y-auto custom-scroll"
           >
             <li
               *ngFor="let game of filteredGameDropdownData"
-              class="px-4 py-2.5 text-sm text-gray-200 border-b border-white/5 cursor-pointer hover:bg-[#2CD97D]/15 transition"
+              class="px-4 py-2.5 text-xs text-gray-200 border-b border-white/5 cursor-pointer hover:bg-[#2CD97D]/20 hover:text-[#2CD97D] transition"
               (click)="selectGame(game.name, $event)"
             >
               {{ game.name }}
@@ -290,16 +287,15 @@
 
       <!-- Score Field -->
       <div>
-        <div class="flex items-center gap-2 mb-2.5 sm:mb-3">
-          <div class="w-1.5 h-4 bg-[#2CD97D] rounded-full"></div>
+        <div class="flex items-center gap-2 mb-2">
           <span
-            class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider"
+            class="text-xs font-black text-gray-300 uppercase tracking-wider font-mono"
             >Score</span
           >
         </div>
         <input
           type="number"
-          class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-3.5 sm:px-4 py-3 text-sm focus:outline-none focus:border-[#2CD97D] transition placeholder-gray-500 add-score"
+          class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono add-score"
           formControlName="score"
           [(ngModel)]="currentScore"
           placeholder="Tap refresh above to load score"
@@ -310,16 +306,15 @@
       <!-- Withdraw Fields -->
       <div *ngIf="selectedPaymentMethod === 'withdraw'" class="space-y-4">
         <div>
-          <div class="flex items-center gap-2 mb-2.5 sm:mb-3">
-            <div class="w-1.5 h-4 bg-[#2CD97D] rounded-full"></div>
+          <div class="flex items-center gap-2 mb-2">
             <span
-              class="text-xs font-extrabold text-[#A6B1C2] uppercase tracking-wider"
+              class="text-xs font-black text-gray-300 uppercase tracking-wider font-mono"
               >Account Type</span
             >
           </div>
           <div class="relative">
             <div
-              class="w-full bg-black/60 border border-white/10 rounded-xl text-[#A6B1C2] px-3.5 sm:px-4 py-3 cursor-pointer flex justify-between items-center text-sm focus:outline-none focus:border-[#2CD97D] transition"
+              class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-[#A6B1C2] px-4 py-3 cursor-pointer flex justify-between items-center text-sm focus:outline-none focus:border-[#2CD97D] transition"
               (click)="accountTypeDropdownOpen = !accountTypeDropdownOpen"
             >
               <span
@@ -346,11 +341,11 @@
             </div>
             <ul
               *ngIf="accountTypeDropdownOpen"
-              class="absolute mt-1 w-full bg-[#0C101D] border border-[#2CD97D]/60 shadow-2xl rounded-xl z-30 max-h-48 overflow-y-auto"
+              class="absolute mt-1 w-full bg-[#292d2e] border border-[#2CD97D]/60 shadow-2xl rounded-xl z-30 max-h-48 overflow-y-auto custom-scroll"
             >
               <li
                 *ngFor="let game of accountTypeData"
-                class="px-4 py-2.5 text-sm text-gray-200 border-b border-white/5 cursor-pointer hover:bg-[#2CD97D]/15 transition"
+                class="px-4 py-2.5 text-xs text-gray-200 border-b border-white/5 cursor-pointer hover:bg-[#2CD97D]/20 hover:text-[#2CD97D] transition"
                 (click)="onAccountTypeChange(game)"
               >
                 {{ game.name }}
@@ -361,11 +356,11 @@
 
         <div *ngIf="isAccountTypeSelected">
           <label
-            class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider"
+            class="block text-[11px] text-gray-300 mb-1.5 font-bold uppercase tracking-wider font-mono"
             >Account Info</label
           >
           <input
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-3.5 sm:px-4 py-3 text-sm focus:outline-none focus:border-[#2CD97D] transition placeholder-gray-500"
+            class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
             formControlName="accountInfo"
             [(ngModel)]="accountInfo"
             placeholder="Enter account info"
@@ -374,11 +369,11 @@
 
         <div *ngIf="accountType === 'Chime'">
           <label
-            class="block text-xs text-gray-300 mb-1.5 font-bold uppercase tracking-wider"
+            class="block text-[11px] text-gray-300 mb-1.5 font-bold uppercase tracking-wider font-mono"
             >Customer Tag</label
           >
           <input
-            class="w-full bg-black/60 border border-white/10 rounded-xl text-white px-3.5 sm:px-4 py-3 text-sm focus:outline-none focus:border-[#2CD97D] transition placeholder-gray-500"
+            class="w-full bg-[#1c1e1e] border border-white/15 rounded-xl text-white px-4 py-3 text-sm focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition placeholder-gray-500 font-mono"
             formControlName="CustomerTag"
             [(ngModel)]="CustomerTag"
             placeholder="Enter tag"
@@ -389,12 +384,12 @@
 
     <!-- Sticky Footer Actions (Outside Form for perfect fixed alignment) -->
     <div
-      class="flex items-center gap-3 px-4 sm:px-6 py-4 border-t border-white/10 bg-[#050811]/95 backdrop-blur-md z-20 shrink-0"
+      class="flex items-center gap-3 px-4 sm:px-6 py-4 border-t border-white/10 bg-[#292d2e] z-20 shrink-0"
     >
       <button
         type="button"
         (click)="closeModal()"
-        class="w-1/3 py-3.5 rounded-2xl bg-white/5 border border-white/10 text-gray-300 text-xs sm:text-sm font-bold hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer uppercase tracking-wider"
+        class="w-1/3 py-3.5 rounded-2xl bg-[#232626] border border-white/15 text-gray-300 text-xs sm:text-sm font-bold hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer uppercase tracking-wider"
       >
         Cancel
       </button>

@@ -1,5 +1,5 @@
-<div class="mx-auto px-4 md:px-8 py-6 pb-24 md:pb-6 relative overflow-hidden min-h-screen flex flex-col justify-between"
-  style="background: linear-gradient(135deg, #050811 0%, #0C101D 50%, #050811 100%);" (click)="openLoginModal()">
+﻿<div class="mx-auto px-4 md:px-8 py-6 pb-24 md:pb-6 relative overflow-hidden min-h-screen flex flex-col justify-between"
+  style="background: linear-gradient(135deg, #232626 0%, #292d2e 50%, #232626 100%);" (click)="openLoginModal()">
 
   <!-- Ambient Backlight Glow -->
   <div
@@ -42,7 +42,7 @@
     <!-- Left Panel: Bet Amount & Controls -->
     <div class="lg:col-span-3">
       <div
-        class="backdrop-blur-2xl bg-[#0C101D]/90 border border-[#2CD97D]/40 rounded-[28px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.8)] relative overflow-hidden">
+        class="backdrop-blur-2xl bg-[#292d2e]/90 border border-[#2CD97D]/40 rounded-[28px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.8)] relative overflow-hidden">
         <div class="relative z-10 space-y-5">
           <div class="flex items-center gap-2 pb-3 border-b border-[#2CD97D]/20">
             <div class="w-1.5 h-4 bg-[#2CD97D] rounded-full shadow-[0_0_8px_rgba(44,217,125,0.6)]"></div>
@@ -55,7 +55,7 @@
             <ng-container *ngFor="let amount of allowedSpinAmounts">
               <button (click)="spinAmount = amount.toString(); $event.stopPropagation();"
                 class="h-10 rounded-xl font-mono font-black text-xs transition-all border flex items-center justify-center shadow cursor-pointer"
-                [ngClass]="spinAmount === amount.toString() ? 'bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] text-[#050811] border-transparent shadow-[0_0_12px_rgba(44,217,125,0.5)] scale-105' : 'bg-black/60 text-white border-white/10 hover:border-[#2CD97D]/60'">
+                [ngClass]="spinAmount === amount.toString() ? 'bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] text-[#232626] border-transparent shadow-[0_0_12px_rgba(44,217,125,0.5)] scale-105' : 'bg-black/60 text-white border-white/10 hover:border-[#2CD97D]/60'">
                 {{ amount }}$
               </button>
             </ng-container>
@@ -79,7 +79,7 @@
           <!-- Spin Now Button -->
           @if (!isMobile()) {
           <button (click)="openLoginModal()"
-            class="w-full py-4 rounded-2xl bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.5)] hover:brightness-110 active:scale-[0.98] transition cursor-pointer">
+            class="w-full py-4 rounded-2xl bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] text-[#232626] font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.5)] hover:brightness-110 active:scale-[0.98] transition cursor-pointer">
             Spin Now!
           </button>
 
@@ -108,12 +108,12 @@
           <div
             class="w-10 h-14 bg-gradient-to-b from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] clip-triangle border-2 border-white/80 shadow-2xl">
           </div>
-          <div class="w-4 h-4 rounded-full bg-[#050811] border-2 border-[#2CD97D] -mt-2 shadow-lg"></div>
+          <div class="w-4 h-4 rounded-full bg-[#232626] border-2 border-[#2CD97D] -mt-2 shadow-lg"></div>
         </div>
 
         <!-- Wheel Outer Golden Luxury Bezel -->
         <div
-          class="relative p-4 rounded-full bg-gradient-to-b from-[#0C101D] via-[#050811] to-[#0C101D] border-[6px] border-[#2CD97D] shadow-[0_0_60px_rgba(44,217,125,0.4)] max-w-full box-border">
+          class="relative p-4 rounded-full bg-gradient-to-b from-[#292d2e] via-[#232626] to-[#292d2e] border-[6px] border-[#2CD97D] shadow-[0_0_60px_rgba(44,217,125,0.4)] max-w-full box-border">
           <div class="wheel-container">
 
             <!-- Static Wheel Slices -->
@@ -148,7 +148,7 @@
       <!-- Mobile Spin Controls -->
       @if (isMobile()) {
       <button (click)="openLoginModal()"
-        class="block lg:hidden w-full max-w-xs mt-2 py-3.5 rounded-2xl bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(44,217,125,0.4)] cursor-pointer">
+        class="block lg:hidden w-full max-w-xs mt-2 py-3.5 rounded-2xl bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] text-[#232626] font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(44,217,125,0.4)] cursor-pointer">
         Spin Now!
       </button>
       }
@@ -157,7 +157,7 @@
     <!-- Right Panel: Spin History -->
     <div class="col-span-full lg:col-span-3">
       <div
-        class="backdrop-blur-2xl bg-[#0C101D]/90 border border-[#2CD97D]/40 rounded-[28px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.8)] relative overflow-hidden lg:min-h-[400px] flex flex-col">
+        class="backdrop-blur-2xl bg-[#292d2e]/90 border border-[#2CD97D]/40 rounded-[28px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.8)] relative overflow-hidden lg:min-h-[400px] flex flex-col">
         <div class="absolute inset-0 pointer-events-none opacity-30">
           <div class="grain-Backdrop absolute inset-0 w-full h-full" [innerHTML]="grainBackdrop"></div>
         </div>

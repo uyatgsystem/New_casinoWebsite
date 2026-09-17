@@ -41,7 +41,7 @@
           type="text"
           placeholder="Search guidelines..."
           [(ngModel)]="searchTerm"
-          class="w-full bg-[#0B101E]/95 backdrop-blur-xl text-white text-xs sm:text-sm border border-[#2CD97D]/35 rounded-2xl py-2.5 pl-9 pr-3 focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition shadow-lg"
+          class="w-full bg-[#292d2e] backdrop-blur-xl text-white text-xs sm:text-sm border border-[#2CD97D]/35 rounded-2xl py-2.5 pl-9 pr-3 focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition shadow-lg"
         />
         <svg
           class="w-4 h-4 text-[#2CD97D] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
@@ -64,14 +64,14 @@
           type="date"
           [(ngModel)]="startDate"
           title="Start Date"
-          class="bg-[#0B101E]/95 border border-[#2CD97D]/30 text-gray-200 text-xs rounded-xl px-3 py-2 outline-none focus:border-[#2CD97D]"
+          class="bg-[#292d2e] border border-[#2CD97D]/30 text-gray-200 text-xs rounded-xl px-3 py-2 outline-none focus:border-[#2CD97D]"
         />
         <span class="text-gray-500 text-xs">-</span>
         <input
           type="date"
           [(ngModel)]="endDate"
           title="End Date"
-          class="bg-[#0B101E]/95 border border-[#2CD97D]/30 text-gray-200 text-xs rounded-xl px-3 py-2 outline-none focus:border-[#2CD97D]"
+          class="bg-[#292d2e] border border-[#2CD97D]/30 text-gray-200 text-xs rounded-xl px-3 py-2 outline-none focus:border-[#2CD97D]"
         />
         <button
           (click)="GetGuideLines()"
@@ -85,7 +85,7 @@
       </div>
 
       <!-- View Switcher (Grid / Table) -->
-      <div class="flex items-center bg-[#0B101E]/95 border border-[#2CD97D]/30 p-1 rounded-2xl shadow-lg shrink-0">
+      <div class="flex items-center bg-[#292d2e] border border-[#2CD97D]/30 p-1 rounded-2xl shadow-lg shrink-0">
         <button
           type="button"
           (click)="viewMode = 'grid'"
@@ -141,7 +141,7 @@
     >
       <div
         *ngFor="let guide of filteredGuideLines"
-        class="bg-gradient-to-b from-[#0B101E] via-[#080D18] to-[#050811] border border-[#2CD97D]/25 rounded-3xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:border-[#2CD97D] hover:shadow-[0_0_30px_rgba(44,217,125,0.25)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
+        class="bg-[#292d2e] border border-[#2CD97D]/25 rounded-3xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:border-[#2CD97D] hover:shadow-[0_0_30px_rgba(44,217,125,0.25)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
       >
         <!-- Corner Glow -->
         <div class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,rgba(44,217,125,0.12),transparent_70%)] pointer-events-none"></div>
@@ -203,7 +203,7 @@
     >
       <div
         *ngFor="let guide of filteredGuideLines; let i = index"
-        class="flex items-center py-3.5 px-4 bg-[#0B101E]/80 border border-white/5 hover:border-[#2CD97D]/45 hover:bg-[#0B101E] rounded-2xl transition shadow-lg"
+        class="flex items-center py-3.5 px-4 bg-[#292d2e] border border-white/5 hover:border-[#2CD97D]/45 hover:bg-[#292d2e]/80 rounded-2xl transition shadow-lg"
       >
         <div class="text-[#2CD97D] font-mono font-bold w-12 flex-none text-xs">{{ i + 1 }}</div>
         <div class="text-white font-black text-sm flex-[2] truncate pr-3">{{ guide.Title }}</div>
@@ -248,7 +248,7 @@
   (click)="CloseGuidelineModal()"
 >
   <div
-    class="bg-[#0B101E] border border-[#2CD97D]/40 rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-[0_25px_70px_rgba(0,0,0,0.9)] overflow-hidden text-white"
+    class="bg-[#292d2e] border border-[#2CD97D]/40 rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-[0_25px_70px_rgba(0,0,0,0.9)] overflow-hidden text-white"
     (click)="$event.stopPropagation()"
   >
     <div class="flex justify-between items-center px-6 py-4 border-b border-[#2CD97D]/30 bg-black/60 shrink-0">

@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  background-color: #232626;
+  min-height: 100vh;
+}
+
+.vip-levels-page {
+  background: #232626;
+}
+
+.bg-radial-glow {
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.25) 0%, rgba(44, 217, 125, 0.05) 50%, transparent 70%);
+}
+
+@keyframes progressSweep {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 32px 0;
+  }
+}

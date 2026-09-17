@@ -1,14 +1,14 @@
 :host {
   display: block;
   min-height: 100vh;
-  background: #050811;
+  background: #232626;
 }
 
 .main-bg {
   position: relative;
   width: 100%;
   min-height: 100dvh !important;
-  background-image: linear-gradient(180deg, rgba(5, 8, 17, 0.8) 0%, rgba(5, 8, 17, 0.95) 100%),
+  background-image: linear-gradient(180deg, rgba(35, 38, 38, 0.85) 0%, rgba(35, 38, 38, 0.96) 100%),
     url("https://spinhub-6rb.pages.dev/assets/auth-background.png") !important;
   background-size: cover !important;
   background-position: center center !important;
@@ -20,7 +20,7 @@
 
 #formContainer {
   position: relative;
-  background: rgba(11, 16, 30, 0.95);
+  background: #292d2e;
   border: 1px solid rgba(44, 217, 125, 0.38);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(44, 217, 125, 0.12);
 }

@@ -1,11 +1,11 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    CASINO LANDING — ULTRA-MODERN CYBER ARENA COMMAND DECK (#2CD97D)
    ========================================================================== */
 
 $neon-primary: #2CD97D;
 $neon-glow: rgba(44, 217, 125, 0.4);
-$obsidian-card: #0B101E;
-$obsidian-bg: #050811;
+$obsidian-card: #292d2e;
+$obsidian-bg: #232626;
 $border-cyber: rgba(44, 217, 125, 0.28);
 
 .cyber-casino-landing {
@@ -15,7 +15,7 @@ $border-cyber: rgba(44, 217, 125, 0.28);
 
 /* --- Global Mega Jackpot & Telemetry Ticker Bar --- */
 .jackpot-broadcast-bar {
-  background: linear-gradient(90deg, rgba(11, 16, 30, 0.95) 0%, rgba(16, 25, 46, 0.95) 50%, rgba(11, 16, 30, 0.95) 100%);
+  background: #292d2e;
   border: 1px solid $border-cyber;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(44, 217, 125, 0.2);
   backdrop-filter: blur(16px);
@@ -211,7 +211,7 @@ $border-cyber: rgba(44, 217, 125, 0.28);
   gap: 8px;
   padding: 0.65rem 1.6rem;
   background: $neon-primary;
-  color: #050811;
+  color: #232626;
   font-weight: 900;
   font-size: 0.82rem;
   letter-spacing: 0.08em;
@@ -225,7 +225,7 @@ $border-cyber: rgba(44, 217, 125, 0.28);
   .dock-play-icon svg {
     width: 16px;
     height: 16px;
-    fill: #050811;
+    fill: #232626;
   }
 
   &:hover {
