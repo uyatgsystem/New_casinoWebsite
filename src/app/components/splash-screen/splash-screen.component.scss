@@ -35,7 +35,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  border: 1px solid rgba(0, 245, 212, 0.15);
+  border: 1px solid rgba(44, 217, 125, 0.15);
   animation: expandCircle 4s linear infinite;
 }
 
@@ -60,13 +60,13 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(0, 245, 212, 0.4));
+    filter: drop-shadow(0 0 20px rgba(44, 217, 125, 0.4));
   }
 }
 
 .progress-text {
   margin-top: 0.25rem;
-  color: rgba(0, 245, 212, 0.9);
+  color: rgba(44, 217, 125, 0.9);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -108,7 +108,7 @@
   inset: 0;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #00F5D4;
+  border-top-color: #2CD97D;
   border-right-color: #FF9F1C;
   animation: spinLoaderRotate 1.6s linear infinite;
   z-index: 1;
@@ -118,7 +118,7 @@
   inset: 22px;
   border-top-color: transparent;
   border-right-color: transparent;
-  border-bottom-color: #00F5D4;
+  border-bottom-color: #2CD97D;
   border-left-color: #06B6D4;
   animation: spinLoaderRotate 2.3s linear infinite reverse;
   opacity: 0.7;

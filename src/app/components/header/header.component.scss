@@ -5,7 +5,7 @@
 
 .header-panel {
   background: #010306;
-  border-bottom: 1px solid rgba(0, 245, 212, 0.5);
+  border-bottom: 1px solid rgba(44, 217, 125, 0.5);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
 }
 
@@ -13,7 +13,7 @@
   width: 5px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(0, 245, 212, 0.5);
+  background: rgba(44, 217, 125, 0.5);
   border-radius: 6px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -46,25 +46,25 @@
 }
 
 .deposit-control {
-  background: rgb(0, 245, 212) !important;
+  background: rgb(44, 217, 125) !important;
   color: #050811 !important;
-  border: 1.5px solid rgb(0, 245, 212) !important;
-  box-shadow: 0 0 15px rgba(0, 245, 212, 0.4) !important;
+  border: 1.5px solid rgb(44, 217, 125) !important;
+  box-shadow: 0 0 15px rgba(44, 217, 125, 0.4) !important;
 
   * {
     color: #050811 !important;
   }
 
   &:hover {
-    background: #00d6b9 !important;
-    border-color: #00d6b9 !important;
+    background: #28c772 !important;
+    border-color: #28c772 !important;
     color: #050811 !important;
-    box-shadow: 0 0 25px rgba(0, 245, 212, 0.7) !important;
+    box-shadow: 0 0 25px rgba(44, 217, 125, 0.7) !important;
   }
 }
 
 .wallet-balance-control {
-  border-color: rgba(0, 245, 212, 0.5);
+  border-color: rgba(44, 217, 125, 0.5);
 }
 
 .bonus-wallet-label {

@@ -32,7 +32,7 @@
 }
 
 .bottum::-webkit-scrollbar-thumb {
-  background-color: #00F5D4;
+  background-color: #2CD97D;
   border-radius: 4px;
 }
 
@@ -62,8 +62,8 @@
   outline: none;
 
   &:focus {
-    border-color: #00F5D4;
-    box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.3);
+    border-color: #2CD97D;
+    box-shadow: 0 0 0 3px rgba(44, 217, 125, 0.3);
   }
 }
 
@@ -89,13 +89,13 @@
   -ms-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  border-color: #00F5D4;
+  border-color: #2CD97D;
 }
 
 .mbp_pagination .page-item:hover {
-  background-color: #00F5D4;
+  background-color: #2CD97D;
   color: #050811;
-  border-color: #00F5D4;
+  border-color: #2CD97D;
 }
 
 .mbp_pagination .page-item:first-child {
@@ -107,7 +107,7 @@
 }
 
 .mbp_pagination .page-item.active .page-link {
-  background-color: #00F5D4;
+  background-color: #2CD97D;
   color: #050811;
   width: 39px;
   display: flex;
@@ -222,7 +222,7 @@
 /* Custom Scrollbars */
 .custom-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 245, 212, 0.4) transparent;
+  scrollbar-color: rgba(44, 217, 125, 0.4) transparent;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -235,12 +235,12 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 245, 212, 0.35);
+    background: rgba(44, 217, 125, 0.35);
     border-radius: 9999px;
     transition: background 0.2s ease;
 
     &:hover {
-      background: rgba(0, 245, 212, 0.7);
+      background: rgba(44, 217, 125, 0.7);
     }
   }
 }

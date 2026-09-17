@@ -1,213 +1,68 @@
-@media (max-width: 768px) {
-  #formContainer {
-    background: transparent !important;
-    padding: 0.75rem !important;
-    max-width: 100% !important;
-  }
-
-  #formContainer input:not([type="checkbox"]),
-  #formContainer .form-input {
-    font-size: 0.85rem !important;
-    padding: 0.35rem 0.5rem !important;
-    margin-bottom: 0.2rem !important;
-  }
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #050811;
 }
 
 .main-bg {
   position: relative;
-  background-image: linear-gradient(#00000099, #00000099), url("https://spinhub-6rb.pages.dev/assets/auth-background.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  align-content: center;
-}
-
-:host { display: block; min-height: 100vh; background: #050811; }
-
-.main-bg {
+  width: 100%;
   min-height: 100dvh !important;
-  background-image: linear-gradient(180deg, rgba(5,8,17,0.75) 0%, rgba(5,8,17,0.92) 100%), url("https://spinhub-6rb.pages.dev/assets/auth-background.png") !important;
+  background-image: linear-gradient(180deg, rgba(5, 8, 17, 0.8) 0%, rgba(5, 8, 17, 0.95) 100%),
+    url("https://spinhub-6rb.pages.dev/assets/auth-background.png") !important;
   background-size: cover !important;
-  background-position: center !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto !important;
 }
-
-.main-bg > div { min-height: 100dvh; }
-
-.main-bg > div > div:first-child {
-  width: 52%;
-  flex: none;
-  padding: clamp(32px, 6vw, 92px);
-  clip-path: none !important;
-  background: linear-gradient(135deg, rgba(5,8,17,0.85), rgba(12,16,29,0.4)) !important;
-}
-
-.main-bg > div > div:first-child img { margin: 0 !important; width: 180px; height: auto; }
-.main-bg .mobile-welcome-text { max-width: 470px; padding: 0; margin: auto 0; }
-.main-bg .mobile-welcome-text h1 { font-size: clamp(2.1rem, 4vw, 3.7rem); letter-spacing: -.05em; }
-.main-bg .mobile-welcome-text p { color: #94a3b8; max-width: 420px; }
 
 #formContainer {
-  width: min(100%, 560px) !important;
-  max-width: 560px !important;
-  box-sizing: border-box;
-  padding: clamp(14px, 2vw, 24px) !important;
-  border: 1px solid rgba(0, 245, 212, 0.3) !important;
-  border-radius: 16px !important;
-  background: rgba(12, 16, 29, 0.94) !important;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.7), 0 0 30px rgba(0,245,212,0.12);
-  overflow: visible !important;
+  position: relative;
+  background: rgba(11, 16, 30, 0.95);
+  border: 1px solid rgba(44, 217, 125, 0.38);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(44, 217, 125, 0.12);
 }
 
-#formContainer input:not([type="checkbox"]),
-#formContainer select,
-#formContainer textarea {
-  color: #fff !important;
-  font-size: 0.9rem !important;
-  font-weight: 500;
-}
-
-#formContainer input:not([type="checkbox"])::placeholder {
-  color: #94a3b8 !important;
-  opacity: 1;
-}
-
-#formContainer label,
-#formContainer p,
-#formContainer li {
-  color: #f4f4f4;
-}
-
-#formContainer input:not([type="checkbox"]) {
-  min-height: 38px;
-  border: 1px solid rgba(0, 245, 212, 0.25) !important;
-  border-radius: 8px;
-  background: #090d16 !important;
-  padding: 6px 36px 6px 10px !important;
-}
-
-/* FIX: Prevent browser autofill from turning input background white */
+/* Prevent browser autofill background color change */
 #formContainer input:-webkit-autofill,
 #formContainer input:-webkit-autofill:hover,
 #formContainer input:-webkit-autofill:focus,
 #formContainer input:-webkit-autofill:active {
   -webkit-text-fill-color: #fff !important;
-  -webkit-box-shadow: 0 0 0 1000px #090d16 inset !important;
-  box-shadow: 0 0 0 1000px #090d16 inset !important;
+  -webkit-box-shadow: 0 0 0 1000px #050811 inset !important;
+  box-shadow: 0 0 0 1000px #050811 inset !important;
   transition: background-color 9999s ease-in-out 0s;
   caret-color: #fff;
 }
 
-#formContainer input:not([type="checkbox"]):focus { border-color: #00F5D4 !important; box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.2); }
-#formContainer .bg-custom-gradient { display: block; background: linear-gradient(90deg, #00F5D4 0%, #FF9F1C 100%); }
-#formContainer button[type="submit"] { min-height: 42px; border-radius: 8px !important; background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 50%, #FF9F1C 100%) !important; color: #030712 !important; font-weight: 700 !important; }
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(44, 217, 125, 0.4);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+}
 
-/* Mobile Optimizations */
 @media (max-width: 1023px) {
   .main-bg {
-    overflow: hidden !important;
-    height: 100dvh;
-    background-position: center top !important;
-    background-size: auto 100% !important;
-  }
-  
-  .main-bg > div {
-    min-height: 100dvh;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
+    overflow-y: auto !important;
+    display: block !important;
   }
 
   .mobile-header-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 14px 16px 6px;
-    background: linear-gradient(180deg, rgba(12, 13, 16, 0.3), rgba(12, 13, 16, 0.08));
-   
     width: 100%;
-  }
-
-  .mobile-header-section img {
-    width: 75px;
-    height: auto;
-    margin-bottom: 4px;
-  }
-
-  .mobile-header-section h1 {
-    font-size: 1.2rem;
-    line-height: 1.15;
-    margin-bottom: 2px;
-    color: #fff;
-  }
-
-  .mobile-header-section p {
-    font-size: 0.73rem;
-    color: #b9b0a1;
-    padding: 0 8px;
-    margin-bottom: 0;
-  }
-
-  .main-bg > div > div:nth-child(2) {
-    display: flex !important;
-    min-height: 17vh;
-    height: 17vh;
-    padding: 8px 16px 4px;
-    justify-content: center;
-    overflow: hidden;
-    background: transparent;
-  }
-
-  .main-bg > div > div:nth-child(2) img {
-    width: 62px;
-    margin-bottom: 2px;
-  }
-
-  .main-bg > div > div:nth-child(2) h1 {
-    font-size: 1.1rem;
-    line-height: 1.05;
-    margin: 2px 0;
-  }
-
-  .main-bg > div > div:nth-child(2) p {
-    font-size: .68rem;
-    line-height: 1.15;
-    margin: 2px 0 0;
+    padding-top: 28px !important;
   }
 
   #formContainer {
-    width: 94% !important;
+    width: 95% !important;
     max-width: 480px !important;
-    height: auto;
-    max-height: none;
-    margin: 4px auto 0 !important;
-    padding: 10px 12px !important;
-    overflow: visible !important;
+    margin: 10px auto 36px auto !important;
+    padding: 20px 16px !important;
   }
-
-  #formContainer form .flex.flex-col.lg\:flex-row {
-    flex-direction: row !important;
-    gap: 6px !important;
-  }
-  
-  #formContainer form .flex.flex-col.lg\:flex-row > div {
-    width: 50% !important;
-  }
-
-  #formContainer form > div { margin-bottom: 8px !important; }
-  #formContainer input:not([type="checkbox"]) { min-height: 38px; padding: 6px 32px 6px 9px !important; }
-  #formContainer button[type="submit"] { min-height: 40px; margin-bottom: 8px !important; }
-  #formContainer .my-6 { margin-top: 0 !important; margin-bottom: 8px !important; }
-  #formContainer .lg\:mb-10,
-  #formContainer .xl\:mb-12 { margin-bottom: 8px !important; }
-  #formContainer .mb-5 { margin-bottom: 6px !important; }
-  #formContainer .mt-4 { margin-top: 6px !important; }
-}
-
-.pass-validations {
-  position: absolute;
-  background: white;
-  padding: 5px 10px;
-  z-index: 2;
-  margin-top: 5px;
 }

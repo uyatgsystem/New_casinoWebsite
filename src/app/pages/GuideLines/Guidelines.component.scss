@@ -1,139 +1,18 @@
 :host {
   display: block;
-  padding: 1.5rem;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  button {
-    background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 50%, #FF9F1C 100%);
-    padding: 0.5rem 1.25rem;
-    border-radius: 0.75rem;
-    font-size: 14px;
-    font-weight: 800;
-    color: #050811;
-    transition: transform 0.2s, box-shadow 0.2s;
-
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 15px rgba(0, 245, 212, 0.4);
-    }
-  }
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
 }
-
-.tabs {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  font-weight: bold;
-
-  button {
-    padding: 0.5rem 2rem;
-    position: relative;
-    font-size: 0.875rem;
-    color: white;
-    transition: all 0.2s;
-    border: none;
-    border-radius: 2rem;
-    background: transparent;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 2rem;
-      padding: 1px;
-      background: linear-gradient(to right, #00F5D4, #FF9F1C);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    &:hover:not(.active) {
-      background: rgba(0, 245, 212, 0.1);
-    }
-
-    &.active {
-      background: linear-gradient(135deg, #00F5D4 0%, #06B6D4 50%, #FF9F1C 100%);
-      color: #050811;
-      font-weight: 800;
-    }
-  }
-
-  .date-input {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    background: #050811;
-    border: 1px solid rgba(0, 245, 212, 0.3);
-    color: #00F5D4;
-    outline: none;
-
-    &:focus {
-      border-color: #00F5D4;
-      box-shadow: 0 0 10px rgba(0, 245, 212, 0.3);
-    }
-  }
-
-  .view-toggle-btn {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
-    color: #00F5D4;
-    cursor: pointer;
-    transition: all 0.3s;
-
-    &:hover {
-      transform: scale(1.1);
-      color: #FF9F1C;
-    }
-  }
-}
-
-.Guide-card {
-  background: #0C101D;
-  border: 1px solid rgba(0, 245, 212, 0.3);
-  border-radius: 16px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(44, 217, 125, 0.4);
+  border-radius: 6px;
 
   &:hover {
-    border-color: #00F5D4;
-    box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
-  }
-
-  h3 {
-    color: #00F5D4;
-    font-weight: 800;
-    font-size: 1.1rem;
+    background: rgba(44, 217, 125, 0.7);
   }
 }
-
-.Eye {
-  color: #00F5D4;
-  cursor: pointer;
-  transition: color 0.2s, transform 0.2s;
-
-  &:hover {
-    color: #FF9F1C;
-    transform: scale(1.15);
-  }
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
 }

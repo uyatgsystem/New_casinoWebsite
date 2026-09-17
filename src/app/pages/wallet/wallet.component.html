@@ -10,14 +10,14 @@
       <div class="flex items-center gap-3" *ngIf="!isSearchOpen">
         <button
           (click)="goBack()"
-          class="w-10 h-10 rounded-xl bg-black/60 border border-[#00F5D4]/40 flex items-center justify-center text-gray-300 hover:text-[#00F5D4] hover:border-[#00F5D4] shadow-lg transition active:scale-95 cursor-pointer"
+          class="w-10 h-10 rounded-xl bg-black/60 border border-[#2CD97D]/40 flex items-center justify-center text-gray-300 hover:text-[#2CD97D] hover:border-[#2CD97D] shadow-lg transition active:scale-95 cursor-pointer"
         >
           <fa-icon [icon]="faArrowLeft"></fa-icon>
         </button>
         <div class="flex items-center gap-2">
-          <span class="w-1.5 h-4 bg-[#00F5D4] rounded-full shadow-[0_0_8px_#00F5D4]"></span>
+          <span class="w-1.5 h-4 bg-[#2CD97D] rounded-full shadow-[0_0_8px_#2CD97D]"></span>
           <h2
-            class="text-xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#00F5D4]"
+            class="text-xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#2CD97D]"
           >
             Wallet
           </h2>
@@ -36,7 +36,7 @@
             [(ngModel)]="searchControl"
             (keyup.enter)="performSearch()"
             (keyup)="onSearchInputChange($event)"
-            class="w-full bg-[#0C101D] text-white border border-[#00F5D4]/60 text-sm rounded-xl py-2.5 pl-4 pr-10 shadow-2xl backdrop-blur-md outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition"
+            class="w-full bg-[#0C101D] text-white border border-[#2CD97D]/60 text-sm rounded-xl py-2.5 pl-4 pr-10 shadow-2xl backdrop-blur-md outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
             autofocus
           />
           <button
@@ -57,7 +57,7 @@
         <div class="relative flex items-center">
           <button
             (click)="isSearchOpen = !isSearchOpen"
-            class="w-10 h-10 rounded-xl bg-black/60 border border-[#00F5D4]/40 flex items-center justify-center text-[#00F5D4] hover:bg-[#00F5D4]/15 shadow-lg transition active:scale-95 cursor-pointer"
+            class="w-10 h-10 rounded-xl bg-black/60 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] hover:bg-[#2CD97D]/15 shadow-lg transition active:scale-95 cursor-pointer"
           >
             <fa-icon [icon]="faSearch"></fa-icon>
           </button>
@@ -67,14 +67,14 @@
 
     <!-- Mobile Tabs -->
     <div
-      class="flex items-center gap-2 bg-[#0C101D]/80 border border-[#00F5D4]/20 rounded-2xl p-1.5 shadow-lg backdrop-blur-md"
+      class="flex items-center gap-2 bg-[#0C101D]/80 border border-[#2CD97D]/20 rounded-2xl p-1.5 shadow-lg backdrop-blur-md"
     >
       <button
         (click)="toggleWalletView('wallet')"
         class="flex-1 py-2.5 rounded-xl text-xs font-extrabold tracking-wide transition-all cursor-pointer"
         [ngClass]="
           walletView === 'wallet'
-            ? 'bg-[#00F5D4] text-[#050811] shadow-[0_0_15px_rgba(0,245,212,0.4)]'
+            ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_15px_rgba(44,217,125,0.4)]'
             : 'text-gray-400 hover:text-white hover:bg-white/5'
         "
       >
@@ -85,7 +85,7 @@
         class="flex-1 py-2.5 rounded-xl text-xs font-extrabold tracking-wide transition-all cursor-pointer"
         [ngClass]="
           walletView === 'bonus'
-            ? 'bg-[#00F5D4] text-[#050811] shadow-[0_0_15px_rgba(0,245,212,0.4)]'
+            ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_15px_rgba(44,217,125,0.4)]'
             : 'text-gray-400 hover:text-white hover:bg-white/5'
         "
       >
@@ -96,10 +96,10 @@
     <!-- WALLET VIEW -->
     <ng-container *ngIf="walletView === 'wallet'">
       <div
-        class="relative p-5 sm:p-6 rounded-3xl border border-[#00F5D4]/40 bg-gradient-to-br from-[#0C101D] via-[#080B15] to-[#050811] shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden"
+        class="relative p-5 sm:p-6 rounded-3xl border border-[#2CD97D]/40 bg-gradient-to-br from-[#0C101D] via-[#080B15] to-[#050811] shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden"
       >
         <div
-          class="absolute -right-10 -bottom-10 w-44 h-44 bg-gradient-to-br from-[#00F5D4]/15 to-[#06B6D4]/5 rounded-full blur-3xl pointer-events-none"
+          class="absolute -right-10 -bottom-10 w-44 h-44 bg-gradient-to-br from-[#2CD97D]/15 to-[#06B6D4]/5 rounded-full blur-3xl pointer-events-none"
         ></div>
 
         <div class="relative z-10 flex flex-col gap-4">
@@ -111,13 +111,13 @@
                 Total Balance
                 <button
                   (click)="toggleBalance()"
-                  class="text-[#00F5D4] hover:text-white transition p-1 cursor-pointer"
+                  class="text-[#2CD97D] hover:text-white transition p-1 cursor-pointer"
                 >
                   <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
                 </button>
               </span>
               <span
-                class="text-white text-3xl font-black tracking-wider mt-1.5 font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#00F5D4]"
+                class="text-white text-3xl font-black tracking-wider mt-1.5 font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#2CD97D]"
               >
                 {{
                   showBalance ? "$" + totalBalance.toLocaleString() : "********"
@@ -129,13 +129,13 @@
           <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
             <button
               (click)="openAddBalanceModal()"
-              class="bg-[#00F5D4] text-[#050811] font-black py-3 px-4 rounded-2xl shadow-[0_0_20px_rgba(0,245,212,0.4)] hover:brightness-110 active:scale-95 transition-all text-xs sm:text-sm flex items-center justify-center gap-1.5 cursor-pointer"
+              class="bg-[#2CD97D] text-[#050811] font-black py-3 px-4 rounded-2xl shadow-[0_0_20px_rgba(44,217,125,0.4)] hover:brightness-110 active:scale-95 transition-all text-xs sm:text-sm flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <span class="text-base font-black leading-none">+</span> Deposit
             </button>
             <button
               (click)="openWithdrawBalanceModal()"
-              class="bg-black/60 border border-[#00F5D4]/40 text-[#00F5D4] font-bold py-3 px-4 rounded-2xl hover:bg-[#00F5D4]/15 active:scale-95 transition-all text-xs sm:text-sm flex items-center justify-center shadow-md cursor-pointer"
+              class="bg-black/60 border border-[#2CD97D]/40 text-[#2CD97D] font-bold py-3 px-4 rounded-2xl hover:bg-[#2CD97D]/15 active:scale-95 transition-all text-xs sm:text-sm flex items-center justify-center shadow-md cursor-pointer"
             >
               Withdraw
             </button>
@@ -149,13 +149,13 @@
           <h3
             class="text-white font-bold text-sm sm:text-base tracking-wide flex items-center gap-2"
           >
-            <span class="w-2 h-2 rounded-full bg-[#00F5D4] shadow-[0_0_8px_#00F5D4]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#2CD97D] shadow-[0_0_8px_#2CD97D]"></span>
             Transaction History
           </h3>
           <span
             class="text-xs text-gray-400 font-semibold bg-[#0C101D] px-3 py-1 rounded-full border border-white/10"
           >
-            <span class="text-[#00F5D4] font-bold">{{ filteredTransactions.length }}</span> records
+            <span class="text-[#2CD97D] font-bold">{{ filteredTransactions.length }}</span> records
           </span>
         </div>
 
@@ -166,7 +166,7 @@
         >
           <div
             *ngFor="let transaction of filteredTransactions"
-            class="border border-[#00F5D4]/25 hover:border-[#00F5D4]/60 rounded-2xl p-4 bg-gradient-to-br from-[#0C101D] to-[#050811] shadow-xl flex flex-col gap-3 relative overflow-hidden transition-all duration-300"
+            class="border border-[#2CD97D]/25 hover:border-[#2CD97D]/60 rounded-2xl p-4 bg-gradient-to-br from-[#0C101D] to-[#050811] shadow-xl flex flex-col gap-3 relative overflow-hidden transition-all duration-300"
           >
             <div
               class="flex items-center justify-between border-b border-white/5 pb-2.5"
@@ -194,7 +194,7 @@
               >
                 <fa-icon
                   [icon]="faEdit"
-                  class="cursor-pointer hover:text-[#00F5D4] transition"
+                  class="cursor-pointer hover:text-[#2CD97D] transition"
                   (click)="editWithdrawTransaction(transaction, $event)"
                   title="Edit"
                 ></fa-icon>
@@ -213,7 +213,7 @@
               </div>
               <div
                 *ngIf="transaction.type !== 'debit'"
-                class="text-right text-[#00F5D4] font-bold"
+                class="text-right text-[#2CD97D] font-bold"
               >
                 ${{ transaction.bonus || 0 }}
               </div>
@@ -222,7 +222,7 @@
               <div
                 class="text-right font-extrabold text-sm font-mono"
                 [style.color]="
-                  transaction.type === 'credit' ? '#00F5D4' : '#f87171'
+                  transaction.type === 'credit' ? '#2CD97D' : '#f87171'
                 "
               >
                 {{ transaction.type === "credit" ? "+" : "-" }}${{
@@ -253,10 +253,10 @@
     <!-- BONUS WALLET VIEW -->
     <ng-container *ngIf="walletView === 'bonus'">
       <div
-        class="relative p-5 sm:p-6 rounded-3xl border border-[#00F5D4]/40 bg-gradient-to-br from-[#0C101D] via-[#080B15] to-[#050811] shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden"
+        class="relative p-5 sm:p-6 rounded-3xl border border-[#2CD97D]/40 bg-gradient-to-br from-[#0C101D] via-[#080B15] to-[#050811] shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden"
       >
         <div
-          class="absolute -right-10 -bottom-10 w-44 h-44 bg-gradient-to-br from-[#00F5D4]/15 to-[#06B6D4]/5 rounded-full blur-3xl pointer-events-none"
+          class="absolute -right-10 -bottom-10 w-44 h-44 bg-gradient-to-br from-[#2CD97D]/15 to-[#06B6D4]/5 rounded-full blur-3xl pointer-events-none"
         ></div>
 
         <div class="relative z-10 flex flex-col gap-4">
@@ -268,13 +268,13 @@
                 Bonus Balance
                 <button
                   (click)="toggleBalance()"
-                  class="text-[#00F5D4] hover:text-white transition p-1 cursor-pointer"
+                  class="text-[#2CD97D] hover:text-white transition p-1 cursor-pointer"
                 >
                   <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
                 </button>
               </span>
               <span
-                class="text-white text-3xl font-black tracking-wider mt-1.5 font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#00F5D4]"
+                class="text-white text-3xl font-black tracking-wider mt-1.5 font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#2CD97D]"
               >
                 {{
                   showBalance
@@ -288,7 +288,7 @@
           <button
             (click)="openMoveToWalletModal()"
             [disabled]="totalBonusBalance <= 0"
-            class="w-full bg-[#00F5D4] text-[#050811] font-black py-3 px-4 rounded-2xl shadow-[0_0_20px_rgba(0,245,212,0.4)] hover:brightness-110 active:scale-95 transition-all text-xs sm:text-sm disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            class="w-full bg-[#2CD97D] text-[#050811] font-black py-3 px-4 rounded-2xl shadow-[0_0_20px_rgba(44,217,125,0.4)] hover:brightness-110 active:scale-95 transition-all text-xs sm:text-sm disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             Move to Wallet
           </button>
@@ -300,13 +300,13 @@
           <h3
             class="text-white font-bold text-sm sm:text-base tracking-wide flex items-center gap-2"
           >
-            <span class="w-2 h-2 rounded-full bg-[#00F5D4] shadow-[0_0_8px_#00F5D4]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#2CD97D] shadow-[0_0_8px_#2CD97D]"></span>
             Bonus History
           </h3>
           <span
             class="text-xs text-gray-400 font-semibold bg-[#0C101D] px-3 py-1 rounded-full border border-white/10"
           >
-            <span class="text-[#00F5D4] font-bold">{{ filteredBonusTransactions.length }}</span> records
+            <span class="text-[#2CD97D] font-bold">{{ filteredBonusTransactions.length }}</span> records
           </span>
         </div>
 
@@ -316,7 +316,7 @@
         >
           <div
             *ngFor="let transaction of filteredBonusTransactions"
-            class="border border-[#00F5D4]/25 hover:border-[#00F5D4]/60 rounded-2xl p-4 bg-gradient-to-br from-[#0C101D] to-[#050811] shadow-xl flex flex-col gap-3 relative overflow-hidden transition-all duration-300"
+            class="border border-[#2CD97D]/25 hover:border-[#2CD97D]/60 rounded-2xl p-4 bg-gradient-to-br from-[#0C101D] to-[#050811] shadow-xl flex flex-col gap-3 relative overflow-hidden transition-all duration-300"
           >
             <div
               class="flex items-center justify-between border-b border-white/5 pb-2.5"
@@ -341,7 +341,7 @@
               <div
                 class="text-right font-extrabold text-sm font-mono"
                 [style.color]="
-                  transaction.type === 'credit' ? '#00F5D4' : '#f87171'
+                  transaction.type === 'credit' ? '#2CD97D' : '#f87171'
                 "
               >
                 {{ transaction.type === "credit" ? "+" : "-" }}${{
@@ -381,14 +381,14 @@
   <div class="hidden md:flex flex-col w-full gap-6">
     <!-- View Switcher Tabs -->
     <div
-      class="flex items-center gap-2 bg-[#0C101D]/80 border border-[#00F5D4]/20 rounded-2xl p-1.5 w-fit backdrop-blur-md shadow-lg"
+      class="flex items-center gap-2 bg-[#0C101D]/80 border border-[#2CD97D]/20 rounded-2xl p-1.5 w-fit backdrop-blur-md shadow-lg"
     >
       <button
         (click)="toggleWalletView('wallet')"
         class="px-8 py-2.5 rounded-xl text-sm font-extrabold tracking-wide transition-all cursor-pointer"
         [ngClass]="
           walletView === 'wallet'
-            ? 'bg-[#00F5D4] text-[#050811] shadow-[0_0_20px_rgba(0,245,212,0.4)]'
+            ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_20px_rgba(44,217,125,0.4)]'
             : 'text-gray-400 hover:text-white hover:bg-white/5'
         "
       >
@@ -399,7 +399,7 @@
         class="px-8 py-2.5 rounded-xl text-sm font-extrabold tracking-wide transition-all cursor-pointer"
         [ngClass]="
           walletView === 'bonus'
-            ? 'bg-[#00F5D4] text-[#050811] shadow-[0_0_20px_rgba(0,245,212,0.4)]'
+            ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_20px_rgba(44,217,125,0.4)]'
             : 'text-gray-400 hover:text-white hover:bg-white/5'
         "
       >
@@ -410,27 +410,27 @@
     <!-- WALLET BANNER -->
     <ng-container *ngIf="walletView === 'wallet'">
       <div
-        class="border border-[#00F5D4]/35 bg-gradient-to-r from-[#0C101D] via-[#090E1C] to-[#050811] rounded-3xl p-7 lg:p-8 flex items-center justify-between shadow-[0_15px_40px_rgba(0,0,0,0.7)] relative overflow-hidden"
+        class="border border-[#2CD97D]/35 bg-gradient-to-r from-[#0C101D] via-[#090E1C] to-[#050811] rounded-3xl p-7 lg:p-8 flex items-center justify-between shadow-[0_15px_40px_rgba(0,0,0,0.7)] relative overflow-hidden"
       >
         <div
-          class="absolute -left-20 -top-20 w-64 h-64 bg-[#00F5D4]/15 rounded-full blur-3xl pointer-events-none"
+          class="absolute -left-20 -top-20 w-64 h-64 bg-[#2CD97D]/15 rounded-full blur-3xl pointer-events-none"
         ></div>
 
         <div class="flex flex-col z-10">
           <span
             class="text-gray-400 text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"
           >
-            <span class="w-2 h-2 rounded-full bg-[#00F5D4]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#2CD97D]"></span>
             Available Balance
           </span>
           <div
-            class="mt-2 text-white font-mono text-3xl lg:text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#00F5D4] flex items-center gap-3"
+            class="mt-2 text-white font-mono text-3xl lg:text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#2CD97D] flex items-center gap-3"
           >
             {{ showBalance ? "$" + totalBalance.toLocaleString() : "******" }}
             <button
               aria-label="Toggle balance visibility"
               (click)="toggleBalance()"
-              class="text-[#00F5D4] hover:text-white transition text-xl cursor-pointer"
+              class="text-[#2CD97D] hover:text-white transition text-xl cursor-pointer"
             >
               <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
             </button>
@@ -439,25 +439,25 @@
 
         <div class="flex-1 flex flex-col items-center z-10 px-4">
           <h1
-            class="text-white font-black text-2xl lg:text-3xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-[#00F5D4]"
+            class="text-white font-black text-2xl lg:text-3xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-[#2CD97D]"
           >
             Wallet Dashboard
           </h1>
           <div
-            class="w-48 lg:w-56 h-[3px] bg-gradient-to-r from-transparent via-[#00F5D4] to-transparent mt-3 rounded-full shadow-[0_0_12px_#00F5D4]"
+            class="w-48 lg:w-56 h-[3px] bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent mt-3 rounded-full shadow-[0_0_12px_#2CD97D]"
           ></div>
         </div>
 
         <div class="flex items-center gap-3 lg:gap-4 z-10">
           <button
             (click)="openAddBalanceModal()"
-            class="px-6 lg:px-7 py-3.5 rounded-2xl bg-[#00F5D4] text-[#050811] font-black shadow-[0_0_25px_rgba(0,245,212,0.4)] hover:brightness-110 hover:shadow-[0_0_35px_rgba(0,245,212,0.6)] active:scale-95 transition-all text-xs lg:text-sm flex items-center gap-2 cursor-pointer"
+            class="px-6 lg:px-7 py-3.5 rounded-2xl bg-[#2CD97D] text-[#050811] font-black shadow-[0_0_25px_rgba(44,217,125,0.4)] hover:brightness-110 hover:shadow-[0_0_35px_rgba(44,217,125,0.6)] active:scale-95 transition-all text-xs lg:text-sm flex items-center gap-2 cursor-pointer"
           >
             <span class="text-base leading-none font-black">+</span> Deposit Funds
           </button>
           <button
             (click)="openWithdrawBalanceModal()"
-            class="px-6 lg:px-7 py-3.5 rounded-2xl bg-black/60 border border-[#00F5D4]/40 text-[#00F5D4] hover:bg-[#00F5D4]/15 active:scale-95 transition-all text-xs lg:text-sm font-bold shadow-lg cursor-pointer"
+            class="px-6 lg:px-7 py-3.5 rounded-2xl bg-black/60 border border-[#2CD97D]/40 text-[#2CD97D] hover:bg-[#2CD97D]/15 active:scale-95 transition-all text-xs lg:text-sm font-bold shadow-lg cursor-pointer"
           >
             Withdraw
           </button>
@@ -466,14 +466,14 @@
 
       <!-- Transaction History Table Card -->
       <div
-        class="bg-[#0C101D]/90 backdrop-blur-xl p-6 lg:p-8 rounded-3xl border border-[#00F5D4]/30 shadow-2xl flex flex-col relative overflow-hidden"
+        class="bg-[#0C101D]/90 backdrop-blur-xl p-6 lg:p-8 rounded-3xl border border-[#2CD97D]/30 shadow-2xl flex flex-col relative overflow-hidden"
       >
         <div
           class="flex items-center justify-between mb-6 pb-4 border-b border-white/10"
         >
           <div class="flex items-center gap-3">
             <div
-              class="w-3 h-3 rounded-full bg-[#00F5D4] shadow-[0_0_10px_#00F5D4]"
+              class="w-3 h-3 rounded-full bg-[#2CD97D] shadow-[0_0_10px_#2CD97D]"
             ></div>
             <h2 class="text-white font-extrabold text-lg lg:text-xl tracking-wide">
               Transaction History
@@ -483,14 +483,14 @@
             class="text-xs text-gray-400 font-semibold bg-white/5 px-4 py-2 rounded-xl border border-white/10"
           >
             Total Records:
-            <span class="text-[#00F5D4] font-bold">{{
+            <span class="text-[#2CD97D] font-bold">{{
               filteredTransactions.length
             }}</span>
           </div>
         </div>
 
         <div
-          class="grid grid-cols-[0.5fr_1.2fr_1fr_0.8fr_0.8fr_0.8fr_1fr_1.2fr_1.2fr] text-[#00F5D4] font-bold text-xs mb-3 items-center px-5 py-4 bg-black/60 rounded-2xl border border-[#00F5D4]/20 uppercase tracking-widest shadow-inner"
+          class="grid grid-cols-[0.5fr_1.2fr_1fr_0.8fr_0.8fr_0.8fr_1fr_1.2fr_1.2fr] text-[#2CD97D] font-bold text-xs mb-3 items-center px-5 py-4 bg-black/60 rounded-2xl border border-[#2CD97D]/20 uppercase tracking-widest shadow-inner"
         >
           <div>Sr</div>
           <div>Type</div>
@@ -511,7 +511,7 @@
         >
           <div
             *ngFor="let transaction of filteredTransactions; let i = index"
-            class="grid grid-cols-[0.5fr_1.2fr_1fr_0.8fr_0.8fr_0.8fr_1fr_1.2fr_1.2fr] items-center px-5 py-4 bg-gradient-to-r from-black/50 via-[#0C101D]/80 to-black/50 hover:from-[#101628] hover:to-[#0C101D] border border-white/5 hover:border-[#00F5D4]/40 rounded-2xl transition duration-300 text-xs shadow-md"
+            class="grid grid-cols-[0.5fr_1.2fr_1fr_0.8fr_0.8fr_0.8fr_1fr_1.2fr_1.2fr] items-center px-5 py-4 bg-gradient-to-r from-black/50 via-[#0C101D]/80 to-black/50 hover:from-[#101628] hover:to-[#0C101D] border border-white/5 hover:border-[#2CD97D]/40 rounded-2xl transition duration-300 text-xs shadow-md"
           >
             <div class="text-gray-400 font-mono font-bold">{{ i + 1 }}</div>
 
@@ -519,7 +519,7 @@
               <span
                 class="truncate pr-2 flex items-center gap-2 font-semibold text-gray-200"
               >
-                <i class="fa fa-university text-[#00F5D4]"></i>
+                <i class="fa fa-university text-[#2CD97D]"></i>
                 {{ transaction.type === "debit" ? "Debit" : "Credit" }}
                 <span class="text-gray-400 font-normal"
                   >({{ transaction.source }})</span
@@ -535,7 +535,7 @@
               >
                 <fa-icon
                   [icon]="faEdit"
-                  class="cursor-pointer hover:text-[#00F5D4] transition"
+                  class="cursor-pointer hover:text-[#2CD97D] transition"
                   (click)="editWithdrawTransaction(transaction, $event)"
                   title="Edit"
                 ></fa-icon>
@@ -551,7 +551,7 @@
             <div
               class="font-extrabold text-sm font-mono tracking-wide"
               [style.color]="
-                transaction.type === 'credit' ? '#00F5D4' : '#f87171'
+                transaction.type === 'credit' ? '#2CD97D' : '#f87171'
               "
             >
               {{ transaction.type === "credit" ? "+" : "-" }}${{
@@ -613,21 +613,21 @@
     <!-- BONUS WALLET BANNER -->
     <ng-container *ngIf="walletView === 'bonus'">
       <div
-        class="border border-[#00F5D4]/35 bg-gradient-to-r from-[#0C101D] via-[#090E1C] to-[#050811] rounded-3xl p-7 lg:p-8 flex items-center justify-between shadow-[0_15px_40px_rgba(0,0,0,0.7)] relative overflow-hidden"
+        class="border border-[#2CD97D]/35 bg-gradient-to-r from-[#0C101D] via-[#090E1C] to-[#050811] rounded-3xl p-7 lg:p-8 flex items-center justify-between shadow-[0_15px_40px_rgba(0,0,0,0.7)] relative overflow-hidden"
       >
         <div
-          class="absolute -left-20 -top-20 w-64 h-64 bg-[#00F5D4]/15 rounded-full blur-3xl pointer-events-none"
+          class="absolute -left-20 -top-20 w-64 h-64 bg-[#2CD97D]/15 rounded-full blur-3xl pointer-events-none"
         ></div>
 
         <div class="flex flex-col z-10">
           <span
             class="text-gray-400 text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"
           >
-            <span class="w-2 h-2 rounded-full bg-[#00F5D4]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#2CD97D]"></span>
             Bonus Balance
           </span>
           <div
-            class="mt-2 text-white font-mono text-3xl lg:text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#00F5D4] flex items-center gap-3"
+            class="mt-2 text-white font-mono text-3xl lg:text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-[#2CD97D] flex items-center gap-3"
           >
             {{
               showBalance ? "$" + totalBonusBalance.toLocaleString() : "******"
@@ -635,7 +635,7 @@
             <button
               aria-label="Toggle balance visibility"
               (click)="toggleBalance()"
-              class="text-[#00F5D4] hover:text-white transition text-xl cursor-pointer"
+              class="text-[#2CD97D] hover:text-white transition text-xl cursor-pointer"
             >
               <fa-icon [icon]="showBalance ? showicon : hideicon"></fa-icon>
             </button>
@@ -644,12 +644,12 @@
 
         <div class="flex-1 flex flex-col items-center z-10 px-4">
           <h1
-            class="text-white font-black text-2xl lg:text-3xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-[#00F5D4]"
+            class="text-white font-black text-2xl lg:text-3xl tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-[#2CD97D]"
           >
             Bonus Wallet
           </h1>
           <div
-            class="w-48 lg:w-56 h-[3px] bg-gradient-to-r from-transparent via-[#00F5D4] to-transparent mt-3 rounded-full shadow-[0_0_12px_#00F5D4]"
+            class="w-48 lg:w-56 h-[3px] bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent mt-3 rounded-full shadow-[0_0_12px_#2CD97D]"
           ></div>
         </div>
 
@@ -657,7 +657,7 @@
           <button
             (click)="openMoveToWalletModal()"
             [disabled]="totalBonusBalance <= 0"
-            class="px-7 py-3.5 rounded-2xl bg-[#00F5D4] text-[#050811] font-black shadow-[0_0_25px_rgba(0,245,212,0.4)] hover:brightness-110 active:scale-95 transition-all text-xs lg:text-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:brightness-100 cursor-pointer"
+            class="px-7 py-3.5 rounded-2xl bg-[#2CD97D] text-[#050811] font-black shadow-[0_0_25px_rgba(44,217,125,0.4)] hover:brightness-110 active:scale-95 transition-all text-xs lg:text-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:brightness-100 cursor-pointer"
           >
             Move to Wallet
           </button>
@@ -665,14 +665,14 @@
       </div>
 
       <div
-        class="bg-[#0C101D]/90 backdrop-blur-xl p-6 lg:p-8 rounded-3xl border border-[#00F5D4]/30 shadow-2xl flex flex-col relative overflow-hidden"
+        class="bg-[#0C101D]/90 backdrop-blur-xl p-6 lg:p-8 rounded-3xl border border-[#2CD97D]/30 shadow-2xl flex flex-col relative overflow-hidden"
       >
         <div
           class="flex items-center justify-between mb-6 pb-4 border-b border-white/10"
         >
           <div class="flex items-center gap-3">
             <div
-              class="w-3 h-3 rounded-full bg-[#00F5D4] shadow-[0_0_10px_#00F5D4]"
+              class="w-3 h-3 rounded-full bg-[#2CD97D] shadow-[0_0_10px_#2CD97D]"
             ></div>
             <h2 class="text-white font-extrabold text-lg lg:text-xl tracking-wide">
               Bonus History
@@ -682,14 +682,14 @@
             class="text-xs text-gray-400 font-semibold bg-white/5 px-4 py-2 rounded-xl border border-white/10"
           >
             Total Records:
-            <span class="text-[#00F5D4] font-bold">{{
+            <span class="text-[#2CD97D] font-bold">{{
               filteredBonusTransactions.length
             }}</span>
           </div>
         </div>
 
         <div
-          class="grid grid-cols-[0.5fr_1.2fr_1fr_1.2fr_1fr_1.2fr_1.2fr] text-[#00F5D4] font-bold text-xs mb-3 items-center px-5 py-4 bg-black/60 rounded-2xl border border-[#00F5D4]/20 uppercase tracking-widest shadow-inner"
+          class="grid grid-cols-[0.5fr_1.2fr_1fr_1.2fr_1fr_1.2fr_1.2fr] text-[#2CD97D] font-bold text-xs mb-3 items-center px-5 py-4 bg-black/60 rounded-2xl border border-[#2CD97D]/20 uppercase tracking-widest shadow-inner"
         >
           <div>Sr</div>
           <div>Type</div>
@@ -706,7 +706,7 @@
         >
           <div
             *ngFor="let transaction of filteredBonusTransactions; let i = index"
-            class="grid grid-cols-[0.5fr_1.2fr_1fr_1.2fr_1fr_1.2fr_1.2fr] items-center px-5 py-4 bg-gradient-to-r from-black/50 via-[#0C101D]/80 to-black/50 hover:from-[#101628] hover:to-[#0C101D] border border-white/5 hover:border-[#00F5D4]/40 rounded-2xl transition duration-300 text-xs shadow-md"
+            class="grid grid-cols-[0.5fr_1.2fr_1fr_1.2fr_1fr_1.2fr_1.2fr] items-center px-5 py-4 bg-gradient-to-r from-black/50 via-[#0C101D]/80 to-black/50 hover:from-[#101628] hover:to-[#0C101D] border border-white/5 hover:border-[#2CD97D]/40 rounded-2xl transition duration-300 text-xs shadow-md"
           >
             <div class="text-gray-400 font-mono font-bold">{{ i + 1 }}</div>
 
@@ -714,7 +714,7 @@
               <span
                 class="truncate pr-2 flex items-center gap-2 font-semibold text-gray-200"
               >
-                <i class="fa fa-gift text-[#00F5D4]"></i>
+                <i class="fa fa-gift text-[#2CD97D]"></i>
                 {{ transaction.type === "debit" ? "Debit" : "Credit" }}
                 <span class="text-gray-400 font-normal"
                   >({{ transaction.source }})</span
@@ -725,7 +725,7 @@
             <div
               class="font-extrabold text-sm font-mono tracking-wide"
               [style.color]="
-                transaction.type === 'credit' ? '#00F5D4' : '#f87171'
+                transaction.type === 'credit' ? '#2CD97D' : '#f87171'
               "
             >
               {{ transaction.type === "credit" ? "+" : "-" }}${{
@@ -802,20 +802,20 @@
     (click)="hideWithdrawModal()"
   >
     <div
-      class="bg-[#0C101D] border border-[#00F5D4]/40 rounded-[24px] sm:rounded-[32px] w-full max-w-2xl p-4 sm:p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white my-auto modal slide-up max-h-[90dvh] overflow-y-auto custom-scroll"
+      class="bg-[#0C101D] border border-[#2CD97D]/40 rounded-[24px] sm:rounded-[32px] w-full max-w-2xl p-4 sm:p-6 md:p-8 relative shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white my-auto modal slide-up max-h-[90dvh] overflow-y-auto custom-scroll"
       (click)="$event.stopPropagation()"
     >
       <!-- Header Title & Close Button -->
       <div class="flex items-center justify-between mb-4 sm:mb-6">
         <div class="flex items-center gap-2.5">
-          <span class="w-2 h-5 bg-[#00F5D4] rounded-full shadow-[0_0_10px_#00F5D4]"></span>
+          <span class="w-2 h-5 bg-[#2CD97D] rounded-full shadow-[0_0_10px_#2CD97D]"></span>
           <h2 class="text-base sm:text-xl font-black text-white tracking-wide">
             Withdraw Balance
           </h2>
         </div>
         <button
           (click)="hideWithdrawModal()"
-          class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#00F5D4]/40 transition active:scale-95 cursor-pointer"
+          class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2CD97D]/40 transition active:scale-95 cursor-pointer"
         >
           ✕
         </button>
@@ -837,7 +837,7 @@
             (click)="selectedAccountType = method.name"
             class="relative flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border transition-all cursor-pointer overflow-hidden group active:scale-95"
             [ngClass]="{
-              'bg-[#00F5D4]/10 border-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.3)]':
+              'bg-[#2CD97D]/10 border-[#2CD97D] shadow-[0_0_15px_rgba(44,217,125,0.3)]':
                 selectedAccountType === method.name,
               'bg-black/40 border-white/10 hover:border-white/30 hover:bg-white/5':
                 selectedAccountType !== method.name,
@@ -854,7 +854,7 @@
             </div>
             <div class="flex flex-col overflow-hidden">
               <span
-                class="text-[11px] sm:text-xs font-bold text-white truncate group-hover:text-[#00F5D4] transition"
+                class="text-[11px] sm:text-xs font-bold text-white truncate group-hover:text-[#2CD97D] transition"
                 >{{ method.name }}</span
               >
             </div>
@@ -868,11 +868,11 @@
       >
         <!-- Balance Summary Info -->
         <div
-          class="grid grid-cols-2 gap-3 sm:gap-4 bg-black/60 border border-[#00F5D4]/20 p-3.5 rounded-xl text-center"
+          class="grid grid-cols-2 gap-3 sm:gap-4 bg-black/60 border border-[#2CD97D]/20 p-3.5 rounded-xl text-center"
         >
           <div class="border-r border-white/10 pr-2">
             <p
-              class="text-base sm:text-xl font-black font-mono text-[#00F5D4] truncate"
+              class="text-base sm:text-xl font-black font-mono text-[#2CD97D] truncate"
             >
               ${{ totalBalance }}
             </p>
@@ -907,7 +907,7 @@
             (input)="
               limitToBalance($event); limitDecimals('amouttowithdraw', $event)
             "
-            class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition font-mono"
+            class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition font-mono"
             placeholder="Enter amount"
           />
         </div>
@@ -923,7 +923,7 @@
               type="text"
               [(ngModel)]="accountInfo"
               placeholder="Enter account title"
-              class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition"
+              class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
             />
           </div>
           <div>
@@ -935,7 +935,7 @@
               type="text"
               [(ngModel)]="Customertag"
               placeholder="Enter tag or number"
-              class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition"
+              class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition"
             />
           </div>
         </div>
@@ -952,7 +952,7 @@
             [(ngModel)]="tipAmount"
             (input)="limitDecimals('tipAmount', $event)"
             placeholder="Enter tip amount"
-            class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none focus:border-[#00F5D4] focus:shadow-[0_0_15px_rgba(0,245,212,0.25)] transition font-mono"
+            class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition font-mono"
           />
         </div>
       </div>
@@ -967,7 +967,7 @@
         </button>
         <button
           (click)="createUpdateWithdrawRequest()"
-          class="w-2/3 bg-[#00F5D4] text-[#050811] font-black py-3.5 rounded-2xl text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(0,245,212,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+          class="w-2/3 bg-[#2CD97D] text-[#050811] font-black py-3.5 rounded-2xl text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.45)] hover:brightness-110 active:scale-95 transition cursor-pointer"
         >
           Withdraw Balance
         </button>
@@ -982,14 +982,14 @@
     (click)="closeMoveToWalletModal()"
   >
     <div
-      class="bg-[#0C101D] border border-[#00F5D4]/40 rounded-3xl w-full max-w-lg shadow-[0_0_50px_rgba(0,0,0,0.8)] modal slide-up overflow-hidden"
+      class="bg-[#0C101D] border border-[#2CD97D]/40 rounded-3xl w-full max-w-lg shadow-[0_0_50px_rgba(0,0,0,0.8)] modal slide-up overflow-hidden"
       (click)="$event.stopPropagation()"
     >
       <div
         class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/60"
       >
         <div class="flex items-center gap-2.5">
-          <span class="w-2 h-4 bg-[#00F5D4] rounded-full shadow-[0_0_8px_#00F5D4]"></span>
+          <span class="w-2 h-4 bg-[#2CD97D] rounded-full shadow-[0_0_8px_#2CD97D]"></span>
           <h2 class="text-base sm:text-lg font-extrabold text-white tracking-wide">
             Move to Wallet
           </h2>
@@ -1004,10 +1004,10 @@
 
       <div class="p-6 flex flex-col gap-6">
         <div
-          class="grid grid-cols-2 gap-4 bg-black/60 border border-[#00F5D4]/20 p-4 rounded-2xl text-center shadow-inner"
+          class="grid grid-cols-2 gap-4 bg-black/60 border border-[#2CD97D]/20 p-4 rounded-2xl text-center shadow-inner"
         >
           <div class="border-r border-white/10 pr-2">
-            <p class="text-white text-2xl font-black font-mono text-[#00F5D4]">
+            <p class="text-white text-2xl font-black font-mono text-[#2CD97D]">
               ${{ totalBonusBalance.toLocaleString() }}
             </p>
             <span class="text-xs text-gray-400 font-medium">Bonus Balance</span>
@@ -1043,7 +1043,7 @@
               isMovingToWallet ||
               moveToWalletAmount <= 0
             "
-            class="w-2/3 py-3.5 rounded-2xl bg-[#00F5D4] text-[#050811] font-black shadow-[0_0_20px_rgba(0,245,212,0.4)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            class="w-2/3 py-3.5 rounded-2xl bg-[#2CD97D] text-[#050811] font-black shadow-[0_0_20px_rgba(44,217,125,0.4)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             Move to Wallet
           </button>

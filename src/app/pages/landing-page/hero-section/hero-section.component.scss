@@ -25,7 +25,7 @@
   left: 10%;
   width: 420px;
   height: 420px;
-  background: radial-gradient(circle, rgba(0, 245, 212, 0.28) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.28) 0%, transparent 70%);
 }
 
 .cta-glow--two {
@@ -52,7 +52,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #00f5d4;
+  color: #2cd97d;
   font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -63,7 +63,7 @@
     content: "";
     width: 18px;
     height: 1px;
-    background: #00f5d4;
+    background: #2cd97d;
     display: inline-block;
   }
 }
@@ -75,8 +75,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 30%, rgba(0, 245, 212, 0.16), rgba(5, 8, 17, 0.4) 70%);
-  border: 1px dashed rgba(0, 245, 212, 0.3);
+  background: radial-gradient(circle at 40% 30%, rgba(44, 217, 125, 0.16), rgba(5, 8, 17, 0.4) 70%);
+  border: 1px dashed rgba(44, 217, 125, 0.3);
   padding: 0em;
 
   &::before {
@@ -84,7 +84,7 @@
     position: absolute;
     inset: -18px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 245, 212, 0.15);
+    border: 1px solid rgba(44, 217, 125, 0.15);
   }
 }
 
@@ -114,7 +114,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(115deg, transparent 35%, rgba(0, 245, 212, 0.25) 50%, transparent 65%);
+    background: linear-gradient(115deg, transparent 35%, rgba(44, 217, 125, 0.25) 50%, transparent 65%);
     transform: translateX(-130%);
     transition: transform 0.7s ease;
     pointer-events: none;
@@ -130,16 +130,16 @@
 }
 
 .cta-btn-primary {
-  background: rgb(0, 245, 212);
-  border: 1.5px solid rgb(0, 245, 212);
+  background: rgb(44, 217, 125);
+  border: 1.5px solid rgb(44, 217, 125);
   color: #050811;
-  box-shadow: 0 10px 26px rgba(0, 245, 212, 0.35);
+  box-shadow: 0 10px 26px rgba(44, 217, 125, 0.35);
 
   &:hover {
-    background: #00d6b9;
-    border-color: #00d6b9;
+    background: #28c772;
+    border-color: #28c772;
     color: #050811;
-    box-shadow: 0 12px 30px rgba(0, 245, 212, 0.55);
+    box-shadow: 0 12px 30px rgba(44, 217, 125, 0.55);
   }
 }
 
@@ -149,8 +149,8 @@
   color: #f1ede5;
 
   &:hover {
-    border-color: rgba(0, 245, 212, 0.5);
-    background: rgba(0, 245, 212, 0.06);
-    color: #00f5d4;
+    border-color: rgba(44, 217, 125, 0.5);
+    background: rgba(44, 217, 125, 0.06);
+    color: #2cd97d;
   }
 }

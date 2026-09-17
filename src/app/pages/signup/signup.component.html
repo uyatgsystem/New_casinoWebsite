@@ -1,91 +1,87 @@
 <app-loader></app-loader>
+
 <div
   class="main-bg relative w-full min-h-[100vh] bg-cover bg-center overflow-y-auto"
 >
-  <!-- Main Container with Left and Right Divs -->
   <div class="flex flex-col lg:flex-row lg:absolute lg:inset-0 min-h-screen">
-    <!-- LeftDiv: Logo, Welcome Text, Person Image (Desktop View) -->
+    <!-- LeftDiv: Logo, Welcome Text (Desktop View) -->
     <div
-      class="hidden lg:flex flex-1 flex-col justify-between bg-[#00040880]"
-      style="clip-path: ellipse(85% 100% at 0% 50%)"
+      class="hidden lg:flex flex-1 flex-col justify-between bg-[#000408]/80 p-8 lg:p-14"
     >
-      <!-- Logo -->
-      <div
-        class="hidden md:hidden lg:flex justify-start lg:mb-0 pt-4 lg:p-[1rem]"
-      >
+      <div class="flex justify-start">
         <img
           src="https://spinhub-6rb.pages.dev/assets/logo.png"
-          alt="Logo"
-          class="w-[200px] h-[150px]"
-          style="
-            transform: scale(1.1);
-            transform-origin: center;
-            margin-left: 4rem;
-          "
+          alt="Spin Hub Logo"
+          class="w-[180px] h-auto object-contain"
         />
       </div>
-      <!-- Welcome Text -->
-      <div
-        class="mobile-welcome-text flex flex-col items-start text-left text-white max-w-xl mx-auto lg:mx-0 pl-[3rem] lg:flex"
-      >
-        <h1
-          class="text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] xl:text-[42px] 2xl:text-[42px] font-bold mb-4 leading-tight"
-        >
-          Unlock Your
-          <span
-            class="text-[#00F5D4] drop-shadow-[0_0_10px_rgba(0,245,212,0.4)]"
-            >Winning Journey</span
-          >
-        </h1>
 
-        <p
-          class="text-gray-300 text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] leading-relaxed"
+      <div class="mobile-welcome-text flex flex-col items-start text-left text-white max-w-xl mx-auto lg:mx-0">
+        <span class="text-[#2CD97D] text-xs font-mono font-bold tracking-widest uppercase mb-3 px-2.5 py-1 rounded-lg bg-[#2CD97D]/10 border border-[#2CD97D]/30">
+          OPERATIVE REGISTRATION PROTOCOL
+        </span>
+        <h1
+          class="text-3xl lg:text-5xl font-black mb-4 leading-tight tracking-tight"
         >
-          Your next big win starts here. Join Spin Hub for premium games,
-          exciting rewards, and unforgettable moments made for players who play
-          to win.
+          Unlock Your <br />
+          <span class="text-[#2CD97D] drop-shadow-[0_0_20px_rgba(44,217,125,0.4)]">
+            Winning Journey
+          </span>
+        </h1>
+        <p class="text-gray-300 text-sm lg:text-base leading-relaxed max-w-lg">
+          Join Spin Hub today. Experience premium instant games, exclusive VIP reward tiers,
+          and rapid automated crypto & fiat payouts.
         </p>
+      </div>
+
+      <div class="text-xs text-gray-500 font-mono">
+        SSL 256-BIT SECURE PROTOCOL // ZERO DATA COMPROMISE
       </div>
     </div>
 
-    <!-- Mobile Header -->
-    <div class="lg:hidden mobile-header-section">
-      <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Logo" />
-      <h1>Start Your <span class="text-[#00F5D4]">Winning Journey</span></h1>
-      <p>
-        Create your account and step into a world of premium games and instant
-        rewards.
+    <!-- Mobile Header (Clean Spacing, No Cut-Offs) -->
+    <div class="lg:hidden mobile-header-section flex flex-col items-center text-center px-4 pt-8 pb-3">
+      <img
+        src="https://spinhub-6rb.pages.dev/assets/logo.png"
+        alt="Spin Hub Logo"
+        class="w-[85px] h-auto mb-2"
+      />
+      <h1 class="text-xl font-black text-white leading-snug">
+        Start Your <span class="text-[#2CD97D]">Winning Journey</span>
+      </h1>
+      <p class="text-xs text-gray-300 mt-1 max-w-[320px] leading-relaxed">
+        Register an operative account to claim welcome perks and enter live tournaments.
       </p>
     </div>
 
     <!-- RightDiv: Form Section -->
     <div
-      class="flex-1 flex items-center lg:items-center justify-center p-2 sm:p-3 lg:p-8 lg:pr-16 pb-12 lg:pb-8"
+      class="flex-1 flex items-center justify-center px-4 pb-12 lg:p-8 lg:pr-16"
     >
       <div
-        class="rounded-[1.5rem] bg-[#0C101D]/90 backdrop-blur-md border border-[#00F5D4]/40 shadow-[0_0_25px_rgba(0,245,212,0.15)] p-3 sm:p-4 md:p-5 lg:p-8 2xl:p-[3rem] w-full max-w-sm sm:max-w-sm md:max-w-md 2xl:max-w-[30rem] mx-auto lg:mx-0"
+        class="rounded-3xl bg-[#0B101E]/95 backdrop-blur-2xl p-6 sm:p-8 w-full max-w-lg mx-auto lg:mx-0 border border-[#2CD97D]/40 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.12)] relative overflow-hidden"
         id="formContainer"
       >
-        <!-- Header -->
-        <div class="mt-0 mb-3 lg:mb-4">
-          <div
-            class="auth-switch flex items-center justify-center md:justify-start gap-2 mt-1 md:mb-2 lg:mb-2"
-          >
-            <span
-              class="text-gray-300 hover:text-[#FF9F1C] text-sm lg:text-[24px] font-semibold cursor-pointer"
-              routerLink="/login"
-              >Sign In</span
-            >
-            <span class="text-white/40 text-sm lg:text-[24px]">/</span>
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent"></div>
+
+        <!-- Header / Switch -->
+        <div class="mb-5">
+          <div class="auth-switch flex items-center justify-center sm:justify-start gap-3 mb-2">
             <a
-              class="text-[#00F5D4] text-sm lg:text-[24px] font-semibold transition-colors drop-shadow-[0_0_8px_rgba(0,245,212,0.5)]"
-              >Create Account</a
+              routerLink="/login"
+              class="text-gray-400 hover:text-white text-lg sm:text-2xl font-bold transition-colors cursor-pointer"
             >
+              Sign In
+            </a>
+            <span class="text-white/30 text-lg sm:text-2xl font-light">/</span>
+            <span
+              class="text-[#2CD97D] text-lg sm:text-2xl font-black drop-shadow-[0_0_10px_rgba(44,217,125,0.5)] border-b-2 border-[#2CD97D] pb-0.5"
+            >
+              Create Account
+            </span>
           </div>
-          <p
-            class="text-gray-300 text-xs lg:text-[1rem] mb-3 lg:mb-8 text-center md:text-left"
-          >
-            Create your account and unlock your winning journey.
+          <p class="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
+            Register your player profile to unlock instant games and rewards.
           </p>
         </div>
 
@@ -98,42 +94,46 @@
           <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
 
           <!-- First & Last Name -->
-          <div class="flex flex-col lg:flex-row gap-2.5 mb-2.5">
-            <div class="w-full lg:w-1/2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+            <div>
+              <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
+                First Name
+              </label>
               <input
                 id="firstName"
                 type="text"
                 formControlName="firstName"
                 placeholder="First name"
-                class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                class="w-full text-white placeholder-gray-500 py-2.5 px-3.5 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
               />
-              <div class="h-[1px] w-full bg-custom-gradient"></div>
               <div
                 *ngIf="
                   signupForm.get('firstName')?.invalid &&
                   signupForm.get('firstName')?.touched
                 "
-                class="text-red-400 text-xs mt-0.5"
+                class="text-red-400 text-[11px] mt-1"
               >
                 First name is required.
               </div>
             </div>
 
-            <div class="w-full lg:w-1/2">
+            <div>
+              <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
+                Last Name
+              </label>
               <input
                 id="lastName"
                 type="text"
                 formControlName="lastName"
                 placeholder="Last name"
-                class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                class="w-full text-white placeholder-gray-500 py-2.5 px-3.5 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
               />
-              <div class="h-[1px] w-full bg-custom-gradient"></div>
               <div
                 *ngIf="
                   signupForm.get('lastName')?.invalid &&
                   signupForm.get('lastName')?.touched
                 "
-                class="text-red-400 text-xs mt-0.5"
+                class="text-red-400 text-[11px] mt-1"
               >
                 Last name is required.
               </div>
@@ -141,240 +141,264 @@
           </div>
 
           <!-- Username & Referral Code -->
-          <div class="flex flex-col lg:flex-row gap-2.5 mb-2.5">
-            <div class="w-full lg:w-1/2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+            <div>
+              <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
+                Username
+              </label>
               <input
                 id="username"
                 type="text"
                 formControlName="username"
-                placeholder="Choose a username"
-                class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                placeholder="Choose username"
+                class="w-full text-white placeholder-gray-500 py-2.5 px-3.5 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
                 (input)="restrictWhiteSpaces()"
               />
-              <div class="h-[1px] w-full bg-custom-gradient"></div>
               <div
                 *ngIf="
                   signupForm.get('username')?.invalid &&
                   signupForm.get('username')?.touched
                 "
-                class="text-red-400 text-xs mt-0.5"
+                class="text-red-400 text-[11px] mt-1"
               >
                 Username is required.
               </div>
             </div>
 
-            <div class="w-full lg:w-1/2">
+            <div>
+              <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
+                Referral Code (Optional)
+              </label>
               <input
                 id="referralCode"
                 type="text"
                 formControlName="referralCode"
-                placeholder="Referral code (optional)"
-                class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
+                placeholder="Ref code"
+                class="w-full text-white placeholder-gray-500 py-2.5 px-3.5 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all font-mono"
                 (input)="restrictWhiteSpaces()"
               />
-              <div class="h-[1px] w-full bg-custom-gradient"></div>
             </div>
           </div>
 
           <!-- Email -->
-          <div class="mb-2.5">
+          <div class="mb-3">
+            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
+              Email Address
+            </label>
             <div class="relative">
               <input
                 id="email"
                 type="email"
                 formControlName="email"
-                placeholder="Enter your email"
-                class="w-full text-white placeholder-gray-400 py-2 pr-8 focus:outline-none bg-inherit text-xs sm:text-sm"
+                placeholder="name@domain.com"
+                class="w-full text-white placeholder-gray-500 py-2.5 pl-3.5 pr-10 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
               />
               <i
-                class="fas fa-envelope text-cyan-400/70 absolute right-3 top-1/2 -translate-y-1/2 text-xs"
+                class="fa fa-envelope text-[#2CD97D] absolute right-3.5 top-1/2 -translate-y-1/2 text-xs pointer-events-none"
               ></i>
             </div>
-            <div class="h-[1px] w-full bg-custom-gradient"></div>
             <div
               *ngIf="
                 signupForm.get('email')?.invalid &&
                 signupForm.get('email')?.touched
               "
-              class="text-red-400 text-xs mt-0.5"
+              class="text-red-400 text-[11px] mt-1"
             >
               <div *ngIf="signupForm.get('email')?.errors?.['required']">
                 Email is required.
               </div>
               <div *ngIf="signupForm.get('email')?.errors?.['email']">
-                Invalid email format.
+                Valid email format is required.
               </div>
             </div>
           </div>
 
           <!-- Password -->
-          <div class="mb-2.5 relative">
-            <input
-              id="password"
-              [type]="showpassword ? 'text' : 'password'"
-              formControlName="password"
-              placeholder="Create a strong password"
-              class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
-              (input)="checkPasswordStrength()"
-              (focus)="isPasswordFocused = true"
-              (blur)="isPasswordFocused = false"
-            />
-            <div class="h-[1px] w-full bg-custom-gradient"></div>
-            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <fa-icon
-                class="cursor-pointer text-gray-400 hover:text-[#00F5D4] transition-colors text-xs"
+          <div class="mb-3">
+            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
+              Create Password
+            </label>
+            <div class="relative">
+              <input
+                id="password"
+                [type]="showpassword ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="Create strong password"
+                class="w-full text-white placeholder-gray-500 py-2.5 pl-3.5 pr-12 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                (input)="checkPasswordStrength()"
+                (focus)="isPasswordFocused = true"
+                (blur)="isPasswordFocused = false"
+              />
+              <button
+                type="button"
                 (click)="togglePassword()"
-                [icon]="showpassword ? hideicon : showicon"
-              ></fa-icon>
+                class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2CD97D] transition-colors p-1"
+                aria-label="Toggle password visibility"
+              >
+                <fa-icon [icon]="showpassword ? hideicon : showicon" class="text-xs"></fa-icon>
+              </button>
             </div>
-          </div>
 
-          <!-- Password Requirements -->
-          <div
-            *ngIf="
-              signupForm.get('password')?.dirty &&
-              isPasswordFocused &&
-              !allRequirementsMet()
-            "
-            class="mb-2.5 p-2 bg-black/60 border border-[#00F5D4]/30 rounded text-xs"
-          >
-            <ul class="space-y-1">
-              <li
-                [class.text-emerald-400]="passwordChecks.length"
-                [class.text-red-400]="!passwordChecks.length"
-              >
-                Must be at least 8 characters
-              </li>
-              <li
-                [class.text-emerald-400]="passwordChecks.numbers"
-                [class.text-red-400]="!passwordChecks.numbers"
-              >
-                Must contain at least 2 numbers
-              </li>
-              <li
-                [class.text-emerald-400]="passwordChecks.uppercase"
-                [class.text-red-400]="!passwordChecks.uppercase"
-              >
-                Must contain at least 1 uppercase letter
-              </li>
-              <li
-                [class.text-emerald-400]="passwordChecks.lowercase"
-                [class.text-red-400]="!passwordChecks.lowercase"
-              >
-                Must contain at least 1 lowercase letter
-              </li>
-              <li
-                [class.text-emerald-400]="passwordChecks.special"
-                [class.text-red-400]="!passwordChecks.special"
-              >
-                Must contain at least 1 special character
-              </li>
-            </ul>
+            <!-- Password Requirements Popup -->
+            <div
+              *ngIf="
+                signupForm.get('password')?.dirty &&
+                isPasswordFocused &&
+                !allRequirementsMet()
+              "
+              class="mt-2 p-3 bg-[#050811] border border-[#2CD97D]/40 rounded-xl text-xs"
+            >
+              <ul class="space-y-1">
+                <li
+                  [class.text-[#2CD97D]]="passwordChecks.length"
+                  [class.text-red-400]="!passwordChecks.length"
+                  class="flex items-center gap-1.5"
+                >
+                  <i class="fa" [ngClass]="passwordChecks.length ? 'fa-check' : 'fa-times'"></i>
+                  At least 8 characters
+                </li>
+                <li
+                  [class.text-[#2CD97D]]="passwordChecks.numbers"
+                  [class.text-red-400]="!passwordChecks.numbers"
+                  class="flex items-center gap-1.5"
+                >
+                  <i class="fa" [ngClass]="passwordChecks.numbers ? 'fa-check' : 'fa-times'"></i>
+                  At least 2 numbers
+                </li>
+                <li
+                  [class.text-[#2CD97D]]="passwordChecks.uppercase"
+                  [class.text-red-400]="!passwordChecks.uppercase"
+                  class="flex items-center gap-1.5"
+                >
+                  <i class="fa" [ngClass]="passwordChecks.uppercase ? 'fa-check' : 'fa-times'"></i>
+                  At least 1 uppercase letter
+                </li>
+                <li
+                  [class.text-[#2CD97D]]="passwordChecks.lowercase"
+                  [class.text-red-400]="!passwordChecks.lowercase"
+                  class="flex items-center gap-1.5"
+                >
+                  <i class="fa" [ngClass]="passwordChecks.lowercase ? 'fa-check' : 'fa-times'"></i>
+                  At least 1 lowercase letter
+                </li>
+                <li
+                  [class.text-[#2CD97D]]="passwordChecks.special"
+                  [class.text-red-400]="!passwordChecks.special"
+                  class="flex items-center gap-1.5"
+                >
+                  <i class="fa" [ngClass]="passwordChecks.special ? 'fa-check' : 'fa-times'"></i>
+                  At least 1 special character
+                </li>
+              </ul>
+            </div>
           </div>
 
           <!-- Confirm Password -->
-          <div class="mb-2 relative">
-            <input
-              id="confirmPassword"
-              [type]="Confirmshowpassword ? 'text' : 'password'"
-              formControlName="confirmPassword"
-              placeholder="Confirm your password"
-              class="w-full text-white placeholder-gray-400 py-2 focus:outline-none bg-inherit text-xs sm:text-sm"
-            />
-            <div class="h-[1px] w-full bg-custom-gradient"></div>
-            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <fa-icon
-                class="cursor-pointer text-gray-400 hover:text-[#00F5D4] transition-colors text-xs"
+          <div class="mb-3">
+            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
+              Confirm Password
+            </label>
+            <div class="relative">
+              <input
+                id="confirmPassword"
+                [type]="Confirmshowpassword ? 'text' : 'password'"
+                formControlName="confirmPassword"
+                placeholder="Re-enter password"
+                class="w-full text-white placeholder-gray-500 py-2.5 pl-3.5 pr-12 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+              />
+              <button
+                type="button"
                 (click)="toggleConfirmPassword()"
-                [icon]="Confirmshowpassword ? hideicon : showicon"
-              ></fa-icon>
+                class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2CD97D] transition-colors p-1"
+                aria-label="Toggle confirm password visibility"
+              >
+                <fa-icon [icon]="Confirmshowpassword ? hideicon : showicon" class="text-xs"></fa-icon>
+              </button>
+            </div>
+            <div
+              *ngIf="
+                signupForm.errors?.['passwordMismatch'] &&
+                signupForm.get('confirmPassword')?.dirty
+              "
+              class="text-red-400 text-[11px] mt-1"
+            >
+              Passwords do not match.
             </div>
           </div>
 
-          <div
-            *ngIf="
-              signupForm.errors?.['passwordMismatch'] &&
-              signupForm.get('confirmPassword')?.dirty
-            "
-            class="text-red-400 text-xs mt-0.5 mb-2"
-          >
-            Passwords do not match.
-          </div>
-
-          <!-- Terms & Conditions Checkbox -->
-          <div class="flex items-start gap-2.5 mt-2.5">
+          <!-- Terms Checkbox -->
+          <div class="flex items-start gap-2.5 mt-3">
             <input
               type="checkbox"
               formControlName="acceptTerms"
-              class="mt-0.5 accent-[#00F5D4] cursor-pointer w-4 h-4 flex-shrink-0"
+              class="mt-0.5 accent-[#2CD97D] cursor-pointer w-4 h-4 flex-shrink-0"
+              id="termsCheckbox"
             />
-            <label class="text-xs text-gray-300 leading-snug cursor-pointer">
-              I confirm that I’m 18+ and agree to the
+            <label for="termsCheckbox" class="text-xs text-gray-300 leading-snug cursor-pointer select-none">
+              I confirm that I am 18+ years old and accept the
               <span
-                class="text-[#00F5D4] underline font-medium hover:text-[#FF9F1C]"
-                (click)="openTermsModal()"
+                class="text-[#2CD97D] font-bold underline hover:text-white cursor-pointer"
+                (click)="openTermsModal(); $event.stopPropagation()"
               >
                 Terms & Conditions
               </span>
             </label>
           </div>
 
-          <!-- Bonus Checkbox -->
-          <div class="flex items-start gap-2.5 mt-2.5 mb-3">
+          <!-- Bonus Offers Checkbox -->
+          <div class="flex items-start gap-2.5 mt-2 mb-4">
             <input
               type="checkbox"
               formControlName="acceptOffers"
-              class="mt-0.5 accent-[#00F5D4] cursor-pointer w-4 h-4 flex-shrink-0"
+              class="mt-0.5 accent-[#2CD97D] cursor-pointer w-4 h-4 flex-shrink-0"
+              id="offersCheckbox"
             />
-            <label class="text-xs text-gray-300 leading-snug cursor-pointer">
-              I agree to receive personal bonuses and offers
+            <label for="offersCheckbox" class="text-xs text-gray-300 leading-snug cursor-pointer select-none">
+              I agree to receive VIP bonus alerts and promotion credits
             </label>
           </div>
 
-          <!-- Validation Message -->
           <div
             *ngIf="
               signupForm.get('acceptTerms')?.invalid &&
               signupForm.get('acceptTerms')?.touched
             "
-            class="text-red-400 text-xs mb-2"
+            class="text-red-400 text-[11px] mb-2"
           >
-            You must accept Terms & Conditions.
+            You must accept Terms & Conditions to register.
           </div>
 
-          <!-- Sign Up Button -->
+          <!-- Submit Button -->
           <button
             type="submit"
             [disabled]="signupForm.invalid || !signupForm.value.acceptTerms"
-            class="w-full mb-2.5 bg-[linear-gradient(135deg,#00F5D4_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-bold py-2.5 rounded-tl-[12px] rounded-tr-[3px] rounded-br-[12px] rounded-bl-[3px] transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(0,245,212,0.4)] disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
+            class="w-full mb-3 bg-[#2CD97D] text-[#050811] font-black uppercase tracking-wider py-3 rounded-xl shadow-[0_4px_20px_rgba(44,217,125,0.4)] hover:brightness-110 active:scale-95 transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed text-xs sm:text-sm cursor-pointer"
           >
             Create My Account
           </button>
 
-          <!-- Google Sign Up Button -->
+          <!-- Google Button -->
           <button
             type="button"
             (click)="continueWithGoogle()"
-            class="w-full mb-2.5 flex items-center justify-center gap-2 border border-[#00F5D4]/30 bg-black/40 hover:bg-[#00F5D4]/10 px-2 py-2 rounded-tl-[12px] rounded-tr-[3px] rounded-br-[12px] rounded-bl-[3px] shadow-sm transition-all duration-300"
+            class="w-full mb-3.5 flex items-center justify-center gap-2.5 border border-[#2CD97D]/35 bg-[#050811] hover:bg-[#2CD97D]/10 hover:border-[#2CD97D] py-2.5 rounded-xl shadow-sm transition-all duration-200 cursor-pointer"
           >
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
               alt="Google"
-              class="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0"
+              class="w-4 h-4 flex-shrink-0"
             />
-            <span
-              class="text-xs sm:text-sm font-semibold bg-[linear-gradient(135deg,#00F5D4_0%,#FF9F1C_100%)] bg-clip-text text-transparent"
-            >
+            <span class="text-xs sm:text-sm font-bold text-white">
               Sign up with Google
             </span>
           </button>
 
           <!-- Login Link -->
-          <p class="text-center text-xs text-gray-300">
-            Already a member?
+          <p class="text-center text-xs text-gray-400">
+            Already have an account?
             <a
               routerLink="/login"
-              class="text-[#FF9F1C] hover:text-[#00F5D4] transition-colors ml-1 underline"
+              class="text-[#2CD97D] font-bold hover:underline transition-colors ml-1"
             >
               Log in
             </a>
@@ -384,54 +408,44 @@
     </div>
   </div>
 
-  <!-- Modal Backdrop -->
+  <!-- Terms & Conditions Modal -->
   <div
     *ngIf="showTermsModal"
-    class="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/80"
+    class="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/85 backdrop-blur-md"
   >
     <div
-      class="bg-[#0c101d] w-[95%] md:w-[70%] lg:w-[60%] max-h-[85vh] flex flex-col p-5 md:p-6 rounded-[1.5rem] border border-[#00F5D4]/40 shadow-[0_0_40px_rgba(0,245,212,0.2)]"
+      class="bg-[#0B101E] w-[95%] md:w-[65%] lg:w-[50%] max-h-[85vh] flex flex-col p-6 rounded-3xl border border-[#2CD97D]/50 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.2)]"
     >
-      <h2
-        class="text-[#00F5D4] text-lg md:text-xl font-semibold mb-3 flex-shrink-0"
-      >
-        Terms & Conditions
-      </h2>
-
-      <div
-        class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-2 overflow-y-auto pr-2 custom-scrollbar"
-      >
-        <p>
-          <strong>1.</strong> By registering, you confirm that you are at least
-          18 years old.
-        </p>
-        <p>
-          <strong>2.</strong> Users are responsible for maintaining account
-          security.
-        </p>
-        <p>
-          <strong>3.</strong> Platform reserves rights to suspend fraudulent
-          accounts.
-        </p>
-        <p>
-          <strong>4.</strong> All games are for entertainment; outcomes are
-          random.
-        </p>
-        <p>
-          <strong>5.</strong> Valid payment methods must be used for
-          transactions.
-        </p>
-      </div>
-
-      <div
-        class="flex justify-end mt-5 pt-3 border-t border-white/10 flex-shrink-0"
-      >
+      <div class="flex justify-between items-center pb-3 border-b border-[#2CD97D]/25 mb-4">
+        <h2 class="text-[#2CD97D] text-lg font-black uppercase tracking-wider">
+          Terms & Conditions
+        </h2>
         <button
           type="button"
           (click)="closeTermsModal()"
-          class="px-5 py-2 bg-[linear-gradient(135deg,#00F5D4_0%,#FF9F1C_100%)] text-slate-950 font-bold rounded-tl-[10px] rounded-tr-[3px] rounded-br-[10px] rounded-bl-[3px] text-xs md:text-sm transition-transform active:scale-95"
+          class="text-gray-400 hover:text-white text-xl"
         >
-          Close
+          &times;
+        </button>
+      </div>
+
+      <div
+        class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-3 overflow-y-auto pr-2 custom-scrollbar flex-1"
+      >
+        <p><strong>1. Age Requirement:</strong> By registering, you confirm that you are at least 18 years old or the legal age of majority in your jurisdiction.</p>
+        <p><strong>2. Account Security:</strong> Operatives are strictly responsible for maintaining credentials confidentiality and multi-factor safety.</p>
+        <p><strong>3. Compliance:</strong> The platform reserves the right to suspend suspicious or duplicate accounts violating anti-fraud policies.</p>
+        <p><strong>4. Fair Play:</strong> All gaming rounds are powered by certified random number generation (RNG) and cryptographic verifiability.</p>
+        <p><strong>5. Financial Transactions:</strong> All deposits and withdrawals must use verified operative payment methods.</p>
+      </div>
+
+      <div class="flex justify-end mt-4 pt-3 border-t border-[#2CD97D]/20">
+        <button
+          type="button"
+          (click)="closeTermsModal()"
+          class="px-6 py-2.5 bg-[#2CD97D] text-[#050811] font-black uppercase tracking-wider rounded-xl text-xs hover:brightness-110 active:scale-95 transition-all cursor-pointer"
+        >
+          Acknowledge & Close
         </button>
       </div>
     </div>

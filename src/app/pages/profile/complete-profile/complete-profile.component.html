@@ -1,17 +1,24 @@
 <div class="account-page">
   <div class="account-shell">
+    <!-- Top Command Header -->
     <header class="account-topbar">
       <div>
-        <p class="breadcrumb">Account / Profile</p>
-        <h1>Account settings</h1>
+        <p class="breadcrumb">
+          <span class="crumb-accent">SYS_CORE</span> / OPERATIVE PROFILE
+        </p>
+        <h1>Account Settings</h1>
         <p class="intro">
-          Manage your personal details, security and wallet activity.
+          Manage your personal credentials, security encryption, and wallet ledger.
         </p>
       </div>
     </header>
 
     <div class="account-layout">
+      <!-- ================= SIDEBAR (STYLED LIKE MAIN CYBER-DOCK SIDEBAR) ================= -->
       <aside class="account-sidebar">
+        <div class="sidebar-ambient-glow"></div>
+
+        <!-- 1. Operative Hologram Badge / Profile Summary -->
         <div class="profile-summary">
           <button
             type="button"
@@ -19,23 +26,26 @@
             (click)="openProfileImageModal()"
             aria-label="Manage profile photo"
           >
-            <span class="avatar"
-              ><img *ngIf="profileImage" [src]="profileImage" alt="Profile" /><i
-                *ngIf="!profileImage"
-                class="fa fa-user"
-                aria-hidden="true"
-              ></i
-            ></span>
-            <span class="avatar-edit"
-              ><i class="fa fa-camera" aria-hidden="true"></i
-            ></span>
+            <div class="avatar-ring">
+              <span class="avatar">
+                <img *ngIf="profileImage" [src]="profileImage" alt="Profile" />
+                <i *ngIf="!profileImage" class="fa fa-user" aria-hidden="true"></i>
+              </span>
+              <span class="avatar-edit">
+                <i class="fa fa-camera" aria-hidden="true"></i>
+              </span>
+            </div>
           </button>
-          <h2>{{ name | uppercase }}</h2>
-          <p>{{ email }}</p>
+
+          <h2 class="operative-name">{{ name || 'OPERATIVE' | uppercase }}</h2>
+          <p class="operative-email">{{ email }}</p>
+
+          <!-- KYC Compliance Status Card -->
           <div class="verification-panel" [ngClass]="getKycClass()">
             <div class="verification-panel-top">
               <i class="fa fa-shield" aria-hidden="true"></i>
-              <span>KYC STATUS</span>
+              <span>KYC COMPLIANCE</span>
+              <span class="status-pulse"></span>
             </div>
             <strong>
               <i
@@ -52,132 +62,251 @@
               {{ (KYCVerification || "Not submitted") | titlecase }}
             </strong>
             <small *ngIf="KYCVerification === 'completed'">
-              Your identity has been verified.
+              Identity verified & encrypted.
             </small>
             <small *ngIf="KYCVerification === 'pending'">
-              Verification is currently in progress.
+              Verification review in progress.
             </small>
             <small *ngIf="!KYCVerification || KYCVerification === 'not submitted'">
-              Submit your KYC details to unlock all account features.
+              Complete KYC to unlock full limits.
             </small>
           </div>
         </div>
 
-        <nav class="account-nav" aria-label="Account settings">
+        <!-- 2. Cyber Referral / Balance Pod -->
+        <div class="sidebar-balance-pod">
+          <div class="pod-header">
+            <span class="pod-label">AVAILABLE BALANCE</span>
+            <span class="pod-pulse"></span>
+          </div>
+          <div class="pod-amount">${{ formattedBalance }}</div>
           <button
             type="button"
-            (click)="activeTab = 'personal'; scrollTabIntoView($event)"
-            [class.active]="activeTab === 'personal'"
-          >
-            <i class="fa fa-user-o"></i><span>Personal information</span
-            ><i class="fa fa-angle-right"></i>
-          </button>
-          <button
-            type="button"
-            (click)="activeTab = 'security'; scrollTabIntoView($event)"
-            [class.active]="activeTab === 'security'"
-          >
-            <i class="fa fa-lock"></i><span>Password & security</span
-            ><i class="fa fa-angle-right"></i>
-          </button>
-          <button
-            type="button"
+            class="pod-action-btn"
             (click)="activeTab = 'wallet'; scrollTabIntoView($event)"
-            [class.active]="activeTab === 'wallet'"
           >
-            <i class="fa fa-credit-card"></i><span>Wallet activity</span
-            ><i class="fa fa-angle-right"></i>
+            <span>Ledger History</span>
+            <i class="fa fa-arrow-right text-[10px]"></i>
           </button>
-          <button
-            type="button"
-            (click)="activeTab = 'referrals'; scrollTabIntoView($event)"
-            [class.active]="activeTab === 'referrals'"
-          >
-            <i class="fa fa-users"></i><span>Referrals</span
-            ><i class="fa fa-angle-right"></i>
-          </button>
-          <button
-            type="button"
-            (click)="activeTab = 'Levels'; scrollTabIntoView($event)"
-            [class.active]="activeTab === 'Levels'"
-          >
-            <i class="fa fa-trophy"></i><span>Membership levels</span
-            ><i class="fa fa-angle-right"></i>
-          </button>
-          <button
-            type="button"
-            (click)="activeTab = 'kyc'; scrollTabIntoView($event)"
-            [class.active]="activeTab === 'kyc'"
-          >
-            <i class="fa fa-shield"></i><span>Identity verification</span
-            ><i class="fa fa-angle-right"></i>
-          </button>
-        </nav>
+        </div>
+
+        <!-- 3. Navigation HUD Grid (Exact Cyber-Nav-Node matching Main Sidebar) -->
+        <div class="nav-hud-section">
+          <span class="nav-hud-label">NAVIGATION HUD</span>
+
+          <nav class="account-nav" aria-label="Account settings">
+            <!-- Personal Info -->
+            <button
+              type="button"
+              (click)="activeTab = 'personal'; scrollTabIntoView($event)"
+              class="cyber-nav-node"
+              [class.active]="activeTab === 'personal'"
+            >
+              <div class="node-icon">
+                <i class="fa fa-user"></i>
+              </div>
+              <div class="node-text">
+                <span class="title">Personal Info</span>
+                <span class="sub">Profile & Contact</span>
+              </div>
+            </button>
+
+            <!-- Password & Security -->
+            <button
+              type="button"
+              (click)="activeTab = 'security'; scrollTabIntoView($event)"
+              class="cyber-nav-node"
+              [class.active]="activeTab === 'security'"
+            >
+              <div class="node-icon">
+                <i class="fa fa-lock"></i>
+              </div>
+              <div class="node-text">
+                <span class="title">Password & Security</span>
+                <span class="sub">Credentials & Auth</span>
+              </div>
+            </button>
+
+            <!-- Wallet Activity -->
+            <button
+              type="button"
+              (click)="activeTab = 'wallet'; scrollTabIntoView($event)"
+              class="cyber-nav-node"
+              [class.active]="activeTab === 'wallet'"
+            >
+              <div class="node-icon">
+                <i class="fa fa-credit-card"></i>
+              </div>
+              <div class="node-text">
+                <span class="title">Wallet Activity</span>
+                <span class="sub">Transactions & Ledger</span>
+              </div>
+            </button>
+
+            <!-- Referrals -->
+            <button
+              type="button"
+              (click)="activeTab = 'referrals'; scrollTabIntoView($event)"
+              class="cyber-nav-node"
+              [class.active]="activeTab === 'referrals'"
+            >
+              <div class="node-icon">
+                <i class="fa fa-users"></i>
+              </div>
+              <div class="node-text">
+                <span class="title">Referral Network</span>
+                <span class="sub">Affiliates & Earnings</span>
+              </div>
+            </button>
+
+            <!-- Membership Levels -->
+            <button
+              type="button"
+              (click)="activeTab = 'Levels'; scrollTabIntoView($event)"
+              class="cyber-nav-node"
+              [class.active]="activeTab === 'Levels'"
+            >
+              <div class="node-icon">
+                <i class="fa fa-trophy"></i>
+              </div>
+              <div class="node-text">
+                <span class="title">Membership Levels</span>
+                <span class="sub">VIP Tiers & XP</span>
+              </div>
+            </button>
+
+            <!-- Identity Verification -->
+            <button
+              type="button"
+              (click)="activeTab = 'kyc'; scrollTabIntoView($event)"
+              class="cyber-nav-node"
+              [class.active]="activeTab === 'kyc'"
+            >
+              <div class="node-icon">
+                <i class="fa fa-shield"></i>
+              </div>
+              <div class="node-text">
+                <span class="title">Identity Verification</span>
+                <span class="sub">KYC Compliance</span>
+              </div>
+            </button>
+          </nav>
+        </div>
       </aside>
 
+      <!-- ================= MAIN CONTENT SETTINGS SECTIONS ================= -->
       <main class="account-content">
+        <!-- 1. PERSONAL INFORMATION SECTION -->
         <section *ngIf="activeTab === 'personal'" class="settings-section">
           <div class="section-heading">
             <div>
-              <span class="section-kicker">Profile details</span>
-              <h2>Personal information</h2>
-              <p>Keep your contact details up to date.</p>
+              <span class="section-kicker">PROFILE DETAILS</span>
+              <h2>Personal Information</h2>
+              <p>Keep your contact details up to date and verified.</p>
             </div>
+            <button
+              *ngIf="!isEditMode"
+              type="button"
+              class="outline-button"
+              (click)="enableEdit()"
+            >
+              <i class="fa fa-pencil"></i>
+              <span>Edit Details</span>
+            </button>
           </div>
+
           <form (ngSubmit)="updatePersonalInfo()" class="settings-form">
             <div class="form-grid">
-              <label
-                >Full name<input
-                  [(ngModel)]="personalInfo.fullName"
-                  name="fullName"
-                  [disabled]="!isEditMode"
-                  type="text"
-                  placeholder="Full name"
-              /></label>
-              <label
-                >Email address<input
-                  [(ngModel)]="personalInfo.email"
-                  name="email"
-                  [disabled]="!isEditMode"
-                  type="email"
-                  placeholder="Email address"
-              /></label>
-              <label
-                >Phone number<input
-                  [(ngModel)]="personalInfo.phone"
-                  name="phone"
-                  [disabled]="!isEditMode"
-                  type="tel"
-                  placeholder="Phone number"
-              /></label>
-              <label
-                >Country<input
-                  [(ngModel)]="personalInfo.country"
-                  name="country"
-                  [disabled]="!isEditMode"
-                  type="text"
-                  placeholder="Country"
-              /></label>
-              <label class="wide-field"
-                >Address<input
-                  [(ngModel)]="personalInfo.address"
-                  name="address"
-                  [disabled]="!isEditMode"
-                  type="text"
-                  placeholder="Address"
-              /></label>
-              <label
-                >Zip code<input
-                  [(ngModel)]="personalInfo.zipcode"
-                  name="zipcode"
-                  [disabled]="!isEditMode"
-                  type="text"
-                  placeholder="Zip code"
-              /></label>
+              <label>
+                <span>Full Name</span>
+                <div class="input-wrap">
+                  <input
+                    [(ngModel)]="personalInfo.fullName"
+                    name="fullName"
+                    [disabled]="!isEditMode"
+                    type="text"
+                    placeholder="Full name"
+                  />
+                  <i class="fa fa-user input-icon"></i>
+                </div>
+              </label>
+
+              <label>
+                <span>Email Address</span>
+                <div class="input-wrap">
+                  <input
+                    [(ngModel)]="personalInfo.email"
+                    name="email"
+                    [disabled]="!isEditMode"
+                    type="email"
+                    placeholder="Email address"
+                  />
+                  <i class="fa fa-envelope input-icon"></i>
+                </div>
+              </label>
+
+              <label>
+                <span>Phone Number</span>
+                <div class="input-wrap">
+                  <input
+                    [(ngModel)]="personalInfo.phone"
+                    name="phone"
+                    [disabled]="!isEditMode"
+                    type="tel"
+                    placeholder="Phone number"
+                  />
+                  <i class="fa fa-phone input-icon"></i>
+                </div>
+              </label>
+
+              <label>
+                <span>Country</span>
+                <div class="input-wrap">
+                  <input
+                    [(ngModel)]="personalInfo.country"
+                    name="country"
+                    [disabled]="!isEditMode"
+                    type="text"
+                    placeholder="Country"
+                  />
+                  <i class="fa fa-globe input-icon"></i>
+                </div>
+              </label>
+
+              <label class="wide-field">
+                <span>Residential Address</span>
+                <div class="input-wrap">
+                  <input
+                    [(ngModel)]="personalInfo.address"
+                    name="address"
+                    [disabled]="!isEditMode"
+                    type="text"
+                    placeholder="Street address"
+                  />
+                  <i class="fa fa-map-marker input-icon"></i>
+                </div>
+              </label>
+
+              <label>
+                <span>Zip / Postal Code</span>
+                <div class="input-wrap">
+                  <input
+                    [(ngModel)]="personalInfo.zipcode"
+                    name="zipcode"
+                    [disabled]="!isEditMode"
+                    type="text"
+                    placeholder="Zip code"
+                  />
+                  <i class="fa fa-tag input-icon"></i>
+                </div>
+              </label>
             </div>
+
             <div class="form-actions" *ngIf="isEditMode">
-              <button type="submit" class="solid-button">Save changes</button
-              ><button
+              <button type="submit" class="solid-button">
+                <i class="fa fa-check"></i> Save Changes
+              </button>
+              <button
                 type="button"
                 class="outline-button"
                 (click)="disableEdit()"
@@ -188,42 +317,44 @@
           </form>
         </section>
 
+        <!-- 2. PASSWORD & SECURITY SECTION -->
         <section *ngIf="activeTab === 'security'" class="settings-section">
           <div class="section-heading">
             <div>
-              <span class="section-kicker">Account protection</span>
-              <h2>Password & security</h2>
-              <p>Use a strong password to keep your account protected.</p>
+              <span class="section-kicker">ACCOUNT PROTECTION</span>
+              <h2>Password & Security</h2>
+              <p>Configure end-to-end security and update account credentials.</p>
             </div>
-            <span class="secure-label"
-              ><i class="fa fa-shield"></i> Secure</span
-            >
+            <span class="secure-badge">
+              <i class="fa fa-shield"></i> ENCRYPTED
+            </span>
           </div>
+
           <div class="security-note">
-            <i class="fa fa-info-circle"></i
-            ><span
-              >Use at least 8 characters, including an uppercase letter, number
-              and special character.</span
-            >
+            <i class="fa fa-info-circle"></i>
+            <span>
+              Use at least 8 characters, with uppercase letters, numbers, and special characters.
+            </span>
           </div>
+
           <form
             [formGroup]="changePasswordForm"
             (ngSubmit)="onSubmit()"
             class="settings-form password-form"
             autocomplete="off"
           >
-            <label
-              >Current password
+            <label>
+              <span>Current Password</span>
               <div class="password-input">
                 <input
-                  [type]="
-                    passwordVisibility['oldPassword'] ? 'text' : 'password'
-                  "
+                  [type]="passwordVisibility['oldPassword'] ? 'text' : 'password'"
                   formControlName="oldPassword"
-                  placeholder="Current password"
-                /><button
+                  placeholder="Enter current password"
+                />
+                <button
                   type="button"
                   (click)="toggleVisibility('oldPassword')"
+                  class="eye-btn"
                 >
                   <i
                     class="fa"
@@ -233,21 +364,23 @@
                         : 'fa-eye-slash'
                     "
                   ></i>
-                </button></div
-            ></label>
-            <label
-              >New password
+                </button>
+              </div>
+            </label>
+
+            <label>
+              <span>New Password</span>
               <div class="password-input">
                 <input
-                  [type]="
-                    passwordVisibility['newPassword'] ? 'text' : 'password'
-                  "
+                  [type]="passwordVisibility['newPassword'] ? 'text' : 'password'"
                   formControlName="newPassword"
-                  placeholder="New password"
+                  placeholder="Create new secure password"
                   (input)="checkPasswordStrength()"
-                /><button
+                />
+                <button
                   type="button"
                   (click)="toggleVisibility('newPassword')"
+                  class="eye-btn"
                 >
                   <i
                     class="fa"
@@ -257,30 +390,42 @@
                         : 'fa-eye-slash'
                     "
                   ></i>
-                </button></div
-            ></label>
+                </button>
+              </div>
+            </label>
+
+            <!-- Password Strength Meter -->
             <div
               class="password-strength"
               *ngIf="changePasswordForm.get('newPassword')?.value"
             >
-              <div>
-                <span>Password strength</span
-                ><strong>{{ getPasswordStrengthText() }}</strong>
+              <div class="strength-header">
+                <span>Security Strength</span>
+                <strong [class]="'str-' + getPasswordStrengthText().toLowerCase()">
+                  {{ getPasswordStrengthText() }}
+                </strong>
               </div>
               <div class="strength-line">
                 <span [style.width.%]="passwordStrength"></span>
               </div>
-              <small [class.good]="validateGuidelines('length')"
-                >8+ characters</small
-              ><small [class.good]="validateGuidelines('digit')">Number</small
-              ><small [class.good]="validateGuidelines('uppercase')"
-                >Uppercase</small
-              ><small [class.good]="validateGuidelines('specialChar')"
-                >Special character</small
-              >
+              <div class="guidelines-grid">
+                <small [class.good]="validateGuidelines('length')">
+                  <i class="fa fa-check"></i> 8+ characters
+                </small>
+                <small [class.good]="validateGuidelines('digit')">
+                  <i class="fa fa-check"></i> Number
+                </small>
+                <small [class.good]="validateGuidelines('uppercase')">
+                  <i class="fa fa-check"></i> Uppercase
+                </small>
+                <small [class.good]="validateGuidelines('specialChar')">
+                  <i class="fa fa-check"></i> Special character
+                </small>
+              </div>
             </div>
-            <label
-              >Confirm new password
+
+            <label>
+              <span>Confirm New Password</span>
               <div class="password-input">
                 <input
                   [type]="
@@ -288,9 +433,11 @@
                   "
                   formControlName="confirmPassword"
                   placeholder="Confirm new password"
-                /><button
+                />
+                <button
                   type="button"
                   (click)="toggleVisibility('confirmPassword')"
+                  class="eye-btn"
                 >
                   <i
                     class="fa"
@@ -300,16 +447,19 @@
                         : 'fa-eye-slash'
                     "
                   ></i>
-                </button></div
-            ></label>
+                </button>
+              </div>
+            </label>
+
             <div class="form-actions">
               <button
                 type="submit"
                 class="solid-button"
                 [disabled]="changePasswordForm.invalid"
               >
-                Update password</button
-              ><button
+                <i class="fa fa-lock"></i> Update Password
+              </button>
+              <button
                 type="button"
                 class="outline-button"
                 (click)="resetForm()"
@@ -320,32 +470,36 @@
           </form>
         </section>
 
+        <!-- 3. WALLET ACTIVITY SECTION -->
         <section *ngIf="activeTab === 'wallet'" class="settings-section">
           <div class="section-heading">
             <div>
-              <span class="section-kicker">Money overview</span>
-              <h2>Wallet activity</h2>
-              <p>Review your deposits and withdrawals.</p>
+              <span class="section-kicker">FINANCIAL LEDGER</span>
+              <h2>Wallet Activity</h2>
+              <p>Review and audit deposits, withdrawals, and historical balances.</p>
             </div>
             <div class="balance-box">
-              <span>Available balance</span
-              ><strong>${{ formattedBalance }}</strong>
+              <span>AVAILABLE BALANCE</span>
+              <strong>${{ formattedBalance }}</strong>
             </div>
           </div>
+
           <div class="filter-tabs">
             <button
               type="button"
               (click)="setWalletView('all')"
               [class.active]="walletView === 'all'"
             >
-              All activity</button
-            ><button
+              All Activity
+            </button>
+            <button
               type="button"
               (click)="setWalletView('deposits')"
               [class.active]="walletView === 'deposits'"
             >
-              Deposits</button
-            ><button
+              Deposits
+            </button>
+            <button
               type="button"
               (click)="setWalletView('withdrawals')"
               [class.active]="walletView === 'withdrawals'"
@@ -353,7 +507,8 @@
               Withdrawals
             </button>
           </div>
-          <div class="activity-list" (scroll)="onScroll($event)">
+
+          <div class="activity-list custom-scrollbar" (scroll)="onScroll($event)">
             <div *ngIf="filteredTransactions.length; else emptyWallet">
               <div
                 *ngFor="let transaction of filteredTransactions"
@@ -362,194 +517,233 @@
                 <span
                   class="activity-icon"
                   [class.withdrawal]="transaction.type === 'debit'"
-                  ><i
+                >
+                  <i
                     class="fa"
                     [ngClass]="
                       transaction.type === 'credit'
                         ? 'fa-arrow-down'
                         : 'fa-arrow-up'
                     "
-                  ></i
-                ></span>
+                  ></i>
+                </span>
                 <div class="activity-detail">
                   <strong>{{
                     transaction.source ||
                       (transaction.type === "credit" ? "Deposit" : "Withdrawal")
-                  }}</strong
-                  ><small
-                    >{{ transaction.time | date: "mediumDate" }}
-                    <span *ngIf="transaction.status"
-                      >· {{ transaction.status }}</span
-                    ></small
-                  >
+                  }}</strong>
+                  <small>
+                    {{ transaction.time | date: "mediumDate" }}
+                    <span *ngIf="transaction.status" class="status-tag">
+                      · {{ transaction.status }}
+                    </span>
+                  </small>
                 </div>
                 <strong
+                  class="amount-display"
                   [class.amount-positive]="transaction.type === 'credit'"
                   [class.amount-negative]="transaction.type === 'debit'"
-                  >{{ transaction.type === "credit" ? "+" : "-" }}${{
+                >
+                  {{ transaction.type === "credit" ? "+" : "-" }}${{
                     transaction.balance ||
                       transaction.debitAmount ||
                       transaction.creditBalance ||
                       0 | number: "1.2-2"
-                  }}</strong
-                >
+                  }}
+                </strong>
               </div>
-              <p *ngIf="isLoadingMore" class="loading-text">Loading more...</p>
+              <p *ngIf="isLoadingMore" class="loading-text">
+                <i class="fa fa-spinner fa-spin"></i> Loading more records...
+              </p>
             </div>
-            <ng-template #emptyWallet
-              ><div class="empty-state">
-                <i class="fa fa-credit-card"></i>
-                <p>No wallet activity yet</p>
-              </div></ng-template
-            >
+            <ng-template #emptyWallet>
+              <div class="empty-state">
+                <div class="empty-icon-wrap">
+                  <i class="fa fa-credit-card"></i>
+                </div>
+                <p>No wallet transactions found.</p>
+              </div>
+            </ng-template>
           </div>
         </section>
 
+        <!-- 4. REFERRAL NETWORK SECTION -->
         <section *ngIf="activeTab === 'referrals'" class="settings-section">
           <div class="section-heading">
             <div>
-              <span class="section-kicker">Invite & earn</span>
-              <h2>Referral network</h2>
-              <p>Share your code and track your referrals.</p>
+              <span class="section-kicker">AFFILIATE NETWORK</span>
+              <h2>Referral Command</h2>
+              <p>Share your network token and track member commissions.</p>
             </div>
           </div>
-          <div class="referral-code">
+
+          <div class="referral-code-card">
             <div>
-              <span>Your referral code</span><strong>{{ referralCode }}</strong>
+              <span class="ref-label">YOUR SECURE REFERRAL CODE</span>
+              <strong class="ref-code">{{ referralCode }}</strong>
             </div>
-            <button type="button" (click)="copyCode()">
-              <i class="fa fa-copy"></i> {{ isCopied ? "Copied" : "Copy code" }}
+            <button type="button" class="solid-button" (click)="copyCode()">
+              <i class="fa fa-copy"></i>
+              <span>{{ isCopied ? "Copied!" : "Copy Link" }}</span>
             </button>
           </div>
-          <div class="referral-table">
+
+          <div class="referral-table custom-scrollbar">
             <div class="table-row table-heading">
-              <span>#</span><span>Member</span><span>Deposits</span
-              ><span>Referral</span><span>Date</span>
+              <span>#</span>
+              <span>Operative</span>
+              <span>Deposits</span>
+              <span>Commission</span>
+              <span>Joined Date</span>
             </div>
             <div
               *ngFor="let item of referrals; let i = index"
               class="table-row"
             >
-              <span>{{ i + 1 }}</span
-              ><strong>{{ item.username || "-" }}</strong
-              ><span
-                ><button
+              <span class="index-num">{{ i + 1 }}</span>
+              <strong class="text-white font-mono">{{ item.username || "-" }}</strong>
+              <span>
+                <button
                   type="button"
                   class="view-button"
                   (click)="openDepositDetails(item)"
+                  title="View details"
                 >
-                  <i class="fa fa-eye"></i></button
-                >{{ item.depositCount | number: "1.0-2" }}</span
-              ><span>{{ item.referralPercentage | number: "1.0-2" }}%</span
-              ><span>{{
+                  <i class="fa fa-eye"></i>
+                </button>
+                {{ item.depositCount | number: "1.0-2" }}
+              </span>
+              <span class="text-[#2CD97D] font-bold">
+                {{ item.referralPercentage | number: "1.0-2" }}%
+              </span>
+              <span>{{
                 item.addedDate ? (item.addedDate | date: "dd-MM-yyyy") : "-"
               }}</span>
             </div>
             <div *ngIf="referrals?.length === 0" class="empty-state">
-              <p>No referrals found</p>
+              <div class="empty-icon-wrap">
+                <i class="fa fa-users"></i>
+              </div>
+              <p>No active affiliates found in your network.</p>
             </div>
           </div>
         </section>
 
+        <!-- 5. MEMBERSHIP LEVELS SECTION -->
         <section *ngIf="activeTab === 'Levels'" class="settings-section">
           <div class="section-heading">
             <div>
-              <span class="section-kicker">Rewards program</span>
+              <span class="section-kicker">TIER STATUS</span>
               <h2 class="section-title-with-icon">
                 <span class="section-title-icon" aria-hidden="true">
                   <i class="fa fa-trophy"></i>
                 </span>
-                <span>Membership levels</span>
+                <span>Membership Levels</span>
               </h2>
-              <p>Complete milestones to unlock more benefits.</p>
+              <p>Unlock elite milestones and enhanced cashback privileges.</p>
             </div>
           </div>
+
           <div class="level-summary">
-            <span>Current level</span
-            ><strong>{{ playerLevel || '-' }}</strong
-            ><span
-              >{{ referrals?.length || 0 }} referrals · ${{
-                customerTotalDeposit
-              }}
-              deposited</span
-            >
+            <div class="level-summary-badge">
+              <span>CURRENT STATUS</span>
+              <strong>{{ playerLevel || '-' }}</strong>
+            </div>
+            <div class="level-summary-stats">
+              <span>{{ referrals?.length || 0 }} Active Referrals</span>
+              <span>·</span>
+              <span>${{ customerTotalDeposit }} Deposited</span>
+            </div>
           </div>
+
           <div class="levels-list">
             <div
               *ngFor="let lvl of levels"
               class="level-row"
               [class.current-level]="playerLevel === lvl.LevelName"
             >
-              <img
-                [src]="getLevelImage(lvl.LevelName)"
-                [alt]="lvl.LevelName"
-              />
+              <div class="level-badge-wrap">
+                <img
+                  [src]="getLevelImage(lvl.LevelName)"
+                  [alt]="lvl.LevelName"
+                />
+              </div>
               <div class="level-info">
-                <div>
+                <div class="level-title-row">
                   <h3>{{ lvl.LevelName }}</h3>
                   <span
                     *ngIf="playerLevel === lvl.LevelName"
                     class="current-label"
-                    >Current level</span
                   >
+                    Active Tier
+                  </span>
                 </div>
                 <p>
-                  Deposit ${{ lvl.MinDepositRange }} - ${{ lvl.MaxDepositRange }}
+                  Deposit Threshold: ${{ lvl.MinDepositRange }} - ${{ lvl.MaxDepositRange }}
                 </p>
                 <div class="level-progress">
-                  <span
-                    [style.width.%]="getDepositProgress(lvl)"
-                  ></span>
+                  <span [style.width.%]="getDepositProgress(lvl)"></span>
                 </div>
               </div>
-              <i
-                *ngIf="playerLevel === lvl.LevelName"
-                class="fa fa-check-circle level-check"
-              ></i>
+              <div class="level-status-icon">
+                <i
+                  *ngIf="playerLevel === lvl.LevelName"
+                  class="fa fa-check-circle level-check"
+                ></i>
+              </div>
             </div>
           </div>
         </section>
 
+        <!-- 6. IDENTITY VERIFICATION (KYC) SECTION -->
         <section *ngIf="activeTab === 'kyc'" class="settings-section">
           <div class="section-heading">
             <div>
-              <span class="section-kicker">Account security</span>
-              <h2>Identity verification</h2>
-              <p>Verify your identity to unlock all account features.</p>
+              <span class="section-kicker">COMPLIANCE & AUDIT</span>
+              <h2>Identity Verification (KYC)</h2>
+              <p>Verify your credentials to unlock elevated limits and rapid withdrawals.</p>
             </div>
           </div>
-          <div class="verification-status">
-            <div class="status-card" [ngClass]="'status-' + (KYCVerification?.toLowerCase() || 'not-submitted')">
+
+          <div class="verification-status-panel">
+            <div
+              class="status-card"
+              [ngClass]="'status-' + (KYCVerification?.toLowerCase() || 'not-submitted')"
+            >
               <div class="status-icon">
-                <i class="fa" [ngClass]="
-                  KYCVerification === 'completed'
-                    ? 'fa-check-circle'
-                    : KYCVerification === 'pending'
-                      ? 'fa-clock-o'
-                      : 'fa-exclamation-circle'
-                "></i>
+                <i
+                  class="fa"
+                  [ngClass]="
+                    KYCVerification === 'completed'
+                      ? 'fa-check-circle'
+                      : KYCVerification === 'pending'
+                        ? 'fa-clock-o'
+                        : 'fa-shield'
+                  "
+                ></i>
               </div>
               <div class="status-content">
                 <h3>{{ (KYCVerification || "Not submitted") | titlecase }}</h3>
                 <p *ngIf="KYCVerification === 'completed'">
-                  Your identity has been verified.
+                  Your operative credentials are fully validated and registered in the system.
                 </p>
                 <p *ngIf="KYCVerification === 'pending'">
-                  Verification is currently in progress. Please check back soon.
+                  Your KYC documents are undergoing security verification. You will be notified once reviewed.
                 </p>
                 <p *ngIf="!KYCVerification || KYCVerification === 'not submitted'">
-                  Submit your details to verify your account and unlock all features.
+                  Identity documentation has not been submitted. Submit your government ID to unlock all features.
                 </p>
               </div>
             </div>
           </div>
-          <div class="form-actions">
+
+          <div class="form-actions mt-6">
             <button
               type="button"
               class="solid-button"
               (click)="RedirectTokyc()"
             >
-              {{ KYCVerification === "pending" ? "View KYC status" : "Submit KYC" }}
+              <span>{{ KYCVerification === "pending" ? "View KYC Station" : "Launch KYC Verification" }}</span>
               <i class="fa fa-arrow-right"></i>
             </button>
           </div>
@@ -559,67 +753,86 @@
   </div>
 </div>
 
+<!-- ================= MODALS ================= -->
+
+<!-- Deposit Details Modal -->
 <div *ngIf="isDepositModalOpen" class="modal-backdrop">
   <div class="modal-card modal-wide">
     <div class="modal-title">
-      <h2>Deposit details</h2>
-      <button type="button" (click)="closeModal()">&times;</button>
+      <div class="flex items-center gap-2.5">
+        <span class="text-[#2CD97D] text-lg">⚡</span>
+        <h2>Deposit Details</h2>
+      </div>
+      <button type="button" (click)="closeModal()" class="modal-close-btn">&times;</button>
     </div>
-    <p>
-      Member: <strong>{{ selectedItem?.userName || "N/A" }}</strong>
+    <p class="modal-sub">
+      Operative: <strong>{{ selectedItem?.userName || "N/A" }}</strong>
     </p>
-    <div class="modal-table">
+
+    <div class="modal-table custom-scrollbar">
       <div class="table-row table-heading">
-        <span>#</span><span>Amount</span><span>Date</span>
+        <span>#</span>
+        <span>Deposit Amount</span>
+        <span>Transaction Date</span>
       </div>
       <div *ngIf="isLoadingDeposits" class="empty-state">
-        <p>Loading deposits...</p>
+        <p><i class="fa fa-spinner fa-spin text-[#2CD97D]"></i> Loading deposits...</p>
       </div>
       <div
         *ngIf="!isLoadingDeposits && !depositList.length"
         class="empty-state"
       >
-        <p>No deposits found</p>
+        <p>No deposit records found for this operative.</p>
       </div>
       <div *ngFor="let d of depositList; let i = index" class="table-row">
-        <span>{{ i + 1 }}</span
-        ><span>{{
+        <span>{{ i + 1 }}</span>
+        <span class="text-[#2CD97D] font-bold">{{
           d.DepositAmount | currency: "USD" : "symbol" : "1.0-2"
-        }}</span
-        ><span>{{ d.date || d.AddedDate | date: "mediumDate" }}</span>
+        }}</span>
+        <span>{{ d.date || d.AddedDate | date: "mediumDate" }}</span>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Profile Image Modal -->
 <div *ngIf="isProfileImageModalOpen" class="modal-backdrop">
   <div class="modal-card modal-small">
-    <button
-      type="button"
-      class="modal-close"
-      (click)="closeProfileImageModal()"
-    >
-      &times;
-    </button>
-    <h2>Profile photo</h2>
-    <div class="modal-avatar">
-      <img *ngIf="profileImage" [src]="profileImage" alt="Profile" /><i
-        *ngIf="!profileImage"
-        class="fa fa-user"
-      ></i>
+    <div class="modal-title">
+      <div class="flex items-center gap-2">
+        <span class="text-[#2CD97D]">📷</span>
+        <h2>Profile Photo</h2>
+      </div>
+      <button
+        type="button"
+        class="modal-close-btn"
+        (click)="closeProfileImageModal()"
+      >
+        &times;
+      </button>
     </div>
-    <p>{{ name }}</p>
-    <button
-      type="button"
-      class="solid-button full-button"
-      (click)="onUpdatePhotoClick()"
-    >
-      Update photo</button
-    ><button
-      type="button"
-      class="delete-button full-button"
-      (click)="onDeletePhotoClick()"
-    >
-      Delete photo
-    </button>
+
+    <div class="modal-avatar">
+      <img *ngIf="profileImage" [src]="profileImage" alt="Profile" />
+      <i *ngIf="!profileImage" class="fa fa-user"></i>
+    </div>
+    <p class="modal-name">{{ name || 'OPERATIVE' | uppercase }}</p>
+
+    <div class="modal-actions">
+      <button
+        type="button"
+        class="solid-button full-button"
+        (click)="onUpdatePhotoClick()"
+      >
+        <i class="fa fa-upload"></i> Upload New Photo
+      </button>
+      <button
+        type="button"
+        class="delete-button full-button"
+        (click)="onDeletePhotoClick()"
+      >
+        <i class="fa fa-trash"></i> Remove Photo
+      </button>
+    </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <!-- ================= FUTURISTIC CYBER-DOCK SIDEBAR ================= -->
 <div
   *ngIf="!isTreasurePickRoute()"
-  class="flex-col items-center flex-shrink-0 w-[240px] h-[calc(100vh-70px)] overflow-y-auto text-gray-300 transition-all duration-300 ease-in-out fixed z-[996] top-[70px] flex shadow-[20px_0_60px_rgba(0,0,0,0.95)] custom-scrollbar bg-[#010204]/95 backdrop-blur-3xl border-r border-[#00F5D4]/40"
+  class="flex-col items-center flex-shrink-0 w-[240px] h-[calc(100vh-70px)] overflow-y-auto text-gray-300 transition-all duration-300 ease-in-out fixed z-[996] top-[70px] flex shadow-[20px_0_60px_rgba(0,0,0,0.95)] custom-scrollbar bg-[#010204]/95 backdrop-blur-3xl border-r border-[#2CD97D]/40"
   [class.hidden]="!isSidebarOpen"
   [ngClass]="{ mobile: isMobile }"
 >
@@ -14,13 +14,13 @@
     <!-- Mobile User Hologram Badge -->
     <div class="block lg:hidden w-full">
       <div
-        class="flex items-center gap-3 p-3 rounded-2xl bg-black/90 border border-[#00F5D4]/50 shadow-[0_0_15px_rgba(0,245,212,0.2)]"
+        class="flex items-center gap-3 p-3 rounded-2xl bg-black/90 border border-[#2CD97D]/50 shadow-[0_0_15px_rgba(44,217,125,0.2)]"
       >
         <div class="relative flex-shrink-0">
           <img
             [src]="profileImage"
             alt="Profile"
-            class="h-10 w-10 rounded-xl border border-[#00F5D4] object-cover"
+            class="h-10 w-10 rounded-xl border border-[#2CD97D] object-cover"
           />
         </div>
         <div class="flex items-center w-full overflow-hidden">
@@ -29,13 +29,13 @@
               userName || "Operative"
             }}</span>
             <span
-              class="text-[9px] text-[#00F5D4] font-mono tracking-wider uppercase font-bold"
+              class="text-[9px] text-[#2CD97D] font-mono tracking-wider uppercase font-bold"
               >VIP Status</span
             >
           </div>
           <button
             (click)="showComletePorfile()"
-            class="ml-auto text-[#00F5D4] p-1.5 rounded-xl bg-[#00F5D4]/15 border border-[#00F5D4]/40 cursor-pointer shadow-[0_0_10px_rgba(0,245,212,0.2)]"
+            class="ml-auto text-[#2CD97D] p-1.5 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 cursor-pointer shadow-[0_0_10px_rgba(44,217,125,0.2)]"
           >
             <fa-icon [icon]="faUserEdit"></fa-icon>
           </button>
@@ -45,7 +45,7 @@
 
     <!-- 1. Cybernetic Quick Switcher Pod -->
     <div
-      class="hidden lg:flex flex-col w-full bg-black/90 p-1.5 rounded-2xl border border-[#00F5D4]/40 shadow-inner gap-1"
+      class="hidden lg:flex flex-col w-full bg-black/90 p-1.5 rounded-2xl border border-[#2CD97D]/40 shadow-inner gap-1"
     >
       <button
         type="button"
@@ -53,8 +53,8 @@
         class="w-full py-2.5 px-3 rounded-xl text-xs font-black tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer border"
         [ngClass]="
           activeQuickTab === 'games'
-            ? 'bg-[#00F5D4] text-[#050811] shadow-[0_0_15px_rgba(0,245,212,0.4)] border-[#00F5D4]'
-            : 'text-gray-300 hover:text-white bg-black/60 border-[rgba(0,245,212,0.3)] hover:border-[rgba(0,245,212,0.6)] hover:bg-[#00F5D4]/10'
+            ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_15px_rgba(44,217,125,0.4)] border-[#2CD97D]'
+            : 'text-gray-300 hover:text-white bg-black/60 border-[rgba(44,217,125,0.3)] hover:border-[rgba(44,217,125,0.6)] hover:bg-[#2CD97D]/10'
         "
       >
         <span>🎮</span> GAMES MATRIX
@@ -67,8 +67,8 @@
         class="w-full py-2.5 px-3 rounded-xl text-xs font-black tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer border"
         [ngClass]="
           activeQuickTab === 'instant'
-            ? 'bg-[#00F5D4] text-[#050811] shadow-[0_0_15px_rgba(0,245,212,0.4)] border-[#00F5D4]'
-            : 'text-gray-300 hover:text-white bg-black/60 border-[rgba(0,245,212,0.3)] hover:border-[rgba(0,245,212,0.6)] hover:bg-[#00F5D4]/10'
+            ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_15px_rgba(44,217,125,0.4)] border-[#2CD97D]'
+            : 'text-gray-300 hover:text-white bg-black/60 border-[rgba(44,217,125,0.3)] hover:border-[rgba(44,217,125,0.6)] hover:bg-[#2CD97D]/10'
         "
       >
         <span>⚡</span> INSTANT ARENA
@@ -77,30 +77,30 @@
 
     <!-- 2. Neon Referral Command Card -->
     <div
-      class="relative w-full bg-gradient-to-b from-black/90 to-neutral-950 p-3.5 rounded-2xl border border-[rgba(0,245,212,0.35)] shadow-[0_4px_20px_rgba(0,0,0,0.8)] group hover:border-[#00F5D4] transition"
+      class="relative w-full bg-gradient-to-b from-black/90 to-neutral-950 p-3.5 rounded-2xl border border-[rgba(44,217,125,0.35)] shadow-[0_4px_20px_rgba(0,0,0,0.8)] group hover:border-[#2CD97D] transition"
     >
       <div class="flex items-center justify-between mb-1.5">
         <span
-          class="text-[9px] text-[#00F5D4] font-mono tracking-widest font-black uppercase"
+          class="text-[9px] text-[#2CD97D] font-mono tracking-widest font-black uppercase"
           >SECURE REF-NODE</span
         >
-        <span class="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse"></span>
+        <span class="w-2 h-2 rounded-full bg-[#2CD97D] animate-pulse"></span>
       </div>
       <div class="flex items-center justify-between gap-2">
         <span
-          class="text-white text-xs font-mono font-black truncate bg-black/80 px-2 py-1 rounded-lg border border-[rgba(0,245,212,0.2)] flex-1"
+          class="text-white text-xs font-mono font-black truncate bg-black/80 px-2 py-1 rounded-lg border border-[rgba(44,217,125,0.2)] flex-1"
           >{{ referralCode }}</span
         >
         <div class="relative">
           <div
             *ngIf="showCopiedTooltip"
-            class="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#00F5D4] text-black text-[8px] font-black px-2 py-0.5 rounded shadow z-20 animate-bounce"
+            class="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#2CD97D] text-black text-[8px] font-black px-2 py-0.5 rounded shadow z-20 animate-bounce"
           >
             COPIED!
           </div>
           <button
             (click)="copyReferralCode()"
-            class="w-8 h-8 rounded-xl bg-[#00F5D4]/25 border border-[#00F5D4] flex items-center justify-center text-[#00F5D4] hover:bg-[#00F5D4] hover:text-black hover:shadow-[0_0_15px_rgba(0,245,212,0.5)] transition cursor-pointer"
+            class="w-8 h-8 rounded-xl bg-[#2CD97D]/25 border border-[#2CD97D] flex items-center justify-center text-[#2CD97D] hover:bg-[#2CD97D] hover:text-black hover:shadow-[0_0_15px_rgba(44,217,125,0.5)] transition cursor-pointer"
           >
             <svg
               class="w-3.5 h-3.5"
@@ -256,7 +256,7 @@
       <img
         src="https://cmaxv2images2.pages.dev/assets/banners/sidebar-characters.png"
         alt="Characters"
-        class="w-full max-w-[140px] object-contain opacity-80 drop-shadow-[0_0_15px_rgba(0,245,212,0.3)]"
+        class="w-full max-w-[140px] object-contain opacity-80 drop-shadow-[0_0_15px_rgba(44,217,125,0.3)]"
         onerror="this.style.display = 'none'"
       />
     </div>

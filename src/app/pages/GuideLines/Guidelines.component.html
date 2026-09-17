@@ -1,210 +1,274 @@
 <app-loader></app-loader>
-<div class="header flex flex-col lg:flex-row">
-  <h1>Guide Lines</h1>
-  <div class="tabs flex flex-wrap justify-between items-center gap-4">
-    <!-- Filters -->
-    <div class="flex flex-wrap justify-end lg:justify-between lg:items-center w-full lg:w-auto gap-4">
-      <!-- Row 1: Toggle and Search -->
-      <div class="flex w-full lg:w-auto items-center gap-4">
-        <!-- Toggle View -->
-
-        <!-- Search Bar -->
-        <div class="relative flex-1 max-w-full">
-          <input type="text" placeholder="Search Guide" [(ngModel)]="searchTerm"
-            class="w-full bg-gray-800/50 text-white rounded-full py-2 px-4 pl-10" />
-          <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none"
-            stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+<div class="guidelines-page min-h-screen p-3 sm:p-6 lg:p-8 text-white bg-[var(--background)]">
+  <!-- Top Command Header -->
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+    <div class="flex items-center gap-3">
+      <div
+        class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#2CD97D]/25 to-[#06B6D4]/10 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] shadow-[0_0_20px_rgba(44,217,125,0.25)] flex-shrink-0"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-4 bg-[#2CD97D] rounded-full shadow-[0_0_8px_#2CD97D]"></span>
+          <h1 class="text-xl sm:text-2xl font-black tracking-wide uppercase">
+            Guidelines & Manuals
+          </h1>
         </div>
+        <p class="text-[11px] text-gray-400 font-semibold tracking-wider uppercase ml-3.5">
+          Official game rules, platform documentation & instructions
+        </p>
+      </div>
+    </div>
+
+    <!-- Filters & Actions Toolbar -->
+    <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 w-full lg:w-auto">
+      <!-- Search Input -->
+      <div class="relative flex-1 sm:w-64 min-w-[160px]">
+        <input
+          type="text"
+          placeholder="Search guidelines..."
+          [(ngModel)]="searchTerm"
+          class="w-full bg-[#0B101E]/95 backdrop-blur-xl text-white text-xs sm:text-sm border border-[#2CD97D]/35 rounded-2xl py-2.5 pl-9 pr-3 focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] transition shadow-lg"
+        />
+        <svg
+          class="w-4 h-4 text-[#2CD97D] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
       </div>
 
-      <!-- Row 2: Start Date, End Date, and Search Icon -->
-      <div class="flex w-full lg:w-auto items-center gap-4">
-        <!-- Start Date -->
-        <div class="flex flex-col flex-1">
-          <input id="startDate" type="date" class="date-input bg-gray-800/50 text-white rounded-full w-full"
-            [(ngModel)]="startDate" />
-        </div>
-
-        <!-- End Date -->
-        <div class="flex flex-col flex-1">
-          <input id="endDate" type="date" class="date-input bg-gray-800/50 text-white rounded-full w-full"
-            [(ngModel)]="endDate" />
-        </div>
-
-        <!-- Search Icon -->
-        <span class="view-toggle-btn" (click)="GetGuideLines()" title="Search">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      <!-- Date Range Inputs -->
+      <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+        <input
+          type="date"
+          [(ngModel)]="startDate"
+          title="Start Date"
+          class="bg-[#0B101E]/95 border border-[#2CD97D]/30 text-gray-200 text-xs rounded-xl px-3 py-2 outline-none focus:border-[#2CD97D]"
+        />
+        <span class="text-gray-500 text-xs">-</span>
+        <input
+          type="date"
+          [(ngModel)]="endDate"
+          title="End Date"
+          class="bg-[#0B101E]/95 border border-[#2CD97D]/30 text-gray-200 text-xs rounded-xl px-3 py-2 outline-none focus:border-[#2CD97D]"
+        />
+        <button
+          (click)="GetGuideLines()"
+          class="p-2.5 rounded-xl bg-[#2CD97D] text-[#050811] hover:bg-[#28c772] transition cursor-pointer shadow-md font-bold"
+          title="Apply Filter"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-        </span>
+        </button>
+      </div>
+
+      <!-- View Switcher (Grid / Table) -->
+      <div class="flex items-center bg-[#0B101E]/95 border border-[#2CD97D]/30 p-1 rounded-2xl shadow-lg shrink-0">
+        <button
+          type="button"
+          (click)="viewMode = 'grid'"
+          title="Grid View"
+          class="w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer"
+          [ngClass]="
+            viewMode === 'grid'
+              ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_12px_rgba(44,217,125,0.45)]'
+              : 'text-gray-400 hover:text-white hover:bg-white/5'
+          "
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          (click)="viewMode = 'table'"
+          title="Table View"
+          class="w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer"
+          [ngClass]="
+            viewMode === 'table'
+              ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_12px_rgba(44,217,125,0.45)]'
+              : 'text-gray-400 hover:text-white hover:bg-white/5'
+          "
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+          </svg>
+        </button>
       </div>
     </div>
   </div>
-</div>
-<div class="mt-2 mb-2 w-[100%] h-[1px] bg-[#5C496B]"></div>
 
-<div *ngIf="viewMode == 'grid'">
-  <div class="Guides-grid hidden md:block" *ngIf="filteredGuideLines.length > 0; else noRecord">
-    <div *ngFor="let Guide of filteredGuideLines" class="Guide-card">
-      <div class="Guide-header">
-        <div class="flex justify-between">
-          <div class="flex m-2">
-            <div class="Guide-icon">
-              <!-- <img [src]="getGuideImage(Guide.Name)" alt="{{ Guide.Name }}" /> -->
+  <!-- Ambient Glow Line -->
+  <div
+    class="w-full h-[1px] mb-6 rounded-full"
+    style="
+      background: linear-gradient(
+        90deg,
+        rgba(44, 217, 125, 0) 0%,
+        rgba(44, 217, 125, 0.7) 50%,
+        rgba(44, 217, 125, 0) 100%
+      );
+    "
+  ></div>
+
+  <!-- ================= GRID VIEW ================= -->
+  <div *ngIf="viewMode === 'grid'">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+      *ngIf="filteredGuideLines.length > 0; else noRecord"
+    >
+      <div
+        *ngFor="let guide of filteredGuideLines"
+        class="bg-gradient-to-b from-[#0B101E] via-[#080D18] to-[#050811] border border-[#2CD97D]/25 rounded-3xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:border-[#2CD97D] hover:shadow-[0_0_30px_rgba(44,217,125,0.25)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
+      >
+        <!-- Corner Glow -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,rgba(44,217,125,0.12),transparent_70%)] pointer-events-none"></div>
+
+        <div class="relative z-10">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div class="w-12 h-12 rounded-2xl bg-[#2CD97D]/15 border border-[#2CD97D]/35 flex items-center justify-center text-[#2CD97D] text-lg shadow-inner shrink-0 group-hover:scale-105 transition">
+              📄
             </div>
-            <div class="Guide-info m-2">
-              <h3>{{ Guide.Title }}</h3>
-            </div>
+            <span class="text-[10px] font-mono text-[#2CD97D] font-black uppercase tracking-wider bg-[#2CD97D]/10 border border-[#2CD97D]/30 px-2.5 py-1 rounded-full">
+              GUIDE #{{ guide.Id }}
+            </span>
           </div>
 
-          <p class="amount text-gray-400 text-[1.5rem] mt-4">
-            {{ Guide.Description }}
+          <h3 class="text-white font-extrabold text-base tracking-wide group-hover:text-[#2CD97D] transition mb-2">
+            {{ guide.Title }}
+          </h3>
+
+          <p class="text-gray-400 text-xs leading-relaxed line-clamp-3 mb-4">
+            {{ guide.Description }}
           </p>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="min-w-full hidden md:block" *ngIf="viewMode == 'table'">
-  <div class="flex text-gray-400 text-sm mb-4">
-    <div class="w-12 flex-shrink-0">Sr.</div>
-    <div class="flex-[2]">Title</div>
-    <div class="flex-[4]">Description</div>
-    <div class="flex-1">View File</div>
-    <div class="flex-1">Download</div>
-  </div>
 
-  <div (scroll)="onTableViewScroll()" #guidelinesTable class="space-y-4 max-h-[59dvh] overflow-y-auto"
-    *ngIf="filteredGuideLines.length > 0; else noRecord">
-    <div *ngFor="let Guide of filteredGuideLines; let i = index"
-      class="flex items-center py-3 border-b border-gray-800">
-      <div class="text-gray-300 w-12 flex-shrink-0">{{ i + 1 }}</div>
-      <div class="text-gray-300 flex-[2]">{{ Guide.Title }}</div>
-      <div class="text-white flex-[4]">{{ Guide.Description }}</div>
-      <div class="text-gray-300 flex-1">
-        <fa-icon class="Eye" (click)="downloadGuideline(Guide.Id, false)" [icon]="eye"></fa-icon>
-      </div>
-      <div class="text-gray-300 flex-1">
-        <fa-icon class="Eye" (click)="downloadGuideline(Guide.Id, true)" [icon]="Download"></fa-icon>
-      </div>
-    </div>
-  </div>
-
-  <!-- pagination start  -->
-
-  <!-- <div class="row">
-    <div class="mbp_pagination mt-6 text-center">
-      <ul class="page_navigation">
-        <li class="page-item" (click)="navigatePage('prev')">
-          <a class="page-link">
-            <span class="fas fa-angle-left"></span>
-          </a>
-        </li>
-
-        <ng-container *ngFor="let page of pages">
-          <li
-            class="page-item"
-            [ngClass]="{
-              disabled: page === '...',
-              active: page === currentPage
-            }"
-            *ngIf="page !== '...'"
-            (click)="navigateToPage(page)"
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-2 gap-2 pt-3 border-t border-white/5 relative z-10">
+          <button
+            (click)="downloadGuideline(guide.Id, false)"
+            class="py-2.5 px-3 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 text-[#2CD97D] hover:bg-[#2CD97D] hover:text-[#050811] font-extrabold text-xs tracking-wider uppercase transition flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
           >
-            <a class="page-link">{{ page }}</a>
-          </li>
-          <li class="page-item disabled" *ngIf="page === '...'">
-            <span class="page-link">...</span>
-          </li>
-        </ng-container>
-
-        <li class="page-item" (click)="navigatePage('next')">
-          <a class="page-link">
-            <span class="fas fa-angle-right"></span>
-          </a>
-        </li>
-      </ul>
-
-      <p class="mt-5 mb-0 pagination_page_count text-center">
-        {{ getDisplayRange() }} of
-        {{ totalRecords }}
-      </p>
-    </div>
-  </div> -->
-</div>
-
-<ng-template #noRecord>
-  <div class="flex flex-col items-center justify-center gap-5">
-    <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
-    <!-- <p class="text-gray-400 text-sm tracking-wide">No records found</p> -->
-  </div>
-</ng-template>
-<div class="h-[60dvh] backdrop-blur-sm md:hidden">
-  <div class="flex flex-col justify-between items-center mb-6 lg:flex-row">
-    <div class="flex flex-wrap justify-end lg:justify-between lg:items-center w-full lg:w-auto gap-4"></div>
-  </div>
-  <!-- Transaction Table -->
-
-  <div class="flex flex-col">
-    <div class="space-y-2 h-[50dvh] overflow-y-scroll" (scroll)="onMobileScroll($event)"
-      *ngIf="filteredGuideLines.length > 0; else noRecord">
-      <div *ngFor="let guideline of filteredGuideLines; let i = index"
-        class="flex justify-between items-center border-b border-gray-800 bg-[var(--card-back)] rounded-3xl p-4">
-        <div class="flex flex-col">
-          {{ guideline?.Title }}
-          <span class="text-gray-400 text-sm">{{
-            guideline?.Description
-            }}</span>
-          <!-- Time -->
-          <!-- <div class="text-gray-400 text-sm">
-            {{ guideline?.time }}
-          </div> -->
-        </div>
-
-        <!-- Amount -->
-        <div class="text-white flex items-center gap-2">
-          <div class="text-gray-400 text-sm">
-            <fa-icon class="Eye" (click)="downloadGuideline(guideline.Id, false)" [icon]="eye"></fa-icon>
-          </div>
-          <div class="text-gray-400 text-sm">
-            <fa-icon class="Eye" (click)="downloadGuideline(guideline.Id, true)" [icon]="Download"></fa-icon>
-          </div>
+            <fa-icon [icon]="eye"></fa-icon>
+            <span>View PDF</span>
+          </button>
+          <button
+            (click)="downloadGuideline(guide.Id, true)"
+            class="py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 hover:bg-[#2CD97D] hover:text-[#050811] hover:border-[#2CD97D] text-gray-300 font-bold text-xs tracking-wider uppercase transition flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
+          >
+            <fa-icon [icon]="Download"></fa-icon>
+            <span>Download</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ================= TABLE VIEW ================= -->
+  <div class="min-w-full flex flex-col h-[75vh]" *ngIf="viewMode === 'table'">
+    <div class="flex text-[#2CD97D] font-extrabold text-xs mb-3 pb-3 border-b border-[#2CD97D]/30 px-3 uppercase tracking-wider">
+      <div class="w-12 flex-none">#</div>
+      <div class="flex-[2]">Title</div>
+      <div class="flex-[4] hidden sm:block">Description</div>
+      <div class="w-32 flex-none text-center">Actions</div>
+    </div>
+
+    <div
+      #guidelinesTable
+      (scroll)="onTableViewScroll()"
+      class="flex-1 overflow-y-auto space-y-2.5 custom-scrollbar pr-1"
+      *ngIf="filteredGuideLines.length > 0; else noRecord"
+    >
+      <div
+        *ngFor="let guide of filteredGuideLines; let i = index"
+        class="flex items-center py-3.5 px-4 bg-[#0B101E]/80 border border-white/5 hover:border-[#2CD97D]/45 hover:bg-[#0B101E] rounded-2xl transition shadow-lg"
+      >
+        <div class="text-[#2CD97D] font-mono font-bold w-12 flex-none text-xs">{{ i + 1 }}</div>
+        <div class="text-white font-black text-sm flex-[2] truncate pr-3">{{ guide.Title }}</div>
+        <div class="text-gray-400 text-xs flex-[4] truncate pr-4 hidden sm:block">{{ guide.Description }}</div>
+        <div class="w-32 flex-none flex items-center justify-center gap-2">
+          <button
+            (click)="downloadGuideline(guide.Id, false)"
+            class="p-2 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/30 text-[#2CD97D] hover:bg-[#2CD97D] hover:text-[#050811] transition cursor-pointer"
+            title="View PDF"
+          >
+            <fa-icon [icon]="eye"></fa-icon>
+          </button>
+          <button
+            (click)="downloadGuideline(guide.Id, true)"
+            class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:bg-[#2CD97D] hover:text-[#050811] hover:border-[#2CD97D] transition cursor-pointer"
+            title="Download Document"
+          >
+            <fa-icon [icon]="Download"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
   <ng-template #noRecord>
-    <div class="flex flex-col items-center justify-center gap-5">
-      <img src="/norecord.png" alt="No records found" class="w-80 h-80 object-contain opacity-60" />
-      <!-- <p class="text-gray-400 text-sm tracking-wide">No records found</p> -->
+    <div class="flex flex-col items-center justify-center py-20 gap-4">
+      <div class="w-20 h-20 rounded-3xl bg-[#2CD97D]/10 flex items-center justify-center border border-[#2CD97D]/30 shadow-[0_0_25px_rgba(44,217,125,0.2)]">
+        <img src="/norecord.png" alt="No records found" class="w-10 h-10 object-contain opacity-60" />
+      </div>
+      <p class="text-gray-300 text-sm font-bold tracking-wide">
+        No guidelines found matching your search.
+      </p>
     </div>
   </ng-template>
 </div>
-<!-- Captcha Modal -->
-<div *ngIf="showGuidelineModal" class="fixed inset-0 bg-black/80 flex items-center justify-center" style="z-index: 999">
-  <div class="bg-[#2A2A2A] rounded-xl p-6 w-96 mt-20">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-xl font-bold">Guideline</h2>
-      <!-- <button (click)="CloseGuidelineModal()" class="text-gray-400 hover:text-white">
-      ×
-    </button> -->
-      <button (click)="CloseGuidelineModal()" class="text-gray-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 384 512">
-          <path fill="currentColor"
-            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
-          </path>
-        </svg>
+
+<!-- PDF Viewer Modal -->
+<div
+  *ngIf="showGuidelineModal"
+  class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 z-[9999]"
+  (click)="CloseGuidelineModal()"
+>
+  <div
+    class="bg-[#0B101E] border border-[#2CD97D]/40 rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-[0_25px_70px_rgba(0,0,0,0.9)] overflow-hidden text-white"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="flex justify-between items-center px-6 py-4 border-b border-[#2CD97D]/30 bg-black/60 shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-4 bg-[#2CD97D] rounded-full shadow-[0_0_8px_#2CD97D]"></span>
+        <h2 class="text-base font-black text-white uppercase tracking-wider">
+          Document Viewer
+        </h2>
+      </div>
+      <button
+        (click)="CloseGuidelineModal()"
+        class="w-8 h-8 rounded-full bg-white/5 text-gray-400 hover:text-white flex items-center justify-center transition cursor-pointer"
+      >
+        ✕
       </button>
     </div>
-    <ng-container>
-      <object [data]="safeUrl" type="application/pdf" width="100%" height="450px">
-        <embed [src]="safeUrl" type="application/pdf" height="600px" />
+    <div class="p-4 flex-1 overflow-auto min-h-[500px] bg-black/40">
+      <object [data]="safeUrl" type="application/pdf" class="w-full h-full min-h-[550px] rounded-xl border border-white/10">
+        <embed [src]="safeUrl" type="application/pdf" class="w-full h-full min-h-[550px]" />
       </object>
-    </ng-container>
+    </div>
   </div>
 </div>

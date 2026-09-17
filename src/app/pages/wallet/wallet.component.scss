@@ -45,7 +45,7 @@ $notch-bend: 40px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  color: #00F5D4;
+  color: #2CD97D;
   filter: invert(45%) sepia(80%) saturate(1500%) hue-rotate(240deg);
 }
 
@@ -56,7 +56,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .filter-date-label {
-  color: #00F5D4;
+  color: #2CD97D;
   font-size: 0.75rem;
   line-height: 1;
   letter-spacing: 0.02em;
@@ -68,12 +68,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .filter-date-input {
   width: 100%;
-  color: #00F5D4;
+  color: #2CD97D;
   color-scheme: dark;
 }
 
 .filter-date-input::-webkit-datetime-edit {
-  color: #00F5D4;
+  color: #2CD97D;
 }
 
 .filter-date-input::-webkit-calendar-picker-indicator {
@@ -95,7 +95,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #fff;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(0, 245, 212, 0.4);
+  border: 1px solid rgba(44, 217, 125, 0.4);
   white-space: pre-line;
   text-align: center;
   font-size: 12px;
@@ -118,7 +118,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* Custom Scrollbars */
 .custom-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 245, 212, 0.4) transparent;
+  scrollbar-color: rgba(44, 217, 125, 0.4) transparent;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -131,12 +131,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 245, 212, 0.35);
+    background: rgba(44, 217, 125, 0.35);
     border-radius: 9999px;
     transition: background 0.2s ease;
 
     &:hover {
-      background: rgba(0, 245, 212, 0.7);
+      background: rgba(44, 217, 125, 0.7);
     }
   }
 }
