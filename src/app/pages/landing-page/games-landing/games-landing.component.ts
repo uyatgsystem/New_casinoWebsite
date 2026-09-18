@@ -38,10 +38,7 @@ import { LotteryLandingComponent } from '../lottery-landing/lottery-landing.comp
 import { GamePromoBannerComponent } from '../game-promo-banner/game-promo-banner.component';
 import { LandingCaroselComponent } from '../landing-carosel/landing-carosel.component';
 import { ShiningStarsOfGamesComponent } from '../shining-stars-of-games/shining-stars-of-games.component';
-import { CmaxGamesComponent } from '../cmax-games/cmax-games.component';
 import { OnBoardingStepsComponent } from '../on-boarding-steps/on-boarding-steps.component';
-import { SpinComponent } from '../spin/spin.component';
-import { AboutUsComponent } from '../about-us/about-us.component';
 import { JoinCommunityComponent } from '../join-community/join-community.component';
 import { filter, Subscription } from 'rxjs';
 import { SpinnerComponent } from '../../../components/spinner/spinner.component';
@@ -59,9 +56,6 @@ import { LocationService } from '../../../Services/ip-check.service';
     FontAwesomeModule,
     RouterModule,
     SectrechCardListComponent,
-    CmaxGamesComponent,
-    SpinComponent,
-    AboutUsComponent,
     SpinnerComponent
 ],
   templateUrl: './games-landing.component.html',

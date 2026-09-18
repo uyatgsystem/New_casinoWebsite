@@ -2,6 +2,22 @@
   position: relative;
 }
 
+.about-shell {
+  background:
+    linear-gradient(110deg, rgba(44, 217, 125, 0.06), transparent 32%),
+    linear-gradient(290deg, rgba(6, 182, 212, 0.05), transparent 36%),
+    #232626;
+}
+
+.about-shell::before {
+  content: "";
+  position: absolute;
+  inset: 1.5rem;
+  border: 1px solid rgba(44, 217, 125, 0.1);
+  border-radius: 28px;
+  pointer-events: none;
+}
+
 .grain-Backdrop {
   position: absolute;
   inset: 0;

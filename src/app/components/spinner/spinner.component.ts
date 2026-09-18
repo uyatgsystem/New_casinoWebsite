@@ -51,6 +51,7 @@ import { SafeHtml } from '@angular/platform-browser';
 })
 export class SpinnerComponent implements OnInit, OnDestroy {
   @Input() showHeaderSection: boolean = true;
+  @Input() isLandingMode: boolean = false;
   @Output() spinEnd = new EventEmitter<string>();
   grainBackdrop: SafeHtml = '';
   isAmountCredited: boolean = true;
@@ -397,6 +398,23 @@ export class SpinnerComponent implements OnInit, OnDestroy {
   private readonly BALANCE_TTL_MS = 15000;
 
   async ngOnInit(): Promise<void> {
+    if (this.isLandingMode && !localStorage.getItem('token')) {
+      this.updateBalance = 1500.00;
+      this.isBalanceSufficient = true;
+      this.isSpinAllowed = true;
+      this.isCurrentlyFreeSpin = true;
+      this.freeSpinWindowOpen = true;
+      this.freeSpinCountdownTime = 'READY';
+      this.customerSpinnerHistory = [
+        { won_amount: '$50', prize: '$50', created_at: new Date(Date.now() - 4 * 60000) },
+        { won_amount: '$25', prize: '$25', created_at: new Date(Date.now() - 15 * 60000) },
+        { won_amount: '$15', prize: '$15', created_at: new Date(Date.now() - 32 * 60000) },
+        { won_amount: '$40', prize: '$40', created_at: new Date(Date.now() - 65 * 60000) },
+      ];
+      await this.updateSegmentValues();
+      return;
+    }
+
     this.getCustomerSpinnerHistory();
     try {
       const saved = this.GameService.getTotalBalance?.();
@@ -1066,6 +1084,32 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     }
   }
 
+  setMinBet(): void {
+    this.spinAmount = this.allowedSpinAmounts[0].toString();
+  }
+
+  setHalfBet(): void {
+    const current = Number(this.spinAmount) || 5;
+    const half = Math.max(1, Math.floor(current / 2));
+    const closest = this.allowedSpinAmounts.reduce((prev, curr) =>
+      Math.abs(curr - half) < Math.abs(prev - half) ? curr : prev
+    );
+    this.spinAmount = closest.toString();
+  }
+
+  setDoubleBet(): void {
+    const current = Number(this.spinAmount) || 5;
+    const doubled = current * 2;
+    const closest = this.allowedSpinAmounts.reduce((prev, curr) =>
+      Math.abs(curr - doubled) < Math.abs(prev - doubled) ? curr : prev
+    );
+    this.spinAmount = closest.toString();
+  }
+
+  setMaxBet(): void {
+    this.spinAmount = this.allowedSpinAmounts[this.allowedSpinAmounts.length - 1].toString();
+  }
+
   private getNextValidAmount(
     currentAmount: number,
     increment: boolean,
@@ -1090,11 +1134,35 @@ export class SpinnerComponent implements OnInit, OnDestroy {
       return;
     }
 
+    if (this.isLandingMode) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.router.navigate(['/dashboard/spinner']);
+      } else {
+        this.router.navigate(['/SignUp'], {
+          queryParams: { redirectUrl: '/dashboard/spinner' },
+        });
+      }
+      return;
+    }
+
     // Check free spin availability first
     this.checkAndExecuteFreeSpin();
   }
 
   async checkAndExecuteFreeSpin(): Promise<void> {
+    if (this.isLandingMode) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.router.navigate(['/dashboard/spinner']);
+      } else {
+        this.router.navigate(['/SignUp'], {
+          queryParams: { redirectUrl: '/dashboard/spinner' },
+        });
+      }
+      return;
+    }
+
     try {
       await this.getSpinnerStatus();
 

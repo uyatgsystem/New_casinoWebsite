@@ -1,156 +1,423 @@
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
+// =============================================================
+// VIP Casino Hero Section Styles — Spin Hub Luxury Theme
+// =============================================================
+
+.vip-hero-arena {
+  background: radial-gradient(circle at 50% 0%, #171d24 0%, #0d1015 65%, #080a0d 100%);
+  isolation: isolate;
+  min-height: 580px;
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.cta-band {
-  background: #232626;
-}
-
-.cta-glow {
+// Volumetric Ambient Lighting
+.hero-flare {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(120px);
   pointer-events: none;
   z-index: 0;
+
+  &--emerald {
+    top: -100px;
+    left: 20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(44, 217, 125, 0.22) 0%, transparent 70%);
+  }
+
+  &--gold {
+    top: 20%;
+    right: 5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
+  }
+
+  &--cyan {
+    bottom: -80px;
+    left: 10%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
+  }
 }
 
-.cta-glow--one {
-  top: -20%;
-  left: 10%;
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, rgba(44, 217, 125, 0.28) 0%, transparent 70%);
-}
-
-.cta-glow--two {
-  bottom: -25%;
-  right: 5%;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(44, 217, 125, 0.2) 0%, transparent 70%);
-}
-
-.cta-grid-overlay {
+// Cyber Grid Background Texture
+.hero-cyber-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 60% 60% at 70% 40%, #000 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 70% 40%, #000 30%, transparent 100%);
+    linear-gradient(rgba(44, 217, 125, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44, 217, 125, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
   pointer-events: none;
 }
 
-.cta-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #2cd97d;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  font-size: 11px;
-  margin-bottom: 0.75rem;
-
-  &::before {
-    content: "";
-    width: 18px;
-    height: 1px;
-    background: #2cd97d;
-    display: inline-block;
-  }
+// Metallic Text Gradient
+.hero-metallic-gradient {
+  background: linear-gradient(135deg, #2CD97D 0%, #72F3B6 35%, #FFD700 70%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 30px rgba(44, 217, 125, 0.55));
 }
 
-.cta-orb {
-  position: relative;
-  width: 290px;
-  height: 290px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 30%, rgba(44, 217, 125, 0.16), rgba(35,38,38,0.4) 70%);
-  border: 1px dashed rgba(44, 217, 125, 0.3);
-  padding: 0em;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: -18px;
-    border-radius: 50%;
-    border: 1px solid rgba(44, 217, 125, 0.15);
-  }
-}
-
-.cta-btn-primary,
-.cta-btn-outline {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  overflow: hidden;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+// Glassmorphic Telemetry Cards
+.telemetry-card {
+  background: rgba(22, 27, 34, 0.8);
+  border: 1px solid rgba(44, 217, 125, 0.25);
   border-radius: 14px;
-  padding: 0.85rem 2.25rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: rgba(44, 217, 125, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(44, 217, 125, 0.2);
+  }
+
+  .telemetry-value {
+    font-family: 'JetBrains Mono', 'Barlow Condensed', monospace;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+  }
+
+  .telemetry-label {
+    font-size: 10px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Dual Action CTA Buttons
+.hero-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 28px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: all 0.25s ease;
 
   @media (min-width: 640px) {
     width: auto;
   }
 
-  &::after {
-    content: "";
+  &--primary {
+    background: #2CD97D;
+    color: #050811;
+    border: 1.5px solid #2CD97D;
+    box-shadow: 0 0 35px rgba(44, 217, 125, 0.55), 0 8px 20px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      background: #36e889;
+      border-color: #36e889;
+      box-shadow: 0 0 50px rgba(44, 217, 125, 0.75), 0 10px 25px rgba(0, 0, 0, 0.6);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &--secondary {
+    background: rgba(22, 27, 34, 0.85);
+    color: #f1ede5;
+    border: 1.5px solid rgba(44, 217, 125, 0.45);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+
+    &:hover {
+      border-color: #2CD97D;
+      color: #2CD97D;
+      background: rgba(44, 217, 125, 0.08);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .btn-shine {
     position: absolute;
     inset: 0;
-    background: linear-gradient(115deg, transparent 35%, rgba(44, 217, 125, 0.25) 50%, transparent 65%);
-    transform: translateX(-130%);
-    transition: transform 0.7s ease;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+    transform: translateX(-150%);
+    transition: transform 0.8s ease;
     pointer-events: none;
   }
 
-  &:hover::after {
-    transform: translateX(130%);
-  }
-
-  &:active {
-    transform: scale(0.98);
+  &:hover .btn-shine {
+    transform: translateX(150%);
   }
 }
 
-.cta-btn-primary {
-  background: rgb(44, 217, 125);
-  border: 1.5px solid rgb(44, 217, 125);
-  color: #232626;
-  box-shadow: 0 10px 26px rgba(44, 217, 125, 0.35);
+// 3D VIP Casino Showcase Stage (Right Column)
+.jackpot-showcase-stage {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
 
-  &:hover {
-    background: #28c772;
-    border-color: #28c772;
-    color: #232626;
-    box-shadow: 0 12px 30px rgba(44, 217, 125, 0.55);
+// Orbiting Halo & Rings
+.jackpot-aura {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.25) 0%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+  filter: blur(35px);
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.92); opacity: 0.7; }
+  100% { transform: scale(1.12); opacity: 1; }
+}
+
+.jackpot-orbit {
+  position: absolute;
+  inset: 15px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(44, 217, 125, 0.35);
+  animation: orbitRotate 22s linear infinite;
+}
+
+@keyframes orbitRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// 3D Jackpot Vault Card
+.jackpot-vault-card {
+  position: relative;
+  z-index: 10;
+  width: 300px;
+  background: linear-gradient(145deg, rgba(29, 35, 45, 0.95) 0%, rgba(15, 18, 24, 0.98) 100%);
+  border: 1.5px solid rgba(255, 215, 0, 0.45);
+  border-radius: 28px;
+  padding: 22px 18px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 1px 2px rgba(255, 255, 255, 0.15), 0 0 35px rgba(44, 217, 125, 0.25);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.vault-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+
+  .ribbon-beacon {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FFD700;
+    box-shadow: 0 0 8px #FFD700;
+  }
+
+  .ribbon-text {
+    font-size: 9.5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 900;
+    color: #FFD700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 }
 
-.cta-btn-outline {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #f1ede5;
+.vault-counter-box {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
 
-  &:hover {
-    border-color: rgba(44, 217, 125, 0.5);
-    background: rgba(44, 217, 125, 0.06);
-    color: #2cd97d;
+  .counter-currency {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 900;
+    color: #2CD97D;
+    text-shadow: 0 0 15px rgba(44, 217, 125, 0.8);
   }
+
+  .counter-amount {
+    font-family: 'JetBrains Mono', 'Barlow Condensed', monospace;
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(44, 217, 125, 0.5);
+  }
+}
+
+.vault-visual-container {
+  width: 180px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .vault-hero-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.85));
+  }
+}
+
+.vault-winner-pill {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: rgba(8, 12, 16, 0.7);
+  border: 1px solid rgba(44, 217, 125, 0.25);
+
+  .winner-trophy {
+    font-size: 14px;
+  }
+
+  .winner-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    font-family: 'Inter', sans-serif;
+    color: #cbd5e1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .winner-name {
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .winner-text {
+      color: #94a3b8;
+    }
+
+    .winner-amount {
+      font-weight: 800;
+      color: #2CD97D;
+    }
+
+    .winner-game {
+      color: #64748b;
+      font-size: 9.5px;
+    }
+  }
+}
+
+// Floating 3D Multiplier Chips
+.floating-chip {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.75);
+  z-index: 15;
+  animation: floatChip 3.5s ease-in-out infinite alternate;
+
+  &.chip-100x {
+    top: 20px;
+    right: 15px;
+    background: radial-gradient(circle at 35% 35%, #ffd700 0%, #b8860b 100%);
+    color: #050811;
+    border: 2px dashed #ffffff;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    animation-delay: 0s;
+  }
+
+  &.chip-50x {
+    bottom: 45px;
+    left: 10px;
+    background: radial-gradient(circle at 35% 35%, #2cd97d 0%, #0f7a42 100%);
+    color: #050811;
+    border: 2px dashed #ffffff;
+    box-shadow: 0 0 20px rgba(44, 217, 125, 0.6);
+    animation-delay: 1.2s;
+  }
+
+  &.chip-vip {
+    top: 60px;
+    left: 20px;
+    background: radial-gradient(circle at 35% 35%, #00e5ff 0%, #00838f 100%);
+    color: #050811;
+    border: 2px dashed #ffffff;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+    animation-delay: 2.2s;
+  }
+}
+
+@keyframes floatChip {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-12px) rotate(8deg); }
+}
+
+.floating-trust-badge {
+  position: absolute;
+  bottom: 5px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(15, 20, 26, 0.95);
+  border: 1px solid rgba(44, 217, 125, 0.45);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+}
+
+// Float Animation
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }

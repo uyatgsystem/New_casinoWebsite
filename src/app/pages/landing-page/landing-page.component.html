@@ -128,13 +128,27 @@
 </header>
 
 <!-- ============================= HERO ============================= -->
-<div class="pt-[76px] bg-[#232626]">
+<div class="pt-[76px] bg-[#0d1015]">
   <app-hero-section></app-hero-section>
 </div>
 
 <!-- ========================= INTERACTIVE WHEEL SPINNER ========================= -->
-<div id="spinScrollSection">
-  <app-spin></app-spin>
+<div id="spinScrollSection" class="relative overflow-hidden bg-gradient-to-b from-[#080c12] via-[#0d131c] to-[#232626] py-10 lg:py-16">
+  <!-- Section Title & Subtitle for Landing Page -->
+  <div class="max-w-4xl mx-auto text-center px-4 mb-6">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161d27] border border-[#2CD97D]/40 text-[#2CD97D] text-[11px] font-mono font-black tracking-widest uppercase shadow-[0_0_20px_rgba(44,217,125,0.25)] mb-3">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#2CD97D] animate-ping"></span>
+      <span>⚡ VIP FORTUNE WHEEL • 100% PROVABLY FAIR</span>
+    </div>
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
+      Experience The <span class="bg-gradient-to-r from-[#2CD97D] via-[#72F3B6] to-[#FFD700] bg-clip-text text-transparent">Ultimate Spinner</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-300 font-medium max-w-xl mx-auto mt-2">
+      Spin high-multiplier golden reels, unlock instant cash rewards, and withdraw winnings directly to your wallet in seconds!
+    </p>
+  </div>
+
+  <app-spinner [showHeaderSection]="false" [isLandingMode]="true"></app-spinner>
 </div>
 
 <!-- ========================= PREMIUM FEATURES (BENTO GRID) ========================= -->

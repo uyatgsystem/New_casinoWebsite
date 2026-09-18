@@ -1,26 +1,75 @@
 <ngx-spinner
-  bdColor="rgba(35,38,38,0.94)"
+  bdColor="rgba(8, 12, 16, 0.95)"
   [fullScreen]="true"
 >
-  <div class="custom-loader-chassis flex flex-col items-center justify-center space-y-4">
-    <!-- Spinning Cyber Wheel -->
-    <div class="relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
-      <!-- Outer Orbit Ring -->
-      <div class="absolute inset-0 rounded-full border-2 border-dashed border-[#2CD97D]/50 animate-spin-slow"></div>
-      
-      <!-- Pulsing Glow Ring -->
-      <div class="absolute inset-1 rounded-full border-2 border-transparent border-t-[#2CD97D] border-r-[#06B6D4] animate-spin shadow-[0_0_20px_rgba(44,217,125,0.5)]"></div>
-      
-      <!-- Inner Core Token -->
-      <div class="w-12 h-12 rounded-full bg-[#292d2e] border border-[#2CD97D]/40 flex items-center justify-center shadow-inner relative">
-        <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Spin Hub" class="w-7 h-auto object-contain animate-pulse" />
+  <div class="casino-loader-chassis">
+    <!-- Ambient Holographic Glow Behind Chip -->
+    <div class="loader-ambient-glow" aria-hidden="true"></div>
+
+    <!-- 3D Luxury Casino Chip & Roulette Mechanism -->
+    <div class="casino-chip-stage">
+      <!-- Orbiting Glowing Roulette Ball -->
+      <div class="roulette-ball-track" aria-hidden="true">
+        <div class="roulette-ball"></div>
+      </div>
+
+      <!-- Outer Laser-Notched Neon Ring -->
+      <div class="chip-ring chip-ring--outer" aria-hidden="true"></div>
+
+      <!-- Rotating Golden Card Suit Ring -->
+      <div class="chip-ring chip-ring--suits" aria-hidden="true">
+        <span class="suit suit-spade">♠</span>
+        <span class="suit suit-heart">♥</span>
+        <span class="suit suit-diamond">♦</span>
+        <span class="suit suit-club">♣</span>
+        <span class="suit suit-spade">♠</span>
+        <span class="suit suit-heart">♥</span>
+        <span class="suit suit-diamond">♦</span>
+        <span class="suit suit-club">♣</span>
+      </div>
+
+      <!-- Beveled Gold Marquee Ring with Inset LEDs -->
+      <div class="chip-ring chip-ring--bezel" aria-hidden="true">
+        <div class="bezel-led led-1"></div>
+        <div class="bezel-led led-2"></div>
+        <div class="bezel-led led-3"></div>
+        <div class="bezel-led led-4"></div>
+        <div class="bezel-led led-5"></div>
+        <div class="bezel-led led-6"></div>
+      </div>
+
+      <!-- Center Floating VIP Token -->
+      <div class="chip-core">
+        <div class="core-radial-glow"></div>
+        <div class="core-emblem">
+          <img
+            src="https://spinhub-6rb.pages.dev/assets/logo.png"
+            alt="Spin Hub"
+            class="core-logo"
+          />
+        </div>
+        <div class="core-ring-pulse"></div>
       </div>
     </div>
 
-    <!-- Telemetry Status Pill -->
-    <div class="flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#292d2e] border border-[#2CD97D]/40 text-[#2CD97D] text-[11px] font-mono font-bold tracking-widest uppercase shadow-[0_0_12px_rgba(44,217,125,0.25)]">
-      <span class="w-2 h-2 rounded-full bg-[#2CD97D] animate-ping"></span>
-      <span>PROCESSING TRANSACTION...</span>
+    <!-- Telemetry HUD & Animated Status -->
+    <div class="loader-hud">
+      <!-- Live Status Pill -->
+      <div class="hud-status-pill">
+        <span class="status-ping"></span>
+        <span class="status-text">{{ statusMessage }}</span>
+      </div>
+
+      <!-- High-Tech Neon Shimmer Progress Bar -->
+      <div class="hud-progress-track">
+        <div class="hud-progress-bar"></div>
+      </div>
+
+      <!-- Security Guarantee -->
+      <div class="hud-security-tag">
+        <i class="fa fa-shield-halved"></i>
+        <span>256-BIT PROVABLY FAIR MATRIX</span>
+      </div>
     </div>
   </div>
 </ngx-spinner>

@@ -1,8 +1,8 @@
 <!-- ================= EXACT IMAGE STYLE CARDS SECTION ================= -->
 <div
   id="games-scroll-id"
-  *ngIf="isToken && isDashboardPage && AsianLocalBlock"
-  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mx-3 sm:mx-4 px-4 py-8 rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+  *ngIf="AsianLocalBlock"
+  class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-6 mx-2 sm:mx-4 px-2.5 sm:px-4 py-6 sm:py-8 rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
   [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''"
 >
   <ng-container *ngFor="let game of displayedGames">
@@ -130,7 +130,7 @@
 
 <!-- Quick Win Casino Section with Border Frame -->
 <div
-  *ngIf="isDashboardPage"
+  *ngIf="isDashboardPage || isLandingPage"
   class="mb-10 mt-8 px-3 sm:px-4"
   id="quick-scrolling-id"
 >
@@ -152,8 +152,8 @@
   </div>
 
   <div
-    *ngIf="isToken && isDashboardPage"
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mx-auto px-4 py-8 rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+    *ngIf="isToken || isLandingPage"
+    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-6 mx-auto px-2.5 sm:px-4 py-6 sm:py-8 rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
     [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''"
   >
     <ng-container *ngFor="let game of quickGames">
@@ -166,7 +166,7 @@
           <img
             [src]="game.image"
             [alt]="game.name"
-            class="clean-game-artwork"
+            class="clean-game-artwork quick-game-artwork"
           />
         </div>
 
@@ -182,13 +182,6 @@
       </div>
     </ng-container>
   </div>
-</div>
-
-<div>
-  <app-cmax-games
-    *ngIf="!isDashboardPage"
-    id="gameScrollSection"
-  ></app-cmax-games>
 </div>
 
 <!-- Scratch Cards Section with Border Frame -->
@@ -231,7 +224,7 @@
 </div>
 
 <!-- Spin Section with Border Frame -->
-<div *ngIf="isDashboardPage" class="mt-10 px-3 sm:px-4">
+<div *ngIf="isDashboardPage || isLandingPage" class="mt-10 px-3 sm:px-4">
   <div class="flex items-center ml-1 gap-3 mb-4">
     <div
       class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"
@@ -254,7 +247,6 @@
   >
     <app-spinner
       id="spin-scrolling-id"
-      *ngIf="!isLandingPage"
       [showHeaderSection]="false"
     ></app-spinner>
   </div>

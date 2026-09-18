@@ -23,6 +23,7 @@ import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.co
 import { FooterComponent } from '../../components/footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SpinComponent } from './spin/spin.component';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
 
 @Component({
@@ -37,6 +38,7 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
     AboutUsComponent,
     CustomerReviewsComponent,
     SpinComponent,
+    SpinnerComponent,
     FooterComponent
   ],
   templateUrl: './landing-page.component.html',

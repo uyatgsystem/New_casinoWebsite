@@ -1,12 +1,296 @@
-@keyframes spinSlow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+// =============================================================
+// Luxury 3D Casino Roulette / Golden Chip Loader Styles
+// =============================================================
+
+.casino-loader-chassis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  position: relative;
+  user-select: none;
+  font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+// Ambient holographic glow
+.loader-ambient-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.28) 0%, rgba(255, 179, 0, 0.12) 45%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientBreath 4s ease-in-out infinite;
+}
+
+@keyframes ambientBreath {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+// 3D Casino Chip Stage
+.casino-chip-stage {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+  z-index: 1;
+}
+
+// Orbiting Roulette Ball
+.roulette-ball-track {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: rouletteSpin 1.4s linear infinite;
+  z-index: 10;
+}
+
+.roulette-ball {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 20%, #ffe082 60%, #ffb300 100%);
+  box-shadow: 0 0 14px #ffffff, 0 0 25px rgba(255, 215, 0, 0.9);
+}
+
+@keyframes rouletteSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Chip Rings
+.chip-ring {
+  position: absolute;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+// Outer Laser-Notched Ring
+.chip-ring--outer {
+  inset: 0;
+  border: 2px dashed rgba(44, 217, 125, 0.6);
+  box-shadow: 0 0 20px rgba(44, 217, 125, 0.35), inset 0 0 15px rgba(44, 217, 125, 0.2);
+  animation: ringRotateClockwise 12s linear infinite;
+}
+
+@keyframes ringRotateClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Card Suits Ring
+.chip-ring--suits {
+  inset: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ringRotateCounterClockwise 16s linear infinite;
+
+  .suit {
+    position: absolute;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1;
+
+    &.suit-spade { color: #2cd97d; text-shadow: 0 0 8px rgba(44, 217, 125, 0.8); }
+    &.suit-heart { color: #ff5252; text-shadow: 0 0 8px rgba(255, 82, 82, 0.8); }
+    &.suit-diamond { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
+    &.suit-club { color: #00e5ff; text-shadow: 0 0 8px rgba(0, 229, 255, 0.8); }
+
+    &:nth-child(1) { transform: rotate(0deg) translateY(-54px); }
+    &:nth-child(2) { transform: rotate(45deg) translateY(-54px); }
+    &:nth-child(3) { transform: rotate(90deg) translateY(-54px); }
+    &:nth-child(4) { transform: rotate(135deg) translateY(-54px); }
+    &:nth-child(5) { transform: rotate(180deg) translateY(-54px); }
+    &:nth-child(6) { transform: rotate(225deg) translateY(-54px); }
+    &:nth-child(7) { transform: rotate(270deg) translateY(-54px); }
+    &:nth-child(8) { transform: rotate(315deg) translateY(-54px); }
   }
 }
 
-.animate-spin-slow {
-  animation: spinSlow 10s linear infinite;
+@keyframes ringRotateCounterClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+// Gold Beveled Bezel Ring with Inset LEDs
+.chip-ring--bezel {
+  inset: 22px;
+  background: linear-gradient(135deg, #2a2d33 0%, #171a1f 50%, #2a2d33 100%);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), inset 0 2px 6px rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ringRotateClockwise 20s linear infinite;
+
+  .bezel-led {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2cd97d;
+    box-shadow: 0 0 6px #2cd97d;
+
+    &.led-1 { transform: rotate(0deg) translateY(-38px); }
+    &.led-2 { transform: rotate(60deg) translateY(-38px); }
+    &.led-3 { transform: rotate(120deg) translateY(-38px); }
+    &.led-4 { transform: rotate(180deg) translateY(-38px); }
+    &.led-5 { transform: rotate(240deg) translateY(-38px); }
+    &.led-6 { transform: rotate(300deg) translateY(-38px); }
+  }
+}
+
+// Center Core
+.chip-core {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #23272d 0%, #0d0f12 100%);
+  border: 1.5px solid rgba(44, 217, 125, 0.6);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(44, 217, 125, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.core-emblem {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .core-logo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(44, 217, 125, 0.75));
+    animation: logoPulse 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes logoPulse {
+  0% { transform: scale(0.92); opacity: 0.85; }
+  100% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 14px rgba(44, 217, 125, 0.95)); }
+}
+
+.core-ring-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(44, 217, 125, 0.5);
+  animation: corePulse 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes corePulse {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+// Telemetry HUD
+.loader-hud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  z-index: 1;
+}
+
+.hud-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(22, 26, 31, 0.9);
+  border: 1px solid rgba(44, 217, 125, 0.45);
+  box-shadow: 0 0 20px rgba(44, 217, 125, 0.25), inset 0 0 10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.status-ping {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2cd97d;
+  box-shadow: 0 0 10px #2cd97d;
+  animation: pingDot 1.2s ease-in-out infinite;
+}
+
+@keyframes pingDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+.status-text {
+  font-family: 'JetBrains Mono', 'Barlow Condensed', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #2cd97d;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+// High-Tech Neon Progress Track
+.hud-progress-track {
+  width: 170px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.hud-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 45%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #2cd97d, #ffd700);
+  box-shadow: 0 0 10px #2cd97d;
+  animation: progressSweep 1.5s ease-in-out infinite;
+}
+
+@keyframes progressSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(380%); }
+}
+
+// Security Tag
+.hud-security-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #8b949e;
+  text-transform: uppercase;
+
+  i {
+    color: #2cd97d;
+    font-size: 10px;
+  }
 }

@@ -1,18 +1,19 @@
-<!-- Spinner Component Template — Vegas Marquee Fortune Wheel (v4) -->
-<!-- Palette unchanged: Teal #2CD97D · Amber #FF9F1C · Obsidian #050811 -->
-<!-- Visual direction: art-deco / classic Vegas marquee — bulb rings, sunburst backdrop, poker-chip bets -->
-<div class="cw-root">
-  <!-- Ambient sunburst backdrop -->
+<!-- ============================================================= -->
+<!-- Unique Luxury Casino Fortune Wheel — Unified Component         -->
+<!-- Used identically on Landing Page & Dashboard Screen           -->
+<!-- ============================================================= -->
+
+<div class="cw-root" [class.cw-root--landing]="isLandingMode">
+  <!-- Ambient Atmosphere Lighting -->
   <div class="cw-atmosphere" aria-hidden="true">
     <div class="cw-atmosphere__sunburst"></div>
-    <div class="cw-atmosphere__glow cw-atmosphere__glow--teal"></div>
-    <div class="cw-atmosphere__glow cw-atmosphere__glow--amber"></div>
+    <div class="cw-atmosphere__glow cw-atmosphere__glow--emerald"></div>
+    <div class="cw-atmosphere__glow cw-atmosphere__glow--gold"></div>
     <div class="cw-atmosphere__vignette"></div>
-    <div class="cw-atmosphere__grain"></div>
   </div>
 
   <div class="cw-stage">
-    <!-- ===== Marquee header ===== -->
+    <!-- ===== Marquee Header (Dashboard Mode) ===== -->
     @if (showHeaderSection) {
       <header class="cw-header">
         <span class="cw-header__bulbs" aria-hidden="true"></span>
@@ -23,10 +24,8 @@
               <fa-icon [icon]="leftArrow"></fa-icon>
             </button>
             <div class="cw-header__title">
-              <h1>Fortune Wheel</h1>
-              <span class="cw-header__eyebrow"
-                >Spin &bull; Win &bull; Repeat</span
-              >
+              <h1>VIP FORTUNE WHEEL</h1>
+              <span class="cw-header__eyebrow">SPIN • MULTIPLY • WIN CASH</span>
             </div>
           </div>
 
@@ -36,9 +35,7 @@
                 <span class="cw-wallet__coin" aria-hidden="true"></span>
                 <span class="cw-wallet__text">
                   <span class="cw-wallet__label">Balance</span>
-                  <span class="cw-wallet__amount"
-                    >${{ walletBalance | number: "1.2-2" }}</span
-                  >
+                  <span class="cw-wallet__amount">${{ walletBalance | number: "1.2-2" }}</span>
                 </span>
               </div>
             }
@@ -73,42 +70,97 @@
       </header>
     }
 
-    <!-- ===== Hero: marquee wheel ===== -->
+    <!-- ===== VIP Telemetry Banner & Free Spin Ticket ===== -->
+    <div class="cw-status-strip">
+      <div class="cw-provably-tag">
+        <span class="cw-provably-dot"></span>
+        <span>256-BIT PROVABLY FAIR RNG</span>
+      </div>
+
+      <div
+        class="cw-freespin-ticket"
+        [class.cw-freespin-ticket--ready]="isCurrentlyFreeSpin && freeSpinWindowOpen"
+      >
+        <span class="cw-freespin-ticket__dot" aria-hidden="true"></span>
+        @if (isCurrentlyFreeSpin && freeSpinWindowOpen) {
+          <span class="cw-freespin-ticket__label">🎁 Free Spin Available</span>
+        } @else {
+          <span class="cw-freespin-ticket__label">Next Free Spin:</span>
+          <span class="cw-freespin-ticket__value">{{ freeSpinCountdownTime }}</span>
+        }
+      </div>
+    </div>
+
+    <!-- ===== The Grand 3D Casino Fortune Wheel ===== -->
     <section class="cw-hero">
       <div class="cw-wheel-frame">
-        <!-- Pointer -->
-        <div class="cw-pointer wheel-pointer" aria-hidden="true">
-          <div class="cw-pointer__base"></div>
-          <div class="cw-pointer__blade"></div>
-          <div class="cw-pointer__accent"></div>
+
+        <!-- Precision Needle Pointer with Gemstone Cap -->
+        <div
+          class="cw-pointer"
+          [class.cw-pointer--spinning]="isSpinning"
+          aria-hidden="true"
+        >
+          <div class="cw-pointer__gem"></div>
+          <div class="cw-pointer__body"></div>
+          <div class="cw-pointer__tip"></div>
         </div>
 
+        <!-- 3D Wheel Stage with Chaser Bulbs -->
         <div
           class="cw-wheel-stage"
-          [class.cw-wheel-stage--freespin]="
-            isCurrentlyFreeSpin && freeSpinWindowOpen
-          "
+          [class.cw-wheel-stage--freespin]="isCurrentlyFreeSpin && freeSpinWindowOpen"
         >
+          <!-- Ambient Halo Rings -->
           <div class="cw-ring cw-ring--glow" aria-hidden="true"></div>
-          <div class="cw-ring cw-ring--marquee" aria-hidden="true"></div>
-          <div class="cw-ring cw-ring--gold" aria-hidden="true"></div>
-          <div class="cw-ring cw-ring--teal" aria-hidden="true"></div>
+          
+          <!-- Outer Brass Casing with Chaser LED Bulbs -->
+          <div class="cw-marquee-bezel" aria-hidden="true">
+            <span class="cw-bulb b-1"></span>
+            <span class="cw-bulb b-2"></span>
+            <span class="cw-bulb b-3"></span>
+            <span class="cw-bulb b-4"></span>
+            <span class="cw-bulb b-5"></span>
+            <span class="cw-bulb b-6"></span>
+            <span class="cw-bulb b-7"></span>
+            <span class="cw-bulb b-8"></span>
+            <span class="cw-bulb b-9"></span>
+            <span class="cw-bulb b-10"></span>
+            <span class="cw-bulb b-11"></span>
+            <span class="cw-bulb b-12"></span>
+            <span class="cw-bulb b-13"></span>
+            <span class="cw-bulb b-14"></span>
+            <span class="cw-bulb b-15"></span>
+            <span class="cw-bulb b-16"></span>
+          </div>
 
+          <!-- Inset Neon Emerald Ring -->
+          <div class="cw-ring cw-ring--neon-rim" aria-hidden="true"></div>
+
+          <!-- Rotating Wheel Disc -->
           <div class="cw-wheel-container">
             <div
               class="cw-wheel"
               [style.transform]="'rotate(' + rotation + 'deg)'"
             >
-              <div class="cw-wheel__segments w-full h-full absolute inset-0">
+              <!-- Segments Container -->
+              <div class="cw-wheel__segments">
                 <div
                   class="cw-segment"
                   *ngFor="let segment of segments; let i = index"
                   [class.cw-segment--win]="i === highlightedIndex"
                   [style.transform]="'rotate(' + i * segmentAngle + 'deg)'"
                 >
+                  <!-- Wedge Surface -->
                   <span class="cw-segment__face"></span>
+                  
+                  <!-- Golden Divider Line -->
                   <span class="cw-segment__divider"></span>
 
+                  <!-- Perimeter Pin -->
+                  <span class="cw-segment__pin"></span>
+
+                  <!-- Segment Content (Prize & Icon) -->
                   <div class="cw-segment__content">
                     <div
                       class="cw-prize"
@@ -131,10 +183,11 @@
               </div>
             </div>
 
+            <!-- Inner Depth Shadow Ring -->
             <div class="cw-wheel-inner-ring" aria-hidden="true"></div>
           </div>
 
-          <!-- Center hub -->
+          <!-- 3D Center Hub & Spin Button -->
           <div
             class="cw-hub"
             [class.cw-hub--spinning]="isSpinning"
@@ -142,39 +195,39 @@
             [style.cursor]="
               isSpinning ||
               showCongratsModal ||
-              !isBalanceSufficient ||
-              !isSpinAllowed
+              (!isLandingMode && !isBalanceSufficient && !isSpinAllowed)
                 ? 'not-allowed'
                 : 'pointer'
             "
           >
-            <span class="cw-hub__ring" aria-hidden="true"></span>
-            <span class="cw-hub__disc flex items-center justify-center">
+            <span class="cw-hub__knurled-ring" aria-hidden="true"></span>
+            <span class="cw-hub__neon-rim" aria-hidden="true"></span>
+            <div class="cw-hub__disc">
               <span class="cw-hub__label">
                 <span
                   *ngIf="isSpinning || showCongratsModal"
                   class="cw-hub__text cw-hub__text--spinning"
-                  [class.cw-hub__text--compact]="!showHeaderSection"
-                  >SPINNING</span
                 >
+                  SPINNING
+                </span>
                 <span
                   *ngIf="
                     !isSpinning &&
                     !showCongratsModal &&
-                    isBalanceSufficient &&
-                    isSpinAllowed
+                    (isLandingMode || (isBalanceSufficient && isSpinAllowed))
                   "
                   class="cw-hub__text"
-                  [class.cw-hub__text--compact]="!showHeaderSection"
-                  >SPIN</span
                 >
+                  SPIN
+                </span>
                 <span
                   *ngIf="
                     !isSpinning &&
                     !showCongratsModal &&
+                    !isLandingMode &&
                     (!isBalanceSufficient || !isSpinAllowed)
                   "
-                  class="cw-hub__lock flex items-center justify-center"
+                  class="cw-hub__lock"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -192,36 +245,41 @@
                   </svg>
                 </span>
               </span>
-            </span>
+            </div>
           </div>
         </div>
 
+        <!-- Wheel Bottom Ground Flare -->
         <div class="cw-wheel-shadow" aria-hidden="true"></div>
-      </div>
-
-      <!-- Free spin ticket -->
-      <div
-        class="cw-freespin-ticket"
-        [class.cw-freespin-ticket--ready]="
-          isCurrentlyFreeSpin && freeSpinWindowOpen
-        "
-      >
-        <span class="cw-freespin-ticket__dot" aria-hidden="true"></span>
-        @if (isCurrentlyFreeSpin && freeSpinWindowOpen) {
-          <span class="cw-freespin-ticket__label">Free Spin Available</span>
-        } @else {
-          <span class="cw-freespin-ticket__label">Next Free Spin</span>
-          <span class="cw-freespin-ticket__value">{{
-            freeSpinCountdownTime
-          }}</span>
-        }
       </div>
     </section>
 
-    <!-- ===== Betting console ===== -->
+    <!-- ===== Redesigned Betting Console ===== -->
     <section class="cw-console">
+      <!-- Quick Multiplier Bar -->
+      <div class="cw-preset-row">
+        <button (click)="setMinBet()" class="cw-preset-btn">MIN</button>
+        <button (click)="setHalfBet()" class="cw-preset-btn">1/2</button>
+        <button (click)="setDoubleBet()" class="cw-preset-btn">2X</button>
+        <button (click)="setMaxBet()" class="cw-preset-btn">MAX</button>
+      </div>
+
+      <!-- Denomination Poker Chips Carousel -->
+      <div class="cw-chip-row">
+        <button
+          *ngFor="let amount of allowedSpinAmounts"
+          (click)="spinAmount = amount.toString()"
+          class="cw-poker-chip"
+          [class.cw-poker-chip--active]="spinAmount === amount.toString()"
+        >
+          <span class="cw-poker-chip__outer"></span>
+          <span class="cw-poker-chip__dashes" aria-hidden="true"></span>
+          <span class="cw-poker-chip__value">${{ amount }}</span>
+        </button>
+      </div>
+
+      <!-- Stake Amount Adjuster Row -->
       <div class="cw-console__stake">
-        <p class="cw-console__label">Bet Amount</p>
         <div class="cw-stake-row">
           <button
             (click)="decrementSpinAmount()"
@@ -230,7 +288,10 @@
           >
             –
           </button>
-          <span class="cw-stake-amount">${{ spinAmount }}</span>
+          <div class="cw-stake-display">
+            <span class="cw-stake-currency">$</span>
+            <span class="cw-stake-amount">{{ spinAmount }}</span>
+          </div>
           <button
             (click)="incrementSpinAmount()"
             class="cw-stake-step"
@@ -241,39 +302,40 @@
         </div>
       </div>
 
-      <div class="cw-chip-row">
-        <button
-          *ngFor="let amount of allowedSpinAmounts"
-          (click)="spinAmount = amount.toString()"
-          class="cw-poker-chip"
-          [class.cw-poker-chip--active]="spinAmount === amount.toString()"
-        >
-          <span class="cw-poker-chip__dashes" aria-hidden="true"></span>
-          <span class="cw-poker-chip__value">${{ amount }}</span>
-        </button>
-      </div>
-
+      <!-- Giant Action CTA Button -->
       <button
         (click)="checkAndExecuteFreeSpin()"
         [disabled]="
           isSpinning ||
           showCongratsModal ||
-          (!isBalanceSufficient && !isCurrentlyFreeSpin)
+          (!isLandingMode && !isBalanceSufficient && !isCurrentlyFreeSpin)
         "
         class="cw-spin-cta"
       >
-        @if (isCurrentlyFreeSpin && freeSpinWindowOpen) {
-          <span class="cw-spin-cta__icon">🎁</span> Free Spin
+        <span class="cw-spin-cta__shine" aria-hidden="true"></span>
+        @if (isLandingMode) {
+          <span class="cw-spin-cta__content">
+            <i class="fas fa-play text-xs mr-2"></i> SPIN & WIN • JOIN FREE
+          </span>
+        } @else if (isCurrentlyFreeSpin && freeSpinWindowOpen) {
+          <span class="cw-spin-cta__content">
+            <span class="cw-spin-cta__icon">🎁</span> CLAIM FREE SPIN
+          </span>
         } @else {
-          {{ isBalanceSufficient ? "Spin Now" : "Insufficient Balance" }}
+          <span class="cw-spin-cta__content">
+            <i class="fas fa-bolt text-xs mr-2 text-[#FFD700]"></i>
+            {{ isBalanceSufficient ? "SPIN NOW • WIN BIG" : "INSUFFICIENT BALANCE" }}
+          </span>
         }
       </button>
     </section>
 
-    <!-- ===== Recent results ===== -->
+    <!-- ===== Recent Spin Outcomes Ticker ===== -->
     <section class="cw-history">
       <div class="cw-history__head">
-        <span class="cw-history__title">Recent Spins</span>
+        <span class="cw-history__title">
+          <span class="cw-history__beacon"></span> RECENT WINNERS
+        </span>
       </div>
 
       <div class="cw-history__scroll">
@@ -282,12 +344,12 @@
           class="cw-stub"
           [class.cw-stub--latest]="first"
         >
+          <span class="cw-stub__tag">WIN</span>
           <span class="cw-stub__amount">{{
             item?.won_amount || item?.prize || "$0"
           }}</span>
-          <span class="cw-stub__notch" aria-hidden="true"></span>
           <span class="cw-stub__date">{{
-            item?.created_at | date: "shortDate"
+            item?.created_at | date: "shortTime"
           }}</span>
         </div>
 
@@ -295,14 +357,14 @@
           *ngIf="hasReachedEnd && customerSpinnerHistory.length === 0"
           class="cw-history-empty"
         >
-          No Records Found
+          No Recent Spins
         </div>
       </div>
     </section>
   </div>
 </div>
 
-<!-- ===== Spin Again modal ===== -->
+<!-- ===== Spin Again Modal ===== -->
 <div
   *ngIf="SpinAgainModal"
   class="cw-modal-overlay spinagian"
@@ -340,7 +402,7 @@
     </div>
 
     <p class="cw-modal-panel__body">
-      Spin again for just <span class="cw-modal-panel__highlight">$2</span>
+      Spin again for <span class="cw-modal-panel__highlight">${{ spinAmount }}</span>
     </p>
 
     <div class="cw-modal-actions">
@@ -357,16 +419,26 @@
   </div>
 </div>
 
-<!-- ===== Win / reward modal ===== -->
+<!-- ===== Grand Win Celebration Modal ===== -->
 @if (showCongratsModal) {
   <div class="cw-modal-overlay" (click)="closeCongratsModal()">
     <div class="cw-win-modal" (click)="$event.stopPropagation()">
       <div class="cw-win-modal__frame">
-        <span class="cw-win-modal__bulbs" aria-hidden="true"></span>
+        <div class="cw-win-modal__aura" aria-hidden="true"></div>
         <div class="cw-win-modal__inner">
-          <p class="cw-win-modal__sub">You Won</p>
-          <p class="cw-win-modal__amount">{{ winningPrize }}</p>
-          <h2 class="cw-win-modal__title">Congratulations!</h2>
+          <div class="cw-win-modal__trophy">🏆</div>
+          <p class="cw-win-modal__sub">YOU JUST WON</p>
+          <h2 class="cw-win-modal__amount">{{ winningPrize }}</h2>
+          <p class="cw-win-modal__title">CONGRATULATIONS!</p>
+          <p class="cw-win-modal__desc">
+            Your winnings have been credited to your wallet instantly.
+          </p>
+          <button
+            (click)="closeCongratsModal()"
+            class="cw-spin-cta cw-spin-cta--block mt-4"
+          >
+            SPIN AGAIN
+          </button>
         </div>
       </div>
     </div>
