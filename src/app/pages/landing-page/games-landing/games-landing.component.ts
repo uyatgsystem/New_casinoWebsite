@@ -99,7 +99,7 @@ export class GamesLandingComponent {
     {
       id: 9,
       name: 'Plinko',
-      image: 'https://spinhub-6rb.pages.dev/assets/Plinko.png',
+      image: 'Plinko2.png',
       redirectLink: '/dashboard/Plinko',
       bgColor: '#10b981',
       titleColor: '#ffffff',
@@ -107,7 +107,7 @@ export class GamesLandingComponent {
     {
       id: 5,
       name: 'Aviator',
-      image: 'https://spinhub-6rb.pages.dev/assets/Aviator.png',
+      image: 'Aviator2.png',
       redirectLink: '/dashboard/Avaitar',
       bgColor: '#059669',
       titleColor: '#ffffff',
@@ -115,7 +115,7 @@ export class GamesLandingComponent {
     {
       id: 12,
       name: 'Double',
-      image: 'https://spinhub-6rb.pages.dev/assets/Double.png',
+      image: 'Double1.png',
       redirectLink: '/dashboard/Double',
       bgColor: '#db2777',
       titleColor: '#ffffff',
@@ -123,7 +123,7 @@ export class GamesLandingComponent {
     {
       id: 7,
       name: 'Roulette',
-      image: 'https://spinhub-6rb.pages.dev/assets/Roulette.png',
+      image: 'Roulette1.png',
       redirectLink: '/dashboard/Roulette',
       bgColor: '#d97706',
       titleColor: '#ffffff',
@@ -131,7 +131,7 @@ export class GamesLandingComponent {
     {
       id: 4,
       name: 'Treasure',
-      image: 'https://spinhub-6rb.pages.dev/assets/Treasure.png',
+      image: 'Treasure1.png',
       redirectLink: '/dashboard/TreasurePick',
       bgColor: '#0d9488',
       titleColor: '#ffffff',
@@ -139,7 +139,7 @@ export class GamesLandingComponent {
     {
       id: 18,
       name: 'Toss',
-      image: 'https://spinhub-6rb.pages.dev/assets/toss.png',
+      image: 'Toss1.png',
       redirectLink: '/dashboard/coin',
       bgColor: '#65a30d',
       titleColor: '#ffffff',
@@ -147,7 +147,7 @@ export class GamesLandingComponent {
     {
       id: 6,
       name: 'Baccarat',
-      image: 'https://spinhub-6rb.pages.dev/assets/baccarat.png',
+      image: 'Baccarat1.png',
       redirectLink: '/dashboard/Baccaret',
       bgColor: '#0891b2',
       titleColor: '#ffffff',
@@ -155,7 +155,7 @@ export class GamesLandingComponent {
     {
       id: 3,
       name: 'Scratch',
-      image: 'https://spinhub-6rb.pages.dev/assets/scratch.png',
+      image: 'Scratch1.png',
       redirectLink: '/dashboard/SectrechCards',
       bgColor: '#4f46e5',
       titleColor: '#ffffff',
