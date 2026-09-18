@@ -1,4 +1,4 @@
-﻿.scrollbar-hide {
+.scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 
@@ -31,7 +31,7 @@
   right: -8%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.09) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.12) 0%, transparent 70%);
 }
 
 .section-eyebrow {
@@ -72,7 +72,7 @@
     bottom: 0.2em;
     width: 3px;
     border-radius: 3px;
-    background: linear-gradient(180deg, #2cd97d, #06b6d4);
+    background: #2CD97D;
   }
 }
 
@@ -83,42 +83,42 @@
   border-radius: 999px;
   background: #2CD97D;
   border: 1.5px solid #2CD97D;
-  color: #232626;
+  color: #050811;
   font-weight: 800;
   font-size: 0.82rem;
   cursor: pointer;
   transition: all 0.25s ease;
 
   &:hover {
-    background: #28c772;
-    border-color: #28c772;
+    background: #34e286;
+    border-color: #34e286;
     box-shadow: 0 0 20px rgba(44, 217, 125, 0.5);
     transform: translateY(-1px);
   }
 }
 
-/* ================= CLEAN VIBRANT SOLID CARDS STYLING (IDENTICAL TO GAMES-LANDING) ================= */
+/* ================= UNIFIED CYBER CHASSIS GAME CARDS ================= */
 
 .clean-game-card {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   cursor: pointer;
-  background-color: var(--card-tint, #10b981);
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(160deg, #292d2e 0%, #1e2122 100%);
+  border: 1.5px solid rgba(44, 217, 125, 0.25);
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
   transition: all 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
 
   &:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.75);
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.25);
+    transform: translateY(-6px);
+    border-color: #2CD97D;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(44, 217, 125, 0.35);
 
     .clean-game-artwork {
       transform: scale(1.15) translateY(-4px);
@@ -147,18 +147,18 @@
 }
 
 .clean-game-artwork {
-  width: 125%;
-  height: 125%;
+  width: 120%;
+  height: 120%;
   object-fit: contain;
   transition: transform 0.3s ease;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.75));
 }
 
 .clean-hover-curtain {
   position: absolute;
   inset: 0;
-  background: #292d2e;
-  backdrop-filter: blur(5px);
+  background: rgba(35, 38, 38, 0.88);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,25 +168,26 @@
   z-index: 30;
 
   .clean-launch-btn {
-    background: linear-gradient(135deg, #2CD97D 0%, #06B6D4 100%);
-    color: #030712;
+    background: #2CD97D;
+    color: #050811;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 11px;
     letter-spacing: 1px;
     padding: 10px 22px;
-    border-radius: 10px;
-    border: none;
+    border-radius: 12px;
+    border: 1.5px solid #2CD97D;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 6px;
-    box-shadow: 0 0 15px rgba(44, 217, 125, 0.4);
+    box-shadow: 0 0 20px rgba(44, 217, 125, 0.6);
     transition: transform 0.2s ease, filter 0.2s ease;
 
     &:hover {
       transform: scale(1.05);
-      filter: brightness(1.1);
+      background: #34e286;
+      filter: brightness(1.05);
     }
   }
 }

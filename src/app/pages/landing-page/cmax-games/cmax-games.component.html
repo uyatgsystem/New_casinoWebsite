@@ -1,60 +1,54 @@
-﻿<div
-  class="bg-noise text-white min-h-screen flex flex-col items-center space-y-3 pt-12 lg:pt-24 pb-6 relative overflow-hidden bg-[#232626]"
+<div
+  class="bg-noise text-white flex flex-col items-center space-y-6 pt-12 lg:pt-20 pb-16 relative overflow-hidden bg-[#232626]"
 >
+  <!-- Ambient Emerald Glows -->
   <div class="games-glow games-glow--one"></div>
   <div class="games-glow games-glow--two"></div>
 
   <!-- Heading block -->
-  <div class="w-full max-w-[1447px] mx-auto relative z-10">
-    <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-0 md:gap-6 items-start px-4 md:px-0"
-    >
-      <div class="lg:col-span-6 text-center lg:text-left">
-        <span class="section-eyebrow !justify-center lg:!justify-start mb-3"
-          >Spin Hub Games</span
-        >
-
-        <h1
-          class="text-[28px] sm:text-[36px] md:text-[42px] leading-[51px] font-extrabold text-white"
-        >
-          Play Win and Enjoy <br />
-          <span
-            class="bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] bg-clip-text text-transparent drop-shadow"
-            >Our Best Games</span
-          >
-        </h1>
+  <div class="w-full max-w-[1440px] mx-auto relative z-10 px-4 sm:px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#2CD97D]/20 pb-8">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#292d2e] border border-[#2CD97D]/40 text-[#2CD97D] text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase shadow-[0_0_12px_rgba(44,217,125,0.2)] mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#2CD97D] animate-ping"></span>
+          <span>🎮 SPIN HUB GAME MATRIX</span>
+        </div>
+        
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-tight">
+          Play, Win & Dominate <br class="hidden sm:inline" />
+          <span class="bg-gradient-to-r from-[#2CD97D] via-[#4EFAAA] to-white bg-clip-text text-transparent drop-shadow">
+            Elite Casino Games
+          </span>
+        </h2>
       </div>
 
-      <div class="lg:col-span-6 text-left">
-        <p
-          class="mt-2 text-[12px] md:text-[16px] text-slate-300 max-w-[900px] font-medium"
-        >
-          Explore our exciting collection of games. Play your favorites,
-          discover new adventures, and enjoy fast, smooth gameplay with
-          rewarding wins all on one powerful platform built for nonstop fun and
-          real earning opportunities.
-        </p>
-      </div>
+      <p class="text-slate-300 text-xs sm:text-sm max-w-md font-medium leading-relaxed">
+        Explore 500+ curated high-RTP slots, live table games, and instant-win titles with provably fair verification and instant payouts.
+      </p>
     </div>
   </div>
 
-  <!-- All Games Section -->
-  <div class="w-full max-w-[1444px] mx-auto mt-8 relative z-10">
-    <div class="flex items-center justify-between mb-4">
-      <h3
-        class="games-section-title text-[#2CD97D] font-black uppercase tracking-wider text-xl"
-      >
-        Elite Games
-      </h3>
+  <!-- Featured Titles Section -->
+  <div class="w-full max-w-[1440px] mx-auto mt-4 relative z-10 px-4 sm:px-6">
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2.5 h-6 rounded-full bg-[#2CD97D] shadow-[0_0_10px_rgba(44,217,125,0.8)]"></span>
+        <h3 class="text-lg sm:text-xl font-black text-white uppercase tracking-wider">
+          Featured <span class="text-[#2CD97D]">Titles</span>
+        </h3>
+      </div>
+
       <button
         *ngIf="hasMoreAllGames"
         (click)="toggleAllGamesView()"
-        class="games-view-all-btn"
+        class="px-6 py-2.5 rounded-xl bg-[#2CD97D] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(44,217,125,0.4)] hover:bg-[#34e286] active:scale-95 transition cursor-pointer flex items-center gap-1.5 border border-[#2CD97D]"
       >
-        {{ showAllGamesExpanded ? "View Less Games" : "View All Games" }}
+        <span class="text-[#050811]">{{ showAllGamesExpanded ? "VIEW LESS" : "VIEW ALL GAMES" }}</span>
+        <i class="fas fa-chevron-right text-[10px] text-[#050811]"></i>
       </button>
     </div>
 
+    <!-- Unified Casino Game Cards Grid -->
     <div
       class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 py-2"
     >
@@ -62,26 +56,28 @@
         <div
           (click)="onPlayGame(game)"
           class="clean-game-card group"
-          [ngStyle]="{ backgroundColor: getGameImage(game.name)?.bgclr || '#10b981' }"
         >
-          <!-- Top Badges Layer (Bonus & HOT Tags) -->
+          <!-- Top Badges Layer -->
           <div
-            class="absolute top-3 inset-x-3 z-30 flex items-center justify-between pointer-events-none gap-1"
+            class="absolute top-2.5 inset-x-2.5 z-30 flex items-center justify-between pointer-events-none gap-1"
           >
             <div class="flex items-center gap-1">
               <span
                 *ngIf="getGameImage(game.name)?.bonus"
-                class="bg-black/70 text-amber-300 font-black text-[9px] px-2 py-0.5 rounded shadow uppercase tracking-tighter border border-amber-400/30"
+                class="bg-[#232626]/90 text-[#2CD97D] font-black text-[9px] px-2 py-0.5 rounded-md shadow uppercase tracking-tighter border border-[#2CD97D]/40 backdrop-blur-sm"
               >
                 🔥 {{ getGameImage(game.name)?.bonus }}%
               </span>
               <span
                 *ngIf="getGameImage(game.name)?.isHot"
-                class="bg-orange-500 text-white font-black text-[9px] px-2 py-0.5 rounded shadow uppercase tracking-tighter animate-pulse"
+                class="bg-[#2CD97D] text-[#050811] font-black text-[9px] px-2 py-0.5 rounded-md shadow uppercase tracking-tighter"
               >
                 ⚡ HOT
               </span>
             </div>
+            <span class="bg-black/60 text-slate-300 font-mono text-[9px] px-1.5 py-0.5 rounded border border-white/10">
+              99.2%
+            </span>
           </div>
 
           <!-- Artwork Display Container -->
@@ -106,33 +102,34 @@
 
           <!-- Bottom Centered Game Title -->
           <div class="clean-footer-info">
-            <h3 class="clean-game-title">
+            <h4 class="clean-game-title">
               {{ game.name }}
-            </h3>
+            </h4>
           </div>
         </div>
       </ng-container>
     </div>
   </div>
 
-  <!-- Separator -->
+  <!-- Separator Line -->
   <div
-    class="w-full max-w-[1550px] relative z-10"
+    class="w-full max-w-[1440px] relative z-10 px-4 sm:px-6"
     id="instantGameScrollSection"
   >
     <div
-      class="mt-2 mb-8 h-px bg-gradient-to-r from-transparent via-[#2CD97D]/50 to-transparent"
+      class="mt-6 mb-8 h-px bg-gradient-to-r from-transparent via-[#2CD97D]/40 to-transparent"
     ></div>
   </div>
 
-  <!-- Instant Games  -->
-  <div class="w-full max-w-[1444px] mx-auto mt-8 mb-12 relative z-10">
-    <div class="flex items-center justify-between mb-4">
-      <h3
-        class="games-section-title text-[#2CD97D] font-black uppercase tracking-wider text-xl"
-      >
-        Quick Win Casino
-      </h3>
+  <!-- Instant / Quick Win Games Section -->
+  <div class="w-full max-w-[1440px] mx-auto mt-2 mb-10 relative z-10 px-4 sm:px-6">
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2.5 h-6 rounded-full bg-[#2CD97D] shadow-[0_0_10px_rgba(44,217,125,0.8)]"></span>
+        <h3 class="text-lg sm:text-xl font-black text-white uppercase tracking-wider">
+          Quick Win <span class="text-[#2CD97D]">Casino</span>
+        </h3>
+      </div>
     </div>
 
     <div
@@ -142,8 +139,18 @@
         <div
           (click)="onPlayGame(game)"
           class="clean-game-card group"
-          [ngStyle]="{ backgroundColor: game.bgColor || '#10b981' }"
         >
+          <!-- Top Badges Layer -->
+          <div
+            class="absolute top-2.5 inset-x-2.5 z-30 flex items-center justify-between pointer-events-none gap-1"
+          >
+            <span
+              class="bg-[#2CD97D] text-[#050811] font-black text-[9px] px-2 py-0.5 rounded-md shadow uppercase tracking-tighter"
+            >
+              ⚡ INSTANT
+            </span>
+          </div>
+
           <!-- Artwork Display Container -->
           <div class="clean-media-wrap">
             <img
@@ -163,9 +170,9 @@
 
           <!-- Bottom Centered Game Title -->
           <div class="clean-footer-info">
-            <h3 class="clean-game-title">
+            <h4 class="clean-game-title">
               {{ game.name }}
-            </h3>
+            </h4>
           </div>
         </div>
       </ng-container>
