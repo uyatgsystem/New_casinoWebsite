@@ -198,7 +198,7 @@ export class SectrechCardListComponent implements OnInit {
   }
 
   get isToken(): boolean {
-    return !!localStorage.getItem('token');
+    return typeof localStorage !== 'undefined' && !!localStorage.getItem('token');
   }
 
   onStartDateChange(date: string) {

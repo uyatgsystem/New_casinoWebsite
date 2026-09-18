@@ -249,7 +249,7 @@ export class SpinnerNewDesignComponent implements OnInit {
     private router: Router,
     private _utils: UtilsService
   ) {
-    const customerId = localStorage.getItem('customerId');
+    const customerId = typeof localStorage !== 'undefined' ? localStorage.getItem('customerId') : null;
     this.customerid = customerId;
   }
 

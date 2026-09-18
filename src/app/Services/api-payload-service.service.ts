@@ -8,7 +8,7 @@ import { CreateUser, LoginUser } from '../Interfaces/interfaces';
 export class ApiPayloadService {
 
   createCreateUserPayload(data: Partial<CreateUser>): CreateUser {
-    const addCode = sessionStorage.getItem('adCode');
+    const addCode = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('adCode') : null;
     return {
       userID: data.userID || '0',
       clientId: data.clientId || 12,

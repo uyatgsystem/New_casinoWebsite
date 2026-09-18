@@ -137,7 +137,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
       if (refCode) {
         // Save to session storage
-        sessionStorage.setItem('refCode', refCode);
+        if (typeof sessionStorage !== 'undefined') sessionStorage.setItem('refCode', refCode);
 
         this.router.navigate([], {
           queryParams: {
@@ -149,7 +149,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       }
       if(adCode){
         // Save to session storage
-        sessionStorage.setItem('adCode', adCode);
+        if (typeof sessionStorage !== 'undefined') sessionStorage.setItem('adCode', adCode);
 
         // Remove query params from URL
         this.router.navigate([], {
@@ -245,9 +245,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         this._utils.stopTokenExpiryWatcher();
-        localStorage.clear();
+        if (typeof localStorage !== 'undefined') localStorage.clear();
         this._socketService.close();
-        sessionStorage.clear();
+        if (typeof sessionStorage !== 'undefined') sessionStorage.clear();
         this.toastr.info('Your session has expired. Please login again.');
         this.router.navigate(['/']);
       });
@@ -261,7 +261,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.subscription) this.subscription.unsubscribe();
   }
   handleRouting() {
-    const token = localStorage.getItem('token');
+    const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
     if (token && this.router.url === '/') {
       this.router.navigate(['/dashboard/home']);
     } else if (!token || this.router.url !== '/') {

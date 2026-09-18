@@ -370,8 +370,8 @@ export class LoginComponent implements OnInit {
     // if (adCode) {
     //   apiUrl += `&ad=${adCode}`;
     // }
-    const referralCode = sessionStorage.getItem('refCode');
-  const adCode = sessionStorage.getItem('adCode');
+    const referralCode = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('refCode') : null;
+  const adCode = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('adCode') : null;
 
   // 1. Pehle compulsory device details fetch kar lein
   const deviceId = await this.DeviceIdService.getDeviceId();

@@ -26,7 +26,7 @@ export class ReferalCtaComponent {
   buttonText = "COPY LINK";
 private readonly baseUrl = "https://gilded.game/SignUp?refral=";
 get referralLink(): string {
-    const code = localStorage.getItem('code') || '';
+    const code = (typeof localStorage !== 'undefined' ? localStorage.getItem('code') : null) || '';
     return `${this.baseUrl}${encodeURIComponent(code)}`;
   }
   copyToClipboard() {

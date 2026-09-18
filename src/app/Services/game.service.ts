@@ -494,14 +494,17 @@ export class GameService {
   }
 
   getCustomerID(): number {
+    if (typeof localStorage === 'undefined') return 0;
     return Number(localStorage.getItem('customerId')?.length);
   }
 
   setArrayInLocalStorage(data: any[]) {
+    if (typeof localStorage === 'undefined') return;
     localStorage.setItem('bis_data', JSON.stringify(data));
   }
 
   getArrayInLocalStorage(locale: string): any[] {
+    if (typeof localStorage === 'undefined') return [];
     return JSON.parse(localStorage.getItem(locale) || '[]');
   }
 
@@ -516,10 +519,12 @@ export class GameService {
   }
 
   saveTotalBalance(totalBalance: number) {
+    if (typeof localStorage === 'undefined') return;
     localStorage.setItem('totalBalance', totalBalance.toString());
   }
 
   getTotalBalance(): number {
+    if (typeof localStorage === 'undefined') return 0;
     const totalBalance = localStorage.getItem('totalBalance');
     return totalBalance ? parseFloat(totalBalance) : 0;
   }

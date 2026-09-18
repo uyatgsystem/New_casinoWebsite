@@ -38,12 +38,15 @@ export class LoaderService {
   }
 
   getCustomerID(): number {
+    if (typeof localStorage === 'undefined') return 0;
     return Number(localStorage.getItem('customerId')?.length);
   }
   setArrayInLocalStorage(locale: string, data: any[]) {
+    if (typeof localStorage === 'undefined') return;
     localStorage.setItem(locale, JSON.stringify(data));
   }
   getArrayInLocalStorage(locale: string = 'bis_data'): any[] {
+    if (typeof localStorage === 'undefined') return [];
     return JSON.parse(localStorage.getItem(locale) || '[]');
   }
 }

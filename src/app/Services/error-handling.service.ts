@@ -199,14 +199,14 @@ export class ErrorhandlingService {
     this.showAlert('error', 'Please Try Again Error occurred');
   }
   refreshToken() {
-    const userId = localStorage.getItem('userId');
+    const userId = typeof localStorage !== 'undefined' ? localStorage.getItem('userId') : null;
     this.apicalling
       .GetCallWithToken('User/RefreshToken?UserId=' + userId)
       .subscribe({
         next: (response) => {
           if (response && response.responseCode === 200) {
             if (response.data.token) {
-              localStorage.setItem('token', response.data.token);
+              if (typeof localStorage !== 'undefined') localStorage.setItem('token', response.data.token);
             }
           }
         },

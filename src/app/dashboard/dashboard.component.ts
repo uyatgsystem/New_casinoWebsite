@@ -70,8 +70,8 @@ export class DashboardComponent {
   }
   ngOnInit(): void {
     // Check for first-time login modal
-    if (localStorage.getItem('showFreeSpinModal') === 'true') {
-      localStorage.removeItem('showFreeSpinModal');
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('showFreeSpinModal') === 'true') {
+      if (typeof localStorage !== 'undefined') localStorage.removeItem('showFreeSpinModal');
       setTimeout(() => {
         this.showFreeSpinModal = true;
       }, 500);

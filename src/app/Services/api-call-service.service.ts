@@ -30,7 +30,7 @@ export class ApiCallService {
 
     // 2. Safely grab and append Bearer token if required
     if (useToken) {
-      const token = localStorage.getItem('token');
+      const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
       if (token) {
         headerConfig['Authorization'] = `Bearer ${token}`;
       }

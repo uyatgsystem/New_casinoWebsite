@@ -879,7 +879,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   KycValues: any;
   getKYCVerification() {
-    const CustomerID = localStorage.getItem('customerId');
+    const CustomerID = typeof localStorage !== 'undefined' ? localStorage.getItem('customerId') : null;
+    if (!CustomerID) return;
     this.apiCallService
       .GetCallWithToken('KYC/GetCustomerKYCStatus?CustomerId=' + CustomerID)
       .subscribe(

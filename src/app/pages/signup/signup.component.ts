@@ -151,7 +151,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     }
   }
 get referralCode(): string|null {
-   return sessionStorage.getItem('refCode');
+   return typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('refCode') : null;
 }
   private initForm(): void {
     this.signupForm = this.fb.group(

@@ -268,7 +268,7 @@ export class BuyNowComponent implements AfterViewInit {
   }
 
   get customerId() {
-    return localStorage.getItem('customerId');
+    return typeof localStorage !== 'undefined' ? localStorage.getItem('customerId') : null;
   }
 
   revealedPrize: number = 0;

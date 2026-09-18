@@ -61,7 +61,7 @@ export class WebSocketService {
 
     // Retrieve token and create a new WebSocket connection
 
-    const token = localStorage.getItem('token');
+    const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
 
     // Dev Url
 
@@ -197,7 +197,7 @@ export class WebSocketService {
   }
 
   get getLotteryDetails(): any | [] {
-    const details = localStorage.getItem('LID');
+    const details = typeof localStorage !== 'undefined' ? localStorage.getItem('LID') : null;
     return details ? JSON.parse(details) : null;
   }
 
