@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   background-color: #232626;
 }
 
@@ -528,27 +528,23 @@
 
   position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-  padding: 1.75rem;
-  border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem 1.75rem;
+  border-radius: 24px;
   background:
-    radial-gradient(circle at 100% 100%, rgba(44, 217, 125, 0.06), transparent 60%),
-    linear-gradient(160deg, rgba(41,45,46,0.94) 0%, rgba(35,38,38,0.98) 100%);
-  border: 1px solid rgba(44, 217, 125, 0.2);
+    radial-gradient(circle at 100% 0%, rgba(44, 217, 125, 0.08), transparent 55%),
+    linear-gradient(160deg, rgba(41,45,46,0.96) 0%, rgba(35,38,38,0.98) 100%);
+  border: 1.5px solid rgba(44, 217, 125, 0.25);
   overflow: hidden;
-  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 
   &:hover {
-    transform: translateY(-6px);
-    border-color: var(--promo-accent);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    transform: translateY(-8px);
+    border-color: #2CD97D;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(44, 217, 125, 0.2);
   }
-
-  &--gold { --promo-accent: #2CD97D; }
-  &--orange { --promo-accent: #FF9F1C; }
-  &--amber { --promo-accent: #06B6D4; }
-  &--deep { --promo-accent: #2CD97D; }
 }
 
 .promo-ribbon {
@@ -556,28 +552,29 @@
   top: 14px;
   right: -34px;
   transform: rotate(45deg);
-  background: linear-gradient(90deg, #2CD97D, #FF9F1C);
-  color: #232626;
+  background: #2CD97D;
+  color: #050811;
   font-size: 9px;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 3px 38px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(44, 217, 125, 0.4);
 }
 
 .promo-icon {
   flex-shrink: 0;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
-  color: var(--promo-accent);
-  background: rgba(35,38,38,0.6);
-  border: 1px solid var(--promo-accent);
+  font-size: 1.35rem;
+  color: #2CD97D;
+  background: rgba(44, 217, 125, 0.08);
+  border: 1.5px solid rgba(44, 217, 125, 0.35);
+  box-shadow: 0 0 15px rgba(44, 217, 125, 0.15);
 }
 
 .promo-body {
@@ -585,9 +582,9 @@
 
   .promo-tag {
     display: inline-block;
-    color: var(--promo-accent);
+    color: #2CD97D;
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 0.4rem;
@@ -595,9 +592,10 @@
 
   h3 {
     color: #fff;
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-weight: 800;
+    font-size: 1.15rem;
     margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
   }
 
   p {

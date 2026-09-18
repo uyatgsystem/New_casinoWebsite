@@ -8,31 +8,22 @@ import {
   inject,
 } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { Router } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { SafeHtml } from '@angular/platform-browser';
+import { MusicService } from '../../Services/music.service';
+import { LandingPageService } from './landing-page.service';
+import { GameService } from '../../Services/game.service';
+import { UtilsService } from '../../Services/utils.service';
+
 import { CasinoLandingComponent } from './casino-landing/casino-landing.component';
 import { GamesLandingComponent } from './games-landing/games-landing.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.component';
-import { GamePromoBannerComponent } from './game-promo-banner/game-promo-banner.component';
-import { OnBoardingStepsComponent } from './on-boarding-steps/on-boarding-steps.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { SubscribeNewslettergeComponent } from './subscribe-newsletterge/subscribe-newsletterge.component';
-import { Router } from '@angular/router';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MusicService } from '../../Services/music.service';
-import { LotteryCardsComponent } from './lottery-cards/lottery-cards.component';
-import { LotteryWinnersComponent } from './lottery-winners/lottery-winners.component';
-import { ShiningStarsOfGamesComponent } from './shining-stars-of-games/shining-stars-of-games.component';
-import { HowItWorkComponent } from './how-it-work/how-it-work.component';
-import { LandingPageService } from './landing-page.service';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { SectrechCardListComponent } from '../../dashboard/Sectrech Cards/sectrech-card-list/sectrech-card-list.component';
 import { SpinComponent } from './spin/spin.component';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
-import { HighlightCardComponent } from './highlight-card/highlight-card.component';
-import { GameService } from '../../Services/game.service';
-import { SafeHtml } from '@angular/platform-browser';
-import { UtilsService } from '../../Services/utils.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -43,8 +34,11 @@ import { UtilsService } from '../../Services/utils.service';
     GamesLandingComponent,
     ContactUsComponent,
     HeroSectionComponent,
+    AboutUsComponent,
+    CustomerReviewsComponent,
+    SpinComponent,
     FooterComponent
-],
+  ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
 })
@@ -62,99 +56,97 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   guideSteps = [
     {
       id: 'Register',
-      number: '',
+      number: '01',
       icon: 'fas fa-user-plus',
-      title: 'Register',
-      description: 'Sign up now and claim your welcome offer!',
+      title: 'Create Account',
+      description: 'Quick 30-second sign up. No tedious paperwork to get started.',
     },
     {
       id: 'Deposit',
-      number: '',
+      number: '02',
       icon: 'fas fa-wallet',
-      title: 'Deposit',
-      description: 'Deposit now and claim your deposit offer!',
+      title: 'Instant Deposit',
+      description: 'Instant zero-fee deposits via Crypto, Cards, or Apple Pay.',
     },
     {
       id: 'Enjoy',
-      number: '',
+      number: '03',
       icon: 'fas fa-gamepad',
-      title: 'Enjoy the Game',
-      description: 'Start playing now and enjoy the experience!',
+      title: 'Play & Win',
+      description: 'Choose from 500+ high-RTP slots, wheels, and table games.',
     },
     {
       id: 'Withdraw',
-      number: '',
-      icon: 'fas fa-sack-dollar',
-      title: 'Withdraw',
-      description: 'Withdraw your winnings easily.',
+      number: '04',
+      icon: 'fas fa-bolt',
+      title: 'Instant Cashout',
+      description: 'Withdraw your real money winnings directly in under 60 seconds.',
     },
   ];
 
   premiumFeatures = [
     {
-      icon: 'fas fa-dice',
-      title: 'Premium Games',
-      description:
-        'Hundreds of premium slots, table games, and instant-wins crafted for real thrills.',
-    },
-    {
-      icon: 'fas fa-gift',
-      title: 'Daily Rewards',
-      description:
-        'Log in daily to claim exclusive bonuses, free spins, and cash rewards.',
-    },
-    {
       icon: 'fas fa-bolt',
-      title: 'Fast & Easy Gameplay',
+      title: 'Sub-Minute Cashouts',
       description:
-        'Smooth, lag-free gameplay that gets you from sign-up to spinning in seconds.',
+        'Zero waiting times. Withdraw your winnings directly to your wallet in under 60 seconds.',
+      badge: '< 60 SECONDS',
     },
     {
       icon: 'fas fa-shield-halved',
-      title: 'Secure Wallet',
+      title: 'Provably Fair RNG',
       description:
-        'Bank-level encryption keeps your deposits, withdrawals, and data fully protected.',
+        'Cryptographic client & server seeds ensure 100% transparent and verifiable gameplay.',
+      badge: '256-BIT FAIR',
     },
     {
-      icon: 'fas fa-bullseye',
-      title: 'Exciting Promotions',
+      icon: 'fas fa-dice',
+      title: '500+ High-RTP Titles',
       description:
-        'Regular tournaments, leaderboards, and limited-time offers to boost your wins.',
+        'Industry-leading 98.5%+ average RTP across premium slots, wheels, and live tables.',
+      badge: '99.8% RTP',
+    },
+    {
+      icon: 'fas fa-headset',
+      title: '24/7 VIP Concierge',
+      description:
+        'Direct live chat assistance and dedicated personal account managers around the clock.',
+      badge: 'LIVE 24/7',
     },
   ];
 
   promoOffers = [
     {
       icon: 'fas fa-crown',
-      tag: 'New Players',
-      title: 'Welcome Offer',
+      tag: 'Welcome Pack',
+      title: '150% First Deposit Bonus',
       description:
-        'Kick off your journey with a boosted welcome bonus on your first deposit, ready to use across our top games.',
-      color: 'gold',
+        'Double your bankroll instantly up to $1,500 + 50 Free Spins on your first deposit.',
+      perk: 'Instant Credit',
     },
     {
-      icon: 'fas fa-calendar-check',
-      tag: 'Every Day',
-      title: 'Daily Rewards',
+      icon: 'fas fa-dharmachakra',
+      tag: 'Daily Perk',
+      title: 'Free Daily Wheel Spins',
       description:
-        'Come back each day to claim free spins, bonus credits, and surprise rewards.',
-      color: 'orange',
+        'Log in every 24 hours to claim guaranteed free matrix spins with cash multipliers.',
+      perk: 'Guaranteed Prize',
     },
     {
-      icon: 'fas fa-fire',
-      tag: 'Limited Time',
-      title: 'Exciting Promotions',
+      icon: 'fas fa-coins',
+      tag: 'VIP Cashback',
+      title: 'Up to 20% Weekly Rakeback',
       description:
-        'Enjoy regularly refreshed promotions, tournaments, and leaderboard challenges.',
-      color: 'amber',
+        'Get rewarded win or lose. Automatic rakeback credited directly to your player wallet.',
+      perk: 'Zero Wager',
     },
     {
-      icon: 'fas fa-user-plus',
+      icon: 'fas fa-users',
       tag: 'Refer & Earn',
-      title: 'Referral Program',
+      title: 'VIP Referral Bounty',
       description:
-        'Share Spin Hub with friends and earn rewards together when they join and play.',
-      color: 'deep',
+        'Earn $50 instantly + lifetime 10% revenue share for every friend who joins and plays.',
+      perk: 'Lifetime Pay',
     },
   ];
 

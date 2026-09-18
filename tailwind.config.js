@@ -8,17 +8,17 @@ module.exports = {
       },
       backgroundImage: {
         "custom-gradient":
-          "linear-gradient(90deg, #2CD97D 0%, #06B6D4 50%, #FF9F1C 100%)",
+          "linear-gradient(90deg, #2CD97D 0%, #34D399 50%, #4EFAAA 100%)",
         "custom-gradient-border":
-          "linear-gradient(0deg, #2CD97D 0%, #06B6D4 50%, #FF9F1C 100%)",
+          "linear-gradient(0deg, #2CD97D 0%, #34D399 50%, #4EFAAA 100%)",
       },
       colors: {
         "gradient-start": "#2CD97D",
-        "gradient-middle": "#06B6D4",
-        "gradient-end": "#FF9F1C",
+        "gradient-middle": "#34D399",
+        "gradient-end": "#4EFAAA",
         "cyber-primary": "#2CD97D",
-        "cyber-accent": "#06B6D4",
-        "cyber-neon": "#FF9F1C",
+        "cyber-accent": "#34D399",
+        "cyber-neon": "#4EFAAA",
         "cyber-dark": "#050811",
       },
     },
