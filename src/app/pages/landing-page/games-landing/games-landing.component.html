@@ -2,7 +2,7 @@
 <div
   id="games-scroll-id"
   *ngIf="isToken && isDashboardPage && AsianLocalBlock"
-  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mx-3 sm:mx-4 px-4 py-8 rounded-[32px] bg-[#050810]/90 border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mx-3 sm:mx-4 px-4 py-8 rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
   [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''"
 >
   <ng-container *ngFor="let game of displayedGames">
@@ -64,7 +64,7 @@
   (click)="CloseAddPlayer()"
 >
   <div
-    class="bg-[#0c101d] border-2 border-[#2CD97D]/40 rounded-3xl w-full max-w-sm modal slide-up shadow-[0_25px_60px_rgba(0,0,0,0.95)] relative overflow-hidden p-5 sm:p-6"
+    class="bg-[#292d2e] border-2 border-[#2CD97D]/40 rounded-3xl w-full max-w-sm modal slide-up shadow-[0_25px_60px_rgba(0,0,0,0.95)] relative overflow-hidden p-5 sm:p-6"
     (click)="$event.stopPropagation()"
   >
     <div
@@ -94,7 +94,7 @@
 
     <div class="py-6 text-center flex flex-col items-center">
       <div
-        class="w-14 h-14 mb-4 rounded-2xl bg-gradient-to-br from-[#0c101d] to-[#050811] border border-[#2CD97D]/30 flex items-center justify-center shadow-lg"
+        class="w-14 h-14 mb-4 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/30 flex items-center justify-center shadow-lg"
       >
         <span class="text-2xl">🎮</span>
       </div>
@@ -136,7 +136,7 @@
 >
   <div class="flex items-center ml-1 gap-2 sm:gap-3 mb-4">
     <div
-      class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#0c101d] to-[#050811] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg shrink-0"
+      class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg shrink-0"
     >
       <img
         src="https://spinhub-6rb.pages.dev/assets/Spin.png"
@@ -153,7 +153,7 @@
 
   <div
     *ngIf="isToken && isDashboardPage"
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mx-auto px-4 py-8 rounded-[32px] bg-[#050810]/90 border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mx-auto px-4 py-8 rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
     [ngClass]="!isToken ? 'mx-0 2xl:mx-28' : ''"
   >
     <ng-container *ngFor="let game of quickGames">
@@ -197,7 +197,7 @@
 <div *ngIf="isDashboardPage" class="px-3 sm:px-4 mt-8">
   <div class="flex items-center ml-1 gap-3 mb-4">
     <div
-      class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0c101d] to-[#050811] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"
+      class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"
     >
       <img
         src="https://spinhub-6rb.pages.dev/assets/scratch.png"
@@ -213,7 +213,7 @@
   </div>
 
   <div
-    class="rounded-3xl bg-[#0c101d]/60 border border-[#2CD97D]/30 shadow-xl backdrop-blur-sm p-4"
+    class="rounded-3xl bg-[#292d2e]/60 border border-[#2CD97D]/30 shadow-xl backdrop-blur-sm p-4"
   >
     <app-sectrech-card-list
       id="scratchScrollSection"
@@ -236,7 +236,7 @@
 <div *ngIf="isDashboardPage" class="mt-10 px-3 sm:px-4">
   <div class="flex items-center ml-1 gap-3 mb-4">
     <div
-      class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0c101d] to-[#050811] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"
+      class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"
     >
       <img
         src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png"
@@ -252,7 +252,7 @@
   </div>
 
   <div
-    class="rounded-3xl bg-[#0c101d]/60 border border-[#2CD97D]/30 shadow-xl backdrop-blur-sm p-4"
+    class="rounded-3xl bg-[#292d2e]/60 border border-[#2CD97D]/30 shadow-xl backdrop-blur-sm p-4"
   >
     <app-spinner
       id="spin-scrolling-id"
@@ -261,3 +261,4 @@
     ></app-spinner>
   </div>
 </div>
+

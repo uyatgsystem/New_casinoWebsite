@@ -1,4 +1,4 @@
-// Outer container
+﻿// Outer container
 .error-message {
   color: red;
   font-size: 0.875rem; // Optional: Adjust font size for clarity
@@ -14,7 +14,7 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0);
   min-height: 100vh;
-  background-color: #050811;
+  background-color: #232626;
   position: relative;
   padding: 2rem 1rem;
 }
@@ -28,7 +28,7 @@
   background-color: rgba(255, 255, 255, 0.299);
   width: 600px;
   height: 550px;
-  background-color: #0C101D;
+  background-color: #292d2e;
   border: 1px solid rgba(44, 217, 125, 0.3);
   width: 100%;
   max-width: 600px;
@@ -124,7 +124,7 @@
       height: 40px;
       margin-bottom: 0.5rem;
       transition: all 0.3s ease;
-      background-color: #050811;
+      background-color: #232626;
       color: #fff;
       height: 44px;
 
@@ -220,3 +220,4 @@
     }
   }
 }
+

@@ -4,6 +4,7 @@
   height: -webkit-fill-available;
   width: 18rem;
   overflow-y: scroll;
+  background: #292d2e;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -41,7 +42,7 @@
   align-items: center;
   gap: 12px;
   padding: 10px 12px;
-  background: rgba(0, 0, 0, 0.6);
+  background: #232626;
   border: 1px solid rgba(44, 217, 125, 0.28);
   border-radius: 16px;
   cursor: pointer;

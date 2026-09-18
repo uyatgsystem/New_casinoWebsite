@@ -97,6 +97,13 @@ export const routes: Routes = [
         path: 'guides',
         component: NewGuideComponent,
       },
+      {
+        path: 'levels',
+        loadComponent: () =>
+          import('./pages/levels/levels.component').then(
+            (m) => m.LevelsComponent
+          ),
+      },
       { path: 'lottery', component: LotteryListComponent },
       { path: 'lottery-number', component: LotteryNumbersComponent },
       { path: 'SectrechCards', component: SectrechCardListComponent },

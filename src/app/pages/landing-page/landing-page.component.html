@@ -1,4 +1,4 @@
-<header
+﻿<header
   class="top-0 w-full h-[76px] flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50 header-bordered"
   [class.fixed]="isSticky"
   [class.absolute]="!isSticky"
@@ -20,7 +20,7 @@
 
   <!-- Center Nav Links (Desktop) -->
   <nav
-    class="hidden lg:flex items-center gap-1 mx-auto px-3 py-1.5 rounded-full bg-[#0C101D]/80 border border-[#2CD97D]/20 shadow-lg"
+    class="hidden lg:flex items-center gap-1 mx-auto px-3 py-1.5 rounded-full bg-[#292d2e]/80 border border-[#2CD97D]/20 shadow-lg"
   >
     <a (click)="scrollTo('gameScrollSection')" class="nav-link">Games</a>
     <a (click)="scrollTo('instantGameScrollSection')" class="nav-link"
@@ -49,7 +49,7 @@
   <!-- Hamburger Icon (Mobile/Tablet) -->
   <button
     (click)="toggleMobileMenu()"
-    class="lg:hidden text-[#2CD97D] focus:outline-none absolute right-4 top-1/2 -translate-y-1/2 z-10 cursor-pointer w-10 h-10 rounded-full bg-[#0C101D] border border-[#2CD97D]/30 flex items-center justify-center shadow-lg"
+    class="lg:hidden text-[#2CD97D] focus:outline-none absolute right-4 top-1/2 -translate-y-1/2 z-10 cursor-pointer w-10 h-10 rounded-full bg-[#292d2e] border border-[#2CD97D]/30 flex items-center justify-center shadow-lg"
   >
     <svg
       class="w-5 h-5"
@@ -68,36 +68,36 @@
   <!-- Mobile Menu -->
   <div
     *ngIf="isMobileMenuOpen"
-    class="lg:hidden absolute top-full left-0 w-full backdrop-blur-2xl border-t border-[#2CD97D]/30 px-4 py-6 z-50 shadow-2xl bg-[#050811]/95"
+    class="lg:hidden absolute top-full left-0 w-full backdrop-blur-2xl border-t border-[#2CD97D]/30 px-4 py-6 z-50 shadow-2xl bg-[#232626]/95"
   >
     <div class="grid grid-cols-2 gap-3 text-center text-white">
       <button
         (click)="handleMobileNav('gameScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold"
       >
         Games
       </button>
       <button
         (click)="handleMobileNav('instantGameScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold"
       >
         Instant Games
       </button>
       <button
         (click)="handleMobileNav('featuresScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold"
       >
         Features
       </button>
       <button
         (click)="handleMobileNav('aboutScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold"
       >
         About Us
       </button>
       <button
         (click)="handleMobileNav('contactScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#0C101D] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold col-span-2"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/20 hover:border-[#2CD97D]/60 transition cursor-pointer text-sm font-semibold col-span-2"
       >
         Contact Us
       </button>
@@ -122,7 +122,7 @@
 
 <!-- ============================= HERO ============================= -->
 <main
-  class="relative pt-[76px] flex items-center overflow-hidden main-banner-container bg-[#050811]"
+  class="relative pt-[76px] flex items-center overflow-hidden main-banner-container bg-[#232626]"
 >
   <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
     <div class="hero-glow hero-glow-teal"></div>
@@ -285,7 +285,7 @@
 <!-- ========================= PREMIUM FEATURES (BENTO) ========================= -->
 <section
   id="featuresScrollSection"
-  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#050811] overflow-hidden"
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#232626] overflow-hidden"
 >
   <div class="max-w-7xl mx-auto">
     <div
@@ -327,7 +327,7 @@
 </section>
 
 <!-- ========================= GAME SHOWCASE MARQUEE ========================= -->
-<section class="relative z-10 py-10 overflow-hidden bg-[#050811]">
+<section class="relative z-10 py-10 overflow-hidden bg-[#232626]">
   <div
     class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 mb-6 flex items-center justify-between"
   >
@@ -346,7 +346,7 @@
 
 <!-- ========================= HOW TO PLAY (TIMELINE) ========================= -->
 <section
-  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#050811] overflow-hidden"
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#232626] overflow-hidden"
 >
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14">
@@ -385,7 +385,7 @@
 
 <!-- ========================= PROMOTIONS (BENTO) ========================= -->
 <section
-  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#050811] overflow-hidden"
+  class="relative z-10 py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-[#232626] overflow-hidden"
 >
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-12">
@@ -435,17 +435,17 @@
   <div
     *ngIf="showPopup"
     (click)="RedirectToSignUp()"
-    class="popup pointer-events-auto absolute flex items-center gap-3 pl-3 pr-5 py-2.5 rounded-2xl bg-[#0C101D]/95 backdrop-blur-md border border-[#2CD97D]/50 text-white shadow-[0_0_25px_rgba(44,217,125,0.3)] cursor-pointer overflow-visible hover:scale-105 hover:border-[#FF9F1C] transition-all duration-300"
+    class="popup pointer-events-auto absolute flex items-center gap-3 pl-3 pr-5 py-2.5 rounded-2xl bg-[#292d2e]/95 backdrop-blur-md border border-[#2CD97D]/50 text-white shadow-[0_0_25px_rgba(44,217,125,0.3)] cursor-pointer overflow-visible hover:scale-105 hover:border-[#FF9F1C] transition-all duration-300"
   >
     <div
-      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-[#050811] border border-[#2CD97D]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
+      class="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-[#232626] border border-[#2CD97D]/40 text-white text-xs hover:bg-red-500 hover:border-red-500 cursor-pointer z-20"
       (click)="$event.stopPropagation(); closePopup()"
     >
       ✕
     </div>
 
     <div
-      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-[#050811] border border-[#2CD97D]/50"
+      class="relative z-10 w-10 h-10 flex items-center justify-center rounded-full bg-[#232626] border border-[#2CD97D]/50"
     >
       <i class="fas fa-gift text-[#2CD97D] text-lg"></i>
     </div>
@@ -476,3 +476,4 @@
 
 <app-hero-section></app-hero-section>
 <app-footer></app-footer>
+

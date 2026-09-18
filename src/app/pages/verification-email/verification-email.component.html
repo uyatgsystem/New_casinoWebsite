@@ -34,13 +34,13 @@
       </p>
       <div *ngIf="state.status === 'loading'" class="mb-6 lg:mb-8">
         <div class="w-full h-2 bg-white/20 rounded-full overflow-hidden shadow">
-          <div class="h-full bg-gradient-to-r from-[#7DE7E5] to-[#9333EA] transition-all duration-500 rounded-full"
+          <div class="h-full bg-[#2CD97D] transition-all duration-500 rounded-full shadow-[0_0_10px_#2CD97D]"
             [style.width.%]="state.progress"></div>
         </div>
       </div>
       <a *ngIf="isApiRequestCompleted" [routerLink]="state.status === 'error' ? '/SignUp' : '/login'">
         <button
-          class="w-full mb-3 bg-[var(--button-back)] text-black px-1 py-1 font-semibold rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-base">
+          class="w-full mb-3 bg-[#2CD97D] text-[#050811] font-black uppercase tracking-wider py-3 px-6 rounded-xl shadow-[0_4px_20px_rgba(44,217,125,0.4)] hover:brightness-110 active:scale-95 transition-all duration-200 text-sm cursor-pointer">
           {{ state.status === "error" ? "Back to Sign Up" : "Start Playing" }}
         </button>
       </a>
@@ -98,3 +98,4 @@
     </a>
   </div>
 </div> -->
+

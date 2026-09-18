@@ -1,7 +1,7 @@
 <!-- ================= FUTURISTIC CYBER-DOCK SIDEBAR ================= -->
 <div
   *ngIf="!isTreasurePickRoute()"
-  class="flex-col items-center flex-shrink-0 w-[240px] h-[calc(100vh-70px)] overflow-y-auto text-gray-300 transition-all duration-300 ease-in-out fixed z-[996] top-[70px] flex shadow-[20px_0_60px_rgba(0,0,0,0.95)] custom-scrollbar bg-[#010204]/95 backdrop-blur-3xl border-r border-[#2CD97D]/40"
+  class="flex-col items-center flex-shrink-0 w-[240px] h-[calc(100vh-70px)] overflow-y-auto text-gray-300 transition-all duration-300 ease-in-out fixed z-[996] top-[70px] flex shadow-[20px_0_60px_rgba(0,0,0,0.95)] custom-scrollbar bg-[#292d2e] backdrop-blur-3xl border-r border-[#2CD97D]/40"
   [class.hidden]="!isSidebarOpen"
   [ngClass]="{ mobile: isMobile }"
 >
@@ -191,6 +191,25 @@
         <div class="node-text">
           <span class="title">Lucky Spin</span>
           <span class="sub">Daily Rewards</span>
+        </div>
+      </a>
+
+      <a
+        routerLink="/dashboard/levels"
+        routerLinkActive="active"
+        (click)="closeSidebarMobile()"
+        class="cyber-nav-node"
+      >
+        <div class="node-icon">
+          <img
+            src="/GoldLevel.png"
+            class="h-4 w-4 object-contain"
+            alt=""
+          />
+        </div>
+        <div class="node-text">
+          <span class="title">VIP Levels</span>
+          <span class="sub">Tiers & Rakeback</span>
         </div>
       </a>
 

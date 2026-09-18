@@ -3,13 +3,12 @@
    ========================================================================== */
 
 $neon-primary: #2CD97D;
-$obsidian-card: #0B101E;
-$obsidian-bg: #050811;
+$obsidian-card: #292d2e;
+$obsidian-bg: #232626;
 $border-cyber: rgba(44, 217, 125, 0.28);
 
 .cyber-guide-page {
-  background: radial-gradient(circle at 50% 0%, rgba(44, 217, 125, 0.08) 0%, transparent 50%),
-              linear-gradient(180deg, #050811 0%, #080C1A 50%, #050811 100%);
+  background: #232626;
   min-height: 100vh;
 }
 

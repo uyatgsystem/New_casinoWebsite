@@ -1,4 +1,4 @@
-<!-- Header -->
+﻿<!-- Header -->
 <div class="mx-auto px-4 md:px-6 py-4">
   <div class="relative mt-6 pb-2">
     <div class="flex items-center justify-between">
@@ -51,7 +51,7 @@
               <li class="sticky top-0 bg-[#1a1a1a] border-b border-[#bfa97a] px-2 py-2 z-10">
                 <input type="text" [(ngModel)]="filterSearchTerm" (click)="onFilterSearchClick($event)"
                   placeholder="Search filters..."
-                  class="w-full bg-[#000408] text-white px-3 py-2 text-sm border border-[#625E5E] rounded focus:outline-none focus:border-[#bfa97a] placeholder-[#625E5E]" />
+                  class="w-full bg-[#232626] text-white px-3 py-2 text-sm border border-[#625E5E] rounded focus:outline-none focus:border-[#bfa97a] placeholder-[#625E5E]" />
               </li>
 
               <!-- Updated: Use filteredFilterOptions -->
@@ -214,7 +214,7 @@
         <div class="space-y-4 h-[50dvh] overflow-y-auto" (scroll)="onMobileScroll($event)"
           *ngIf="lotteryRecords.length > 0; else noMobileRecord">
           <div *ngFor="let record of lotteryRecords; let i = index"
-            class="bg-[#000408] border border-[#bfa97a] rounded-2xl p-4 shadow-lg flex flex-col gap-2">
+            class="bg-[#232626] border border-[#bfa97a] rounded-2xl p-4 shadow-lg flex flex-col gap-2">
             <!-- Header -->
             <div class="flex justify-between items-center">
               <span class="font-semibold text-white">#{{ record.SR }}</span>

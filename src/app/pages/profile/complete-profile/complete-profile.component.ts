@@ -18,10 +18,12 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocationService } from '../../../Services/ip-check.service';
 
+import { RouterModule } from '@angular/router';
+
 @Component({
   standalone: true,
   selector: 'app-complete-profile',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FontAwesomeModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FontAwesomeModule, RouterModule],
   templateUrl: './complete-profile.component.html',
   styleUrls: ['./complete-profile.component.scss'],
 })

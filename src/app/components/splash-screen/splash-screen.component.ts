@@ -15,6 +15,13 @@ export class SplashScreenComponent implements OnInit, OnDestroy {
   showWelcome = false;
   circles = [1, 2, 3, 4, 5];
 
+  get statusText(): string {
+    if (this.progress < 25) return 'INITIALIZING SYSTEM CORES...';
+    if (this.progress < 55) return 'AUTHENTICATING PROVABLY FAIR VAULTS...';
+    if (this.progress < 85) return 'DECRYPTING CASINO ENGINE...';
+    return 'SYSTEM READY • WELCOME TO SPIN HUB';
+  }
+
   private intervalId: any;
   private totalDuration = 5000; // Total duration to show splash screen (5 seconds)
 

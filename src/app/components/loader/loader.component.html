@@ -1,8 +1,26 @@
 <ngx-spinner
-  bdColor="rgba(5,8,17,0.92)"
-  type="ball-clip-rotate-multiple"
-  size="medium"
-  color="#2CD97D"
+  bdColor="rgba(35,38,38,0.94)"
   [fullScreen]="true"
 >
+  <div class="custom-loader-chassis flex flex-col items-center justify-center space-y-4">
+    <!-- Spinning Cyber Wheel -->
+    <div class="relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
+      <!-- Outer Orbit Ring -->
+      <div class="absolute inset-0 rounded-full border-2 border-dashed border-[#2CD97D]/50 animate-spin-slow"></div>
+      
+      <!-- Pulsing Glow Ring -->
+      <div class="absolute inset-1 rounded-full border-2 border-transparent border-t-[#2CD97D] border-r-[#06B6D4] animate-spin shadow-[0_0_20px_rgba(44,217,125,0.5)]"></div>
+      
+      <!-- Inner Core Token -->
+      <div class="w-12 h-12 rounded-full bg-[#292d2e] border border-[#2CD97D]/40 flex items-center justify-center shadow-inner relative">
+        <img src="https://spinhub-6rb.pages.dev/assets/logo.png" alt="Spin Hub" class="w-7 h-auto object-contain animate-pulse" />
+      </div>
+    </div>
+
+    <!-- Telemetry Status Pill -->
+    <div class="flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#292d2e] border border-[#2CD97D]/40 text-[#2CD97D] text-[11px] font-mono font-bold tracking-widest uppercase shadow-[0_0_12px_rgba(44,217,125,0.25)]">
+      <span class="w-2 h-2 rounded-full bg-[#2CD97D] animate-ping"></span>
+      <span>PROCESSING TRANSACTION...</span>
+    </div>
+  </div>
 </ngx-spinner>

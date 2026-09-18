@@ -1,4 +1,4 @@
-.scrollbar-hide {
+﻿.scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 
@@ -83,7 +83,7 @@
   border-radius: 999px;
   background: #2CD97D;
   border: 1.5px solid #2CD97D;
-  color: #050811;
+  color: #232626;
   font-weight: 800;
   font-size: 0.82rem;
   cursor: pointer;
@@ -157,7 +157,7 @@
 .clean-hover-curtain {
   position: absolute;
   inset: 0;
-  background: rgba(4, 7, 14, 0.85);
+  background: #292d2e;
   backdrop-filter: blur(5px);
   display: flex;
   align-items: center;

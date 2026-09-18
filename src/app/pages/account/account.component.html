@@ -48,7 +48,7 @@
           placeholder="Search accounts or games..."
           [(ngModel)]="searchTerm"
           (keyup.enter)="onEnterSearch()"
-          class="w-full bg-[#0B101E]/95 backdrop-blur-xl text-white text-xs sm:text-sm border border-[#2CD97D]/35 rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.3)] transition shadow-xl"
+          class="w-full bg-[#292d2e] backdrop-blur-xl text-white text-xs sm:text-sm border border-[#2CD97D]/35 rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 focus:outline-none focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.3)] transition shadow-xl"
         />
         <svg
           class="w-4 h-4 text-[#2CD97D] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
@@ -74,7 +74,7 @@
 
       <!-- View Switcher (Grid / Table) -->
       <div
-        class="flex items-center bg-[#0B101E]/95 border border-[#2CD97D]/30 p-1 rounded-2xl shadow-lg shrink-0"
+        class="flex items-center bg-[#292d2e] border border-[#2CD97D]/30 p-1 rounded-2xl shadow-lg shrink-0"
       >
         <button
           type="button"
@@ -137,7 +137,7 @@
     >
       <div
         *ngFor="let account of filteredAccounts()"
-        class="game-card bg-gradient-to-b from-[#0B101E] via-[#080D18] to-[#04060C] border border-[#2CD97D]/25 rounded-3xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.7)] hover:border-[#2CD97D] hover:shadow-[0_0_30px_rgba(44,217,125,0.25)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
+        class="game-card bg-[#292d2e] border border-[#2CD97D]/25 rounded-3xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.7)] hover:border-[#2CD97D] hover:shadow-[0_0_30px_rgba(44,217,125,0.25)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
       >
         <!-- Subtle Neon Glow Corner Accent -->
         <div
@@ -347,7 +347,7 @@
     >
       <div
         *ngFor="let account of filteredAccounts(); let i = index"
-        class="flex items-center py-3 px-4 bg-[#0B101E]/80 border border-white/5 hover:border-[#2CD97D]/45 hover:bg-[#0B101E] rounded-2xl transition shadow-lg"
+        class="flex items-center py-3 px-4 bg-[#292d2e] border border-white/5 hover:border-[#2CD97D]/45 hover:bg-[#292d2e]/80 rounded-2xl transition shadow-lg"
       >
         <div class="text-[#2CD97D] font-mono font-bold w-12 flex-none text-xs">{{ i + 1 }}</div>
 
@@ -428,7 +428,7 @@
   (click)="closeAddScoreModal()"
 >
   <div
-    class="border border-[#2CD97D]/40 rounded-3xl w-full max-w-md modal slide-up bg-[#0B101E] shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden text-white"
+    class="border border-[#2CD97D]/40 rounded-3xl w-full max-w-md modal slide-up bg-[#292d2e] shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden text-white"
     (click)="$event.stopPropagation()"
   >
     <div
@@ -508,7 +508,7 @@
   (click)="closePaymentModal()"
 >
   <div
-    class="border border-[#2CD97D]/40 rounded-3xl w-full max-w-lg modal slide-up bg-[#0B101E] shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden text-white"
+    class="border border-[#2CD97D]/40 rounded-3xl w-full max-w-lg modal slide-up bg-[#292d2e] shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden text-white"
     (click)="$event.stopPropagation()"
   >
     <div
@@ -574,7 +574,7 @@
   (click)="closeCaptchaModal()"
 >
   <div
-    class="bg-[#0B101E] border border-[#2CD97D]/40 rounded-3xl p-6 w-full max-w-sm modal slide-up shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white"
+    class="bg-[#292d2e] border border-[#2CD97D]/40 rounded-3xl p-6 w-full max-w-sm modal slide-up shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white"
     (click)="$event.stopPropagation()"
   >
     <div class="flex justify-between items-center mb-4">
@@ -631,7 +631,7 @@
 <!-- Floating Copy Notification -->
 @if (isCopied()) {
   <div
-    class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-[#0B101E] text-white px-5 py-3 rounded-2xl shadow-[0_0_30px_rgba(44,217,125,0.35)] z-50 flex items-center gap-3 border border-[#2CD97D]/50 backdrop-blur-xl"
+    class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-[#292d2e] text-white px-5 py-3 rounded-2xl shadow-[0_0_30px_rgba(44,217,125,0.35)] z-50 flex items-center gap-3 border border-[#2CD97D]/50 backdrop-blur-xl"
   >
     <fa-icon [icon]="faCheck" class="text-[#2CD97D] text-base"></fa-icon>
     <span class="text-xs font-bold tracking-wide">Copied to clipboard</span>

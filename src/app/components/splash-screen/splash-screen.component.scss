@@ -1,135 +1,35 @@
-// filepath: /H:/WordSense Projects/Social-casino_frontend/src/app/splash-screen/splash-screen.component.scss
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400&display=swap');
-
 :host {
   display: block;
   width: 100vw;
   overflow: hidden;
 }
 
-.splash-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--background);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  overflow-y: hidden;
-  overflow-x: hidden;
+.bg-radial-glow {
+  background: radial-gradient(circle at center, rgba(44, 217, 125, 0.3) 0%, rgba(35, 38, 38, 0.9) 75%);
 }
 
-.circles {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.circle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 1px solid rgba(44, 217, 125, 0.15);
-  animation: expandCircle 4s linear infinite;
-}
-
-.loader-orbit {
-  position: relative;
-  width: min(78vw, 300px);
-  height: min(78vw, 300px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  position: relative;
-  width: 80%;
-  height: auto;
-  margin: 0 auto;
-  z-index: 2;
-  animation: scaling 3s linear infinite;
-
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(44, 217, 125, 0.4));
-  }
-}
-
-.progress-text {
-  margin-top: 0.25rem;
-  color: rgba(44, 217, 125, 0.9);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-@keyframes expandCircle {
-  0% {
-    transform: scale(8);
-    opacity: 0.7;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-
-@keyframes scaling {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-}
-
-// Spin Hub wheel loader — rings orbit around the logo
-.spin-loader-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  border-top-color: #2CD97D;
-  border-right-color: #FF9F1C;
-  animation: spinLoaderRotate 1.6s linear infinite;
-  z-index: 1;
-}
-
-.spin-loader-ring--reverse {
-  inset: 22px;
-  border-top-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: #2CD97D;
-  border-left-color: #06B6D4;
-  animation: spinLoaderRotate 2.3s linear infinite reverse;
-  opacity: 0.7;
-}
-
-@keyframes spinLoaderRotate {
+@keyframes spinSlow {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
+.animate-sweep {
+  animation: sweep 2s linear infinite;
 }

@@ -138,12 +138,13 @@
 
 ////////////////// New scratch card scss
 /* ==========================================================================
-   CYBER HOLOGRAPHIC SCRATCH VOUCHER STYLES (#2CD97D)
+   CYBER HOLOGRAPHIC SCRATCH VOUCHER & QUANTUM VAULT STYLES (#2CD97D)
    ========================================================================== */
 
 $neon-primary: #2CD97D;
 
-.cyber-voucher-card {
+.cyber-voucher-card,
+.cyber-vault-card {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 
@@ -154,18 +155,68 @@ $neon-primary: #2CD97D;
   }
 }
 
-.voucher-bg-glow {
+/* Cyberpunk Corner Brackets for Quantum Vault */
+.corner-bracket {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  z-index: 15;
+  transition: all 0.3s ease;
+}
+
+.corner-tl {
+  top: 6px;
+  left: 6px;
+  border-top: 2px solid #2CD97D;
+  border-left: 2px solid #2CD97D;
+  border-top-left-radius: 6px;
+}
+
+.corner-tr {
+  top: 6px;
+  right: 6px;
+  border-top: 2px solid #2CD97D;
+  border-right: 2px solid #2CD97D;
+  border-top-right-radius: 6px;
+}
+
+.corner-bl {
+  bottom: 6px;
+  left: 6px;
+  border-bottom: 2px solid #2CD97D;
+  border-left: 2px solid #2CD97D;
+  border-bottom-left-radius: 6px;
+}
+
+.corner-br {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 2px solid #2CD97D;
+  border-right: 2px solid #2CD97D;
+  border-bottom-right-radius: 6px;
+}
+
+.cyber-vault-card:hover .corner-bracket {
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 0 8px rgba(44, 217, 125, 0.8);
+}
+
+.voucher-bg-glow,
+.vault-bg-glow {
   position: absolute;
   top: -15px;
   right: -15px;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, rgba(44, 217, 125, 0.18) 0%, transparent 70%);
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.2) 0%, transparent 70%);
   filter: blur(40px);
   pointer-events: none;
 }
 
-.voucher-scanline {
+.voucher-scanline,
+.vault-scanline {
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -178,8 +229,9 @@ $neon-primary: #2CD97D;
   pointer-events: none;
 }
 
-/* Holographic Metallic Foil Scratch Preview */
-.holographic-foil-preview {
+/* Holographic Metallic Foil Scratch Preview & Quantum Foil Bar */
+.holographic-foil-preview,
+.quantum-foil-bar {
   background: linear-gradient(
     125deg,
     #00F5D4 0%,
@@ -234,15 +286,64 @@ $neon-primary: #2CD97D;
   box-shadow: 0 0 20px rgba(44, 217, 125, 0.15);
 }
 
+/* Ticket Perforations / Notches for Authentic VIP Voucher Look */
+.ticket-notch-left,
+.ticket-notch-right {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 24px;
+  background: #232626;
+  transform: translateY(-50%);
+  z-index: 20;
+}
+
+.ticket-notch-left {
+  left: -7px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-right: 1px solid rgba(44, 217, 125, 0.4);
+}
+
+.ticket-notch-right {
+  right: -7px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-left: 1px solid rgba(44, 217, 125, 0.4);
+}
+
+.odds-progress-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.odds-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #2CD97D, #06B6D4);
+  border-radius: 9999px;
+  box-shadow: 0 0 8px #2CD97D;
+}
+
+.cyber-terminal-banner {
+  background: linear-gradient(135deg, rgba(41, 45, 46, 0.95) 0%, rgba(35, 38, 38, 0.95) 100%);
+  border: 1px solid rgba(44, 217, 125, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(58%) sepia(79%) saturate(1843%) hue-rotate(145deg) brightness(95%) contrast(92%) !important;
 }
 
 @media (max-width: 359px) {
-  .scratch-title-text {
+  .scratch-title-text,
+  .vault-title-text {
     font-size: 0.95rem;
   }
-  .cyber-voucher-card {
+  .cyber-voucher-card,
+  .cyber-vault-card {
     padding: 0.85rem;
   }
 }

@@ -177,6 +177,17 @@ export class AddWalletComponent implements OnInit, AfterViewInit {
     this.newBalance = Number(sanitizedValue);
   }
 
+  quickDepositAmounts: number[] = [10, 25, 50, 100, 200];
+
+  selectQuickAmount(amount: number): void {
+    const str = amount.toString();
+    this.manualAmount = str;
+    this.newBalance = amount;
+    this.googleApplePayAmount = str;
+    this.paymentForm.get('amount')?.setValue(str);
+    this.cashappForm.get('amount')?.setValue(str);
+  }
+
   private limitToTwoDecimals(value: string): string {
     const cleanedValue = value.replace(/[^0-9.]/g, '');
 

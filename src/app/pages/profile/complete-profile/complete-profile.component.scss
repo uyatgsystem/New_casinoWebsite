@@ -1,8 +1,8 @@
-:host {
+﻿:host {
   display: block;
   min-height: 100vh;
   color: #f4efe6;
-  background: #050811;
+  background: #232626;
   font-family: inherit;
 }
 
@@ -41,7 +41,7 @@ button:disabled {
 .account-page {
   min-height: 100vh;
   padding: 32px 20px 64px;
-  background: #050811;
+  background: #232626;
 }
 
 .account-shell {
@@ -97,7 +97,7 @@ button:disabled {
 /* ================= CYBER-DOCK PROFILE SIDEBAR ================= */
 .account-sidebar {
   position: relative;
-  background: rgba(1, 2, 4, 0.95);
+  background: #292d2e;
   backdrop-filter: blur(24px);
   border: 1px solid rgba(44, 217, 125, 0.4);
   border-radius: 24px;
@@ -149,7 +149,7 @@ button:disabled {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: #050811;
+    background: #232626;
     border: 3px solid #2CD97D;
     color: #2CD97D;
     box-shadow: 0 0 20px rgba(44, 217, 125, 0.4);
@@ -278,7 +278,7 @@ button:disabled {
 .sidebar-balance-pod {
   position: relative;
   z-index: 2;
-  background: linear-gradient(135deg, rgba(44, 217, 125, 0.12), rgba(5, 8, 17, 0.9));
+  background: linear-gradient(135deg, rgba(44, 217, 125, 0.12), rgba(35,38,38,0.9));
   border: 1px solid rgba(44, 217, 125, 0.35);
   border-radius: 16px;
   padding: 12px 14px;
@@ -486,7 +486,7 @@ button:disabled {
 .settings-section {
   min-height: 580px;
   padding: 32px 36px;
-  background: #0B101E;
+  background: #292d2e;
   border: 1px solid rgba(44, 217, 125, 0.35);
   border-radius: 24px;
   box-shadow: 0 12px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(44, 217, 125, 0.08);
@@ -668,7 +668,7 @@ button:disabled {
     border: 1px solid rgba(44, 217, 125, 0.28);
     border-radius: 12px;
     outline: none;
-    background: #050811;
+    background: #232626;
     color: #fff;
     padding: 12px 14px 12px 38px;
     font-size: 0.86rem;
@@ -683,7 +683,7 @@ button:disabled {
 
     &:disabled {
       color: #64748b;
-      background: rgba(5, 8, 17, 0.6);
+      background: rgba(35,38,38,0.6);
       border-color: rgba(255, 255, 255, 0.1);
       cursor: not-allowed;
     }
@@ -749,7 +749,7 @@ button:disabled {
     border: 1px solid rgba(44, 217, 125, 0.28);
     border-radius: 12px;
     outline: none;
-    background: #050811;
+    background: #232626;
     color: #fff;
     padding: 12px 44px 12px 14px;
     font-size: 0.86rem;
@@ -785,7 +785,7 @@ button:disabled {
   padding: 14px;
   border: 1px solid rgba(44, 217, 125, 0.25);
   border-radius: 12px;
-  background: #050811;
+  background: #232626;
 
   .strength-header {
     display: flex;
@@ -840,7 +840,7 @@ button:disabled {
 .balance-box {
   padding: 12px 18px;
   border-radius: 14px;
-  background: #050811;
+  background: #232626;
   border: 1px solid rgba(44, 217, 125, 0.35);
   text-align: right;
 
@@ -867,7 +867,7 @@ button:disabled {
   margin: 24px 0 16px;
   padding: 4px;
   border-radius: 14px;
-  background: #050811;
+  background: #232626;
   border: 1px solid rgba(44, 217, 125, 0.25);
   width: fit-content;
 
@@ -904,7 +904,7 @@ button:disabled {
   padding: 14px 12px;
   border-radius: 12px;
   border: 1px solid rgba(44, 217, 125, 0.12);
-  background: rgba(5, 8, 17, 0.6);
+  background: rgba(35,38,38,0.6);
   margin-bottom: 8px;
   transition: all 0.2s ease;
 
@@ -1009,7 +1009,7 @@ button:disabled {
   padding: 18px 22px;
   border: 1px solid rgba(44, 217, 125, 0.35);
   border-radius: 16px;
-  background: #050811;
+  background: #232626;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 
   .ref-label {
@@ -1036,7 +1036,7 @@ button:disabled {
   overflow-x: auto;
   border: 1px solid rgba(44, 217, 125, 0.2);
   border-radius: 16px;
-  background: #050811;
+  background: #232626;
   padding: 8px 12px;
 }
 
@@ -1090,7 +1090,7 @@ button:disabled {
   margin: 24px 0 18px;
   padding: 18px 22px;
   border-radius: 16px;
-  background: #050811;
+  background: #232626;
   border: 1px solid rgba(44, 217, 125, 0.3);
 
   .level-summary-badge {
@@ -1133,7 +1133,7 @@ button:disabled {
   padding: 14px 18px;
   border: 1px solid rgba(44, 217, 125, 0.2);
   border-radius: 16px;
-  background: #050811;
+  background: #232626;
   transition: all 0.25s ease;
 
   &.current-level {
@@ -1191,7 +1191,7 @@ button:disabled {
       height: 5px;
       margin-top: 8px;
       border-radius: 99px;
-      background: #0B101E;
+      background: #1c1e1e;
       overflow: hidden;
 
       span {
@@ -1225,7 +1225,7 @@ button:disabled {
   gap: 18px;
   padding: 22px;
   border-radius: 18px;
-  background: #050811;
+  background: #232626;
   border: 1px solid rgba(44, 217, 125, 0.35);
 
   .status-icon {
@@ -1310,7 +1310,7 @@ button:disabled {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgba(5, 8, 17, 0.85);
+  background: rgba(35,38,38,0.85);
   backdrop-filter: blur(12px);
 }
 
@@ -1380,7 +1380,7 @@ button:disabled {
   margin: 20px auto 14px;
   overflow: hidden;
   border-radius: 50%;
-  background: #050811;
+  background: #232626;
   border: 3px solid #2CD97D;
   box-shadow: 0 0 25px rgba(44, 217, 125, 0.4);
   color: #2CD97D;

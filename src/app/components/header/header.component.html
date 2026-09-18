@@ -1,6 +1,6 @@
 <header
   *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()"
-  class="sticky z-[997] w-full top-0 h-[64px] bg-[#010306]/95 backdrop-blur-2xl border-b border-[#2CD97D]/50 shadow-[0_4px_25px_rgba(0,0,0,0.9)] px-3 flex items-center justify-between"
+  class="sticky z-[997] w-full top-0 h-[64px] bg-[#292d2e] backdrop-blur-2xl border-b border-[#2CD97D]/50 shadow-[0_4px_25px_rgba(0,0,0,0.9)] px-3 flex items-center justify-between"
 >
   <div
     class="absolute inset-0 pointer-events-none opacity-10"
@@ -16,18 +16,19 @@
         class="h-[40px] w-auto object-contain drop-shadow-[0_0_12px_rgba(44,217,125,0.6)]"
       />
     </a>
-    <div
+    <a
+      routerLink="/dashboard/levels"
       *ngIf="playerLevel"
-      class="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-black/95 border border-[#2CD97D]/60 text-[9px] font-mono font-black text-[#2CD97D]"
+      class="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-black/95 border border-[#2CD97D]/60 text-[9px] font-mono font-black text-[#2CD97D] cursor-pointer hover:border-[#2CD97D] hover:scale-105 transition"
       [title]="playerLevel + ' · Lv.' + levelRank"
     >
       <img
         [src]="getLevelImage(playerLevel)"
-        class="w-3.5 h-3.5 object-contain"
+        class="w-4 h-4 object-contain"
         alt=""
       />
       <span>L{{ levelRank }}</span>
-    </div>
+    </a>
   </div>
 
   <!-- Right: Wallets & Controls -->
@@ -40,7 +41,7 @@
     <!-- Wallet -->
     <button
       type="button"
-      class="flex items-center bg-[#010306] border border-[#2CD97D]/60 rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(44,217,125,0.15)] hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition"
+      class="flex items-center bg-[#232626] border border-[#2CD97D]/60 rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(44,217,125,0.15)] hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition"
       (click)="openWalletHistory()"
     >
       <span class="text-white font-mono font-bold text-[10px]"
@@ -51,7 +52,7 @@
     <!-- Bonus Wallet -->
     <button
       type="button"
-      class="flex items-center bg-[#010306] border border-[#10B981]/60 rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:border-[#10B981] hover:bg-[#10B981]/10 transition"
+      class="flex items-center bg-[#232626] border border-[#10B981]/60 rounded-lg h-7 px-2 cursor-pointer shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:border-[#10B981] hover:bg-[#10B981]/10 transition"
       (click)="openBonusWallet()"
     >
       <span class="text-[#10B981] font-mono font-bold text-[10px]"
@@ -109,7 +110,7 @@
   >
     <!-- Main Floating Capsule HUD -->
     <div
-      class="relative w-full h-[72px] bg-[#010306]/95 backdrop-blur-3xl border border-[#2CD97D]/60 rounded-[24px] shadow-[0_12px_45px_rgba(0,0,0,0.95)] px-6 flex items-center justify-between overflow-visible"
+      class="relative w-full h-[72px] bg-[#292d2e] backdrop-blur-3xl border border-[#2CD97D]/60 rounded-[24px] shadow-[0_12px_45px_rgba(0,0,0,0.95)] px-6 flex items-center justify-between overflow-visible"
     >
       <div
         class="absolute inset-0 pointer-events-none opacity-15 rounded-[24px]"
@@ -132,9 +133,11 @@
         </a>
 
         <!-- Cyber Rank Badge -->
-        <div
+        <a
+          routerLink="/dashboard/levels"
           *ngIf="playerLevel"
-          class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-black/95 border border-[#2CD97D]/60 shadow-[0_0_15px_rgba(44,217,125,0.2)]"
+          class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-black/95 border border-[#2CD97D]/60 shadow-[0_0_15px_rgba(44,217,125,0.2)] cursor-pointer hover:border-[#2CD97D] hover:scale-105 transition duration-200"
+          title="View VIP Membership Tiers"
         >
           <img
             [src]="getLevelImage(playerLevel)"
@@ -151,20 +154,20 @@
               >LVL.{{ levelRank }}</span
             >
           </div>
-        </div>
+        </a>
       </div>
 
       <!-- Right Side: Cyber Deck Controls -->
       <div class="flex items-center gap-3 relative z-30">
         <!-- Dual Wallet Pod -->
         <div
-          class="flex items-center bg-[#010306] p-1 rounded-2xl border border-[#2CD97D]/50 shadow-[inset_0_2px_10px_rgba(0,0,0,0.9)] gap-1.5"
+          class="flex items-center bg-[#232626] p-1 rounded-2xl border border-[#2CD97D]/50 shadow-[inset_0_2px_10px_rgba(0,0,0,0.9)] gap-1.5"
         >
           <!-- Main Wallet -->
           <button
             type="button"
             (click)="openWalletHistory()"
-            class="wallet-balance-control relative flex items-center bg-[#010306] rounded-xl overflow-hidden border border-[#2CD97D]/60 h-10 px-4 shadow-[0_0_10px_rgba(44,217,125,0.15)] hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer group"
+            class="wallet-balance-control relative flex items-center bg-[#232626] rounded-xl overflow-hidden border border-[#2CD97D]/60 h-10 px-4 shadow-[0_0_10px_rgba(44,217,125,0.15)] hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer group"
           >
             <div class="flex items-center gap-2.5 relative z-10">
               <div
@@ -193,7 +196,7 @@
           <!-- Bonus Wallet -->
           <button
             type="button"
-            class="relative flex items-center bg-[#010306] rounded-xl overflow-hidden border border-[#10B981]/60 h-10 px-4 gap-2.5 shadow-[0_0_10px_rgba(16,185,129,0.15)] cursor-pointer hover:border-[#10B981] hover:bg-[#10B981]/10 transition group"
+            class="relative flex items-center bg-[#232626] rounded-xl overflow-hidden border border-[#10B981]/60 h-10 px-4 gap-2.5 shadow-[0_0_10px_rgba(16,185,129,0.15)] cursor-pointer hover:border-[#10B981] hover:bg-[#10B981]/10 transition group"
             (click)="openBonusWallet()"
             title="Bonus Wallet"
           >
@@ -204,11 +207,11 @@
             </div>
             <div class="flex flex-col text-left">
               <span
-                class="text-[8px] text-[#10B981] font-mono font-bold uppercase tracking-wider leading-none"
+                class="text-[8px] text-[#10B981] font-mono font-bold uppercase tracking-wider leading-none bonus-wallet-label"
                 >Bonus Wallet</span
               >
               <span
-                class="bonus-wallet-label text-[#10B981] font-black font-mono text-xs mt-0.5 leading-none"
+                class="text-[#10B981] font-black font-mono text-xs mt-0.5 leading-none"
               >
                 ${{ bonusWalletAmount | number: "1.2-2" }}
               </span>
@@ -216,23 +219,23 @@
           </button>
         </div>
 
-        <!-- Action Pod -->
+        <!-- Deposit & Withdraw Capsule Action Group -->
         <div class="flex items-center gap-2">
           <!-- Deposit -->
           <button
             type="button"
             (click)="RedirectToWallet()"
-            class="deposit-control relative z-10 bg-[#2CD97D] border border-[#2CD97D] text-[#050811] px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(44,217,125,0.4)] hover:bg-[#28c772] hover:shadow-[0_0_25px_rgba(44,217,125,0.7)] hover:scale-[1.02] transition-all flex items-center gap-1.5 cursor-pointer"
+            class="deposit-control relative z-10 px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center gap-2"
           >
-            <span class="text-sm font-black leading-none text-[#050811]">+</span>
-            <span class="text-[#050811]">{{ Deposit | translate }}</span>
+            <span class="text-sm font-black">+</span>
+            <span>{{ Deposit | translate }}</span>
           </button>
 
           <!-- Withdraw -->
           <button
             type="button"
             (click)="openWithdrawBalanceModal()"
-            class="relative z-10 bg-[#010306] border border-white/20 text-gray-300 hover:text-white px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_10px_rgba(0,0,0,0.8)] hover:border-[#2CD97D]/60 hover:bg-[#2CD97D]/10 transition-all cursor-pointer flex items-center"
+            class="relative z-10 bg-[#232626] border border-white/20 text-gray-300 hover:text-white px-5 h-11 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_10px_rgba(0,0,0,0.8)] hover:border-[#2CD97D]/60 hover:bg-[#2CD97D]/10 transition-all cursor-pointer flex items-center"
           >
             {{ Withdraw | translate }}
           </button>
@@ -277,10 +280,10 @@
             <div
               *ngIf="isLangOpen"
               [ngStyle]="dropdownStyle"
-              class="absolute z-[99999] w-48 max-h-64 overflow-y-auto bg-[#010306] backdrop-blur-3xl rounded-2xl shadow-2xl border border-[#2CD97D]/60 top-14 custom-scrollbar p-1.5"
+              class="absolute z-[99999] w-48 max-h-64 overflow-y-auto bg-[#292d2e] backdrop-blur-3xl rounded-2xl shadow-2xl border border-[#2CD97D]/60 top-14 custom-scrollbar p-1.5"
             >
               <div
-                class="p-2 border-b border-[#2CD97D]/30 sticky top-0 bg-[#010306]/95 backdrop-blur-md"
+                class="p-2 border-b border-[#2CD97D]/30 sticky top-0 bg-[#292d2e]/95 backdrop-blur-md"
               >
                 <input
                   type="text"
@@ -350,7 +353,7 @@
             <!-- Notification Dropdown -->
             <div
               *ngIf="showNotifications"
-              class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#010306]/95 border border-[#2CD97D]/60 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.95)] overflow-hidden z-[99999] backdrop-blur-3xl"
+              class="absolute right-0 mt-3 w-80 sm:w-96 bg-[#292d2e] border border-[#2CD97D]/60 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.95)] overflow-hidden z-[99999] backdrop-blur-3xl"
             >
               <div
                 class="absolute inset-0 pointer-events-none opacity-20"
@@ -443,19 +446,25 @@
                     alt="Profile"
                     class="h-10 w-10 border-2 border-[#2CD97D]/60 group-hover:border-[#2CD97D] rounded-xl object-cover transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.6)] group-hover:scale-105"
                   />
-                  <img
+                  <!-- Polished VIP Level Badge on Profile Avatar -->
+                  <div
                     *ngIf="playerLevel"
-                    [src]="getLevelImage(playerLevel)"
-                    alt="Level Badge"
-                    class="absolute -top-2 -right-2 h-4.5 w-4.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-                  />
+                    class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#232626] border-2 border-[#2CD97D] flex items-center justify-center shadow-[0_0_12px_rgba(44,217,125,0.85)] z-10 transition-transform duration-200 group-hover:scale-110"
+                    [title]="playerLevel + ' Operative · Level ' + levelRank"
+                  >
+                    <img
+                      [src]="getLevelImage(playerLevel)"
+                      [alt]="playerLevel"
+                      class="w-4 h-4 object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             </button>
 
             <div
               *ngIf="isDropdownOpen"
-              class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#010306] backdrop-blur-3xl border border-[#2CD97D]/60 shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden z-[99999] animate-in fade-in slide-in-from-top-2 duration-200"
+              class="absolute right-0 mt-3 w-72 rounded-[24px] bg-[#292d2e] backdrop-blur-3xl border border-[#2CD97D]/60 shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden z-[99999] animate-in fade-in slide-in-from-top-2 duration-200"
             >
               <div
                 class="absolute inset-0 pointer-events-none opacity-20"
@@ -463,7 +472,7 @@
               ></div>
 
               <div
-                class="p-4 bg-black/85 border-b border-[#2CD97D]/40 flex items-center gap-3.5 relative z-10"
+                class="p-4 bg-[#232626] border-b border-[#2CD97D]/40 flex items-center gap-3.5 relative z-10"
               >
                 <div class="relative">
                   <div
@@ -476,8 +485,16 @@
                     />
                   </div>
                   <div
-                    class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#2CD97D] border-2 border-black rounded-full shadow-[0_0_8px_#2CD97D]"
-                  ></div>
+                    *ngIf="playerLevel"
+                    class="absolute -bottom-2 -right-2 w-6 h-6 rounded-full bg-[#232626] border-2 border-[#2CD97D] flex items-center justify-center shadow-[0_0_10px_#2CD97D]"
+                    [title]="playerLevel"
+                  >
+                    <img
+                      [src]="getLevelImage(playerLevel)"
+                      class="w-4 h-4 object-contain"
+                      alt=""
+                    />
+                  </div>
                 </div>
                 <div class="overflow-hidden">
                   <div class="flex items-center gap-1.5">
@@ -490,11 +507,14 @@
                       }}<span *ngIf="(username || '').length > 8">..</span> ツ
                     </h4>
                   </div>
-                  <p
-                    class="text-[10px] text-[#2CD97D] uppercase tracking-widest mt-1 font-extrabold"
+                  <a
+                    routerLink="/dashboard/levels"
+                    (click)="isDropdownOpen = false"
+                    class="inline-flex items-center gap-1.5 text-[10px] text-[#2CD97D] uppercase tracking-widest mt-1 font-extrabold hover:underline cursor-pointer"
                   >
-                    VIP Tier 1 Member
-                  </p>
+                    <span>VIP {{ playerLevel || 'Tier' }} · LVL {{ levelRank || 1 }}</span>
+                    <span class="text-[8px]">➔</span>
+                  </a>
                 </div>
               </div>
 
@@ -654,3 +674,4 @@
   (onCancel)="closedeleteaccountmodal()"
   (onConfirm)="deleteaccount($event)"
 ></app-deleteaccountmodel>
+
