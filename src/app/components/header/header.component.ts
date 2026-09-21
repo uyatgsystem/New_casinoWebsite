@@ -8,7 +8,8 @@ import {
   Output,
   inject,
   ChangeDetectionStrategy,
-  ViewChild
+  ViewChild,
+  HostListener
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
@@ -558,8 +559,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     window.open('http://154.38.171.150:8046/Delete-Customer', '_blank');
   }
 
+  screenWidth: number = typeof window !== 'undefined' ? window.innerWidth : 1200;
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event?: Event) {
+    if (typeof window !== 'undefined') {
+      this.screenWidth = window.innerWidth;
+      this.Ref.detectChanges();
+    }
+  }
+
   isScreenWidthLessThan800(): boolean {
-    return typeof window !== 'undefined' && window.innerWidth < 800;
+    return this.screenWidth < 800;
   }
 
   OpenDownload() {

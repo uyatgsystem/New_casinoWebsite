@@ -331,6 +331,7 @@ export class GamesLandingComponent {
     this.isDashboardPage = dashboardRoutes.some((path) =>
       currentUrl.includes(path),
     );
+    this.isLandingPage = currentUrl === '/' || currentUrl.startsWith('/#') || currentUrl.startsWith('/?');
   }
 
   visibleGamesCount = 8;

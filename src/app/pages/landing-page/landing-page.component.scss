@@ -21,12 +21,18 @@
   position: relative;
   color: #cbd5e1;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   letter-spacing: 0.02em;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.75rem;
   border-radius: 999px;
   transition: color 0.3s ease, background 0.3s ease;
   cursor: pointer;
+  white-space: nowrap;
+
+  @media (min-width: 1280px) {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
 
   &:hover {
     color: #2CD97D;

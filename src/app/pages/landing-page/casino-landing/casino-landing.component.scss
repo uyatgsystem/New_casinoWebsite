@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    CASINO LANDING — ULTRA-MODERN CYBER ARENA COMMAND DECK (#2CD97D)
    ========================================================================== */
 
@@ -323,20 +323,293 @@ $border-cyber: rgba(44, 217, 125, 0.28);
   .arena-game-art { max-height: 210px; max-width: 240px; }
 }
 
-/* --- Quick Action Arena Dock (Feature Pods) --- */
-.quick-arena-dock {
+/* ============================================================
+   PREMIUM FEATURE ARENA CARDS — GLASSMORPHISM + NEON EDITION
+   ============================================================ */
+
+// Card-specific accent colors
+$c-crash:   #2CD97D;        // neon green
+$c-scratch: #F59E0B;        // amber/gold
+$c-spin:    #A855F7;        // violet
+$c-vip:     #F43F5E;        // rose/red
+
+.feature-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
   position: relative;
   z-index: 20;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
 }
 
-.quick-pod .pod-inner {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
+/* ---------- Base Card ---------- */
+.feat-card {
+  position: relative;
+  border-radius: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(44, 217, 125, 0.25);
+    transform: translateY(-5px);
+
+    .feat-card__glow { opacity: 1; transform: scale(1.15); }
+    .feat-cta { opacity: 1; color: #fff; }
+    .feat-cta__arrow { transform: translateX(4px); }
+    .feat-icon { transform: scale(1.12) rotate(-6deg); }
+    .feat-multiplier__value { letter-spacing: 0.05em; }
   }
+}
+
+/* Animated glowing border via ::before pseudo */
+.feat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--card-accent, #2CD97D), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.45;
+  transition: opacity 0.32s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.feat-card:hover::before { opacity: 1; }
+
+/* Radial ambient glow layer */
+.feat-card__glow {
+  position: absolute;
+  inset: -30%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--card-glow, rgba(44,217,125,0.22)) 0%, transparent 70%);
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Decorative border-scan element (unused, kept for extensibility) */
+.feat-card__border-anim { display: none; }
+
+/* Glass inner surface */
+.feat-card__inner {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(145deg, rgba(30,34,35,0.92) 0%, rgba(22,26,27,0.96) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 18px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  min-height: 160px;
+
+  @media (min-width: 640px) {
+    padding: 20px 18px 16px;
+    min-height: 180px;
+  }
+}
+
+/* ---------- Card-Specific Accent Theming ---------- */
+.feat-card--crash {
+  --card-accent: #{$c-crash};
+  --card-glow: #{rgba($c-crash, 0.22)};
+  --icon-bg: #{rgba($c-crash, 0.14)};
+  --icon-color: #{$c-crash};
+}
+.feat-card--scratch {
+  --card-accent: #{$c-scratch};
+  --card-glow: #{rgba($c-scratch, 0.2)};
+  --icon-bg: #{rgba($c-scratch, 0.14)};
+  --icon-color: #{$c-scratch};
+}
+.feat-card--spin {
+  --card-accent: #{$c-spin};
+  --card-glow: #{rgba($c-spin, 0.22)};
+  --icon-bg: #{rgba($c-spin, 0.14)};
+  --icon-color: #{$c-spin};
+}
+.feat-card--plinko {
+  --card-accent: #c8c100;
+  --card-glow: rgba(200, 193, 0, 0.22);
+  --icon-bg: rgba(200, 193, 0, 0.14);
+  --icon-color: #c8c100;
+}
+
+/* ---------- Icon ---------- */
+.feat-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: var(--icon-bg);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-color);
+  box-shadow: 0 0 18px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (min-width: 640px) {
+    width: 48px;
+    height: 48px;
+    svg { width: 23px; height: 23px; }
+  }
+}
+
+/* ---------- Badges ---------- */
+.feat-badge {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  padding: 3px 9px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: monospace;
+  white-space: nowrap;
+
+  @media (min-width: 640px) { font-size: 10px; }
+}
+
+.feat-badge--hot {
+  background: rgba(44, 217, 125, 0.14);
+  border: 1px solid rgba(44, 217, 125, 0.45);
+  color: $c-crash;
+}
+.feat-badge--prize {
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: $c-scratch;
+}
+.feat-badge--free {
+  background: rgba(168, 85, 247, 0.14);
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  color: $c-spin;
+}
+.feat-badge--plinko {
+  background: rgba(200, 193, 0, 0.14);
+  border: 1px solid rgba(200, 193, 0, 0.45);
+  color: #c8c100;
+}
+
+.feat-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $c-crash;
+  box-shadow: 0 0 8px $c-crash;
+  animation: livePing 1.5s ease-in-out infinite;
+}
+
+/* ---------- Multiplier Big Number ---------- */
+.feat-multiplier {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  line-height: 1;
+}
+
+.feat-multiplier__prefix {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--card-accent);
+  font-family: monospace;
+  opacity: 0.85;
+}
+
+.feat-multiplier__value {
+  font-size: clamp(1.6rem, 5vw, 2.1rem);
+  font-weight: 900;
+  font-family: monospace;
+  color: #fff;
+  letter-spacing: -0.02em;
+  transition: letter-spacing 0.3s ease;
+  text-shadow: 0 0 20px var(--card-accent, #2CD97D);
+}
+
+.feat-multiplier__unit {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--card-accent);
+  font-family: monospace;
+}
+
+.feat-spin-text {
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Title & Subtitle ---------- */
+.feat-card__text { display: flex; flex-direction: column; gap: 2px; margin-top: auto; }
+
+.feat-title {
+  font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  transition: color 0.25s ease;
+}
+
+.feat-card:hover .feat-title { color: var(--card-accent); }
+
+.feat-subtitle {
+  font-size: clamp(0.6rem, 1.8vw, 0.7rem);
+  color: rgba(200, 210, 215, 0.55);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* ---------- CTA Bottom Row ---------- */
+.feat-cta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(200,210,215,0.45);
+  transition: color 0.25s ease, opacity 0.25s ease;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  text-transform: uppercase;
+  margin-top: 2px;
+
+  @media (min-width: 640px) { font-size: 0.72rem; }
+}
+
+.feat-cta__arrow {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 @media (max-width: 800px) {

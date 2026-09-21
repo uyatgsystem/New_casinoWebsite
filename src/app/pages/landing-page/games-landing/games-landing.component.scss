@@ -1,4 +1,4 @@
-﻿/* ================= CLEAN VIBRANT SOLID CARDS STYLING ================= */
+/* ================= CLEAN VIBRANT SOLID CARDS STYLING ================= */
 
 .clean-game-card {
   position: relative;
@@ -18,11 +18,17 @@
 
   &:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.75);
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(44, 217, 125, 0.3);
 
     .clean-game-artwork {
-      transform: scale(1.15) translateY(-4px);
+      transform: scale(1.1);
+      filter: blur(5px) brightness(0.85) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+    }
+
+    .quick-game-artwork {
+      transform: scale(1.85);
+      filter: blur(5px) brightness(0.85) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7));
     }
 
     .clean-hover-curtain {
@@ -38,28 +44,33 @@
 
 .clean-media-wrap {
   flex: 1;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 10;
   overflow: hidden;
-  padding: 5px 0 10px 0;
+  padding: 0;
 }
 
 .clean-game-artwork {
-  width: 125%;
-  height: 125%;
+  width: 88%;
+  height: 88%;
+  max-width: 88%;
+  max-height: 88%;
   object-fit: contain;
-  transition: transform 0.3s ease;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55));
+  transform: scale(1.02);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45));
 }
 
 .clean-hover-curtain {
   position: absolute;
   inset: 0;
-  background: #292d2e;
-  backdrop-filter: blur(5px);
+  background: rgba(12, 16, 20, 0.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,51 +80,53 @@
   z-index: 30;
 
   .clean-launch-btn {
-    background: linear-gradient(135deg, #2CD97D 0%, #06B6D4 100%);
-    color: #030712;
-    font-weight: 900;
+    background: #2CD97D;
+    color: #050811;
+    font-weight: 950;
     text-transform: uppercase;
     font-size: 11px;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     padding: 10px 22px;
-    border-radius: 10px;
-    border: none;
+    border-radius: 12px;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
-    box-shadow: 0 0 15px rgba(44, 217, 125, 0.4);
-    transition: transform 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 0 22px rgba(44, 217, 125, 0.65), 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
 
     &:hover {
-      transform: scale(1.05);
-      filter: brightness(1.1);
+      background: #36e889;
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(44, 217, 125, 0.9), 0 6px 16px rgba(0, 0, 0, 0.6);
     }
   }
 }
 
 .clean-footer-info {
   position: relative;
-  z-index: 20;
+  z-index: 35;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center-aligns the game title horizontally */
+  align-items: center;
   justify-content: center;
   text-align: center;
   padding-top: 2px;
 
   .clean-game-title {
     font-size: 13px;
-    font-weight: 900;
+    font-weight: 950;
     color: #ffffff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     line-height: 1.2;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.8);
 
     @media (min-width: 640px) {
       font-size: 15px;
@@ -503,23 +516,29 @@ button {
 }
 
 .quick-game-artwork {
-  width: 150%;
-  height: 150%;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.65));
+  width: 95%;
+  height: 95%;
+  max-width: 95%;
+  max-height: 95%;
+  transform: scale(1.72);
+  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.65));
 }
 
 @media (max-width: 639px) {
   .clean-game-card {
     padding: 7px;
-    border-radius: 15px;
+    border-radius: 16px;
   }
 
   .clean-game-title {
     font-size: 10px !important;
   }
 
+  .clean-game-artwork {
+    transform: scale(1.0);
+  }
+
   .quick-game-artwork {
-    width: 165%;
-    height: 165%;
+    transform: scale(1.52);
   }
 }

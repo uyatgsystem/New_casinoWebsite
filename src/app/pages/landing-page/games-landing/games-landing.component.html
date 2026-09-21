@@ -131,10 +131,10 @@
 <!-- Quick Win Casino Section with Border Frame -->
 <div
   *ngIf="isDashboardPage || isLandingPage"
-  class="mb-10 mt-8 px-3 sm:px-4"
-  id="quick-scrolling-id"
+  class="mb-8 mt-6 px-3 sm:px-4"
+  id="instantGameScrollSection"
 >
-  <div class="flex items-center ml-1 gap-2 sm:gap-3 mb-4">
+  <div id="quick-scrolling-id" class="flex items-center ml-1 gap-2 sm:gap-3 mb-4">
     <div
       class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg shrink-0"
     >
@@ -224,7 +224,7 @@
 </div>
 
 <!-- Spin Section with Border Frame -->
-<div *ngIf="isDashboardPage || isLandingPage" class="mt-10 px-3 sm:px-4">
+<div *ngIf="isDashboardPage" class="mt-10 px-3 sm:px-4">
   <div class="flex items-center ml-1 gap-3 mb-4">
     <div
       class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"
@@ -251,4 +251,3 @@
     ></app-spinner>
   </div>
 </div>
-

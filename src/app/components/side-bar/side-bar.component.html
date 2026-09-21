@@ -43,38 +43,6 @@
       </div>
     </div>
 
-    <!-- 1. Cybernetic Quick Switcher Pod -->
-    <div
-      class="hidden lg:flex flex-col w-full bg-black/90 p-1.5 rounded-2xl border border-[#2CD97D]/40 shadow-inner gap-1"
-    >
-      <button
-        type="button"
-        (click)="selectQuickTab('games', '/dashboard/home', 'games-scroll-id')"
-        class="w-full py-2.5 px-3 rounded-xl text-xs font-black tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer border"
-        [ngClass]="
-          activeQuickTab === 'games'
-            ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_15px_rgba(44,217,125,0.4)] border-[#2CD97D]'
-            : 'text-gray-300 hover:text-white bg-black/60 border-[rgba(44,217,125,0.3)] hover:border-[rgba(44,217,125,0.6)] hover:bg-[#2CD97D]/10'
-        "
-      >
-        <span>🎮</span> GAMES MATRIX
-      </button>
-      <button
-        type="button"
-        (click)="
-          selectQuickTab('instant', '/dashboard/home', 'quick-scrolling-id')
-        "
-        class="w-full py-2.5 px-3 rounded-xl text-xs font-black tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer border"
-        [ngClass]="
-          activeQuickTab === 'instant'
-            ? 'bg-[#2CD97D] text-[#050811] shadow-[0_0_15px_rgba(44,217,125,0.4)] border-[#2CD97D]'
-            : 'text-gray-300 hover:text-white bg-black/60 border-[rgba(44,217,125,0.3)] hover:border-[rgba(44,217,125,0.6)] hover:bg-[#2CD97D]/10'
-        "
-      >
-        <span>⚡</span> INSTANT ARENA
-      </button>
-    </div>
-
     <!-- 2. Neon Referral Command Card -->
     <div
       class="relative w-full bg-gradient-to-b from-black/90 to-neutral-950 p-3.5 rounded-2xl border border-[rgba(44,217,125,0.35)] shadow-[0_4px_20px_rgba(0,0,0,0.8)] group hover:border-[#2CD97D] transition"
@@ -201,11 +169,7 @@
         class="cyber-nav-node"
       >
         <div class="node-icon">
-          <img
-            src="/GoldLevel.png"
-            class="h-4 w-4 object-contain"
-            alt=""
-          />
+          <img src="/GoldLevel.png" class="h-4 w-4 object-contain" alt="" />
         </div>
         <div class="node-text">
           <span class="title">VIP Levels</span>

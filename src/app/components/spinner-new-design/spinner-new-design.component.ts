@@ -129,6 +129,12 @@ export class SpinnerNewDesignComponent implements OnInit {
 
   crossicon = faXmark;
   isSpinning = false;
+
+  /** Chip amounts shown in the bottom selector row */
+  readonly chipAmounts: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30];
+
+  /** Expose parseFloat to the template for inline bet calculations */
+  readonly parseFloat = parseFloat;
   rotation = 0;
   lastWin: string | null = null;
   highlightedIndex: number | null = null;

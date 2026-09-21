@@ -117,9 +117,13 @@ export class FooterComponent {
   }
 
   private scrollToId(sectionId: string) {
-    const element = document.getElementById(sectionId);
+    const element =
+      document.getElementById(sectionId) ||
+      (sectionId === 'instantGameScrollSection'
+        ? document.getElementById('quick-scrolling-id')
+        : null);
     if (element) {
-      const yOffset = -20;
+      const yOffset = -85;
       const y =
         element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
@@ -148,7 +152,7 @@ export class FooterComponent {
     // }
   }
   isScreenWidthLessThan800(): boolean {
-    return window.innerWidth < 800;
+    return typeof window !== 'undefined' && window.innerWidth < 800;
   }
   isTreasurePickRoute(): boolean {
     const current = this.router.url;

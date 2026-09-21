@@ -45,6 +45,9 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
   styleUrl: './landing-page.component.scss',
 })
 export class LandingPageComponent implements OnInit, AfterViewInit {
+openCrate() {
+  this.isCrateOpen = true;
+}
   private platformId = inject(PLATFORM_ID);
   isMobile: boolean = false;
   isLandingPage: boolean = true;
@@ -151,6 +154,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
       perk: 'Lifetime Pay',
     },
   ];
+isCrateOpen: boolean = false;
 
   constructor(
     private router: Router,
@@ -247,9 +251,13 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   }
 
   scrollTo(id: string) {
-    const element = document.getElementById(id);
+    const element =
+      document.getElementById(id) ||
+      (id === 'instantGameScrollSection'
+        ? document.getElementById('quick-scrolling-id')
+        : null);
     if (element) {
-      const yOffset = -20;
+      const yOffset = -85;
       const y =
         element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });

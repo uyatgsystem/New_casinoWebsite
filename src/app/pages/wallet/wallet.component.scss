@@ -1,89 +1,8 @@
 $spinner-back: var(--spinner-back);
-$notch-size: 16px;
-$notch-bend: 40px;
-
-.transactions-tab {
-  position: relative;
-  display: inline-block;
-  background-color: $spinner-back;
-  padding: 0.3rem 4rem;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: -$notch-bend;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-left: $notch-bend solid transparent;
-    border-top: $notch-bend solid $spinner-back;
-    transform: rotate(90deg);
-    transform-origin: center;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    right: -$notch-bend;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-right: $notch-bend solid transparent;
-    border-top: $notch-bend solid $spinner-back;
-    transform: rotate(-90deg);
-    transform-origin: center;
-  }
-
-  .transactions-title {
-    position: relative;
-    z-index: 1;
-    font-size: 1.3rem;
-    font-weight: 400;
-    color: #ffffff;
-    text-align: center;
-  }
-}
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   color: #2CD97D;
   filter: invert(45%) sepia(80%) saturate(1500%) hue-rotate(240deg);
-}
-
-.filter-date-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.filter-date-label {
-  color: #2CD97D;
-  font-size: 0.75rem;
-  line-height: 1;
-  letter-spacing: 0.02em;
-}
-
-.filter-date-wrapper {
-  position: relative;
-}
-
-.filter-date-input {
-  width: 100%;
-  color: #2CD97D;
-  color-scheme: dark;
-}
-
-.filter-date-input::-webkit-datetime-edit {
-  color: #2CD97D;
-}
-
-.filter-date-input::-webkit-calendar-picker-indicator {
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
 }
 
 .tooltip {
@@ -91,14 +10,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   bottom: 125%;
   right: 0;
-  background-color: #292d2e;
+  background-color: #1a1d1e;
   color: #fff;
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid rgba(44, 217, 125, 0.4);
   white-space: pre-line;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   z-index: 50;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
   min-width: 180px;
@@ -115,14 +34,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin: 0;
 }
 
-/* Custom Scrollbars */
+/* Custom Scrollbar */
 .custom-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(44, 217, 125, 0.4) transparent;
+  scrollbar-color: rgba(44, 217, 125, 0.3) transparent;
 
   &::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
 
   &::-webkit-scrollbar-track {
@@ -131,30 +50,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(44, 217, 125, 0.35);
+    background: rgba(44, 217, 125, 0.3);
     border-radius: 9999px;
     transition: background 0.2s ease;
 
     &:hover {
-      background: rgba(44, 217, 125, 0.7);
+      background: rgba(44, 217, 125, 0.6);
     }
   }
 }
 
-@-webkit-keyframes animatetop {
+@keyframes modalSlideUp {
   from {
-    transform: translateY(30px) scale(0.98);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes animatetop {
-  from {
-    transform: translateY(30px) scale(0.98);
+    transform: translateY(20px) scale(0.97);
     opacity: 0;
   }
   to {
@@ -164,13 +72,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .modal {
-  -webkit-animation: animatetop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation: animatetop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@media (max-width: 640px) {
-  .modal-overlay {
-    padding: 10px !important;
-    padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
-  }
+  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
