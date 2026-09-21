@@ -29,9 +29,9 @@
   min-height: 100%;
   background: radial-gradient(circle at 50% 15%, #101621 0%, #080c12 70%, #040609 100%);
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
-  padding: 16px 12px 60px;
+  padding: 16px 10px 120px;
   width: 100%;
   border: 1px solid var(--cw-border);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
@@ -341,7 +341,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 6px 0 12px;
+  padding: 36px 0 12px;
+  overflow: visible;
 }
 
 .cw-wheel-frame {
@@ -350,12 +351,13 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  overflow: visible;
 }
 
 // Precision Top Pointer Needle with Gemstone Cap
 .cw-pointer {
   position: absolute;
-  top: -8px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
@@ -415,6 +417,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .cw-ring--glow {
@@ -429,13 +432,19 @@
 // Golden Marquee Bezel with 16 Chaser LED Bulbs
 .cw-marquee-bezel {
   position: absolute;
-  inset: -22px;
+  inset: -16px;
   border-radius: 50%;
   background: linear-gradient(145deg, #443410 0%, #1a1506 50%, #443410 100%);
-  border: 4px solid var(--cw-gold);
-  box-shadow: 0 0 35px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.9);
+  border: 3.5px solid var(--cw-gold);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.35), inset 0 0 16px rgba(0, 0, 0, 0.9);
   pointer-events: none;
   z-index: 10;
+
+  @media (min-width: 480px) {
+    inset: -22px;
+    border-width: 4px;
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.9);
+  }
 }
 
 // 16 Chaser Bulbs around the Bezel
@@ -453,8 +462,8 @@
 
   @for $i from 1 through 16 {
     &.b-#{$i} {
-      $angle: ($i - 1) * (360deg / 16);
-      transform: rotate($angle) translateY(min(40vw, 13.8rem));
+      $angle: ($i - 1) * 22.5deg;
+      transform: rotate($angle) translateY(min(36vw, 142px));
       animation-delay: #{$i * 0.1}s;
 
       @media (min-width: 480px) {
@@ -494,13 +503,13 @@
 // Wheel Container
 .cw-wheel-container {
   position: relative;
-  width: min(78vw, 24.5rem);
-  height: min(78vw, 24.5rem);
-  max-width: 28rem;
-  max-height: 28rem;
+  width: min(70vw, 270px);
+  height: min(70vw, 270px);
+  max-width: 28.5rem;
+  max-height: 28.5rem;
   border-radius: 50%;
   background: #090e15;
-  border: 6px solid #141b25;
+  border: 5px solid #141b25;
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.95);
   overflow: hidden;
   z-index: 15;
@@ -508,6 +517,7 @@
   @media (min-width: 480px) {
     width: min(80vw, 26rem);
     height: min(80vw, 26rem);
+    border-width: 6px;
   }
   @media (min-width: 1024px) {
     width: 28.5rem;
@@ -768,9 +778,14 @@
 .cw-console {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: 36px;
+  gap: 10px;
+  margin-top: 18px;
   width: 100%;
+
+  @media (min-width: 480px) {
+    gap: 14px;
+    margin-top: 32px;
+  }
 }
 
 // Quick Preset Multipliers

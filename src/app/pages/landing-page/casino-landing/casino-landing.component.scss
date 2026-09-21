@@ -315,6 +315,110 @@ $border-cyber: rgba(44, 217, 125, 0.28);
   transform: scale(1.35);
 }
 
+@media (max-width: 639px) {
+  .cyber-casino-landing {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .jackpot-counter-cluster {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .jackpot-label {
+    white-space: nowrap;
+    letter-spacing: 0.1em !important;
+  }
+
+  .jackpot-odometer {
+    min-width: 0;
+    font-size: 0.78rem !important;
+    letter-spacing: 0 !important;
+  }
+
+  .arena-hero-card {
+    margin-left: 0.125rem !important;
+    margin-right: 0.125rem !important;
+  }
+
+  .arena-hero-card > div.relative.z-10 {
+    min-height: 0 !important;
+    padding: 1rem 0.85rem 0.9rem !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  .arena-hero-card > div.relative.z-10 > div:first-child {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .hud-telemetry-ribbon {
+    max-width: 100%;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    gap: 0.35rem;
+  }
+
+  .hud-title-wrapper {
+    margin-bottom: 0.35rem !important;
+  }
+
+  .hud-glitch-title {
+    font-size: 1.45rem;
+    line-height: 1;
+  }
+
+  .hud-specs-strip {
+    margin-bottom: 0.6rem !important;
+    gap: 0.35rem;
+  }
+
+  .spec-pill {
+    padding: 2px 7px;
+    font-size: 0.58rem;
+  }
+
+  .dock-play-trigger {
+    padding: 0.55rem 1rem;
+    font-size: 0.68rem;
+    border-radius: 10px;
+  }
+
+  .arena-visual-stage {
+    width: 100%;
+    min-width: 0;
+    min-height: 112px;
+    overflow: hidden;
+  }
+
+  .arena-spotlight {
+    width: 120px;
+    height: 120px;
+    filter: blur(20px);
+  }
+
+  .arena-radial-ring {
+    width: 130px;
+    height: 130px;
+  }
+
+  .arena-radial-ring.ring-secondary {
+    width: 165px;
+    height: 165px;
+  }
+
+  .arena-game-art,
+  .arena-game-art--zoom {
+    max-width: 105px;
+    max-height: 92px;
+    transform: none;
+  }
+}
+
 @media (min-width: 640px) {
   .arena-visual-stage { min-height: 230px; }
   .arena-spotlight { width: 230px; height: 230px; }

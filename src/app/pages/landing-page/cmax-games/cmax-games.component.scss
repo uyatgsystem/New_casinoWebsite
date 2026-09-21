@@ -106,14 +106,20 @@
   cursor: pointer;
   background: linear-gradient(160deg, #292d2e 0%, #1e2122 100%);
   border: 1.5px solid rgba(44, 217, 125, 0.25);
-  border-radius: 20px;
+  border-radius: 14px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  padding: 8px 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   transition: all 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+
+  @media (min-width: 640px) {
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  }
 
   &:hover {
     transform: translateY(-6px);
@@ -222,7 +228,7 @@
   padding-top: 2px;
 
   .clean-game-title {
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 900;
     color: #ffffff;
     white-space: nowrap;
@@ -232,9 +238,18 @@
     text-transform: uppercase;
     line-height: 1.2;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.8);
+
+    @media (min-width: 480px) {
+      font-size: 11px;
+      letter-spacing: 0.8px;
+    }
 
     @media (min-width: 640px) {
+      font-size: 14px;
+    }
+
+    @media (min-width: 1024px) {
       font-size: 15px;
     }
   }

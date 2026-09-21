@@ -2,7 +2,7 @@
 <div
   id="games-scroll-id"
   *ngIf="AsianLocalBlock"
-  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-3 sm:gap-5 mx-auto px-3 sm:px-6 py-6 sm:py-8 rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+  class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-5 mx-auto px-2 sm:px-6 py-4 sm:py-8 rounded-2xl sm:rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
 >
   <ng-container *ngFor="let game of displayedGames">
     <div
@@ -152,7 +152,7 @@
 
   <div
     *ngIf="isToken || isLandingPage"
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-3 sm:gap-5 mx-auto px-3 sm:px-6 py-6 sm:py-8 rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-5 mx-auto px-2 sm:px-6 py-4 sm:py-8 rounded-2xl sm:rounded-[32px] bg-[#292d2e] border border-[#2CD97D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
   >
     <ng-container *ngFor="let game of quickGames">
       <div
@@ -244,7 +244,7 @@
   </div>
 
   <div
-    class="rounded-3xl bg-[#292d2e]/60 border border-[#2CD97D]/30 shadow-xl backdrop-blur-sm p-4"
+    class="rounded-3xl bg-[#292d2e]/60 border border-[#2CD97D]/30 shadow-xl backdrop-blur-sm p-2 sm:p-4 overflow-visible"
   >
     <app-spinner
       id="spin-scrolling-id"

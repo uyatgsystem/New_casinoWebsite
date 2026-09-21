@@ -211,65 +211,59 @@
 
       <!-- Mobile View Cards -->
       <div class="md:hidden h-[60dvh] backdrop-blur-sm p-4">
-        <div class="space-y-4 h-[50dvh] overflow-y-auto" (scroll)="onMobileScroll($event)"
+        <div class="space-y-4 h-[50dvh] overflow-y-auto pr-1" (scroll)="onMobileScroll($event)"
           *ngIf="lotteryRecords.length > 0; else noMobileRecord">
           <div *ngFor="let record of lotteryRecords; let i = index"
-            class="bg-[#232626] border border-[#bfa97a] rounded-2xl p-4 shadow-lg flex flex-col gap-2">
+            class="bg-[#292d2e] border border-[#2CD97D]/35 rounded-2xl p-4 shadow-[0_8px_25px_rgba(0,0,0,0.6)] flex flex-col gap-3 transition hover:border-[#2CD97D]/60">
             <!-- Header -->
-            <div class="flex justify-between items-center">
-              <span class="font-semibold text-white">#{{ record.SR }}</span>
-              <span class="text-White text-md">{{ record.Lottery }}</span>
+            <div class="flex justify-between items-center pb-2 border-b border-white/10">
+              <span class="font-mono text-xs font-bold text-[#2CD97D] bg-[#2CD97D]/10 px-2.5 py-0.5 rounded-md border border-[#2CD97D]/30">#{{ record.SR }}</span>
+              <span class="text-white font-black text-sm uppercase tracking-wide">{{ record.Lottery }}</span>
             </div>
 
             <!-- Lottery Info -->
-            <div class="mx-auto text-left text-white space-y-2 max-w-[220px]">
-              <!-- <div class="flex justify-between">
-            <span class="font-semibold">Lottery:</span>
-            <span class="font-medium text-purple-300">{{ record.Lottery }}</span>
-          </div> -->
-              <div class="flex justify-between">
-                <span class="font-semibold">Purchase:</span>
-                <span class="font-medium text-gray-400 ml-3">{{
+            <div class="text-left text-white space-y-2 text-xs">
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">Purchase Date:</span>
+                <span class="font-mono text-gray-200">{{
                   record.PurchasedDate | date: "short"
                   }}</span>
               </div>
 
-              <div class="flex justify-between">
-                <span class="font-semibold">DrawTime:</span>
-                <span class="font-medium text-gray-400 ml-3">{{
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">Draw Time:</span>
+                <span class="font-mono text-gray-200">{{
                   record.DrawTime | date: "short"
                   }}</span>
               </div>
-              <div
-                class="flex justify-between overflow-x-auto scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-700">
-                <span class="font-semibold">Numbers:</span>
-                <span class="font-medium text-gray-400 whitespace-nowrap">{{
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">Numbers:</span>
+                <span class="font-mono font-bold text-[#2CD97D]">{{
                   record.Numbers
                   }}</span>
               </div>
-              <div class="flex justify-between">
-                <span class="font-semibold">Prize:</span>
-                <span class="font-medium text-gray-400">{{
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">Prize Pool:</span>
+                <span class="font-bold text-[#FF9F1C] font-mono">{{
                   record.Prize
                   }}</span>
               </div>
-              <div class="flex justify-between">
-                <span class="font-semibold">Reward:</span>
-                <span class="font-medium text-gray-400">
+              <div class="flex justify-between items-center" *ngIf="record.PrizeAmount > 0 || (record.Status === 'Close' && !record.IsWinner)">
+                <span class="text-gray-400">Reward:</span>
+                <span class="font-bold font-mono text-white">
                   {{
                   record.PrizeAmount > 0
                   ? record.PrizeAmount
-                  : record.Status === "Close" && !record.IsWinner
-                  ? "Try next Time"
-                  : ""
+                  : "Try next Time"
                   }}
                 </span>
               </div>
-              <div class="flex justify-between">
-                <span class="font-semibold">Status:</span>
-                <span [ngClass]="{
-                    'text-green-400 font-medium': record.Status === 'Open',
-                    'text-red-400 font-medium': record.Status === 'Close',
+              <div class="flex justify-between items-center pt-1 border-t border-white/5">
+                <span class="text-gray-400">Status:</span>
+                <span class="font-bold text-[11px] px-2 py-0.5 rounded-md" [ngClass]="{
+                    'bg-[#2CD97D]/15 text-[#2CD97D] border border-[#2CD97D]/30': record.Status === 'Open' || record.Status === 'Complete',
+                    'bg-rose-500/15 text-rose-400 border border-rose-500/30': record.Status === 'Close',
+                    'bg-yellow-500/15 text-yellow-300 border border-yellow-500/30': record.Status === 'Pending'
                   }">
                   {{ record.Status }}
                 </span>
