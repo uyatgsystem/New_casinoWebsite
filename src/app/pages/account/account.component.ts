@@ -37,7 +37,6 @@ import { GameCard } from '../../Interfaces/interfaces';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorhandlingService } from '../../Services/error-handling.service';
 import { GameService } from '../../Services/game.service';
-import { AddRedeemComponent } from '../../common/add-redeem/add-redeem.component';
 import { Router } from '@angular/router';
 import { SafeHtml } from '@angular/platform-browser';
 import { UtilsService } from '../../Services/utils.service';
@@ -50,7 +49,6 @@ import { UtilsService } from '../../Services/utils.service';
     FontAwesomeModule,
     LoaderComponent,
     ReactiveFormsModule,
-    AddRedeemComponent,
   ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss',

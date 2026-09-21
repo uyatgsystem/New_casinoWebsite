@@ -72,6 +72,8 @@ const GOOGLE_INTEGRATION_CONFIG = {
   },
 } as const;
 
+import { LoaderComponent } from './components/loader/loader.component';
+
 const META_PIXEL_CONFIG = {
   pixelId: '1530255482066084',
 } as const;
@@ -86,6 +88,7 @@ const META_PIXEL_CONFIG = {
     SplashScreenComponent,
     ChatComponent,
     NgxSpinnerModule,
+    LoaderComponent,
     AddWalletComponent,
     // ChangePasswordComponent,
     // ForgotPasswordComponent,

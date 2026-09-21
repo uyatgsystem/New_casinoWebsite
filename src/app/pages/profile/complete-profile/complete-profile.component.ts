@@ -14,16 +14,22 @@ import {
   faEyeSlash,
   faCheck,
   faTimes,
+  faCrown,
+  faCheckCircle,
+  faLock,
+  faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocationService } from '../../../Services/ip-check.service';
 
 import { RouterModule } from '@angular/router';
+import { DocumentTypes, KycApiResponse } from '../../../Interfaces/kyc.interface';
+import { KycPopupComponent } from '../../../common/kyc-popup/kyc-popup.component';
 
 @Component({
   standalone: true,
   selector: 'app-complete-profile',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FontAwesomeModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FontAwesomeModule, RouterModule, KycPopupComponent],
   templateUrl: './complete-profile.component.html',
   styleUrls: ['./complete-profile.component.scss'],
 })
@@ -142,13 +148,32 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
         this.profileImage = image;
       });
 
-    const refQuery = this.route.snapshot.queryParamMap.get('ref');
-    if (refQuery?.toLowerCase() === 'active') {
-      this.activeTab = 'referrals';
-      // Deep-linked straight to Referrals — scroll the tab into view on mobile
-      // the same way a manual tab click would, so it doesn't look stuck at the top.
-      setTimeout(() => this.scrollActiveTabIntoView(), 0);
-    }
+    this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      const tab = params['tab'];
+      if (tab) {
+        const lowerTab = tab.toLowerCase();
+        if (lowerTab === 'kyc') {
+          this.activeTab = 'kyc';
+        } else if (lowerTab === 'levels') {
+          this.activeTab = 'Levels';
+        } else if (lowerTab === 'wallet') {
+          this.activeTab = 'wallet';
+        } else if (lowerTab === 'referrals') {
+          this.activeTab = 'referrals';
+        } else if (lowerTab === 'security') {
+          this.activeTab = 'security';
+        } else if (lowerTab === 'personal') {
+          this.activeTab = 'personal';
+        }
+        setTimeout(() => this.scrollActiveTabIntoView(), 50);
+      }
+
+      const refQuery = params['ref'];
+      if (refQuery?.toLowerCase() === 'active') {
+        this.activeTab = 'referrals';
+        setTimeout(() => this.scrollActiveTabIntoView(), 50);
+      }
+    });
 
     //? Fetch wallet history on component load
     this.getWalletBalance();
@@ -160,6 +185,9 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
     this.getCustomerReferrals();
     this.GetCustomerLevel();
     // this.UpdateCustomerLevel();
+    this.initializeKycForm();
+    this.setKycDateRange();
+    this.patchKycFormFromData();
   }
 
 
@@ -959,31 +987,430 @@ export class CompleteProfileComponent implements OnInit, OnDestroy {
   customerTotalDeposit: number = 0;
   levels: any[] = [];
 
+  // === VIP LEVELS TERMINAL PROPERTIES ===
+  faCrown = faCrown;
+  faCheckCircle = faCheckCircle;
+  faLock = faLock;
+  faSyncAlt = faSyncAlt;
+  levelRank: number = 1;
+  isLevelLoading: boolean = false;
+
+  tierDefinitions: any[] = [
+    {
+      level: 1, name: 'Bronze', image: '/BrornzeLevel.png', badgeColor: '#CD7F32',
+      minDeposit: 0, maxDeposit: 100, redeemPercent: 5, rakeback: '2.5%',
+      weeklyBonus: '$10', lossback: '5%',
+      perks: ['Instant Deposit Settling', '2.5% Daily Rakeback', 'Standard Cashout Queue', 'Community Chat Access'],
+    },
+    {
+      level: 2, name: 'Silver', image: '/SilverLevel.png', badgeColor: '#C0C0C0',
+      minDeposit: 101, maxDeposit: 500, redeemPercent: 10, rakeback: '5.0%',
+      weeklyBonus: '$35', lossback: '7.5%',
+      perks: ['5.0% Daily Rakeback Boost', 'Weekly Reload Multipliers', 'Priority Payout Processing', 'Bronze + Silver Scratch Access'],
+    },
+    {
+      level: 3, name: 'Gold', image: '/GoldLevel.png', badgeColor: '#FFD700',
+      minDeposit: 501, maxDeposit: 1500, redeemPercent: 15, rakeback: '8.5%',
+      weeklyBonus: '$100', lossback: '10%',
+      perks: ['8.5% Daily High-Roller Rakeback', 'VIP Weekly Bonus Air-Drops', 'Direct Priority Cashout Lane', 'Level-Up Milestone Bonus'],
+    },
+    {
+      level: 4, name: 'Platinum', image: '/PlatinumLevel.png', badgeColor: '#00F5D4',
+      minDeposit: 1501, maxDeposit: 3500, redeemPercent: 20, rakeback: '12.0%',
+      weeklyBonus: '$250', lossback: '12.5%',
+      perks: ['12.0% Platinum Rakeback', 'Dedicated VIP Account Host', 'Instant Uncapped Withdrawals', 'Exclusive High-Roller Tournaments'],
+    },
+    {
+      level: 5, name: 'Diamond', image: '/DiamondLevel.png', badgeColor: '#2CD97D',
+      minDeposit: 3501, maxDeposit: 10000, redeemPercent: 25, rakeback: '15.0%',
+      weeklyBonus: '$600', lossback: '15%',
+      perks: ['15.0% Maximum Apex Rakeback', 'Private 24/7 Concierge Host', 'Zero Payout Waiting Time', 'Custom High-Roller Gifts & Drops'],
+    },
+  ];
+
+  // === KYC FORM PROPERTIES ===
+  kycForm!: FormGroup;
+  documentTypes = DocumentTypes;
+  documentFrontImagePreview: string | null = null;
+  documentBackImagePreview: string | null = null;
+  selfieImagePreview: string | null = null;
+  documentFrontFile: File | null = null;
+  documentBackFile: File | null = null;
+  selfieFile: File | null = null;
+  isKycFormSubmitted = false;
+  kycMinDate: string = '';
+  kycMaxDate: string = '';
+  showKycPopup = false;
+  kycPopupTitle = '';
+  kycPopupMessage = '';
+  kycPopupButtonText = '';
+  kycPopupRedirect: string | null = null;
+
   // API CALL
   GetCustomerLevel() {
+    this.isLevelLoading = true;
     const customerId = localStorage.getItem('customerId') || '';
 
     this.apiCallService
       .GetCallWithToken(`Customer/GetCustomerLevel?CustomerId=${customerId}`)
       .subscribe({
         next: (response) => {
+          this.isLevelLoading = false;
           if (response && response.responseCode === 200) {
             const data = response.data;
-            this.playerLevel = data.playerLevel || '';
+            this.playerLevel = data.playerLevel || 'Bronze';
             this.customerTotalDeposit = Number(data.customerTotalDeposit) || 0;
-            this.levels = (data.levels || [])
-              .slice()
-              .sort((a: any, b: any) => (a.MinDepositRange || 0) - (b.MinDepositRange || 0));
+
+            const apiLevels = (data.levels || []).slice().sort(
+              (a: any, b: any) => (a.MinDepositRange || 0) - (b.MinDepositRange || 0)
+            );
+
+            if (apiLevels.length > 0) {
+              this.levels = apiLevels.map((lvl: any, idx: number) => {
+                const def = this.tierDefinitions[idx] || this.tierDefinitions[this.tierDefinitions.length - 1];
+                return {
+                  ...def,
+                  name: lvl.LevelName || def.name,
+                  minDeposit: lvl.MinDepositRange ?? def.minDeposit,
+                  maxDeposit: lvl.MaxDepositRange ?? def.maxDeposit,
+                  redeemPercent: Number(lvl.RedeemPercentageOnBonusWallet) || def.redeemPercent,
+                  image: this.getLevelImage(lvl.LevelName || def.name),
+                  LevelName: lvl.LevelName,
+                  MinDepositRange: lvl.MinDepositRange,
+                  MaxDepositRange: lvl.MaxDepositRange,
+                  RedeemPercentageOnBonusWallet: lvl.RedeemPercentageOnBonusWallet,
+                };
+              });
+            } else {
+              this.levels = this.tierDefinitions;
+            }
+
+            const rankIdx = this.levels.findIndex(
+              (l) => (l.name || l.LevelName || '').toLowerCase() === this.playerLevel.toLowerCase()
+            );
+            this.levelRank = rankIdx >= 0 ? rankIdx + 1 : 1;
+          } else {
+            this.handleerror.handleResponseError(response);
+            this.levels = this.tierDefinitions;
+          }
+        },
+        error: (error) => {
+          this.isLevelLoading = false;
+          this.handleerror.handleHttpError(error);
+          this.levels = this.tierDefinitions;
+        }
+      });
+  }
+
+
+  // === VIP LEVELS TERMINAL METHODS ===
+  getCurrentTierObj(): any {
+    return (
+      this.levels.find(
+        (l) => (l.name || l.LevelName || '').toLowerCase() === this.playerLevel.toLowerCase()
+      ) || this.levels[0] || this.tierDefinitions[0]
+    );
+  }
+
+  getNextTierObj(): any {
+    const currentIdx = this.levels.findIndex(
+      (l) => (l.name || l.LevelName || '').toLowerCase() === this.playerLevel.toLowerCase()
+    );
+    if (currentIdx >= 0 && currentIdx < this.levels.length - 1) {
+      return this.levels[currentIdx + 1];
+    }
+    return null;
+  }
+
+  getVipDepositProgress(): number {
+    const currentTier = this.getCurrentTierObj();
+    const nextTier = this.getNextTierObj();
+    if (!nextTier) return 100;
+    const min = Number(currentTier?.minDeposit ?? currentTier?.MinDepositRange) || 0;
+    const max = Number(nextTier?.minDeposit ?? nextTier?.MinDepositRange) || 1000;
+    if (max <= min) return 100;
+    const percent = ((this.customerTotalDeposit - min) / (max - min)) * 100;
+    return Math.min(Math.max(Math.round(percent), 0), 100);
+  }
+
+  getRemainingDeposit(): number {
+    const nextTier = this.getNextTierObj();
+    if (!nextTier) return 0;
+    const needed = (Number(nextTier?.minDeposit ?? nextTier?.MinDepositRange) || 0) - this.customerTotalDeposit;
+    return Math.max(0, Math.round(needed * 100) / 100);
+  }
+
+  isTierUnlocked(tier: any): boolean {
+    const tierIdx = this.levels.findIndex(
+      (l) => (l.name || l.LevelName || '').toLowerCase() === (tier.name || tier.LevelName || '').toLowerCase()
+    );
+    const currentIdx = this.levels.findIndex(
+      (l) => (l.name || l.LevelName || '').toLowerCase() === this.playerLevel.toLowerCase()
+    );
+    return tierIdx <= currentIdx;
+  }
+
+  isCurrentTier(tier: any): boolean {
+    return (tier.name || tier.LevelName || '').toLowerCase() === this.playerLevel.toLowerCase();
+  }
+
+  navigateToWallet(): void {
+    this.router.navigate(['/dashboard/wallet']);
+  }
+
+  refreshLevels(): void {
+    this.GetCustomerLevel();
+  }
+
+  // === KYC FORM METHODS ===
+  initializeKycForm(): void {
+    this.kycForm = this.fb.group({
+      customerId: [{ value: '', disabled: true }],
+      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      middleName: ['', [Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      dateOfBirth: ['', [Validators.required, this.validateDOB.bind(this)]],
+      nationality: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      city: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      zipcode: ['', [Validators.required, Validators.pattern(/^\d{4,10}$/)]],
+      address: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
+      ssin: ['', [Validators.required, Validators.pattern(/^[0-9]{9,15}$/)]],
+      documentType: ['', [Validators.required]],
+      documentExpiryDate: ['', [Validators.required, this.validateExpiryDate.bind(this)]],
+      documentFrontImage: ['', [Validators.required]],
+      documentBackImage: ['', [Validators.required]],
+      selfieImage: ['', [Validators.required]],
+    });
+
+    const customerId = localStorage.getItem('customerId');
+    if (customerId) {
+      this.kycForm.get('customerId')?.setValue(customerId);
+    }
+  }
+
+  setKycDateRange(): void {
+    const today = new Date();
+    const maxDOB = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    const minDOB = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
+    this.kycMaxDate = this.formatDateForInput(maxDOB);
+    this.kycMinDate = this.formatDateForInput(minDOB);
+  }
+
+  private formatDateForInput(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  validateDOB(control: any): { [key: string]: boolean } | null {
+    if (!control.value) return null;
+    const dob = new Date(control.value);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) age--;
+    if (age < 18) return { underage: true };
+    if (age > 120) return { invalidAge: true };
+    return null;
+  }
+
+  validateExpiryDate(control: any): { [key: string]: boolean } | null {
+    if (!control.value) return null;
+    const expiryDate = new Date(control.value);
+    const today = new Date();
+    if (expiryDate < today) return { expired: true };
+    return null;
+  }
+
+  onDocumentFrontImageSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.validateAndPreviewKycImage(file, 'front');
+      this.documentFrontFile = file;
+      this.kycForm.get('documentFrontImage')?.setValue('uploaded');
+      this.kycForm.get('documentFrontImage')?.markAsTouched();
+    }
+  }
+
+  onDocumentBackImageSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.validateAndPreviewKycImage(file, 'back');
+      this.documentBackFile = file;
+      this.kycForm.get('documentBackImage')?.setValue('uploaded');
+      this.kycForm.get('documentBackImage')?.markAsTouched();
+    }
+  }
+
+  onSelfieImageSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.validateAndPreviewKycImage(file, 'selfie');
+      this.selfieFile = file;
+      this.kycForm.get('selfieImage')?.setValue('uploaded');
+      this.kycForm.get('selfieImage')?.markAsTouched();
+    }
+  }
+
+  private validateAndPreviewKycImage(file: File, type: 'front' | 'back' | 'selfie'): void {
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    const maxSize = 5 * 1024 * 1024;
+    if (!validTypes.includes(file.type)) {
+      this.toastr.error('Invalid file type. Only JPEG, PNG, and WebP are allowed.', 'Error');
+      return;
+    }
+    if (file.size > maxSize) {
+      this.toastr.error('File size exceeds 5MB limit.', 'Error');
+      return;
+    }
+    this.convertKycImageToBase64(file, type);
+  }
+
+  private convertKycImageToBase64(file: File, type: 'front' | 'back' | 'selfie'): void {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const base64String = e.target?.result as string;
+      if (type === 'front') this.documentFrontImagePreview = base64String;
+      else if (type === 'back') this.documentBackImagePreview = base64String;
+      else this.selfieImagePreview = base64String;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  removeDocumentFrontImage(): void {
+    this.documentFrontImagePreview = null;
+    this.documentFrontFile = null;
+    this.kycForm.get('documentFrontImage')?.reset();
+  }
+
+  removeDocumentBackImage(): void {
+    this.documentBackImagePreview = null;
+    this.documentBackFile = null;
+    this.kycForm.get('documentBackImage')?.reset();
+  }
+
+  removeSelfieImage(): void {
+    this.selfieImagePreview = null;
+    this.selfieFile = null;
+    this.kycForm.get('selfieImage')?.reset();
+  }
+
+  onKycSubmit(): void {
+    this.isKycFormSubmitted = true;
+    if (this.kycForm.invalid) {
+      const invalidFields = [];
+      for (const controlName in this.kycForm.controls) {
+        const control = this.kycForm.get(controlName);
+        if (control && control.invalid) invalidFields.push(controlName);
+      }
+      this.toastr.error(`Please fill all required fields. Invalid: ${invalidFields.join(', ')}`, 'Validation Error');
+      return;
+    }
+    this.submitKycForm();
+  }
+
+  private submitKycForm(): void {
+    this.loaderService.show();
+    const formPayload = {
+      id: 0,
+      customerId: this.kycForm.get('customerId')?.value,
+      firstName: this.kycForm.get('firstName')?.value,
+      middleName: this.kycForm.get('middleName')?.value,
+      lastName: this.kycForm.get('lastName')?.value,
+      dateOfBirth: this.kycForm.get('dateOfBirth')?.value,
+      nationality: this.kycForm.get('nationality')?.value,
+      country: this.kycForm.get('country')?.value,
+      city: this.kycForm.get('city')?.value,
+      state: this.kycForm.get('state')?.value,
+      zipcode: this.kycForm.get('zipcode')?.value,
+      address: this.kycForm.get('address')?.value,
+      ssin: this.kycForm.get('ssin')?.value,
+      documentType: this.kycForm.get('documentType')?.value,
+      documentExpiryDate: this.kycForm.get('documentExpiryDate')?.value,
+      documentFrontImagePath: this.documentFrontImagePreview,
+      documentBackImagePath: this.documentBackImagePreview,
+      selfieImagePath: this.selfieImagePreview,
+    };
+
+    this.apiCallService
+      .PostCallWithToken(formPayload, 'KYC/CreateOrUpdateCustomerKYC')
+      .subscribe({
+        next: (response: any) => {
+          this.loaderService.hide();
+          if (response.responseCode === 200) {
+            this.toastr.success('KYC form submitted successfully!', 'Success');
+            this.getKYCStatusAfterSubmit();
           } else {
             this.handleerror.handleResponseError(response);
           }
         },
         error: (error) => {
+          this.loaderService.hide();
           this.handleerror.handleHttpError(error);
-        }
+        },
       });
   }
 
+  private getKYCStatusAfterSubmit(): void {
+    const CustomerID = localStorage.getItem('customerId');
+    this.apiCallService
+      .GetCallWithToken('KYC/GetCustomerKYCStatus?CustomerId=' + CustomerID)
+      .subscribe({
+        next: (response) => {
+          if (response && response.responseCode == 200) {
+            localStorage.setItem('KYC', response.data);
+            this.KYCVerification = response.data;
+            if (response.data === 'Pending') {
+              this.kycPopupTitle = 'KYC Verification';
+              this.kycPopupMessage = 'Your KYC is pending. Please wait while it is approved.';
+              this.kycPopupButtonText = 'Got it';
+              this.kycPopupRedirect = null;
+              this.showKycPopup = true;
+            }
+          }
+        },
+        error: () => {},
+      });
+  }
+
+  closeKycPopup(): void {
+    this.showKycPopup = false;
+  }
+
+  patchKycFormFromData(): void {
+    const KycValues = this.utilsService.getData();
+    if (KycValues?.isUpdated && this.KYCVerification === 'pending') {
+      const KycData = KycValues.data;
+      this.documentFrontImagePreview = KycData.documentFrontImagePath;
+      this.documentBackImagePreview = KycData.documentBackImagePath;
+      this.selfieImagePreview = KycData.selfieImagePath;
+      this.documentFrontFile = {} as File;
+      this.documentBackFile = {} as File;
+      this.selfieFile = {} as File;
+      this.kycForm.patchValue({
+        customerId: KycData.customerId,
+        firstName: KycData.firstName,
+        middleName: KycData.middleName,
+        lastName: KycData.lastName,
+        dateOfBirth: this.formatDateForInput(new Date(KycData.dateOfBirth)),
+        nationality: KycData.nationality,
+        country: KycData.country,
+        city: KycData.city,
+        state: KycData.state,
+        zipcode: KycData.zipcode,
+        address: KycData.address,
+        ssin: KycData.ssin,
+        documentType: KycData.documentType,
+        documentExpiryDate: this.formatDateForInput(new Date(KycData.documentExpiryDate)),
+        documentFrontImage: 'uploaded',
+        documentBackImage: 'uploaded',
+        selfieImage: 'uploaded',
+      });
+    }
+  }
 
   // User Level UpDate Api Call
   UpdateCustomerLevel() {

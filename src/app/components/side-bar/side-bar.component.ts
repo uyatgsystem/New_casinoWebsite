@@ -5,7 +5,20 @@ import { SafeHtml } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { LogoutmodelComponent } from '../header/logoutmodel/logoutmodel.component';
 import { UtilsService } from '../../Services/utils.service';
-import { faHouse, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHouse,
+  faUserEdit,
+  faWallet,
+  faGamepad,
+  faCrown,
+  faBookOpen,
+  faFileContract,
+  faPowerOff,
+  faArrowsRotate,
+  faTrophy,
+  faCoins,
+  faShieldHalved,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocationService } from '../../Services/ip-check.service';
 import { ErrorhandlingService } from '../../Services/error-handling.service';
@@ -28,6 +41,16 @@ export class SideBarComponent implements OnInit, AfterViewInit {
   isMobile = false;
   faHouse = faHouse;
   faUserEdit = faUserEdit;
+  faWallet = faWallet;
+  faGamepad = faGamepad;
+  faCrown = faCrown;
+  faBookOpen = faBookOpen;
+  faFileContract = faFileContract;
+  faPowerOff = faPowerOff;
+  faArrowsRotate = faArrowsRotate;
+  faTrophy = faTrophy;
+  faCoins = faCoins;
+  faShieldHalved = faShieldHalved;
   referralCode: any = 'Referral code not available';
   profileImage: string = '';
   userName: any;

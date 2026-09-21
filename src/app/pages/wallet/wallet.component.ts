@@ -557,18 +557,22 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     return null;
   }
 
-  showBalance: boolean = false;
+  showMainBalance: boolean = true;
+  showBonusBalance: boolean = true;
+  showBalance: boolean = true;
+
+  toggleMainBalance() {
+    this.showMainBalance = !this.showMainBalance;
+  }
+
+  toggleBonusBalance() {
+    this.showBonusBalance = !this.showBonusBalance;
+  }
 
   toggleBalance() {
     this.showBalance = !this.showBalance;
-    if (isPlatformBrowser(this.platformId)) {
-      const balanceElement = document.getElementById('balance');
-      if (balanceElement) {
-        balanceElement.textContent = this.showBalance
-          ? `$${this.totalBalance.toLocaleString()}`
-          : '•••••';
-      }
-    }
+    this.showMainBalance = this.showBalance;
+    this.showBonusBalance = this.showBalance;
   }
 
   viewMode: 'grid' | 'table' = 'grid';

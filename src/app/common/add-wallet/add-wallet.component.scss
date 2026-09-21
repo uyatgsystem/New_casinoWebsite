@@ -5,7 +5,7 @@
 
 $primary-green: #2cd97d;
 $accent-cyan: #06b6d4;
-$dark-bg: #111314;
+$dark-bg: #101213;
 
 .form-group {
   margin-bottom: 1.25rem;
@@ -26,7 +26,7 @@ $dark-bg: #111314;
     padding: 0.75rem 1rem;
     background: $dark-bg;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 0.75rem;
+    border-radius: 0.875rem;
     color: #ffffff;
     font-size: 0.875rem;
     transition: all 0.2s ease-in-out;
@@ -34,7 +34,7 @@ $dark-bg: #111314;
     &:focus {
       outline: none;
       border-color: $primary-green;
-      box-shadow: 0 0 15px rgba(44, 217, 125, 0.25);
+      box-shadow: 0 0 18px rgba(44, 217, 125, 0.3);
     }
 
     &::placeholder {
@@ -46,7 +46,7 @@ $dark-bg: #111314;
 /* Custom Animations */
 @keyframes slideUpModal {
   from {
-    transform: translateY(20px) scale(0.97);
+    transform: translateY(24px) scale(0.96);
     opacity: 0;
   }
   to {
@@ -56,7 +56,7 @@ $dark-bg: #111314;
 }
 
 .modal {
-  animation: slideUpModal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Custom Scrollbars */

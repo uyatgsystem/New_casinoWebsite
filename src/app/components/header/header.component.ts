@@ -306,8 +306,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   showComletePorfile() {
-    this.router.navigate(['dashboard/complete-profile']);
-    this.isDropdownOpen = !this.isDropdownOpen;
+    this.isDropdownOpen = false;
+    this.router.navigate(['/dashboard/complete-profile']);
   }
 
   showDeleteaccountmodel() {
@@ -526,7 +526,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['dashboard/help-support']);
   }
   redirectToKYCform() {
-    this.router.navigate(['dashboard/KYCform']);
+    this.isDropdownOpen = false;
+    this.router.navigate(['/dashboard/complete-profile'], {
+      queryParams: { tab: 'kyc' },
+    });
   }
 
   // DEPOSIT / ADD BALANCE MODAL METHODS
@@ -706,13 +709,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isDropdownOpen = false;
     this.showNotifications = false;
     this.getPlatformFees();
-    this.showwithdrawModal = true;
     this.getAccountsDropdown();
-    this.selectedAccountType = '';
+    this.selectedAccountType = 'CashApp';
     this.amouttowithdraw = null;
     this.tipAmount = null;
     this.accountInfo = '';
     this.Customertag = '';
+    this.showwithdrawModal = true;
   }
 
   hideWithdrawModal() {

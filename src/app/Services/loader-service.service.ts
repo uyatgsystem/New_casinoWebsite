@@ -1,21 +1,31 @@
-// filepath: src/app/services/loader.service.ts
 import { EventEmitter, Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoaderService {
-  constructor(private spinner: NgxSpinnerService) { }
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  public loading$ = this.loadingSubject.asObservable();
+
+  constructor(private spinner: NgxSpinnerService) {}
 
   show() {
-    this.spinner.show();
+    this.loadingSubject.next(true);
+    try {
+      this.spinner.show();
+    } catch {}
   }
 
   hide() {
-    this.spinner.hide();
+    this.loadingSubject.next(false);
+    try {
+      this.spinner.hide();
+    } catch {}
   }
-  //   Funtion call service use
+
+  // Funtion call service use
   private triggerSubject = new EventEmitter<void>();
 
   triggerFunction() {
@@ -26,7 +36,7 @@ export class LoaderService {
     return this.triggerSubject.asObservable();
   }
 
-  //   Funtion call service use
+  // Funtion call service use
   private triggerWalletSubject = new EventEmitter<void>();
 
   triggerWalletFunction() {
@@ -41,10 +51,12 @@ export class LoaderService {
     if (typeof localStorage === 'undefined') return 0;
     return Number(localStorage.getItem('customerId')?.length);
   }
+
   setArrayInLocalStorage(locale: string, data: any[]) {
     if (typeof localStorage === 'undefined') return;
     localStorage.setItem(locale, JSON.stringify(data));
   }
+
   getArrayInLocalStorage(locale: string = 'bis_data'): any[] {
     if (typeof localStorage === 'undefined') return [];
     return JSON.parse(localStorage.getItem(locale) || '[]');

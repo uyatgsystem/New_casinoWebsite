@@ -1,4 +1,4 @@
-﻿// .bg-gradient {
+// .bg-gradient {
 //     background: var(--gradient);
 //     //background-color: #111;
 //   }
@@ -38,6 +38,47 @@
     color: #050811;
     box-shadow: 0 0 20px rgba(44, 217, 125, 0.5);
   }
+}
+
+.floating-chat-trigger {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2CD97D 0%, #00F5D4 60%, #FFD700 100%);
+  border: 2px solid #ffffff;
+  color: #050811;
+  box-shadow: 0 8px 24px rgba(44, 217, 125, 0.45);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 12px 30px rgba(44, 217, 125, 0.65);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.chat-unread-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #FF9F1C;
+  color: #050811;
+  font-size: 0.68rem;
+  font-weight: 900;
+  font-family: monospace;
+  border: 2px solid #141718;
+  box-shadow: 0 0 10px rgba(255, 159, 28, 0.6);
 }
 
 .download-btn {

@@ -34,24 +34,12 @@
     <app-side-bar></app-side-bar>
   </div>
   <div
+    class="w-full flex-1 min-w-0 transition-all duration-300"
     [ngClass]="[
-      router.url === '/dashboard/Avaitar' ||
-      router.url === '/dashboard/TreasurePick' ||
-      router.url === '/dashboard/Roulette' ||
-      router.url === '/dashboard/Mines' ||
-      router.url === '/dashboard/Plinko' ||
-      router.url === '/dashboard/StackBuilder' ||
-      router.url === '/dashboard/Baccaret' ||
-      router.url === '/dashboard/Double' ||
-      router.url === '/dashboard/Keno' ||
-      router.url === '/dashboard/coin' ||
-      router.url === '/dashboard/rpc'
-        ? 'md:w-[100%] w-[100%]'
-        : 'lg:max-w-[77%] xl:max-w-[80%] 2xl:max-w-[83%] w-[100%] flex-1',
-      isSpinnerModule() ? 'mb-[0px] lg:mb-0' : '',
+      isSpinnerModule() ? 'mb-[0px] lg:mb-0' : ''
     ]"
   >
-    <div>
+    <div class="w-full">
       <router-outlet></router-outlet>
     </div>
   </div>

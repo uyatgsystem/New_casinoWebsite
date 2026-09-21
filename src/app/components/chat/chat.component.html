@@ -1,27 +1,36 @@
 <section class="chat-container" [class.chat-input-focused]="isInputFocused">
   <div class="chat-window" [class.chat-input-focused]="isInputFocused">
     <div class="backdrop-image" [innerHTML]="backdropImage"></div>
+    <div class="chat-ambient-glow" aria-hidden="true"></div>
 
+    <!-- Header Bar -->
     <header class="chat-header">
       <div class="support-identity">
         <div class="support-avatar" aria-hidden="true">
-          <span>CM</span>
-          <i></i>
+          <span class="avatar-text">VIP</span>
+          <i class="online-indicator"></i>
         </div>
-        <div>
-          <p class="eyebrow">SPIN HUB SUPPORT</p>
-          <h1>Customer support</h1>
+        <div class="support-meta">
+          <div class="flex items-center gap-1.5">
+            <span class="eyebrow">24/7 VIP CONCIERGE</span>
+          </div>
+          <h1 class="support-title">Live Player Support</h1>
           <p class="availability">
-            <span></span> We usually reply in a few minutes
+            <span class="status-pulse"></span>
+            <span>Online • Instant Response</span>
           </p>
         </div>
       </div>
+
       <div class="header-actions">
-        <span class="secure-label">Secure chat</span>
+        <span class="secure-label font-mono">
+          <i class="fa fa-shield-alt text-[#2CD97D]"></i> ENCRYPTED
+        </span>
         <button
           type="button"
-          class="icon-button"
+          class="icon-button minimize-btn"
           aria-label="Minimize chat"
+          title="Minimize Chat"
           (click)="showHideChat()"
         >
           <fa-icon [icon]="Minimize"></fa-icon>
@@ -30,6 +39,7 @@
           type="button"
           class="icon-button close-button"
           aria-label="Close chat"
+          title="Close Chat"
           (click)="showHideChat()"
         >
           <fa-icon [icon]="Close"></fa-icon>
@@ -37,40 +47,49 @@
       </div>
     </header>
 
+    <!-- Intro Quick Banner -->
     <div class="chat-intro">
-      <div class="intro-icon"><fa-icon [icon]="PaperPlane"></fa-icon></div>
-      <div>
-        <strong>How can we help?</strong>
-        <span>Ask us anything about your account, games or payments.</span>
+      <div class="intro-icon">
+        <fa-icon [icon]="PaperPlane"></fa-icon>
+      </div>
+      <div class="intro-text">
+        <strong>How can we assist you today?</strong>
+        <span>Deposit questions, game support, or balance verification.</span>
       </div>
     </div>
 
+    <!-- Loading State -->
     <div *ngIf="loading" class="loader" role="status">
       <div class="spinner"></div>
-      <span>Loading conversation...</span>
+      <span class="font-mono text-xs text-[#2CD97D]">Loading conversation history...</span>
     </div>
 
+    <!-- Messages Stage -->
     <div
       #chatBody
-      class="chat-messages chat-body"
+      class="chat-messages chat-body custom-chat-scroll"
       (scroll)="onScroll($event)"
       [ngClass]="{
         'overflow-y-auto': messages && messages.length > 0,
         'overflow-hidden': !messages || messages.length === 0,
       }"
     >
+      <!-- Empty Welcome View -->
       <div *ngIf="!messages || messages.length === 0" class="welcome-screen">
         <div class="welcome-art">
-          <span></span><span></span><span></span>
-          <fa-icon [icon]="PaperPlane"></fa-icon>
+          <div class="art-glow"></div>
+          <span class="bubble-dot b1"></span>
+          <span class="bubble-dot b2"></span>
+          <span class="bubble-dot b3"></span>
+          <fa-icon [icon]="PaperPlane" class="art-icon"></fa-icon>
         </div>
-        <h2>We are here for you</h2>
+        <h2>Live Concierge Desk</h2>
         <p>
-          Start a conversation with our support team. Your messages are private
-          and secure.
+          Need help with games, transactions, or account verification? Our team is available 24/7 to assist.
         </p>
       </div>
 
+      <!-- Message History Loop -->
       <div
         *ngFor="let message of messages"
         class="message-row"
@@ -83,6 +102,7 @@
             message?.SenderId != getUserId(),
         }"
       >
+        <!-- Outgoing (Player) -->
         <div
           *ngIf="
             message?.MessageType != 'UnEngaged' &&
@@ -92,13 +112,14 @@
           class="message-group"
         >
           <div class="message-meta">
-            <span>You</span><time>{{ message.Time | date: "hh:mm a" }}</time>
+            <span class="sender-name">You</span>
+            <time class="font-mono">{{ message.Time | date: "hh:mm a" }}</time>
           </div>
           <div class="message-bubble outgoing-bubble">
             <div *ngIf="message.ImageUrl" class="image-container">
               <img
                 [src]="message.ImageUrl"
-                alt="Shared image"
+                alt="Shared attachment"
                 (click)="openImageModal(message.ImageUrl)"
               />
             </div>
@@ -108,16 +129,23 @@
                 *ngIf="message.IsDelivered && message.IsSeen"
                 [icon]="CheckDouble"
                 class="seen"
+                title="Seen"
               ></fa-icon>
               <fa-icon
                 *ngIf="message.IsDelivered && !message.IsSeen"
                 [icon]="CheckDouble"
+                title="Delivered"
               ></fa-icon>
-              <fa-icon *ngIf="!message.IsDelivered" [icon]="Check"></fa-icon>
+              <fa-icon
+                *ngIf="!message.IsDelivered"
+                [icon]="Check"
+                title="Sent"
+              ></fa-icon>
             </span>
           </div>
         </div>
 
+        <!-- Incoming (Support Agent) -->
         <div
           *ngIf="
             message?.MessageType != 'UnEngaged' &&
@@ -127,8 +155,11 @@
           class="message-group"
         >
           <div class="message-meta">
-            <span>Support team</span
-            ><time>{{ message.Time | date: "hh:mm a" }}</time>
+            <span class="sender-name flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#2CD97D]"></span>
+              Support Team
+            </span>
+            <time class="font-mono">{{ message.Time | date: "hh:mm a" }}</time>
           </div>
           <div class="message-bubble incoming-bubble">
             <div *ngIf="message.ImageUrl" class="image-container">
@@ -142,24 +173,28 @@
           </div>
         </div>
 
+        <!-- Session Ended -->
         <div *ngIf="message.MessageType == 'UnEngaged'" class="session-ended">
-          <span></span>
-          <p>This chat session has ended</p>
-          <span></span>
+          <span class="divider-line"></span>
+          <p class="session-ended-text">Chat session ended</p>
+          <span class="divider-line"></span>
         </div>
       </div>
 
+      <!-- Selected Image Upload Preview -->
       <div *ngIf="imageURL" class="selected-image-preview">
         <img [src]="imageURL" alt="Selected image preview" />
         <button
           type="button"
           (click)="clearSelection()"
           aria-label="Remove selected image"
+          title="Remove photo"
         >
           &times;
         </button>
       </div>
 
+      <!-- Fullscreen Image Preview Lightbox -->
       <div #imageModal class="modal" (click)="closeImageModal()">
         <button
           type="button"
@@ -180,19 +215,22 @@
           download="image.jpg"
           class="download-button"
           aria-label="Download image"
+          title="Download full image"
         >
           <fa-icon [icon]="Download"></fa-icon>
         </a>
       </div>
     </div>
 
+    <!-- Input Footer Composer -->
     <div class="chat-input">
       <div *ngIf="showOptionsMenu" class="options-menu">
         <button type="button" (click)="triggerFileInput(fileInput)">
           <span class="option-icon"><fa-icon [icon]="Plus"></fa-icon></span>
-          <span><strong>Photo</strong><small>Share an image</small></span>
+          <span><strong>Upload Photo</strong><small>Send screenshot or ID</small></span>
         </button>
       </div>
+
       <input
         #fileInput
         type="file"
@@ -200,12 +238,14 @@
         (change)="onFileSelected($event)"
         hidden
       />
+
       <div class="composer">
         <button
           type="button"
           class="attach-button"
           (click)="toggleOptionsMenu()"
           aria-label="Add attachment"
+          title="Attach image"
         >
           <fa-icon [icon]="Plus"></fa-icon>
         </button>
@@ -216,7 +256,7 @@
           (paste)="onPaste($event)"
           (keydown)="onTextareaKeydown($event)"
           (input)="adjustHeight($event)"
-          placeholder="Type your message..."
+          placeholder="Type your message here..."
           rows="1"
           aria-label="Message"
         ></textarea>
@@ -225,13 +265,18 @@
           class="send-button"
           (click)="sendMessage($event)"
           aria-label="Send message"
+          title="Send message"
         >
-          <fa-icon [icon]="PaperPlane"></fa-icon><span>Send</span>
+          <fa-icon [icon]="PaperPlane"></fa-icon>
+          <span>Send</span>
         </button>
       </div>
-      <p class="composer-hint">
-        Press <b>Enter</b> to send <span>•</span> Shift + Enter for a new line
-      </p>
+
+      <div class="composer-hint">
+        <span>Press <b>Enter</b> to send</span>
+        <span class="dot-sep">•</span>
+        <span><b>Shift + Enter</b> for new line</span>
+      </div>
     </div>
   </div>
 </section>

@@ -18,32 +18,24 @@
 
     <div *ngIf="shouldShowChat()" class="fixed bottom-4 right-4 z-[999]">
       <button
-        class="btn text-white rounded-full p-3 shadow-lg hidden md:block relative"
+        class="floating-chat-trigger hidden md:flex items-center justify-center relative"
         (click)="toggleChat()"
+        aria-label="Open support chat"
+        title="24/7 VIP Live Support"
       >
         <!-- Unread Message Count Badge -->
         <div
           *ngIf="unreadCounts > 0"
-          class="absolute -top-2 -right-2 w-6 h-6 flex items-center rounded-full text-black justify-center animate-pulse bg-[#FE911A]"
+          class="chat-unread-badge animate-pulse"
         >
           {{ unreadCounts > 99 ? "99+" : unreadCounts }}
         </div>
 
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="31"
-          height="34"
-          viewBox="0 0 31 34"
-          fill="none"
+          class="w-7 h-7 fill-current text-[#050811]"
+          viewBox="0 0 24 24"
         >
-          <path
-            d="M30.6491 10.6511C30.6491 4.77776 25.3852 0 18.9138 0C14.1746 0 10.0927 2.56678 8.24121 6.24523C9.70014 5.65393 11.3106 5.31825 13.0085 5.31825C19.4799 5.31825 24.7438 10.0953 24.7438 15.9695C24.7438 17.5353 24.3487 19.0261 23.6615 20.373C27.7649 18.7001 30.6491 14.9435 30.6491 10.6511Z"
-            fill="#000408"
-          />
-          <path
-            d="M11.7358 6.74707C5.26497 6.74707 0 11.5248 0 17.3982C0 20.8907 1.88689 24.1606 5.04924 26.1528C5.16481 29.6624 3.98355 32.7929 3.93341 32.925L3.51275 33.9999L12.0606 28.0414C18.3547 27.885 23.4717 23.1157 23.4717 17.3982C23.4711 11.5248 18.2072 6.74707 11.7358 6.74707Z"
-            fill="#000408"
-          />
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.23-1.31C8.66 21.45 10.28 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.52 0-2.96-.4-4.22-1.12l-.3-.18-3.13.78.83-3.05-.2-.32C4.33 14.88 4 13.48 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4-9h-8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1zm-2 4h-6c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z" />
         </svg>
       </button>
       <app-chat *ngIf="isChatOpen"></app-chat>
@@ -57,6 +49,7 @@
 </div>
 
 <app-user-manual></app-user-manual>
+<app-loader></app-loader>
 
 <!-- Redesigned Premium PWA Install Floating Card -->
 <div

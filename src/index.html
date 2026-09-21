@@ -6,28 +6,20 @@
   <title>Spin Hub</title>
   <base href="/" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover" />
-  <link rel="icon" type="image/png" sizes="32x32"
-    href="https://spinhub-6rb.pages.dev/assets/logo.png?v=1" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="shortcut icon" type="image/png" href="/logo.png" />
+  <link rel="apple-touch-icon" href="/logo.png" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" type="image/png" sizes="16x16"
-    href="https://spinhub-6rb.pages.dev/assets/logo.png?v=1" />
-  <link rel="apple-touch-icon" sizes="180x180" href="https://spinhub-6rb.pages.dev/assets/logo.png?v=1" />
-  <link rel="shortcut icon" href="https://spinhub-6rb.pages.dev/assets/logo.png?v=1" />
-  <link rel="icon" href="https://spinhub-6rb.pages.dev/assets/logo.png?v=1" />
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
 
   <script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
-
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Spin Hub" />
-  <link rel="apple-touch-icon" href="https://spinhub-6rb.pages.dev/assets/logo.png?v=1" />
 
-  <!-- <script type="text/javascript" src="https://js.authorize.net/v3/Accept.js" charset="utf-8"></script> -->
-  <!-- <script type="text/javascript" src="https://js.authorize.net/v1/Accept.js"></script> -->
   <script type="text/javascript" src="https://jstest.authorize.net/v1/Accept.js"></script>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZ82X0Q91D"></script>
@@ -55,7 +47,6 @@
   </script>
   <!-- End Meta Pixel Code -->
 
-
   <script>
     function googleTranslateElementInit() {
       new google.translate.TranslateElement(
@@ -68,46 +59,40 @@
     }
   </script>
 
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    style="display:none;"></script>
-
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" style="display:none;"></script>
 </head>
 
 <body>
   <!-- Meta Pixel Noscript -->
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1530255482066084&ev=PageView&noscript=1"
-  /></noscript>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1530255482066084&ev=PageView&noscript=1" />
+  </noscript>
+
   <app-root></app-root>
   <div id="google_translate_element" style="display:none;"></div>
-</body>
 
-<script>
-  window.__pwaInstallPrompt = null;
-  window.addEventListener("beforeinstallprompt", function (e) {
-    e.preventDefault();
-    window.__pwaInstallPrompt = e;
-    console.log("✅ PWA prompt captured early in index.html");
-  });
-
-  // Register service worker for PWA
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-      navigator.serviceWorker
-        .register("/service-worker.js")
-        .then(function (registration) {
-          console.log("✅ SW registered:", registration.scope);
-        })
-        .catch(function (err) {
-          console.log("❌ SW registration failed:", err);
-        });
+  <script>
+    window.__pwaInstallPrompt = null;
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      window.__pwaInstallPrompt = e;
+      console.log("[PWA] prompt captured early in index.html");
     });
-  }
-</script>
-</head>
 
-<body>
-  <app-root></app-root>
+    // Register service worker for PWA
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(function (registration) {
+            console.log("[SW] registered:", registration.scope);
+          })
+          .catch(function (err) {
+            console.log("[SW] registration failed:", err);
+          });
+      });
+    }
+  </script>
 </body>
 
 </html>

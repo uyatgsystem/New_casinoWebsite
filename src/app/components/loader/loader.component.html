@@ -1,75 +1,72 @@
-<ngx-spinner
-  bdColor="rgba(8, 12, 16, 0.95)"
-  [fullScreen]="true"
->
-  <div class="casino-loader-chassis">
-    <!-- Ambient Holographic Glow Behind Chip -->
-    <div class="loader-ambient-glow" aria-hidden="true"></div>
+<div *ngIf="isLoading" class="spinhub-prime-loader-overlay">
+  <div class="spinhub-prime-loader">
+    <!-- Ambient Holographic Glow Aura -->
+    <div class="ambient-glow" aria-hidden="true"></div>
 
-    <!-- 3D Luxury Casino Chip & Roulette Mechanism -->
-    <div class="casino-chip-stage">
-      <!-- Orbiting Glowing Roulette Ball -->
-      <div class="roulette-ball-track" aria-hidden="true">
-        <div class="roulette-ball"></div>
+    <!-- Center Stage with Cybernetic Rings & Roulette Ball -->
+    <div class="loader-stage">
+      <!-- Outer Hexagon Matrix Shield -->
+      <div class="ring hex-ring" aria-hidden="true"></div>
+
+      <!-- Orbiting Lasers Track -->
+      <div class="orbit-track track-1" aria-hidden="true">
+        <div class="orbit-comet comet-emerald"></div>
+      </div>
+      <div class="orbit-track track-2" aria-hidden="true">
+        <div class="orbit-comet comet-cyan"></div>
+      </div>
+      <div class="orbit-track track-3" aria-hidden="true">
+        <div class="orbit-comet comet-gold"></div>
       </div>
 
-      <!-- Outer Laser-Notched Neon Ring -->
-      <div class="chip-ring chip-ring--outer" aria-hidden="true"></div>
-
-      <!-- Rotating Golden Card Suit Ring -->
-      <div class="chip-ring chip-ring--suits" aria-hidden="true">
-        <span class="suit suit-spade">♠</span>
-        <span class="suit suit-heart">♥</span>
-        <span class="suit suit-diamond">♦</span>
-        <span class="suit suit-club">♣</span>
-        <span class="suit suit-spade">♠</span>
-        <span class="suit suit-heart">♥</span>
-        <span class="suit suit-diamond">♦</span>
-        <span class="suit suit-club">♣</span>
+      <!-- Rotating Card Suits Halo -->
+      <div class="suits-halo" aria-hidden="true">
+        <span class="suit spade">♠</span>
+        <span class="suit heart">♥</span>
+        <span class="suit diamond">♦</span>
+        <span class="suit club">♣</span>
+        <span class="suit spade">♠</span>
+        <span class="suit heart">♥</span>
+        <span class="suit diamond">♦</span>
+        <span class="suit club">♣</span>
       </div>
 
-      <!-- Beveled Gold Marquee Ring with Inset LEDs -->
-      <div class="chip-ring chip-ring--bezel" aria-hidden="true">
-        <div class="bezel-led led-1"></div>
-        <div class="bezel-led led-2"></div>
-        <div class="bezel-led led-3"></div>
-        <div class="bezel-led led-4"></div>
-        <div class="bezel-led led-5"></div>
-        <div class="bezel-led led-6"></div>
-      </div>
-
-      <!-- Center Floating VIP Token -->
-      <div class="chip-core">
-        <div class="core-radial-glow"></div>
-        <div class="core-emblem">
+      <!-- Core Crystal Token -->
+      <div class="core-token">
+        <div class="core-radar-sweep"></div>
+        <div class="core-logo-wrap">
           <img
-            src="https://spinhub-6rb.pages.dev/assets/logo.png"
+            src="/logo.png"
             alt="Spin Hub"
-            class="core-logo"
+            class="brand-logo"
           />
         </div>
-        <div class="core-ring-pulse"></div>
+        <div class="core-pulse-beacon"></div>
       </div>
     </div>
 
-    <!-- Telemetry HUD & Animated Status -->
-    <div class="loader-hud">
-      <!-- Live Status Pill -->
-      <div class="hud-status-pill">
-        <span class="status-ping"></span>
-        <span class="status-text">{{ statusMessage }}</span>
+    <!-- HUD Telemetry Panel -->
+    <div class="telemetry-hud">
+      <!-- Status Badge with Live Ping -->
+      <div class="hud-status-badge">
+        <span class="live-ping"></span>
+        <span class="hud-status-text">{{ statusMessage }}</span>
       </div>
 
-      <!-- High-Tech Neon Shimmer Progress Bar -->
-      <div class="hud-progress-track">
-        <div class="hud-progress-bar"></div>
+      <!-- Futuristic Cyber Segmented Progress -->
+      <div class="cyber-meter">
+        <div
+          *ngFor="let s of segments; let i = index"
+          class="meter-cell"
+          [class.cell-active]="i <= activeSegment"
+        ></div>
       </div>
 
-      <!-- Security Guarantee -->
+      <!-- Security Certification Bar -->
       <div class="hud-security-tag">
-        <i class="fa fa-shield-halved"></i>
-        <span>256-BIT PROVABLY FAIR MATRIX</span>
+        <i class="fa fa-shield"></i>
+        <span>256-BIT SSL · PROVABLY FAIR VERIFIED</span>
       </div>
     </div>
   </div>
-</ngx-spinner>
+</div>

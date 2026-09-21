@@ -4,7 +4,7 @@
 }
 
 .header-panel {
-  background: #292d2e;
+  background: #1e2224;
   border-bottom: 1px solid rgba(44, 217, 125, 0.5);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
 }
@@ -25,13 +25,43 @@
   overflow: hidden;
   white-space: nowrap;
   position: relative;
-  background: #292d2e;
+  background: #1e2224;
   color: white;
 }
 
 .scroll-content {
   padding-left: 100%;
   animation: scroll 25s linear infinite;
+}
+
+.header-nav-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(44, 217, 125, 0.1);
+    border-color: rgba(44, 217, 125, 0.4);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  &.active-nav-chip {
+    background: rgba(44, 217, 125, 0.15);
+    border-color: #2CD97D;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(44, 217, 125, 0.25);
+  }
 }
 
 .wallet-balance-control,
@@ -42,13 +72,13 @@
 
 .wallet-balance-control:hover,
 .deposit-control:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .deposit-control {
-  background: rgb(44, 217, 125) !important;
+  background: #2CD97D !important;
   color: #050811 !important;
-  border: 1.5px solid rgb(44, 217, 125) !important;
+  border: 1px solid #2CD97D !important;
   box-shadow: 0 0 15px rgba(44, 217, 125, 0.4) !important;
 
   * {
@@ -56,10 +86,10 @@
   }
 
   &:hover {
-    background: #28c772 !important;
-    border-color: #28c772 !important;
+    background: #34e889 !important;
+    border-color: #34e889 !important;
     color: #050811 !important;
-    box-shadow: 0 0 25px rgba(44, 217, 125, 0.7) !important;
+    box-shadow: 0 0 22px rgba(44, 217, 125, 0.7) !important;
   }
 }
 

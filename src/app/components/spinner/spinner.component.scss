@@ -151,10 +151,15 @@
   &__side {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
+
+    &--left {
+      padding-left: 8px;
+    }
   }
 
   &__title {
+    margin-left: 4px;
     h1 {
       color: #ffffff;
       font-size: 14px;
@@ -763,8 +768,8 @@
 .cw-console {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 14px;
+  gap: 14px;
+  margin-top: 36px;
   width: 100%;
 }
 

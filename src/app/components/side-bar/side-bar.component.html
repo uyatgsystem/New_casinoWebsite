@@ -14,7 +14,7 @@
     <!-- Mobile User Hologram Badge -->
     <div class="block lg:hidden w-full">
       <div
-        class="flex items-center gap-3 p-3 rounded-2xl bg-black/90 border border-[#2CD97D]/50 shadow-[0_0_15px_rgba(44,217,125,0.2)]"
+        class="flex items-center gap-3 p-3 rounded-2xl bg-[#1e2325] border border-[#2CD97D]/50 shadow-[0_0_15px_rgba(44,217,125,0.2)]"
       >
         <div class="relative flex-shrink-0">
           <img
@@ -45,7 +45,7 @@
 
     <!-- 2. Neon Referral Command Card -->
     <div
-      class="relative w-full bg-gradient-to-b from-black/90 to-neutral-950 p-3.5 rounded-2xl border border-[rgba(44,217,125,0.35)] shadow-[0_4px_20px_rgba(0,0,0,0.8)] group hover:border-[#2CD97D] transition"
+      class="relative w-full bg-[#1e2325] p-3.5 rounded-2xl border border-[rgba(44,217,125,0.35)] shadow-[0_4px_20px_rgba(0,0,0,0.5)] group hover:border-[#2CD97D] transition"
     >
       <div class="flex items-center justify-between mb-1.5">
         <span
@@ -56,7 +56,7 @@
       </div>
       <div class="flex items-center justify-between gap-2">
         <span
-          class="text-white text-xs font-mono font-black truncate bg-black/80 px-2 py-1 rounded-lg border border-[rgba(44,217,125,0.2)] flex-1"
+          class="text-white text-xs font-mono font-black truncate bg-[#161a1b] px-2 py-1 rounded-lg border border-[rgba(44,217,125,0.2)] flex-1"
           >{{ referralCode }}</span
         >
         <div class="relative">
@@ -101,7 +101,9 @@
         (click)="closeSidebarMobile()"
         class="cyber-nav-node"
       >
-        <div class="node-icon"><img src="/home.png" alt="" /></div>
+        <div class="node-icon">
+          <fa-icon [icon]="faHouse" class="text-[#2CD97D] text-sm"></fa-icon>
+        </div>
         <div class="node-text">
           <span class="title">Home Hub</span>
           <span class="sub">Dashboard Portal</span>
@@ -115,10 +117,7 @@
         class="cyber-nav-node"
       >
         <div class="node-icon">
-          <img
-            src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Wallet.png"
-            alt=""
-          />
+          <fa-icon [icon]="faWallet" class="text-[#2CD97D] text-sm"></fa-icon>
         </div>
         <div class="node-text">
           <span class="title">Vault & Wallet</span>
@@ -133,10 +132,7 @@
         class="cyber-nav-node"
       >
         <div class="node-icon">
-          <img
-            src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/GameAccount.png"
-            alt=""
-          />
+          <fa-icon [icon]="faGamepad" class="text-[#06B6D4] text-sm"></fa-icon>
         </div>
         <div class="node-text">
           <span class="title">Game Account</span>
@@ -151,10 +147,7 @@
         class="cyber-nav-node"
       >
         <div class="node-icon">
-          <img
-            src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/spin.png"
-            alt=""
-          />
+          <fa-icon [icon]="faArrowsRotate" class="text-[#FF9F1C] text-sm"></fa-icon>
         </div>
         <div class="node-text">
           <span class="title">Lucky Spin</span>
@@ -169,7 +162,7 @@
         class="cyber-nav-node"
       >
         <div class="node-icon">
-          <img src="/GoldLevel.png" class="h-4 w-4 object-contain" alt="" />
+          <fa-icon [icon]="faTrophy" class="text-[#FFD700] text-sm"></fa-icon>
         </div>
         <div class="node-text">
           <span class="title">VIP Levels</span>
@@ -184,10 +177,7 @@
         class="cyber-nav-node"
       >
         <div class="node-icon">
-          <img
-            src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Redeem.png"
-            alt=""
-          />
+          <fa-icon [icon]="faBookOpen" class="text-[#A855F7] text-sm"></fa-icon>
         </div>
         <div class="node-text">
           <span class="title">User Guide</span>
@@ -201,11 +191,7 @@
         class="cyber-nav-node"
       >
         <div class="node-icon">
-          <img
-            src="https://cmaxv2images2.pages.dev/assets/icons/sidebar/Lotteries.png"
-            class="h-4 object-contain"
-            alt=""
-          />
+          <fa-icon [icon]="faFileContract" class="text-[#94a3b8] text-sm"></fa-icon>
         </div>
         <div class="node-text">
           <span class="title">Terms & Conditions</span>
@@ -221,11 +207,7 @@
         <div
           class="node-icon bg-red-500/15 border-red-500/40 shadow-[0_0_10px_rgba(239,68,68,0.2)]"
         >
-          <img
-            src="https://cmax.pages.dev/assets/icons/sidebar-icons/logout.png"
-            class="h-4 object-contain"
-            alt=""
-          />
+          <fa-icon [icon]="faPowerOff" class="text-red-400 text-sm"></fa-icon>
         </div>
         <div class="node-text">
           <span class="title text-red-400">Disconnect</span>

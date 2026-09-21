@@ -7,12 +7,12 @@
   <!-- Logo (Left) -->
   <div class="flex items-center gap-2 select-none shrink-0 z-10">
     <img
-      src="https://spinhub-6rb.pages.dev/assets/logo.png"
+      src="/logo.png"
       alt="Spin Hub"
       class="block lg:hidden h-12 sm:h-14 w-auto object-contain drop-shadow-[0_0_12px_rgba(44,217,125,0.4)]"
     />
     <img
-      src="https://spinhub-6rb.pages.dev/assets/DestopLogo.png"
+      src="/logo.png"
       alt="Spin Hub"
       class="hidden lg:block h-9 w-auto object-contain drop-shadow-[0_0_15px_rgba(44,217,125,0.4)]"
     />
@@ -146,7 +146,7 @@
       class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161d27] border border-[#2CD97D]/40 text-[#2CD97D] text-[11px] font-mono font-black tracking-widest uppercase shadow-[0_0_20px_rgba(44,217,125,0.25)] mb-3"
     >
       <span class="w-2.5 h-2.5 rounded-full bg-[#2CD97D] animate-ping"></span>
-      <span>⚡ VIP FORTUNE WHEEL • 100% PROVABLY FAIR</span>
+      <span class="flex items-center gap-1.5"><i class="fa fa-bolt"></i> VIP FORTUNE WHEEL • 100% PROVABLY FAIR</span>
     </div>
     <h2
       class="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight"
@@ -243,9 +243,9 @@
       </span>
     </div>
     <span
-      class="text-[11px] font-mono text-[#2CD97D] font-bold uppercase tracking-wider"
+      class="text-[11px] font-mono text-[#2CD97D] font-bold uppercase tracking-wider flex items-center gap-1"
     >
-      ⚡ 500+ TITLES LIVE
+      <i class="fa fa-bolt"></i> 500+ TITLES LIVE
     </span>
   </div>
   <div class="game-marquee-viewport">
@@ -407,7 +407,7 @@
   <!-- Minimized Floating Pill Button -->
   <button
     (click)="RedirectToSignUp()"
-    class="flex items-center gap-2.5 px-3.5 py-2 bg-[#090d0f]/90 backdrop-blur-xl border border-[#2CD97D]/50 rounded-full shadow-[0_4px_20px_rgba(44,217,125,0.3)] active:scale-95 transition-all"
+    class="flex items-center gap-2.5 px-3.5 py-2 bg-[#090d0f]/90 backdrop-blur-xl border border-[#2CD97D]/50 rounded-full shadow-[0_4px_20px_rgba(44,217,125,0.3)] active:scale-95 transition-all cursor-pointer"
   >
     <!-- Glowing Status Indicator -->
     <span class="relative flex h-2 w-2">
@@ -428,16 +428,16 @@
     <span
       class="w-5 h-5 rounded-full bg-[#2CD97D] text-[#050811] flex items-center justify-center text-[10px] font-bold"
     >
-      ➔
+      <i class="fa fa-arrow-right"></i>
     </span>
   </button>
 
   <!-- Close Button -->
   <button
     (click)="closePopup()"
-    class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#1b2225] border border-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-[8px]"
+    class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#1b2225] border border-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-[8px] cursor-pointer"
   >
-    ✕
+    <i class="fa fa-times text-[8px]"></i>
   </button>
 </div>
 
