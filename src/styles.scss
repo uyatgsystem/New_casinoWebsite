@@ -853,4 +853,261 @@ button.active:not(.side-btn) {
   visibility: hidden !important;
 }
 
+/* ==========================================================================
+   CROWNSPIN LUXURY SWEETALERT2 POPUP THEME
+   ========================================================================== */
+.swal2-container {
+  z-index: 999999 !important;
+  background-color: rgba(8, 11, 13, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.swal2-popup {
+  font-family: inherit !important;
+  background: linear-gradient(165deg, #292d2e 0%, #232626 50%, #191c1d 100%) !important;
+  border: 1.5px solid rgba(44, 217, 125, 0.35) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(44, 217, 125, 0.18) !important;
+  padding: 28px 24px 24px !important;
+  width: min(420px, calc(100vw - 32px)) !important;
+  color: #ffffff !important;
+  overflow: hidden !important;
+  position: relative !important;
+
+  &::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, transparent, #2CD97D, transparent) !important;
+    pointer-events: none !important;
+  }
+}
+
+.swal2-title {
+  font-family: inherit !important;
+  font-size: 1.25rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  margin: 0 0 10px !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+}
+
+.swal2-html-container,
+.swal2-content {
+  font-family: inherit !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  color: #cbd5e1 !important;
+  line-height: 1.55 !important;
+  margin: 0 0 18px !important;
+}
+
+/* Icons */
+.swal2-icon {
+  width: 68px !important;
+  height: 68px !important;
+  margin: 0 auto 16px !important;
+  border-radius: 22px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  /* Error Icon */
+  &.swal2-error {
+    border: 2px solid rgba(239, 68, 68, 0.6) !important;
+    background: rgba(239, 68, 68, 0.12) !important;
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.35) !important;
+    color: #ef4444 !important;
+
+    [class^="swal2-x-mark-line"] {
+      background-color: #ef4444 !important;
+      border-radius: 4px !important;
+      height: 3px !important;
+      top: 31px !important;
+      width: 32px !important;
+    }
+
+    .swal2-x-mark-line-left {
+      left: 16px !important;
+      transform: rotate(45deg) !important;
+    }
+
+    .swal2-x-mark-line-right {
+      right: 16px !important;
+      transform: rotate(-45deg) !important;
+    }
+
+    .swal2-x-mark {
+      position: relative !important;
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+    }
+  }
+
+  /* Warning Icon */
+  &.swal2-warning {
+    border: 2px solid rgba(255, 159, 28, 0.6) !important;
+    background: rgba(255, 159, 28, 0.12) !important;
+    box-shadow: 0 0 25px rgba(255, 159, 28, 0.35) !important;
+    color: #FF9F1C !important;
+    font-size: 32px !important;
+    font-weight: 900 !important;
+    line-height: 60px !important;
+
+    .swal2-icon-content {
+      color: #FF9F1C !important;
+      font-family: inherit !important;
+      font-weight: 900 !important;
+    }
+  }
+
+  /* Success Icon */
+  &.swal2-success {
+    border: 2px solid rgba(44, 217, 125, 0.7) !important;
+    background: rgba(44, 217, 125, 0.14) !important;
+    box-shadow: 0 0 30px rgba(44, 217, 125, 0.45) !important;
+    color: #2CD97D !important;
+
+    .swal2-success-ring {
+      display: none !important;
+    }
+
+    .swal2-success-line-tip {
+      background-color: #2CD97D !important;
+      border-radius: 4px !important;
+      top: 34px !important;
+      left: 12px !important;
+      width: 18px !important;
+      height: 3px !important;
+    }
+
+    .swal2-success-line-long {
+      background-color: #2CD97D !important;
+      border-radius: 4px !important;
+      top: 28px !important;
+      right: 10px !important;
+      width: 32px !important;
+      height: 3px !important;
+    }
+
+    .swal2-success-circular-line-left,
+    .swal2-success-circular-line-right,
+    .swal2-success-fix {
+      display: none !important;
+    }
+
+    .swal2-icon-content {
+      color: #2CD97D !important;
+    }
+  }
+
+  /* Info & Question */
+  &.swal2-info,
+  &.swal2-question {
+    border: 2px solid rgba(6, 182, 212, 0.6) !important;
+    background: rgba(6, 182, 212, 0.12) !important;
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.35) !important;
+    color: #06B6D4 !important;
+
+    .swal2-icon-content {
+      color: #06B6D4 !important;
+      font-family: inherit !important;
+      font-weight: 900 !important;
+    }
+  }
+}
+
+/* Actions & Buttons */
+.swal2-actions {
+  margin: 18px 0 0 !important;
+  width: 100% !important;
+  gap: 10px !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.swal2-confirm {
+  flex: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 46px !important;
+  background: linear-gradient(135deg, #2CD97D 0%, #00F5D4 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 14px !important;
+  color: #050811 !important;
+  font-weight: 950 !important;
+  font-size: 0.88rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 4px 18px rgba(44, 217, 125, 0.45) !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+  &:hover {
+    background: #34e889 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 25px rgba(44, 217, 125, 0.7) !important;
+  }
+
+  &:active {
+    transform: scale(0.97) !important;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(44, 217, 125, 0.5) !important;
+  }
+}
+
+.swal2-cancel {
+  flex: 1 !important;
+  height: 46px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 14px !important;
+  color: #94a3b8 !important;
+  font-weight: 800 !important;
+  font-size: 0.88rem !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+  }
+}
+
+.swal2-close {
+  color: #94a3b8 !important;
+  font-size: 1.5rem !important;
+  transition: color 0.2s ease !important;
+  top: 14px !important;
+  right: 14px !important;
+
+  &:hover {
+    color: #ef4444 !important;
+  }
+}
+
+.swal2-timer-progress-bar {
+  background: rgba(44, 217, 125, 0.2) !important;
+  height: 3px !important;
+}
+
+.swal2-timer-progress-filled {
+  background: linear-gradient(90deg, #2CD97D, #00F5D4) !important;
+  height: 100% !important;
+  border-radius: 999px !important;
+}
+
 
