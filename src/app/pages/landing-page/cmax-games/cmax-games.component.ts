@@ -59,6 +59,12 @@ export class CmaxGamesComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  isCompactQuickLogo(gameName: string): boolean {
+    if (!gameName) return false;
+    const lower = gameName.toLowerCase().trim();
+    return ['roulette', 'baccarat', 'keno', 'spin'].includes(lower);
+  }
+
   onPlayGame(game: any): void {
     // Check if token exists
     if (isPlatformBrowser(this.platformId)) {

@@ -1,72 +1,60 @@
-<div *ngIf="isLoading" class="spinhub-prime-loader-overlay">
-  <div class="spinhub-prime-loader">
-    <!-- Ambient Holographic Glow Aura -->
-    <div class="ambient-glow" aria-hidden="true"></div>
+<div *ngIf="isLoading" class="spinhub-luxury-loader-overlay">
+  <!-- Subtle Ambient Glows -->
+  <div class="luxury-ambient-emerald" aria-hidden="true"></div>
+  <div class="luxury-ambient-gold" aria-hidden="true"></div>
 
-    <!-- Center Stage with Cybernetic Rings & Roulette Ball -->
-    <div class="loader-stage">
-      <!-- Outer Hexagon Matrix Shield -->
-      <div class="ring hex-ring" aria-hidden="true"></div>
+  <div class="luxury-loader-content">
+    <!-- 3D VIP Casino Chip Stage -->
+    <div class="chip-stage-3d">
+      <!-- Ambient Orbit Rings -->
+      <div class="orbital-ring ring-outer" aria-hidden="true"></div>
+      <div class="orbital-ring ring-inner" aria-hidden="true"></div>
 
-      <!-- Orbiting Lasers Track -->
-      <div class="orbit-track track-1" aria-hidden="true">
-        <div class="orbit-comet comet-emerald"></div>
-      </div>
-      <div class="orbit-track track-2" aria-hidden="true">
-        <div class="orbit-comet comet-cyan"></div>
-      </div>
-      <div class="orbit-track track-3" aria-hidden="true">
-        <div class="orbit-comet comet-gold"></div>
-      </div>
-
-      <!-- Rotating Card Suits Halo -->
-      <div class="suits-halo" aria-hidden="true">
-        <span class="suit spade">♠</span>
-        <span class="suit heart">♥</span>
-        <span class="suit diamond">♦</span>
-        <span class="suit club">♣</span>
-        <span class="suit spade">♠</span>
-        <span class="suit heart">♥</span>
-        <span class="suit diamond">♦</span>
-        <span class="suit club">♣</span>
+      <!-- Floating Suits -->
+      <div class="floating-suits" aria-hidden="true">
+        <span class="suit suit-spade">♠</span>
+        <span class="suit suit-heart">♥</span>
+        <span class="suit suit-diamond">♦</span>
+        <span class="suit suit-club">♣</span>
       </div>
 
-      <!-- Core Crystal Token -->
-      <div class="core-token">
-        <div class="core-radar-sweep"></div>
-        <div class="core-logo-wrap">
-          <img
-            src="/logo.png"
-            alt="Spin Hub"
-            class="brand-logo"
-          />
+      <!-- 3D Spinning Golden Casino Chip -->
+      <div class="vip-3d-chip">
+        <div class="chip-face chip-front">
+          <div class="chip-outer-rim">
+            <div class="rim-teeth"></div>
+          </div>
+          <div class="chip-inner-core">
+            <div class="sheen-sweep"></div>
+            <img
+              src="/logo.png"
+              alt="Spin Hub"
+              class="chip-brand-logo"
+            />
+          </div>
         </div>
-        <div class="core-pulse-beacon"></div>
       </div>
     </div>
 
-    <!-- HUD Telemetry Panel -->
-    <div class="telemetry-hud">
-      <!-- Status Badge with Live Ping -->
-      <div class="hud-status-badge">
-        <span class="live-ping"></span>
-        <span class="hud-status-text">{{ statusMessage }}</span>
+    <!-- Luxury Typography & Progress -->
+    <div class="loader-info">
+      <div class="brand-title">
+        <span class="brand-name">SPIN<span class="text-emerald">HUB</span></span>
+        <span class="vip-badge">VIP</span>
       </div>
 
-      <!-- Futuristic Cyber Segmented Progress -->
-      <div class="cyber-meter">
-        <div
-          *ngFor="let s of segments; let i = index"
-          class="meter-cell"
-          [class.cell-active]="i <= activeSegment"
-        ></div>
+      <div class="loading-status-text">
+        <span>{{ statusMessage }}</span>
+        <span class="loading-dots">
+          <span>.</span><span>.</span><span>.</span>
+        </span>
       </div>
 
-      <!-- Security Certification Bar -->
-      <div class="hud-security-tag">
-        <i class="fa fa-shield"></i>
-        <span>256-BIT SSL · PROVABLY FAIR VERIFIED</span>
+      <!-- Sleek Neon Shimmer Progress Bar -->
+      <div class="sleek-progress-track">
+        <div class="sleek-progress-bar"></div>
       </div>
     </div>
   </div>
 </div>
+

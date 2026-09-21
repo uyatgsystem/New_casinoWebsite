@@ -15,22 +15,17 @@ export class LoaderComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   private sub?: Subscription;
 
-  private readonly statusMessages: string[] = [
-    'CONNECTING SECURE PROTOCOLS...',
-    'SYNCING VIP REWARDS MATRIX...',
-    'AUTHENTICATING HIGH-ROLLER LEDGER...',
-    'VERIFYING PROVABLY FAIR VAULT...',
-    'INITIALIZING CASINO ENGINE...'
+  readonly statusMessages: string[] = [
+    'Loading VIP Experience',
+    'Preparing Provably Fair Games',
+    'Syncing Live Jackpots',
+    'Securing Player Session',
+    'Welcome to SpinHub'
   ];
 
   currentMessageIndex: number = 0;
   statusMessage: string = this.statusMessages[0];
-
-  segments: number[] = Array.from({ length: 14 }, (_, i) => i);
-  activeSegment: number = 0;
-
   private messageTimer?: ReturnType<typeof setInterval>;
-  private meterTimer?: ReturnType<typeof setInterval>;
 
   constructor(private loaderService: LoaderService) {}
 
@@ -43,15 +38,10 @@ export class LoaderComponent implements OnInit, OnDestroy {
       this.currentMessageIndex = (this.currentMessageIndex + 1) % this.statusMessages.length;
       this.statusMessage = this.statusMessages[this.currentMessageIndex];
     }, 1800);
-
-    this.meterTimer = setInterval(() => {
-      this.activeSegment = (this.activeSegment + 1) % this.segments.length;
-    }, 120);
   }
 
   ngOnDestroy() {
     if (this.sub) this.sub.unsubscribe();
     if (this.messageTimer) clearInterval(this.messageTimer);
-    if (this.meterTimer) clearInterval(this.meterTimer);
   }
 }

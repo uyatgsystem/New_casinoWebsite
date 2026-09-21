@@ -1,6 +1,8 @@
 .contact-section {
   position: relative;
-  background: #050811;
+  background:
+    linear-gradient(180deg, rgba(5, 8, 17, 0.78), rgba(5, 8, 17, 0.84)),
+    url('/contact-us.png') center center / cover no-repeat;
   overflow: hidden;
 }
 

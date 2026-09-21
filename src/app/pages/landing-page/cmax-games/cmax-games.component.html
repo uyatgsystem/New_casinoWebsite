@@ -157,6 +157,7 @@
               [src]="game.image || game.coverImage"
               [alt]="game.name"
               class="clean-game-artwork"
+              [class.compact-logo]="isCompactQuickLogo(game.name)"
             />
           </div>
 

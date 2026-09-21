@@ -1,5 +1,4 @@
 // Metallic foil texture for the scratch surface — deliberately NOT button-like
-// (no solid fill / shadow), so it reads as a scratchable panel, not a tappable button.
 .scratch-foil-surface {
   background:
     repeating-linear-gradient(
@@ -12,58 +11,52 @@
     linear-gradient(135deg, #d4d4d8 0%, #a1a1aa 50%, #d4d4d8 100%);
 }
 
-/* Cyberpunk Corner Brackets */
-.corner-bracket {
+// -------------------------------------------------------------
+// Luxury VIP Scratch Ticket Rig & Notches
+// -------------------------------------------------------------
+.luxury-scratch-rig {
+  position: relative;
+  background: linear-gradient(180deg, #22282c 0%, #1a1f23 50%, #121619 100%);
+}
+
+.ticket-notch-left,
+.ticket-notch-right {
   position: absolute;
-  width: 14px;
-  height: 14px;
-  pointer-events: none;
-  z-index: 15;
+  top: 50%;
+  width: 16px;
+  height: 28px;
+  background: #121619;
+  transform: translateY(-50%);
+  z-index: 20;
 }
 
-.corner-tl {
-  top: 8px;
-  left: 8px;
-  border-top: 2px solid #2CD97D;
-  border-left: 2px solid #2CD97D;
-  border-top-left-radius: 8px;
+.ticket-notch-left {
+  left: -9px;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  border-right: 1.5px solid rgba(44, 217, 125, 0.45);
 }
 
-.corner-tr {
-  top: 8px;
-  right: 8px;
-  border-top: 2px solid #2CD97D;
-  border-right: 2px solid #2CD97D;
-  border-top-right-radius: 8px;
-}
-
-.corner-bl {
-  bottom: 8px;
-  left: 8px;
-  border-bottom: 2px solid #2CD97D;
-  border-left: 2px solid #2CD97D;
-  border-bottom-left-radius: 8px;
-}
-
-.corner-br {
-  bottom: 8px;
-  right: 8px;
-  border-bottom: 2px solid #2CD97D;
-  border-right: 2px solid #2CD97D;
-  border-bottom-right-radius: 8px;
+.ticket-notch-right {
+  right: -9px;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+  border-left: 1.5px solid rgba(44, 217, 125, 0.45);
 }
 
 @keyframes scratchNowPulse {
   0%, 100% {
     box-shadow: 0 0 25px rgba(44, 217, 125, 0.5);
+    transform: scale(1);
   }
   50% {
     box-shadow: 0 0 45px rgba(44, 217, 125, 0.85);
+    transform: scale(1.015);
   }
 }
 
 .scratch-now-btn {
-  animation: scratchNowPulse 1.8s ease-in-out infinite;
+  animation: scratchNowPulse 2s ease-in-out infinite;
 }
 
 .gold-rain-particle {

@@ -117,7 +117,7 @@ export class GamesLandingComponent {
     {
       id: 7,
       name: 'Roulette',
-      image: 'Roulette1.png',
+      image: 'shape1.png',
       redirectLink: '/dashboard/Roulette',
       bgColor: '#d97706',
       titleColor: '#ffffff',
@@ -157,7 +157,7 @@ export class GamesLandingComponent {
     {
       id: 8,
       name: 'Mines',
-      image: 'https://spinhub-6rb.pages.dev/assets/mines.png',
+      image: 'Mines1.png',
       redirectLink: '/dashboard/Mines',
       bgColor: '#16a34a',
       titleColor: '#ffffff',
@@ -165,7 +165,7 @@ export class GamesLandingComponent {
     {
       id: 11,
       name: 'Keno',
-      image: 'https://spinhub-6rb.pages.dev/assets/Keno.png',
+      image: 'Keno1.png',
       redirectLink: '/dashboard/Keno',
       bgColor: '#2563eb',
       titleColor: '#ffffff',
@@ -173,7 +173,7 @@ export class GamesLandingComponent {
     {
       id: 1,
       name: 'Spin',
-      image: 'https://spinhub-6rb.pages.dev/assets/Spin.png',
+      image: 'Spin1.png',
       redirectLink: '/dashboard/spinner',
       bgColor: '#d97706',
       titleColor: '#ffffff',
@@ -211,6 +211,12 @@ export class GamesLandingComponent {
 
     this.checkCurrentRoute();
     this.filterGames = [...this.allGames];
+  }
+
+  isCompactQuickLogo(gameName: string): boolean {
+    if (!gameName) return false;
+    const lower = gameName.toLowerCase().trim();
+    return ['roulette', 'baccarat', 'keno', 'spin'].includes(lower);
   }
 
   AddCaptchaPlayerModal: boolean = false;

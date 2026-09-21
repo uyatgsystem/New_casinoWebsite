@@ -165,6 +165,7 @@
             [src]="game.image"
             [alt]="game.name"
             class="clean-game-artwork quick-game-artwork"
+            [class.compact-logo]="isCompactQuickLogo(game.name)"
           />
         </div>
 
@@ -202,7 +203,7 @@
   </div>
 
   <div
-    class="rounded-3xl bg-[#292d2e]/60 border border-[#2CD97D]/30 shadow-xl backdrop-blur-sm p-4"
+    class="rounded-3xl bg-[#1e2326]/80 border border-[#2CD97D]/30 shadow-[0_15px_45px_rgba(0,0,0,0.7)] backdrop-blur-md p-4 sm:p-6"
   >
     <app-sectrech-card-list
       id="scratchScrollSection"
@@ -212,10 +213,12 @@
 
     <div class="flex justify-center mt-6 mb-2 w-full col-span-full">
       <button
+        type="button"
         (click)="toggleShowAllScratch()"
-        class="px-8 py-2.5 bg-[linear-gradient(135deg,#2CD97D_0%,#06B6D4_50%,#FF9F1C_100%)] text-slate-950 font-black uppercase text-xs sm:text-sm tracking-wider rounded-xl shadow-[0_4px_15px_rgba(44,217,125,0.3)] hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer"
+        class="inline-flex items-center gap-2.5 px-8 py-3 bg-[#2CD97D] text-[#050811] font-black uppercase text-xs sm:text-sm tracking-widest rounded-xl shadow-[0_0_25px_rgba(44,217,125,0.45)] hover:bg-[#34e286] hover:shadow-[0_0_35px_rgba(44,217,125,0.7)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer border border-[#2CD97D]"
       >
-        Show All
+        <span>SHOW ALL SCRATCH CARDS</span>
+        <i class="fa fa-arrow-right text-xs"></i>
       </button>
     </div>
   </div>

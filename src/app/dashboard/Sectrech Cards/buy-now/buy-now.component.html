@@ -1,66 +1,65 @@
 <app-loader></app-loader>
 
-<div class="min-h-[90vh] flex flex-col items-center relative overflow-hidden bg-[#232626] px-4 md:px-8 py-6 pb-28 md:pb-6">
+<div class="min-h-[90vh] flex flex-col items-center relative overflow-hidden bg-[#121619] px-4 md:px-8 py-6 pb-28 md:pb-6">
   
-  <!-- Ambient Backlight Glow -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#2CD97D]/12 to-[#06B6D4]/5 blur-[160px] pointer-events-none rounded-full"></div>
+  <!-- Ambient Backlight Glows -->
+  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-[#2CD97D]/18 via-[#06B6D4]/10 to-yellow-400/5 blur-[170px] pointer-events-none rounded-full"></div>
 
   <!-- Top Navigation Header -->
-  <div class="relative mb-6 pb-3 w-full z-10 border-b border-[#2CD97D]/25">
+  <div class="relative mb-6 pb-3.5 w-full z-10 border-b border-[#2CD97D]/25 max-w-4xl mx-auto">
     <div class="flex items-center justify-between">
-      <div class="flex items-center gap-2.5 cursor-pointer group" (click)="back()">
-        <div class="w-9 h-9 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:bg-[#2CD97D]/15 transition">
+      <div class="flex items-center gap-3 cursor-pointer group" (click)="back()">
+        <div class="w-10 h-10 rounded-2xl bg-[#1a2024] border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:bg-[#2CD97D] group-hover:text-[#050811] transition shadow-[0_0_15px_rgba(44,217,125,0.2)]">
           <fa-icon class="w-4 h-4 inline" [icon]="leftArrow"></fa-icon>
         </div>
-        <img src="https://cmaxv2images2.pages.dev/assets/icons/scratch-card-icon.svg" class="w-5 h-5 hidden md:inline" alt="scratch" />
+        <img src="https://cmaxv2images2.pages.dev/assets/icons/scratch-card-icon.svg" class="w-6 h-6 hidden md:inline" alt="scratch" />
         <div>
-          <span class="text-[9px] font-mono text-[#2CD97D] font-bold tracking-widest block uppercase">DECRYPTION FACILITY</span>
-          <span class="text-white font-black uppercase tracking-wider text-sm">Quantum Laser Breaching Rig</span>
+          <span class="text-[9px] font-mono text-[#2CD97D] font-black tracking-widest block uppercase">VIP SCRATCH ARENA</span>
+          <span class="text-white font-black uppercase tracking-wide text-sm sm:text-base">Instant Cash Prize Reveal</span>
         </div>
       </div>
       <button (click)="showGuide()"
-        class="hidden md:inline-block bg-[#2CD97D] text-[#050811] font-black px-6 py-2 rounded-xl shadow-[0_0_15px_rgba(44,217,125,0.4)] hover:bg-[#39e68b] transition text-xs uppercase tracking-wider cursor-pointer">
+        class="hidden md:inline-block bg-[#2CD97D] text-[#050811] font-black px-6 py-2.5 rounded-xl shadow-[0_0_20px_rgba(44,217,125,0.45)] hover:bg-[#34e286] transition text-xs uppercase tracking-wider cursor-pointer border border-[#2CD97D]">
         How To Play
       </button>
     </div>
   </div>
 
   <!-- Main Rig Container -->
-  <div class="min-h-[65vh] flex items-center justify-center relative z-10 w-full max-w-2xl my-auto">
+  <div class="min-h-[65vh] flex items-center justify-center relative z-10 w-full max-w-xl my-auto">
     <div class="relative w-full mx-auto">
       
-      <!-- Quantum Cyber Vault Chassis -->
-      <div class="relative w-full p-4 sm:p-6 lg:p-8 bg-[#292d2e] rounded-[28px] sm:rounded-[36px] border border-[#2CD97D]/45 shadow-[0_30px_70px_rgba(0,0,0,0.95)] overflow-hidden backdrop-blur-2xl">
+      <!-- Luxury VIP Scratch Ticket Chassis -->
+      <div class="luxury-scratch-rig relative w-full p-5 sm:p-7 bg-gradient-to-b from-[#22282c] via-[#1a1f23] to-[#121619] rounded-[32px] border-2 border-[#2CD97D]/40 shadow-[0_30px_80px_rgba(0,0,0,0.95)] overflow-hidden backdrop-blur-2xl">
         
-        <!-- Cyber Corner Brackets -->
-        <div class="corner-bracket corner-tl"></div>
-        <div class="corner-bracket corner-tr"></div>
-        <div class="corner-bracket corner-bl"></div>
-        <div class="corner-bracket corner-br"></div>
+        <!-- Authentic Ticket Notches -->
+        <span class="ticket-notch-left"></span>
+        <span class="ticket-notch-right"></span>
 
         <!-- Grain Texture Overlay -->
-        <div class="absolute inset-0 pointer-events-none opacity-25" [innerHTML]="grainBackdrop"></div>
+        <div class="absolute inset-0 pointer-events-none opacity-20" [innerHTML]="grainBackdrop"></div>
         
         <!-- Ambient Internal Glow -->
-        <div class="absolute -right-12 -top-12 w-48 h-48 bg-[#2CD97D]/15 blur-[60px] rounded-full pointer-events-none"></div>
+        <div class="absolute -right-12 -top-12 w-56 h-56 bg-[#2CD97D]/20 blur-[70px] rounded-full pointer-events-none"></div>
+        <div class="absolute -left-12 -bottom-12 w-56 h-56 bg-[#06B6D4]/15 blur-[70px] rounded-full pointer-events-none"></div>
 
         <!-- Inner Content Body -->
-        <div class="relative z-10 flex flex-col items-center text-center space-y-3 sm:space-y-6">
+        <div class="relative z-10 flex flex-col items-center text-center space-y-4 sm:space-y-6">
           
-          <!-- Top Row: Node Telemetry & Max Payout -->
-          <div class="w-full flex items-center justify-between border-b border-[#2CD97D]/20 pb-2 sm:pb-4">
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-2xl bg-[#2CD97D]/12 border border-[#2CD97D]/40 flex items-center justify-center relative shadow-[0_0_15px_rgba(44,217,125,0.3)]">
-                <img [src]="cardData?.icon" alt="Game Icon" class="w-6 h-6 object-contain drop-shadow" />
-                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#2CD97D] border-2 border-[#292d2e] animate-pulse"></span>
+          <!-- Top Row: Ticket Telemetry & Max Payout -->
+          <div class="w-full flex items-center justify-between border-b border-[#2CD97D]/20 pb-3 sm:pb-4">
+            <div class="flex items-center gap-3 text-left">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#2CD97D]/20 to-[#06B6D4]/10 border border-[#2CD97D]/50 flex items-center justify-center relative shadow-[0_0_15px_rgba(44,217,125,0.3)] shrink-0">
+                <img [src]="cardData?.icon" alt="Game Icon" class="w-7 h-7 object-contain drop-shadow" />
+                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#2CD97D] border-2 border-[#1a1f23] animate-pulse"></span>
               </div>
-              <div class="text-left">
+              <div>
                 <div class="flex items-center gap-2">
-                  <span class="text-[9px] font-mono font-black text-[#2CD97D] tracking-widest px-1.5 py-0.5 rounded bg-[#2CD97D]/15 border border-[#2CD97D]/30">
-                    {{ cardData?.node || 'NODE ACTIVE' }}
+                  <span class="text-[9px] font-mono font-black text-[#2CD97D] tracking-widest px-2 py-0.5 rounded bg-[#2CD97D]/15 border border-[#2CD97D]/35">
+                    {{ cardData?.node || 'NODE 01' }}
                   </span>
-                  <span class="text-[9px] font-mono text-gray-400">
-                    {{ cardData?.securityLevel || 'LVL 1 FIREWALL' }}
+                  <span class="text-[9px] font-mono text-gray-400 font-bold">
+                    PROVABLY FAIR
                   </span>
                 </div>
                 <h2 class="text-lg lg:text-2xl font-black text-white tracking-wide uppercase mt-0.5">
@@ -69,55 +68,55 @@
               </div>
             </div>
 
-            <div class="text-right">
-              <span class="text-[9px] text-gray-400 font-extrabold uppercase tracking-widest block mb-0.5">MAX REWARD</span>
-              <p class="text-2xl lg:text-3xl font-black font-mono text-[#2CD97D] drop-shadow-[0_0_16px_rgba(44,217,125,0.4)] leading-none">
-                {{ cardData.winning }}
+            <div class="text-right shrink-0">
+              <span class="text-[9px] text-gray-400 font-extrabold uppercase tracking-widest block mb-0.5">MAX WIN</span>
+              <p class="text-2xl sm:text-3xl font-black font-mono text-[#2CD97D] drop-shadow-[0_0_16px_rgba(44,217,125,0.5)] leading-none">
+                {{ cardData?.winning }}
               </p>
             </div>
           </div>
 
           <!-- Middle Section: Treasure Chest Accent & Chamber Telemetry -->
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-2 sm:gap-4 w-full py-1 sm:py-2">
-            <div class="md:col-span-5 flex justify-center relative">
-              <div class="absolute inset-0 bg-[#2CD97D]/20 blur-2xl rounded-full"></div>
+          <div class="grid grid-cols-1 sm:grid-cols-12 items-center gap-3 sm:gap-4 w-full py-1">
+            <div class="sm:col-span-4 flex justify-center relative">
+              <div class="absolute inset-0 bg-[#2CD97D]/25 blur-2xl rounded-full"></div>
               <img src="https://cmaxv2images2.pages.dev/assets/icons/treasure.png" alt="Treasure"
-                class="w-16 sm:w-[130px] lg:w-[145px] h-auto relative z-10 drop-shadow-[0_12px_24px_rgba(0,0,0,0.9)] hover:scale-105 transition duration-300" />
+                class="w-20 sm:w-[115px] lg:w-[130px] h-auto relative z-10 drop-shadow-[0_12px_24px_rgba(0,0,0,0.9)] hover:scale-105 transition duration-300" />
             </div>
 
-            <div class="md:col-span-7 text-center md:text-left space-y-1 sm:space-y-2">
-              <div class="flex items-center justify-center md:justify-start gap-2">
-                <span class="text-xs text-[#2CD97D] font-extrabold uppercase tracking-wider font-mono">⚡ 256-BIT QUANTUM SHIELD</span>
+            <div class="sm:col-span-8 text-center sm:text-left space-y-1.5">
+              <div class="flex items-center justify-center sm:justify-start gap-2">
+                <span class="text-xs text-[#2CD97D] font-black uppercase tracking-wider font-mono">⚡ 100% INSTANT CASHOUT</span>
               </div>
               <p class="text-xs text-gray-300 leading-relaxed font-medium">
-                Carve through the cryptographic firewall using your laser cursor or initiate an automated sweep below to extract your encrypted bounty instantly!
+                Rub the metallic foil with your finger/mouse or click the instant reveal button below to claim your jackpot reward!
               </p>
-              <div class="flex items-center justify-center md:justify-start gap-3 pt-1 text-[10px] font-mono text-gray-400">
+              <div class="flex items-center justify-center sm:justify-start gap-3 pt-1 text-[10px] font-mono text-gray-400">
                 <span>ODDS: <strong class="text-white">{{ cardData?.odds || '1 in 3.1' }}</strong></span>
                 <span>•</span>
-                <span class="text-[#2CD97D] font-bold">VERIFIED FAIR SEED</span>
+                <span class="text-yellow-400 font-bold">FEE: ${{ cardData?.ticketprice || 5 }}</span>
               </div>
             </div>
           </div>
 
-          <!-- Scratch Chamber / Laser Pad -->
-          <div class="w-full pt-1 sm:pt-2">
-            <div class="bg-[#1c1e1e] border-2 border-dashed border-[#2CD97D]/45 rounded-2xl p-2.5 relative">
+          <!-- Scratch Chamber / Foil Laser Pad -->
+          <div class="w-full pt-1">
+            <div class="bg-[#101416] border-2 border-dashed border-[#2CD97D]/50 rounded-2xl p-2.5 relative shadow-inner">
               <div #scratchArea
-                class="scratch-foil-surface relative rounded-xl shadow-inner h-14 sm:h-[4.5rem] w-full flex items-center justify-center cursor-default overflow-hidden">
+                class="scratch-foil-surface relative rounded-xl shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)] h-16 sm:h-[5rem] w-full flex items-center justify-center cursor-default overflow-hidden">
 
                 <!-- Scratch Canvas (Bottom layer - z-10) -->
-                <canvas *ngIf="!playScratching" #canvas width="380" height="60"
-                  class="absolute inset-0 w-full h-full rounded-xl z-10" (mousedown)="startScratching($event)"
+                <canvas *ngIf="!playScratching" #canvas width="380" height="80"
+                  class="absolute inset-0 w-full h-full rounded-xl z-10 cursor-pointer" (mousedown)="startScratching($event)"
                   (mousemove)="scratch($event)" (mouseup)="stopScratching()" (mouseleave)="stopScratching()"
                   (touchstart)="startScratching($event)" (touchmove)="scratch($event)" (touchend)="stopScratching()">
                 </canvas>
 
-                <!-- Default Text (Middle layer - z-15) -->
-                <div *ngIf="!isRevealed" class="relative z-[15] flex flex-col items-center gap-0.5">
-                  <span class="text-[9px] sm:text-[10px] font-bold text-gray-800/90 tracking-[0.2em] uppercase font-mono">👆 CARVE LASER TO DECRYPT</span>
-                  <p class="text-xs sm:text-base lg:text-lg text-center font-black text-gray-950 tracking-wider uppercase drop-shadow-sm font-mono">
-                    {{ cardData?.scratchText || 'OVERRIDE PROTOCOL' }}
+                <!-- Default Foil Text (Middle layer - z-15) -->
+                <div *ngIf="!isRevealed" class="relative z-[15] flex flex-col items-center gap-0.5 pointer-events-none select-none">
+                  <span class="text-[9px] sm:text-[10px] font-black text-gray-800 tracking-[0.2em] uppercase font-mono">✨ RUB FOIL OR TAP REVEAL ✨</span>
+                  <p class="text-xs sm:text-base font-black text-gray-950 tracking-wider uppercase drop-shadow-sm font-mono">
+                    {{ cardData?.scratchText || '⚡ SCRATCH TO WIN' }}
                   </p>
                 </div>
 
@@ -129,20 +128,21 @@
 
                 <!-- Prize Text (Top layer - z-30) -->
                 <span *ngIf="isRevealed"
-                  class="absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl font-black text-[#2CD97D] z-30 font-mono tracking-wider drop-shadow-[0_0_20px_rgba(44,217,125,0.6)]">
+                  class="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl font-black text-[#2CD97D] z-30 font-mono tracking-wider drop-shadow-[0_0_25px_rgba(44,217,125,0.7)] animate-bounce">
                   {{ revealedPrize | currency: "USD" }}
                 </span>
               </div>
             </div>
           </div>
 
-          <!-- Action Button: High-Contrast Solid #2CD97D -->
-          <div class="w-full flex justify-center pt-1 sm:pt-2">
+          <!-- Action Button: High-Contrast Solid Emerald -->
+          <div class="w-full flex justify-center pt-1">
             <button (click)="BuyAndOpenScratchTicket(null, true)"
-              class="scratch-now-btn w-full py-3.5 sm:py-4 rounded-2xl bg-[#2CD97D] text-[#050811] font-black text-sm uppercase tracking-[0.15em] shadow-[0_0_25px_rgba(44,217,125,0.5)] hover:bg-[#39e68b] active:scale-[0.98] transition cursor-pointer flex items-center justify-center gap-2">
-              <span *ngIf="isScratching">⚡ OVERRIDING FIREWALL...</span>
-              <span *ngIf="!isScratching && !isRevealed">⚡ INITIATE LASER BREACH • ${{ cardData?.ticketprice || 5 }}</span>
-              <span *ngIf="!isScratching && isRevealed">⚡ DECRYPT AGAIN • ${{ cardData?.ticketprice || 5 }}</span>
+              class="scratch-now-btn w-full py-4 rounded-2xl bg-[#2CD97D] text-[#050811] font-black text-sm uppercase tracking-[0.15em] shadow-[0_0_30px_rgba(44,217,125,0.55)] hover:bg-[#34e286] active:scale-[0.98] transition cursor-pointer flex items-center justify-center gap-2 border border-[#2CD97D]">
+              <i class="fa fa-bolt"></i>
+              <span *ngIf="isScratching">⚡ REVEALING PRIZE...</span>
+              <span *ngIf="!isScratching && !isRevealed">INSTANT SCRATCH • ${{ cardData?.ticketprice || 5 }}</span>
+              <span *ngIf="!isScratching && isRevealed">PLAY AGAIN • ${{ cardData?.ticketprice || 5 }}</span>
             </button>
           </div>
 
@@ -166,17 +166,11 @@
     <div class="absolute w-[500px] h-[500px] bg-gradient-to-r from-[#2CD97D]/30 to-[#4EFAAA]/30 rounded-full blur-[80px] animate-ping opacity-75"></div>
   </div>
 
-  <!-- Success / Breach Modal -->
+  <!-- Success / Win Modal -->
   <div *ngIf="showSuccessModal || showCongrats" class="fixed inset-0 z-50 flex items-center justify-center p-4">
     <div class="absolute inset-0 bg-black/85 backdrop-blur-md" (click)="closeModal(); closeSuccessModal()" aria-hidden="true"></div>
-    <div class="relative bg-[#292d2e] border-2 border-[#2CD97D]/50 rounded-[28px] p-7 w-[90vw] max-w-md shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-center overflow-hidden z-10">
+    <div class="relative bg-gradient-to-b from-[#22282c] via-[#1a1f23] to-[#121619] border-2 border-[#2CD97D]/60 rounded-[32px] p-7 w-[90vw] max-w-md shadow-[0_30px_70px_rgba(0,0,0,0.95)] text-center overflow-hidden z-10">
       
-      <!-- Corner Accents -->
-      <div class="corner-bracket corner-tl"></div>
-      <div class="corner-bracket corner-tr"></div>
-      <div class="corner-bracket corner-bl"></div>
-      <div class="corner-bracket corner-br"></div>
-
       <div class="absolute inset-0 pointer-events-none opacity-20" [innerHTML]="grainBackdrop"></div>
 
       <button class="absolute top-4 right-4 text-gray-400 hover:text-white w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center transition cursor-pointer z-10"
@@ -184,34 +178,34 @@
         &times;
       </button>
 
-      <div class="mx-auto mb-4 h-14 w-14 rounded-2xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 shadow-[0_0_20px_rgba(44,217,125,0.4)] flex items-center justify-center relative z-10">
-        <svg viewBox="0 0 24 24" class="h-7 w-7 text-[#2CD97D]" fill="none" stroke="currentColor" stroke-width="2.5">
+      <div class="mx-auto mb-4 h-16 w-16 rounded-2xl bg-gradient-to-br from-[#2CD97D]/25 to-[#06B6D4]/10 border border-[#2CD97D]/50 shadow-[0_0_25px_rgba(44,217,125,0.5)] flex items-center justify-center relative z-10">
+        <svg viewBox="0 0 24 24" class="h-8 w-8 text-[#2CD97D]" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M20 6L9 17l-5-5"></path>
         </svg>
       </div>
 
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2CD97D]/15 border border-[#2CD97D]/40 text-[#2CD97D] text-[10px] font-mono font-bold tracking-wider uppercase mb-2">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2CD97D]/15 border border-[#2CD97D]/40 text-[#2CD97D] text-[10px] font-mono font-black tracking-wider uppercase mb-2">
         <span class="w-1.5 h-1.5 rounded-full bg-[#2CD97D] animate-ping"></span>
-        NODE COMPROMISED
+        WINNER REVEALED
       </div>
 
-      <h3 class="text-white text-xl font-black uppercase tracking-wider mb-2 relative z-10">
-        🎉 Extraction Successful!
+      <h3 class="text-white text-2xl font-black uppercase tracking-wider mb-2 relative z-10">
+        🎉 Congratulations!
       </h3>
       <p class="text-gray-300 text-xs leading-relaxed mb-6 relative z-10 font-medium">
-        You’ve just extracted
-        <span class="font-black font-mono text-[#2CD97D] text-lg">${{ revealedPrize }}</span>
-        from this quantum vault! <br />
-        Reward has been added to your live operative balance.
+        You won
+        <span class="font-black font-mono text-[#2CD97D] text-2xl ml-1 drop-shadow-[0_0_12px_rgba(44,217,125,0.6)]">${{ revealedPrize }}</span>
+        cash from this scratch ticket! <br />
+        Amount has been credited directly to your balance.
       </p>
 
       <div class="flex items-center justify-center gap-2 relative z-10">
-        <button class="w-full py-3.5 rounded-2xl bg-[#2CD97D] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.4)] hover:bg-[#39e68b] transition cursor-pointer" 
+        <button class="w-full py-4 rounded-2xl bg-[#2CD97D] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.5)] hover:bg-[#34e286] transition cursor-pointer border border-[#2CD97D]" 
           (click)="redirectToCards()">
-          Decrypt More Nodes!
+          Scratch More Cards!
         </button>
       </div>
     </div>
   </div>
 
-</div>
+</div>
