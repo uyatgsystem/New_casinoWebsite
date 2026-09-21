@@ -2,8 +2,17 @@
   position: relative;
   background:
     linear-gradient(180deg, rgba(5, 8, 17, 0.78), rgba(5, 8, 17, 0.84)),
-    url('/contact-us.png') center center / cover no-repeat;
+    url('/contact-us.png') center center / 100% 100% no-repeat,
+    #050811;
   overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .contact-section {
+    background-position: center center;
+    background-size: cover;
+    min-height: 760px;
+  }
 }
 
 .contact-glow {
