@@ -7,8 +7,8 @@
   --chat-line-active: rgba(44, 217, 125, 0.7);
   --chat-emerald: #2CD97D;
   --chat-emerald-glow: rgba(44, 217, 125, 0.45);
-  --chat-gold: #FFD700;
-  --chat-cyan: #06B6D4;
+  --chat-emerald-deep: #159957;
+  --chat-emerald-soft: #8af0b6;
   --chat-muted: #94a3b8;
   display: block;
 }
@@ -97,7 +97,7 @@
   height: 44px;
   flex: 0 0 44px;
   place-items: center;
-  background: linear-gradient(135deg, #2CD97D 0%, #06B6D4 100%);
+  background: linear-gradient(135deg, #2CD97D 0%, #159957 100%);
   border-radius: 14px;
   border: 1.5px solid rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 18px rgba(44, 217, 125, 0.55);
@@ -328,7 +328,7 @@
     height: 72px;
     place-items: center;
     margin-bottom: 1.2rem;
-    background: linear-gradient(135deg, #2CD97D 0%, #06B6D4 100%);
+    background: linear-gradient(135deg, #2CD97D 0%, #159957 100%);
     border: 2px solid #ffffff;
     border-radius: 22px;
     box-shadow: 0 12px 35px rgba(44, 217, 125, 0.4);
@@ -446,7 +446,7 @@
 
 .outgoing-bubble {
   color: #050811;
-  background: linear-gradient(135deg, #2CD97D 0%, #00F5D4 60%, #FFD700 100%);
+  background: linear-gradient(135deg, #2CD97D 0%, #159957 100%);
   font-weight: 700;
   border-bottom-right-radius: 4px;
   box-shadow: 0 6px 24px rgba(44, 217, 125, 0.35);
@@ -601,7 +601,7 @@
   font-weight: 950;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background: linear-gradient(135deg, #2CD97D 0%, #00F5D4 100%);
+  background: linear-gradient(135deg, #2CD97D 0%, #159957 100%);
   border: none;
   border-radius: 12px;
   cursor: pointer;

@@ -44,10 +44,10 @@
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2CD97D 0%, #00F5D4 60%, #FFD700 100%);
-  border: 2px solid #ffffff;
+  background: linear-gradient(135deg, #2CD97D 0%, #159957 100%);
+  border: 2px solid rgba(138, 240, 182, 0.9);
   color: #050811;
-  box-shadow: 0 8px 24px rgba(44, 217, 125, 0.45);
+  box-shadow: 0 8px 24px rgba(44, 217, 125, 0.45), 0 0 0 4px rgba(44, 217, 125, 0.08);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -72,13 +72,13 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: #FF9F1C;
+  background: #2CD97D;
   color: #050811;
   font-size: 0.68rem;
   font-weight: 900;
   font-family: monospace;
   border: 2px solid #141718;
-  box-shadow: 0 0 10px rgba(255, 159, 28, 0.6);
+  box-shadow: 0 0 10px rgba(44, 217, 125, 0.65);
 }
 
 .download-btn {
