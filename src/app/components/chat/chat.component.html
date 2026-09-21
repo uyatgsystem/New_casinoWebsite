@@ -3,28 +3,35 @@
     <div class="backdrop-image" [innerHTML]="backdropImage"></div>
     <div class="chat-ambient-glow" aria-hidden="true"></div>
 
-    <!-- Header Bar -->
+    <!-- Ultra-Sleek Top Header -->
     <header class="chat-header">
       <div class="support-identity">
-        <div class="support-avatar" aria-hidden="true">
-          <span class="avatar-text">VIP</span>
-          <i class="online-indicator"></i>
+        <div class="support-avatar-wrap">
+          <div class="support-avatar" aria-hidden="true">
+            <svg class="w-5 h-5 text-[#050811]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/>
+            </svg>
+            <i class="online-indicator"></i>
+          </div>
         </div>
         <div class="support-meta">
           <div class="flex items-center gap-1.5">
-            <span class="eyebrow">24/7 VIP CONCIERGE</span>
+            <span class="eyebrow">VIP 24/7 CONCIERGE</span>
+            <span class="verified-badge" title="Verified Support Specialist">
+              <i class="fa fa-check text-[7px]"></i>
+            </span>
           </div>
-          <h1 class="support-title">Live Player Support</h1>
+          <h1 class="support-title">Live Player Desk</h1>
           <p class="availability">
             <span class="status-pulse"></span>
-            <span>Online • Instant Response</span>
+            <span>Agent Active &bull; &lt; 1m response</span>
           </p>
         </div>
       </div>
 
       <div class="header-actions">
         <span class="secure-label font-mono">
-          <i class="fa fa-shield-alt text-[#2CD97D]"></i> ENCRYPTED
+          <i class="fa fa-shield-alt text-[#2CD97D]"></i> SSL 256
         </span>
         <button
           type="button"
@@ -47,21 +54,26 @@
       </div>
     </header>
 
-    <!-- Intro Quick Banner -->
-    <div class="chat-intro">
-      <div class="intro-icon">
-        <fa-icon [icon]="PaperPlane"></fa-icon>
-      </div>
-      <div class="intro-text">
-        <strong>How can we assist you today?</strong>
-        <span>Deposit questions, game support, or balance verification.</span>
+    <!-- Quick Help Suggestions Ribbon -->
+    <div class="chat-topics-ribbon">
+      <div class="topics-track custom-scrollbar">
+        <button
+          *ngFor="let topic of quickTopics"
+          type="button"
+          class="topic-chip"
+          (click)="selectQuickTopic(topic.text)"
+          [title]="topic.text"
+        >
+          <span class="topic-icon">{{ topic.icon }}</span>
+          <span>{{ topic.label }}</span>
+        </button>
       </div>
     </div>
 
     <!-- Loading State -->
     <div *ngIf="loading" class="loader" role="status">
       <div class="spinner"></div>
-      <span class="font-mono text-xs text-[#2CD97D]">Loading conversation history...</span>
+      <span class="font-mono text-xs text-[#2CD97D]">Synchronizing secure chat...</span>
     </div>
 
     <!-- Messages Stage -->
@@ -78,15 +90,34 @@
       <div *ngIf="!messages || messages.length === 0" class="welcome-screen">
         <div class="welcome-art">
           <div class="art-glow"></div>
-          <span class="bubble-dot b1"></span>
-          <span class="bubble-dot b2"></span>
-          <span class="bubble-dot b3"></span>
-          <fa-icon [icon]="PaperPlane" class="art-icon"></fa-icon>
+          <div class="art-ring"></div>
+          <svg class="art-icon w-8 h-8 text-[#050811]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.1-1.32C8.5 21.49 10.2 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+          </svg>
         </div>
-        <h2>Live Concierge Desk</h2>
+        <h2>Welcome to Live Support</h2>
         <p>
-          Need help with games, transactions, or account verification? Our team is available 24/7 to assist.
+          Need assistance with deposits, game rules, VIP rewards, or cashouts? Our dedicated concierge is ready to assist you right now.
         </p>
+        <div class="welcome-quick-grid">
+          <button
+            *ngFor="let topic of quickTopics"
+            type="button"
+            class="welcome-topic-card"
+            (click)="selectQuickTopic(topic.text)"
+          >
+            <span class="text-base">{{ topic.icon }}</span>
+            <span class="font-bold text-xs">{{ topic.label }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Date / Encryption Anchor (when messages exist) -->
+      <div *ngIf="messages && messages.length > 0" class="chat-date-separator">
+        <span class="date-chip">
+          <i class="fa fa-lock text-[#2CD97D] text-[9px] mr-1"></i>
+          END-TO-END ENCRYPTED CONVERSATION
+        </span>
       </div>
 
       <!-- Message History Loop -->
@@ -123,7 +154,7 @@
                 (click)="openImageModal(message.ImageUrl)"
               />
             </div>
-            <p>{{ message?.Message }}</p>
+            <p *ngIf="message?.Message">{{ message?.Message }}</p>
             <span class="message-status" aria-label="Message status">
               <fa-icon
                 *ngIf="message.IsDelivered && message.IsSeen"
@@ -155,8 +186,8 @@
           class="message-group"
         >
           <div class="message-meta">
-            <span class="sender-name flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#2CD97D]"></span>
+            <span class="sender-name flex items-center gap-1.5 text-white font-bold">
+              <span class="w-2 h-2 rounded-full bg-[#2CD97D] shadow-[0_0_6px_#2CD97D]"></span>
               Support Team
             </span>
             <time class="font-mono">{{ message.Time | date: "hh:mm a" }}</time>
@@ -169,14 +200,14 @@
                 (click)="openImageModal(message.ImageUrl)"
               />
             </div>
-            <p>{{ message?.Message }}</p>
+            <p *ngIf="message?.Message">{{ message?.Message }}</p>
           </div>
         </div>
 
         <!-- Session Ended -->
         <div *ngIf="message.MessageType == 'UnEngaged'" class="session-ended">
           <span class="divider-line"></span>
-          <p class="session-ended-text">Chat session ended</p>
+          <p class="session-ended-text">Support Session Ended</p>
           <span class="divider-line"></span>
         </div>
       </div>
@@ -212,7 +243,7 @@
         <a
           *ngIf="selectedImageUrl"
           [href]="selectedImageUrl"
-          download="image.jpg"
+          download="attachment.jpg"
           class="download-button"
           aria-label="Download image"
           title="Download full image"
@@ -227,7 +258,7 @@
       <div *ngIf="showOptionsMenu" class="options-menu">
         <button type="button" (click)="triggerFileInput(fileInput)">
           <span class="option-icon"><fa-icon [icon]="Plus"></fa-icon></span>
-          <span><strong>Upload Photo</strong><small>Send screenshot or ID</small></span>
+          <span><strong>Upload Screenshot / ID</strong><small>JPG, PNG supported</small></span>
         </button>
       </div>
 
@@ -256,7 +287,7 @@
           (paste)="onPaste($event)"
           (keydown)="onTextareaKeydown($event)"
           (input)="adjustHeight($event)"
-          placeholder="Type your message here..."
+          placeholder="Type your message..."
           rows="1"
           aria-label="Message"
         ></textarea>
@@ -264,6 +295,7 @@
           type="button"
           class="send-button"
           (click)="sendMessage($event)"
+          [disabled]="(!newMessage || !newMessage.trim()) && !imageURL && !base64"
           aria-label="Send message"
           title="Send message"
         >
@@ -274,7 +306,7 @@
 
       <div class="composer-hint">
         <span>Press <b>Enter</b> to send</span>
-        <span class="dot-sep">•</span>
+        <span class="dot-sep">&bull;</span>
         <span><b>Shift + Enter</b> for new line</span>
       </div>
     </div>

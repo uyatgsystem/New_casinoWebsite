@@ -1,6 +1,6 @@
 <header
   *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()"
-  class="sticky z-[997] w-full top-0 h-[60px] sm:h-[64px] bg-[#1e2224]/95 backdrop-blur-2xl border-b border-[#2CD97D]/40 shadow-[0_4px_25px_rgba(0,0,0,0.9)] px-3 flex items-center justify-between"
+  class="sticky z-[997] w-full top-0 h-[64px] sm:h-[68px] bg-[#1e2224]/95 backdrop-blur-2xl border-b border-[#2CD97D]/40 shadow-[0_4px_25px_rgba(0,0,0,0.9)] px-3 flex items-center justify-between"
 >
   <div
     class="absolute inset-0 pointer-events-none opacity-10"
@@ -13,7 +13,7 @@
       <img
         src="/logo.png"
         alt="Spin Hub"
-        class="h-9 sm:h-10 w-auto object-contain drop-shadow-[0_0_15px_rgba(44,217,125,0.6)]"
+        class="h-11 sm:h-12 w-auto max-h-[50px] object-contain drop-shadow-[0_0_15px_rgba(44,217,125,0.6)]"
       />
     </a>
   </div>
@@ -90,7 +90,7 @@
 <!-- ================= DESKTOP HEADER (>= 800px) ================= -->
 <header
   *ngIf="!isScreenWidthLessThan800() && !isTreasurePickRoute()"
-  class="sticky z-[9999] w-full top-0 h-[72px] xl:h-[76px] flex items-center px-3 sm:px-5 lg:px-8 pointer-events-none"
+  class="sticky z-[9999] w-full top-0 h-[78px] xl:h-[84px] flex items-center px-3 sm:px-5 lg:px-8 pointer-events-none"
 >
   <div
     *ngIf="isDashboardRoute()"
@@ -98,10 +98,10 @@
   >
     <!-- Main Floating Capsule HUD -->
     <div
-      class="relative w-full h-[58px] xl:h-[64px] bg-[#1e2224]/95 backdrop-blur-2xl border border-[#2CD97D]/45 rounded-[20px] shadow-[0_12px_45px_rgba(0,0,0,0.85)] px-3 sm:px-4 xl:px-6 flex items-center justify-between gap-2 xl:gap-4 overflow-visible"
+      class="relative w-full h-[64px] xl:h-[70px] bg-[#1e2224]/95 backdrop-blur-2xl border border-[#2CD97D]/45 rounded-[22px] shadow-[0_12px_45px_rgba(0,0,0,0.85)] px-3 sm:px-4 xl:px-6 flex items-center justify-between gap-2 xl:gap-4 overflow-visible"
     >
       <div
-        class="absolute inset-0 pointer-events-none opacity-10 rounded-[20px]"
+        class="absolute inset-0 pointer-events-none opacity-10 rounded-[22px]"
         [innerHTML]="grainBackdrop"
       ></div>
 
@@ -112,11 +112,11 @@
 
       <!-- Left Side: Brand Logo -->
       <div class="flex items-center gap-3 relative z-20 shrink-0">
-        <a routerLink="/dashboard/home" class="flex items-center group">
+        <a routerLink="/dashboard/home" class="flex items-center group py-0.5">
           <img
             src="/logo.png"
             alt="Spin Hub"
-            class="h-8 sm:h-9 xl:h-10 w-auto max-h-[44px] object-contain drop-shadow-[0_0_15px_rgba(44,217,125,0.6)] group-hover:scale-105 transition duration-300 shrink-0"
+            class="h-11 sm:h-12 xl:h-14 w-auto max-h-[56px] xl:max-h-[62px] object-contain drop-shadow-[0_0_18px_rgba(44,217,125,0.7)] group-hover:scale-105 transition duration-300 shrink-0"
           />
         </a>
       </div>

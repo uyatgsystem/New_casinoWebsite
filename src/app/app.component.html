@@ -16,29 +16,35 @@
       <router-outlet></router-outlet>
     </div>
 
-    <div *ngIf="shouldShowChat()" class="fixed bottom-4 right-4 z-[999]">
-      <button
-        class="floating-chat-trigger hidden md:flex items-center justify-center relative"
-        (click)="toggleChat()"
-        aria-label="Open support chat"
-        title="24/7 VIP Live Support"
-      >
-        <!-- Unread Message Count Badge -->
-        <div
-          *ngIf="unreadCounts > 0"
-          class="chat-unread-badge animate-pulse"
+    <div *ngIf="shouldShowChat()">
+      <div class="fixed bottom-4 right-4 z-[999]">
+        <button
+          class="floating-chat-trigger hidden md:flex items-center justify-center relative"
+          (click)="toggleChat()"
+          aria-label="Open support chat"
+          title="24/7 VIP Live Support"
         >
-          {{ unreadCounts > 99 ? "99+" : unreadCounts }}
-        </div>
+          <!-- Unread Message Count Badge -->
+          <div
+            *ngIf="unreadCounts > 0"
+            class="chat-unread-badge animate-pulse"
+          >
+            {{ unreadCounts > 99 ? "99+" : unreadCounts }}
+          </div>
 
-        <svg
-          class="w-7 h-7 fill-current text-[#050811]"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.23-1.31C8.66 21.45 10.28 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.52 0-2.96-.4-4.22-1.12l-.3-.18-3.13.78.83-3.05-.2-.32C4.33 14.88 4 13.48 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4-9h-8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1zm-2 4h-6c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z" />
-        </svg>
-      </button>
-      <app-chat *ngIf="isChatOpen"></app-chat>
+          <svg
+            class="w-7 h-7 fill-current text-[#050811]"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.23-1.31C8.66 21.45 10.28 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.52 0-2.96-.4-4.22-1.12l-.3-.18-3.13.78.83-3.05-.2-.32C4.33 14.88 4 13.48 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4-9h-8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1zm-2 4h-6c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z" />
+          </svg>
+        </button>
+      </div>
+      <div *ngIf="isChatOpen" class="fixed inset-0 pointer-events-none z-[100001]">
+        <div class="pointer-events-auto">
+          <app-chat></app-chat>
+        </div>
+      </div>
     </div>
   </div>
 

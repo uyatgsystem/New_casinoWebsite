@@ -207,6 +207,17 @@ export class ChatComponent implements OnInit, OnDestroy {
   ////////////// Open Gallery
 
   showOptionsMenu = false;
+  quickTopics = [
+    { label: 'Deposit Help', icon: '💳', text: 'Hello, I have a question regarding my deposit.' },
+    { label: 'Cashout Status', icon: '⚡', text: 'Hi, can you check the status of my withdrawal request?' },
+    { label: 'VIP Bonus', icon: '🎁', text: 'Hi, I would like to inquire about my VIP bonus rewards.' },
+    { label: 'Gameplay', icon: '🎮', text: 'Hello, I need assistance with a game session.' },
+  ];
+
+  selectQuickTopic(text: string): void {
+    this.newMessage = text;
+    this.sendMessage(null);
+  }
 
   toggleOptionsMenu() {
     this.showOptionsMenu = !this.showOptionsMenu;
