@@ -1,27 +1,39 @@
 <div class="cyber-casino-landing text-white py-3 px-2 sm:px-4 md:px-6">
-
   <!-- ================= TOP VIP TELEMETRY & MEGA JACKPOT TICKER ================= -->
-  <div class="jackpot-broadcast-bar mb-4 overflow-hidden rounded-xl sm:rounded-2xl">
-    <div class="broadcast-inner flex flex-wrap items-center justify-between gap-3 px-3.5 py-2.5 sm:px-6 sm:py-3">
-      
+  <div
+    class="jackpot-broadcast-bar mb-4 overflow-hidden rounded-xl sm:rounded-2xl"
+  >
+    <div
+      class="broadcast-inner flex flex-wrap items-center justify-between gap-3 px-3.5 py-2.5 sm:px-6 sm:py-3"
+    >
       <!-- Left: Status & Active Node -->
       <div class="flex items-center gap-2.5">
-        <span class="live-broadcast-pill flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest font-mono">
+        <span
+          class="live-broadcast-pill flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest font-mono"
+        >
           <span class="live-ping-core"></span>
           LIVE ARENA
         </span>
-        <div class="hidden sm:flex items-center gap-2 text-xs text-gray-400 font-mono">
+        <div
+          class="hidden sm:flex items-center gap-2 text-xs text-gray-400 font-mono"
+        >
           <span class="text-[#2CD97D] font-bold">28,490</span>
           <span>PLAYERS ONLINE</span>
         </div>
       </div>
 
       <!-- Center: Global Mega Multiplier Jackpot -->
-      <div class="jackpot-counter-cluster flex items-center gap-2 sm:gap-3 mx-auto lg:mx-0">
-        <span class="jackpot-label text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-gray-400">
+      <div
+        class="jackpot-counter-cluster flex items-center gap-2 sm:gap-3 mx-auto lg:mx-0"
+      >
+        <span
+          class="jackpot-label text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-gray-400"
+        >
           MEGA JACKPOT
         </span>
-        <div class="jackpot-odometer font-black font-mono text-base sm:text-xl lg:text-2xl text-[#2CD97D] drop-shadow-[0_0_12px_rgba(44,217,125,0.6)] flex items-center gap-1">
+        <div
+          class="jackpot-odometer font-black font-mono text-base sm:text-xl lg:text-2xl text-[#2CD97D] drop-shadow-[0_0_12px_rgba(44,217,125,0.6)] flex items-center gap-1"
+        >
           <span class="text-xs sm:text-sm text-gray-400">$</span>
           <span>2,845,920.40</span>
         </div>
@@ -39,15 +51,16 @@
           <span>RTP: <strong>99.8%</strong></span>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ================= HERO ARENA CAROUSEL ================= -->
-  <div *ngIf="heroGames && heroGames.length > 0" class="hero-carousel-wrapper relative mb-4">
+  <div
+    *ngIf="heroGames && heroGames.length > 0"
+    class="hero-carousel-wrapper relative mb-4"
+  >
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let game of heroGames; let i = index">
-
         <div
           class="arena-hero-card relative mx-1 my-1 overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl"
           (click)="playHeroGame(game.redirectLink || game.downloadLink)"
@@ -64,45 +77,66 @@
           <div class="arena-mesh-grid"></div>
 
           <!-- Main Hero Cockpit Layout -->
-          <div class="relative z-10 w-full min-h-[220px] sm:min-h-[280px] md:min-h-[310px] px-4 sm:px-8 md:px-12 py-5 sm:py-8 flex items-center justify-between gap-4">
-            
+          <div
+            class="relative z-10 w-full min-h-[220px] sm:min-h-[280px] md:min-h-[310px] px-4 sm:px-8 md:px-12 py-5 sm:py-8 flex items-center justify-between gap-4"
+          >
             <!-- Left Side: Esports / HUD Cluster -->
-            <div class="flex flex-col justify-center items-start max-w-[65%] sm:max-w-[60%] z-20">
-              
+            <div
+              class="flex flex-col justify-center items-start max-w-[65%] sm:max-w-[60%] z-20"
+            >
               <!-- Cyber Telemetry Ribbon -->
-              <div class="hud-telemetry-ribbon mb-2 sm:mb-3 flex items-center gap-2 flex-wrap">
+              <div
+                class="hud-telemetry-ribbon mb-2 sm:mb-3 flex items-center gap-2 flex-wrap"
+              >
                 <div class="telemetry-item live-pulse">
                   <span class="pulse-beacon"></span>
-                  <span>NODE: ARENA-{{ i + 1 < 10 ? '0' + (i + 1) : (i + 1) }}</span>
+                  <span
+                    >NODE: ARENA-{{ i + 1 < 10 ? "0" + (i + 1) : i + 1 }}</span
+                  >
                 </div>
                 <span class="telemetry-sep text-gray-600">/</span>
                 <div class="telemetry-item max-win">
                   <span class="text-[#2CD97D] font-bold">5,000x</span>
                   <span class="text-gray-400">MAX WIN</span>
                 </div>
-                <span class="telemetry-sep text-gray-600 hidden sm:inline">/</span>
-                <div class="telemetry-item hidden sm:flex items-center gap-1 text-[#2CD97D]">
+                <span class="telemetry-sep text-gray-600 hidden sm:inline"
+                  >/</span
+                >
+                <div
+                  class="telemetry-item hidden sm:flex items-center gap-1 text-[#2CD97D]"
+                >
                   <span>HOT STREAK</span>
                 </div>
               </div>
 
               <!-- Title Cluster -->
               <div class="hud-title-wrapper mb-2">
-                <h1 class="hud-glitch-title font-black uppercase tracking-tight">
+                <h1
+                  class="hud-glitch-title font-black uppercase tracking-tight"
+                >
                   {{ game.name }}
                 </h1>
               </div>
 
               <!-- Badges Strip -->
-              <div class="hud-specs-strip flex items-center gap-2 mb-3 flex-wrap">
+              <div
+                class="hud-specs-strip flex items-center gap-2 mb-3 flex-wrap"
+              >
                 <span class="spec-pill">⚡ Provably Fair</span>
-                <span class="spec-pill hidden sm:inline-flex">💎 Instant Liquidity</span>
-                <span class="spec-pill hidden md:inline-flex">🛡️ 256-Bit SSL</span>
+                <span class="spec-pill hidden sm:inline-flex"
+                  >💎 Instant Liquidity</span
+                >
+                <span class="spec-pill hidden md:inline-flex"
+                  >🛡️ 256-Bit SSL</span
+                >
               </div>
 
               <!-- Description -->
-              <p class="hud-clean-desc text-xs sm:text-sm text-gray-300 mb-4 max-w-lg hidden sm:block leading-relaxed">
-                High-frequency multiplier engine with verified provably fair RNG and lightning-fast instant liquidity settlement.
+              <p
+                class="hud-clean-desc text-xs sm:text-sm text-gray-300 mb-4 max-w-lg hidden sm:block leading-relaxed"
+              >
+                High-frequency multiplier engine with verified provably fair RNG
+                and lightning-fast instant liquidity settlement.
               </p>
 
               <!-- Unified Cyber Dock Controller -->
@@ -110,26 +144,33 @@
                 <button
                   type="button"
                   class="dock-play-trigger"
-                  (click)="$event.stopPropagation(); playHeroGame(game.redirectLink || game.downloadLink)"
+                  (click)="
+                    $event.stopPropagation();
+                    playHeroGame(game.redirectLink || game.downloadLink)
+                  "
                 >
                   <span class="dock-play-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
                   </span>
                   <span class="dock-play-label">LAUNCH ARENA</span>
                 </button>
 
-                <div class="dock-telemetry hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 font-mono text-xs">
+                <div
+                  class="dock-telemetry hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 font-mono text-xs"
+                >
                   <div class="live-dot-ping"></div>
                   <span class="dock-count font-bold text-[#2CD97D]">15.4K</span>
                   <span class="dock-status text-gray-400">IN GAME</span>
                 </div>
               </div>
-
             </div>
 
             <!-- Right Side: 3D Visual Spotlight Stage -->
-            <div class="arena-visual-stage flex-1 flex items-center justify-center relative">
-              
+            <div
+              class="arena-visual-stage flex-1 flex items-center justify-center relative"
+            >
               <!-- Neon Spotlight Disk behind Game -->
               <div class="arena-spotlight"></div>
               <div class="arena-radial-ring"></div>
@@ -141,119 +182,279 @@
                 [alt]="game.name"
                 class="arena-game-art"
                 [class.arena-game-art--zoom]="game.iconZoom"
-                (error)="game.image='https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'"
+                (error)="
+                  game.image =
+                    'https://cmaxnewimages.pages.dev/assets/extra/dashboradGame.png'
+                "
               />
             </div>
-
           </div>
 
           <!-- Top & Bottom Glowing Accent Lines -->
           <div class="arena-top-line"></div>
           <div class="arena-bottom-line"></div>
         </div>
-
       </ng-template>
     </owl-carousel-o>
   </div>
 
-  <!-- ================= QUICK ACTION ARENA DOCK (NEW FEATURE PODS) ================= -->
-  <div class="quick-arena-dock grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 mb-4">
-    
-    <!-- Pod 1: Instant Crash -->
+  <!-- ================= PREMIUM FEATURE ARENA CARDS ================= -->
+  <div class="feature-cards-grid mb-5">
+    <!-- Card 1: Instant Crash -->
     <div
-      class="quick-pod group cursor-pointer"
+      class="feat-card feat-card--crash group"
       (click)="quickLaunch('/dashboard/Avaitar')"
     >
-      <div class="pod-inner p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-[#2CD97D]/25 bg-[#292d2e] hover:border-[#2CD97D] transition-all duration-300">
-        <div class="flex items-center justify-between mb-2">
-          <div class="pod-icon-wrap w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#2CD97D]/10 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:scale-110 transition duration-300">
-            <span class="text-base sm:text-lg">⚡</span>
+      <div class="feat-card__glow"></div>
+      <div class="feat-card__border-anim"></div>
+      <div class="feat-card__inner">
+        <!-- Top Row: Icon + Badge -->
+        <div class="feat-card__top">
+          <div class="feat-icon feat-icon--crash">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13 2L4.09 12.96 11 13l-2 9 8.91-10.96L11 11l2-9z"
+                fill="currentColor"
+              />
+            </svg>
           </div>
-          <span class="pod-multiplier font-mono font-bold text-[10px] sm:text-xs text-[#2CD97D] bg-[#2CD97D]/10 px-2 py-0.5 rounded-full">
-            100x+
-          </span>
+          <div class="feat-badge feat-badge--hot">
+            <span class="feat-badge__dot"></span>
+            LIVE
+          </div>
         </div>
-        <h4 class="pod-title text-xs sm:text-sm font-black text-white group-hover:text-[#2CD97D] transition">
-          Instant Crash
-        </h4>
-        <p class="pod-subtitle text-[10px] sm:text-xs text-gray-400 truncate">
-          High-Velocity Multiplier
-        </p>
+
+        <!-- Multiplier Display -->
+        <div class="feat-multiplier">
+          <span class="feat-multiplier__value">100</span>
+          <span class="feat-multiplier__unit">x+</span>
+        </div>
+
+        <!-- Text -->
+        <div class="feat-card__text">
+          <h4 class="feat-title">Instant Crash</h4>
+          <p class="feat-subtitle">High-Velocity Multiplier Engine</p>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="feat-cta">
+          <span>Play Now</span>
+          <svg class="feat-cta__arrow" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
       </div>
     </div>
 
-    <!-- Pod 2: Cyber Scratch Vault -->
+    <!-- Card 2: Cyber Scratch -->
     <div
-      class="quick-pod group cursor-pointer"
+      class="feat-card feat-card--scratch group"
       (click)="quickLaunch('/dashboard/SectrechCards')"
     >
-      <div class="pod-inner p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-[#2CD97D]/25 bg-[#292d2e] hover:border-[#2CD97D] transition-all duration-300">
-        <div class="flex items-center justify-between mb-2">
-          <div class="pod-icon-wrap w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#2CD97D]/10 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:scale-110 transition duration-300">
-            <span class="text-base sm:text-lg">🎟️</span>
+      <div class="feat-card__glow"></div>
+      <div class="feat-card__border-anim"></div>
+      <div class="feat-card__inner">
+        <div class="feat-card__top">
+          <div class="feat-icon feat-icon--scratch">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="2"
+                y="5"
+                width="20"
+                height="14"
+                rx="3"
+                stroke="currentColor"
+                stroke-width="1.8"
+              />
+              <path d="M2 10h20" stroke="currentColor" stroke-width="1.8" />
+              <path
+                d="M7 15h4M15 15h2"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
           </div>
-          <span class="pod-multiplier font-mono font-bold text-[10px] sm:text-xs text-[#2CD97D] bg-[#2CD97D]/10 px-2 py-0.5 rounded-full">
-            $2,000
-          </span>
+          <div class="feat-badge feat-badge--prize">TOP PRIZE</div>
         </div>
-        <h4 class="pod-title text-xs sm:text-sm font-black text-white group-hover:text-[#2CD97D] transition">
-          Cyber Scratch
-        </h4>
-        <p class="pod-subtitle text-[10px] sm:text-xs text-gray-400 truncate">
-          Instant Cash Vouchers
-        </p>
+
+        <div class="feat-multiplier">
+          <span class="feat-multiplier__prefix">$</span>
+          <span class="feat-multiplier__value">2,000</span>
+        </div>
+
+        <div class="feat-card__text">
+          <h4 class="feat-title">Cyber Scratch</h4>
+          <p class="feat-subtitle">Instant Cash Vouchers</p>
+        </div>
+
+        <div class="feat-cta">
+          <span>Scratch Now</span>
+          <svg class="feat-cta__arrow" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
       </div>
     </div>
 
-    <!-- Pod 3: Fortune Spinner -->
+    <!-- Card 3: Fortune Spinner -->
     <div
-      class="quick-pod group cursor-pointer"
+      class="feat-card feat-card--spin group"
       (click)="quickLaunch('/dashboard/spinner')"
     >
-      <div class="pod-inner p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-[#2CD97D]/25 bg-[#292d2e] hover:border-[#2CD97D] transition-all duration-300">
-        <div class="flex items-center justify-between mb-2">
-          <div class="pod-icon-wrap w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#2CD97D]/10 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:scale-110 transition duration-300">
-            <span class="text-base sm:text-lg">🎡</span>
+      <div class="feat-card__glow"></div>
+      <div class="feat-card__border-anim"></div>
+      <div class="feat-card__inner">
+        <div class="feat-card__top">
+          <div class="feat-icon feat-icon--spin">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+                stroke="currentColor"
+                stroke-width="1.8"
+              />
+              <path
+                d="M12 3a9 9 0 019 9"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+              <circle cx="12" cy="12" r="3" fill="currentColor" />
+              <path
+                d="M12 3v3M12 18v3M3 12h3M18 12h3"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
           </div>
-          <span class="pod-multiplier font-mono font-bold text-[10px] sm:text-xs text-[#2CD97D] bg-[#2CD97D]/10 px-2 py-0.5 rounded-full">
-            FREE SPIN
-          </span>
+          <div class="feat-badge feat-badge--free">FREE SPIN</div>
         </div>
-        <h4 class="pod-title text-xs sm:text-sm font-black text-white group-hover:text-[#2CD97D] transition">
-          Fortune Spinner
-        </h4>
-        <p class="pod-subtitle text-[10px] sm:text-xs text-gray-400 truncate">
-          Daily Mega Wheel
-        </p>
+
+        <div class="feat-multiplier">
+          <span class="feat-multiplier__value feat-spin-text">DAILY</span>
+        </div>
+
+        <div class="feat-card__text">
+          <h4 class="feat-title">Fortune Spinner</h4>
+          <p class="feat-subtitle">Daily Mega Wheel Rewards</p>
+        </div>
+
+        <div class="feat-cta">
+          <span>Spin Now</span>
+          <svg class="feat-cta__arrow" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
       </div>
     </div>
 
-    <!-- Pod 4: VIP Cash Vault -->
+    <!-- Card 4: Plinko -->
     <div
-      class="quick-pod group cursor-pointer"
-      (click)="quickLaunch('/dashboard/wallet')"
+      class="feat-card feat-card--plinko group"
+      (click)="quickLaunch('/dashboard/Plinko')"
     >
-      <div class="pod-inner p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-[#2CD97D]/25 bg-[#292d2e] hover:border-[#2CD97D] transition-all duration-300">
-        <div class="flex items-center justify-between mb-2">
-          <div class="pod-icon-wrap w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#2CD97D]/10 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D] group-hover:scale-110 transition duration-300">
-            <span class="text-base sm:text-lg">💎</span>
+      <div class="feat-card__glow"></div>
+      <div class="feat-card__border-anim"></div>
+      <div class="feat-card__inner">
+        <div class="feat-card__top">
+          <div class="feat-icon feat-icon--plinko">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="12" cy="4" r="2" fill="currentColor" />
+              <circle cx="6" cy="9" r="1.5" fill="currentColor" opacity="0.6" />
+              <circle
+                cx="18"
+                cy="9"
+                r="1.5"
+                fill="currentColor"
+                opacity="0.6"
+              />
+              <circle
+                cx="3"
+                cy="14"
+                r="1.5"
+                fill="currentColor"
+                opacity="0.45"
+              />
+              <circle
+                cx="12"
+                cy="14"
+                r="1.5"
+                fill="currentColor"
+                opacity="0.45"
+              />
+              <circle
+                cx="21"
+                cy="14"
+                r="1.5"
+                fill="currentColor"
+                opacity="0.45"
+              />
+              <path
+                d="M10 19h4M8 21.5h3M13 21.5h3"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
           </div>
-          <span class="pod-multiplier font-mono font-bold text-[10px] sm:text-xs text-[#2CD97D] bg-[#2CD97D]/10 px-2 py-0.5 rounded-full">
-            INSTANT
-          </span>
+          <div class="feat-badge feat-badge--plinko">HOT 🔥</div>
         </div>
-        <h4 class="pod-title text-xs sm:text-sm font-black text-white group-hover:text-[#2CD97D] transition">
-          VIP Cash Vault
-        </h4>
-        <p class="pod-subtitle text-[10px] sm:text-xs text-gray-400 truncate">
-          Instant Deposit & Cashout
-        </p>
+
+        <div class="feat-multiplier">
+          <span class="feat-multiplier__value">1000</span>
+          <span class="feat-multiplier__unit">x+</span>
+        </div>
+
+        <div class="feat-card__text">
+          <h4 class="feat-title">Plinko</h4>
+          <p class="feat-subtitle">Drop the Ball, Win Big</p>
+        </div>
+
+        <div class="feat-cta">
+          <span>Play Now</span>
+          <svg class="feat-cta__arrow" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
       </div>
     </div>
-
   </div>
 
   <!-- Referral Banner Component -->
   <app-referal-cta></app-referal-cta>
-
 </div>

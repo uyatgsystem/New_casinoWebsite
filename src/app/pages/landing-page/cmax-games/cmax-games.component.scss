@@ -121,7 +121,8 @@
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(44, 217, 125, 0.35);
 
     .clean-game-artwork {
-      transform: scale(1.15) translateY(-4px);
+      transform: scale(1.55);
+      filter: blur(5px) brightness(0.85) drop-shadow(0 10px 22px rgba(0, 0, 0, 0.65));
     }
 
     .clean-hover-curtain {
@@ -137,28 +138,33 @@
 
 .clean-media-wrap {
   flex: 1;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 10;
   overflow: hidden;
-  padding: 5px 0 10px 0;
+  padding: 0;
 }
 
 .clean-game-artwork {
-  width: 120%;
-  height: 120%;
+  width: 90%;
+  height: 90%;
+  max-width: 90%;
+  max-height: 90%;
   object-fit: contain;
-  transition: transform 0.3s ease;
+  transform: scale(1.45);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.75));
 }
 
 .clean-hover-curtain {
   position: absolute;
   inset: 0;
-  background: rgba(35, 38, 38, 0.88);
-  backdrop-filter: blur(8px);
+  background: rgba(12, 16, 20, 0.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,31 +176,32 @@
   .clean-launch-btn {
     background: #2CD97D;
     color: #050811;
-    font-weight: 900;
+    font-weight: 950;
     text-transform: uppercase;
     font-size: 11px;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     padding: 10px 22px;
     border-radius: 12px;
-    border: 1.5px solid #2CD97D;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
-    box-shadow: 0 0 20px rgba(44, 217, 125, 0.6);
-    transition: transform 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 0 22px rgba(44, 217, 125, 0.65), 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
 
     &:hover {
-      transform: scale(1.05);
-      background: #34e286;
-      filter: brightness(1.05);
+      background: #36e889;
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(44, 217, 125, 0.9), 0 6px 16px rgba(0, 0, 0, 0.6);
     }
   }
 }
 
 .clean-footer-info {
   position: relative;
-  z-index: 20;
+  z-index: 35;
   display: flex;
   flex-direction: column;
   align-items: center;

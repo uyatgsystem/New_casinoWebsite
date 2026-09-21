@@ -12,8 +12,10 @@ import { UtilsService } from '../../../Services/utils.service';
 })
 export class AboutUsComponent {
   stats = [
-    { value: '12k+', label: 'Total players' },
-    { value: '300+', label: 'Total games' },
+    { value: '50K+', label: 'Active VIP Players' },
+    { value: '500+', label: 'Fair Casino Games' },
+    { value: '98.8%', label: 'Average Platform RTP' },
+    { value: '< 60s', label: 'Avg Cashout Time' },
   ];
 
   whyChooseUs = [

@@ -8,7 +8,8 @@
         </p>
         <h1>Account Settings</h1>
         <p class="intro">
-          Manage your personal credentials, security encryption, and wallet ledger.
+          Manage your personal credentials, security encryption, and wallet
+          ledger.
         </p>
       </div>
     </header>
@@ -29,7 +30,11 @@
             <div class="avatar-ring">
               <span class="avatar">
                 <img *ngIf="profileImage" [src]="profileImage" alt="Profile" />
-                <i *ngIf="!profileImage" class="fa fa-user" aria-hidden="true"></i>
+                <i
+                  *ngIf="!profileImage"
+                  class="fa fa-user"
+                  aria-hidden="true"
+                ></i>
               </span>
               <span class="avatar-edit">
                 <i class="fa fa-camera" aria-hidden="true"></i>
@@ -37,7 +42,7 @@
             </div>
           </button>
 
-          <h2 class="operative-name">{{ name || 'OPERATIVE' | uppercase }}</h2>
+          <h2 class="operative-name">{{ name || "OPERATIVE" | uppercase }}</h2>
           <p class="operative-email">{{ email }}</p>
 
           <!-- KYC Compliance Status Card -->
@@ -59,7 +64,7 @@
                 "
                 aria-hidden="true"
               ></i>
-              {{ (KYCVerification || "Not submitted") | titlecase }}
+              {{ KYCVerification || "Not submitted" | titlecase }}
             </strong>
             <small *ngIf="KYCVerification === 'completed'">
               Identity verified & encrypted.
@@ -67,7 +72,9 @@
             <small *ngIf="KYCVerification === 'pending'">
               Verification review in progress.
             </small>
-            <small *ngIf="!KYCVerification || KYCVerification === 'not submitted'">
+            <small
+              *ngIf="!KYCVerification || KYCVerification === 'not submitted'"
+            >
               Complete KYC to unlock full limits.
             </small>
           </div>
@@ -323,7 +330,9 @@
             <div>
               <span class="section-kicker">ACCOUNT PROTECTION</span>
               <h2>Password & Security</h2>
-              <p>Configure end-to-end security and update account credentials.</p>
+              <p>
+                Configure end-to-end security and update account credentials.
+              </p>
             </div>
             <span class="secure-badge">
               <i class="fa fa-shield"></i> ENCRYPTED
@@ -333,7 +342,8 @@
           <div class="security-note">
             <i class="fa fa-info-circle"></i>
             <span>
-              Use at least 8 characters, with uppercase letters, numbers, and special characters.
+              Use at least 8 characters, with uppercase letters, numbers, and
+              special characters.
             </span>
           </div>
 
@@ -347,7 +357,9 @@
               <span>Current Password</span>
               <div class="password-input">
                 <input
-                  [type]="passwordVisibility['oldPassword'] ? 'text' : 'password'"
+                  [type]="
+                    passwordVisibility['oldPassword'] ? 'text' : 'password'
+                  "
                   formControlName="oldPassword"
                   placeholder="Enter current password"
                 />
@@ -372,7 +384,9 @@
               <span>New Password</span>
               <div class="password-input">
                 <input
-                  [type]="passwordVisibility['newPassword'] ? 'text' : 'password'"
+                  [type]="
+                    passwordVisibility['newPassword'] ? 'text' : 'password'
+                  "
                   formControlName="newPassword"
                   placeholder="Create new secure password"
                   (input)="checkPasswordStrength()"
@@ -401,7 +415,9 @@
             >
               <div class="strength-header">
                 <span>Security Strength</span>
-                <strong [class]="'str-' + getPasswordStrengthText().toLowerCase()">
+                <strong
+                  [class]="'str-' + getPasswordStrengthText().toLowerCase()"
+                >
                   {{ getPasswordStrengthText() }}
                 </strong>
               </div>
@@ -476,7 +492,9 @@
             <div>
               <span class="section-kicker">FINANCIAL LEDGER</span>
               <h2>Wallet Activity</h2>
-              <p>Review and audit deposits, withdrawals, and historical balances.</p>
+              <p>
+                Review and audit deposits, withdrawals, and historical balances.
+              </p>
             </div>
             <div class="balance-box">
               <span>AVAILABLE BALANCE</span>
@@ -508,7 +526,10 @@
             </button>
           </div>
 
-          <div class="activity-list custom-scrollbar" (scroll)="onScroll($event)">
+          <div
+            class="activity-list custom-scrollbar"
+            (scroll)="onScroll($event)"
+          >
             <div *ngIf="filteredTransactions.length; else emptyWallet">
               <div
                 *ngFor="let transaction of filteredTransactions"
@@ -601,7 +622,9 @@
               class="table-row"
             >
               <span class="index-num">{{ i + 1 }}</span>
-              <strong class="text-white font-mono">{{ item.username || "-" }}</strong>
+              <strong class="text-white font-mono">{{
+                item.username || "-"
+              }}</strong>
               <span>
                 <button
                   type="button"
@@ -640,7 +663,10 @@
                 </span>
                 <span>Membership Levels</span>
               </h2>
-              <p>Unlock elite milestones, daily rakeback, and enhanced cashback privileges.</p>
+              <p>
+                Unlock elite milestones, daily rakeback, and enhanced cashback
+                privileges.
+              </p>
             </div>
             <a
               routerLink="/dashboard/levels"
@@ -653,18 +679,26 @@
 
           <div class="level-summary">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-[#292d2e] border border-[#2CD97D]/40 flex items-center justify-center p-1 shadow-md shrink-0">
-                <img [src]="getLevelImage(playerLevel)" [alt]="playerLevel" class="w-8 h-8 object-contain" />
+              <div
+                class="w-12 h-12 rounded-xl bg-[#292d2e] border border-[#2CD97D]/40 flex items-center justify-center p-1 shadow-md shrink-0"
+              >
+                <img
+                  [src]="getLevelImage(playerLevel)"
+                  [alt]="playerLevel"
+                  class="w-8 h-8 object-contain"
+                />
               </div>
               <div class="level-summary-badge">
                 <span>ACTIVE OPERATIVE RANK</span>
-                <strong>{{ playerLevel || 'Bronze' }} Tier</strong>
+                <strong>{{ playerLevel || "Bronze" }} Tier</strong>
               </div>
             </div>
             <div class="level-summary-stats">
               <span>{{ referrals?.length || 0 }} Active Referrals</span>
               <span>·</span>
-              <span class="text-[#2CD97D] font-bold">${{ customerTotalDeposit | number:'1.2-2' }} Deposited</span>
+              <span class="text-[#2CD97D] font-bold"
+                >${{ customerTotalDeposit | number: "1.2-2" }} Deposited</span
+              >
             </div>
           </div>
 
@@ -689,12 +723,17 @@
                   >
                     Active Tier
                   </span>
-                  <span *ngIf="lvl.RedeemPercentageOnBonusWallet" class="text-[10px] font-mono font-bold text-[#2CD97D] ml-auto">
+                  <span
+                    *ngIf="lvl.RedeemPercentageOnBonusWallet"
+                    class="text-[10px] font-mono font-bold text-[#2CD97D] ml-auto"
+                  >
                     {{ lvl.RedeemPercentageOnBonusWallet }}% Bonus Redeem
                   </span>
                 </div>
                 <p>
-                  Deposit Threshold: ${{ lvl.MinDepositRange }} - ${{ lvl.MaxDepositRange }}
+                  Deposit Threshold: ${{ lvl.MinDepositRange }} - ${{
+                    lvl.MaxDepositRange
+                  }}
                 </p>
                 <div class="level-progress">
                   <span [style.width.%]="getDepositProgress(lvl)"></span>
@@ -710,8 +749,12 @@
           </div>
 
           <!-- Bottom Callout to Full VIP Hub -->
-          <div class="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span class="text-xs text-gray-400 font-mono">Want to view full rakeback percentages and tier perks?</span>
+          <div
+            class="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3"
+          >
+            <span class="text-xs text-gray-400 font-mono"
+              >Want to view full rakeback percentages and tier perks?</span
+            >
             <a
               routerLink="/dashboard/levels"
               class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 text-[#2CD97D] hover:bg-[#2CD97D] hover:text-[#050811] font-bold text-xs uppercase tracking-wider transition text-center"
@@ -727,14 +770,19 @@
             <div>
               <span class="section-kicker">COMPLIANCE & AUDIT</span>
               <h2>Identity Verification (KYC)</h2>
-              <p>Verify your credentials to unlock elevated limits and rapid withdrawals.</p>
+              <p>
+                Verify your credentials to unlock elevated limits and rapid
+                withdrawals.
+              </p>
             </div>
           </div>
 
           <div class="verification-status-panel">
             <div
               class="status-card"
-              [ngClass]="'status-' + (KYCVerification?.toLowerCase() || 'not-submitted')"
+              [ngClass]="
+                'status-' + (KYCVerification?.toLowerCase() || 'not-submitted')
+              "
             >
               <div class="status-icon">
                 <i
@@ -749,15 +797,22 @@
                 ></i>
               </div>
               <div class="status-content">
-                <h3>{{ (KYCVerification || "Not submitted") | titlecase }}</h3>
+                <h3>{{ KYCVerification || "Not submitted" | titlecase }}</h3>
                 <p *ngIf="KYCVerification === 'completed'">
-                  Your operative credentials are fully validated and registered in the system.
+                  Your operative credentials are fully validated and registered
+                  in the system.
                 </p>
                 <p *ngIf="KYCVerification === 'pending'">
-                  Your KYC documents are undergoing security verification. You will be notified once reviewed.
+                  Your KYC documents are undergoing security verification. You
+                  will be notified once reviewed.
                 </p>
-                <p *ngIf="!KYCVerification || KYCVerification === 'not submitted'">
-                  Identity documentation has not been submitted. Submit your government ID to unlock all features.
+                <p
+                  *ngIf="
+                    !KYCVerification || KYCVerification === 'not submitted'
+                  "
+                >
+                  Identity documentation has not been submitted. Submit your
+                  government ID to unlock all features.
                 </p>
               </div>
             </div>
@@ -769,7 +824,11 @@
               class="solid-button"
               (click)="RedirectTokyc()"
             >
-              <span>{{ KYCVerification === "pending" ? "View KYC Station" : "Launch KYC Verification" }}</span>
+              <span>{{
+                KYCVerification === "pending"
+                  ? "View KYC Station"
+                  : "Launch KYC Verification"
+              }}</span>
               <i class="fa fa-arrow-right"></i>
             </button>
           </div>
@@ -789,7 +848,9 @@
         <span class="text-[#2CD97D] text-lg">⚡</span>
         <h2>Deposit Details</h2>
       </div>
-      <button type="button" (click)="closeModal()" class="modal-close-btn">&times;</button>
+      <button type="button" (click)="closeModal()" class="modal-close-btn">
+        &times;
+      </button>
     </div>
     <p class="modal-sub">
       Operative: <strong>{{ selectedItem?.userName || "N/A" }}</strong>
@@ -802,7 +863,10 @@
         <span>Transaction Date</span>
       </div>
       <div *ngIf="isLoadingDeposits" class="empty-state">
-        <p><i class="fa fa-spinner fa-spin text-[#2CD97D]"></i> Loading deposits...</p>
+        <p>
+          <i class="fa fa-spinner fa-spin text-[#2CD97D]"></i> Loading
+          deposits...
+        </p>
       </div>
       <div
         *ngIf="!isLoadingDeposits && !depositList.length"
@@ -842,7 +906,7 @@
       <img *ngIf="profileImage" [src]="profileImage" alt="Profile" />
       <i *ngIf="!profileImage" class="fa fa-user"></i>
     </div>
-    <p class="modal-name">{{ name || 'OPERATIVE' | uppercase }}</p>
+    <p class="modal-name">{{ name || "OPERATIVE" | uppercase }}</p>
 
     <div class="modal-actions">
       <button

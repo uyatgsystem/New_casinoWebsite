@@ -1,0 +1,22 @@
+.review-carousel-container {
+  --card-width: 100%;
+
+  @media (min-width: 768px) {
+    --card-width: 50%;
+  }
+
+  @media (min-width: 1024px) {
+    --card-width: 33.333333%;
+  }
+}
+
+.review-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.review-card-wrapper {
+  flex-shrink: 0;
+  width: var(--card-width);
+}
