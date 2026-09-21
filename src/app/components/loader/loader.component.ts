@@ -20,7 +20,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
     'Preparing Provably Fair Games',
     'Syncing Live Jackpots',
     'Securing Player Session',
-    'Welcome to SpinHub'
+    'Welcome to CrownSpin'
   ];
 
   currentMessageIndex: number = 0;

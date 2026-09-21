@@ -544,12 +544,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       if (result === 'unavailable') {
         this.toastr.info(
           'To install: open your browser menu (⋮ or …) → "Install app" or "Add to Home Screen".',
-          'Install Casino Maxs',
+          'Install CrownSpin',
           { timeOut: 6000, positionClass: 'toast-top-center' },
         );
       } else if (result === 'accepted') {
         this.showInstallFloating = false;
-        this.toastr.success('App installed successfully!', 'Casino Maxs', {
+        this.toastr.success('App installed successfully!', 'CrownSpin', {
           timeOut: 3000,
         });
       }

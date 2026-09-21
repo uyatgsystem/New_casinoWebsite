@@ -262,7 +262,7 @@ export class LoginComponent implements OnInit {
       uniqueId: 'slide-1',
       src: '/Images/landing_1.png',
       heading: 'Welcome Back!',
-      content: 'Log in to continue your journey with Spin Hub.',
+      content: 'Log in to continue your journey with Crown Spin.',
     },
     {
       id: 2,

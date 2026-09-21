@@ -97,7 +97,7 @@ export class ContactUsComponent {
   faqs = [
     {
       index: 1,
-      question: 'Is Spin Hub free to join?',
+      question: 'Is Crown Spin free to join?',
       answer:
         'Yes! Signing up is completely free, and your signup bonus is automatically added so you can start playing immediately.',
     },
@@ -121,9 +121,9 @@ export class ContactUsComponent {
     },
     {
       index: 5,
-      question: 'Is it safe to play on Spin Hub?',
+      question: 'Is it safe to play on Crown Spin?',
       answer:
-        'Yes! Your safety is our top priority. Spin Hub uses advanced security, encrypted transactions, and fair gaming practices to protect your account, personal information, and funds, so you can play with complete confidence.',
+        'Yes! Your safety is our top priority. Crown Spin uses advanced security, encrypted transactions, and fair gaming practices to protect your account, personal information, and funds, so you can play with complete confidence.',
     },
     {
       index: 6,
@@ -141,7 +141,7 @@ export class ContactUsComponent {
       index: 8,
       question: 'Can I play on mobile?',
       answer:
-        'Absolutely! Spin Hub is fully optimized for smartphones and tablets, giving you a fast, secure, and seamless gaming experience. Play, deposit, and withdraw your winnings anytime, anywhere with confidence.',
+        'Absolutely! Crown Spin is fully optimized for smartphones and tablets, giving you a fast, secure, and seamless gaming experience. Play, deposit, and withdraw your winnings anytime, anywhere with confidence.',
     },
     {
       index: 9,

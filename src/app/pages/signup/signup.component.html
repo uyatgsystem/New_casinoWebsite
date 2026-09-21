@@ -3,39 +3,22 @@
 <div
   class="main-bg relative w-full min-h-[100vh] bg-cover bg-center overflow-y-auto"
 >
-  <div class="flex flex-col lg:flex-row lg:absolute lg:inset-0 min-h-screen">
-    <!-- LeftDiv: Logo, Welcome Text (Desktop View) -->
-    <div
-      class="hidden lg:flex flex-1 flex-col justify-between bg-[#232626]/80 p-8 lg:p-14"
-    >
-      <div class="flex justify-start">
+  <div class="flex flex-col lg:flex-row min-h-screen lg:items-stretch">
+    <!-- Left branding copy -->
+    <div class="hidden lg:flex lg:w-[52%] items-center justify-center px-8 xl:px-12">
+      <div class="max-w-[470px] text-left">
         <img
           src="/logo.png"
-          alt="Spin Hub Logo"
-          class="w-[240px] lg:w-[280px] h-auto object-contain drop-shadow-[0_0_25px_rgba(44,217,125,0.4)]"
+          alt="Crown Spin Logo"
+          class="w-[150px] xl:w-[180px] h-auto mb-6 drop-shadow-[0_0_22px_rgba(44,217,125,0.42)]"
         />
-      </div>
-
-      <div class="mobile-welcome-text flex flex-col items-start text-left text-white max-w-xl mx-auto lg:mx-0">
-        <span class="text-[#2CD97D] text-xs font-mono font-bold tracking-widest uppercase mb-3 px-2.5 py-1 rounded-lg bg-[#2CD97D]/10 border border-[#2CD97D]/30">
-          OPERATIVE REGISTRATION PROTOCOL
-        </span>
-        <h1
-          class="text-3xl lg:text-5xl font-black mb-4 leading-tight tracking-tight"
-        >
-          Unlock Your <br />
-          <span class="text-[#2CD97D] drop-shadow-[0_0_20px_rgba(44,217,125,0.4)]">
-            Winning Journey
-          </span>
+        <h1 class="text-4xl xl:text-[3.5rem] font-black leading-[0.95] tracking-[-0.06em] text-white">
+          Start Your
+          <span class="block text-[#2CD97D] mt-2">Winning Journey</span>
         </h1>
-        <p class="text-gray-300 text-sm lg:text-base leading-relaxed max-w-lg">
-          Join Spin Hub today. Experience premium instant games, exclusive VIP reward tiers,
-          and rapid automated crypto & fiat payouts.
+        <p class="mt-5 max-w-[420px] text-base xl:text-lg text-gray-300 leading-relaxed">
+          Register your player profile, unlock welcome perks, and enter a world of instant rewards and live tournaments.
         </p>
-      </div>
-
-      <div class="text-xs text-gray-500 font-mono">
-        SSL 256-BIT SECURE PROTOCOL // ZERO DATA COMPROMISE
       </div>
     </div>
 
@@ -43,7 +26,7 @@
     <div class="lg:hidden mobile-header-section flex flex-col items-center text-center px-4 pt-8 pb-3">
       <img
         src="/logo.png"
-        alt="Spin Hub Logo"
+        alt="Crown Spin Logo"
         class="w-[130px] sm:w-[150px] h-auto mb-3 drop-shadow-[0_0_15px_rgba(44,217,125,0.35)]"
       />
       <h1 class="text-xl font-black text-white leading-snug">
@@ -56,10 +39,10 @@
 
     <!-- RightDiv: Form Section -->
     <div
-      class="flex-1 flex items-center justify-center px-4 pb-12 lg:p-8 lg:pr-16"
+      class="flex-1 flex items-start justify-center px-4 pb-12 pt-4 lg:justify-end lg:items-start lg:px-8 xl:px-12 lg:py-8"
     >
       <div
-        class="rounded-3xl bg-[#292d2e] backdrop-blur-2xl p-6 sm:p-8 w-full max-w-lg mx-auto lg:mx-0 border border-[#2CD97D]/40 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.12)] relative overflow-hidden"
+        class="rounded-3xl bg-[#292d2e]/90 backdrop-blur-md p-5 sm:p-7 md:p-8 w-full max-w-[430px] sm:max-w-[460px] lg:max-w-[520px] mx-auto lg:mx-0 border border-[#2CD97D]/40 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.12)] relative overflow-hidden"
         id="formContainer"
       >
         <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent"></div>
@@ -94,7 +77,7 @@
           <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
 
           <!-- First & Last Name -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
             <div>
               <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
                 First Name
@@ -141,7 +124,7 @@
           </div>
 
           <!-- Username & Referral Code -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
             <div>
               <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
                 Username

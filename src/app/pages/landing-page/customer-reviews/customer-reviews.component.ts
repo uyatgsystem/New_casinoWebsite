@@ -49,7 +49,7 @@ export class CustomerReviewsComponent implements OnInit, OnDestroy {
       rating: 5,
       timeAgo: '2 hours ago',
       img: 'https://cmaxv2images2.pages.dev/assets/avatars/client1.jpg',
-      text: "I recently hit a $5,000 jackpot on Spin Hub and the payout process was incredibly smooth. From verification to withdrawal, everything was handled professionally. It's easily one of the most trustworthy casinos I've ever played on.",
+      text: "I recently hit a $5,000 jackpot on Crown Spin and the payout process was incredibly smooth. From verification to withdrawal, everything was handled professionally. It's easily one of the most trustworthy casinos I've ever played on.",
     },
     {
       id: 2,
@@ -61,7 +61,7 @@ export class CustomerReviewsComponent implements OnInit, OnDestroy {
       rating: 5,
       timeAgo: '5 hours ago',
       img: 'https://cmaxv2images2.pages.dev/assets/avatars/client2.jpg',
-      text: 'Spin Hub is hands down my favorite gaming platform. The bonus offers are generous, and I really appreciate the 24/7 VIP live support. Withdrawals are processed under 60 seconds with zero hidden deductions. Highly recommended!',
+      text: 'Crown Spin is hands down my favorite gaming platform. The bonus offers are generous, and I really appreciate the 24/7 VIP live support. Withdrawals are processed under 60 seconds with zero hidden deductions. Highly recommended!',
     },
     {
       id: 3,
@@ -73,7 +73,7 @@ export class CustomerReviewsComponent implements OnInit, OnDestroy {
       rating: 5,
       timeAgo: 'Yesterday',
       img: 'https://cmaxv2images2.pages.dev/assets/avatars/client3.jpg',
-      text: 'After trying multiple sites, Spin Hub became my clear #1 pick. Games load instantaneously even on mobile, and the provably fair RNG algorithms give total peace of mind. My big cashout arrived in minutes without any fuss.',
+      text: 'After trying multiple sites, Crown Spin became my clear #1 pick. Games load instantaneously even on mobile, and the provably fair RNG algorithms give total peace of mind. My big cashout arrived in minutes without any fuss.',
     },
     {
       id: 4,
@@ -97,7 +97,7 @@ export class CustomerReviewsComponent implements OnInit, OnDestroy {
       rating: 5,
       timeAgo: '3 days ago',
       img: 'https://cmaxv2images2.pages.dev/assets/avatars/client2.jpg',
-      text: 'The payout speed on Spin Hub is unparalleled. Requested a crypto withdrawal at 11 PM and funds were in my personal wallet in under 45 seconds. The daily reloads and VIP tournaments make every session thrilling.',
+      text: 'The payout speed on Crown Spin is unparalleled. Requested a crypto withdrawal at 11 PM and funds were in my personal wallet in under 45 seconds. The daily reloads and VIP tournaments make every session thrilling.',
     },
     {
       id: 6,

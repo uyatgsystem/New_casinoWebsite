@@ -187,26 +187,23 @@
 
 
   <ng-container *ngIf="showWinnersModal" class="max-h-[120vh] overflow-y-auto">
-    <div class="fixed inset-0 bg-[#2ee4e8]/20 flex items-center justify-center z-50 p-4 modal-overlay">
+    <div class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4 modal-overlay">
       <div
-        class="w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-gradient-to-b from-[#181d2e] via-[#181d2e]/60 to-[#181d2e] rounded-2xl p-6 modal-content animate-slideIn relative shadow-2xl border border-[#2ee4e8]/40">
+        class="w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-gradient-to-b from-[#292d2e] via-[#232626] to-[#181c1e] rounded-3xl p-6 modal-content relative shadow-[0_25px_80px_rgba(0,0,0,0.95)] border border-[#2CD97D]/45">
         <!-- Top Glow Border -->
-        <div class="h-2 bg-gradient-to-r from-[#2ee4e8] to-[#2ee4e8] rounded-2xl animate-pulse"></div>
+        <div class="h-1.5 bg-gradient-to-r from-[#2CD97D] via-[#06B6D4] to-[#FF9F1C] rounded-t-3xl"></div>
 
         <!-- Header -->
         <div
-          class="mb-4 relative px-6 py-5 flex items-center justify-between border-b border-[#2ee4e8]/30 backdrop-blur rounded-t-2xl z-10">
+          class="mb-4 relative px-6 py-5 flex items-center justify-between border-b border-[#2CD97D]/25 backdrop-blur rounded-t-2xl z-10">
           <div class="flex items-center gap-3">
-            <!-- <div class="w-[2rem] h-[2rem] flex items-center justify-center  animate-bounce">
-            🎉
-          </div> -->
-            <img src="/happy.gif" alt="/happy.gif" class="w-100 h-100 sm:w-12 sm:h-12 animate-bounce" />
+            <img src="/happy.gif" alt="celebration" class="w-10 h-10 sm:w-12 sm:h-12 animate-bounce" />
             <div>
               <h3
-                class="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-[#2ee4e8] via-[#181d2e] to-[#2ee4e8] bg-clip-text text-transparent animate-shimmer">
+                class="text-2xl sm:text-3xl font-black text-white">
                 Winners Announced
               </h3>
-              <p class="text-sm mt-1 animate-fadeIn">
+              <p class="text-xs sm:text-sm text-gray-300 mt-1 font-medium">
                 Big congratulations to all lucky players!
               </p>
             </div>
@@ -215,14 +212,14 @@
           <div class="flex justify-end items-center gap-3">
             <!-- Claim Reward Button -->
             <button
-              class="px-5 py-2 bg-[#2ee4e8] rounded-xl shadow-md hover:scale-105 transition flex items-center gap-2"
+              class="px-5 py-2.5 bg-[#2CD97D] rounded-xl shadow-[0_0_15px_rgba(44,217,125,0.4)] hover:bg-[#34e286] transition flex items-center gap-2 cursor-pointer"
               (click)="RedirectToClaim()">
-              <span class="text-black font-semibold">Claim</span>
+              <span class="text-[#050811] font-black text-xs uppercase tracking-wider">Claim</span>
             </button>
 
             <!-- Close Modal Button -->
-            <button class="rounded-full p-2 hover:bg-[#2ee4e8] transition-all" (click)="closeWinnersModal()">
-              <svg class="w-6 h-6 text-[#2ee4e8] hover:text-white transition" fill="none" stroke="currentColor"
+            <button class="rounded-xl p-2 bg-white/5 hover:bg-white/10 transition-all text-gray-400 hover:text-white cursor-pointer" (click)="closeWinnersModal()">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor"
                 viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>

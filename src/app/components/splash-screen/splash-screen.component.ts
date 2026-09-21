@@ -19,7 +19,7 @@ export class SplashScreenComponent implements OnInit, OnDestroy {
     if (this.progress < 25) return 'INITIALIZING SYSTEM CORES...';
     if (this.progress < 55) return 'AUTHENTICATING PROVABLY FAIR VAULTS...';
     if (this.progress < 85) return 'DECRYPTING CASINO ENGINE...';
-    return 'SYSTEM READY • WELCOME TO SPIN HUB';
+    return 'SYSTEM READY • WELCOME TO CROWN SPIN';
   }
 
   private intervalId: any;

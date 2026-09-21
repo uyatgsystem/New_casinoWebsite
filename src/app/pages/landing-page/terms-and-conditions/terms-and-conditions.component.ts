@@ -32,7 +32,7 @@ export class TermsAndConditionsComponent {
       title: '1. Eligibility & Age Requirements',
       badge: 'STRICT 18+ REQUIREMENT',
       content:
-        'You must be at least 18 years of age (or the legal age of majority in your jurisdiction) to register an account, participate in any games, or execute financial transactions on Spin Hub. By creating an operative account, you certify that all information submitted is complete, accurate, and verifiably truthful.',
+        'You must be at least 18 years of age (or the legal age of majority in your jurisdiction) to register an account, participate in any games, or execute financial transactions on Crown Spin. By creating an operative account, you certify that all information submitted is complete, accurate, and verifiably truthful.',
       bullets: [
         'Mandatory age verification protocol prior to first cash withdrawal',
         'Single account policy per individual, household, and IP address',
@@ -47,9 +47,9 @@ export class TermsAndConditionsComponent {
       content:
         'To participate in real cash gaming, deposit funds, or claim promotional rewards, users must register a secured account. You are solely responsible for maintaining credentials confidentiality and enabling available security safeguards.',
       bullets: [
-        'Keep your account password confidential and unique to Spin Hub',
+        'Keep your account password confidential and unique to Crown Spin',
         'Notify support immediately if any unauthorized account activity is suspected',
-        'Spin Hub reserves the right to freeze accounts involved in automated exploitation or bot activity',
+        'Crown Spin reserves the right to freeze accounts involved in automated exploitation or bot activity',
       ],
     },
     {
@@ -71,7 +71,7 @@ export class TermsAndConditionsComponent {
       title: '4. Gameplay & Provably Fair Standards',
       badge: 'RNG CERTIFIED',
       content:
-        'All games hosted on Spin Hub utilize certified Cryptographic Random Number Generators (RNG) and provably fair seeds ensuring tamper-proof outcomes. Outcomes are determined by automated backend algorithms and are mathematically final.',
+        'All games hosted on Crown Spin utilize certified Cryptographic Random Number Generators (RNG) and provably fair seeds ensuring tamper-proof outcomes. Outcomes are determined by automated backend algorithms and are mathematically final.',
       bullets: [
         'Provably fair seeds can be verified independently via client seeds',
         'Intentional exploitation of software anomalies or latency spikes is strictly prohibited',

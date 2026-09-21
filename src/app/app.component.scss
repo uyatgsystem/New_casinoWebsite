@@ -250,156 +250,281 @@
   }
 }
 
-.animate-bounce-slow {
-  animation: bounce-slow 1.5s infinite;
+/* ==========================================================================
+   Next-Gen CrownSpin VIP App Floating Capsule Widget
+   ========================================================================== */
+.crownspin-install-pill-wrap {
+  animation: pillEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.8));
+  user-select: none;
+  transition: all 0.35s ease;
+
+  &.pill-closing {
+    animation: pillExit 0.35s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+  }
 }
 
-.pwa-install-container {
-  animation: slideInLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
-}
-
-.pwa-card {
+.crownspin-install-pill {
   position: relative;
-  background: rgba(41,45,46,0.9);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(44, 217, 125, 0.3);
-  border-radius: 20px 4px 20px 4px;
-  padding: 12px 16px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   align-items: center;
-  gap: 14px;
-  min-width: 220px;
+  gap: 10px;
+  padding: 8px 10px 8px 8px;
+  background: rgba(22, 26, 28, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(44, 217, 125, 0.45);
+  border-radius: 999px;
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(44, 217, 125, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  cursor: pointer;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-        rgba(44, 217, 125, 0.1) 0%,
-        transparent 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+  animation: floatSubtle 4s ease-in-out infinite;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 
   &:hover {
-    transform: scale(1.05) translateX(5px);
-    border-color: rgba(44, 217, 125, 0.6);
-    box-shadow: 0 0 25px rgba(44, 217, 125, 0.25);
+    transform: translateY(-3px) scale(1.02);
+    border-color: #2CD97D;
+    box-shadow: 
+      0 12px 35px rgba(0, 0, 0, 0.85),
+      0 0 30px rgba(44, 217, 125, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
 
-    &::before {
-      opacity: 1;
-    }
-
-    .icon-box {
-      transform: rotate(10deg) scale(1.1);
-    }
-
-    .shine-effect {
+    .pill-shimmer {
       left: 150%;
-      transition: 0.8s ease;
-    }
-  }
-
-  .icon-box {
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, #2CD97D 0%, #06B6D4 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #050811;
-    font-size: 20px;
-    transition: all 0.4s ease;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(44, 217, 125, 0.3);
-    z-index: 999;
-  }
-
-  .content-box {
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-
-    .top-text {
-      font-size: 9px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #2CD97D;
-      margin-bottom: 2px;
+      transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .main-text {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      white-space: nowrap;
+    .pill-logo-box {
+      transform: rotate(6deg) scale(1.08);
     }
-  }
 
-  .shine-effect {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent);
-    transform: skewX(-25deg);
-    pointer-events: none;
-  }
-
-  .close-x {
-    position: absolute;
-    top: 3px;
-    right: 2px;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border-radius: 50%;
-    z-index: 10;
-
-    &:hover {
-      color: #fff;
-      transform: scale(1.2);
+    .pill-action-btn {
+      background: #34e286;
+      box-shadow: 0 0 15px rgba(44, 217, 125, 0.6);
+      transform: translateX(1px);
     }
   }
 }
 
-@keyframes slideInLeft {
-  from {
+/* Ambient Neon Glow behind pill */
+.pill-aura {
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(44, 217, 125, 0.2), rgba(6, 182, 212, 0.15), rgba(255, 159, 28, 0.15));
+  opacity: 0.7;
+  pointer-events: none;
+  filter: blur(8px);
+}
+
+/* Shimmer Highlight Sweep */
+.pill-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-25deg);
+  pointer-events: none;
+}
+
+/* Logo icon chip */
+.pill-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pill-logo-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1d2123 0%, #0d1012 100%);
+  border: 1.5px solid rgba(44, 217, 125, 0.6);
+  box-shadow: 0 0 12px rgba(44, 217, 125, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  transition: transform 0.3s ease;
+}
+
+.pill-live-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2CD97D;
+  border: 2px solid #161a1c;
+  box-shadow: 0 0 6px #2CD97D;
+}
+
+/* Text hierarchy */
+.pill-text-wrap {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-right: 4px;
+}
+
+.pill-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.pill-tag-pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2CD97D;
+  animation: livePing 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.pill-tag-text {
+  font-size: 8.5px;
+  font-family: monospace;
+  font-weight: 900;
+  color: #2CD97D;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pill-heading {
+  font-size: 13px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* Action Button */
+.pill-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  background: #2CD97D;
+  color: #050811;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(44, 217, 125, 0.4);
+  transition: all 0.2s ease;
+
+  svg {
+    stroke-width: 3;
+  }
+}
+
+/* Micro Close Button */
+.pill-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.25);
+    color: #f87171;
+    transform: scale(1.15);
+  }
+}
+
+/* Animations */
+@keyframes pillEntrance {
+  0% {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateY(30px) scale(0.9);
   }
-
-  to {
+  100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-@keyframes bounce-slow {
-
-  0%,
+@keyframes pillExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
   100% {
-    transform: translateY(-15%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    opacity: 0;
+    transform: translateY(30px) scale(0.85);
+  }
+}
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes livePing {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(44, 217, 125, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(44, 217, 125, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(44, 217, 125, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .crownspin-install-pill-wrap {
+    bottom: 74px !important;
+    left: 10px !important;
   }
 
-  50% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  .crownspin-install-pill {
+    padding: 6px 8px 6px 6px;
+    gap: 8px;
+  }
+
+  .pill-logo-box {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pill-heading {
+    font-size: 12px;
+  }
+
+  .pill-action-btn {
+    padding: 5px 10px;
+    font-size: 10px;
   }
 }

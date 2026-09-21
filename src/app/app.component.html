@@ -57,26 +57,53 @@
 <app-user-manual></app-user-manual>
 <app-loader></app-loader>
 
-<!-- Redesigned Premium PWA Install Floating Card -->
+<!-- Next-Gen CrownSpin VIP App Floating Capsule -->
 <div
-  class="pwa-install-container fixed top-[69%] left-4 z-[999]"
+  class="crownspin-install-pill-wrap fixed bottom-24 sm:bottom-6 left-3 sm:left-6 z-[998]"
   *ngIf="showInstallFloating && pwaInstall.canInstall() && shouldShowChat()"
+  [class.pill-closing]="isPwaClosing"
 >
-  <div class="pwa-card v2 animate-bounce-slow" [class.closing]="isPwaClosing" (click)="installFloating()">
-    <!-- Close Icon -->
-    <div class="close-x" (click)="hideInstallFloating($event)" title="Close">
-      ✕
+  <div class="crownspin-install-pill group" (click)="installFloating()">
+    <!-- Ambient Holographic Aura -->
+    <div class="pill-aura"></div>
+    <div class="pill-shimmer"></div>
+
+    <!-- Left: App Icon / Logo Glow -->
+    <div class="pill-icon-wrap">
+      <div class="pill-logo-box">
+        <img src="/logo.png" alt="CrownSpin" class="h-6 w-auto object-contain" />
+      </div>
+      <span class="pill-live-dot"></span>
     </div>
 
-    <!-- Icon Box with Pulse Effect -->
-    <div class="icon-box">
-      <i class="fa-solid fa-mobile-screen-button"></i>
+    <!-- Center: Content Telemetry -->
+    <div class="pill-text-wrap">
+      <div class="pill-tag">
+        <span class="pill-tag-pulse"></span>
+        <span class="pill-tag-text">VIP APP • 1-TAP PLAY</span>
+      </div>
+      <div class="pill-heading">
+        Install CrownSpin
+      </div>
     </div>
 
-    <!-- Text Content -->
-    <div class="content-box">
-      <span class="top-text">FREE & FAST</span>
-      <span class="main-text">Get Mobile App</span>
-    </div>
+    <!-- Right: Action CTA Button -->
+    <button type="button" class="pill-action-btn" (click)="installFloating()">
+      <svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+      </svg>
+      <span>GET</span>
+    </button>
+
+    <!-- Micro Close Dismiss Button -->
+    <button
+      type="button"
+      class="pill-close-btn"
+      (click)="hideInstallFloating($event)"
+      title="Dismiss"
+      aria-label="Close"
+    >
+      &times;
+    </button>
   </div>
 </div>
