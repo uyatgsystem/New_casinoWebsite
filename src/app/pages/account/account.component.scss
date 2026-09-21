@@ -208,7 +208,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
   overflow: hidden;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
   transition: all 0.25s ease;
@@ -389,70 +389,25 @@
   }
 }
 
-.score-display-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(135deg, rgba(44, 217, 125, 0.12) 0%, rgba(25, 28, 29, 0.8) 100%);
-  border: 1px solid rgba(44, 217, 125, 0.35);
-  border-radius: 14px;
-  padding: 10px 14px;
-
-  .score-meta {
-    .s-label {
-      display: block;
-      font-size: 0.58rem;
-      font-weight: 900;
-      color: #2CD97D;
-      font-family: monospace;
-    }
-    .s-amount {
-      display: block;
-      font-size: 1.15rem;
-      font-weight: 900;
-      font-family: monospace;
-      color: #fff;
-    }
-  }
-
-  .btn-score-refresh {
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
-    background: rgba(44, 217, 125, 0.2);
-    border: 1px solid rgba(44, 217, 125, 0.4);
-    color: #2CD97D;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: #2CD97D;
-      color: #050811;
-      transform: rotate(180deg);
-    }
-  }
-}
-
+// 3. CARD ACTION BUTTONS (Updated sizes and grid balance)
 .card-action-btns {
   display: grid;
   grid-template-columns: 1fr 1fr 1.2fr;
-  gap: 6px;
+  gap: 8px;
 
   button {
-    padding: 9px 8px;
-    border-radius: 10px;
-    font-size: 0.72rem;
+    height: 42px;
+    padding: 0 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
     font-weight: 800;
     cursor: pointer;
     transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 6px;
+    white-space: nowrap;
   }
 
   .btn-add-score {
@@ -460,15 +415,22 @@
     border: 1px solid rgba(44, 217, 125, 0.35);
     color: #2CD97D;
 
-    &:hover { background: rgba(44, 217, 125, 0.15); }
+    &:hover { 
+      background: rgba(44, 217, 125, 0.15); 
+      border-color: #2CD97D;
+    }
   }
 
   .btn-redeem-game {
     background: #191c1d;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: #cbd5e1;
 
-    &:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    &:hover { 
+      background: rgba(255, 255, 255, 0.08); 
+      color: #fff; 
+      border-color: rgba(255, 255, 255, 0.25);
+    }
   }
 
   .btn-play-game {
@@ -476,13 +438,17 @@
     color: #050811 !important;
     font-weight: 900;
     border: none;
-    box-shadow: 0 2px 12px rgba(44, 217, 125, 0.4);
+    box-shadow: 0 3px 14px rgba(44, 217, 125, 0.35);
 
-    &:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    &:hover { 
+      filter: brightness(1.1); 
+      transform: translateY(-1px);
+      box-shadow: 0 5px 18px rgba(44, 217, 125, 0.5);
+    }
   }
 }
 
-// 3. TABLE VIEW
+// 4. TABLE VIEW
 .table-card-wrap {
   border-radius: 20px;
   background: #232729;
@@ -573,16 +539,6 @@
     display: flex;
     align-items: center;
     gap: 8px;
-
-    .score-pill {
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: #191c1d;
-      border: 1px solid rgba(44, 217, 125, 0.35);
-      font-family: monospace;
-      font-weight: 900;
-      color: #2CD97D;
-    }
   }
 
   .col-actions {

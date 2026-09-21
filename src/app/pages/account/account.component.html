@@ -2,7 +2,6 @@
 
 <div class="accounts-prime-page">
   <div class="accounts-prime-shell">
-
     <!-- ================= 1. HEADER & SEARCH TOOLBAR ================= -->
     <header class="accounts-top-bar">
       <div class="bar-left">
@@ -15,7 +14,8 @@
             <h1 class="main-title">Game Accounts Vault</h1>
           </div>
           <p class="sub-title">
-            <strong class="text-[#2CD97D]">{{ gameAccounts.length }}</strong> Active Game Hubs Connected
+            <strong class="text-[#2CD97D]">{{ gameAccounts.length }}</strong>
+            Active Game Hubs Connected
           </p>
         </div>
       </div>
@@ -71,10 +71,7 @@
         class="cards-grid custom-scroll"
         *ngIf="filteredAccounts().length > 0; else noRecord"
       >
-        <div
-          *ngFor="let account of filteredAccounts()"
-          class="cyber-game-card"
-        >
+        <div *ngFor="let account of filteredAccounts()" class="cyber-game-card">
           <!-- Corner Ambient Glow -->
           <div class="card-glow-aura" aria-hidden="true"></div>
 
@@ -124,7 +121,11 @@
                 <div>
                   <span class="cred-label">PASSWORD</span>
                   <span class="cred-val">
-                    {{ account.isPasswordVisible ? account.PlayerPassword : "••••••••••" }}
+                    {{
+                      account.isPasswordVisible
+                        ? account.PlayerPassword
+                        : "••••••••••"
+                    }}
                   </span>
                 </div>
               </div>
@@ -135,7 +136,12 @@
                   class="btn-eye-mini"
                   title="Toggle Visibility"
                 >
-                  <i class="fa" [ngClass]="account.isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                  <i
+                    class="fa"
+                    [ngClass]="
+                      account.isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'
+                    "
+                  ></i>
                 </button>
                 <button
                   type="button"
@@ -147,41 +153,9 @@
                 </button>
               </div>
             </div>
-
-            <!-- Change Password Trigger -->
-            <div class="change-pass-row">
-              <button
-                type="button"
-                (click)="openCredentialsForGame(account.GameName)"
-                class="btn-change-pass"
-              >
-                <i class="fa fa-key text-[10px]"></i>
-                <span>Change Password</span>
-                <i class="fa fa-angle-right text-[10px] ml-auto"></i>
-              </button>
-            </div>
           </div>
 
-          <!-- Quick Vault Action -->
-          <div class="score-display-box cursor-pointer" (click)="openCredentialsForGame(account.GameName)">
-            <div class="score-meta">
-              <span class="s-label">CREDENTIALS & SCORE</span>
-              <div class="s-val-row">
-                <span class="text-xs text-[#2CD97D] font-bold font-mono">
-                  Live Balance & History ➔
-                </span>
-              </div>
-            </div>
-            <button
-              type="button"
-              class="btn-score-refresh"
-              title="Open Game Terminal"
-            >
-              <i class="fa fa-terminal"></i>
-            </button>
-          </div>
-
-          <!-- Card Actions -->
+          <!-- Card Actions (Add Score, Redeem, Play) -->
           <div class="card-action-btns">
             <button
               type="button"
@@ -232,7 +206,11 @@
           >
             <!-- Game Info -->
             <div class="col-game">
-              <img [src]="getGameImage(account.GameName)" [alt]="account.GameName" class="table-thumb" />
+              <img
+                [src]="getGameImage(account.GameName)"
+                [alt]="account.GameName"
+                class="table-thumb"
+              />
               <div>
                 <strong class="game-t-name">{{ account.GameName }}</strong>
                 <span class="game-t-sub">Verified Hub</span>
@@ -255,14 +233,23 @@
             <!-- Password -->
             <div class="col-pass">
               <span class="pass-text">
-                {{ account.isPasswordVisible ? account.PlayerPassword : "••••••••••" }}
+                {{
+                  account.isPasswordVisible
+                    ? account.PlayerPassword
+                    : "••••••••••"
+                }}
               </span>
               <button
                 type="button"
                 (click)="togglePasswordVisibility(account)"
                 class="btn-eye-inline"
               >
-                <i class="fa" [ngClass]="account.isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                <i
+                  class="fa"
+                  [ngClass]="
+                    account.isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'
+                  "
+                ></i>
               </button>
               <button
                 type="button"
