@@ -11,4 +11,12 @@ export class SidebarService {
   toggleSidebar() {
     this.sidebarOpen.next(!this.sidebarOpen.value);
   }
+
+  closeSidebar() {
+    this.sidebarOpen.next(false);
+  }
+
+  openSidebar() {
+    this.sidebarOpen.next(true);
+  }
 }

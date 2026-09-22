@@ -115,12 +115,12 @@
       <div class="relative z-10 bg-[#0d1017] p-4 sm:p-8 rounded-[2.5rem] border border-slate-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         <div class="absolute inset-0 rounded-[2.5rem] shadow-[inset_0_0_100px_rgba(245,158,11,0.03)] pointer-events-none"></div>
         
-        <div class="grid grid-cols-8 gap-2 sm:grid-cols-10">
+        <div class="grid grid-cols-8 gap-1 sm:gap-2 sm:grid-cols-10">
           <button
             *ngFor="let value of boardNumbers; trackBy: trackByNumber"
             (click)="toggleNumber(value)"
             [disabled]="isInteractionLocked"
-            class="tile-3d relative aspect-square rounded-lg sm:rounded-xl text-sm sm:text-base font-black transition-all duration-200 border-b-4 active:translate-y-1 active:border-b-0"
+            class="tile-3d relative aspect-square rounded-md sm:rounded-xl text-xs sm:text-base font-black transition-all duration-200 border-b-2 sm:border-b-4 active:translate-y-1 active:border-b-0 p-0"
             [ngClass]="getTileClasses(value)">
             <span class="relative z-10">{{ value }}</span>
           </button>

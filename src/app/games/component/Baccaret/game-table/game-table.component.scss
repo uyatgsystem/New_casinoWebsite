@@ -1,9 +1,17 @@
 .game-container {
+  min-height: 100vh;
   height: 100vh;
   background: linear-gradient(135deg, #0a1e0a 0%, #1a3a1a 50%, #0a1e0a 100%);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 
 .game-header {

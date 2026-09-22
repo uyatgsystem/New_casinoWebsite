@@ -1,3 +1,10 @@
+<!-- Mobile Backdrop Overlay -->
+<div
+  *ngIf="isSidebarOpen && isMobile && !isTreasurePickRoute()"
+  (click)="closeSidebarMobile()"
+  class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[995] lg:hidden transition-opacity duration-300"
+></div>
+
 <!-- ================= FUTURISTIC CYBER-DOCK SIDEBAR ================= -->
 <div
   *ngIf="!isTreasurePickRoute()"

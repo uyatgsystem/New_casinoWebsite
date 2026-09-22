@@ -646,6 +646,8 @@
   background: #191c1d;
   border: 1px solid rgba(44, 217, 125, 0.25);
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
   padding: 6px;
 }
 

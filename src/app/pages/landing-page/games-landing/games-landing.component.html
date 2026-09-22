@@ -6,8 +6,8 @@
 >
   <ng-container *ngFor="let game of displayedGames">
     <div
-      (click)="isMobile() ? OnPlayNow(game) : null"
-      class="clean-game-card group"
+      (click)="OnPlayNow(game)"
+      class="clean-game-card group cursor-pointer"
       [ngStyle]="{ backgroundColor: game.bgclr || '#10b981' }"
     >
       <!-- Top Badges Layer (Bonus & HOT Tags) -->

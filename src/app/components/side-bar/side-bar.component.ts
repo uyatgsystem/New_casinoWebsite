@@ -135,7 +135,8 @@ export class SideBarComponent implements OnInit, AfterViewInit {
 
   closeSidebarMobile() {
     if (this.isMobile) {
-      this.sidebarService.toggleSidebar();
+      this.isSidebarOpen = false;
+      this.sidebarService.closeSidebar();
     }
   }
 

@@ -1,4 +1,4 @@
-<div class="game-wrapper h-screen max-h-screen overflow-hidden bg-black relative flex flex-col justify-between selection:bg-yellow-500 selection:text-black">
+<div class="game-wrapper min-h-screen w-full overflow-y-auto bg-black relative flex flex-col justify-between selection:bg-yellow-500 selection:text-black">
   
   <!-- Ambient background accent -->
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -33,7 +33,7 @@
   </div>
 
   <!-- Main Game Content Split Area -->
-  <div class="game-area grid grid-cols-1 md:grid-cols-2 gap-4 p-4 items-stretch flex-1 min-h-0 overflow-hidden">
+  <div class="game-area grid grid-cols-1 md:grid-cols-2 gap-4 p-3 sm:p-4 items-stretch flex-1 min-h-0 overflow-y-auto">
 
     <!-- Left Box: Interactive Coin Arena -->
     <div class="coin-stage relative flex flex-col items-center justify-between rounded-2xl bg-gradient-to-b from-zinc-900/60 to-black border border-white/5 p-4 shadow-2xl min-h-0 overflow-visible">
