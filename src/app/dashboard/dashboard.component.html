@@ -101,31 +101,32 @@
       ></div>
 
       <!-- Spinner Image -->
-      <div class="flex justify-center items-center mb-6">
+      <div class="flex justify-center items-center mb-6 relative">
+        <div class="absolute w-44 h-44 rounded-full bg-[#2CD97D]/20 blur-2xl pointer-events-none animate-pulse"></div>
         <img
-          src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png"
+          src="/Spin1.png"
           alt="Spinner Wheel"
-          class="w-64 h-64 md:w-72 md:h-72 object-contain drop-shadow-[0_0_30px_rgba(44,217,125,0.3)]"
+          class="w-56 h-56 md:w-64 md:h-64 object-contain drop-shadow-[0_0_35px_rgba(44,217,125,0.4)] relative z-10 transition-transform duration-500 hover:rotate-12 hover:scale-105"
         />
       </div>
 
       <!-- Description -->
-      <p class="text-[#A6B1C2] text-sm md:text-base mb-8 leading-relaxed px-2">
+      <p class="text-[#A6B1C2] text-sm md:text-base mb-6 leading-relaxed px-2">
         You have a
         <span class="text-[#2CD97D] font-bold">free spin</span>
-        waiting for you. Spin the wheel now to win exciting prizes!
+        waiting for you. Spin the wheel now to win exciting real prizes!
       </p>
 
       <!-- CTA Button -->
       <button
         (click)="navigateToSpinner()"
-        class="w-full py-4 rounded-xl bg-[#2CD97D] text-[#050811] font-extrabold text-base shadow-[0_0_25px_rgba(44,217,125,0.4)] hover:bg-[#28c772] hover:scale-[1.02] transition-all duration-200"
+        class="w-full py-4 rounded-xl bg-[#2CD97D] text-[#050811] font-extrabold text-base tracking-wide shadow-[0_0_25px_rgba(44,217,125,0.4)] hover:bg-[#28c772] hover:shadow-[0_0_35px_rgba(44,217,125,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
       >
-        Spin Now
+        🎡 Spin Now
       </button>
 
-      <p class="text-[#4B5563] text-xs mt-4">
-        This is your welcome gift. Don't miss out!
+      <p class="text-[#64748b] text-xs mt-4">
+        Claim your lucky rewards now. Don't miss out!
       </p>
     </div>
   </div>

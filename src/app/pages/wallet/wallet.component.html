@@ -538,11 +538,11 @@
 <!-- ================= WITHDRAW MODAL ================= -->
 <div
   *ngIf="showwithdrawModal"
-  class="fixed inset-0 bg-black/85 backdrop-blur-xl flex items-center justify-center z-[99999] p-3 sm:p-4 overflow-y-auto"
+  class="fixed inset-0 bg-black/85 backdrop-blur-xl flex items-center justify-center z-[99999] p-3 sm:p-4 overflow-y-auto overflow-x-hidden"
   (click)="hideWithdrawModal()"
 >
   <div
-    class="relative w-full max-w-lg bg-gradient-to-b from-[#1f2425] to-[#121516] border border-[#2CD97D]/50 rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 shadow-[0_25px_80px_rgba(0,0,0,0.95)] text-white max-h-[90vh] overflow-y-auto my-auto custom-scrollbar"
+    class="relative w-full max-w-lg bg-gradient-to-b from-[#1f2425] to-[#121516] border border-[#2CD97D]/50 rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 shadow-[0_25px_80px_rgba(0,0,0,0.95)] text-white max-h-[90vh] overflow-y-auto overflow-x-hidden my-auto custom-scrollbar box-border"
     (click)="$event.stopPropagation()"
   >
     <!-- Background Glow -->

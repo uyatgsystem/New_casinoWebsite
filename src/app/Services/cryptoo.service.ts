@@ -7,7 +7,7 @@ import * as CryptoJS from 'crypto-js';
 
 const SERVER_TIME_SYNC_TIMEOUT_MS = 5000;
 
-const BASE_ROUTE = 'https://154.38.161.3:44364/api/';
+const BASE_ROUTE = 'https://154.38.161.3:44301/api/';
 // const BASE_ROUTE = 'https://cz.lessonplay.win/api/';
 
 @Injectable({
