@@ -59,23 +59,23 @@
         >
           <!-- Top Badges Layer -->
           <div
-            class="absolute top-2.5 inset-x-2.5 z-30 flex items-center justify-between pointer-events-none gap-1"
+            class="absolute top-1.5 inset-x-1.5 sm:top-2.5 sm:inset-x-2.5 z-30 flex items-center justify-between pointer-events-none gap-1"
           >
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-1 flex-wrap">
               <span
                 *ngIf="getGameImage(game.name)?.bonus"
-                class="bg-[#232626]/90 text-[#2CD97D] font-black text-[9px] px-2 py-0.5 rounded-md shadow uppercase tracking-tighter border border-[#2CD97D]/40 backdrop-blur-sm"
+                class="bg-black/85 text-amber-300 font-black text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 rounded sm:rounded-md shadow uppercase tracking-tight border border-amber-400/40 backdrop-blur-sm whitespace-nowrap"
               >
-                🔥 {{ getGameImage(game.name)?.bonus }}%
+                🔥 {{ getGameImage(game.name)?.bonus }}% OFF
               </span>
               <span
                 *ngIf="getGameImage(game.name)?.isHot"
-                class="bg-[#2CD97D] text-[#050811] font-black text-[9px] px-2 py-0.5 rounded-md shadow uppercase tracking-tighter"
+                class="bg-red-600 text-white font-black text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 rounded sm:rounded-md shadow-[0_0_8px_rgba(220,38,38,0.7)] uppercase tracking-tight animate-pulse whitespace-nowrap"
               >
                 ⚡ HOT
               </span>
             </div>
-            <span class="bg-black/60 text-slate-300 font-mono text-[9px] px-1.5 py-0.5 rounded border border-white/10">
+            <span class="hidden sm:inline-block bg-black/60 text-slate-300 font-mono text-[9px] px-1.5 py-0.5 rounded border border-white/10 whitespace-nowrap">
               99.2%
             </span>
           </div>

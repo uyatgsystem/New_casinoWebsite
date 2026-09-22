@@ -31,21 +31,21 @@
   border-radius: 20px;
   overflow: visible;
   isolation: isolate;
-  padding: 16px 10px 120px;
+  padding: 16px 12px 24px;
   width: 100%;
   border: 1px solid var(--cw-border);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
 
   @media (min-width: 768px) {
     border-radius: 28px;
-    padding: 24px 20px 80px;
+    padding: 22px 20px 28px;
   }
 
   &--landing {
     border-radius: 0;
     border: none;
     background: transparent;
-    padding: 20px 10px 40px;
+    padding: 16px 10px 20px;
     box-shadow: none;
   }
 }

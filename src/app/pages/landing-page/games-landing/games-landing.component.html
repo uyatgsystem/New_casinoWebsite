@@ -12,18 +12,18 @@
     >
       <!-- Top Badges Layer (Bonus & HOT Tags) -->
       <div
-        class="absolute top-3 inset-x-3 z-30 flex items-center justify-between pointer-events-none gap-1"
+        class="absolute top-1.5 inset-x-1.5 sm:top-2.5 sm:inset-x-2.5 z-30 flex items-center justify-between pointer-events-none gap-1"
       >
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1 flex-wrap">
           <span
             *ngIf="game?.bonus"
-            class="bg-black/70 text-amber-300 font-black text-[9px] px-2 py-0.5 rounded shadow uppercase tracking-tighter border border-amber-400/30"
+            class="bg-black/85 text-amber-300 font-black text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 rounded sm:rounded-md shadow uppercase tracking-tight border border-amber-400/40 backdrop-blur-sm whitespace-nowrap"
           >
-            🔥 {{ game?.bonus }}%
+            🔥 {{ game?.bonus }}% OFF
           </span>
           <span
             *ngIf="game.isHot"
-            class="bg-orange-500 text-white font-black text-[9px] px-2 py-0.5 rounded shadow uppercase tracking-tighter animate-pulse"
+            class="bg-red-600 text-white font-black text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 rounded sm:rounded-md shadow-[0_0_8px_rgba(220,38,38,0.7)] uppercase tracking-tight animate-pulse whitespace-nowrap"
           >
             ⚡ HOT
           </span>
@@ -224,28 +224,26 @@
   </div>
 </div>
 
-<!-- Spin Section with Border Frame -->
-<div *ngIf="isDashboardPage" class="mt-10 px-3 sm:px-4">
-  <div class="flex items-center ml-1 gap-3 mb-4">
+<!-- Spin Section -->
+<div *ngIf="isDashboardPage" class="mt-6 sm:mt-8 px-2 sm:px-4">
+  <div class="flex items-center ml-1 gap-2.5 sm:gap-3 mb-3 sm:mb-4">
     <div
-      class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"
+      class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"
     >
       <img
         src="https://cmaxv2images2.pages.dev/assets/icons/spinner.png"
         alt="Spin"
-        class="w-5 h-5 object-contain"
+        class="w-4 h-4 sm:w-5 sm:h-5 object-contain"
       />
     </div>
     <span
-      class="text-white font-black text-lg tracking-wider uppercase bg-gradient-to-r from-white via-cyan-200 to-[#2CD97D] bg-clip-text text-transparent drop-shadow-md"
+      class="text-white font-black text-base sm:text-lg tracking-wider uppercase bg-gradient-to-r from-white via-cyan-200 to-[#2CD97D] bg-clip-text text-transparent drop-shadow-md"
     >
       Spin
     </span>
   </div>
 
-  <div
-    class="rounded-3xl bg-[#292d2e]/60 border border-[#2CD97D]/30 shadow-xl backdrop-blur-sm p-2 sm:p-4 overflow-visible"
-  >
+  <div class="overflow-visible">
     <app-spinner
       id="spin-scrolling-id"
       [showHeaderSection]="false"
