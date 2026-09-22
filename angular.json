@@ -38,7 +38,8 @@
             ],
             "allowedCommonJsDependencies": [
               "ngx-toastr",
-              "ngx-owl-carousel-o"
+              "ngx-owl-carousel-o",
+              "crypto-js"
             ],
             "styles": [
               "src/styles.scss",

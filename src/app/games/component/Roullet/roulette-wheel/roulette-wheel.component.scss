@@ -39,8 +39,8 @@
   border-radius: 50%;
   border: 6px solid #d4af37;
   box-shadow: 
-    inset 0 0 0 2px darken(#d4af37, 15%),
-    0 0 0 2px lighten(#d4af37, 25%),
+    inset 0 0 0 2px #b8932a,
+    0 0 0 2px #ffe680,
     0 10px 40px rgba(0, 0, 0, 0.8);
   
   &::before {
@@ -52,7 +52,7 @@
     bottom: 12%;
     background: rgba(0, 0, 0, 0.65);
     border: 1px solid silver;
-    box-shadow: inset 0 0 0 2px darken(silver, 25%);
+    box-shadow: inset 0 0 0 2px #909090;
     border-radius: 50%;
     z-index: 1;
   }
@@ -77,8 +77,8 @@
     right: 24%;
     bottom: 24%;
     left: 24%;
-    background-color: darken(silver, 45%);
-    border: 3px solid darken(silver, 25%);
+    background-color: #696969;
+    border: 3px solid #909090;
     border-radius: 50%;
   }
 }
