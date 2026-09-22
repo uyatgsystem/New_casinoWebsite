@@ -1,13 +1,16 @@
 :host {
   display: block;
   min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   background: #232626;
 }
 
 .main-bg {
   position: relative;
   width: 100%;
-  min-height: 100dvh !important;
+  height: 100vh;
+  min-height: 100dvh;
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -15%, rgba(44, 217, 125, 0.16), transparent 70%),
     radial-gradient(circle at 90% 85%, rgba(6, 182, 212, 0.1), transparent 45%),
@@ -19,8 +22,9 @@
   background-repeat: no-repeat !important;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   overflow-x: hidden !important;
-  overflow-y: auto !important;
+  overflow-y: hidden !important;
 }
 
 #formContainer {
@@ -54,69 +58,44 @@
 }
 
 @media (max-width: 1023px) {
+  :host {
+    height: auto;
+    overflow: auto;
+  }
+
   .main-bg {
+    height: auto;
+    min-height: 100vh;
     overflow-y: auto !important;
     display: block !important;
   }
 
   .mobile-header-section {
     width: 100%;
-    padding-top: 28px !important;
+    padding-top: 20px !important;
   }
 
   #formContainer {
-    width: min(94%, 520px) !important;
-    max-width: 520px !important;
+    width: min(94%, 500px) !important;
+    max-width: 500px !important;
     margin: 10px auto 36px auto !important;
-    padding: clamp(16px, 4vw, 28px) !important;
+    padding: clamp(16px, 4vw, 24px) !important;
   }
 }
 
 @media (min-width: 1024px) {
   .main-bg {
-    min-height: 100dvh !important;
+    height: 100vh !important;
     overflow-y: hidden !important;
   }
 
   #formContainer {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding: 14px 22px !important;
-  }
-
-  #formContainer .mb-5 {
-    margin-bottom: 0.65rem !important;
-  }
-
-  #formContainer .mb-4 {
-    margin-bottom: 0.65rem !important;
-  }
-
-  #formContainer .mb-3 {
-    margin-bottom: 0.5rem !important;
-  }
-
-  #formContainer .mt-3 {
-    margin-top: 0.5rem !important;
-  }
-
-  #formContainer .mt-2.mb-4 {
-    margin-top: 0.35rem !important;
-    margin-bottom: 0.65rem !important;
-  }
-
-  #formContainer input:not([type='checkbox']) {
-    min-height: 36px;
-    padding-top: 0.45rem !important;
-    padding-bottom: 0.45rem !important;
-  }
-
-  #formContainer button[type='submit'],
-  #formContainer form > button[type='button'] {
-    padding-top: 0.6rem !important;
-    padding-bottom: 0.6rem !important;
+    margin: 0 !important;
+    padding: 20px 26px !important;
   }
 }
+
+
 
 @media (max-width: 639px) {
   #formContainer {

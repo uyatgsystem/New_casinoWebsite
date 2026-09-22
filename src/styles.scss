@@ -6,6 +6,8 @@
 @use "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
 /* SweetAlert2 default theme */
 @import "sweetalert2/dist/sweetalert2.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap');
 
 #toast-container {
   z-index: 99999 !important;
@@ -401,7 +403,7 @@ body {
 }
 
 :root {
-  --font-family: "Libre Franklin", "Helvetica Neue";
+  --font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --nav-Background: #292d2e;
   --ground: rgba(41, 45, 46, 0.95);
   --text-primary: #2CD97D;

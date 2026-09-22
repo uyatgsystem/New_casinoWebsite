@@ -1,20 +1,25 @@
+<!-- Mobile Backdrop Overlay -->
+<div
+  *ngIf="isMobileMenuOpen"
+  (click)="toggleMobileMenu()"
+  class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[990] lg:hidden transition-opacity duration-300"
+></div>
+
 <header
-  class="top-0 w-full h-[80px] lg:h-[88px] flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-50 header-bordered"
-  [class.fixed]="isSticky"
-  [class.absolute]="!isSticky"
-  [class.sticky-shadow]="isSticky"
+  class="sticky top-0 left-0 w-full h-[80px] lg:h-[88px] flex items-center px-4 sm:px-6 lg:px-10 transition-all duration-300 z-[995] header-bordered sticky-shadow"
+  [class.!bg-[#181b1d]]="isMobileMenuOpen"
 >
   <!-- Logo (Left) -->
   <div class="flex items-center gap-2 select-none shrink-0 z-10">
     <img
       src="/logo.png"
       alt="Crown Spin"
-      class="block lg:hidden h-12 sm:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(44,217,125,0.6)]"
+      class="block lg:hidden h-14 sm:h-16 w-auto max-h-[60px] object-contain drop-shadow-[0_0_16px_rgba(44,217,125,0.65)]"
     />
     <img
       src="/logo.png"
       alt="Crown Spin"
-      class="hidden lg:block h-14 lg:h-16 xl:h-20 w-auto max-h-[72px] object-contain drop-shadow-[0_0_20px_rgba(44,217,125,0.65)] hover:scale-105 transition duration-300"
+      class="hidden lg:block h-16 lg:h-20 xl:h-24 w-auto max-h-[82px] xl:max-h-[92px] object-contain drop-shadow-[0_0_22px_rgba(44,217,125,0.7)] hover:scale-105 transition duration-300"
     />
   </div>
 
@@ -69,45 +74,45 @@
     </svg>
   </button>
 
-  <!-- Mobile Menu Glass Drawer -->
+  <!-- Mobile Menu Drawer (Solid Background, no bleed-through) -->
   <div
     *ngIf="isMobileMenuOpen"
-    class="lg:hidden absolute top-full left-0 w-full backdrop-blur-2xl border-t border-[#2CD97D]/30 px-4 py-6 z-50 shadow-2xl bg-[#232626]/98"
+    class="lg:hidden absolute top-full left-0 w-full px-4 py-6 z-[999] shadow-[0_30px_70px_rgba(0,0,0,0.98)] bg-[#181b1d] border-t border-b border-[#2CD97D]/30 max-h-[calc(100vh-80px)] overflow-y-auto"
   >
     <div class="grid grid-cols-2 gap-3 text-center text-white">
       <button
         (click)="handleMobileNav('gameScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/25 hover:border-[#2CD97D] transition cursor-pointer text-xs font-bold uppercase tracking-wider"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#202527] border border-[#2CD97D]/25 hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer text-xs font-bold uppercase tracking-wider text-gray-200 hover:text-white"
       >
         Games
       </button>
       <button
         (click)="handleMobileNav('instantGameScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/25 hover:border-[#2CD97D] transition cursor-pointer text-xs font-bold uppercase tracking-wider"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#202527] border border-[#2CD97D]/25 hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer text-xs font-bold uppercase tracking-wider text-gray-200 hover:text-white"
       >
         Instant Games
       </button>
       <button
         (click)="handleMobileNav('featuresScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/25 hover:border-[#2CD97D] transition cursor-pointer text-xs font-bold uppercase tracking-wider"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#202527] border border-[#2CD97D]/25 hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer text-xs font-bold uppercase tracking-wider text-gray-200 hover:text-white"
       >
         Features
       </button>
       <button
         (click)="handleMobileNav('rewardsSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/25 hover:border-[#2CD97D] transition cursor-pointer text-xs font-bold uppercase tracking-wider"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#202527] border border-[#2CD97D]/25 hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer text-xs font-bold uppercase tracking-wider text-gray-200 hover:text-white"
       >
         VIP Rewards
       </button>
       <button
         (click)="handleMobileNav('aboutScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/25 hover:border-[#2CD97D] transition cursor-pointer text-xs font-bold uppercase tracking-wider"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#202527] border border-[#2CD97D]/25 hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer text-xs font-bold uppercase tracking-wider text-gray-200 hover:text-white"
       >
         About Us
       </button>
       <button
         (click)="handleMobileNav('contactScrollSection')"
-        class="mobile-nav-btn py-3 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/25 hover:border-[#2CD97D] transition cursor-pointer text-xs font-bold uppercase tracking-wider"
+        class="mobile-nav-btn py-3 rounded-2xl bg-[#202527] border border-[#2CD97D]/25 hover:border-[#2CD97D] hover:bg-[#2CD97D]/10 transition cursor-pointer text-xs font-bold uppercase tracking-wider text-gray-200 hover:text-white"
       >
         Contact Us
       </button>
@@ -116,7 +121,7 @@
     <div class="flex items-center gap-3 mt-5">
       <button
         (click)="RedirectToLogin()"
-        class="pill-btn-outline !w-full flex-1 !py-3 !rounded-2xl cursor-pointer text-xs font-bold uppercase tracking-wider border-[#2CD97D]/50 text-[#2CD97D]"
+        class="pill-btn-outline !w-full flex-1 !py-3 !rounded-2xl cursor-pointer text-xs font-bold uppercase tracking-wider border-[#2CD97D]/50 text-[#2CD97D] bg-[#202527]"
       >
         VIP Login
       </button>
@@ -130,8 +135,9 @@
   </div>
 </header>
 
+
 <!-- ============================= HERO ============================= -->
-<div class="pt-[76px] bg-[#0d1015]">
+<div class="bg-[#0d1015]">
   <app-hero-section></app-hero-section>
 </div>
 

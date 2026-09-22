@@ -212,128 +212,269 @@
         </div>
       </div>
 
-      <!-- ================= DESKTOP MAIN TRANSACTIONS TABLE ================= -->
-      <div *ngIf="walletView === 'wallet'" class="ledger-table-wrap custom-scroll">
-        <div class="ledger-table-header">
-          <span>#</span>
-          <span>Type & Source</span>
-          <span>Amount</span>
-          <span>Bonus</span>
-          <span>Tip</span>
-          <span>Fee</span>
-          <span>Status</span>
-          <span>Order ID</span>
-          <span>Date & Time</span>
+      <!-- ================= MAIN TRANSACTIONS ================= -->
+      <ng-container *ngIf="walletView === 'wallet'">
+        <!-- Desktop Table View -->
+        <div class="hidden md:block ledger-table-wrap custom-scroll">
+          <div class="ledger-table-header">
+            <span>#</span>
+            <span>Type & Source</span>
+            <span>Amount</span>
+            <span>Bonus</span>
+            <span>Tip</span>
+            <span>Fee</span>
+            <span>Status</span>
+            <span>Order ID</span>
+            <span>Date & Time</span>
+          </div>
+
+          <div
+            #transactionTable
+            (scroll)="onScroll()"
+            class="ledger-table-body custom-scroll"
+            *ngIf="filteredTransactions.length > 0; else noRecord"
+          >
+            <div
+              *ngFor="let tx of filteredTransactions; let i = index"
+              class="ledger-table-row"
+            >
+              <span class="col-num">{{ i + 1 }}</span>
+
+              <div class="col-source">
+                <i class="fa fa-university text-[#2CD97D]"></i>
+                <span class="source-title">{{ tx.type === "debit" ? "Debit" : "Credit" }}</span>
+                <span class="source-sub">({{ tx.source }})</span>
+
+                <!-- Pending Actions -->
+                <div *ngIf="tx.type === 'debit' && tx.status === 'Pending'" class="action-icons">
+                  <fa-icon
+                    [icon]="faEdit"
+                    class="edit-icon"
+                    (click)="editWithdrawTransaction(tx, $event)"
+                    title="Edit"
+                  ></fa-icon>
+                  <fa-icon
+                    [icon]="faTrash"
+                    class="delete-icon"
+                    (click)="deleteWithdrawTransaction(tx, $event)"
+                    title="Delete"
+                  ></fa-icon>
+                </div>
+              </div>
+
+              <span
+                class="col-amount"
+                [class.credit]="tx.type === 'credit'"
+                [class.debit]="tx.type === 'debit'"
+              >
+                {{ tx.type === "credit" ? "+" : "-" }}${{ tx.balance.toLocaleString() }}
+              </span>
+
+              <span class="col-meta">{{ tx.bonus > 0 ? "$" + tx.bonus : "—" }}</span>
+              <span class="col-meta">{{ tx.tip > 0 ? "$" + tx.tip : "—" }}</span>
+              <span class="col-meta">{{ tx.plateformFee ? "$" + tx.plateformFee : "—" }}</span>
+
+              <div class="col-status">
+                <span
+                  class="status-pill"
+                  [ngClass]="{
+                    'is-complete': tx.status === 'Complete',
+                    'is-decline': tx.status === 'Decline',
+                    'is-pending': tx.status === 'Pending'
+                  }"
+                >
+                  {{ tx.status }}
+                </span>
+              </div>
+
+              <span class="col-order-id">{{ tx.orderID || "//" }}</span>
+              <span class="col-date">{{ tx.time | localTime }}</span>
+            </div>
+          </div>
         </div>
 
+        <!-- Mobile Card List View -->
         <div
-          #transactionTable
-          (scroll)="onScroll()"
-          class="ledger-table-body custom-scroll"
+          class="block md:hidden space-y-3 mt-2 max-h-[520px] overflow-y-auto custom-scroll pr-0.5"
+          (scroll)="onMobileScroll($event)"
           *ngIf="filteredTransactions.length > 0; else noRecord"
         >
           <div
             *ngFor="let tx of filteredTransactions; let i = index"
-            class="ledger-table-row"
+            class="wallet-mobile-card p-3.5 sm:p-4 rounded-2xl bg-[#191c1d] border border-[#2CD97D]/25 shadow-[0_4px_16px_rgba(0,0,0,0.6)] space-y-3 transition hover:border-[#2CD97D]/50"
           >
-            <span class="col-num">{{ i + 1 }}</span>
+            <!-- Top Row: # Index, Type, Source & Status -->
+            <div class="flex items-center justify-between gap-2 border-b border-white/5 pb-2.5">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-[10px] font-mono font-black text-gray-400 bg-white/5 px-2 py-0.5 rounded-md border border-white/10 shrink-0">
+                  #{{ i + 1 }}
+                </span>
+                <div class="flex items-center gap-1.5 font-bold text-xs text-white truncate">
+                  <i class="fa fa-university text-[#2CD97D] shrink-0"></i>
+                  <span class="shrink-0">{{ tx.type === "debit" ? "Debit" : "Credit" }}</span>
+                  <span class="text-gray-400 font-normal text-[11px] truncate">({{ tx.source }})</span>
+                </div>
+              </div>
 
-            <div class="col-source">
-              <i class="fa fa-university text-[#2CD97D]"></i>
-              <span class="source-title">{{ tx.type === "debit" ? "Debit" : "Credit" }}</span>
-              <span class="source-sub">({{ tx.source }})</span>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span
+                  class="status-pill"
+                  [ngClass]="{
+                    'is-complete': tx.status === 'Complete',
+                    'is-decline': tx.status === 'Decline',
+                    'is-pending': tx.status === 'Pending'
+                  }"
+                >
+                  {{ tx.status }}
+                </span>
 
-              <!-- Pending Actions -->
-              <div *ngIf="tx.type === 'debit' && tx.status === 'Pending'" class="action-icons">
-                <fa-icon
-                  [icon]="faEdit"
-                  class="edit-icon"
-                  (click)="editWithdrawTransaction(tx, $event)"
-                  title="Edit"
-                ></fa-icon>
-                <fa-icon
-                  [icon]="faTrash"
-                  class="delete-icon"
-                  (click)="deleteWithdrawTransaction(tx, $event)"
-                  title="Delete"
-                ></fa-icon>
+                <!-- Pending Actions -->
+                <div *ngIf="tx.type === 'debit' && tx.status === 'Pending'" class="flex items-center gap-1.5 ml-1">
+                  <fa-icon
+                    [icon]="faEdit"
+                    class="text-[#2CD97D] text-xs p-1 cursor-pointer hover:scale-110 transition"
+                    (click)="editWithdrawTransaction(tx, $event)"
+                    title="Edit"
+                  ></fa-icon>
+                  <fa-icon
+                    [icon]="faTrash"
+                    class="text-red-500 text-xs p-1 cursor-pointer hover:scale-110 transition"
+                    (click)="deleteWithdrawTransaction(tx, $event)"
+                    title="Delete"
+                  ></fa-icon>
+                </div>
               </div>
             </div>
 
-            <span
-              class="col-amount"
-              [class.credit]="tx.type === 'credit'"
-              [class.debit]="tx.type === 'debit'"
-            >
-              {{ tx.type === "credit" ? "+" : "-" }}${{ tx.balance.toLocaleString() }}
-            </span>
+            <!-- Middle Row: Amount & Order ID -->
+            <div class="flex items-center justify-between gap-2 bg-[#121415] p-2.5 rounded-xl border border-white/5">
+              <div>
+                <span class="text-[9px] uppercase font-mono text-gray-400 block font-bold">Amount</span>
+                <span
+                  class="font-mono font-black text-base sm:text-lg"
+                  [class.text-[#2CD97D]]="tx.type === 'credit'"
+                  [class.text-red-400]="tx.type === 'debit'"
+                >
+                  {{ tx.type === "credit" ? "+" : "-" }}${{ tx.balance.toLocaleString() }}
+                </span>
+              </div>
 
-            <span class="col-meta">{{ tx.bonus > 0 ? "$" + tx.bonus : "—" }}</span>
-            <span class="col-meta">{{ tx.tip > 0 ? "$" + tx.tip : "—" }}</span>
-            <span class="col-meta">{{ tx.plateformFee ? "$" + tx.plateformFee : "—" }}</span>
-
-            <div class="col-status">
-              <span
-                class="status-pill"
-                [ngClass]="{
-                  'is-complete': tx.status === 'Complete',
-                  'is-decline': tx.status === 'Decline',
-                  'is-pending': tx.status === 'Pending'
-                }"
-              >
-                {{ tx.status }}
-              </span>
+              <div class="text-right">
+                <span class="text-[9px] uppercase font-mono text-gray-400 block font-bold">Order ID</span>
+                <span class="font-mono text-xs text-gray-200 select-all font-semibold">
+                  {{ tx.orderID || "//" }}
+                </span>
+              </div>
             </div>
 
-            <span class="col-order-id">{{ tx.orderID || "//" }}</span>
-            <span class="col-date">{{ tx.time | localTime }}</span>
+            <!-- Metadata Grid: Bonus, Tip, Fee & Date -->
+            <div class="grid grid-cols-3 sm:grid-cols-4 gap-2 text-[11px] font-mono">
+              <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2 flex flex-col">
+                <span class="text-gray-400 text-[9px] uppercase">Bonus</span>
+                <span class="text-white font-bold">{{ tx.bonus > 0 ? "$" + tx.bonus : "—" }}</span>
+              </div>
+              <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2 flex flex-col">
+                <span class="text-gray-400 text-[9px] uppercase">Tip</span>
+                <span class="text-white font-bold">{{ tx.tip > 0 ? "$" + tx.tip : "—" }}</span>
+              </div>
+              <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2 flex flex-col">
+                <span class="text-gray-400 text-[9px] uppercase">Fee</span>
+                <span class="text-white font-bold">{{ tx.plateformFee ? "$" + tx.plateformFee : "—" }}</span>
+              </div>
+              <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2 flex flex-col col-span-3 sm:col-span-1">
+                <span class="text-gray-400 text-[9px] uppercase">Timestamp</span>
+                <span class="text-gray-300 font-semibold truncate">{{ tx.time | localTime }}</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
 
-      <!-- ================= DESKTOP BONUS TRANSACTIONS TABLE ================= -->
-      <div *ngIf="walletView === 'bonus'" class="ledger-table-wrap custom-scroll">
-        <div class="ledger-table-header bonus-grid">
-          <span>#</span>
-          <span>Type & Source</span>
-          <span>Bonus Amount</span>
-          <span>Balance Flow</span>
-          <span>Status</span>
-          <span>Order ID</span>
-          <span>Date & Time</span>
+      <!-- ================= BONUS TRANSACTIONS ================= -->
+      <ng-container *ngIf="walletView === 'bonus'">
+        <!-- Desktop Bonus Table -->
+        <div class="hidden md:block ledger-table-wrap custom-scroll">
+          <div class="ledger-table-header bonus-grid">
+            <span>#</span>
+            <span>Type & Source</span>
+            <span>Bonus Amount</span>
+            <span>Balance Flow</span>
+            <span>Status</span>
+            <span>Order ID</span>
+            <span>Date & Time</span>
+          </div>
+
+          <div
+            class="ledger-table-body custom-scroll"
+            *ngIf="filteredBonusTransactions.length > 0; else noRecord"
+          >
+            <div
+              *ngFor="let tx of filteredBonusTransactions; let i = index"
+              class="ledger-table-row bonus-grid"
+            >
+              <span class="col-num">{{ i + 1 }}</span>
+
+              <div class="col-source">
+                <i class="fa fa-gift text-[#FFD700]"></i>
+                <span class="source-title">{{ tx.type === "debit" ? "Debit" : "Credit" }}</span>
+                <span class="source-sub">({{ tx.source }})</span>
+              </div>
+
+              <span
+                class="col-amount"
+                [class.credit]="tx.type === 'credit'"
+                [class.debit]="tx.type === 'debit'"
+              >
+                {{ tx.type === "credit" ? "+" : "-" }}${{ tx.bonus || 0 }}
+              </span>
+
+              <span class="col-meta">
+                ${{ tx.beforeBonusBalance || 0 }} → ${{ tx.afterBonusBalance || 0 }}
+              </span>
+
+              <div class="col-status">
+                <span
+                  class="status-pill"
+                  [ngClass]="{
+                    'is-complete': tx.status === 'Complete',
+                    'is-decline': tx.status === 'Decline',
+                    'is-pending': tx.status === 'Pending'
+                  }"
+                >
+                  {{ tx.status }}
+                </span>
+              </div>
+
+              <span class="col-order-id">{{ tx.orderID || "//" }}</span>
+              <span class="col-date">{{ tx.time | localTime }}</span>
+            </div>
+          </div>
         </div>
 
+        <!-- Mobile Card List View for Bonus -->
         <div
-          class="ledger-table-body custom-scroll"
+          class="block md:hidden space-y-3 mt-2 max-h-[520px] overflow-y-auto custom-scroll pr-0.5"
           *ngIf="filteredBonusTransactions.length > 0; else noRecord"
         >
           <div
             *ngFor="let tx of filteredBonusTransactions; let i = index"
-            class="ledger-table-row bonus-grid"
+            class="wallet-mobile-card p-3.5 sm:p-4 rounded-2xl bg-[#191c1d] border border-[#FFD700]/25 shadow-[0_4px_16px_rgba(0,0,0,0.6)] space-y-3 transition hover:border-[#FFD700]/50"
           >
-            <span class="col-num">{{ i + 1 }}</span>
+            <!-- Top Row: # Index, Type, Source & Status -->
+            <div class="flex items-center justify-between gap-2 border-b border-white/5 pb-2.5">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-[10px] font-mono font-black text-yellow-500 bg-yellow-500/10 px-2 py-0.5 rounded-md border border-yellow-500/20 shrink-0">
+                  #{{ i + 1 }}
+                </span>
+                <div class="flex items-center gap-1.5 font-bold text-xs text-white truncate">
+                  <i class="fa fa-gift text-[#FFD700] shrink-0"></i>
+                  <span class="shrink-0">{{ tx.type === "debit" ? "Debit" : "Credit" }}</span>
+                  <span class="text-gray-400 font-normal text-[11px] truncate">({{ tx.source }})</span>
+                </div>
+              </div>
 
-            <div class="col-source">
-              <i class="fa fa-gift text-[#FFD700]"></i>
-              <span class="source-title">{{ tx.type === "debit" ? "Debit" : "Credit" }}</span>
-              <span class="source-sub">({{ tx.source }})</span>
-            </div>
-
-            <span
-              class="col-amount"
-              [class.credit]="tx.type === 'credit'"
-              [class.debit]="tx.type === 'debit'"
-            >
-              {{ tx.type === "credit" ? "+" : "-" }}${{ tx.bonus || 0 }}
-            </span>
-
-            <span class="col-meta">
-              ${{ tx.beforeBonusBalance || 0 }} → ${{ tx.afterBonusBalance || 0 }}
-            </span>
-
-            <div class="col-status">
               <span
-                class="status-pill"
+                class="status-pill shrink-0"
                 [ngClass]="{
                   'is-complete': tx.status === 'Complete',
                   'is-decline': tx.status === 'Decline',
@@ -344,11 +485,41 @@
               </span>
             </div>
 
-            <span class="col-order-id">{{ tx.orderID || "//" }}</span>
-            <span class="col-date">{{ tx.time | localTime }}</span>
+            <!-- Middle Row: Bonus Amount & Order ID -->
+            <div class="flex items-center justify-between gap-2 bg-[#121415] p-2.5 rounded-xl border border-white/5">
+              <div>
+                <span class="text-[9px] uppercase font-mono text-gray-400 block font-bold">Bonus Amount</span>
+                <span
+                  class="font-mono font-black text-base sm:text-lg"
+                  [class.text-[#2CD97D]]="tx.type === 'credit'"
+                  [class.text-red-400]="tx.type === 'debit'"
+                >
+                  {{ tx.type === "credit" ? "+" : "-" }}${{ tx.bonus || 0 }}
+                </span>
+              </div>
+
+              <div class="text-right">
+                <span class="text-[9px] uppercase font-mono text-gray-400 block font-bold">Order ID</span>
+                <span class="font-mono text-xs text-gray-200 select-all font-semibold">
+                  {{ tx.orderID || "//" }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Bottom Row: Balance Flow & Date -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+              <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2 flex flex-col">
+                <span class="text-gray-400 text-[9px] uppercase">Balance Flow</span>
+                <span class="text-yellow-400 font-bold">${{ tx.beforeBonusBalance || 0 }} → ${{ tx.afterBonusBalance || 0 }}</span>
+              </div>
+              <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2 flex flex-col">
+                <span class="text-gray-400 text-[9px] uppercase">Timestamp</span>
+                <span class="text-gray-300 font-semibold truncate">{{ tx.time | localTime }}</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
 
       <!-- Empty State -->
       <ng-template #noRecord>

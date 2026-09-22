@@ -202,9 +202,7 @@
     </span>
   </div>
 
-  <div
-    class="rounded-3xl bg-[#1e2326]/80 border border-[#2CD97D]/30 shadow-[0_15px_45px_rgba(0,0,0,0.7)] backdrop-blur-md p-4 sm:p-6"
-  >
+  <div class="relative overflow-visible">
     <app-sectrech-card-list
       id="scratchScrollSection"
       [isHomePage]="router.url == '/' ? true : false"
@@ -225,7 +223,7 @@
 </div>
 
 <!-- Spin Section -->
-<div *ngIf="isDashboardPage" class="mt-6 sm:mt-8 px-2 sm:px-4">
+<div *ngIf="isDashboardPage" class="mt-6 sm:mt-8 px-2 sm:px-4 pb-28 sm:pb-32">
   <div class="flex items-center ml-1 gap-2.5 sm:gap-3 mb-3 sm:mb-4">
     <div
       class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg"

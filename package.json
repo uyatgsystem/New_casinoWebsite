@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && node postbuild.js",
+    "postbuild": "node postbuild.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:Social_casino": "node dist/social-casino/server/server.mjs"

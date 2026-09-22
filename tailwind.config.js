@@ -12,6 +12,10 @@ module.exports = {
         "custom-gradient-border":
           "linear-gradient(0deg, #2CD97D 0%, #34D399 50%, #4EFAAA 100%)",
       },
+      fontFamily: {
+        sans: ['Manrope', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
+      },
       colors: {
         "gradient-start": "#2CD97D",
         "gradient-middle": "#34D399",
