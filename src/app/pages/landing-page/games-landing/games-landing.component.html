@@ -10,20 +10,20 @@
       class="clean-game-card group cursor-pointer"
       [ngStyle]="{ backgroundColor: game.bgclr || '#10b981' }"
     >
-      <!-- Top Badges Layer (Bonus & HOT Tags) -->
+      <!-- Top Badges Layer (Bonus & HOT Tags) — self-contained pills that never blend into card colors -->
       <div
-        class="absolute top-1.5 inset-x-1.5 sm:top-2.5 sm:inset-x-2.5 z-30 flex items-center justify-between pointer-events-none gap-1"
+        class="absolute top-1.5 inset-x-1.5 sm:top-2.5 sm:inset-x-2.5 z-30 flex items-start justify-between pointer-events-none gap-1 flex-wrap"
       >
-        <div class="flex items-center gap-1 flex-wrap">
+        <div class="flex items-center gap-1 flex-wrap min-w-0">
           <span
             *ngIf="game?.bonus"
-            class="bg-black/85 text-amber-300 font-black text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 rounded sm:rounded-md shadow uppercase tracking-tight border border-amber-400/40 backdrop-blur-sm whitespace-nowrap"
+            class="inline-flex items-center gap-0.5 max-w-full bg-[#0b0d0f] border border-amber-400/70 text-amber-300 font-black text-[8px] sm:text-[9px] leading-none px-1.5 sm:px-2 py-[3px] rounded-full uppercase tracking-wide whitespace-nowrap shadow-[0_2px_6px_rgba(0,0,0,0.85)] ring-1 ring-black/60"
           >
             🔥 {{ game?.bonus }}% OFF
           </span>
           <span
             *ngIf="game.isHot"
-            class="bg-red-600 text-white font-black text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 rounded sm:rounded-md shadow-[0_0_8px_rgba(220,38,38,0.7)] uppercase tracking-tight animate-pulse whitespace-nowrap"
+            class="inline-flex items-center gap-0.5 max-w-full bg-[#e01b2e] border-2 border-[#0b0d0f] text-white font-black text-[8px] sm:text-[9px] leading-none px-1.5 sm:px-2 py-[2px] rounded-full uppercase tracking-wide whitespace-nowrap shadow-[0_0_10px_rgba(224,27,46,0.85),0_2px_6px_rgba(0,0,0,0.9)]"
           >
             ⚡ HOT
           </span>
@@ -133,7 +133,10 @@
   class="mb-8 mt-6 px-3 sm:px-4"
   id="instantGameScrollSection"
 >
-  <div id="quick-scrolling-id" class="flex items-center ml-1 gap-2 sm:gap-3 mb-4">
+  <div
+    id="quick-scrolling-id"
+    class="flex items-center ml-1 gap-2 sm:gap-3 mb-4"
+  >
     <div
       class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 flex items-center justify-center shadow-lg shrink-0"
     >

@@ -81,6 +81,8 @@ $border-cyber: rgba(44, 217, 125, 0.28);
   border: 1px solid rgba(44, 217, 125, 0.35);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(44, 217, 125, 0.04);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Keep the rotating rings/spotlight inside the card on every screen size */
+  overflow: hidden;
 
   &:hover {
     border-color: rgba(44, 217, 125, 0.65);
@@ -256,32 +258,32 @@ $border-cyber: rgba(44, 217, 125, 0.28);
 
 /* Visual Stage with 3D Holographic Pedestal */
 .arena-visual-stage {
-  min-height: 180px;
+  min-height: 150px;
   perspective: 800px;
 }
 
 .arena-spotlight {
   position: absolute;
-  width: 170px;
-  height: 170px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(44, 217, 125, 0.35) 0%, rgba(44, 217, 125, 0.05) 60%, transparent 80%);
-  filter: blur(28px);
+  filter: blur(24px);
   pointer-events: none;
 }
 
 .arena-radial-ring {
   position: absolute;
-  width: 190px;
-  height: 190px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: 1px dashed rgba(44, 217, 125, 0.4);
   animation: ringRotate 24s linear infinite;
   pointer-events: none;
 
   &.ring-secondary {
-    width: 230px;
-    height: 230px;
+    width: 185px;
+    height: 185px;
     border: 1px dotted rgba(44, 217, 125, 0.25);
     animation: ringRotateReverse 32s linear infinite;
   }
@@ -391,40 +393,48 @@ $border-cyber: rgba(44, 217, 125, 0.28);
   .arena-visual-stage {
     width: 100%;
     min-width: 0;
-    min-height: 105px;
+    min-height: 92px;
+    justify-content: center !important;
     overflow: hidden;
   }
 
   .arena-spotlight {
-    width: 90px;
-    height: 90px;
-    filter: blur(16px);
+    width: 68px;
+    height: 68px;
+    filter: blur(14px);
   }
 
   .arena-radial-ring {
-    width: 95px;
-    height: 95px;
+    width: 72px;
+    height: 72px;
   }
 
   .arena-radial-ring.ring-secondary {
-    width: 125px;
-    height: 125px;
+    width: 96px;
+    height: 96px;
   }
 
   .arena-game-art,
   .arena-game-art--zoom {
-    max-width: 95px;
-    max-height: 82px;
+    max-width: 78px;
+    max-height: 68px;
     transform: none;
+  }
+
+  /* Dock row: let LAUNCH ARENA + telemetry wrap instead of overflowing */
+  .hud-unified-dock {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-width: 0;
   }
 }
 
 @media (min-width: 640px) {
-  .arena-visual-stage { min-height: 230px; }
-  .arena-spotlight { width: 230px; height: 230px; }
-  .arena-radial-ring { width: 250px; height: 250px; }
-  .arena-radial-ring.ring-secondary { width: 300px; height: 300px; }
-  .arena-game-art { max-height: 210px; max-width: 240px; }
+  .arena-visual-stage { min-height: 195px; }
+  .arena-spotlight { width: 175px; height: 175px; }
+  .arena-radial-ring { width: 200px; height: 200px; }
+  .arena-radial-ring.ring-secondary { width: 245px; height: 245px; }
+  .arena-game-art { max-height: 175px; max-width: 205px; }
 }
 
 /* ============================================================

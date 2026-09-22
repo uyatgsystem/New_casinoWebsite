@@ -12,7 +12,8 @@
     <div *ngIf="addBalance">
       <app-add-wallet [showModal]="addBalance"></app-add-wallet>
     </div>
-    <div style="overflow-x: hidden; max-width: 100%;">
+    <!-- `overflow-x: clip` instead of `hidden` so sticky headers keep working -->
+    <div style="overflow-x: hidden; overflow-x: clip; max-width: 100%">
       <router-outlet></router-outlet>
     </div>
 
@@ -25,22 +26,21 @@
           title="24/7 VIP Live Support"
         >
           <!-- Unread Message Count Badge -->
-          <div
-            *ngIf="unreadCounts > 0"
-            class="chat-unread-badge animate-pulse"
-          >
+          <div *ngIf="unreadCounts > 0" class="chat-unread-badge animate-pulse">
             {{ unreadCounts > 99 ? "99+" : unreadCounts }}
           </div>
 
-          <svg
-            class="w-7 h-7 fill-current text-[#050811]"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.23-1.31C8.66 21.45 10.28 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.52 0-2.96-.4-4.22-1.12l-.3-.18-3.13.78.83-3.05-.2-.32C4.33 14.88 4 13.48 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4-9h-8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1zm-2 4h-6c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z" />
+          <svg class="w-7 h-7 fill-current text-[#050811]" viewBox="0 0 24 24">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.23-1.31C8.66 21.45 10.28 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.52 0-2.96-.4-4.22-1.12l-.3-.18-3.13.78.83-3.05-.2-.32C4.33 14.88 4 13.48 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4-9h-8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1zm-2 4h-6c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z"
+            />
           </svg>
         </button>
       </div>
-      <div *ngIf="isChatOpen" class="fixed inset-0 pointer-events-none z-[100001]">
+      <div
+        *ngIf="isChatOpen"
+        class="fixed inset-0 pointer-events-none z-[100001]"
+      >
         <div class="pointer-events-auto">
           <app-chat></app-chat>
         </div>
@@ -71,7 +71,11 @@
     <!-- Left: App Icon / Logo Glow -->
     <div class="pill-icon-wrap">
       <div class="pill-logo-box">
-        <img src="/logo.png" alt="CrownSpin" class="h-6 w-auto object-contain" />
+        <img
+          src="/logo.png"
+          alt="CrownSpin"
+          class="h-6 w-auto object-contain"
+        />
       </div>
       <span class="pill-live-dot"></span>
     </div>
@@ -82,15 +86,23 @@
         <span class="pill-tag-pulse"></span>
         <span class="pill-tag-text">VIP APP • 1-TAP PLAY</span>
       </div>
-      <div class="pill-heading">
-        Install CrownSpin
-      </div>
+      <div class="pill-heading">Install CrownSpin</div>
     </div>
 
     <!-- Right: Action CTA Button -->
     <button type="button" class="pill-action-btn" (click)="installFloating()">
-      <svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+      <svg
+        viewBox="0 0 24 24"
+        class="w-3.5 h-3.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+        />
       </svg>
       <span>GET</span>
     </button>

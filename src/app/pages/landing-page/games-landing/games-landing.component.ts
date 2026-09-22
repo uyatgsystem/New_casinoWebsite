@@ -175,7 +175,7 @@ export class GamesLandingComponent {
       name: 'Spin',
       image: 'Spin1.png',
       redirectLink: '/dashboard/spinner',
-      bgColor: '#d97706',
+      bgColor: '#7c3aed',
       titleColor: '#ffffff',
     },
   ];
@@ -261,17 +261,29 @@ export class GamesLandingComponent {
   ngOnInit() {
     this.games = this.gameService.getGames();
 
-    // A to Z unique non-repeating vibrant distinct colors palette
+    // Unique non-repeating vibrant colors — no card color is ever used twice.
     const uniqueColors = [
-      '#7c3aed', '#db2777', '#059669', '#d97706', '#2563eb', 
-      '#4f46e5', '#0891b2', '#65a30d', '#dc2626', '#9333ea', 
-      '#0d9488', '#ca8a04', '#e11d48', '#4f46e5', '#16a34a', 
-      '#2563eb', '#9333ea', '#c026d3', '#0284c7', '#10b981',
-      '#f59e0b', '#84cc16', '#6366f1', '#ec4899', '#14b8a6'
+      '#7c3aed', '#db2777', '#059669', '#d97706', '#2563eb',
+      '#4f46e5', '#0891b2', '#65a30d', '#dc2626', '#9333ea',
+      '#0d9488', '#ca8a04', '#e11d48', '#16a34a', '#b91c1c',
+      '#0284c7', '#c026d3', '#10b981', '#f59e0b', '#84cc16',
+      '#6366f1', '#ec4899', '#14b8a6', '#a16207', '#7e22ce',
+      '#0f766e', '#be123c', '#1d4ed8', '#15803d', '#9a3412'
     ];
 
+    const usedColors = new Set<string>();
     this.games.forEach((game: any, index: number) => {
-      game.bgclr = uniqueColors[index % uniqueColors.length];
+      let color = uniqueColors[index % uniqueColors.length];
+      // If the palette wraps around (more games than colors), generate a
+      // guaranteed-unique color via golden-angle hue shift instead of repeating.
+      let attempt = 0;
+      while (usedColors.has(color)) {
+        attempt++;
+        const hue = Math.round((index * 137.508 + attempt * 60) % 360);
+        color = `hsl(${hue}, 62%, 45%)`;
+      }
+      usedColors.add(color);
+      game.bgclr = color;
       game.titleColor = '#ffffff'; // Always crisp white for maximum clarity and readability
     });
 
