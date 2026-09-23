@@ -1,5 +1,5 @@
 <header
-  *ngIf="isScreenWidthLessThan800() && !isTreasurePickRoute()"
+  *ngIf="isScreenWidthLessThan800() && isDashboardRoute() && !isTreasurePickRoute()"
   class="sticky z-[997] w-full top-0 h-[64px] sm:h-[68px] bg-[#1e2224]/95 backdrop-blur-2xl border-b border-[#2CD97D]/40 shadow-[0_4px_25px_rgba(0,0,0,0.9)] px-3 flex items-center justify-between"
 >
   <div
@@ -656,68 +656,71 @@
   </div>
 </header>
 
-<!-- ================= HIGH-END CYBER WITHDRAW MODAL ================= -->
+<<!-- ================= HIGH-END CYBER WITHDRAW MODAL ================= -->
 <div
   *ngIf="showwithdrawModal"
-  class="fixed inset-0 bg-black/85 backdrop-blur-xl flex items-center justify-center z-[99999] p-3 sm:p-4 overflow-y-auto"
+  class="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center modal-overlay z-[99999] p-2.5 sm:p-4 overflow-y-auto overflow-x-hidden"
   (click)="hideWithdrawModal()"
 >
   <div
-    class="relative w-full max-w-lg bg-gradient-to-b from-[#232729] to-[#1a1e20] border border-[#2CD97D]/50 rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 shadow-[0_25px_80px_rgba(0,0,0,0.95)] text-white max-h-[90vh] overflow-y-auto my-auto custom-scrollbar"
+    class="bg-gradient-to-b from-[#1f2425] to-[#121516] border border-[#2CD97D]/30 rounded-[24px] sm:rounded-[36px] w-full max-w-2xl p-4 sm:p-7 md:p-8 relative shadow-[0_0_50px_rgba(44,217,125,0.15)] text-white max-h-[92dvh] sm:max-h-[88vh] overflow-y-auto overflow-x-hidden my-auto modal slide-up custom-scroll box-border"
     (click)="$event.stopPropagation()"
   >
-    <!-- Background Glow -->
+    <!-- Background Glow Accents -->
     <div
-      class="absolute -top-16 -right-16 w-60 h-60 bg-[#2CD97D]/15 blur-[80px] rounded-full pointer-events-none"
+      class="absolute -right-20 -top-20 w-72 h-72 bg-[#2CD97D]/10 blur-[100px] rounded-full pointer-events-none"
     ></div>
     <div
-      class="absolute -bottom-16 -left-16 w-60 h-60 bg-[#06B6D4]/10 blur-[80px] rounded-full pointer-events-none"
+      class="absolute -left-20 -bottom-20 w-72 h-72 bg-[#06B6D4]/10 blur-[100px] rounded-full pointer-events-none"
     ></div>
 
-    <!-- Header -->
+    <!-- Header Title & Close Button -->
     <div
-      class="flex items-center justify-between pb-4 mb-5 border-b border-white/10 relative z-10"
+      class="flex items-center justify-between mb-4 sm:mb-6 relative z-10 border-b border-white/10 pb-3 sm:pb-4"
     >
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2.5 sm:gap-3.5">
         <div
-          class="w-3 h-7 bg-gradient-to-b from-[#2CD97D] to-[#06B6D4] rounded-full shadow-[0_0_15px_#2CD97D]"
+          class="w-2.5 sm:w-3 h-6 sm:h-7 bg-gradient-to-b from-[#2CD97D] to-[#06B6D4] rounded-full shadow-[0_0_15px_#2CD97D]"
         ></div>
         <div>
           <h2
-            class="text-lg sm:text-xl font-black text-white tracking-wider uppercase"
+            class="text-base sm:text-2xl font-black text-white tracking-wider uppercase drop-shadow-sm"
           >
             Withdraw Funds
           </h2>
           <span
-            class="text-[10px] font-mono text-[#2CD97D] font-bold tracking-widest flex items-center gap-1 mt-0.5"
+            class="text-[9px] sm:text-[10px] font-mono text-[#2CD97D] font-bold tracking-widest flex items-center gap-1.5 mt-0.5"
           >
-            <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#2CD97D] animate-ping"></span>
-            INSTANT CASHOUT GATEWAY
+            <span
+              class="inline-block w-1.5 h-1.5 rounded-full bg-[#2CD97D] animate-ping"
+            ></span>
+            SECURE CASHOUT TERMINAL
           </span>
         </div>
       </div>
       <button
         type="button"
         (click)="hideWithdrawModal()"
-        class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2CD97D] hover:bg-[#2CD97D]/15 transition cursor-pointer"
+        class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2CD97D] hover:bg-[#2CD97D]/15 hover:rotate-90 transition-all duration-300 active:scale-95 cursor-pointer text-xs sm:text-sm"
+        aria-label="Close"
       >
-        <i class="fa fa-times text-xs"></i>
+        ✕
       </button>
     </div>
 
     <!-- Available Balance Card -->
     <div
-      class="relative z-10 p-3.5 sm:p-4 rounded-2xl bg-[#181c1e] border border-[#2CD97D]/35 flex items-center justify-between mb-5 shadow-inner"
+      class="relative z-10 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#181b1c] border border-[#2CD97D]/30 flex items-center justify-between mb-4 sm:mb-6 shadow-inner"
     >
-      <div class="flex items-center gap-2.5">
+      <div class="flex items-center gap-2.5 sm:gap-3">
         <div
-          class="w-9 h-9 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D]"
+          class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 flex items-center justify-center text-[#2CD97D]"
         >
-          <i class="fa fa-wallet text-sm"></i>
+          <i class="fa fa-wallet text-xs sm:text-sm"></i>
         </div>
         <div>
-          <span class="text-[10px] font-mono text-gray-400 uppercase font-bold tracking-wider block">Available Balance</span>
-          <span class="text-lg sm:text-xl font-mono font-black text-[#2CD97D] tracking-tight">
+          <span class="text-[9px] sm:text-[10px] font-mono text-gray-400 uppercase font-bold tracking-wider block">Available Balance</span>
+          <span class="text-base sm:text-xl font-mono font-black text-[#2CD97D] tracking-tight">
             ${{ totalBalance | number: '1.2-2' }}
           </span>
         </div>
@@ -725,48 +728,52 @@
       <button
         type="button"
         (click)="amouttowithdraw = totalBalance"
-        class="px-3 py-1.5 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/50 text-[#2CD97D] font-mono font-bold text-xs hover:bg-[#2CD97D] hover:text-black transition cursor-pointer"
+        class="px-3 py-1.5 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/50 text-[#2CD97D] font-mono font-bold text-xs hover:bg-[#2CD97D] hover:text-[#050811] transition cursor-pointer"
       >
         MAX CASHOUT
       </button>
     </div>
 
     <!-- Step 1: Select Method -->
-    <div class="mb-5 relative z-10">
-      <label class="text-[11px] font-mono font-bold text-gray-300 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#2CD97D]"></span>
-        1. Select Payout Method
-      </label>
-      <div class="grid grid-cols-3 gap-2 sm:gap-2.5">
+    <div class="mb-4 sm:mb-6 relative z-10">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs font-black text-gray-300 uppercase tracking-widest font-mono flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#2CD97D]"></span>
+          1. Select Payout Method
+        </span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
         <button
           type="button"
           *ngFor="let method of withdrawPaymentMethods"
           (click)="selectAccountType(method.name, $event)"
           [disabled]="!method.isActive"
           [ngClass]="{
-            'bg-[#2CD97D]/15 border-[#2CD97D] shadow-[0_0_15px_rgba(44,217,125,0.25)]': selectedAccountType === method.name,
-            'bg-[#1e2325] border-white/10 hover:border-white/20': selectedAccountType !== method.name && method.isActive,
+            'bg-gradient-to-r from-[#2CD97D]/20 to-[#2CD97D]/5 border-[#2CD97D] shadow-[0_0_20px_rgba(44,217,125,0.25)]': selectedAccountType === method.name,
+            'bg-[#181b1c]/80 border-white/10 hover:border-white/25 hover:bg-[#202425]': selectedAccountType !== method.name && method.isActive,
             'opacity-40 cursor-not-allowed bg-[#181c1e] border-white/5': !method.isActive
           }"
-          class="relative flex flex-col items-center justify-center p-2.5 rounded-2xl border transition-all duration-200 cursor-pointer text-center group"
+          class="relative flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border transition-all duration-300 cursor-pointer text-left group active:scale-95"
         >
-          <div class="w-8 h-8 rounded-xl bg-[#161a1b] border border-white/10 flex items-center justify-center p-1.5 mb-1.5 group-hover:scale-105 transition">
-            <img [src]="method.bg_image" [alt]="method.name" class="w-full h-full object-contain" />
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-black/40 border border-white/10 flex items-center justify-center p-1.5 shrink-0 group-hover:scale-110 group-hover:border-[#2CD97D]/50 transition-all duration-300">
+            <img [src]="method.bg_image" [alt]="method.name" class="w-full h-full object-contain filter drop-shadow" />
           </div>
-          <span class="text-[11px] font-bold text-white tracking-wide truncate w-full">
-            {{ method.name }}
-          </span>
-          <span *ngIf="!method.isActive" class="text-[8px] text-gray-500 font-mono mt-0.5">Soon</span>
+          <div class="flex flex-col min-w-0 flex-1">
+            <span class="text-[11px] sm:text-xs font-bold text-white tracking-wide truncate group-hover:text-[#2CD97D] transition-colors">
+              {{ method.name }}
+            </span>
+            <span *ngIf="!method.isActive" class="text-[8px] text-gray-500 font-mono">Coming Soon</span>
+          </div>
         </button>
       </div>
     </div>
 
     <!-- Step 2: Amount & Quick Chips -->
-    <div class="mb-5 relative z-10 space-y-2.5">
-      <label class="text-[11px] font-mono font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#2CD97D]"></span>
-        2. Enter Withdrawal Amount ($)
-      </label>
+    <div class="mb-4 sm:mb-6 relative z-10 space-y-2 sm:space-y-2.5">
+      <span class="text-xs font-black text-gray-300 uppercase tracking-widest font-mono flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#2CD97D]"></span>
+        2. Enter Amount ($)
+      </span>
       <div class="relative">
         <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 font-mono font-bold text-sm">$</span>
         <input
@@ -776,17 +783,21 @@
           (input)="limitToBalance($event)"
           (keydown)="blockInvalidInput($event)"
           placeholder="0.00"
-          class="w-full bg-[#181c1e] border border-white/15 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] rounded-xl text-white pl-8 pr-4 py-3 text-sm sm:text-base font-mono font-bold outline-none transition"
+          class="w-full bg-[#111314] border border-white/15 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.2)] rounded-xl text-white pl-8 pr-4 py-3 text-xs sm:text-sm font-mono font-bold outline-none transition-all placeholder-gray-600"
         />
       </div>
 
-      <!-- Quick Chips -->
-      <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1">
+      <!-- Quick Chips Matching Deposit Presets -->
+      <div class="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-1.5 scrollbar-none">
         <button
           type="button"
           *ngFor="let quickAmt of [20, 50, 100, 250, 500]"
           (click)="amouttowithdraw = quickAmt <= totalBalance ? quickAmt : totalBalance"
-          class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-[#2CD97D]/50 hover:bg-[#2CD97D]/10 text-gray-300 hover:text-white font-mono text-xs font-bold transition cursor-pointer shrink-0"
+          [ngClass]="{
+            'bg-[#2CD97D] text-[#050811] font-black border-[#2CD97D] shadow-[0_0_15px_rgba(44,217,125,0.4)] scale-105': amouttowithdraw === quickAmt,
+            'bg-[#181b1c] border-white/10 text-gray-300 hover:border-[#2CD97D]/50 hover:text-white hover:bg-[#202425]': amouttowithdraw !== quickAmt
+          }"
+          class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border text-xs font-mono font-bold transition-all duration-200 cursor-pointer shrink-0 active:scale-95"
         >
           ${{ quickAmt }}
         </button>
@@ -794,11 +805,11 @@
     </div>
 
     <!-- Step 3: Account Credentials Form -->
-    <div class="mb-5 relative z-10 space-y-3">
-      <label class="text-[11px] font-mono font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#2CD97D]"></span>
+    <div class="mb-4 sm:mb-6 relative z-10 space-y-3 bg-[#181b1c] p-4 sm:p-5 rounded-2xl border border-white/10">
+      <span class="text-xs font-black text-gray-300 uppercase tracking-widest font-mono flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#2CD97D]"></span>
         3. Recipient Details ({{ selectedAccountType || 'Selected Account' }})
-      </label>
+      </span>
 
       <div>
         <label class="text-[10px] text-gray-400 uppercase font-bold tracking-wider mb-1 block">
@@ -808,7 +819,7 @@
           type="text"
           [(ngModel)]="accountInfo"
           placeholder="e.g. $username or user@email.com"
-          class="w-full bg-[#181c1e] border border-white/15 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono outline-none transition"
+          class="w-full bg-[#111314] border border-white/15 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.2)] rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono outline-none transition-all placeholder-gray-600"
         />
       </div>
 
@@ -820,7 +831,7 @@
           type="text"
           [(ngModel)]="Customertag"
           placeholder="e.g. John Doe"
-          class="w-full bg-[#181c1e] border border-white/15 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm outline-none transition"
+          class="w-full bg-[#111314] border border-white/15 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.2)] rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm outline-none transition-all placeholder-gray-600"
         />
       </div>
 
@@ -834,14 +845,14 @@
           [(ngModel)]="tipAmount"
           (keydown)="blockInvalidInput($event)"
           placeholder="0.00"
-          class="w-full bg-[#181c1e] border border-white/15 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono outline-none transition"
+          class="w-full bg-[#111314] border border-white/15 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.2)] rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm font-mono outline-none transition-all placeholder-gray-600"
         />
       </div>
     </div>
 
     <!-- Settlement Breakdown -->
     <div
-      class="mb-5 relative z-10 p-3.5 rounded-2xl bg-[#181c1e] border border-white/10 space-y-1.5 text-xs font-mono"
+      class="mb-4 sm:mb-6 relative z-10 p-3.5 sm:p-4 rounded-2xl bg-[#181b1c] border border-white/10 space-y-1.5 text-xs font-mono"
     >
       <div class="flex items-center justify-between text-gray-400">
         <span>Withdrawal Amount</span>
@@ -858,16 +869,16 @@
       <div class="h-px bg-white/10 my-1"></div>
       <div class="flex items-center justify-between text-sm font-black pt-0.5">
         <span class="text-[#2CD97D] uppercase">Estimated Payout</span>
-        <span class="text-[#2CD97D] text-base">${{ actualWithdrawAmount | number: '1.2-2' }}</span>
+        <span class="text-[#2CD97D] text-base font-mono">${{ actualWithdrawAmount | number: '1.2-2' }}</span>
       </div>
     </div>
 
-    <!-- Actions -->
-    <div class="flex items-center gap-3 relative z-10">
+    <!-- Action Buttons Matching Deposit Modal -->
+    <div class="flex items-center gap-3 relative z-10 pt-1">
       <button
         type="button"
         (click)="hideWithdrawModal()"
-        class="w-1/3 py-3 rounded-xl bg-[#232728] border border-white/10 text-gray-300 font-bold text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
+        class="w-1/3 bg-[#232728] border border-white/10 text-gray-300 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider hover:bg-white/10 hover:text-white transition active:scale-95 cursor-pointer"
       >
         Cancel
       </button>
@@ -875,13 +886,9 @@
         type="button"
         (click)="createWithdrawRequest()"
         [disabled]="!amouttowithdraw || amouttowithdraw <= 0 || !accountInfo || !Customertag"
-        [ngClass]="{
-          'opacity-40 cursor-not-allowed': !amouttowithdraw || amouttowithdraw <= 0 || !accountInfo || !Customertag,
-          'hover:brightness-110 active:scale-95 cursor-pointer': amouttowithdraw && amouttowithdraw > 0 && accountInfo && Customertag
-        }"
-        class="w-2/3 py-3 rounded-xl bg-gradient-to-r from-[#2CD97D] to-[#25be6d] text-[#050811] font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(44,217,125,0.4)] transition"
+        class="w-2/3 bg-gradient-to-r from-[#2CD97D] to-[#25be6d] text-[#050811] font-black py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(44,217,125,0.4)] hover:brightness-110 active:scale-95 transition cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
       >
-        Submit Cashout
+        <span>Request Cashout</span>
       </button>
     </div>
   </div>

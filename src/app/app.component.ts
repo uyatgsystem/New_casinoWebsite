@@ -325,14 +325,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     return showChat;
   }
   shouldshowheader(): boolean {
-    const currentUrl = this.router.url;
-    const showChat = !(
-      currentUrl.includes('login') ||
-      currentUrl.includes('SignUp') ||
-      currentUrl.includes('ForgotPassword') ||
-      currentUrl.includes('VerifyPayment') ||
-      currentUrl.includes('VerifyEmail') ||
-      currentUrl.includes('reset-pass') ||
+    const currentUrl = this.router.url.split('?')[0];
+    const isGameRoute =
       currentUrl.includes('dashboard/TreasurePick') ||
       currentUrl.includes('dashboard/Avaitar') ||
       currentUrl.includes('dashboard/Baccaret') ||
@@ -343,13 +337,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       currentUrl.includes('dashboard/Plinko') ||
       currentUrl.includes('dashboard/Double') ||
       currentUrl.includes('dashboard/coin') ||
-      currentUrl.includes('dashboard/rps') ||
+      currentUrl.includes('dashboard/rps');
 
-      currentUrl === '/' ||
-      // currentUrl.includes('dashboard/changePass') ||
-      this.showSplashScreen
+    return (
+      currentUrl.startsWith('/dashboard') &&
+      !isGameRoute &&
+      !this.showSplashScreen
     );
-    return showChat;
   }
   get token(): string | null {
     if (isPlatformBrowser(this.platformId)) {

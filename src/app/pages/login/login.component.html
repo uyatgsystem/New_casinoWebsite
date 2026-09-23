@@ -1,37 +1,39 @@
 <app-loader></app-loader>
 
 <div
-  class="main-bg relative w-full min-h-[100vh] bg-cover bg-center overflow-y-auto"
+  class="main-bg relative w-full min-h-screen bg-cover bg-center overflow-y-auto"
 >
-  <div class="flex flex-col lg:flex-row lg:absolute lg:inset-0 min-h-screen">
+  <div
+    class="w-full max-w-[1240px] mx-auto min-h-screen flex flex-col lg:flex-row items-center justify-center lg:justify-between px-4 sm:px-8 lg:px-12 py-8 lg:py-12 gap-8 lg:gap-12"
+  >
     <!-- Left branding copy -->
-    <div class="hidden lg:flex lg:w-[52%] items-center justify-center px-8 xl:px-12">
-      <div class="max-w-[470px] text-left">
+    <div class="hidden lg:flex lg:w-[48%] flex-col justify-center text-left">
+      <div class="max-w-[470px]">
         <img
           src="/logo.png"
           alt="Crown Spin Logo"
           class="w-[170px] xl:w-[210px] h-auto mb-6 drop-shadow-[0_0_25px_rgba(44,217,125,0.45)]"
         />
-        <h1 class="text-4xl xl:text-[3.5rem] font-black leading-[0.95] tracking-[-0.06em] text-white">
+        <h1 class="text-4xl xl:text-[3.25rem] font-black leading-[1.02] tracking-[-0.04em] text-white uppercase">
           Welcome Back to
-          <span class="block text-[#2CD97D] mt-2">Your Winning Side</span>
+          <span class="block text-[#2CD97D] mt-1.5">Your Winning Side</span>
         </h1>
-        <p class="mt-5 max-w-[420px] text-base xl:text-lg text-gray-300 leading-relaxed">
-          Sign in to continue your gaming sessions, track your rewards, and jump back into the action in seconds.
+        <p class="mt-4 max-w-[420px] text-sm xl:text-base text-gray-300 leading-relaxed font-medium">
+          Sign in to continue your gaming sessions, track your VIP rewards, and jump back into the action in seconds.
         </p>
       </div>
     </div>
 
-    <!-- Mobile Header (Clean Spacing, No Cut-Offs) -->
+    <!-- Mobile Header -->
     <div
-      class="lg:hidden mobile-header-section flex flex-col items-center text-center px-4 pt-8 pb-3"
+      class="lg:hidden mobile-header-section flex flex-col items-center text-center px-4 pt-4 pb-2"
     >
       <img
         src="/logo.png"
         alt="Crown Spin Logo"
         class="w-[145px] sm:w-[165px] h-auto mb-3 drop-shadow-[0_0_18px_rgba(44,217,125,0.4)]"
       />
-      <h1 class="text-xl font-black text-white leading-snug">
+      <h1 class="text-xl font-black text-white leading-snug uppercase">
         Welcome Back to <span class="text-[#2CD97D]">Your Winning Side</span>
       </h1>
       <p class="text-xs text-gray-300 mt-1 max-w-[320px] leading-relaxed">
@@ -39,19 +41,19 @@
       </p>
     </div>
 
-    <!-- RightDiv: Form Section -->
+    <!-- Right: Form Section -->
     <div
-      class="flex-1 flex items-center justify-center px-4 pb-12 pt-4 lg:justify-end lg:items-center lg:px-8 xl:px-12 lg:pt-8"
+      class="w-full lg:w-[48%] flex items-center justify-center lg:justify-end"
     >
       <div
-        class="rounded-3xl bg-[#292d2e]/90 backdrop-blur-md p-5 sm:p-7 md:p-8 w-full max-w-[360px] sm:max-w-[380px] lg:max-w-[430px] mx-auto lg:mx-0 border border-[#2CD97D]/40 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.12)] relative overflow-hidden"
+        class="rounded-3xl bg-[#292d2e]/95 backdrop-blur-xl p-5 sm:p-7 md:p-8 w-full max-w-[440px] sm:max-w-[460px] border border-[#2CD97D]/40 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.12)] relative overflow-hidden"
         id="formContainer"
       >
         <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent"></div>
 
         <!-- Header / Switch -->
-        <div class="mb-6">
-          <div class="auth-switch flex items-center justify-center sm:justify-start gap-3 mb-2">
+        <div class="mb-5">
+          <div class="auth-switch flex items-center justify-center sm:justify-start gap-3 mb-1.5">
             <span
               class="text-[#2CD97D] text-lg sm:text-2xl font-black drop-shadow-[0_0_10px_rgba(44,217,125,0.5)] border-b-2 border-[#2CD97D] pb-0.5"
             >
@@ -80,7 +82,7 @@
 
           <!-- Username / Email Field -->
           <div class="mb-4">
-            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">
+            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5 font-mono">
               Username or Email
             </label>
             <div class="relative">
@@ -98,7 +100,7 @@
 
           <!-- Password Field -->
           <div class="mb-4">
-            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">
+            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5 font-mono">
               Password
             </label>
             <div class="relative">
@@ -114,7 +116,7 @@
               <button
                 type="button"
                 (click)="togglePassword()"
-                class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2CD97D] transition-colors p-1"
+                class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2CD97D] transition-colors p-1 cursor-pointer"
                 aria-label="Toggle password visibility"
               >
                 <fa-icon [icon]="showpassword ? hideicon : showicon" class="text-sm"></fa-icon>
@@ -136,7 +138,7 @@
             </label>
             <a
               routerLink="/ForgotPassword"
-              class="text-[#2CD97D] text-xs font-bold hover:underline transition-colors"
+              class="text-[#2CD97D] text-xs font-bold hover:underline transition-colors cursor-pointer"
             >
               Forgot Password?
             </a>
@@ -173,7 +175,7 @@
           Don't have an account?
           <a
             routerLink="/SignUp"
-            class="text-[#2CD97D] font-bold hover:underline transition-colors ml-1"
+            class="text-[#2CD97D] font-bold hover:underline transition-colors ml-1 cursor-pointer"
           >
             Sign Up Now
           </a>

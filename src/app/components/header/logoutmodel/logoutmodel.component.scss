@@ -5,29 +5,52 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 18px !important;
-  background: rgba(4, 5, 7, 0.85) !important;
-  backdrop-filter: blur(12px) !important;
+  padding: 16px !important;
+  background: rgba(8, 10, 12, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
   pointer-events: auto !important;
 }
 
 .logout-dialog {
   position: relative !important;
   width: min(440px, 100%) !important;
-  padding: 34px 28px 28px !important;
-  border: 1px solid rgba(44, 217, 125, 0.45) !important;
-  border-radius: 24px !important;
-  background: #0B101E !important;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 35px rgba(44, 217, 125, 0.15) !important;
+  padding: 32px 26px 26px !important;
+  border: 1px solid rgba(44, 217, 125, 0.35) !important;
+  border-radius: 28px !important;
+  background: linear-gradient(180deg, #1f2425 0%, #141718 100%) !important;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), 0 0 45px rgba(44, 217, 125, 0.22) !important;
   text-align: center !important;
   pointer-events: auto !important;
+  overflow: hidden !important;
   animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.logout-ambient-glow {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(44, 217, 125, 0.3) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.logout-top-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #2CD97D, transparent);
+  box-shadow: 0 0 12px #2CD97D;
 }
 
 @keyframes modalPop {
   from {
     opacity: 0;
-    transform: scale(0.92) translateY(10px);
+    transform: scale(0.92) translateY(12px);
   }
   to {
     opacity: 1;
@@ -39,18 +62,18 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 60px !important;
-  height: 60px !important;
+  width: 58px !important;
+  height: 58px !important;
   margin: 0 auto 16px !important;
   border: 1px solid rgba(44, 217, 125, 0.45) !important;
   border-radius: 18px !important;
-  background: rgba(44, 217, 125, 0.1) !important;
+  background: rgba(44, 217, 125, 0.12) !important;
   color: #2CD97D !important;
-  box-shadow: 0 0 20px rgba(44, 217, 125, 0.25) !important;
+  box-shadow: 0 0 25px rgba(44, 217, 125, 0.35) !important;
 
   svg {
-    width: 28px !important;
-    height: 28px !important;
+    width: 26px !important;
+    height: 26px !important;
   }
 }
 
@@ -64,18 +87,19 @@
 }
 
 .logout-dialog h2 {
-  margin: 10px 0 8px !important;
+  margin: 8px 0 8px !important;
   color: #fff !important;
-  font-size: clamp(1.3rem, 4vw, 1.55rem) !important;
+  font-size: clamp(1.25rem, 4vw, 1.45rem) !important;
   font-weight: 900 !important;
   letter-spacing: -0.02em !important;
+  text-transform: uppercase !important;
 }
 
 .logout-dialog p {
   max-width: 320px !important;
   margin: 0 auto !important;
   color: #94a3b8 !important;
-  font-size: 0.84rem !important;
+  font-size: 0.82rem !important;
   line-height: 1.5 !important;
 }
 
@@ -83,28 +107,30 @@
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 12px !important;
-  margin-top: 26px !important;
+  margin-top: 24px !important;
 }
 
 .logout-actions button {
   min-height: 44px !important;
-  border-radius: 12px !important;
+  border-radius: 14px !important;
   cursor: pointer !important;
   font-size: 0.82rem !important;
   font-weight: 900 !important;
-  transition: all 0.2s ease !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   pointer-events: auto !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
 }
 
 .logout-cancel {
-  border: 1px solid rgba(44, 217, 125, 0.4) !important;
-  background: rgba(255, 255, 255, 0.04) !important;
-  color: #2CD97D !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: #232728 !important;
+  color: #cbd5e1 !important;
 
   &:hover {
-    background: rgba(44, 217, 125, 0.12) !important;
-    border-color: #2CD97D !important;
+    background: rgba(255, 255, 255, 0.1) !important;
     color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
     transform: translateY(-2px) !important;
   }
 
@@ -115,14 +141,13 @@
 
 .logout-confirm {
   border: 1px solid #2CD97D !important;
-  background: #2CD97D !important;
+  background: linear-gradient(135deg, #2CD97D 0%, #25be6d 100%) !important;
   color: #050811 !important;
-  box-shadow: 0 4px 18px rgba(44, 217, 125, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(44, 217, 125, 0.45) !important;
 
   &:hover {
-    background: #28c772 !important;
-    border-color: #28c772 !important;
-    box-shadow: 0 6px 24px rgba(44, 217, 125, 0.6) !important;
+    background: linear-gradient(135deg, #34e286 0%, #2cd97d 100%) !important;
+    box-shadow: 0 6px 28px rgba(44, 217, 125, 0.65) !important;
     transform: translateY(-2px) !important;
   }
 
@@ -137,8 +162,5 @@
   }
   .logout-actions {
     grid-template-columns: 1fr !important;
-  }
-  .logout-confirm {
-    grid-row: 1 !important;
   }
 }

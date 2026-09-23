@@ -81,17 +81,17 @@
         <div>
           <h4 class="footer-col-title">Support</h4>
           <ul class="space-y-2 text-xs">
-            <li *ngIf="!isDashboardRoute()">
+            <li>
               <a
                 (click)="goToSection('contactScrollSection')"
-                class="footer-link"
+                class="footer-link cursor-pointer"
                 >Contact Us</a
               >
             </li>
-            <li *ngIf="!isDashboardRoute()">
+            <li>
               <a
                 (click)="goToSection('contactScrollSection')"
-                class="footer-link"
+                class="footer-link cursor-pointer"
                 >FAQs</a
               >
             </li>

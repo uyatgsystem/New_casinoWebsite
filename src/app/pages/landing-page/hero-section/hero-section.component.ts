@@ -51,7 +51,12 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
   }
 
   RedirectToSignUp(): void {
-    this.router.navigate(['/SignUp']);
+    const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
+    if (token) {
+      this.router.navigate(['/dashboard/home']);
+    } else {
+      this.router.navigate(['/login'], { queryParams: { redirectUrl: '/dashboard/home' } });
+    }
   }
 
   scrollToWheel(): void {

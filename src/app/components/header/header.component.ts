@@ -969,7 +969,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   async installApp(): Promise<void> {
     const result = await this.pwaInstall.promptInstall();
     if (result === 'accepted') {
-      this.toastr.success('App installed successfully!', 'Casino Maxs');
+      this.toastr.success('App installed successfully!', 'CrownSpin');
     }
   }
 

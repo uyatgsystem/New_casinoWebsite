@@ -184,7 +184,13 @@ export class GamesLandingComponent {
     if (link.startsWith('http')) {
       window.open(link, '_blank');
     } else {
-      this.router.navigate([link]);
+      if (this.isToken) {
+        this.router.navigate([link]);
+      } else {
+        this.router.navigate(['/login'], {
+          queryParams: { redirectUrl: link },
+        });
+      }
     }
   }
   AsianLocalBlock: boolean = true;
@@ -385,7 +391,9 @@ export class GamesLandingComponent {
     if (token) {
       this.router.navigate(['/dashboard/home']);
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], {
+        queryParams: { redirectUrl: '/dashboard/home' },
+      });
     }
   }
 

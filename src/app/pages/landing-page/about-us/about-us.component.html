@@ -1,92 +1,92 @@
 <div
-  class="about-section about-shell relative bg-[#232626] text-white font-sans py-12 lg:py-16 px-4 sm:px-8 lg:px-16 overflow-hidden"
+  class="about-section about-shell relative bg-[#232626] text-white font-sans py-10 sm:py-12 lg:py-16 px-3 sm:px-6 lg:px-12 overflow-hidden w-full max-w-full"
 >
   <div class="grain-Backdrop" [innerHTML]="grainBackdrop"></div>
   <div class="about-glow about-glow--one"></div>
   <div class="about-glow about-glow--two"></div>
 
   <div
-    class="relative z-10 max-w-[1500px] mx-auto grid lg:grid-cols-2 gap-10 lg:gap-12 items-center"
+    class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
   >
-    <!-- LEFT SIDE PLATFORM FRAME -->
-    <div class="relative order-2 pb-6 sm:pb-8 pt-2 sm:pt-4 w-full reveal">
-      <div class="about-frame relative w-full">
-        <div class="about-frame-ring"></div>
+    <!-- LEFT SIDE PLATFORM FRAME (Image & Badges) -->
+    <div class="lg:col-span-5 w-full order-2 lg:order-1 reveal">
+      <div class="about-frame relative w-full max-w-lg mx-auto">
+        <div class="about-frame-ring hidden sm:block"></div>
         <span class="about-frame-corner about-frame-corner--tl"></span>
         <span class="about-frame-corner about-frame-corner--br"></span>
 
         <div
-          class="about-us-image-frame relative overflow-hidden w-full group rounded-3xl border-2 border-[#2CD97D]/40 shadow-[0_30px_90px_rgba(0,0,0,0.95)]"
+          class="about-us-image-frame relative overflow-hidden w-full group rounded-2xl sm:rounded-3xl border border-[#2CD97D]/40 shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-[#1e2224]"
         >
           <img
             src="about-us.png"
             alt="About Crown Spin"
-            class="about-us-image absolute inset-0 w-full h-full object-cover"
+            class="about-us-image w-full h-auto max-h-[380px] sm:max-h-[440px] object-cover block"
           />
           <div
-            class="absolute inset-0 bg-gradient-to-t from-[#232626]/90 via-black/30 to-transparent"
+            class="absolute inset-0 bg-gradient-to-t from-[#1e2224]/90 via-transparent to-transparent pointer-events-none"
           ></div>
         </div>
 
-        <!-- Verified badge -->
+        <!-- Verified badge (Clean top placement inside frame bounds) -->
         <div
-          class="about-verified-badge absolute -top-4 sm:-top-5 left-4 sm:left-8 flex items-center gap-2 px-4 py-2 bg-[#292d2e] border border-[#2CD97D]/50 rounded-full shadow-[0_0_20px_rgba(44,217,125,0.3)]"
+          class="about-verified-badge absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-1.5 px-3 py-1.5 bg-[#292d2e]/95 border border-[#2CD97D]/50 rounded-full shadow-lg backdrop-blur-md"
         >
           <i class="fas fa-shield-halved text-[#2CD97D] text-xs"></i>
           <span
-            class="text-[10px] sm:text-[11px] font-extrabold text-white uppercase tracking-wider font-mono"
+            class="text-[9px] sm:text-[10px] font-extrabold text-white uppercase tracking-wider font-mono"
             >CERTIFIED GAMING OPERATOR</span
           >
         </div>
-      </div>
 
-      <!-- Floating stat badge -->
-      <div
-        class="about-us-badge absolute -bottom-2 sm:-bottom-4 right-4 sm:right-8 flex items-center gap-3 px-4 py-2.5 sm:px-5 sm:py-3.5 bg-[#292d2e] border border-[#2CD97D]/50 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.8)]"
-      >
-        <span
-          class="text-[30px] sm:text-[40px] font-black leading-none text-[#2CD97D] drop-shadow-[0_0_15px_rgba(44,217,125,0.6)]"
-          >2026</span
+        <!-- Stat badge (Clean bottom-right placement inside frame bounds) -->
+        <div
+          class="about-us-badge absolute bottom-3 right-3 sm:bottom-4 sm:right-4 flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 bg-[#292d2e]/95 border border-[#2CD97D]/50 rounded-2xl shadow-xl backdrop-blur-md"
         >
-        <span
-          class="text-slate-200 text-xs sm:text-sm font-bold uppercase tracking-wide leading-tight max-w-[6.5rem]"
-        >
-          Premier VIP Gaming Hub
-        </span>
+          <span
+            class="text-2xl sm:text-3xl font-black leading-none text-[#2CD97D] drop-shadow-[0_0_10px_rgba(44,217,125,0.5)] font-mono"
+            >2026</span
+          >
+          <span
+            class="text-slate-200 text-[10px] sm:text-xs font-bold uppercase tracking-wide leading-tight max-w-[5.5rem]"
+          >
+            Premier VIP Gaming Hub
+          </span>
+        </div>
       </div>
     </div>
 
     <!-- RIGHT SIDE TEXT & METRICS -->
-    <div class="order-1">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#292d2e] border border-[#2CD97D]/40 text-[#2CD97D] text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase shadow-[0_0_12px_rgba(44,217,125,0.2)] mb-3 reveal">
+    <div class="lg:col-span-7 order-1 lg:order-2 space-y-4 sm:space-y-5">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#292d2e] border border-[#2CD97D]/40 text-[#2CD97D] text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase shadow-[0_0_12px_rgba(44,217,125,0.2)] reveal">
         <span class="w-2 h-2 rounded-full bg-[#2CD97D] animate-ping"></span>
         <span>ABOUT CROWN SPIN</span>
       </div>
 
       <h2
-        class="text-white font-black text-[26px] sm:text-[36px] md:text-[42px] leading-[1.15] tracking-tight reveal uppercase"
+        class="text-white font-black text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight reveal uppercase break-words"
       >
         Your Trusted Arena for
         <span
-          class="bg-gradient-to-r from-[#2CD97D] via-[#4EFAAA] to-white bg-clip-text text-transparent drop-shadow"
+          class="bg-gradient-to-r from-[#2CD97D] via-[#4EFAAA] to-white bg-clip-text text-transparent drop-shadow block sm:inline"
           >Provably Fair &amp; VIP Play</span
         >
       </h2>
 
       <p
-        class="text-slate-300 mt-4 leading-relaxed text-xs sm:text-sm reveal font-normal"
+        class="text-slate-300 leading-relaxed text-xs sm:text-sm reveal font-normal break-words"
       >
         Crown Spin is an ultra-modern online casino destination engineered for lightning-fast speeds, cryptographic fairness, and instant payouts. We combine cutting-edge blockchain security with top-tier slots, wheels, and instant-win games.
       </p>
 
       <p
-        class="text-slate-300 mt-2 leading-relaxed text-xs sm:text-sm reveal font-normal"
+        class="text-slate-300 leading-relaxed text-xs sm:text-sm reveal font-normal break-words"
       >
         With sub-minute withdrawals, verified RTP rates, and dedicated 24/7 VIP concierge service, Crown Spin delivers a transparent and rewarding high-roller experience.
       </p>
 
       <!-- Trust Badges Row -->
-      <div class="about-trust-row reveal mt-5">
+      <div class="about-trust-row reveal flex flex-wrap gap-1.5 sm:gap-2 pt-1">
         <span class="about-trust-badge"
           ><i class="fas fa-shield-halved text-[#2CD97D]"></i> Curacao Licensed</span
         >
@@ -102,35 +102,35 @@
       </div>
 
       <!-- Why Choose Crown Spin Bento Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 pt-2">
         <div
-          class="why-choose-chip flex items-center gap-2.5 reveal bg-[#292d2e] border border-[#2CD97D]/25 hover:border-[#2CD97D] p-3 rounded-xl transition shadow-md"
+          class="why-choose-chip flex items-center gap-2.5 reveal bg-[#292d2e] border border-[#2CD97D]/25 hover:border-[#2CD97D] p-2.5 sm:p-3 rounded-xl transition shadow-md min-w-0"
           *ngFor="let reason of whyChooseUs; let i = index"
           [style.transition-delay.ms]="i * 70"
         >
-          <span class="why-choose-icon text-[#2CD97D] text-sm">
+          <span class="why-choose-icon text-[#2CD97D] text-xs sm:text-sm shrink-0">
             <i [class]="reason.icon"></i>
           </span>
-          <span class="text-white text-xs font-bold tracking-wide">{{
+          <span class="text-white text-xs font-bold tracking-wide break-words min-w-0 flex-1">{{
             reason.text
           }}</span>
         </div>
       </div>
 
       <!-- Stat Counters -->
-      <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5">
+      <div class="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
         <div
-          class="about-stat-card reveal bg-[#292d2e] border border-[#2CD97D]/35 p-3.5 sm:p-4 rounded-2xl shadow-lg hover:border-[#2CD97D] transition text-center"
+          class="about-stat-card reveal bg-[#292d2e] border border-[#2CD97D]/35 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl shadow-lg hover:border-[#2CD97D] transition text-center min-w-0"
           *ngFor="let stat of stats; let i = index"
           [style.transition-delay.ms]="i * 90"
         >
           <h3
-            class="about-stat-value text-[#2CD97D] font-black text-xl sm:text-2xl drop-shadow"
+            class="about-stat-value text-[#2CD97D] font-black text-lg sm:text-xl md:text-2xl drop-shadow truncate"
           >
             {{ stat.value }}
           </h3>
           <p
-            class="about-stat-label text-slate-300 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider mt-1 leading-tight"
+            class="about-stat-label text-slate-300 text-[9px] sm:text-[10px] md:text-[11px] font-bold uppercase tracking-wider mt-1 leading-tight break-words"
           >
             {{ stat.label }}
           </p>
@@ -138,10 +138,10 @@
       </div>
 
       <!-- CTA Button -->
-      <div class="mt-8 reveal">
+      <div class="pt-3 reveal">
         <button
           (click)="RedirectToSignUp()"
-          class="pill-btn-primary font-black uppercase tracking-wider text-xs sm:text-sm cursor-pointer shadow-[0_0_25px_rgba(44,217,125,0.5)] bg-[#2CD97D] text-[#050811] hover:bg-[#34e286]"
+          class="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-black uppercase tracking-wider text-xs sm:text-sm cursor-pointer shadow-[0_0_25px_rgba(44,217,125,0.45)] bg-[#2CD97D] text-[#050811] hover:bg-[#34e286] active:scale-95 transition-all duration-200"
         >
           <span>Join Crown Spin VIP</span>
           <i class="fas fa-arrow-right text-xs"></i>

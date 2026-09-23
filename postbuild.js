@@ -46,19 +46,43 @@ try {
   console.warn('Note on copying files to root:', e.message);
 }
 
-// 4. Create deployable zip archives containing client files at the root of the zip
+// 4. Ensure Font Awesome webfonts are present in dist/browser/webfonts & dist/webfonts
 try {
+  const fontawesomeSrc = path.join(__dirname, 'node_modules', '@fortawesome', 'fontawesome-free', 'webfonts');
+  const browserWebfonts = path.join(distBrowserPath, 'webfonts');
+  const distWebfonts = path.join(distRootPath, 'webfonts');
+
+  if (fs.existsSync(fontawesomeSrc)) {
+    if (!fs.existsSync(browserWebfonts)) fs.mkdirSync(browserWebfonts, { recursive: true });
+    if (!fs.existsSync(distWebfonts)) fs.mkdirSync(distWebfonts, { recursive: true });
+
+    const fontFiles = fs.readdirSync(fontawesomeSrc);
+    for (const font of fontFiles) {
+      fs.copyFileSync(path.join(fontawesomeSrc, font), path.join(browserWebfonts, font));
+      fs.copyFileSync(path.join(fontawesomeSrc, font), path.join(distWebfonts, font));
+    }
+    console.log('✓ Ensured Font Awesome webfonts copied to dist/browser/webfonts & dist/webfonts');
+  }
+} catch (e) {
+  console.warn('Note on webfonts:', e.message);
+}
+
+// 5. Create deployable zip archives containing client files at the root of the zip
+try {
+  const buildZip = path.join(__dirname, 'build.zip');
   const distZip = path.join(__dirname, 'dist.zip');
   const socialZip = path.join(__dirname, 'social-casino-deploy.zip');
 
+  if (fs.existsSync(buildZip)) fs.unlinkSync(buildZip);
   if (fs.existsSync(distZip)) fs.unlinkSync(distZip);
   if (fs.existsSync(socialZip)) fs.unlinkSync(socialZip);
 
-  console.log('Compressing dist/browser files into dist.zip and social-casino-deploy.zip...');
+  console.log('Compressing dist/browser files into build.zip and dist.zip...');
   // Compress contents of dist/browser directly into the root of the zip
-  execSync(`powershell -Command "Compress-Archive -Path 'dist/browser/*' -DestinationPath 'dist.zip' -Force"`, { stdio: 'inherit' });
-  fs.copyFileSync(distZip, socialZip);
-  console.log('✓ Created dist.zip and social-casino-deploy.zip with root index.html & bundles!');
+  execSync(`powershell -Command "Compress-Archive -Path 'dist/browser/*' -DestinationPath 'build.zip' -Force"`, { stdio: 'inherit' });
+  fs.copyFileSync(buildZip, distZip);
+  fs.copyFileSync(buildZip, socialZip);
+  console.log('✓ Created build.zip, dist.zip and social-casino-deploy.zip with root index.html & bundles!');
 } catch (err) {
   console.error('Error creating zip archives:', err.message);
 }

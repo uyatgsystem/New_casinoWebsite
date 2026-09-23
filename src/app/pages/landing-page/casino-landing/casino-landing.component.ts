@@ -253,6 +253,11 @@ export class CasinoLandingComponent implements OnInit {
   textName: string = '';
 
   private navigateAndScroll(path: string) {
+    const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
+    if (!token) {
+      this.router.navigate(['/login'], { queryParams: { redirectUrl: path } });
+      return;
+    }
     this.router
       .navigate([path])
       .then((navigated) => {

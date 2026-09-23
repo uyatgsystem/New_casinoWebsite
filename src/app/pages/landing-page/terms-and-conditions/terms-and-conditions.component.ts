@@ -113,7 +113,7 @@ export class TermsAndConditionsComponent {
         'Our dedicated support team is available around the clock to investigate inquiries, resolve transactional discrepancies, and assist with gameplay validation.',
       bullets: [
         'Direct 24/7 live chat available through the platform interface',
-        'Email escalation desk: support@spinclub.com',
+        'Email escalation desk: support@crownspin.com',
         'Disputes handled within a formal 48-hour auditing review window',
       ],
     },
@@ -130,6 +130,7 @@ export class TermsAndConditionsComponent {
         (s) =>
           s.title.toLowerCase().includes(q) ||
           s.content.toLowerCase().includes(q) ||
+          (s.badge && s.badge.toLowerCase().includes(q)) ||
           (s.bullets && s.bullets.some((b) => b.toLowerCase().includes(q)))
       );
     }
