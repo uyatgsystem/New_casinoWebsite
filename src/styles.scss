@@ -135,7 +135,7 @@
 
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
   width: 100%;
   box-sizing: border-box;
@@ -281,18 +281,17 @@ body {
 }
 
 .swal2-icon {
-  display: grid !important;
-  place-items: center !important;
-  width: 58px !important;
-  height: 58px !important;
-  margin: 0 auto 18px !important;
-  border: 1px solid rgba(44, 217, 125, .42) !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-radius: 16px !important;
-  background: rgba(44, 217, 125, .08) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 64px !important;
+  height: 64px !important;
+  margin: 0 auto 16px !important;
+  border: 2px solid rgba(44, 217, 125, .5) !important;
+  border-radius: 50% !important;
+  background: rgba(44, 217, 125, .1) !important;
   color: #2CD97D !important;
-  box-shadow: 0 8px 20px rgba(44, 217, 125, 0.15) !important;
+  box-shadow: 0 0 25px rgba(44, 217, 125, 0.25) !important;
 }
 
 .swal2-popup::before,
@@ -986,18 +985,27 @@ button.active:not(.side-btn) {
 
   /* Warning Icon */
   &.swal2-warning {
-    border: 2px solid rgba(255, 159, 28, 0.6) !important;
-    background: rgba(255, 159, 28, 0.12) !important;
-    box-shadow: 0 0 25px rgba(255, 159, 28, 0.35) !important;
+    border: 2.5px solid #FF9F1C !important;
+    border-radius: 50% !important;
+    background: rgba(255, 159, 28, 0.15) !important;
+    box-shadow: 0 0 30px rgba(255, 159, 28, 0.45) !important;
     color: #FF9F1C !important;
-    font-size: 32px !important;
+    font-size: 28px !important;
     font-weight: 900 !important;
-    line-height: 60px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
     .swal2-icon-content {
       color: #FF9F1C !important;
-      font-family: inherit !important;
+      font-family: system-ui, -apple-system, sans-serif !important;
       font-weight: 900 !important;
+      font-size: 30px !important;
+      line-height: 1 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: inline-block !important;
     }
   }
 
