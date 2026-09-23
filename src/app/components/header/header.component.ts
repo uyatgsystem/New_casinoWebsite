@@ -137,9 +137,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   isNotLoginBtnShown: boolean = false;
+  trackTitle: string = 'Crown Chill Lounge';
+
   toggleMusic() {
     this.musicService.muteUnmute();
     this.isMuted = this.musicService.isMusicMuted();
+    this.Ref.detectChanges();
   }
 
   get actualWithdrawAmount(): number {
@@ -163,6 +166,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   ngOnInit() {
     this.previousUrl = this.router.url;
+
+    this.musicService.isMuted$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((muted) => {
+        this.isMuted = muted;
+        this.Ref.detectChanges();
+      });
+
+    this.musicService.trackTitle$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((title) => {
+        this.trackTitle = title;
+        this.Ref.detectChanges();
+      });
+
     this.detectIpAddress();
     this.getCustomerLevel();
     this.loaderService

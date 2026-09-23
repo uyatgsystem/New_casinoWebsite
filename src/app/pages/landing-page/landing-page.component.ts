@@ -154,6 +154,8 @@ openCrate() {
     },
   ];
 isCrateOpen: boolean = false;
+  isMuted = true;
+  trackTitle = 'Crown Ambient Chill Lounge';
 
   constructor(
     private router: Router,
@@ -161,7 +163,7 @@ isCrateOpen: boolean = false;
     private musicService: MusicService,
     private landingPageService: LandingPageService,
     private gameService: GameService,
-    private _utills: UtilsService,
+    private _utills: UtilsService
   ) {
     this.Games = this.gameService.getGames();
     this.grainBackdrop = this._utills.getGrainBackdrop();
@@ -170,6 +172,14 @@ isCrateOpen: boolean = false;
   private interactionStarted = false;
   ngOnInit(): void {
     this.isLandingPage = this.router.url === '/';
+
+    this.musicService.isMuted$.subscribe((muted) => {
+      this.isMuted = muted;
+    });
+
+    this.musicService.trackTitle$.subscribe((title) => {
+      this.trackTitle = title;
+    });
 
     // Observe screen size changes
     this.breakpointObserver
@@ -180,7 +190,7 @@ isCrateOpen: boolean = false;
 
     setTimeout(() => {
       this.startMusic();
-    }, 3000);
+    }, 2000);
 
     //? Add interaction listeners
     this.addInteractionListeners();
@@ -188,6 +198,10 @@ isCrateOpen: boolean = false;
     this.landingPageService.getActiveLotteries().subscribe((data) => {
       this.activeLotteries = data;
     });
+  }
+
+  toggleMusic(): void {
+    this.musicService.muteUnmute();
   }
 
   // Lightweight fade-in-on-scroll for `.reveal` elements across the page
