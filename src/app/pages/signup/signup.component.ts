@@ -21,6 +21,7 @@ import {
   CommonModule,
   isPlatformBrowser,
   ViewportScroller,
+  Location,
 } from '@angular/common';
 import {
   passwordMatchValidator,
@@ -34,13 +35,13 @@ import {
   faEyeSlash,
   faCheck,
   faTimes,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { register } from 'swiper/element/bundle';
 import { SignUpPopUpComponent } from './sign-up-pop-up/sign-up-pop-up.component';
 import { ErrorhandlingService } from '../../Services/error-handling.service';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NotificationService } from '../../Services/notification.service';
 import { CookieService } from 'ngx-cookie-service';
 import { GOOGLE_INTEGRATION_CONFIG } from '../../constants/google-integration.constants';
@@ -83,38 +84,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
     special: false,
   };
   grainBackdrop: SafeHtml = '';
-  // slides: Slide[] = [
-  //   {
-  //     id: 2,
-  //     src: '/Images/landing_1.png',
-  //     heading: 'Spin and Win Big!',
-  //     content:
-  //       'Take a spin and grab your chance to win exciting prizes instantly!',
-  //   },
-  //   {
-  //     id: 3,
-  //     src: '/Images/landing_2.png',
-  //     heading: 'Explore Games!',
-  //     content:
-  //       'Choose from a variety of exciting casino games and start your winning streak today!',
-  //   },
-  //   {
-  //     id: 4,
-  //     src: '/Images/landing_3.png',
-  //     heading: 'Fast and Secure Transactions!',
-  //     content:
-  //       'Deposit and withdraw your funds with ease, ensuring a seamless gaming experience!',
-  //   },
-  // ];
-
   window: Window | null = null;
+  isBrowser: boolean;
 
   constructor(
     private fb: FormBuilder,
     private apiPayloadService: ApiPayloadService,
     private apiCallService: ApiCallService,
     private router: Router,
-    // @Inject(LoaderService) private loaderService: LoaderService,
     private loaderService: LoaderService,
     private toastr: ToastrService,
     private handleErrror: ErrorhandlingService,
@@ -125,7 +102,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     private notificationService: NotificationService,
     private utils: UtilsService,
     private DeviceIdService: DeviceIdService,
-
+    private location: Location,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -133,26 +110,29 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.grainBackdrop = this.utils.getGrainBackdrop();
   }
 
-  ngOnInit(): void {
-    //    this.loaderService.show(); // Show loader immediately
-    // setTimeout(() => {
-    //   this.loaderService.hide(); // Hide loader after 2 seconds
-    // }, 1000);
-    this.initForm();
-    register(); // Initialize Swiper
+  goBack(): void {
+    this.location.back();
   }
-  isBrowser: boolean;
+
+  ngOnInit(): void {
+    this.initForm();
+    register();
+  }
+
   ngAfterViewInit(): void {
-    // Swiper is handled automatically; no additional logic needed
-    if(this.referralCode !== null ){
+    if (this.referralCode !== null) {
       this.signupForm.patchValue({
-        referralCode : this.referralCode,
-      })
+        referralCode: this.referralCode,
+      });
     }
   }
-get referralCode(): string|null {
-   return typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('refCode') : null;
-}
+
+  get referralCode(): string | null {
+    return typeof sessionStorage !== 'undefined'
+      ? sessionStorage.getItem('refCode')
+      : null;
+  }
+
   private initForm(): void {
     this.signupForm = this.fb.group(
       {
@@ -200,10 +180,10 @@ get referralCode(): string|null {
 
       this.passwordStrength = Math.min(
         lengthScore +
-        numbersScore +
-        specialScore +
-        uppercaseScore +
-        lowercaseScore,
+          numbersScore +
+          specialScore +
+          uppercaseScore +
+          lowercaseScore,
         100,
       );
     } else {
@@ -229,64 +209,58 @@ get referralCode(): string|null {
     this.Confirmshowpassword = !this.Confirmshowpassword;
   }
 
-async createUser(): Promise<void> {
-  setTimeout(() => {
-    this.scrollToTop();
-  }, 500);
+  async createUser(): Promise<void> {
+    setTimeout(() => {
+      this.scrollToTop();
+    }, 500);
 
-  if (
-    !this.signupForm.value.acceptTerms ||
-    !this.signupForm.value.acceptOffers
-  ) {
-    this.signupForm.get('acceptTerms')?.markAsTouched();
-    this.signupForm.get('acceptOffers')?.markAsTouched();
-    return;
-  }
+    if (
+      !this.signupForm.value.acceptTerms ||
+      !this.signupForm.value.acceptOffers
+    ) {
+      this.signupForm.get('acceptTerms')?.markAsTouched();
+      this.signupForm.get('acceptOffers')?.markAsTouched();
+      return;
+    }
 
-  if (this.signupForm.invalid) {
-    // Mark all controls as touched to show validation errors
-    this.signupForm.markAllAsTouched();
-    return;
-  }
- const resolvedDeviceId = await this.DeviceIdService.getDeviceId();
-    const resolvedFingerprint = await this.DeviceIdService.getDeviceFingerprint(); 
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched();
+      return;
+    }
 
-    
+    const resolvedDeviceId = await this.DeviceIdService.getDeviceId();
+    const resolvedFingerprint = await this.DeviceIdService.getDeviceFingerprint();
+
     const userData: Partial<CreateUser> = {
       ...this.signupForm.value,
       DeviceId: resolvedDeviceId,
-      deviceFingerprint: resolvedFingerprint || '' 
+      deviceFingerprint: resolvedFingerprint || '',
     };
 
+    const payload = this.apiPayloadService.createCreateUserPayload(userData);
 
-  // Create payload
-  const payload = this.apiPayloadService.createCreateUserPayload(userData);
+    this.loaderService.show();
 
-  this.loaderService.show();
+    this.apiCallService
+      .PostCallWithoutToken(payload, 'User/CreateUser')
+      .subscribe({
+        next: (response) => {
+          this.loaderService.hide();
 
-  this.apiCallService
-    .PostCallWithoutToken(payload, 'User/CreateUser')
-    .subscribe({
-      next: (response) => {
-        this.loaderService.hide();
+          if (response?.responseCode === 200) {
+            const dialogRef = this.openPopup();
+            dialogRef.afterClosed().subscribe(() => {});
+          } else {
+            this.handleErrror.handleResponseError(response);
+          }
+        },
+        error: (err) => {
+          this.loaderService.hide();
+          this.handleErrror.handleHttpError(err);
+        },
+      });
+  }
 
-        if (response?.responseCode === 200) {
-          // Open popup and handle redirection
-          const dialogRef = this.openPopup();
-
-          dialogRef.afterClosed().subscribe(() => {
-            // this.router.navigate(['/login']);
-          });
-        } else {
-          this.handleErrror.handleResponseError(response);
-        }
-      },
-      error: (err) => {
-        this.loaderService.hide();
-        this.handleErrror.handleHttpError(err);
-      },
-    });
-}
   openPopup(
     isGoogleLogin: boolean = false,
   ): MatDialogRef<SignUpPopUpComponent> {
@@ -298,16 +272,15 @@ async createUser(): Promise<void> {
       data: { email, isGoogleLogin },
     });
 
-    // Hide overflow on body to prevent scrolling issues
     if (this.window) {
       this.window.document.body.style.overflow = 'hidden';
     }
 
-    setTimeout(() => this.cdr.detectChanges()); // Ensure UI updates
+    setTimeout(() => this.cdr.detectChanges());
 
     dialogRef.afterClosed().subscribe(() => {
       if (this.window) {
-        this.window.document.body.style.overflow = ''; // Restore overflow
+        this.window.document.body.style.overflow = '';
       }
     });
 
@@ -315,19 +288,19 @@ async createUser(): Promise<void> {
   }
 
   restrictWhiteSpaces(): void {
-    //
     const usernameControl = this.signupForm.get('username');
     const usernameValue = usernameControl?.value || '';
 
     if (/\s/.test(usernameValue)) {
-      //
       this.toastr.error('Username cannot contain white spaces.');
       usernameControl?.setValue(usernameValue.replace(/\s/g, ''));
     }
   }
+
   trackByFn(index: number, slide: Slide): string {
     return `${slide.id}-${index}`;
   }
+
   isScreenWidthLessThan800(): boolean {
     return window.innerWidth < 800;
   }
@@ -346,8 +319,9 @@ async createUser(): Promise<void> {
       redirectPath.startsWith('http://') || redirectPath.startsWith('https://');
     const redirectUri = isAbsoluteRedirectPath
       ? redirectPath
-      : `${window.location.origin}${redirectPath.startsWith('/') ? redirectPath : `/${redirectPath}`
-      }`;
+      : `${window.location.origin}${
+          redirectPath.startsWith('/') ? redirectPath : `/${redirectPath}`
+        }`;
     const nonce = this.generateNonce();
 
     const googleOAuthUrl =
@@ -361,7 +335,7 @@ async createUser(): Promise<void> {
     try {
       this.loaderService.show();
     } catch (e) {
-      // ignore if loader service isn't available
+      // ignore
     }
 
     setTimeout(() => {
@@ -385,31 +359,29 @@ async createUser(): Promise<void> {
     return Math.random().toString(36).substring(2);
   }
 
- async VerfiyGoogleUser(token: string) {
-  this.loaderService.show();
+  async VerfiyGoogleUser(token: string) {
+    this.loaderService.show();
 
-  const referralCode = sessionStorage.getItem('refCode');
-  const adCode = sessionStorage.getItem('adCode');
+    const referralCode = sessionStorage.getItem('refCode');
+    const adCode = sessionStorage.getItem('adCode');
 
-  const deviceId = await this.DeviceIdService.getDeviceId();
-  const deviceFingerprint = await this.DeviceIdService.getDeviceFingerprint();
+    const deviceId = await this.DeviceIdService.getDeviceId();
+    const deviceFingerprint = await this.DeviceIdService.getDeviceFingerprint();
 
-  let apiUrl =
-    `User/ContinueWithGoogle?idToken=${encodeURIComponent(token)}` +
-    `&DeviceId=${encodeURIComponent(deviceId)}` +
-    `&DeviceFingerprint=${encodeURIComponent(deviceFingerprint)}`;
+    let apiUrl =
+      `User/ContinueWithGoogle?idToken=${encodeURIComponent(token)}` +
+      `&DeviceId=${encodeURIComponent(deviceId)}` +
+      `&DeviceFingerprint=${encodeURIComponent(deviceFingerprint)}`;
 
-  if (referralCode) {
-    apiUrl += `&RefferCode=${encodeURIComponent(referralCode)}`;
-  }
+    if (referralCode) {
+      apiUrl += `&RefferCode=${encodeURIComponent(referralCode)}`;
+    }
 
-  if (adCode) {
-    apiUrl += `&ad=${encodeURIComponent(adCode)}`;
-  }
+    if (adCode) {
+      apiUrl += `&ad=${encodeURIComponent(adCode)}`;
+    }
 
-  this.apiCallService
-    .PostCallWithoutToken(null, apiUrl)
-    .subscribe(
+    this.apiCallService.PostCallWithoutToken(null, apiUrl).subscribe(
       (response) => {
         if (response.responseCode == 200) {
           const dialogRef = this.openPopup(true);
@@ -423,13 +395,9 @@ async createUser(): Promise<void> {
       (error) => {
         this.loaderService.hide();
         this.handleErrror.handleHttpError(error);
-      }
+      },
     );
-}
-
-
-  // Open Term And Condintion Modal
-
+  }
 
   showTermsModal = false;
 

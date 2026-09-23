@@ -1,8 +1,11 @@
-<div class="terms-page min-h-screen bg-[#232626] text-white px-3 sm:px-6 lg:px-8 py-6 pb-28 md:pb-16">
+<div
+  class="terms-page min-h-screen bg-[#232626] text-white px-3 sm:px-6 lg:px-8 py-6 pb-28 md:pb-16"
+>
   <div class="max-w-6xl mx-auto space-y-6">
-
     <!-- Top Command Strip -->
-    <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#2CD97D]/25">
+    <div
+      class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#2CD97D]/25"
+    >
       <div class="flex items-center gap-3">
         <button
           type="button"
@@ -10,18 +13,32 @@
           class="w-10 h-10 rounded-2xl bg-[#292d2e] border border-[#2CD97D]/35 flex items-center justify-center text-[#2CD97D] hover:bg-[#2CD97D] hover:text-[#232626] transition shadow-md cursor-pointer active:scale-95"
           aria-label="Go back"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19l-7-7 7-7"
+            ></path>
           </svg>
         </button>
         <div>
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-[#2CD97D] animate-ping"></span>
-            <span class="text-[10px] font-mono font-bold text-[#2CD97D] tracking-widest uppercase">
+            <span
+              class="text-[10px] font-mono font-bold text-[#2CD97D] tracking-widest uppercase"
+            >
               LEGAL & GOVERNANCE COMPLIANCE
             </span>
           </div>
-          <h1 class="text-xl sm:text-3xl font-black uppercase tracking-wide text-white mt-0.5">
+          <h1
+            class="text-xl sm:text-3xl font-black uppercase tracking-wide text-white mt-0.5"
+          >
             Terms & Conditions
           </h1>
         </div>
@@ -35,57 +52,56 @@
         >
           <span>🖨️ Print Document</span>
         </button>
-        <span class="px-3.5 py-1.5 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 text-[#2CD97D] text-xs font-mono font-bold">
+        <span
+          class="px-3.5 py-1.5 rounded-xl bg-[#2CD97D]/15 border border-[#2CD97D]/40 text-[#2CD97D] text-xs font-mono font-bold"
+        >
           v2.4 AUDITED
         </span>
       </div>
     </div>
 
     <!-- Hero Card with Legal Overview & Search -->
-    <div class="relative rounded-[28px] bg-[#292d2e] border border-[#2CD97D]/40 p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.85)] overflow-hidden">
-      <div class="absolute -right-16 -top-16 w-64 h-64 bg-[#2CD97D]/12 blur-[70px] rounded-full pointer-events-none"></div>
+    <div
+      class="relative rounded-[28px] bg-[#292d2e] border border-[#2CD97D]/40 p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.85)] overflow-hidden"
+    >
+      <div
+        class="absolute -right-16 -top-16 w-64 h-64 bg-[#2CD97D]/12 blur-[70px] rounded-full pointer-events-none"
+      ></div>
 
-      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div
+        class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6"
+      >
         <div class="space-y-2 max-w-2xl">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2CD97D]/15 border border-[#2CD97D]/35 text-[#2CD97D] text-[10px] font-mono font-bold tracking-wider uppercase">
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2CD97D]/15 border border-[#2CD97D]/35 text-[#2CD97D] text-[10px] font-mono font-bold tracking-wider uppercase"
+          >
             OPERATIVE SERVICE AGREEMENT
           </span>
-          <h2 class="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
+          <h2
+            class="text-xl sm:text-2xl font-black text-white uppercase tracking-tight"
+          >
             Fair Play, Transparent Financials & Security Policy
           </h2>
-          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium">
-            These terms define the legal framework governing player accounts, certified gaming RNG standards, cryptocurrency settlement rails, bonus wagering rules, and privacy commitments across the Crown Spin ecosystem.
+          <p
+            class="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium"
+          >
+            These terms define the legal framework governing player accounts,
+            certified gaming RNG standards, cryptocurrency settlement rails,
+            bonus wagering rules, and privacy commitments across the Crown Spin
+            ecosystem.
           </p>
-          <div class="flex items-center gap-4 text-[10px] font-mono text-gray-400 pt-1">
-            <span>Last Updated: <strong class="text-white">September 2026</strong></span>
-            <span>•</span>
-            <span>Reading Time: <strong class="text-[#2CD97D]">~4 mins</strong></span>
-          </div>
-        </div>
-
-        <!-- Interactive Search Input -->
-        <div class="w-full md:w-80 shrink-0">
-          <label class="text-[10px] font-mono text-gray-400 uppercase tracking-wider block mb-1.5 font-bold">
-            SEARCH CLAUSES
-          </label>
-          <div class="relative">
-            <input
-              type="text"
-              [(ngModel)]="searchQuery"
-              placeholder="Search terms (e.g. deposit, kyc, withdrawal)..."
-              class="w-full px-4 py-3 pl-10 rounded-2xl bg-[#232626] border border-[#2CD97D]/40 text-xs font-mono text-white placeholder-gray-500 focus:outline-none focus:border-[#2CD97D] focus:ring-1 focus:ring-[#2CD97D] transition shadow-inner"
-            />
-            <svg class="w-4 h-4 text-[#2CD97D] absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-            <button
-              *ngIf="searchQuery"
-              type="button"
-              (click)="searchQuery = ''"
-              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-xs cursor-pointer"
+          <div
+            class="flex items-center gap-4 text-[10px] font-mono text-gray-400 pt-1"
+          >
+            <span
+              >Last Updated:
+              <strong class="text-white">September 2026</strong></span
             >
-              ✕
-            </button>
+            <span>•</span>
+            <span
+              >Reading Time:
+              <strong class="text-[#2CD97D]">~4 mins</strong></span
+            >
           </div>
         </div>
       </div>
@@ -96,7 +112,11 @@
       <button
         type="button"
         (click)="setSection('all')"
-        [ngClass]="activeSection === 'all' ? 'bg-[#2CD97D] text-[#232626] shadow-[0_0_12px_rgba(44,217,125,0.4)]' : 'bg-[#292d2e] text-gray-300 border border-[#2CD97D]/30 hover:border-[#2CD97D]'"
+        [ngClass]="
+          activeSection === 'all'
+            ? 'bg-[#2CD97D] text-[#232626] shadow-[0_0_12px_rgba(44,217,125,0.4)]'
+            : 'bg-[#292d2e] text-gray-300 border border-[#2CD97D]/30 hover:border-[#2CD97D]'
+        "
         class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider font-mono transition cursor-pointer shrink-0"
       >
         All Articles ({{ sections.length }})
@@ -105,11 +125,15 @@
         *ngFor="let s of sections"
         type="button"
         (click)="setSection(s.id)"
-        [ngClass]="activeSection === s.id ? 'bg-[#2CD97D] text-[#232626] shadow-[0_0_12px_rgba(44,217,125,0.4)]' : 'bg-[#292d2e] text-gray-300 border border-[#2CD97D]/30 hover:border-[#2CD97D]'"
+        [ngClass]="
+          activeSection === s.id
+            ? 'bg-[#2CD97D] text-[#232626] shadow-[0_0_12px_rgba(44,217,125,0.4)]'
+            : 'bg-[#292d2e] text-gray-300 border border-[#2CD97D]/30 hover:border-[#2CD97D]'
+        "
         class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider font-mono transition cursor-pointer shrink-0 flex items-center gap-1.5"
       >
         <span>{{ s.icon }}</span>
-        <span>{{ s.title.split('.')[1] || s.title }}</span>
+        <span>{{ s.title.split(".")[1] || s.title }}</span>
       </button>
     </div>
 
@@ -119,25 +143,39 @@
         *ngFor="let sec of filteredSections; let idx = index"
         class="rounded-[24px] bg-[#292d2e] border border-[#2CD97D]/30 hover:border-[#2CD97D] p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-all duration-300 group"
       >
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10">
+        <div
+          class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10"
+        >
           <div class="flex items-center gap-3">
             <span class="text-2xl">{{ sec.icon }}</span>
-            <h3 class="text-base sm:text-lg font-black text-white uppercase tracking-wide group-hover:text-[#2CD97D] transition">
+            <h3
+              class="text-base sm:text-lg font-black text-white uppercase tracking-wide group-hover:text-[#2CD97D] transition"
+            >
               {{ sec.title }}
             </h3>
           </div>
-          <span class="px-3 py-1 rounded-full bg-[#232626] border border-[#2CD97D]/40 text-[#2CD97D] text-[10px] font-mono font-bold uppercase w-fit">
+          <span
+            class="px-3 py-1 rounded-full bg-[#232626] border border-[#2CD97D]/40 text-[#2CD97D] text-[10px] font-mono font-bold uppercase w-fit"
+          >
             {{ sec.badge }}
           </span>
         </div>
 
-        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium mt-4">
+        <p
+          class="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium mt-4"
+        >
           {{ sec.content }}
         </p>
 
         <!-- Bullet Highlights -->
-        <div *ngIf="sec.bullets && sec.bullets.length > 0" class="mt-4 pt-3 border-t border-white/5 space-y-2">
-          <div *ngFor="let b of sec.bullets" class="flex items-start gap-2.5 text-xs text-gray-400">
+        <div
+          *ngIf="sec.bullets && sec.bullets.length > 0"
+          class="mt-4 pt-3 border-t border-white/5 space-y-2"
+        >
+          <div
+            *ngFor="let b of sec.bullets"
+            class="flex items-start gap-2.5 text-xs text-gray-400"
+          >
             <span class="text-[#2CD97D] text-xs font-bold mt-0.5">✓</span>
             <span class="leading-relaxed">{{ b }}</span>
           </div>
@@ -150,9 +188,12 @@
         class="rounded-[24px] bg-[#292d2e] border border-white/10 p-12 text-center space-y-3"
       >
         <span class="text-4xl">🔍</span>
-        <h3 class="text-lg font-black text-white uppercase">No matching terms found</h3>
+        <h3 class="text-lg font-black text-white uppercase">
+          No matching terms found
+        </h3>
         <p class="text-xs text-gray-400">
-          No clauses matched your query "{{ searchQuery }}". Clear your search to view all sections.
+          No clauses matched your query "{{ searchQuery }}". Clear your search
+          to view all sections.
         </p>
         <button
           type="button"
@@ -165,16 +206,26 @@
     </div>
 
     <!-- Contact & Assistance Bottom Card -->
-    <div class="rounded-[24px] bg-gradient-to-r from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+    <div
+      class="rounded-[24px] bg-gradient-to-r from-[#292d2e] to-[#232626] border border-[#2CD97D]/40 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl"
+    >
       <div class="space-y-1 text-center sm:text-left">
-        <span class="text-[10px] font-mono font-bold text-[#2CD97D] uppercase tracking-widest">
+        <span
+          class="text-[10px] font-mono font-bold text-[#2CD97D] uppercase tracking-widest"
+        >
           LEGAL QUESTIONS OR DISPUTES?
         </span>
         <h4 class="text-base sm:text-lg font-black text-white uppercase">
           Our 24/7 Compliance Desk Is Ready
         </h4>
         <p class="text-xs text-gray-400">
-          Reach out anytime at <a href="mailto:support@crownspin.com" class="text-[#2CD97D] underline font-mono font-bold">support&#64;crownspin.com</a> or speak with live chat operatives.
+          Reach out anytime at
+          <a
+            href="mailto:support@crownspin.com"
+            class="text-[#2CD97D] underline font-mono font-bold"
+            >support&#64;crownspin.com</a
+          >
+          or speak with live chat operatives.
         </p>
       </div>
 
@@ -185,6 +236,5 @@
         Contact Legal Desk
       </a>
     </div>
-
   </div>
 </div>

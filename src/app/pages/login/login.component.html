@@ -6,7 +6,7 @@
   <div
     class="w-full max-w-[1240px] mx-auto min-h-screen flex flex-col lg:flex-row items-center justify-center lg:justify-between px-4 sm:px-8 lg:px-12 py-8 lg:py-12 gap-8 lg:gap-12"
   >
-    <!-- Left branding copy -->
+    <!-- Left Branding Copy (Desktop View) -->
     <div class="hidden lg:flex lg:w-[48%] flex-col justify-center text-left">
       <div class="max-w-[470px]">
         <img
@@ -14,17 +14,22 @@
           alt="Crown Spin Logo"
           class="w-[170px] xl:w-[210px] h-auto mb-6 drop-shadow-[0_0_25px_rgba(44,217,125,0.45)]"
         />
-        <h1 class="text-4xl xl:text-[3.25rem] font-black leading-[1.02] tracking-[-0.04em] text-white uppercase">
+        <h1
+          class="text-4xl xl:text-[3.25rem] font-black leading-[1.02] tracking-[-0.04em] text-white uppercase"
+        >
           Welcome Back to
           <span class="block text-[#2CD97D] mt-1.5">Your Winning Side</span>
         </h1>
-        <p class="mt-4 max-w-[420px] text-sm xl:text-base text-gray-300 leading-relaxed font-medium">
-          Sign in to continue your gaming sessions, track your VIP rewards, and jump back into the action in seconds.
+        <p
+          class="mt-4 max-w-[420px] text-sm xl:text-base text-gray-300 leading-relaxed font-medium"
+        >
+          Sign in to continue your gaming sessions, track your VIP rewards, and
+          jump back into the action in seconds.
         </p>
       </div>
     </div>
 
-    <!-- Mobile Header -->
+    <!-- Mobile Header (Mobile View) -->
     <div
       class="lg:hidden mobile-header-section flex flex-col items-center text-center px-4 pt-4 pb-2"
     >
@@ -49,11 +54,27 @@
         class="rounded-3xl bg-[#292d2e]/95 backdrop-blur-xl p-5 sm:p-7 md:p-8 w-full max-w-[440px] sm:max-w-[460px] border border-[#2CD97D]/40 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.12)] relative overflow-hidden"
         id="formContainer"
       >
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent"></div>
+        <div
+          class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent"
+        ></div>
 
-        <!-- Header / Switch -->
+        <!-- Back Button & Header Switch -->
         <div class="mb-5">
-          <div class="auth-switch flex items-center justify-center sm:justify-start gap-3 mb-1.5">
+          <!-- Back Button -->
+          <button
+            type="button"
+            (click)="goBack()"
+            class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-[#2CD97D] transition-colors mb-4 cursor-pointer group"
+          >
+            <i
+              class="fas fa-arrow-left transition-transform group-hover:-translate-x-1"
+            ></i>
+            <span>Back</span>
+          </button>
+
+          <div
+            class="auth-switch flex items-center justify-center sm:justify-start gap-3 mb-1.5"
+          >
             <span
               class="text-[#2CD97D] text-lg sm:text-2xl font-black drop-shadow-[0_0_10px_rgba(44,217,125,0.5)] border-b-2 border-[#2CD97D] pb-0.5"
             >
@@ -82,7 +103,9 @@
 
           <!-- Username / Email Field -->
           <div class="mb-4">
-            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5 font-mono">
+            <label
+              class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5 font-mono"
+            >
               Username or Email
             </label>
             <div class="relative">
@@ -90,7 +113,7 @@
                 type="text"
                 formControlName="username"
                 placeholder="Enter username or email"
-                class="w-full text-white placeholder-gray-500 py-3 pl-11 pr-4 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                class="w-full text-white placeholder-gray-500 py-3 pl-11 pr-4 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150"
               />
               <i
                 class="fa fa-user text-[#2CD97D] absolute left-4 top-1/2 -translate-y-1/2 text-sm pointer-events-none"
@@ -100,7 +123,9 @@
 
           <!-- Password Field -->
           <div class="mb-4">
-            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5 font-mono">
+            <label
+              class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5 font-mono"
+            >
               Password
             </label>
             <div class="relative">
@@ -108,7 +133,7 @@
                 [type]="showpassword ? 'text' : 'password'"
                 formControlName="userPassword"
                 placeholder="Enter your password"
-                class="w-full text-white placeholder-gray-500 py-3 pl-11 pr-12 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                class="w-full text-white placeholder-gray-500 py-3 pl-11 pr-12 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150"
               />
               <i
                 class="fa fa-lock text-[#2CD97D] absolute left-4 top-1/2 -translate-y-1/2 text-sm pointer-events-none"
@@ -119,7 +144,10 @@
                 class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2CD97D] transition-colors p-1 cursor-pointer"
                 aria-label="Toggle password visibility"
               >
-                <fa-icon [icon]="showpassword ? hideicon : showicon" class="text-sm"></fa-icon>
+                <fa-icon
+                  [icon]="showpassword ? hideicon : showicon"
+                  class="text-sm"
+                ></fa-icon>
               </button>
             </div>
           </div>

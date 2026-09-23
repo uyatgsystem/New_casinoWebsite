@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -34,6 +34,7 @@ export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
   leftArrow = faChevronLeft;
   grainBackdrop: SafeHtml = '';
+
   constructor(
     private fb: FormBuilder,
     private apiCallService: ApiCallService,
@@ -49,65 +50,6 @@ export class ForgotPasswordComponent {
       email: ['', [Validators.required, Validators.email]],
     });
   }
-
-  //   ngOnInit(): void {
-  //   this.loaderService.show();
-  //   setTimeout(() => {
-  //     this.loaderService.hide();
-  //   }, 1000); // 1 second
-  // }
-
-  //   onSubmit() {
-  //     if (this.forgotPasswordForm.valid) {
-  //       this.loaderService.show();
-  //       const email = this.forgotPasswordForm.value.email;
-
-  //       this.apiCallService
-  //         .PostCallWithoutToken({ email }, 'User/ForgotPassword')
-  //         .subscribe(
-  //           (response) => {
-  //             if (response && response.responseCode === 200) {
-  //               // console.log('Password reset email sent successfully', response);
-  //               this.toastr.success(
-  //                 'Password reset email sent successfully. Please check your inbox.',
-  //                 'Success',
-  //                 {
-  //                   timeOut: 3000,
-  //                   progressBar: true,
-  //                   closeButton: true,
-  //                 }
-  //               );
-  //               this.router.navigate(['/Login']);
-  //               this.loaderService.hide();
-  //             } else {
-  //               // console.log('Password reset failed', response);
-  //               this.toastr.error(
-  //                 response?.errorMessage ||
-  //                   'Failed to send password reset email. Please try again.',
-  //                 'Error',
-  //                 {
-  //                   timeOut: 3000,
-  //                   progressBar: true,
-  //                   closeButton: true,
-  //                 }
-  //               );
-  //             }
-  //           },
-  //           (error) => {
-  //             // console.error('Password reset failed', error);
-  //             this.toastr.error(
-  //               'An error occurred while sending the password reset email. Please try again.'
-  //             );
-  //             this.loaderService.hide();
-  //           }
-  //         );
-  //     }
-  //   }
-
-  //   goBack() {
-  //     this.router.navigate(['/Login']);
-  //   }
-  // }
 
   onSubmit() {
     if (this.forgotPasswordForm.valid) {
@@ -127,22 +69,8 @@ export class ForgotPasswordComponent {
                   closeButton: true,
                 },
               );
-              // Navigate to ForgotChangePasswordComponent and pass email
-              // this.router.navigate(['/ForgotChangePassword'], {
-              //   queryParams: { email: email },
-              // });
               this.loaderService.hide();
-              // console.log('first' + email);
             } else {
-              // this.toastr.error(
-              //   response?.errorMessage || 'Failed to send password reset email. Please try again.',
-              //   'Error',
-              //   {
-              //     timeOut: 3000,
-              //     progressBar: true,
-              //     closeButton: true,
-              //   }
-              // );
               this.errorHandling.handleResponseError(response);
             }
           },

@@ -69,7 +69,7 @@
 }
 
 // ---------------------------------------------------------------------
-// Framed image (matches hero "museum frame" language)
+// Framed image (Fixed proportions for desktop & mobile)
 // ---------------------------------------------------------------------
 .about-frame {
   position: relative;
@@ -95,7 +95,7 @@
 // Slow-spinning dashed ring behind the frame
 .about-frame-ring {
   position: absolute;
-  inset: 4%;
+  inset: -5%;
   border-radius: 50%;
   border: 1px dashed rgba(44, 217, 125, 0.25);
   animation: aboutRingSpin 46s linear infinite;
@@ -113,6 +113,7 @@
   z-index: 10;
   width: 100%;
   max-width: 100%;
+  aspect-ratio: 4 / 5; /* Maintains correct height ratio on desktop */
   border-radius: 20px;
   border: 1px solid rgba(44, 217, 125, 0.25);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
@@ -124,7 +125,9 @@
 
 .about-us-image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -295,4 +298,3 @@
   background-clip: text;
   color: transparent;
 }
-

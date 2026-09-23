@@ -20,14 +20,15 @@ export class MusicService {
   private currentMode: MusicMode = 'pre-login';
   private loopIntervalId: any = null;
   private beatCount = 0;
+  private compressor: DynamicsCompressorNode | null = null;
 
-  // Reactive subjects for components to observe
+  // Balanced, gentle volume level for a comfortable background atmosphere
+  private readonly MASTER_VOLUME = 0.45;
+
+  // Reactive subjects for UI components
   public isMuted$ = new BehaviorSubject<boolean>(true);
   public trackTitle$ = new BehaviorSubject<string>('Crown Chill Lounge');
   public isPlaying$ = new BehaviorSubject<boolean>(false);
-
-  // Soft fallback HTML audio element if needed
-  private audioBell: HTMLAudioElement | null = null;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -37,28 +38,28 @@ export class MusicService {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
     if (this.isBrowser) {
-      // Check saved user preference (defaults to unmuted for ambient experience, or respects previous preference)
+      // Restore user audio settings or default to muted
       const savedMute = localStorage.getItem('crownspin_sound_muted');
       this.isMuted = savedMute !== null ? savedMute === 'true' : false;
       this.isMuted$.next(this.isMuted);
 
-      // Determine initial mode based on current URL and auth token
+      // Set initial mode based on active route
       this.updateModeFromRoute(this.router.url);
 
-      // Listen for route changes to automatically switch tracks between pre-login and post-login
+      // Automatically crossfade music mode on route change
       this.router.events
         .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => {
           this.updateModeFromRoute(event.urlAfterRedirects || event.url);
         });
 
-      // Register global interaction unlocker for browser autoplay policies
+      // Handle browser autoplay policy restrictions
       this.setupAutoplayUnlock();
     }
   }
 
   /**
-   * Determine whether current view should use pre-login ambient lounge or post-login VIP groove
+   * Determine whether view uses Pre-Login Ambient Lounge or Post-Login Velvet VIP Groove
    */
   private updateModeFromRoute(url: string): void {
     const isDashboard = url.startsWith('/dashboard') || !!localStorage.getItem('token');
@@ -67,14 +68,14 @@ export class MusicService {
     if (newMode !== this.currentMode) {
       this.currentMode = newMode;
       this.trackTitle$.next(
-        newMode === 'post-login' ? 'Crown VIP Platinum Lounge' : 'Crown Ambient Chill Lounge'
+        newMode === 'post-login' ? 'Crown Velvet Silk Groove' : 'Crown Chill Lounge'
       );
       this.crossfadeMode(newMode);
     }
   }
 
   /**
-   * Browser autoplay policy requires user interaction before AudioContext can play.
+   * Setup interaction listener to resume AudioContext per browser policy
    */
   private setupAutoplayUnlock(): void {
     const unlock = () => {
@@ -97,7 +98,7 @@ export class MusicService {
   }
 
   /**
-   * Initialize Web Audio Graph with high-end master filtering, soft limiter, and discrete channels
+   * Initialize Web Audio Graph with warm filtering and ultra-smooth compression
    */
   private initAudioEngine(): void {
     if (!this.isBrowser || this.isInitialized) return;
@@ -110,25 +111,33 @@ export class MusicService {
 
       // Master Gain
       this.masterGain = this.audioCtx.createGain();
-      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 0.22, this.audioCtx.currentTime);
+      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : this.MASTER_VOLUME, this.audioCtx.currentTime);
 
-      // Master Warmth Low-Pass Filter (removes harsh frequencies, gives warm analog casino vibe)
+      // Warm Low-Pass Filter: Filters out high harsh frequencies for non-intrusive sound
       const masterFilter = this.audioCtx.createBiquadFilter();
       masterFilter.type = 'lowpass';
-      masterFilter.frequency.setValueAtTime(2400, this.audioCtx.currentTime);
-      masterFilter.Q.setValueAtTime(0.7, this.audioCtx.currentTime);
+      masterFilter.frequency.setValueAtTime(1400, this.audioCtx.currentTime);
+      masterFilter.Q.setValueAtTime(0.5, this.audioCtx.currentTime);
 
-      // Pre-Login Channel Gain
+      // Smooth compressor for gentle dynamic leveling
+      this.compressor = this.audioCtx.createDynamicsCompressor();
+      this.compressor.threshold.setValueAtTime(-20, this.audioCtx.currentTime);
+      this.compressor.knee.setValueAtTime(30, this.audioCtx.currentTime);
+      this.compressor.ratio.setValueAtTime(3, this.audioCtx.currentTime);
+      this.compressor.attack.setValueAtTime(0.01, this.audioCtx.currentTime);
+      this.compressor.release.setValueAtTime(0.4, this.audioCtx.currentTime);
+
+      // Discrete Channels
       this.preLoginGain = this.audioCtx.createGain();
       this.preLoginGain.gain.setValueAtTime(this.currentMode === 'pre-login' ? 1 : 0, this.audioCtx.currentTime);
 
-      // Post-Login VIP Channel Gain
       this.postLoginGain = this.audioCtx.createGain();
       this.postLoginGain.gain.setValueAtTime(this.currentMode === 'post-login' ? 1 : 0, this.audioCtx.currentTime);
 
       this.preLoginGain.connect(masterFilter);
       this.postLoginGain.connect(masterFilter);
-      masterFilter.connect(this.masterGain);
+      masterFilter.connect(this.compressor);
+      this.compressor.connect(this.masterGain);
       this.masterGain.connect(this.audioCtx.destination);
 
       this.isInitialized = true;
@@ -141,13 +150,13 @@ export class MusicService {
   }
 
   /**
-   * Smoothly crossfade between Pre-Login Ambient Lounge and Post-Login VIP Groove
+   * Smoothly crossfade between Pre-Login Chill and Post-Login Velvet Groove
    */
   private crossfadeMode(targetMode: MusicMode): void {
     if (!this.audioCtx || !this.preLoginGain || !this.postLoginGain) return;
 
     const now = this.audioCtx.currentTime;
-    const fadeDuration = 1.8;
+    const fadeDuration = 2.5;
 
     if (targetMode === 'pre-login') {
       this.preLoginGain.gain.cancelScheduledValues(now);
@@ -169,33 +178,24 @@ export class MusicService {
   }
 
   /**
-   * Generative Harmonic Music Clock
-   * Plays serene celestial chords & 432Hz ambient waves (Pre-login)
-   * or warm deep sub-groove with lo-fi casino electric keys (Post-login)
+   * Generative Ambient Music Engine (Outside Angular Zone for zero performance impact)
    */
   private startGenerativeMusic(): void {
     if (this.loopIntervalId) return;
 
     this.isPlaying$.next(true);
 
-    // Run music scheduler outside Angular zone for peak performance
     this.ngZone.runOutsideAngular(() => {
-      // Chords for Pre-Login (Ethereal Alpha-Wave Chill: Fmaj9 -> G6 -> Am9 -> Em7)
-      const preLoginChords = [
-        [174.61, 220.0, 261.63, 329.63, 392.0], // Fmaj9
-        [196.0, 246.94, 293.66, 392.0, 440.0],  // G6
-        [220.0, 261.63, 329.63, 392.0, 493.88], // Am9
-        [164.81, 196.0, 246.94, 293.66, 392.0], // Em7
+      // Ethereal & Relaxing Jazz Lounge Chords
+      const relaxingLoungeChords = [
+        [174.61, 220.0, 261.63, 329.63, 392.0],  // Fmaj9
+        [220.0, 261.63, 329.63, 392.0, 493.88],  // Am9
+        [146.83, 174.61, 220.0, 261.63, 329.63], // Dm9
+        [130.81, 164.81, 196.0, 246.94, 329.63]  // Cmaj9
       ];
 
-      // Chords & Bass for Post-Login (VIP Platinum Groove at ~72 BPM)
-      const postLoginBassProgression = [87.31, 98.0, 110.0, 82.41]; // F, G, A, E
-      const postLoginKeys = [
-        [261.63, 329.63, 392.0, 493.88], // Fmaj7
-        [293.66, 349.23, 440.0, 523.25], // G9
-        [329.63, 392.0, 493.88, 587.33], // Am9
-        [246.94, 293.66, 370.0, 440.0],  // Em7
-      ];
+      // Deep Organic Sub-Bass Frequencies
+      const relaxingBassNotes = [87.31, 110.0, 73.42, 65.41];
 
       const tick = () => {
         if (!this.audioCtx || this.isMuted) return;
@@ -204,39 +204,31 @@ export class MusicService {
         const beatInMeasure = this.beatCount % 4;
 
         if (this.currentMode === 'pre-login') {
-          // Pre-login: Trigger long warm pad swell on measure start
+          // Pre-Login Ambient Lounge
           if (beatInMeasure === 0) {
-            this.playAmbientPad(preLoginChords[chordIndex], 3.8);
+            this.playRelaxingPad(relaxingLoungeChords[chordIndex], 4.2);
           }
-          // Delicate occasional chime sparkle
-          if (beatInMeasure === 2 && Math.random() > 0.4) {
-            const notes = [523.25, 659.25, 783.99, 880.0, 1046.5];
-            const note = notes[Math.floor(Math.random() * notes.length)];
-            this.playShimmerNote(note);
+          if (beatInMeasure === 2 && Math.random() > 0.3) {
+            const freq = relaxingLoungeChords[chordIndex][3] * 1.5;
+            this.playSoftCrystalChime(freq);
           }
         } else {
-          // Post-login VIP Groove:
-          // 1. Warm sub-bass note
-          if (beatInMeasure === 0 || beatInMeasure === 2) {
-            const root = postLoginBassProgression[chordIndex];
-            this.playWarmSubBass(root, beatInMeasure === 0 ? 1.4 : 0.8);
+          // Post-Login Velvet VIP Silk Groove
+          if (beatInMeasure === 0) {
+            this.playRelaxingPad(relaxingLoungeChords[chordIndex], 3.8);
+            this.playSubBass(relaxingBassNotes[chordIndex]);
           }
-
-          // 2. Smooth electric keys comping
-          if (beatInMeasure === 0 || beatInMeasure === 3) {
-            this.playElectricKeys(postLoginKeys[chordIndex], 1.2);
+          if (beatInMeasure === 1 || beatInMeasure === 3) {
+            this.playSoftVelvetTap();
           }
-
-          // 3. Subtle velvet lo-fi percussion tick (very soft and relaxing)
-          this.playVelvetTick(beatInMeasure === 1 || beatInMeasure === 3);
         }
 
         this.beatCount++;
       };
 
-      // 72 BPM = 833ms per beat
+      // Calm tempo (~68 BPM = 880ms interval)
       tick();
-      this.loopIntervalId = setInterval(tick, 833);
+      this.loopIntervalId = setInterval(tick, 880);
     });
   }
 
@@ -249,41 +241,33 @@ export class MusicService {
   }
 
   // ----------------------------------------------------
-  // SYNTHESIZER VOICES (Engineered for Mind Relaxation)
+  // SOOTHING SYNTHESIS VOICES
   // ----------------------------------------------------
 
   /**
-   * Pre-Login: Lush warm analog pad with slow breathing envelope
+   * Ultra-warm sine-wave ambient pad with breathing envelope
    */
-  private playAmbientPad(frequencies: number[], duration: number): void {
-    if (!this.audioCtx || !this.preLoginGain) return;
+  private playRelaxingPad(frequencies: number[], duration: number): void {
+    if (!this.audioCtx) return;
+    const targetGain = this.currentMode === 'post-login' ? this.postLoginGain : this.preLoginGain;
+    if (!targetGain) return;
 
     const now = this.audioCtx.currentTime;
 
     frequencies.forEach((freq, idx) => {
       const osc = this.audioCtx!.createOscillator();
       const gain = this.audioCtx!.createGain();
-      const filter = this.audioCtx!.createBiquadFilter();
 
-      osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+      osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, now);
+      osc.detune.setValueAtTime((idx - 2) * 3, now);
 
-      // Subtle detune for rich celestial chorus
-      osc.detune.setValueAtTime((idx - 2) * 4, now);
-
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(550, now);
-      filter.frequency.exponentialRampToValueAtTime(850, now + duration * 0.4);
-      filter.frequency.exponentialRampToValueAtTime(450, now + duration);
-
-      // Smooth attack and long gentle release
       gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.045, now + 1.2);
+      gain.gain.linearRampToValueAtTime(0.08, now + 1.2);
       gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
-      osc.connect(filter);
-      filter.connect(gain);
-      gain.connect(this.preLoginGain!);
+      osc.connect(gain);
+      gain.connect(targetGain);
 
       osc.start(now);
       osc.stop(now + duration);
@@ -291,9 +275,33 @@ export class MusicService {
   }
 
   /**
-   * Pre-Login: Soft crystalline shimmer touch
+   * Deep soothing sub-bass pulse
    */
-  private playShimmerNote(freq: number): void {
+  private playSubBass(freq: number): void {
+    if (!this.audioCtx || !this.postLoginGain) return;
+
+    const now = this.audioCtx.currentTime;
+    const osc = this.audioCtx.createOscillator();
+    const gain = this.audioCtx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, now);
+
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.18, now + 0.1);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 2.8);
+
+    osc.connect(gain);
+    gain.connect(this.postLoginGain);
+
+    osc.start(now);
+    osc.stop(now + 2.8);
+  }
+
+  /**
+   * Gentle crystal bell touch
+   */
+  private playSoftCrystalChime(freq: number): void {
     if (!this.audioCtx || !this.preLoginGain) return;
 
     const now = this.audioCtx.currentTime;
@@ -304,103 +312,42 @@ export class MusicService {
     osc.frequency.setValueAtTime(freq, now);
 
     gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.02, now + 0.05);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.0);
+    gain.gain.linearRampToValueAtTime(0.025, now + 0.08);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
 
     osc.connect(gain);
     gain.connect(this.preLoginGain);
 
     osc.start(now);
-    osc.stop(now + 2.0);
+    osc.stop(now + 1.8);
   }
 
   /**
-   * Post-Login VIP: Deep soothing sub-bass pulse
+   * Velvet lofi percussion tap (replaces loud snares/hi-hats)
    */
-  private playWarmSubBass(freq: number, duration: number): void {
+  private playSoftVelvetTap(): void {
     if (!this.audioCtx || !this.postLoginGain) return;
 
     const now = this.audioCtx.currentTime;
     const osc = this.audioCtx.createOscillator();
     const gain = this.audioCtx.createGain();
-    const filter = this.audioCtx.createBiquadFilter();
 
     osc.type = 'triangle';
-    osc.frequency.setValueAtTime(freq, now);
+    osc.frequency.setValueAtTime(220, now);
+    osc.frequency.exponentialRampToValueAtTime(60, now + 0.06);
 
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(160, now);
-
-    gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.09, now + 0.08);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
-
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.postLoginGain);
-
-    osc.start(now);
-    osc.stop(now + duration);
-  }
-
-  /**
-   * Post-Login VIP: Warm neo-soul electric piano chords
-   */
-  private playElectricKeys(frequencies: number[], duration: number): void {
-    if (!this.audioCtx || !this.postLoginGain) return;
-
-    const now = this.audioCtx.currentTime;
-
-    frequencies.forEach((freq, idx) => {
-      const osc = this.audioCtx!.createOscillator();
-      const gain = this.audioCtx!.createGain();
-      const filter = this.audioCtx!.createBiquadFilter();
-
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, now);
-
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(900, now);
-
-      gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.035, now + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.0005, now + duration);
-
-      osc.connect(filter);
-      filter.connect(gain);
-      gain.connect(this.postLoginGain!);
-
-      osc.start(now);
-      osc.stop(now + duration);
-    });
-  }
-
-  /**
-   * Post-Login VIP: Velvet subtle soft rhythm tick (unobtrusive micro-groove)
-   */
-  private playVelvetTick(isAccent: boolean): void {
-    if (!this.audioCtx || !this.postLoginGain) return;
-
-    const now = this.audioCtx.currentTime;
-    const osc = this.audioCtx.createOscillator();
-    const gain = this.audioCtx.createGain();
-
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(isAccent ? 380 : 260, now);
-    osc.frequency.exponentialRampToValueAtTime(80, now + 0.04);
-
-    gain.gain.setValueAtTime(isAccent ? 0.012 : 0.006, now);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+    gain.gain.setValueAtTime(0.03, now);
+    gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.06);
 
     osc.connect(gain);
     gain.connect(this.postLoginGain);
 
     osc.start(now);
-    osc.stop(now + 0.04);
+    osc.stop(now + 0.06);
   }
 
   // ----------------------------------------------------
-  // PUBLIC CONTROL INTERFACE
+  // PUBLIC API CONTROLS
   // ----------------------------------------------------
 
   public playMusic(): void {
@@ -421,7 +368,7 @@ export class MusicService {
     if (this.masterGain && this.audioCtx) {
       const now = this.audioCtx.currentTime;
       this.masterGain.gain.cancelScheduledValues(now);
-      this.masterGain.gain.linearRampToValueAtTime(0.22, now + 0.6);
+      this.masterGain.gain.linearRampToValueAtTime(this.MASTER_VOLUME, now + 0.8);
     }
 
     this.startGenerativeMusic();
@@ -443,15 +390,15 @@ export class MusicService {
       this.masterGain.gain.cancelScheduledValues(now);
 
       if (this.isMuted) {
-        this.masterGain.gain.linearRampToValueAtTime(0, now + 0.4);
+        this.masterGain.gain.linearRampToValueAtTime(0, now + 0.5);
         setTimeout(() => {
           if (this.isMuted) this.stopGenerativeMusic();
-        }, 400);
+        }, 500);
       } else {
         if (this.audioCtx.state === 'suspended') {
           this.audioCtx.resume();
         }
-        this.masterGain.gain.linearRampToValueAtTime(0.22, now + 0.6);
+        this.masterGain.gain.linearRampToValueAtTime(this.MASTER_VOLUME, now + 0.8);
         this.startGenerativeMusic();
       }
     }
@@ -473,25 +420,24 @@ export class MusicService {
       if (!this.audioCtx) return;
 
       const now = this.audioCtx.currentTime;
-      // Celestial crystal bell chord (E6, G#6, B6, E7)
-      const chord = [1318.51, 1661.22, 1975.53, 2637.02];
+      const chord = [1318.51, 1661.22, 1975.53];
 
       chord.forEach((freq, i) => {
         const osc = this.audioCtx!.createOscillator();
         const gain = this.audioCtx!.createGain();
 
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now + i * 0.04);
+        osc.frequency.setValueAtTime(freq, now + i * 0.05);
 
-        gain.gain.setValueAtTime(0, now + i * 0.04);
-        gain.gain.linearRampToValueAtTime(0.04, now + i * 0.04 + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.04 + 1.2);
+        gain.gain.setValueAtTime(0, now + i * 0.05);
+        gain.gain.linearRampToValueAtTime(0.03, now + i * 0.05 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.05 + 1.2);
 
         osc.connect(gain);
         gain.connect(this.masterGain || this.audioCtx!.destination);
 
-        osc.start(now + i * 0.04);
-        osc.stop(now + i * 0.04 + 1.2);
+        osc.start(now + i * 0.05);
+        osc.stop(now + i * 0.05 + 1.2);
       });
     } catch (e) {
       // Fallback

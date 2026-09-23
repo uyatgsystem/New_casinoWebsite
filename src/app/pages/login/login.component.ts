@@ -14,8 +14,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { LoaderService } from '../../Services/loader-service.service';
@@ -30,7 +30,6 @@ import { Slide } from '../../Interfaces/interfaces';
 import { CookieService } from 'ngx-cookie-service';
 import { ErrorhandlingService } from '../../Services/error-handling.service';
 import { NotificationService } from '../../Services/notification.service';
-import { ActivatedRoute } from '@angular/router';
 import { UtilsService } from '../../Services/utils.service';
 import { GOOGLE_INTEGRATION_CONFIG } from '../../constants/google-integration.constants';
 import { SafeHtml } from '@angular/platform-browser';
@@ -38,7 +37,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SignUpPopUpComponent } from '../signup/sign-up-pop-up/sign-up-pop-up.component';
 import { DeviceIdService } from '../../Services/device-id.service';
 import * as FingerprintJS from '@fingerprintjs/fingerprintjs';
+
 declare let fbq: Function;
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -66,6 +67,9 @@ export class LoginComponent implements OnInit {
   hideicon = faEyeSlash;
   private readonly _route: ActivatedRoute = inject(ActivatedRoute);
   grainBackdrop: SafeHtml = '';
+  isBrowser: boolean;
+  window: Window | null = null;
+
   constructor(
     private fb: FormBuilder,
     private apiCallService: ApiCallService,
@@ -83,7 +87,7 @@ export class LoginComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
     private DeviceIdService: DeviceIdService,
-
+    private location: Location
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -114,12 +118,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  isBrowser: boolean;
+  goBack(): void {
+    this.location.back();
+  }
+
   ngOnInit(): void {
-    //     this.loaderService.show(); // Show loader immediately
-    // setTimeout(() => {
-    //   this.loaderService.hide(); // Hide loader after 2 seconds
-    // }, 1000);
     const savedUsername = this.cookieService.get('rememberedUsername');
     const rememberMeStatus = this.cookieService.get('rememberMe') === 'true';
 
@@ -147,7 +150,6 @@ export class LoginComponent implements OnInit {
           (response) => {
             this.loaderService.hide();
             if (response && response.responseCode === 200) {
-              // console.log('User logged in successfully', response);
               localStorage.setItem('token', response.data.token);
               this._utils.startTokenExpiryWatcher();
               localStorage.setItem('userType', response.data.userType);
@@ -175,26 +177,17 @@ export class LoginComponent implements OnInit {
               );
               localStorage.setItem('deviceUId', response.data.deviceUId);
               localStorage.setItem('panelType', response.data.panelType);
-              // this.apiCallService.GetCallWithToken('NotificationMessages/GetAllNotifications?PageNumber=1&PageSize=10')
-              //           .subscribe((notifResponse) => {
-              //             if (notifResponse && notifResponse.responseCode === 200) {
-              //               localStorage.setItem('notifications', JSON.stringify(notifResponse.data));
-              //             }
-              //             // You may want to handle errors here
-              //           });
-              // Check isAlreadyLoggedIn field
+
               const isAlreadyLoggedIn = response.data.isAlreadyLoggedIn;
 
-              // Only show free spin modal if user is logging in for the first time (isAlreadyLoggedIn === 0 or false)
               if (isAlreadyLoggedIn === 0 || isAlreadyLoggedIn === false) {
                 localStorage.setItem('showFreeSpinModal', 'true');
                 this.fireLeadPixel();
               } else {
-                localStorage.removeItem('showFreeSpinModal'); // Clean up if exists
+                localStorage.removeItem('showFreeSpinModal');
               }
               this.notificationService.loadNotifications(true);
 
-              // Save username in cookies if "Remember Me" is checked
               if (this.loginForm.value.rememberMe) {
                 this.cookieService.set(
                   'rememberedUsername',
@@ -206,7 +199,6 @@ export class LoginComponent implements OnInit {
                   path: '/',
                 });
               } else {
-                // Clear cookies if "Remember Me" is unchecked
                 this.cookieService.delete('rememberedUsername', '/');
                 this.cookieService.delete('rememberMe', '/');
               }
@@ -223,25 +215,18 @@ export class LoginComponent implements OnInit {
               } else {
                 this.router.navigate(['/dashboard/home']);
               }
-            }
-
-            else if (
+            } else if (
               response?.responseCode === 400 &&
               response?.errorMessage ==
-              'Please verify your email before logging in.'
+                'Please verify your email before logging in.'
             ) {
               this.handleError?.showAlert(
                 'warning',
                 'A code was already sent to your email. Enter it or resend.',
               );
               const dialogRef = this.openPopup(false, response?.data);
-              dialogRef.afterClosed().subscribe(() => {
-                // Navigate to login after popup closes
-                // this.router.navigate(['/login']);
-              });
-            }
-
-            else {
+              dialogRef.afterClosed().subscribe(() => {});
+            } else {
               this.handleError.handleResponseError(response);
               this.loaderService.hide();
             }
@@ -284,6 +269,7 @@ export class LoginComponent implements OnInit {
   trackByFn(index: number, slide: any): string {
     return `${slide.uniqueId}-${index}`;
   }
+
   isScreenWidthLessThan800(): boolean {
     return window.innerWidth < 800;
   }
@@ -311,7 +297,7 @@ export class LoginComponent implements OnInit {
     try {
       this.loaderService.show();
     } catch (e) {
-      // ignore if loader service isn't available
+      // ignore
     }
 
     setTimeout(() => {
@@ -360,37 +346,30 @@ export class LoginComponent implements OnInit {
 
   async VerfiyGoogleUser(token: string) {
     this.loaderService.show();
-    // const referralCode = sessionStorage.getItem('refCode');
-    // const adCode = sessionStorage.getItem('adCode');
 
-    // let apiUrl = `User/ContinueWithGoogle?idToken=${token}`;
-    // if (referralCode) {
-    //   apiUrl += `&RefferCode=${referralCode}`;
-    // }
-    // if (adCode) {
-    //   apiUrl += `&ad=${adCode}`;
-    // }
-    const referralCode = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('refCode') : null;
-  const adCode = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('adCode') : null;
+    const referralCode =
+      typeof sessionStorage !== 'undefined'
+        ? sessionStorage.getItem('refCode')
+        : null;
+    const adCode =
+      typeof sessionStorage !== 'undefined'
+        ? sessionStorage.getItem('adCode')
+        : null;
 
-  // 1. Pehle compulsory device details fetch kar lein
-  const deviceId = await this.DeviceIdService.getDeviceId();
-  const deviceFingerprint = await this.DeviceIdService.getDeviceFingerprint();
+    const deviceId = await this.DeviceIdService.getDeviceId();
+    const deviceFingerprint = await this.DeviceIdService.getDeviceFingerprint();
 
+    let apiUrl =
+      `User/ContinueWithGoogle?idToken=${encodeURIComponent(token)}` +
+      `&deviceId=${encodeURIComponent(deviceId || '')}` +
+      `&deviceFingerprint=${encodeURIComponent(deviceFingerprint || '')}`;
 
-  // 2. Base URL banayein jismein token aur dono compulsory parameters pehle se hon
-  let apiUrl = `User/ContinueWithGoogle?idToken=${encodeURIComponent(token)}` +
-               `&deviceId=${encodeURIComponent(deviceId || '')}` +
-               `&deviceFingerprint=${encodeURIComponent(deviceFingerprint || '')}`;
-
-
-  // 3. Optional parameters ko conditional check ke sath append karein
-  if (referralCode) {
-    apiUrl += `&RefferCode=${encodeURIComponent(referralCode)}`;
-  }
-  if (adCode) {
-    apiUrl += `&ad=${encodeURIComponent(adCode)}`;
-  }
+    if (referralCode) {
+      apiUrl += `&RefferCode=${encodeURIComponent(referralCode)}`;
+    }
+    if (adCode) {
+      apiUrl += `&ad=${encodeURIComponent(adCode)}`;
+    }
 
     this.apiCallService
       .PostCallWithoutToken(null, apiUrl)
@@ -442,7 +421,7 @@ export class LoginComponent implements OnInit {
             this.cookieService.delete('rememberedUsername', '/');
             this.cookieService.delete('rememberMe', '/');
           }
-          //Check isAlreadyLoggedIn field
+
           const isAlreadyLoggedIn = response.data.isAlreadyLoggedIn;
           if (isAlreadyLoggedIn === 0 || isAlreadyLoggedIn === false) {
             localStorage.setItem('showFreeSpinModal', 'true');
@@ -452,15 +431,6 @@ export class LoginComponent implements OnInit {
           }
 
           if (response.responseMessage == 'Account Created Successfully') {
-            // if (this.googleVerifyRetryCount >= this.maxGoogleVerifyRetries) {
-            //   this.loaderService.hide();
-            //   this.toastr.warning(
-            //     'Google login is taking longer than expected. Please try again.',
-            //   );
-            //   return;
-            // }
-
-            // this.googleVerifyRetryCount++;
             this.VerfiyGoogleUser(this.googleAccesToken);
           } else {
             if (this._socketService.isConnected == false) {
@@ -495,12 +465,6 @@ export class LoginComponent implements OnInit {
     return null;
   }
 
-  // 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
-  // 57908406230-sdn537q1kjg6rh299egrdonqkmjggt57.apps.googleusercontent.com
-
-  // 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
-  // 996395306309-6amafcbh3p6faflbmhgmfa4ish1vt3b6.apps.googleusercontent.com
-
   openPopup(
     isGoogleLogin: boolean = false,
     data: any = null,
@@ -512,25 +476,22 @@ export class LoginComponent implements OnInit {
       data: { email, isGoogleLogin },
     });
 
-    // Hide overflow on body to prevent scrolling issues
     if (this.window) {
       this.window.document.body.style.overflow = 'hidden';
     }
 
-    setTimeout(() => this.cdr.detectChanges()); // Ensure UI updates
+    setTimeout(() => this.cdr.detectChanges());
 
     dialogRef.afterClosed().subscribe(() => {
       if (this.window) {
-        this.window.document.body.style.overflow = ''; // Restore overflow
+        this.window.document.body.style.overflow = '';
       }
     });
 
     return dialogRef;
   }
-  window: Window | null = null;
 
-
-    fireLeadPixel() {
+  fireLeadPixel() {
     if (this.isBrowser && typeof fbq === 'function') {
       fbq('track', 'Lead');
       console.log('Lead pixel fired');

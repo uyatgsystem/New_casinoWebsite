@@ -36,18 +36,31 @@
   background: #292d2e;
   border: 1px solid rgba(44, 217, 125, 0.38);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(44, 217, 125, 0.12);
-}
 
-/* Prevent browser autofill background color change */
-#formContainer input:-webkit-autofill,
-#formContainer input:-webkit-autofill:hover,
-#formContainer input:-webkit-autofill:focus,
-#formContainer input:-webkit-autofill:active {
-  -webkit-text-fill-color: #fff !important;
-  -webkit-box-shadow: 0 0 0 1000px #050811 inset !important;
-  box-shadow: 0 0 0 1000px #050811 inset !important;
-  transition: background-color 9999s ease-in-out 0s;
-  caret-color: #fff;
+  /* --- FIX: Removes browser default white focus border/blink --- */
+  input {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus,
+    &:focus-visible {
+      outline: none !important;
+      border-color: #2CD97D !important;
+      box-shadow: 0 0 15px rgba(44, 217, 125, 0.25) !important;
+    }
+
+    /* Prevent browser autofill background color change */
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-text-fill-color: #fff !important;
+      -webkit-box-shadow: 0 0 0 1000px #050811 inset !important;
+      box-shadow: 0 0 0 1000px #050811 inset !important;
+      transition: background-color 9999s ease-in-out 0s;
+      caret-color: #fff;
+    }
+  }
 }
 
 @media (max-width: 1023px) {

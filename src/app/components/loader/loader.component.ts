@@ -18,7 +18,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
   private readonly statusMessages: string[] = [
     'CONNECTING SECURE PROTOCOLS...',
     'SYNCING VIP REWARDS MATRIX...',
-    'AUTHENTICATING HIGH-ROLLER LEDGER...',
+    'AUTHENTICATING CROWN-SPIN LEDGER...',
     'VERIFYING PROVABLY FAIR VAULT...',
     'INITIALIZING CASINO ENGINE...'
   ];

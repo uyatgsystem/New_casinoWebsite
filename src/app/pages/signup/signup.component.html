@@ -14,18 +14,25 @@
           alt="Crown Spin Logo"
           class="w-[160px] xl:w-[195px] h-auto mb-5 drop-shadow-[0_0_25px_rgba(44,217,125,0.45)]"
         />
-        <h1 class="text-3xl xl:text-[3rem] font-black leading-[1.05] tracking-[-0.04em] text-white">
+        <h1
+          class="text-3xl xl:text-[3rem] font-black leading-[1.05] tracking-[-0.04em] text-white"
+        >
           Start Your
           <span class="block text-[#2CD97D] mt-1.5">Winning Journey</span>
         </h1>
-        <p class="mt-4 max-w-[420px] text-sm xl:text-base text-gray-300 leading-relaxed font-medium">
-          Register your player profile, unlock welcome perks, and enter a world of instant rewards and live tournaments.
+        <p
+          class="mt-4 max-w-[420px] text-sm xl:text-base text-gray-300 leading-relaxed font-medium"
+        >
+          Register your player profile, unlock welcome perks, and enter a world
+          of instant rewards and live tournaments.
         </p>
       </div>
     </div>
 
     <!-- Mobile Header (Clean Spacing, No Cut-Offs) -->
-    <div class="lg:hidden mobile-header-section flex flex-col items-center text-center px-4 pt-6 pb-2">
+    <div
+      class="lg:hidden mobile-header-section flex flex-col items-center text-center px-4 pt-6 pb-2"
+    >
       <img
         src="/logo.png"
         alt="Crown Spin Logo"
@@ -35,7 +42,8 @@
         Start Your <span class="text-[#2CD97D]">Winning Journey</span>
       </h1>
       <p class="text-xs text-gray-300 mt-1 max-w-[320px] leading-relaxed">
-        Register an operative account to claim welcome perks and enter live tournaments.
+        Register an operative account to claim welcome perks and enter live
+        tournaments.
       </p>
     </div>
 
@@ -47,11 +55,27 @@
         class="rounded-3xl bg-[#292d2e]/95 backdrop-blur-xl p-4 sm:p-6 w-full max-w-[460px] sm:max-w-[500px] lg:max-w-[530px] border border-[#2CD97D]/40 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.12)] relative overflow-hidden"
         id="formContainer"
       >
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent"></div>
+        <div
+          class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2CD97D] to-transparent"
+        ></div>
 
-        <!-- Header / Switch -->
+        <!-- Back Button & Header Switch -->
         <div class="mb-3">
-          <div class="auth-switch flex items-center justify-center sm:justify-start gap-2.5 mb-1">
+          <!-- Back Button -->
+          <button
+            type="button"
+            (click)="goBack()"
+            class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-[#2CD97D] transition-colors mb-3 cursor-pointer group"
+          >
+            <i
+              class="fas fa-arrow-left transition-transform group-hover:-translate-x-1"
+            ></i>
+            <span>Back</span>
+          </button>
+
+          <div
+            class="auth-switch flex items-center justify-center sm:justify-start gap-2.5 mb-1"
+          >
             <a
               routerLink="/login"
               class="text-gray-400 hover:text-white text-base sm:text-xl font-bold transition-colors cursor-pointer"
@@ -65,7 +89,9 @@
               Create Account
             </span>
           </div>
-          <p class="text-gray-400 text-[11px] sm:text-xs text-center sm:text-left">
+          <p
+            class="text-gray-400 text-[11px] sm:text-xs text-center sm:text-left"
+          >
             Register your player profile to unlock instant games and rewards.
           </p>
         </div>
@@ -81,7 +107,9 @@
           <!-- First & Last Name -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-2.5">
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1">
+              <label
+                class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1"
+              >
                 First Name
               </label>
               <input
@@ -89,7 +117,7 @@
                 type="text"
                 formControlName="firstName"
                 placeholder="First name"
-                class="w-full text-white placeholder-gray-500 py-2 px-3 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                class="w-full text-white placeholder-gray-500 py-2 px-3 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150"
               />
               <div
                 *ngIf="
@@ -103,7 +131,9 @@
             </div>
 
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1">
+              <label
+                class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1"
+              >
                 Last Name
               </label>
               <input
@@ -111,7 +141,7 @@
                 type="text"
                 formControlName="lastName"
                 placeholder="Last name"
-                class="w-full text-white placeholder-gray-500 py-2 px-3 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                class="w-full text-white placeholder-gray-500 py-2 px-3 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150"
               />
               <div
                 *ngIf="
@@ -128,7 +158,9 @@
           <!-- Username & Referral Code -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-2.5">
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1">
+              <label
+                class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1"
+              >
                 Username
               </label>
               <input
@@ -136,7 +168,7 @@
                 type="text"
                 formControlName="username"
                 placeholder="Choose username"
-                class="w-full text-white placeholder-gray-500 py-2 px-3 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                class="w-full text-white placeholder-gray-500 py-2 px-3 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150"
                 (input)="restrictWhiteSpaces()"
               />
               <div
@@ -151,7 +183,9 @@
             </div>
 
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1">
+              <label
+                class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1"
+              >
                 Referral Code (Optional)
               </label>
               <input
@@ -159,7 +193,7 @@
                 type="text"
                 formControlName="referralCode"
                 placeholder="Ref code"
-                class="w-full text-white placeholder-gray-500 py-2 px-3 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all font-mono"
+                class="w-full text-white placeholder-gray-500 py-2 px-3 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150 font-mono"
                 (input)="restrictWhiteSpaces()"
               />
             </div>
@@ -167,7 +201,9 @@
 
           <!-- Email -->
           <div class="mb-2.5">
-            <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1">
+            <label
+              class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1"
+            >
               Email Address
             </label>
             <div class="relative">
@@ -176,7 +212,7 @@
                 type="email"
                 formControlName="email"
                 placeholder="name@domain.com"
-                class="w-full text-white placeholder-gray-500 py-2 pl-3 pr-9 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                class="w-full text-white placeholder-gray-500 py-2 pl-3 pr-9 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150"
               />
               <i
                 class="fa fa-envelope text-[#2CD97D] absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none"
@@ -202,7 +238,9 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-2">
             <!-- Password -->
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1">
+              <label
+                class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1"
+              >
                 Create Password
               </label>
               <div class="relative">
@@ -211,7 +249,7 @@
                   [type]="showpassword ? 'text' : 'password'"
                   formControlName="password"
                   placeholder="Strong password"
-                  class="w-full text-white placeholder-gray-500 py-2 pl-3 pr-9 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                  class="w-full text-white placeholder-gray-500 py-2 pl-3 pr-9 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150"
                   (input)="checkPasswordStrength()"
                   (focus)="isPasswordFocused = true"
                   (blur)="isPasswordFocused = false"
@@ -222,7 +260,10 @@
                   class="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2CD97D] transition-colors p-1"
                   aria-label="Toggle password visibility"
                 >
-                  <fa-icon [icon]="showpassword ? hideicon : showicon" class="text-xs"></fa-icon>
+                  <fa-icon
+                    [icon]="showpassword ? hideicon : showicon"
+                    class="text-xs"
+                  ></fa-icon>
                 </button>
               </div>
 
@@ -241,7 +282,12 @@
                     [class.text-red-400]="!passwordChecks.length"
                     class="flex items-center gap-1"
                   >
-                    <i class="fa" [ngClass]="passwordChecks.length ? 'fa-check' : 'fa-times'"></i>
+                    <i
+                      class="fa"
+                      [ngClass]="
+                        passwordChecks.length ? 'fa-check' : 'fa-times'
+                      "
+                    ></i>
                     8+ chars
                   </li>
                   <li
@@ -249,7 +295,12 @@
                     [class.text-red-400]="!passwordChecks.numbers"
                     class="flex items-center gap-1"
                   >
-                    <i class="fa" [ngClass]="passwordChecks.numbers ? 'fa-check' : 'fa-times'"></i>
+                    <i
+                      class="fa"
+                      [ngClass]="
+                        passwordChecks.numbers ? 'fa-check' : 'fa-times'
+                      "
+                    ></i>
                     2+ numbers
                   </li>
                   <li
@@ -257,7 +308,12 @@
                     [class.text-red-400]="!passwordChecks.uppercase"
                     class="flex items-center gap-1"
                   >
-                    <i class="fa" [ngClass]="passwordChecks.uppercase ? 'fa-check' : 'fa-times'"></i>
+                    <i
+                      class="fa"
+                      [ngClass]="
+                        passwordChecks.uppercase ? 'fa-check' : 'fa-times'
+                      "
+                    ></i>
                     1+ uppercase
                   </li>
                   <li
@@ -265,7 +321,12 @@
                     [class.text-red-400]="!passwordChecks.lowercase"
                     class="flex items-center gap-1"
                   >
-                    <i class="fa" [ngClass]="passwordChecks.lowercase ? 'fa-check' : 'fa-times'"></i>
+                    <i
+                      class="fa"
+                      [ngClass]="
+                        passwordChecks.lowercase ? 'fa-check' : 'fa-times'
+                      "
+                    ></i>
                     1+ lowercase
                   </li>
                   <li
@@ -273,7 +334,12 @@
                     [class.text-red-400]="!passwordChecks.special"
                     class="flex items-center gap-1"
                   >
-                    <i class="fa" [ngClass]="passwordChecks.special ? 'fa-check' : 'fa-times'"></i>
+                    <i
+                      class="fa"
+                      [ngClass]="
+                        passwordChecks.special ? 'fa-check' : 'fa-times'
+                      "
+                    ></i>
                     1+ special char
                   </li>
                 </ul>
@@ -282,7 +348,9 @@
 
             <!-- Confirm Password -->
             <div>
-              <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1">
+              <label
+                class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1"
+              >
                 Confirm Password
               </label>
               <div class="relative">
@@ -291,7 +359,7 @@
                   [type]="Confirmshowpassword ? 'text' : 'password'"
                   formControlName="confirmPassword"
                   placeholder="Re-enter password"
-                  class="w-full text-white placeholder-gray-500 py-2 pl-3 pr-9 bg-[#050811] border border-[#2CD97D]/30 rounded-xl focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] focus:outline-none text-xs sm:text-sm transition-all"
+                  class="w-full text-white placeholder-gray-500 py-2 pl-3 pr-9 bg-[#050811] border border-[#2CD97D]/30 rounded-xl outline-none focus:outline-none focus:ring-0 focus:border-[#2CD97D] focus:shadow-[0_0_15px_rgba(44,217,125,0.25)] text-xs sm:text-sm transition-all duration-150"
                 />
                 <button
                   type="button"
@@ -299,7 +367,10 @@
                   class="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2CD97D] transition-colors p-1"
                   aria-label="Toggle confirm password visibility"
                 >
-                  <fa-icon [icon]="Confirmshowpassword ? hideicon : showicon" class="text-xs"></fa-icon>
+                  <fa-icon
+                    [icon]="Confirmshowpassword ? hideicon : showicon"
+                    class="text-xs"
+                  ></fa-icon>
                 </button>
               </div>
               <div
@@ -322,7 +393,10 @@
               class="mt-0.5 accent-[#2CD97D] cursor-pointer w-3.5 h-3.5 flex-shrink-0"
               id="termsCheckbox"
             />
-            <label for="termsCheckbox" class="text-[11px] text-gray-300 leading-snug cursor-pointer select-none">
+            <label
+              for="termsCheckbox"
+              class="text-[11px] text-gray-300 leading-snug cursor-pointer select-none"
+            >
               I confirm that I am 18+ years old and accept the
               <span
                 class="text-[#2CD97D] font-bold underline hover:text-white cursor-pointer"
@@ -341,7 +415,10 @@
               class="mt-0.5 accent-[#2CD97D] cursor-pointer w-3.5 h-3.5 flex-shrink-0"
               id="offersCheckbox"
             />
-            <label for="offersCheckbox" class="text-[11px] text-gray-300 leading-snug cursor-pointer select-none">
+            <label
+              for="offersCheckbox"
+              class="text-[11px] text-gray-300 leading-snug cursor-pointer select-none"
+            >
               I agree to receive VIP bonus alerts and promotion credits
             </label>
           </div>
@@ -404,7 +481,9 @@
     <div
       class="bg-[#292d2e] w-[95%] md:w-[65%] lg:w-[50%] max-h-[85vh] flex flex-col p-6 rounded-3xl border border-[#2CD97D]/50 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(44,217,125,0.2)]"
     >
-      <div class="flex justify-between items-center pb-3 border-b border-[#2CD97D]/25 mb-4">
+      <div
+        class="flex justify-between items-center pb-3 border-b border-[#2CD97D]/25 mb-4"
+      >
         <h2 class="text-[#2CD97D] text-lg font-black uppercase tracking-wider">
           Terms & Conditions
         </h2>
@@ -420,11 +499,30 @@
       <div
         class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-3 overflow-y-auto pr-2 custom-scrollbar flex-1"
       >
-        <p><strong>1. Age Requirement:</strong> By registering, you confirm that you are at least 18 years old or the legal age of majority in your jurisdiction.</p>
-        <p><strong>2. Account Security:</strong> Operatives are strictly responsible for maintaining credentials confidentiality and multi-factor safety.</p>
-        <p><strong>3. Compliance:</strong> The platform reserves the right to suspend suspicious or duplicate accounts violating anti-fraud policies.</p>
-        <p><strong>4. Fair Play:</strong> All gaming rounds are powered by certified random number generation (RNG) and cryptographic verifiability.</p>
-        <p><strong>5. Financial Transactions:</strong> All deposits and withdrawals must use verified operative payment methods.</p>
+        <p>
+          <strong>1. Age Requirement:</strong> By registering, you confirm that
+          you are at least 18 years old or the legal age of majority in your
+          jurisdiction.
+        </p>
+        <p>
+          <strong>2. Account Security:</strong> Operatives are strictly
+          responsible for maintaining credentials confidentiality and
+          multi-factor safety.
+        </p>
+        <p>
+          <strong>3. Compliance:</strong> The platform reserves the right to
+          suspend suspicious or duplicate accounts violating anti-fraud
+          policies.
+        </p>
+        <p>
+          <strong>4. Fair Play:</strong> All gaming rounds are powered by
+          certified random number generation (RNG) and cryptographic
+          verifiability.
+        </p>
+        <p>
+          <strong>5. Financial Transactions:</strong> All deposits and
+          withdrawals must use verified operative payment methods.
+        </p>
       </div>
 
       <div class="flex justify-end mt-4 pt-3 border-t border-[#2CD97D]/20">
